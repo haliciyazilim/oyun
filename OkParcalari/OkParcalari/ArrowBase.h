@@ -8,16 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef struct {
-    int x;
-    int y;
-} Location;
+#import "MapEntity.h"
 
-Location LocationMake(int x, int y);
+@interface ArrowBase : MapEntity
 
-@interface ArrowBase : NSObject
-
-@property Location location;
 @property int size;
 
 @property int upArrowSize;

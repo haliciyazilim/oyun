@@ -137,6 +137,13 @@
 		410AA2CB1670F09700F6DCCA /* ArrowGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2CA1670F09700F6DCCA /* ArrowGameLayer.m */; };
 		410AA2CF1670F14B00F6DCCA /* ArrowGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2CE1670F14B00F6DCCA /* ArrowGame.m */; };
 		410AA2D91671695100F6DCCA /* ArrowBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2D81671695100F6DCCA /* ArrowBase.m */; };
+		41F9356E16723EAB001E56FF /* GameMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F9356D16723EAB001E56FF /* GameMap.m */; };
+		41F93572167241F2001E56FF /* MapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F93571167241F2001E56FF /* MapEntity.m */; };
+		41F93575167245A2001E56FF /* pepper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41F93574167245A2001E56FF /* pepper.jpg */; };
+		41F9357716724606001E56FF /* pepper.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F9357616724606001E56FF /* pepper.png */; };
+		41F93579167248A8001E56FF /* pepper-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F93578167248A8001E56FF /* pepper-ipadhd.png */; };
+		41F9357C1672523F001E56FF /* tile-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F9357A1672523F001E56FF /* tile-ipadhd.png */; };
+		41F9357D1672523F001E56FF /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F9357B1672523F001E56FF /* tile.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -409,6 +416,15 @@
 		410AA2CE1670F14B00F6DCCA /* ArrowGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowGame.m; sourceTree = "<group>"; };
 		410AA2D71671695100F6DCCA /* ArrowBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowBase.h; sourceTree = "<group>"; };
 		410AA2D81671695100F6DCCA /* ArrowBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowBase.m; sourceTree = "<group>"; };
+		41F9356C16723EAB001E56FF /* GameMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMap.h; sourceTree = "<group>"; };
+		41F9356D16723EAB001E56FF /* GameMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMap.m; sourceTree = "<group>"; };
+		41F93570167241F2001E56FF /* MapEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapEntity.h; sourceTree = "<group>"; };
+		41F93571167241F2001E56FF /* MapEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapEntity.m; sourceTree = "<group>"; };
+		41F93574167245A2001E56FF /* pepper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pepper.jpg; sourceTree = "<group>"; };
+		41F9357616724606001E56FF /* pepper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pepper.png; sourceTree = "<group>"; };
+		41F93578167248A8001E56FF /* pepper-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pepper-ipadhd.png"; sourceTree = "<group>"; };
+		41F9357A1672523F001E56FF /* tile-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tile-ipadhd.png"; sourceTree = "<group>"; };
+		41F9357B1672523F001E56FF /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,6 +498,7 @@
 		410AA1421670D9B600F6DCCA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				41F9357316724597001E56FF /* Images */,
 				410AA1431670D9B600F6DCCA /* Default.png */,
 				410AA1451670D9B600F6DCCA /* Default-Landscape~ipad.png */,
 				410AA1471670D9B600F6DCCA /* fps_images.png */,
@@ -845,8 +862,12 @@
 		410AA2CC1670F12D00F6DCCA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				41F9356C16723EAB001E56FF /* GameMap.h */,
+				41F9356D16723EAB001E56FF /* GameMap.m */,
 				410AA2CD1670F14B00F6DCCA /* ArrowGame.h */,
 				410AA2CE1670F14B00F6DCCA /* ArrowGame.m */,
+				41F93570167241F2001E56FF /* MapEntity.h */,
+				41F93571167241F2001E56FF /* MapEntity.m */,
 				410AA2D71671695100F6DCCA /* ArrowBase.h */,
 				410AA2D81671695100F6DCCA /* ArrowBase.m */,
 			);
@@ -864,6 +885,18 @@
 				410AA2C01670D9B800F6DCCA /* IntroLayer.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		41F9357316724597001E56FF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				41F93574167245A2001E56FF /* pepper.jpg */,
+				41F93578167248A8001E56FF /* pepper-ipadhd.png */,
+				41F9357616724606001E56FF /* pepper.png */,
+				41F9357A1672523F001E56FF /* tile-ipadhd.png */,
+				41F9357B1672523F001E56FF /* tile.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -930,6 +963,11 @@
 				410AA15B1670D9B600F6DCCA /* iTunesArtwork in Resources */,
 				410AA2991670D9B800F6DCCA /* ChangeLog in Resources */,
 				410AA2C81670E99800F6DCCA /* Default-568h@2x.png in Resources */,
+				41F93575167245A2001E56FF /* pepper.jpg in Resources */,
+				41F9357716724606001E56FF /* pepper.png in Resources */,
+				41F93579167248A8001E56FF /* pepper-ipadhd.png in Resources */,
+				41F9357C1672523F001E56FF /* tile-ipadhd.png in Resources */,
+				41F9357D1672523F001E56FF /* tile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,6 +1085,8 @@
 				410AA2CB1670F09700F6DCCA /* ArrowGameLayer.m in Sources */,
 				410AA2CF1670F14B00F6DCCA /* ArrowGame.m in Sources */,
 				410AA2D91671695100F6DCCA /* ArrowBase.m in Sources */,
+				41F9356E16723EAB001E56FF /* GameMap.m in Sources */,
+				41F93572167241F2001E56FF /* MapEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,6 +1144,7 @@
 				GCC_PREFIX_HEADER = OkParcalari/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"OkParcalari/libs/kazmath/include\"";
 				INFOPLIST_FILE = OkParcalari/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -1123,6 +1164,7 @@
 				GCC_PREFIX_HEADER = OkParcalari/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"OkParcalari/libs/kazmath/include\"";
 				INFOPLIST_FILE = OkParcalari/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -1152,6 +1194,7 @@
 				410AA2C61670D9B800F6DCCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

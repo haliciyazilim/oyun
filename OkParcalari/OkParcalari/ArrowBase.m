@@ -8,14 +8,7 @@
 
 #import "ArrowBase.h"
 
-
-Location LocationMake(int x, int y) {
-    Location loc;
-    loc.x = x;
-    loc.y = y;
-    return loc;
-}
-
+#import "GameMap.h"
 
 @implementation ArrowBase
 
@@ -24,7 +17,7 @@ Location LocationMake(int x, int y) {
 }
 
 - (id) initWithLocation:(Location)location andSize:(int)size {
-    self = [super init];
+    self = [super initWithLocation:location];
     
     if (self) {
         self.size = size;
@@ -34,12 +27,11 @@ Location LocationMake(int x, int y) {
         self.leftArrowSize = 0;
         self.rightArrowSize = 0;
         
-        self.location = location;
+        [self createSprite];
     }
     
     return self;
 }
-
 
 - (id)init
 {
@@ -52,11 +44,18 @@ Location LocationMake(int x, int y) {
         self.downArrowSize = 0;
         self.leftArrowSize = 0;
         self.rightArrowSize = 0;
-
-        self.location = LocationMake(0, 0);
+        
+        [self createSprite];
     }
     
     return self;
+}
+
+- (void) createSprite {
+    CCSprite *sprite = [CCSprite spriteWithFile:@"pepper.png"];
+//    player.position = CGPointMake(self.map.tileSize.width/2, self.map.tileSize.height/2);
+    sprite.position = CGPointMake(32, 32);
+    [self addChild:sprite];
 }
 
 - (BOOL) isCorrect {

@@ -8,13 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#import "cocos2d.h"
+
 #import "ArrowBase.h"
 
-@interface ArrowGame : NSObject
+@class GameMap;
+
+@interface ArrowGame : CCNode
 
 @property NSMutableDictionary *gameTable;
 @property NSMutableArray *arrowBases;
-
-
+@property GameMap *map;
 
 @end

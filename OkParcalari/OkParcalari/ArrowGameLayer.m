@@ -25,5 +25,30 @@
 	return scene;
 }
 
+// on "init" you need to initialize your instance
+-(id) init
+{
+    // always call "super" init
+	// Apple recommends to re-assign "self" with the "super's" return value
+	if( (self=[super init]) ) {
+		
+		// create and initialize a Label
+		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
+        
+		// ask director for the window size
+		CGSize size = [[CCDirector sharedDirector] winSize];
+        
+		// position the label on the center of the screen
+		label.position =  ccp( size.width /2 , size.height/2 );
+		
+		// add the label as a child to this Layer
+		[self addChild: label];
+        
+        self.arrowGame = [[ArrowGame alloc] init];
+        [self addChild:self.arrowGame];
+		        
+	}
+	return self;
+}
 
 @end

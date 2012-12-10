@@ -8,8 +8,12 @@
 
 #import "cocos2d.h"
 
+#import "ArrowGame.h"
+
 @interface ArrowGameLayer : CCLayer
 
 +(CCScene *) scene;
+
+@property ArrowGame *arrowGame;
 
 @end
