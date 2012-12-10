@@ -144,6 +144,13 @@
 		41F93579167248A8001E56FF /* pepper-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F93578167248A8001E56FF /* pepper-ipadhd.png */; };
 		41F9357C1672523F001E56FF /* tile-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F9357A1672523F001E56FF /* tile-ipadhd.png */; };
 		41F9357D1672523F001E56FF /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F9357B1672523F001E56FF /* tile.png */; };
+		41F9358016760BC2001E56FF /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F9357F16760BC2001E56FF /* Arrow.m */; };
+		41F93588167612D3001E56FF /* arrow_right_butt-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F93582167612D2001E56FF /* arrow_right_butt-ipadhd.png */; };
+		41F93589167612D3001E56FF /* arrow_right_butt.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F93583167612D2001E56FF /* arrow_right_butt.png */; };
+		41F9358A167612D3001E56FF /* arrow_right_head-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F93584167612D3001E56FF /* arrow_right_head-ipadhd.png */; };
+		41F9358B167612D3001E56FF /* arrow_right_head.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F93585167612D3001E56FF /* arrow_right_head.png */; };
+		41F9358C167612D3001E56FF /* arrow_right_middle-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F93586167612D3001E56FF /* arrow_right_middle-ipadhd.png */; };
+		41F9358D167612D3001E56FF /* arrow_right_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F93587167612D3001E56FF /* arrow_right_middle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -425,6 +432,14 @@
 		41F93578167248A8001E56FF /* pepper-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pepper-ipadhd.png"; sourceTree = "<group>"; };
 		41F9357A1672523F001E56FF /* tile-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tile-ipadhd.png"; sourceTree = "<group>"; };
 		41F9357B1672523F001E56FF /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
+		41F9357E16760BC2001E56FF /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
+		41F9357F16760BC2001E56FF /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
+		41F93582167612D2001E56FF /* arrow_right_butt-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_right_butt-ipadhd.png"; sourceTree = "<group>"; };
+		41F93583167612D2001E56FF /* arrow_right_butt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right_butt.png; sourceTree = "<group>"; };
+		41F93584167612D3001E56FF /* arrow_right_head-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_right_head-ipadhd.png"; sourceTree = "<group>"; };
+		41F93585167612D3001E56FF /* arrow_right_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right_head.png; sourceTree = "<group>"; };
+		41F93586167612D3001E56FF /* arrow_right_middle-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_right_middle-ipadhd.png"; sourceTree = "<group>"; };
+		41F93587167612D3001E56FF /* arrow_right_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right_middle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,6 +499,7 @@
 		410AA1411670D9B500F6DCCA /* OkParcalari */ = {
 			isa = PBXGroup;
 			children = (
+				41F9358116760BE6001E56FF /* Common */,
 				410AA2DA16716B6500F6DCCA /* Views */,
 				410AA2CC1670F12D00F6DCCA /* Models */,
 				410AA2B91670D9B800F6DCCA /* AppDelegate.h */,
@@ -862,14 +878,12 @@
 		410AA2CC1670F12D00F6DCCA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				41F9356C16723EAB001E56FF /* GameMap.h */,
-				41F9356D16723EAB001E56FF /* GameMap.m */,
 				410AA2CD1670F14B00F6DCCA /* ArrowGame.h */,
 				410AA2CE1670F14B00F6DCCA /* ArrowGame.m */,
-				41F93570167241F2001E56FF /* MapEntity.h */,
-				41F93571167241F2001E56FF /* MapEntity.m */,
 				410AA2D71671695100F6DCCA /* ArrowBase.h */,
 				410AA2D81671695100F6DCCA /* ArrowBase.m */,
+				41F9357E16760BC2001E56FF /* Arrow.h */,
+				41F9357F16760BC2001E56FF /* Arrow.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -890,6 +904,12 @@
 		41F9357316724597001E56FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				41F93582167612D2001E56FF /* arrow_right_butt-ipadhd.png */,
+				41F93583167612D2001E56FF /* arrow_right_butt.png */,
+				41F93584167612D3001E56FF /* arrow_right_head-ipadhd.png */,
+				41F93585167612D3001E56FF /* arrow_right_head.png */,
+				41F93586167612D3001E56FF /* arrow_right_middle-ipadhd.png */,
+				41F93587167612D3001E56FF /* arrow_right_middle.png */,
 				41F93574167245A2001E56FF /* pepper.jpg */,
 				41F93578167248A8001E56FF /* pepper-ipadhd.png */,
 				41F9357616724606001E56FF /* pepper.png */,
@@ -897,6 +917,17 @@
 				41F9357B1672523F001E56FF /* tile.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		41F9358116760BE6001E56FF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				41F9356C16723EAB001E56FF /* GameMap.h */,
+				41F9356D16723EAB001E56FF /* GameMap.m */,
+				41F93570167241F2001E56FF /* MapEntity.h */,
+				41F93571167241F2001E56FF /* MapEntity.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -968,6 +999,12 @@
 				41F93579167248A8001E56FF /* pepper-ipadhd.png in Resources */,
 				41F9357C1672523F001E56FF /* tile-ipadhd.png in Resources */,
 				41F9357D1672523F001E56FF /* tile.png in Resources */,
+				41F93588167612D3001E56FF /* arrow_right_butt-ipadhd.png in Resources */,
+				41F93589167612D3001E56FF /* arrow_right_butt.png in Resources */,
+				41F9358A167612D3001E56FF /* arrow_right_head-ipadhd.png in Resources */,
+				41F9358B167612D3001E56FF /* arrow_right_head.png in Resources */,
+				41F9358C167612D3001E56FF /* arrow_right_middle-ipadhd.png in Resources */,
+				41F9358D167612D3001E56FF /* arrow_right_middle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1087,6 +1124,7 @@
 				410AA2D91671695100F6DCCA /* ArrowBase.m in Sources */,
 				41F9356E16723EAB001E56FF /* GameMap.m in Sources */,
 				41F93572167241F2001E56FF /* MapEntity.m in Sources */,
+				41F9358016760BC2001E56FF /* Arrow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

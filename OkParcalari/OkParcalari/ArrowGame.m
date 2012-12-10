@@ -10,6 +10,7 @@
 
 #import "GameMap.h"
 #import "ArrowBase.h"
+#import "Arrow.h"
 
 @implementation ArrowGame
 
@@ -23,6 +24,10 @@
         
         ArrowBase *arrowBase = [[ArrowBase alloc] initWithLocation:LocationMake(1, 1) andSize:10];
         [self.map addEntity:arrowBase];
+        
+        Arrow *arrow1 = [[Arrow alloc] initWithLocation:LocationMake(1, 1)];
+        arrow1.endLocation = LocationMake(4,1);
+        [arrowBase addChild:arrow1];
         
         ArrowBase *arrowBase2 = [[ArrowBase alloc] initWithLocation:LocationMake(3, 2) andSize:10];
         [self.map addEntity:arrowBase2];
