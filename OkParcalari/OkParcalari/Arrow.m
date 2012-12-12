@@ -46,14 +46,19 @@
     }
     
     for(int i=1;i<[self getSize];i++){
-        MapEntity* entity = [self.map entityAtLocation:[self locationAtOrder:i]];
-        if( entity != nil && (Arrow*) entity != self){
-            applyChanges = NO;
-            break;
+        NSArray* entities = [[self.map entitiesAtLocation:[self locationAtOrder:i]] allObjects];
+        if([entities count] == 0)
+            continue;
+        else if([entities count] == 1 ){
+            if((Arrow*)[entities objectAtIndex:0] == self)
+                break;
+            else
+                applyChanges = NO;
         }
-    }
+        else
+            applyChanges = NO;
         
-    
+    }
     
     if(applyChanges == NO){
         _endLocation = savedEndLocation;
@@ -253,10 +258,9 @@
             default:
                 break;
         }
-return LocationMake(x, y);
+        return LocationMake(x, y);
     }
 
-        
 }
 
 @end

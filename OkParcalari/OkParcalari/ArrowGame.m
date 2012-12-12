@@ -84,8 +84,10 @@
 - (void) touchMoved:(Location) location
 {
     BOOL isInTheSameLocation = NO;
+    Direction currentDirection = DirectionFromTwoLocations(startLocation, location);
     if(startLocation.x != location.x || startLocation.y != location.y){
-        lastDirection = DirectionFromTwoLocations(startLocation, location);
+        if(lastDirection == NONE)
+            lastDirection = currentDirection;
     }else
         isInTheSameLocation = YES;
     
@@ -96,11 +98,14 @@
     }
     else if(currentEntity.class == [ArrowBase class]){
         ArrowBase* base = (ArrowBase*) currentEntity;
-        if(isInTheSameLocation && lastDirection != NONE){
-            [base compressArrowAtDirection:lastDirection];
-        }
-        else{
-            [base extendArrowWithEndLocation:location];
+        if(lastDirection != NONE && (lastDirection == currentDirection || currentDirection == NONE)){
+            if(isInTheSameLocation){
+                [base compressArrowAtDirection:lastDirection];
+            }
+            else{
+                [base extendArrowWithEndLocation:location];
+            }
+            
         }
                 
     }
@@ -108,9 +113,14 @@
 
 - (void) touchEnded:(Location) location
 {
+    
+    
     isHoldingArrow      = NO;
     isHoldingArrowBase  = NO;
     currentEntity       = nil;
+    lastDirection       = NONE;
+    
+    
 }
 
 - (void) newGame:(GameMap*) map
