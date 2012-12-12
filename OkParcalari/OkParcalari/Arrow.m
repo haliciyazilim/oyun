@@ -83,17 +83,17 @@
             CCSprite* back;
             sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
             
-            sprite.position = CGPointMake(self.map.tileSize.width * (size+0.5), self.map.tileSize.height/2);
+            sprite.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
             back = [CCSprite spriteWithFile:@"tile_grass.png"];
-            back.position = CGPointMake(self.map.tileSize.width * (size+0.5), self.map.tileSize.height/2);
+            back.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
             [self addChild:back];
             [self addChild:sprite];
             
             for (int i = 1; i < size; i++) {
                 sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
-                sprite.position = CGPointMake(self.map.tileSize.width * (i+0.5), self.map.tileSize.height/2);
+                sprite.position = [self pointFromLocation:LocationMake(self.location.x + i, self.location.y)];
                 CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
-                back.position = CGPointMake(self.map.tileSize.width * (i+0.5), self.map.tileSize.height/2);
+                back.position = [self pointFromLocation:LocationMake(self.location.x + i, self.location.y)];
                 [self addChild:back];
                 
                 [self addChild:sprite];

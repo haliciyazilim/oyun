@@ -24,8 +24,6 @@
 
 + (GameMap*) sharedInstance;
 
-- (void) addEntity:(MapEntity *)entity;
-
 - (Location) convertAbsolutePointToGridPoint:(CGPoint) absolutePoint;
 
 - (MapEntity*)entityAtLocation:(Location) location;
