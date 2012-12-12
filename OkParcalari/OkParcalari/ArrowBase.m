@@ -74,10 +74,13 @@
     sprite.position = CGPointMake(0, 0);
     CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
     back.position = CGPointMake(0, 0);
+    CCSprite *arrowNumber = [CCSprite spriteWithFile:@"arrow_num_5.png"];
+    arrowNumber.position = CGPointMake(0, 0);
     
     //    sprite.position = CGPointMake(32, 32);
     [self addChild:back];
     [self addChild:sprite];
+    [self addChild:arrowNumber];
 }
 
 - (BOOL) isCorrect {
