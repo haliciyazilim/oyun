@@ -28,6 +28,9 @@
 	// return the scene
 	return scene;
 }
+-(void)onEnter{
+    
+}
 
 // on "init" you need to initialize your instance
 -(id) init
@@ -35,7 +38,10 @@
     // always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
-		
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        CCSprite *background = [CCSprite spriteWithFile:@"game_bg.png"];
+        background.position = ccp(size.width/2, size.height/2);
+        [self addChild:background];
 		self.isTouchEnabled = YES;	
         self.arrowGame = [[ArrowGame alloc] init];
         [self addChild:self.arrowGame];
