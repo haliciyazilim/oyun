@@ -76,6 +76,7 @@
 {
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
+    NSLog(@"hitted class: %@",[currentEntity class]);
     
 }
 

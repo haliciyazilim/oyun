@@ -114,6 +114,8 @@
 
 - (BOOL)hitTestWithLocation:(Location) location
 {
+    
+    
     switch([self getDirection]){
         case RIGHT:
             return (self.location.y == location.y && self.location.x < location.x && self.endLocation.x >= location.x);

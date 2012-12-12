@@ -75,7 +75,7 @@ NSString* StringFromDirection(Direction direction){
 
 - (void)setParent:(CCNode *)parent {
     [super setParent:parent];
-    
+    NSLog(@"as");
     self.position = [self pointFromLocation:self.location];
 }
 
