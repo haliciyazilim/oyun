@@ -36,28 +36,28 @@
         [self addChild:self.map];
         
         ArrowBase *arrowBase = [[ArrowBase alloc] initWithLocation:LocationMake(1, 1) andSize:10];
-        [self.map addEntity:arrowBase];
+        [self.map addChild:arrowBase];
     
         ArrowBase *arrowBase2 = [[ArrowBase alloc] initWithLocation:LocationMake(3, 2) andSize:10];
-        [self.map addEntity:arrowBase2];
+        [self.map addChild:arrowBase2];
         
         ArrowBase *arrowBase3 = [[ArrowBase alloc] initWithLocation:LocationMake(0, 0) andSize:10];
-        [self.map addEntity:arrowBase3];
+        [self.map addChild:arrowBase3];
         ArrowBase * base;
         base = [[ArrowBase alloc] initWithLocation:LocationMake(9, 0) andSize:10];
-        [self.map addEntity:base];
+        [self.map addChild:base];
         base = [[ArrowBase alloc] initWithLocation:LocationMake(0, 9) andSize:10];
-        [self.map addEntity:base];
+        [self.map addChild:base];
         base = [[ArrowBase alloc] initWithLocation:LocationMake(9, 9) andSize:10];
-        [self.map addEntity:base];
+        [self.map addChild:base];
         base = [[ArrowBase alloc] initWithLocation:LocationMake(0, 5) andSize:10];
-        [self.map addEntity:base];
+        [self.map addChild:base];
         base = [[ArrowBase alloc] initWithLocation:LocationMake(5, 0) andSize:10];
-        [self.map addEntity:base];
+        [self.map addChild:base];
         base = [[ArrowBase alloc] initWithLocation:LocationMake(9, 5) andSize:10];
-        [self.map addEntity:base];
+        [self.map addChild:base];
         base = [[ArrowBase alloc] initWithLocation:LocationMake(5, 9) andSize:10];
-        [self.map addEntity:base];
+        [self.map addChild:base];
         
         
         

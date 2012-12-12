@@ -71,9 +71,9 @@
         fileName = @"arrow_base_5.png";
         
     CCSprite *sprite = [CCSprite spriteWithFile:fileName];
-    sprite.position = CGPointMake(self.map.tileSize.width/2, self.map.tileSize.height/2);
+    sprite.position = CGPointMake(0, 0);
     CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
-    back.position = CGPointMake(self.map.tileSize.width/2, self.map.tileSize.height/2);
+    back.position = CGPointMake(0, 0);
     
     //    sprite.position = CGPointMake(32, 32);
     [self addChild:back];
