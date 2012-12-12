@@ -59,6 +59,8 @@
         [self.map addChild:base];
         
         
+        lastDirection = NONE;
+        
         
     }
 
@@ -75,8 +77,7 @@
 {
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
-    NSLog(@"hitted class: %@ at location %d,%d",[currentEntity class],location.x,location.y);
-    NSLog(@"");
+    NSLog(@"%@",[currentEntity class]);
     
 }
 
@@ -95,7 +96,7 @@
     }
     else if(currentEntity.class == [ArrowBase class]){
         ArrowBase* base = (ArrowBase*) currentEntity;
-        if(isInTheSameLocation){
+        if(isInTheSameLocation && lastDirection != NONE){
             [base compressArrowAtDirection:lastDirection];
         }
         else{

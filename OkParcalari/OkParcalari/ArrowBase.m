@@ -96,6 +96,7 @@
             return self.leftArrow;
         case RIGHT:
             return self.rightArrow;
+        case NONE:
         default:
             return nil;
     }

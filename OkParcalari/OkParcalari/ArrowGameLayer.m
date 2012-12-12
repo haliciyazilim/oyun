@@ -61,7 +61,6 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"asdasdasd");
     [self.arrowGame touchBegan:[self locationFromTouches:touches]];
 }
 
