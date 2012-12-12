@@ -42,12 +42,40 @@
         CGSize size = [[CCDirector sharedDirector] winSize];
         
         CCSprite *background = [CCSprite spriteWithFile:@"main_toprak.png"];
-        background.position = ccp(size.width/2, size.height/2);
+        background.position = ccp(size.width * 0.5, size.height * 0.5);
         
         CCSprite *topView = [CCSprite spriteWithFile:@"main_frame.png"];
-        topView.position = ccp(size.width/2, size.height/2);
+        topView.position = ccp(size.width * 0.5, size.height * 0.5);
+        
+        CCSprite *timerView = [CCSprite spriteWithFile:@"timing_bg.png"];
+        timerView.position = ccp(size.width * 0.85, size.height * 0.54);
+        
+        CCSprite *timerNum1 = [CCSprite spriteWithFile:@"timer_num_0.png"];
+        timerNum1.position = ccp(size.width * 0.818, size.height * 0.5445);
+        
+        CCSprite *timerNum2 = [CCSprite spriteWithFile:@"timer_num_0.png"];
+        timerNum2.position = ccp(size.width * 0.848, size.height * 0.5445);
+        
+        CCSprite *timerNum3 = [CCSprite spriteWithFile:@"timer_num_0.png"];
+        timerNum3.position = ccp(size.width * 0.890, size.height * 0.5445);
+        
+        CCSprite *timerNum4 = [CCSprite spriteWithFile:@"timer_num_0.png"];
+        timerNum4.position = ccp(size.width * 0.920, size.height * 0.5445);
+        
+        CCSprite *timerDot = [CCSprite spriteWithFile:@"timer_num_nokta.png"];
+        timerDot.position = ccp(size.width * 0.868, size.height * 0.5445);
+        
+        CCSprite *buttonView = [CCSprite spriteWithFile:@"btn_newgame.png"];
+        buttonView.position = ccp(size.width * 0.845, size.height * 0.38);
         
         [self addChild:background];
+        [self addChild:timerView];
+        [self addChild:timerNum1];
+        [self addChild:timerNum2];
+        [self addChild:timerDot];
+        [self addChild:timerNum3];
+        [self addChild:timerNum4];
+        [self addChild:buttonView];
         [self addChild:topView];
         [self reorderChild:topView z:999];
         
