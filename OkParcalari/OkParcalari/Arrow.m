@@ -81,8 +81,11 @@
             
             CCSprite* sprite;
             CCSprite* back;
-            sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
             
+            sprite = [CCSprite spriteWithFile:@"pepper.png"];
+            sprite.position = [self pointFromLocation:LocationMake(self.location.x, self.location.y)];
+            
+            sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
             sprite.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
             back = [CCSprite spriteWithFile:@"tile_grass.png"];
             back.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
@@ -114,7 +117,6 @@
 
 - (BOOL)hitTestWithLocation:(Location) location
 {
-    
     
     switch([self getDirection]){
         case RIGHT:
