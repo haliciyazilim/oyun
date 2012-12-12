@@ -36,13 +36,12 @@
         
         ArrowBase *arrowBase = [[ArrowBase alloc] initWithLocation:LocationMake(1, 1) andSize:10];
         [self.map addEntity:arrowBase];
-//    
-//        
-//        ArrowBase *arrowBase2 = [[ArrowBase alloc] initWithLocation:LocationMake(3, 2) andSize:10];
-//        [self.map addEntity:arrowBase2];
-//        
-//        ArrowBase *arrowBase3 = [[ArrowBase alloc] initWithLocation:LocationMake(9, 9) andSize:10];
-//        [self.map addEntity:arrowBase3];
+    
+        ArrowBase *arrowBase2 = [[ArrowBase alloc] initWithLocation:LocationMake(3, 2) andSize:10];
+        [self.map addEntity:arrowBase2];
+        
+        ArrowBase *arrowBase3 = [[ArrowBase alloc] initWithLocation:LocationMake(0, 0) andSize:10];
+        [self.map addEntity:arrowBase3];
     }
 
     return self;

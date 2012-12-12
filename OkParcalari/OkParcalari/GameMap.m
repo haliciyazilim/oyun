@@ -18,14 +18,14 @@ static GameMap *sharedInstance = nil;
     if (self) {
         self.entities = [NSMutableSet setWithCapacity:50];
         self.tileSize = CGSizeMake(70, 70);
-        self.position = CGPointMake(100, 50);
+        self.position = CGPointMake(34, 34);
         
         self.rows = 10;
         self.cols = 10;
         
         for (int i = 0; i < self.rows; i++) {
             for (int j = 0; j < self.cols; j++) {
-                CCSprite *tile = [CCSprite spriteWithFile:@"tile.png"];
+                CCSprite *tile = [CCSprite spriteWithFile:@"tile_bg_1.png"];
                 tile.position = CGPointMake((i+0.5) * self.tileSize.width, (j+0.5) * self.tileSize.height);
                 [self addChild:tile];
             }
@@ -52,6 +52,7 @@ static GameMap *sharedInstance = nil;
     [self addChild:entity];
     [self.entities addObject:entity];
 }
+
 
 -(Location) convertAbsolutePointToGridPoint:(CGPoint) absolutePoint
 {
@@ -86,9 +87,5 @@ static GameMap *sharedInstance = nil;
     
     return set;
 }
-
-
-
-
 
 @end

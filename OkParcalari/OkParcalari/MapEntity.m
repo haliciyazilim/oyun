@@ -43,6 +43,7 @@ NSString* StringFromDirection(Direction direction){
     }
     return nil;
 }
+
 @implementation MapEntity
 
 - (id)init
@@ -53,9 +54,9 @@ NSString* StringFromDirection(Direction direction){
 - (id)initWithLocation:(Location)location {
     self = [super init];
     if (self) {
-        self.location = location;
+        _location = location;
         self.entities = [[NSMutableSet alloc] init];
-        self.position = CGPointMake(self.location.x * self.map.tileSize.width, self.location.y * self.map.tileSize.height);
+        self.position = [self pointFromLocation:location];
     }
     return self;
 }
@@ -72,7 +73,7 @@ NSString* StringFromDirection(Direction direction){
 - (void)setLocation:(Location)location {
     _location = location;
     
-    self.position = CGPointMake(self.location.x * self.map.tileSize.width, self.location.y * self.map.tileSize.height);
+    self.position = [self pointFromLocation:location];
 }
 
 - (BOOL)hitTestWithLocation:(Location) location
@@ -108,5 +109,17 @@ NSString* StringFromDirection(Direction direction){
     return set;
 }
 
+- (CGPoint) pointFromLocation:(Location)location
+{
+    Location parentLocation = LocationMake(0, 0);
+    if([self.parent isKindOfClass:[MapEntity class]]) {
+        parentLocation = ((MapEntity*)self.parent).location;
+    }
+    
+    float x = (location.x - parentLocation.x) * self.map.tileSize.width;
+    float y = (location.y - parentLocation.y) * self.map.tileSize.height;
+    
+    return CGPointMake(x,y);
+}
 
 @end

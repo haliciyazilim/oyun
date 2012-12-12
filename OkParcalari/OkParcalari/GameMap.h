@@ -12,13 +12,11 @@
 
 #import "MapEntity.h"
 
-@class MapEntity;
-
 @interface GameMap : CCNode
 
 @property CGSize tileSize;
 
-@property NSMutableSet *entities;
+@property NSMutableSet* entities;
 
 @property int rows,cols;
 

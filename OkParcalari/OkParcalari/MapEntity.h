@@ -41,4 +41,6 @@ NSString* StringFromDirection(Direction direction);
 
 - (NSSet*)entitiesAtLocation:(Location)location;
 
+- (CGPoint) pointFromLocation:(Location)location;
+
 @end

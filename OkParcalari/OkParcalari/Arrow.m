@@ -23,14 +23,24 @@
         self.isSelected = NO;
         self.base = base;
         self.direction = direction;
+        self.position = CGPointMake(0, 0);
         [self createSprites];
     }
     return self;
 }
 
 - (void)setEndLocation:(Location)endLocation {
+    
+    if(DirectionFromTwoLocations(self.location, endLocation) != self.direction)
+        return;
+    
+    Location savedEndLocation = self.endLocation;
     _endLocation = endLocation;
-    NSLog(@"arrow can only go towards direction");
+    
+    if([self getSize] > [self.base size]){
+        _endLocation = savedEndLocation;
+        return;
+    }
     [self createSprites];
 }
 
@@ -45,19 +55,14 @@
     switch ([self getDirection]) {
         case RIGHT:
             return xDiff;
-            break;
         case UP:
             return yDiff;
-            break;
         case LEFT:
             return -xDiff;
-            break;
         case DOWN:
             return -yDiff;
-            break;
         default:
             return 0;
-            break;
     }
 }
 
@@ -69,20 +74,21 @@
     if(size <= 0)
         return;
     
-    
-    
     CCSprite* sprite;
     
     switch ([self getDirection]) {
         case RIGHT:
                         
             sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
-            sprite.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
+            
+            sprite.position = CGPointMake(self.map.tileSize.width * (size+0.5), self.map.tileSize.height/2);
+            
             [self addChild:sprite];
             
             for (int i = 1; i < size; i++) {
                 sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
-                sprite.position = [self pointFromLocation:LocationMake(self.location.x + i, self.location.y)];
+                sprite.position = CGPointMake(self.map.tileSize.width * (i+0.5), self.map.tileSize.height/2);
+                
                 [self addChild:sprite];
             }
             
@@ -97,12 +103,7 @@
     }
 }
 
-- (CGPoint) pointFromLocation:(Location)location
-{
-    float yOffset = -self.map.tileSize.height * 1.5;
-    float xOffset = -self.map.tileSize.width * 1.5;
-    return CGPointMake(location.x*self.map.tileSize.width + xOffset, location.y*self.map.tileSize.height+yOffset);
-}
+
 
 - (BOOL)hitTestWithLocation:(Location) location
 {
@@ -118,9 +119,5 @@
     }
     return NO;
 }
-
-
-
-
 
 @end
