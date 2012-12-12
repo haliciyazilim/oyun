@@ -32,6 +32,9 @@
 
 - (void)setEndLocation:(Location)endLocation {
     
+    Direction direction = DirectionFromTwoLocations(self.location, endLocation);
+    if(direction != NONE && direction != self.direction)
+        return;
 
     endLocation = [self projectedLocation:endLocation];
     
@@ -46,10 +49,8 @@
     
     for(int i=1;i<=[self getSize];i++){
         NSArray* entities = [[self.map entitiesAtLocation:[self locationAtOrder:i]] allObjects];
-        NSLog(@"Entities count : %d",[entities count]);
         if([entities count] > 1)
             applyChanges = NO;
-        
     }
     
     if(applyChanges == NO){

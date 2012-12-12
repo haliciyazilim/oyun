@@ -103,8 +103,8 @@
         isInTheSameLocation = YES;
     
     if(currentEntity.class == [Arrow class]){
-        
-        ((Arrow*)currentEntity).endLocation = location;
+        Arrow* arrow = (Arrow*)currentEntity;
+        arrow.endLocation = location;
         
     }
     else if(currentEntity.class == [ArrowBase class]){
