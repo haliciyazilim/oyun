@@ -47,7 +47,7 @@
         [self.map addChild:base];
         base = [[ArrowBase alloc] initWithLocation:LocationMake(7, 4) andSize:2];
         [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(3, 4) andSize:4];
+        base = [[ArrowBase alloc] initWithLocation:LocationMake(2, 4) andSize:4];
         [self.map addChild:base];
         base = [[ArrowBase alloc] initWithLocation:LocationMake(0, 5) andSize:6];
         [self.map addChild:base];
