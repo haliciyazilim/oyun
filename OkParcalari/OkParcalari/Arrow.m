@@ -32,8 +32,7 @@
 
 - (void)setEndLocation:(Location)endLocation {
     
-    
-    //izdusum hesaplanacak
+
     endLocation = [self projectedLocation:endLocation];
     
     Location savedEndLocation = self.endLocation;
@@ -45,17 +44,10 @@
         applyChanges = NO;
     }
     
-    for(int i=1;i<[self getSize];i++){
+    for(int i=1;i<=[self getSize];i++){
         NSArray* entities = [[self.map entitiesAtLocation:[self locationAtOrder:i]] allObjects];
-        if([entities count] == 0)
-            continue;
-        else if([entities count] == 1 ){
-            if((Arrow*)[entities objectAtIndex:0] == self)
-                break;
-            else
-                applyChanges = NO;
-        }
-        else
+        NSLog(@"Entities count : %d",[entities count]);
+        if([entities count] > 1)
             applyChanges = NO;
         
     }
