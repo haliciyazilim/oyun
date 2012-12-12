@@ -31,6 +31,8 @@
 
 - (void)setEndLocation:(Location)endLocation {
     
+    
+    //izdusum hesaplanacak
     if(DirectionFromTwoLocations(self.location, endLocation) != self.direction)
         return;
     
@@ -74,24 +76,29 @@
     if(size <= 0)
         return;
     
-    CCSprite* sprite;
-    
     switch ([self getDirection]) {
-        case RIGHT:
-                        
+        case RIGHT:{
+            
+            CCSprite* sprite;
+            CCSprite* back;
             sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
             
             sprite.position = CGPointMake(self.map.tileSize.width * (size+0.5), self.map.tileSize.height/2);
-            
+            back = [CCSprite spriteWithFile:@"tile_grass.png"];
+            back.position = CGPointMake(self.map.tileSize.width * (size+0.5), self.map.tileSize.height/2);
+            [self addChild:back];
             [self addChild:sprite];
             
             for (int i = 1; i < size; i++) {
                 sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
                 sprite.position = CGPointMake(self.map.tileSize.width * (i+0.5), self.map.tileSize.height/2);
+                CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
+                back.position = CGPointMake(self.map.tileSize.width * (i+0.5), self.map.tileSize.height/2);
+                [self addChild:back];
                 
                 [self addChild:sprite];
             }
-            
+        }
             break;
         case LEFT:
             break;

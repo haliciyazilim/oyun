@@ -116,8 +116,8 @@ NSString* StringFromDirection(Direction direction){
         parentLocation = ((MapEntity*)self.parent).location;
     }
     
-    float x = (location.x - parentLocation.x) * self.map.tileSize.width;
-    float y = (location.y - parentLocation.y) * self.map.tileSize.height;
+    float x = (location.x - parentLocation.x) * self.map.tileSize.width * 1.5;
+    float y = (location.y - parentLocation.y) * self.map.tileSize.height * 1.5;
     
     return CGPointMake(x,y);
 }

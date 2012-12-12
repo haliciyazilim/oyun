@@ -25,7 +25,7 @@ static GameMap *sharedInstance = nil;
         
         for (int i = 0; i < self.rows; i++) {
             for (int j = 0; j < self.cols; j++) {
-                CCSprite *tile = [CCSprite spriteWithFile:@"tile_bg_1.png"];
+                CCSprite *tile = [CCSprite spriteWithFile:@"tile_border.png"];
                 tile.position = CGPointMake((i+0.5) * self.tileSize.width, (j+0.5) * self.tileSize.height);
                 [self addChild:tile];
             }

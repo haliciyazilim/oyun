@@ -42,6 +42,22 @@
         
         ArrowBase *arrowBase3 = [[ArrowBase alloc] initWithLocation:LocationMake(0, 0) andSize:10];
         [self.map addEntity:arrowBase3];
+        ArrowBase * base;
+        base = [[ArrowBase alloc] initWithLocation:LocationMake(9, 0) andSize:10];
+        [self.map addEntity:base];
+        base = [[ArrowBase alloc] initWithLocation:LocationMake(0, 9) andSize:10];
+        [self.map addEntity:base];
+        base = [[ArrowBase alloc] initWithLocation:LocationMake(9, 9) andSize:10];
+        [self.map addEntity:base];
+        base = [[ArrowBase alloc] initWithLocation:LocationMake(0, 5) andSize:10];
+        [self.map addEntity:base];
+        base = [[ArrowBase alloc] initWithLocation:LocationMake(5, 0) andSize:10];
+        [self.map addEntity:base];
+        base = [[ArrowBase alloc] initWithLocation:LocationMake(9, 5) andSize:10];
+        [self.map addEntity:base];
+        base = [[ArrowBase alloc] initWithLocation:LocationMake(5, 9) andSize:10];
+        [self.map addEntity:base];
+        
     }
 
     return self;
@@ -55,6 +71,7 @@
 
 - (void) touchBegan:(Location) location
 {
+    NSLog(@"asdasasd");
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
     
@@ -62,8 +79,8 @@
 
 - (void) touchMoved:(Location) location
 {
-    if(startLocation.x == location.x && startLocation.y == location.y)
-        return;
+//    if(startLocation.x == location.x && startLocation.y == location.y)
+//        return;
     
     if(currentEntity.class == [Arrow class]){
         

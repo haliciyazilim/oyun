@@ -58,21 +58,25 @@
     else if( self.location.x == self.map.cols-1)
         fileName = @"arrow_base_6.png";
     else if( self.location.x == 0 && self.location.y == self.map.rows-1)
-        fileName = @"arrow_base_7.png";
-    else if( self.location.x == 0 && self.location.y == 0)
         fileName = @"arrow_base_1.png";
+    else if( self.location.x == 0 && self.location.y == 0)
+        fileName = @"arrow_base_7.png";
     else if( self.location.x == 0)
         fileName = @"arrow_base_4.png";
     else if( self.location.y == self.map.rows-1)
-        fileName = @"arrow_base_8.png";
-    else if( self.location.y == 0)
         fileName = @"arrow_base_2.png";
+    else if( self.location.y == 0)
+        fileName = @"arrow_base_8.png";
     else
         fileName = @"arrow_base_5.png";
         
     CCSprite *sprite = [CCSprite spriteWithFile:fileName];
     sprite.position = CGPointMake(self.map.tileSize.width/2, self.map.tileSize.height/2);
-//    sprite.position = CGPointMake(32, 32);
+    CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
+    back.position = CGPointMake(self.map.tileSize.width/2, self.map.tileSize.height/2);
+    
+    //    sprite.position = CGPointMake(32, 32);
+    [self addChild:back];
     [self addChild:sprite];
 }
 
@@ -92,6 +96,8 @@
             return self.leftArrow;
         case RIGHT:
             return self.rightArrow;
+        default:
+            return nil;
     }
 }
 

@@ -29,7 +29,7 @@
 	return scene;
 }
 -(void)onEnter{
-    
+    [super onEnter];
 }
 
 // on "init" you need to initialize your instance
@@ -42,7 +42,7 @@
         CCSprite *background = [CCSprite spriteWithFile:@"game_bg.png"];
         background.position = ccp(size.width/2, size.height/2);
         [self addChild:background];
-		self.isTouchEnabled = YES;	
+		self.isTouchEnabled = YES;
         self.arrowGame = [[ArrowGame alloc] init];
         [self addChild:self.arrowGame];
         
@@ -52,7 +52,7 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
+    NSLog(@"asdasdasd");
     [self.arrowGame touchBegan:[self locationFromTouches:touches]];
 }
 
