@@ -12,11 +12,6 @@
 
 @interface ArrowBase()
 
-@property Arrow* upArrow;
-@property Arrow* downArrow;
-@property Arrow* leftArrow;
-@property Arrow* rightArrow;
-
 @end
 
 

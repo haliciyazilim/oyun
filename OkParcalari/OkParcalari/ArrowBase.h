@@ -18,6 +18,11 @@
 
 @property int size;
 
+@property Arrow* upArrow;
+@property Arrow* downArrow;
+@property Arrow* leftArrow;
+@property Arrow* rightArrow;
+
 + (id) ArrowBaseWithLocation:(Location)location andSize:(int)size;
 
 - (id) initWithLocation:(Location)location andSize:(int)size;
