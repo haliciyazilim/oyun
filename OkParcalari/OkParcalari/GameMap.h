@@ -10,14 +10,28 @@
 
 #import "cocos2d.h"
 
+#import "MapEntity.h"
+
 @class MapEntity;
 
 @interface GameMap : CCNode
 
-@property NSMutableSet *entities;
-
 @property CGSize tileSize;
 
+@property NSMutableSet *entities;
+
+@property int rows,cols;
+
++ (GameMap*) loadFromFile:(NSString*)fileName;
+
++ (GameMap*) sharedInstance;
+
 - (void) addEntity:(MapEntity *)entity;
+
+- (Location) convertAbsolutePointToGridPoint:(CGPoint) absolutePoint;
+
+- (MapEntity*)entityAtLocation:(Location) location;
+
+- (NSSet*)entitiesAtLocation:(Location) location;
 
 @end

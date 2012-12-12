@@ -10,8 +10,17 @@
 
 #import "GameMap.h"
 
-@implementation ArrowBase
+@interface ArrowBase()
 
+@property Arrow* upArrow;
+@property Arrow* downArrow;
+@property Arrow* leftArrow;
+@property Arrow* rightArrow;
+
+@end
+
+
+@implementation ArrowBase
 + (id) ArrowBaseWithLocation:(Location)location andSize:(int)size {
     return [[ArrowBase alloc] initWithLocation:location andSize:size];
 }
@@ -22,10 +31,15 @@
     if (self) {
         self.size = size;
         
-        self.upArrowSize = 0;
-        self.downArrowSize = 0;
-        self.leftArrowSize = 0;
-        self.rightArrowSize = 0;
+        self.upArrow    = [[Arrow alloc] initWithLocation:self.location andDirection:UP forBase:self];
+        self.downArrow  = [[Arrow alloc] initWithLocation:self.location andDirection:DOWN forBase:self];
+        self.rightArrow = [[Arrow alloc] initWithLocation:self.location andDirection:RIGHT forBase:self];
+        self.leftArrow  = [[Arrow alloc] initWithLocation:self.location andDirection:LEFT forBase:self];
+        
+        [self addChild:self.upArrow];
+        [self addChild:self.downArrow];
+        [self addChild:self.leftArrow];
+        [self addChild:self.rightArrow];
         
         [self createSprite];
     }
@@ -33,23 +47,6 @@
     return self;
 }
 
-- (id)init
-{
-    self = [super init];
-    
-    if (self) {
-        self.size = 0;
-        
-        self.upArrowSize = 0;
-        self.downArrowSize = 0;
-        self.leftArrowSize = 0;
-        self.rightArrowSize = 0;
-        
-        [self createSprite];
-    }
-    
-    return self;
-}
 
 - (void) createSprite {
     CCSprite *sprite = [CCSprite spriteWithFile:@"pepper.png"];
@@ -59,7 +56,30 @@
 }
 
 - (BOOL) isCorrect {
-    return (self.leftArrowSize + self.rightArrowSize + self.upArrowSize + self.downArrowSize == self.size);
+//    return (self.leftArrowSize + self.rightArrowSize + self.upArrowSize + self.downArrowSize == self.size);
+    return NO;
+}
+
+- (Arrow *) arrowAtDirection:(Direction) direction
+{
+    switch (direction) {
+        case UP:
+            return self.upArrow;
+        case DOWN:
+            return self.downArrow;
+        case LEFT:
+            return self.leftArrow;
+        case RIGHT:
+            return self.rightArrow;
+    }
+}
+
+- (Arrow *) extendArrowWithEndLocation:(Location) endLocation
+{
+    NSLog(@"%@",StringFromDirection(DirectionFromTwoLocations(self.location, endLocation)));
+    Arrow* arrow = [self arrowAtDirection:DirectionFromTwoLocations(self.location, endLocation)];
+    arrow.endLocation = endLocation;
+    return arrow;
 }
 
 @end

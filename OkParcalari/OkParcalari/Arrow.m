@@ -10,16 +10,19 @@
 
 @implementation Arrow
 
+
 - (id)init
 {
     return [self initWithLocation:LocationMake(0, 0)];
 }
 
-- (id)initWithLocation:(Location)location
+- (id)initWithLocation:(Location)location andDirection:(Direction)direction forBase:(ArrowBase*)base
 {
     self = [super initWithLocation:location];
     if (self) {
         self.isSelected = NO;
+        self.base = base;
+        self.direction = direction;
         [self createSprites];
     }
     return self;
@@ -27,35 +30,12 @@
 
 - (void)setEndLocation:(Location)endLocation {
     _endLocation = endLocation;
-    
+    NSLog(@"arrow can only go towards direction");
     [self createSprites];
 }
 
-- (int)getDirection {
-    int xDiff = self.endLocation.x - self.location.x;
-    int yDiff = self.endLocation.y - self.location.y;
-    
-    if (yDiff == 0) {
-        if (xDiff > 0) {
-            return 1;
-        } else if (xDiff < 0) {
-            return 3;
-        } else {
-            return 0;
-        }
-    } else if (yDiff > 0) {
-        if (xDiff == 0) {
-            return 2;
-        } else {
-            return 0;
-        }
-    } else {
-        if (xDiff == 0) {
-            return 4;
-        } else {
-            return 0;
-        }
-    }
+- (Direction)getDirection {
+    return DirectionFromTwoLocations(self.location, self.endLocation);
 }
 
 - (int)getSize {
@@ -63,16 +43,16 @@
     int yDiff = self.endLocation.y - self.location.y;
     
     switch ([self getDirection]) {
-        case 1:
+        case RIGHT:
             return xDiff;
             break;
-        case 2:
+        case UP:
             return yDiff;
             break;
-        case 3:
+        case LEFT:
             return -xDiff;
             break;
-        case 4:
+        case DOWN:
             return -yDiff;
             break;
         default:
@@ -86,27 +66,58 @@
     
     int size = [self getSize];
     
+    if(size <= 0)
+        return;
+    
+    float yOffset = -self.map.tileSize.height * 1.5;
+    float xOffset = -self.map.tileSize.width * 1.5;
+    
     CCSprite* sprite;
     
+    NSLog(@"%d,%d,%d,%d",self.location.x,self.location.y,self.endLocation.x,self.endLocation.y);
+    
     switch ([self getDirection]) {
-        case 1:
-            sprite = [CCSprite spriteWithFile:@"arrow_right_butt.png"];
-            sprite.position = CGPointMake(32, 32);
-            [self addChild:sprite];
-            
-            CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_right_head.png"];
-            sprite.position = CGPointMake(32 + size*64, 32);
+        case RIGHT:
+                        
+            sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
+            sprite.position = CGPointMake((self.location.x+size)*self.map.tileSize.width + xOffset, self.location.y*self.map.tileSize.height+yOffset);
             [self addChild:sprite];
             
             for (int i = 1; i < size; i++) {
-                CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_right_middle.png"];
-                sprite.position = CGPointMake(32 + i*64, 32);
+                sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
+                sprite.position = CGPointMake((self.location.x+i)*self.map.tileSize.width + xOffset, self.location.y*self.map.tileSize.height+yOffset);
                 [self addChild:sprite];
             }
             
             break;
+        case LEFT:
+            break;
+        case DOWN:
+            break;
+        case UP:
+            break;
+            
     }
 }
+
+
+- (BOOL)hitTestWithLocation:(Location) location
+{
+    switch([self getDirection]){
+        case RIGHT:
+            return (self.location.y == location.y && self.location.x < location.x && self.endLocation.x >= location.x);
+        case LEFT:
+            return (self.location.y == location.y && self.location.x > location.x && self.endLocation.x <= location.x);
+        case UP:
+            return (self.location.x == location.x && self.location.y < location.y && self.endLocation.y >= location.y);
+        case DOWN:
+            return (self.location.x == location.x && self.location.y > location.y && self.endLocation.y <= location.y);
+    }
+    return NO;
+}
+
+
+
 
 
 @end

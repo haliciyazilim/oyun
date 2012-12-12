@@ -10,19 +10,20 @@
 
 #import "MapEntity.h"
 
+#import "Arrow.h"
+
+@class Arrow;
+
 @interface ArrowBase : MapEntity
 
 @property int size;
-
-@property int upArrowSize;
-@property int downArrowSize;
-@property int leftArrowSize;
-@property int rightArrowSize;
 
 + (id) ArrowBaseWithLocation:(Location)location andSize:(int)size;
 
 - (id) initWithLocation:(Location)location andSize:(int)size;
 
 - (BOOL) isCorrect;
+
+- (Arrow *) extendArrowWithEndLocation:(Location) endLocation;
 
 @end

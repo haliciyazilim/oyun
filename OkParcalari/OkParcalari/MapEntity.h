@@ -19,11 +19,26 @@ typedef struct {
 
 Location LocationMake(int x, int y);
 
+typedef enum {LEFT,RIGHT,UP,DOWN} Direction;
+
+Direction DirectionFromTwoLocations(Location start, Location end);
+
+NSString* StringFromDirection(Direction direction);
+
 @interface MapEntity : CCNode
 
-@property (weak, nonatomic) GameMap* map;
+@property (nonatomic) GameMap *map;
+
 @property (nonatomic) Location location;
 
+@property NSMutableSet* entities;
+
 - (id) initWithLocation:(Location)location;
+
+- (BOOL)hitTestWithLocation:(Location) location;
+
+- (MapEntity*)entityAtLocation:(Location)location;
+
+- (NSSet*)entitiesAtLocation:(Location)location;
 
 @end

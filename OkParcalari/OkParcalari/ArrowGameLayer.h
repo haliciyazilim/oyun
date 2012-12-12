@@ -10,10 +10,14 @@
 
 #import "ArrowGame.h"
 
+#import "ArrowBase.h"
+
 @interface ArrowGameLayer : CCLayer
 
 +(CCScene *) scene;
 
 @property ArrowGame *arrowGame;
+
+- (void) gameEnded;
 
 @end

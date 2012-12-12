@@ -8,6 +8,10 @@
 
 #import "ArrowGameLayer.h"
 
+#import "GameMap.h"
+
+#import "MapEntity.h"
+
 @implementation ArrowGameLayer
 
 +(CCScene *) scene
@@ -32,23 +36,47 @@
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
 		
-		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
-        
-		// ask director for the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
-        
-		// position the label on the center of the screen
-		label.position =  ccp( size.width /2 , size.height/2 );
-		
-		// add the label as a child to this Layer
-		[self addChild: label];
-        
+		self.isTouchEnabled = YES;	
         self.arrowGame = [[ArrowGame alloc] init];
         [self addChild:self.arrowGame];
-		        
+        
 	}
 	return self;
 }
 
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    [self.arrowGame touchBegan:[self locationFromTouches:touches]];
+}
+
+-(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.arrowGame touchMoved:[self locationFromTouches:touches]];
+}
+
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.arrowGame touchEnded:[self locationFromTouches:touches]];
+}
+
+-(CGPoint)pointFromTouches:(NSSet*) touches
+{
+    UITouch* touch = [touches anyObject];
+    CGPoint point = [touch locationInView:[touch view]];
+    point = [[CCDirector sharedDirector] convertToGL:point];
+    return point;
+}
+
+-(Location)locationFromTouches:(NSSet*) touches
+{
+    CGPoint point = [self pointFromTouches:touches];
+    Location location = [[GameMap sharedInstance] convertAbsolutePointToGridPoint:point];
+    return location;
+}
+
+-(void) gameEnded
+{
+    
+}
 @end

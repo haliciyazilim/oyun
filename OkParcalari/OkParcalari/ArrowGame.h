@@ -18,6 +18,18 @@
 
 @property NSMutableDictionary *gameTable;
 @property NSMutableArray *arrowBases;
-@property GameMap *map;
+
+- (BOOL) isGameFinished;
+
+- (void) touchBegan:(Location) location;
+
+- (void) touchMoved:(Location) location;
+
+- (void) touchEnded:(Location) location;
+
+- (void) newGame:(GameMap*) map;
+
+
+
 
 @end

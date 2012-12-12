@@ -12,31 +12,91 @@
 #import "ArrowBase.h"
 #import "Arrow.h"
 
-@implementation ArrowGame
+@interface ArrowGame()
+@property (readonly) GameMap* map;
+@end
 
+
+@implementation ArrowGame
+{
+    MapEntity* currentEntity;
+    BOOL isHoldingArrowBase;
+    BOOL isHoldingArrow;
+    Location startLocation;
+    Location endLocation;
+    Location currentLocation;
+}
 - (id)init
 {
     self = [super init];
     if (self) {
+        
         self.gameTable = [NSMutableDictionary dictionaryWithCapacity:100];
-        self.map = [[GameMap alloc] init];
         [self addChild:self.map];
         
         ArrowBase *arrowBase = [[ArrowBase alloc] initWithLocation:LocationMake(1, 1) andSize:10];
         [self.map addEntity:arrowBase];
-        
-        Arrow *arrow1 = [[Arrow alloc] initWithLocation:LocationMake(1, 1)];
-        arrow1.endLocation = LocationMake(4,1);
-        [arrowBase addChild:arrow1];
-        
-        ArrowBase *arrowBase2 = [[ArrowBase alloc] initWithLocation:LocationMake(3, 2) andSize:10];
-        [self.map addEntity:arrowBase2];
-        
-        ArrowBase *arrowBase3 = [[ArrowBase alloc] initWithLocation:LocationMake(9, 9) andSize:10];
-        [self.map addEntity:arrowBase3];
+//    
+//        
+//        ArrowBase *arrowBase2 = [[ArrowBase alloc] initWithLocation:LocationMake(3, 2) andSize:10];
+//        [self.map addEntity:arrowBase2];
+//        
+//        ArrowBase *arrowBase3 = [[ArrowBase alloc] initWithLocation:LocationMake(9, 9) andSize:10];
+//        [self.map addEntity:arrowBase3];
     }
 
     return self;
 }
+
+
+- (BOOL) isGameFinished
+{
+    return NO;
+}
+
+- (void) touchBegan:(Location) location
+{
+    currentEntity = [GameMap.sharedInstance entityAtLocation:location];
+    startLocation = location;
+    
+}
+
+- (void) touchMoved:(Location) location
+{
+    if(startLocation.x == location.x && startLocation.y == location.y)
+        return;
+    
+    if(currentEntity.class == [Arrow class]){
+        
+        ((Arrow*)currentEntity).endLocation = location;
+        
+    }
+    else if(currentEntity.class == [ArrowBase class]){
+        ArrowBase* base = (ArrowBase*) currentEntity;
+        [base extendArrowWithEndLocation:location];
+    }
+}
+
+- (void) touchEnded:(Location) location
+{
+    isHoldingArrow      = NO;
+    isHoldingArrowBase  = NO;
+    currentEntity       = nil;
+}
+
+- (void) newGame:(GameMap*) map
+{
+    
+}
+
+
+
+
+- (GameMap*) map
+{
+    return [GameMap sharedInstance];
+}
+
+
 
 @end
