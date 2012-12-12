@@ -88,25 +88,37 @@
             [self addChild:sprite];
             
             for (int i = 1; i < size; i++) {
-                sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
+                CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
                 sprite.position = CGPointMake(self.map.tileSize.width * (i+0.5), self.map.tileSize.height * 0.5);
+                
                 CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
                 back.position = CGPointMake(self.map.tileSize.width * (i+0.5), self.map.tileSize.height * 0.5);
-                [self addChild:back];
                 
+                [self addChild:back];
                 [self addChild:sprite];
             }
         }
             break;
         case LEFT:{
             CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_left_start.png"];
-            sprite.position = CGPointMake(self.map.tileSize.width * (size-0.5),self.map.tileSize.height * 0.5);
+            sprite.position = CGPointMake(self.map.tileSize.width * (-size+0.5),self.map.tileSize.height * 0.5);
             
             CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
-            back.position = CGPointMake(self.map.tileSize.width * (size-0.5), self.map.tileSize.height * 0.5);
+            back.position = CGPointMake(self.map.tileSize.width * (-size+0.5), self.map.tileSize.height * 0.5);
             
             [self addChild:back];
             [self addChild:sprite];
+            
+            for (int i = 1; i < size; i++) {
+                CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
+                sprite.position = CGPointMake(self.map.tileSize.width * (-i+0.5), self.map.tileSize.height * 0.5);
+                
+                CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
+                back.position = CGPointMake(self.map.tileSize.width * (-i+0.5), self.map.tileSize.height * 0.5);
+                
+                [self addChild:back];
+                [self addChild:sprite];
+            }
         }
             break;
         case DOWN:
@@ -116,8 +128,6 @@
             
     }
 }
-
-
 
 - (BOOL)hitTestWithLocation:(Location) location
 {

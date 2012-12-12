@@ -38,10 +38,19 @@
     // always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
+        
         CGSize size = [[CCDirector sharedDirector] winSize];
-        CCSprite *background = [CCSprite spriteWithFile:@"game_bg.png"];
+        
+        CCSprite *background = [CCSprite spriteWithFile:@"main_toprak.png"];
         background.position = ccp(size.width/2, size.height/2);
+        
+        CCSprite *topView = [CCSprite spriteWithFile:@"main_frame.png"];
+        topView.position = ccp(size.width/2, size.height/2);
+        
         [self addChild:background];
+        [self addChild:topView];
+        [self reorderChild:topView z:999];
+        
 		self.isTouchEnabled = YES;
         self.arrowGame = [[ArrowGame alloc] init];
         [self addChild:self.arrowGame];
