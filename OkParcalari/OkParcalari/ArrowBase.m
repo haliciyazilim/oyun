@@ -70,19 +70,36 @@
     else
         fileName = @"arrow_base_5.png";
     
-    NSString* numberFileName = [NSString stringWithFormat:@"arrow_num_%d.png",self.size];
-    NSLog(@"%@",numberFileName);
+
+    
     CCSprite *sprite = [CCSprite spriteWithFile:fileName];
     sprite.position = CGPointMake(0, 0);
     CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
     back.position = CGPointMake(0, 0);
-    CCSprite *arrowNumber = [CCSprite spriteWithFile:numberFileName];
-    arrowNumber.position = CGPointMake(0, 0);
+
     
     //    sprite.position = CGPointMake(32, 32);
     [self addChild:back];
     [self addChild:sprite];
-    [self addChild:arrowNumber];
+    
+    
+    if(self.size < 10){
+        NSString* numberFileName = [NSString stringWithFormat:@"arrow_num_%d.png",self.size];
+        CCSprite *arrowNumber = [CCSprite spriteWithFile:numberFileName];
+        arrowNumber.position = CGPointMake(0, 0);
+        [self addChild:arrowNumber];
+    }
+    else if(self.size >= 10){
+        NSString *numberFileName1 = [NSString stringWithFormat:@"arrow_num_%d.png",self.size/10];
+        NSString *numberFileName2 = [NSString stringWithFormat:@"arrow_num_%d.png",self.size%10];
+        CCSprite *arrowNumber1 = [CCSprite spriteWithFile:numberFileName1];
+        CCSprite *arrowNumber2 = [CCSprite spriteWithFile:numberFileName2];
+        arrowNumber1.position = CGPointMake(-6,0);
+        arrowNumber2.position = CGPointMake(6,0);
+        [self addChild:arrowNumber1];
+        [self addChild:arrowNumber2];
+    }
+
 }
 
 - (BOOL) isCorrect {
