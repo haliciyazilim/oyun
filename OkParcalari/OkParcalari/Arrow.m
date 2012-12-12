@@ -69,23 +69,20 @@
     if(size <= 0)
         return;
     
-    float yOffset = -self.map.tileSize.height * 1.5;
-    float xOffset = -self.map.tileSize.width * 1.5;
+    
     
     CCSprite* sprite;
-    
-    NSLog(@"%d,%d,%d,%d",self.location.x,self.location.y,self.endLocation.x,self.endLocation.y);
     
     switch ([self getDirection]) {
         case RIGHT:
                         
             sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
-            sprite.position = CGPointMake((self.location.x+size)*self.map.tileSize.width + xOffset, self.location.y*self.map.tileSize.height+yOffset);
+            sprite.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
             [self addChild:sprite];
             
             for (int i = 1; i < size; i++) {
                 sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
-                sprite.position = CGPointMake((self.location.x+i)*self.map.tileSize.width + xOffset, self.location.y*self.map.tileSize.height+yOffset);
+                sprite.position = [self pointFromLocation:LocationMake(self.location.x + i, self.location.y)];
                 [self addChild:sprite];
             }
             
@@ -100,6 +97,12 @@
     }
 }
 
+- (CGPoint) pointFromLocation:(Location)location
+{
+    float yOffset = -self.map.tileSize.height * 1.5;
+    float xOffset = -self.map.tileSize.width * 1.5;
+    return CGPointMake(location.x*self.map.tileSize.width + xOffset, location.y*self.map.tileSize.height+yOffset);
+}
 
 - (BOOL)hitTestWithLocation:(Location) location
 {
