@@ -109,4 +109,11 @@
     return arrow;
 }
 
+- (Arrow *) compressArrowAtDirection:(Direction) direction
+{
+    Arrow* arrow = [self arrowAtDirection:direction];
+    arrow.endLocation = self.location;
+    return arrow;
+}
+
 @end

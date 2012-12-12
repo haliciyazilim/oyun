@@ -100,12 +100,9 @@ NSString* StringFromDirection(Direction direction){
     [self.entities enumerateObjectsUsingBlock:^(MapEntity *entity, BOOL *stop) {
         [set addObjectsFromArray:[[entity entitiesAtLocation:location] allObjects]];
     }];
-    NSLog(@"%d,%d,%d,%d",self.location.x,self.location.y,location.x,location.y);
     if ([self hitTestWithLocation:location] == YES) {
-        NSLog(@"I'mhere");
         [set addObject:self];
     }
-    NSLog(@"arrow base set count %d",[[set allObjects] count]);
     return set;
 }
 

@@ -74,7 +74,6 @@
 
 - (void) touchBegan:(Location) location
 {
-    NSLog(@"asdasasd");
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
     
@@ -82,9 +81,11 @@
 
 - (void) touchMoved:(Location) location
 {
+    BOOL isInTheSameLocation = NO;
     if(startLocation.x != location.x || startLocation.y != location.y){
         lastDirection = DirectionFromTwoLocations(startLocation, location);
-    }
+    }else
+        isInTheSameLocation = YES;
     
     if(currentEntity.class == [Arrow class]){
         
@@ -93,7 +94,13 @@
     }
     else if(currentEntity.class == [ArrowBase class]){
         ArrowBase* base = (ArrowBase*) currentEntity;
-        [base extendArrowWithEndLocation:location];
+        if(isInTheSameLocation){
+            [base compressArrowAtDirection:lastDirection];
+        }
+        else{
+            [base extendArrowWithEndLocation:location];
+        }
+                
     }
 }
 
