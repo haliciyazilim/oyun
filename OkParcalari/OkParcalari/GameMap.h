@@ -30,4 +30,6 @@
 
 - (NSSet*)entitiesAtLocation:(Location) location;
 
+- (BOOL) isLocationInsideMap:(Location) location;
+
 @end

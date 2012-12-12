@@ -75,6 +75,8 @@
 
 - (void) touchBegan:(Location) location
 {
+    if([self.map isLocationInsideMap:location] == NO)
+        return;
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
     NSLog(@"%@",[currentEntity class]);
@@ -83,6 +85,9 @@
 
 - (void) touchMoved:(Location) location
 {
+    if([self.map isLocationInsideMap:location] == NO)
+        return;
+    
     BOOL isInTheSameLocation = NO;
     Direction currentDirection = DirectionFromTwoLocations(startLocation, location);
     if(startLocation.x != location.x || startLocation.y != location.y){
