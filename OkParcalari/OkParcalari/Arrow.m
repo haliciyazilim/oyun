@@ -79,32 +79,48 @@
     
     switch ([self getDirection]) {
         case RIGHT:{
-            
-            CCSprite* sprite;
-            CCSprite* back;
-            
-            sprite = [CCSprite spriteWithFile:@"pepper.png"];
-            sprite.position = [self pointFromLocation:LocationMake(self.location.x, self.location.y)];
-            
-            sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
+            CCSprite* sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
             sprite.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
-            back = [CCSprite spriteWithFile:@"tile_grass.png"];
+            
+            CCSprite* back = [CCSprite spriteWithFile:@"tile_grass.png"];
             back.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
+
             [self addChild:back];
             [self addChild:sprite];
             
             for (int i = 1; i < size; i++) {
-                sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
+                CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
                 sprite.position = [self pointFromLocation:LocationMake(self.location.x + i, self.location.y)];
+                
                 CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
                 back.position = [self pointFromLocation:LocationMake(self.location.x + i, self.location.y)];
-                [self addChild:back];
                 
+                [self addChild:back];
                 [self addChild:sprite];
             }
         }
             break;
-        case LEFT:
+        case LEFT:{
+            CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_left_start.png"];
+            sprite.position = [self pointFromLocation:LocationMake(self.location.x - size, self.location.y)];
+            
+            CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
+            back.position = [self pointFromLocation:LocationMake(self.location.x - size, self.location.y)];
+            
+            [self addChild:back];
+            [self addChild:sprite];
+            
+            for (int i = 1; i < size; i++) {
+                CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
+                sprite.position = [self pointFromLocation:LocationMake(self.location.x - i, self.location.y)];
+                
+                CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
+                back.position = [self pointFromLocation:LocationMake(self.location.x - i, self.location.y)];
+                
+                [self addChild:back];
+                [self addChild:sprite];
+            }
+        }
             break;
         case DOWN:
             break;
@@ -113,8 +129,6 @@
             
     }
 }
-
-
 
 - (BOOL)hitTestWithLocation:(Location) location
 {
