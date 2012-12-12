@@ -19,7 +19,7 @@ typedef struct {
 
 Location LocationMake(int x, int y);
 
-typedef enum {LEFT,RIGHT,UP,DOWN} Direction;
+typedef enum {LEFT,RIGHT,UP,DOWN,NONE} Direction;
 
 Direction DirectionFromTwoLocations(Location start, Location end);
 

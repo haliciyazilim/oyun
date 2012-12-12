@@ -25,7 +25,7 @@ Direction DirectionFromTwoLocations(Location start, Location end){
         return RIGHT;
     if(start.x > end.x && start.y == end.y)
         return LEFT;
-    return -999999999;
+    return NONE;
 }
 
 NSString* StringFromDirection(Direction direction){
@@ -39,7 +39,7 @@ NSString* StringFromDirection(Direction direction){
         case RIGHT:
             return @"RIGHT";
         default:
-            return @"-999999999";
+            return @"NONE";
     }
     return nil;
 }
