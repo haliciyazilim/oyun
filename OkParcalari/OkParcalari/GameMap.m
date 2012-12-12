@@ -48,9 +48,12 @@ static GameMap *sharedInstance = nil;
     return sharedInstance;
 }
 
-- (void) addEntity:(MapEntity *)entity {
-    [self addChild:entity];
-    [self.entities addObject:entity];
+- (void) addChild:(CCNode *)entity {
+    [super addChild:entity];
+    
+    if ([entity isKindOfClass:[MapEntity class]]) {
+        [self.entities addObject:entity];
+    }
 }
 
 

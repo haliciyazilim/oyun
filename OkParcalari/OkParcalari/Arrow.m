@@ -79,20 +79,20 @@
     switch ([self getDirection]) {
         case RIGHT:{
             CCSprite* sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
-            sprite.position = CGPointMake(self.map.tileSize.width * (size+0.5), self.map.tileSize.height * 0.5);
+            sprite.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
             
             CCSprite* back = [CCSprite spriteWithFile:@"tile_grass.png"];
-            back.position = CGPointMake(self.map.tileSize.width * (size+0.5), self.map.tileSize.height * 0.5);
-            
+            back.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
+
             [self addChild:back];
             [self addChild:sprite];
             
             for (int i = 1; i < size; i++) {
                 CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
-                sprite.position = CGPointMake(self.map.tileSize.width * (i+0.5), self.map.tileSize.height * 0.5);
+                sprite.position = [self pointFromLocation:LocationMake(self.location.x + i, self.location.y)];
                 
                 CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
-                back.position = CGPointMake(self.map.tileSize.width * (i+0.5), self.map.tileSize.height * 0.5);
+                back.position = [self pointFromLocation:LocationMake(self.location.x + i, self.location.y)];
                 
                 [self addChild:back];
                 [self addChild:sprite];
@@ -101,20 +101,20 @@
             break;
         case LEFT:{
             CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_left_start.png"];
-            sprite.position = CGPointMake(self.map.tileSize.width * (-size+0.5),self.map.tileSize.height * 0.5);
+            sprite.position = [self pointFromLocation:LocationMake(self.location.x - size, self.location.y)];
             
             CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
-            back.position = CGPointMake(self.map.tileSize.width * (-size+0.5), self.map.tileSize.height * 0.5);
+            back.position = [self pointFromLocation:LocationMake(self.location.x - size, self.location.y)];
             
             [self addChild:back];
             [self addChild:sprite];
             
             for (int i = 1; i < size; i++) {
                 CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
-                sprite.position = CGPointMake(self.map.tileSize.width * (-i+0.5), self.map.tileSize.height * 0.5);
+                sprite.position = [self pointFromLocation:LocationMake(self.location.x - i, self.location.y)];
                 
                 CCSprite *back = [CCSprite spriteWithFile:@"tile_grass.png"];
-                back.position = CGPointMake(self.map.tileSize.width * (-i+0.5), self.map.tileSize.height * 0.5);
+                back.position = [self pointFromLocation:LocationMake(self.location.x - i, self.location.y)];
                 
                 [self addChild:back];
                 [self addChild:sprite];
@@ -131,6 +131,7 @@
 
 - (BOOL)hitTestWithLocation:(Location) location
 {
+    
     switch([self getDirection]){
         case RIGHT:
             return (self.location.y == location.y && self.location.x < location.x && self.endLocation.x >= location.x);

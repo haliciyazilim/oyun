@@ -65,7 +65,22 @@ NSString* StringFromDirection(Direction direction){
     return [GameMap sharedInstance];
 }
 
--(void) setMap:(GameMap *)map
+- (void) addChild:(CCNode *)entity {
+    [super addChild:entity];
+    
+    if ([entity isKindOfClass:[MapEntity class]]) {
+        [self.entities addObject:entity];
+    }
+}
+
+- (void)setParent:(CCNode *)parent {
+    [super setParent:parent];
+    NSLog(@"as");
+    self.position = [self pointFromLocation:self.location];
+}
+
+
+- (void) setMap:(GameMap *)map
 {
     
 }
@@ -100,26 +115,27 @@ NSString* StringFromDirection(Direction direction){
     [self.entities enumerateObjectsUsingBlock:^(MapEntity *entity, BOOL *stop) {
         [set addObjectsFromArray:[[entity entitiesAtLocation:location] allObjects]];
     }];
-    NSLog(@"%d,%d,%d,%d",self.location.x,self.location.y,location.x,location.y);
     if ([self hitTestWithLocation:location] == YES) {
-        NSLog(@"I'mhere");
         [set addObject:self];
     }
-    NSLog(@"arrow base set count %d",[[set allObjects] count]);
     return set;
 }
 
 - (CGPoint) pointFromLocation:(Location)location
 {
-    Location parentLocation = LocationMake(0, 0);
     if([self.parent isKindOfClass:[MapEntity class]]) {
-        parentLocation = ((MapEntity*)self.parent).location;
+        Location parentLocation = ((MapEntity*)self.parent).location;
+        
+        float x = (location.x - parentLocation.x) * self.map.tileSize.width;
+        float y = (location.y - parentLocation.y) * self.map.tileSize.height;
+        
+        return CGPointMake(x,y);
+    } else {        
+        float x = (location.x + 0.5) * self.map.tileSize.width;
+        float y = (location.y + 0.5) * self.map.tileSize.height;
+        
+        return CGPointMake(x,y);
     }
-    
-    float x = (location.x - parentLocation.x + 0.5) * self.map.tileSize.width;
-    float y = (location.y - parentLocation.y + 0.5) * self.map.tileSize.height;
-    
-    return CGPointMake(x,y);
 }
 
 @end
