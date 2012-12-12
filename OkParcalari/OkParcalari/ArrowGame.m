@@ -25,6 +25,7 @@
     Location startLocation;
     Location endLocation;
     Location currentLocation;
+    Direction lastDirection;
 }
 - (id)init
 {
@@ -58,6 +59,8 @@
         base = [[ArrowBase alloc] initWithLocation:LocationMake(5, 9) andSize:10];
         [self.map addEntity:base];
         
+        
+        
     }
 
     return self;
@@ -79,8 +82,9 @@
 
 - (void) touchMoved:(Location) location
 {
-//    if(startLocation.x == location.x && startLocation.y == location.y)
-//        return;
+    if(startLocation.x != location.x || startLocation.y != location.y){
+        lastDirection = DirectionFromTwoLocations(startLocation, location);
+    }
     
     if(currentEntity.class == [Arrow class]){
         
