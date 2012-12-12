@@ -16,7 +16,6 @@
 
 @interface ArrowGame : CCNode
 
-@property NSMutableDictionary *gameTable;
 @property NSMutableArray *arrowBases;
 
 - (BOOL) isGameFinished;

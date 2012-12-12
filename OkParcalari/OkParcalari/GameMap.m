@@ -72,11 +72,13 @@ static GameMap *sharedInstance = nil;
 }
 
 
+
 - (MapEntity*) entityAtLocation:(Location)location
 {
-    if([[[self entitiesAtLocation:location] allObjects] count] == 0)
+    NSArray* allObjects = [[self entitiesAtLocation:location] allObjects];
+    if([allObjects count] == 0)
         return nil;
-    return [[[self entitiesAtLocation:location] allObjects] objectAtIndex:0];
+    return [allObjects objectAtIndex:0];
     
 }
 

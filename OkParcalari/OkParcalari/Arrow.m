@@ -21,6 +21,7 @@
     self = [super initWithLocation:location];
     if (self) {
         self.isSelected = NO;
+        self.endLocation = location;
         self.base = base;
         self.direction = direction;
         self.position = CGPointMake(0, 0);
@@ -33,8 +34,8 @@
     
     
     //izdusum hesaplanacak
-    if(DirectionFromTwoLocations(self.location, endLocation) != self.direction)
-        return;
+//    if(DirectionFromTwoLocations(self.location, endLocation) != self.direction)
+//        return;
     
     Location savedEndLocation = self.endLocation;
     _endLocation = endLocation;

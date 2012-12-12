@@ -32,7 +32,6 @@
     self = [super init];
     if (self) {
         
-        self.gameTable = [NSMutableDictionary dictionaryWithCapacity:100];
         [self addChild:self.map];
         
         ArrowBase *arrowBase = [[ArrowBase alloc] initWithLocation:LocationMake(1, 1) andSize:10];
@@ -76,7 +75,8 @@
 {
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
-    NSLog(@"hitted class: %@",[currentEntity class]);
+    NSLog(@"hitted class: %@ at location %d,%d",[currentEntity class],location.x,location.y);
+    NSLog(@"");
     
 }
 

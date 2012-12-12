@@ -112,12 +112,12 @@ NSString* StringFromDirection(Direction direction){
     
     NSMutableSet* set = [[NSMutableSet alloc] init];
     
-    [self.entities enumerateObjectsUsingBlock:^(MapEntity *entity, BOOL *stop) {
-        [set addObjectsFromArray:[[entity entitiesAtLocation:location] allObjects]];
-    }];
     if ([self hitTestWithLocation:location] == YES) {
         [set addObject:self];
     }
+    [self.entities enumerateObjectsUsingBlock:^(MapEntity *entity, BOOL *stop) {
+        [set addObjectsFromArray:[[entity entitiesAtLocation:location] allObjects]];
+    }];
     return set;
 }
 
