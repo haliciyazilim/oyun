@@ -43,7 +43,13 @@
     
     BOOL applyChanges = YES;
     
-    if([self getSize] > [self.base size]){
+//    if([self getSize] > [self.base size]){
+//        applyChanges = NO;
+//    }
+    
+    ArrowBase *base = self.base;
+    
+    if ([base.upArrow getSize] + [base.downArrow getSize] + [base.leftArrow getSize] + [base.rightArrow getSize] > base.size) {
         applyChanges = NO;
     }
     
