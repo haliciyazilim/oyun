@@ -8,6 +8,16 @@
 
 #import "GameMap.h"
 
+#include <stdio.h>
+
+
+@interface GameMap ()
+
+@property NSDictionary *randomMap;
+
+@end
+
+
 @implementation GameMap
 
 static GameMap *sharedInstance = nil;
@@ -23,6 +33,8 @@ static GameMap *sharedInstance = nil;
         self.rows = 10;
         self.cols = 10;
         
+        [self initializeRandomMap];
+        
         for (int i = 0; i < self.rows; i++) {
             for (int j = 0; j < self.cols; j++) {
                 CCSprite *tile = [CCSprite spriteWithFile:@"tile_border.png"];
@@ -33,6 +45,21 @@ static GameMap *sharedInstance = nil;
     }
     return self;
 }
+
+- (void)initializeRandomMap {
+    NSMutableDictionary *randomMap = [NSMutableDictionary dictionaryWithCapacity:self.rows*self.cols];
+    for (int i = 0; i < self.rows; i++) {
+        for (int j = 0; j < self.cols; j++) {
+            [randomMap setObject:[NSNumber numberWithInt:arc4random_uniform(120)] forKey:[NSString stringWithFormat:@"%d, %d", i, j]];
+        }
+    }
+    self.randomMap = randomMap;
+}
+
+- (int)getRandomNumberForLocation:(Location)location {
+    return [[self.randomMap objectForKey:[NSString stringWithFormat:@"%d, %d", location.x, location.y]] intValue];
+}
+
 + (GameMap *)loadFromFile:(NSString *)fileName
 {
     return nil;

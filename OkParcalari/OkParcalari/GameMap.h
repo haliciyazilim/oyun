@@ -32,4 +32,6 @@
 
 - (BOOL) isLocationInsideMap:(Location) location;
 
+- (int)getRandomNumberForLocation:(Location) location;
+
 @end
