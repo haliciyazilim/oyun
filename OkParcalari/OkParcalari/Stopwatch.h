@@ -12,8 +12,8 @@
 @interface Stopwatch : CCNode
 
 @property int isPaused;
-@property int seconds;
-@property int minutes;
+@property long long int seconds;
+@property long long int minutes;
 @property NSDate *startTime;
 @property NSDate *lastUpdated;
 

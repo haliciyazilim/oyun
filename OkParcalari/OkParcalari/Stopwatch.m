@@ -48,7 +48,7 @@
 //            [self updateTimerSprites];
 //            _lastUpdated = [NSDate date];
 //        }
-        int interval = (int)[[NSDate date] timeIntervalSinceDate:_startTime];
+        long long int interval = (long long int)[[NSDate date] timeIntervalSinceDate:_startTime];
         _seconds = interval % 60;
         _minutes = interval / 60;
         [self updateTimerSprites];
@@ -119,20 +119,20 @@
     
     if (_minutes < 10) {
         fileName1 = @"timer_num_0.png";
-        fileName2 = [NSString stringWithFormat:@"timer_num_%d.png",_minutes];
+        fileName2 = [NSString stringWithFormat:@"timer_num_%lld.png",_minutes];
     }
     else {
-        fileName1 = [NSString stringWithFormat:@"timer_num_%d.png",_minutes/10];
-        fileName2 = [NSString stringWithFormat:@"timer_num_%d.png",_minutes%10];
+        fileName1 = [NSString stringWithFormat:@"timer_num_%lld.png",_minutes/10];
+        fileName2 = [NSString stringWithFormat:@"timer_num_%lld.png",_minutes%10];
     }
 
     if (_seconds < 10) {
         fileName3 = @"timer_num_0.png";
-        fileName4 = [NSString stringWithFormat:@"timer_num_%d.png",_seconds];
+        fileName4 = [NSString stringWithFormat:@"timer_num_%lld.png",_seconds];
     }
     else {
-        fileName3 = [NSString stringWithFormat:@"timer_num_%d.png",_seconds/10];
-        fileName4 = [NSString stringWithFormat:@"timer_num_%d.png",_seconds%10];
+        fileName3 = [NSString stringWithFormat:@"timer_num_%lld.png",_seconds/10];
+        fileName4 = [NSString stringWithFormat:@"timer_num_%lld.png",_seconds%10];
     }
     
     CCSprite *timerNum1 = [CCSprite spriteWithFile:fileName1];
