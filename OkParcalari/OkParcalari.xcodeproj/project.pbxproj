@@ -39,6 +39,7 @@
 		0502759D1678BE5F00A2520F /* main_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275971678BE5F00A2520F /* main_frame.png */; };
 		0502759E1678BE5F00A2520F /* main_toprak-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275981678BE5F00A2520F /* main_toprak-ipadhd.png */; };
 		0502759F1678BE5F00A2520F /* main_toprak.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275991678BE5F00A2520F /* main_toprak.png */; };
+		0591F8131679EF9800C3B558 /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0591F8121679EF9800C3B558 /* Stopwatch.m */; };
 		410AA1301670D9B500F6DCCA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA12F1670D9B500F6DCCA /* QuartzCore.framework */; };
 		410AA1321670D9B500F6DCCA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA1311670D9B500F6DCCA /* OpenGLES.framework */; };
 		410AA1341670D9B500F6DCCA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA1331670D9B500F6DCCA /* OpenAL.framework */; };
@@ -254,6 +255,8 @@
 		050275971678BE5F00A2520F /* main_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main_frame.png; path = Resources/images/main_frame.png; sourceTree = "<group>"; };
 		050275981678BE5F00A2520F /* main_toprak-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "main_toprak-ipadhd.png"; path = "Resources/images/main_toprak-ipadhd.png"; sourceTree = "<group>"; };
 		050275991678BE5F00A2520F /* main_toprak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main_toprak.png; path = Resources/images/main_toprak.png; sourceTree = "<group>"; };
+		0591F8111679EF9800C3B558 /* Stopwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
+		0591F8121679EF9800C3B558 /* Stopwatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stopwatch.m; sourceTree = "<group>"; };
 		410AA12B1670D9B500F6DCCA /* OkParcalari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkParcalari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		410AA12F1670D9B500F6DCCA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		410AA1311670D9B500F6DCCA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1174,6 +1177,8 @@
 				41F9356D16723EAB001E56FF /* GameMap.m */,
 				41F93570167241F2001E56FF /* MapEntity.h */,
 				41F93571167241F2001E56FF /* MapEntity.m */,
+				0591F8111679EF9800C3B558 /* Stopwatch.h */,
+				0591F8121679EF9800C3B558 /* Stopwatch.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1441,6 +1446,7 @@
 				41F9356E16723EAB001E56FF /* GameMap.m in Sources */,
 				41F93572167241F2001E56FF /* MapEntity.m in Sources */,
 				41F9358016760BC2001E56FF /* Arrow.m in Sources */,
+				0591F8131679EF9800C3B558 /* Stopwatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -64,12 +64,9 @@
         base = [[ArrowBase alloc] initWithLocation:LocationMake(9, 9) andSize:16];
         [self.map addChild:base];
         
-        
         lastDirection = NONE;
         
-        
     }
-
     return self;
 }
 
@@ -124,23 +121,16 @@
 
 - (void) touchEnded:(Location) location
 {
-    
-    
     isHoldingArrow      = NO;
     isHoldingArrowBase  = NO;
     currentEntity       = nil;
     lastDirection       = NONE;
-    
-    
 }
 
 - (void) newGame:(GameMap*) map
 {
     
 }
-
-
-
 
 - (GameMap*) map
 {

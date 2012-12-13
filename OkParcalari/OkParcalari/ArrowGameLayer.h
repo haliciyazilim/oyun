@@ -7,16 +7,17 @@
 //
 
 #import "cocos2d.h"
-
 #import "ArrowGame.h"
-
 #import "ArrowBase.h"
+
+@class Stopwatch;
 
 @interface ArrowGameLayer : CCLayer
 
 +(CCScene *) scene;
 
 @property ArrowGame *arrowGame;
+@property Stopwatch *gameTimer;
 
 - (void) gameEnded;
 
