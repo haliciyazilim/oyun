@@ -96,99 +96,85 @@
     if(size <= 0)
         return;
     
+    Location location;
+    
+    CCSprite *sprite;
+    CCSprite *back;
+    
     switch ([self getDirection]) {
-        case RIGHT:{
-            CCSprite* sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
-            sprite.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
-            
-            CCSprite* back = [CCSprite spriteWithFile:@"tile_flower.png"];
-            back.position = [self pointFromLocation:LocationMake(self.location.x + size, self.location.y)];
-
-            [self addChild:back];
-            [self addChild:sprite];
-            
-            for (int i = 1; i < size; i++) {
-                CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
-                sprite.position = [self pointFromLocation:LocationMake(self.location.x + i, self.location.y)];
-                
-                CCSprite *back = [CCSprite spriteWithFile:@"tile_flower.png"];
-                back.position = [self pointFromLocation:LocationMake(self.location.x + i, self.location.y)];
-                
-                [self addChild:back];
-                [self addChild:sprite];
-            }
-        }
+        case RIGHT:
+            location = LocationMake(self.location.x + size, self.location.y);
+            sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
             break;
-        case LEFT:{
-            CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_left_start.png"];
-            sprite.position = [self pointFromLocation:LocationMake(self.location.x - size, self.location.y)];
-            
-            CCSprite *back = [CCSprite spriteWithFile:@"tile_flower.png"];
-            back.position = [self pointFromLocation:LocationMake(self.location.x - size, self.location.y)];
-            
-            [self addChild:back];
-            [self addChild:sprite];
-            
-            for (int i = 1; i < size; i++) {
-                CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
-                sprite.position = [self pointFromLocation:LocationMake(self.location.x - i, self.location.y)];
-                
-                CCSprite *back = [CCSprite spriteWithFile:@"tile_flower.png"];
-                back.position = [self pointFromLocation:LocationMake(self.location.x - i, self.location.y)];
-                
-                [self addChild:back];
-                [self addChild:sprite];
-            }
-        }
+        case LEFT:
+            location = LocationMake(self.location.x - size, self.location.y);
+            sprite = [CCSprite spriteWithFile:@"arrow_left_start.png"];
             break;
-        case DOWN:{
-            CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_down_start.png"];
-            sprite.position = [self pointFromLocation:LocationMake(self.location.x, self.location.y - size)];
-            
-            CCSprite *back = [CCSprite spriteWithFile:@"tile_flower.png"];
-            back.position = [self pointFromLocation:LocationMake(self.location.x, self.location.y - size)];
-            
-            [self addChild:back];
-            [self addChild:sprite];
-            
-            for (int i = 1; i < size; i++) {
-                CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_vertical.png"];
-                sprite.position = [self pointFromLocation:LocationMake(self.location.x, self.location.y - i)];
-                
-                CCSprite *back = [CCSprite spriteWithFile:@"tile_flower.png"];
-                back.position = [self pointFromLocation:LocationMake(self.location.x, self.location.y - i)];
-                
-                [self addChild:back];
-                [self addChild:sprite];
-            }
-        }
+        case DOWN:
+            location = LocationMake(self.location.x, self.location.y - size);
+            sprite = [CCSprite spriteWithFile:@"arrow_down_start.png"];
             break;
-        case UP:{
-            CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_up_start.png"];
-            sprite.position = [self pointFromLocation:LocationMake(self.location.x, self.location.y + size)];
-            
-            CCSprite *back = [CCSprite spriteWithFile:@"tile_flower.png"];
-            back.position = [self pointFromLocation:LocationMake(self.location.x, self.location.y + size)];
-            
-            [self addChild:back];
-            [self addChild:sprite];
-            
-            for (int i = 1; i < size; i++) {
-                CCSprite *sprite = [CCSprite spriteWithFile:@"arrow_vertical.png"];
-                sprite.position = [self pointFromLocation:LocationMake(self.location.x, self.location.y + i)];
-                
-                CCSprite *back = [CCSprite spriteWithFile:@"tile_flower.png"];
-                back.position = [self pointFromLocation:LocationMake(self.location.x, self.location.y + i)];
-                
-                [self addChild:back];
-                [self addChild:sprite];
-            }
-        }
+        case UP:
+            location = LocationMake(self.location.x, self.location.y + size);
+            sprite = [CCSprite spriteWithFile:@"arrow_up_start.png"];
             break;
         case NONE:
         default:
             break;
             
+    }
+    
+    if ([self.map getRandomNumberForLocation:location] % 2) {
+        back = [CCSprite spriteWithFile:@"tile_flower.png"];
+    } else {
+        back = [CCSprite spriteWithFile:@"tile_grass.png"];
+    }
+    
+    sprite.position = [self pointFromLocation:location];
+    back.position = [self pointFromLocation:location];
+    
+    [self addChild:back];
+    [self addChild:sprite];
+    
+    for (int i = 1; i < size; i++) {
+        Location location;
+        
+        CCSprite *sprite;
+        CCSprite *back;
+        
+        switch ([self getDirection]) {
+            case RIGHT:
+                sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
+                location = LocationMake(self.location.x + i, self.location.y);
+                break;
+            case LEFT:
+                sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
+                location = LocationMake(self.location.x - i, self.location.y);
+                break;
+            case DOWN:
+                sprite = [CCSprite spriteWithFile:@"arrow_vertical.png"];
+                location = LocationMake(self.location.x, self.location.y - i);
+                break;
+            case UP:
+                sprite = [CCSprite spriteWithFile:@"arrow_vertical.png"];
+                location = LocationMake(self.location.x, self.location.y + i);
+                break;
+            case NONE:
+            default:
+                break;
+        }
+        
+        if ([self.map getRandomNumberForLocation:location] % 2) {
+            back = [CCSprite spriteWithFile:@"tile_flower.png"];
+        } else {
+            back = [CCSprite spriteWithFile:@"tile_grass.png"];
+        }
+        
+        sprite.position = [self pointFromLocation:location];
+        back.position = [self pointFromLocation:location];
+    
+        [self addChild:back];
+        [self addChild:sprite];
     }
 }
 
