@@ -56,7 +56,7 @@
 }
 
 - (void) startTimer {
-    [self schedule:@selector(updateStopwatch:)];
+    [self schedule:@selector(updateStopwatch:) interval:0.1];
     _startTime = [NSDate date];
     _isPaused = 0;
 }
@@ -68,7 +68,7 @@
 
 - (void) resumeTimer {
     _isPaused = 0;
-    [self schedule:@selector(updateStopwatch:)];
+    [self schedule:@selector(updateStopwatch:) interval:0.1];
 }
 
 - (void) resetTimer {
@@ -76,7 +76,7 @@
     _minutes = 0;
     _isPaused = 0;
     [self unschedule:@selector(updateStopwatch:)];
-    [self schedule:@selector(updateStopwatch:)];
+    [self schedule:@selector(updateStopwatch:) interval:0.1];
 }
 
 - (void) stopTimer {
@@ -110,7 +110,7 @@
 }
 
 - (void) updateTimerSprites {
-    [self removeAllChildrenWithCleanup:YES];
+    [self removeAllChildrenWithCleanup:NO];
     
     CGSize size = [[CCDirector sharedDirector] winSize];
     
