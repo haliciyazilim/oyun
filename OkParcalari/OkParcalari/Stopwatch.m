@@ -39,15 +39,6 @@
 
 - (void) updateStopwatch:(ccTime)dt {
     if (!_isPaused) {
-//        if([_lastUpdated timeIntervalSinceNow] <= -1 ){
-//            _seconds++;
-//            if (_seconds == 60) {
-//                _seconds = 0;
-//                _minutes++;
-//            }
-//            [self updateTimerSprites];
-//            _lastUpdated = [NSDate date];
-//        }
         long long int interval = (long long int)[[NSDate date] timeIntervalSinceDate:_startTime];
         _seconds = interval % 60;
         _minutes = interval / 60;
