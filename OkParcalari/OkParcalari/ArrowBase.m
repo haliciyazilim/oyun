@@ -142,4 +142,10 @@
     return arrow;
 }
 
+- (void) markWateredLocationsIn:(NSMutableDictionary *)bitMap
+{
+	
+    [bitMap setValue:@"1" forKey:LocationToString(self.location)];
+}
+
 @end

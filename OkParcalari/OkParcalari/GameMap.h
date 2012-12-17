@@ -34,4 +34,6 @@
 
 - (int)getRandomNumberForLocation:(Location) location;
 
+- (NSSet*) allEntries;
+
 @end

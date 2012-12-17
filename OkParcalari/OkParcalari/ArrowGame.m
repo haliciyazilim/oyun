@@ -73,7 +73,28 @@
 
 - (BOOL) isGameFinished
 {
-    return NO;
+    //create empty bitmap
+    NSMutableDictionary* bitMap = [[NSMutableDictionary alloc] init];
+    for(int i=0;i<self.map.rows;i++)
+        for(int j=0;j<self.map.cols;j++){
+            [bitMap setValue:@"0" forKey:LocationToString(LocationMake(i, j))];
+        }
+    
+    //ask all the arrow bases if they are correct.
+    NSSet* set = [self.map allEntries];
+    NSLog(@"entity count: %d",[[set allObjects] count]);
+    [set enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        MapEntity* entity = (MapEntity*)obj;
+        [entity markWateredLocationsIn:bitMap];
+    }];
+    
+    for(int i=0;i<self.map.rows;i++)
+        for(int j=0;j<self.map.cols;j++){
+            NSString* value = (NSString*)[bitMap valueForKey:LocationToString(LocationMake(i, j))];
+            if([value compare:@"0"] == 0)
+                return NO;
+        }
+    return YES;
 }
 
 - (void) touchBegan:(Location) location
@@ -125,6 +146,10 @@
     isHoldingArrowBase  = NO;
     currentEntity       = nil;
     lastDirection       = NONE;
+    
+    if([self isGameFinished] == YES)
+        NSLog(@"game is finished");
+    else NSLog(@"game is not finished yet");
 }
 
 - (void) newGame:(GameMap*) map

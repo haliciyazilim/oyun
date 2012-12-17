@@ -126,4 +126,15 @@ static GameMap *sharedInstance = nil;
     return (location.x >= 0 && location.y >= 0 && location.x < self.cols && location.y < self.rows);
 }
 
+
+
+- (NSSet*) allEntries
+{
+    __block NSSet* set = [[NSSet alloc] init];
+    [self.entities enumerateObjectsUsingBlock:^(MapEntity* entity, BOOL *stop) {
+        set = [set setByAddingObjectsFromSet:[entity allEntries]];
+    }];
+    return set;
+}
+
 @end

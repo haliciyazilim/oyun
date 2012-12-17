@@ -245,7 +245,13 @@
         }
         return LocationMake(x, y);
     }
+    return LocationMake(0, 0);
+}
 
+- (void)markWateredLocationsIn:(NSMutableDictionary *)bitMap
+{
+    for(int i=1; i<=[self getSize];i++)
+       [bitMap setValue:@"1" forKey:LocationToString([self locationAtOrder:i])];
 }
 
 @end

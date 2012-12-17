@@ -16,6 +16,11 @@ Location LocationMake(int x, int y) {
     return loc;
 }
 
+NSString* LocationToString(Location location){
+    return [NSString stringWithFormat:@"%dx%d",location.x,location.y];
+    
+}
+
 Direction DirectionFromTwoLocations(Location start, Location end){
     if(start.x == end.x && start.y > end.y)
         return DOWN;
@@ -137,5 +142,17 @@ NSString* StringFromDirection(Direction direction){
         return CGPointMake(x,y);
     }
 }
+- (NSSet*) allEntries
+{
+    __block NSSet* set = [[NSSet alloc] initWithObjects:self, nil];
+    [self.entities enumerateObjectsUsingBlock:^(MapEntity* entity, BOOL *stop) {
+        set = [set setByAddingObjectsFromSet:[entity allEntries]];
+    }];
+    return set;
+}
 
+- (void) markWateredLocationsIn:(NSMutableDictionary*) bitMap
+{
+    [NSException raise:@"Invoked abstract method" format:@"Invoked abstract method"];
+}
 @end
