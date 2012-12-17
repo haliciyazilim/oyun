@@ -19,6 +19,8 @@ typedef struct {
 
 Location LocationMake(int x, int y);
 
+NSString* LocationToString(Location location);
+
 typedef enum {LEFT,RIGHT,UP,DOWN,NONE} Direction;
 
 Direction DirectionFromTwoLocations(Location start, Location end);
@@ -35,12 +37,16 @@ NSString* StringFromDirection(Direction direction);
 
 - (id) initWithLocation:(Location)location;
 
-- (BOOL)hitTestWithLocation:(Location) location;
+- (BOOL) hitTestWithLocation:(Location) location;
 
-- (MapEntity*)entityAtLocation:(Location)location;
+- (MapEntity*) entityAtLocation:(Location)location;
 
-- (NSSet*)entitiesAtLocation:(Location)location;
+- (NSSet*) entitiesAtLocation:(Location)location;
 
 - (CGPoint) pointFromLocation:(Location)location;
+
+- (NSSet*) allEntries;
+
+- (void) markWateredLocationsIn:(NSMutableDictionary*) bitMap;
 
 @end
