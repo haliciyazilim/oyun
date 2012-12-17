@@ -40,11 +40,15 @@
         
         CGSize size = [[CCDirector sharedDirector] winSize];
         
-        CCSprite *background = [CCSprite spriteWithFile:@"main_toprak.png"];
+        CCSprite *background = [CCSprite spriteWithFile:@"mainbg.png"];
         background.position = ccp(size.width * 0.5, size.height * 0.5);
         
-        CCSprite *topView = [CCSprite spriteWithFile:@"main_frame.png"];
-        topView.position = ccp(size.width * 0.5, size.height * 0.5);
+        CCSprite *frameView = [CCSprite spriteWithFile:@"main_frame.png"];
+        frameView.position = ccp(size.width * 0.5, size.height * 0.5);
+
+        CCSprite *topView = [CCSprite spriteWithFile:@"gameboard.png"];
+//        topView.position = ccp(size.width * 0.5, size.height * 0.5);
+        topView.position = ccp(384,384);
         
         CCSprite *timerView = [CCSprite spriteWithFile:@"timing_bg.png"];
         timerView.position = ccp(size.width * 0.85, size.height * 0.54);
@@ -57,8 +61,10 @@
         [self addChild:timerView];
         
         [self addChild:buttonView];
+        [self addChild:frameView];
+        [self reorderChild:frameView z:999];
         [self addChild:topView];
-        [self reorderChild:topView z:999];
+        [self reorderChild:topView z:998];
         
 		self.isTouchEnabled = YES;
         self.arrowGame = [[ArrowGame alloc] init];
