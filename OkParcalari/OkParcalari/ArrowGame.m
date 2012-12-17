@@ -142,6 +142,13 @@
 
 - (void) touchEnded:(Location) location
 {
+    if(currentEntity != nil && [currentEntity class] == [Arrow class]){
+        [(Arrow *)currentEntity animateBackgrounds];
+    }
+    else if(currentEntity != nil && [currentEntity class] == [ArrowBase class] && lastDirection != NONE){
+        Arrow *arrow = [(ArrowBase *)currentEntity arrowAtDirection:lastDirection];
+        [arrow animateBackgrounds];
+    }
     isHoldingArrow      = NO;
     isHoldingArrowBase  = NO;
     currentEntity       = nil;

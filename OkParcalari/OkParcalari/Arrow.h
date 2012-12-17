@@ -22,5 +22,6 @@
 @property ArrowBase* base;
 
 - (id)initWithLocation:(Location)location andDirection:(Direction)direction forBase:(ArrowBase*)base;
+- (void)animateBackgrounds;
 
 @end
