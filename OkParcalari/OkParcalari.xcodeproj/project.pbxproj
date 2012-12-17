@@ -40,6 +40,12 @@
 		0502759E1678BE5F00A2520F /* main_toprak-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275981678BE5F00A2520F /* main_toprak-ipadhd.png */; };
 		0502759F1678BE5F00A2520F /* main_toprak.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275991678BE5F00A2520F /* main_toprak.png */; };
 		0591F8131679EF9800C3B558 /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0591F8121679EF9800C3B558 /* Stopwatch.m */; };
+		05D2EBD2167F587A005C2E10 /* gameboard-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2EBCC167F587A005C2E10 /* gameboard-ipadhd.png */; };
+		05D2EBD3167F587A005C2E10 /* gameboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2EBCD167F587A005C2E10 /* gameboard.png */; };
+		05D2EBD4167F587A005C2E10 /* main_frame-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2EBCE167F587A005C2E10 /* main_frame-ipadhd.png */; };
+		05D2EBD5167F587A005C2E10 /* main_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2EBCF167F587A005C2E10 /* main_frame.png */; };
+		05D2EBD6167F587A005C2E10 /* mainbg-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2EBD0167F587A005C2E10 /* mainbg-ipadhd.png */; };
+		05D2EBD7167F587A005C2E10 /* mainbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2EBD1167F587A005C2E10 /* mainbg.png */; };
 		410AA1301670D9B500F6DCCA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA12F1670D9B500F6DCCA /* QuartzCore.framework */; };
 		410AA1321670D9B500F6DCCA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA1311670D9B500F6DCCA /* OpenGLES.framework */; };
 		410AA1341670D9B500F6DCCA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA1331670D9B500F6DCCA /* OpenAL.framework */; };
@@ -257,6 +263,12 @@
 		050275991678BE5F00A2520F /* main_toprak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main_toprak.png; path = Resources/images/main_toprak.png; sourceTree = "<group>"; };
 		0591F8111679EF9800C3B558 /* Stopwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stopwatch.h; sourceTree = "<group>"; };
 		0591F8121679EF9800C3B558 /* Stopwatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stopwatch.m; sourceTree = "<group>"; };
+		05D2EBCC167F587A005C2E10 /* gameboard-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameboard-ipadhd.png"; sourceTree = "<group>"; };
+		05D2EBCD167F587A005C2E10 /* gameboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameboard.png; sourceTree = "<group>"; };
+		05D2EBCE167F587A005C2E10 /* main_frame-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_frame-ipadhd.png"; sourceTree = "<group>"; };
+		05D2EBCF167F587A005C2E10 /* main_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_frame.png; sourceTree = "<group>"; };
+		05D2EBD0167F587A005C2E10 /* mainbg-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainbg-ipadhd.png"; sourceTree = "<group>"; };
+		05D2EBD1167F587A005C2E10 /* mainbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainbg.png; sourceTree = "<group>"; };
 		410AA12B1670D9B500F6DCCA /* OkParcalari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkParcalari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		410AA12F1670D9B500F6DCCA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		410AA1311670D9B500F6DCCA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -731,6 +743,20 @@
 			name = button_and_timers;
 			sourceTree = "<group>";
 		};
+		05D2EBCB167F587A005C2E10 /* fiskiye_images */ = {
+			isa = PBXGroup;
+			children = (
+				05D2EBCC167F587A005C2E10 /* gameboard-ipadhd.png */,
+				05D2EBCD167F587A005C2E10 /* gameboard.png */,
+				05D2EBCE167F587A005C2E10 /* main_frame-ipadhd.png */,
+				05D2EBCF167F587A005C2E10 /* main_frame.png */,
+				05D2EBD0167F587A005C2E10 /* mainbg-ipadhd.png */,
+				05D2EBD1167F587A005C2E10 /* mainbg.png */,
+			);
+			name = fiskiye_images;
+			path = Resources/images/fiskiye_images;
+			sourceTree = "<group>";
+		};
 		410AA1201670D9B500F6DCCA = {
 			isa = PBXGroup;
 			children = (
@@ -1158,6 +1184,7 @@
 		41F9357316724597001E56FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				05D2EBCB167F587A005C2E10 /* fiskiye_images */,
 				0502755F1678BD7300A2520F /* button_and_timers */,
 				0502755E1678BD4300A2520F /* backgrounds */,
 				0502755D1678BD2F00A2520F /* tiles */,
@@ -1327,6 +1354,12 @@
 				0502759D1678BE5F00A2520F /* main_frame.png in Resources */,
 				0502759E1678BE5F00A2520F /* main_toprak-ipadhd.png in Resources */,
 				0502759F1678BE5F00A2520F /* main_toprak.png in Resources */,
+				05D2EBD2167F587A005C2E10 /* gameboard-ipadhd.png in Resources */,
+				05D2EBD3167F587A005C2E10 /* gameboard.png in Resources */,
+				05D2EBD4167F587A005C2E10 /* main_frame-ipadhd.png in Resources */,
+				05D2EBD5167F587A005C2E10 /* main_frame.png in Resources */,
+				05D2EBD6167F587A005C2E10 /* mainbg-ipadhd.png in Resources */,
+				05D2EBD7167F587A005C2E10 /* mainbg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

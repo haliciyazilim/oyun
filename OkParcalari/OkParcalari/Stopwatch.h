@@ -12,10 +12,18 @@
 @interface Stopwatch : CCNode
 
 @property int isPaused;
+
 @property long long int seconds;
 @property long long int minutes;
+
 @property NSDate *startTime;
 @property NSDate *lastUpdated;
+
+@property NSString *sprite1File;
+@property NSString *sprite2File;
+@property NSString *sprite3File;
+@property NSString *sprite4File;
+@property NSString *dotFile;
 
 
 + (id)StopwatchWithMinutes:(int)minutes andSeconds:(int)seconds;
