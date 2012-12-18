@@ -70,13 +70,7 @@
     CCSprite *sprite = [CCSprite spriteWithFile:fileName];
     sprite.position = CGPointMake(0, 0);
 
-    CCSprite *back;
-    
-    if ([self.map getRandomNumberForLocation:self.location] % 2) {
-        back = [CCSprite spriteWithFile:@"tile_flower.png"];
-    } else {
-        back = [CCSprite spriteWithFile:@"tile_grass.png"];
-    }
+    CCSprite *back = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%dx%dc.png",self.location.x,self.location.y]];
     
     back.position = CGPointMake(0, 0);
 
