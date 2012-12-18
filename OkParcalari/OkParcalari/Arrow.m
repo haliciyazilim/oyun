@@ -192,21 +192,23 @@
 
 -(void) backgroundAtOrder:(int)order withDuration:(float)duration withDelay:(float)delay
 {
-    
-    CCSprite *backSprite = [CCSprite spriteWithFile:@"tile_0a.png"];
+    NSString *fileName1 = [NSString stringWithFormat:@"%dx%da.png",[self locationAtOrder:order].x,[self locationAtOrder:order].y];
+    NSString *fileName2 = [NSString stringWithFormat:@"%dx%db.png",[self locationAtOrder:order].x,[self locationAtOrder:order].y];
+    NSString *fileName3 = [NSString stringWithFormat:@"%dx%dc.png",[self locationAtOrder:order].x,[self locationAtOrder:order].y];
+    CCSprite *backSprite = [CCSprite spriteWithFile:fileName1];
     backSprite.tag = 41;
     backSprite.position = [self pointFromLocation:[self locationAtOrder:order]];
     [self addChild:backSprite];
     [self reorderChild:backSprite z:-3];
         
-    CCSprite *backSprite2 = [CCSprite spriteWithFile:@"tile_0b.png"];
+    CCSprite *backSprite2 = [CCSprite spriteWithFile:fileName2];
     backSprite2.tag = 41;
     backSprite2.position = [self pointFromLocation:[self locationAtOrder:order]];
     [self addChild:backSprite2];
     [self reorderChild:backSprite2 z:-3];
     
     
-    CCSprite *backSprite3 = [CCSprite spriteWithFile:@"tile_0c.png"];
+    CCSprite *backSprite3 = [CCSprite spriteWithFile:fileName3];
     backSprite3.tag = 41;
     backSprite3.position = [self pointFromLocation:[self locationAtOrder:order]];
     [self addChild:backSprite3];
