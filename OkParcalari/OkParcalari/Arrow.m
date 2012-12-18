@@ -9,7 +9,9 @@
 #import "Arrow.h"
 
 @implementation Arrow
-
+{
+    int lastSize;
+}
 
 - (id)init
 {
@@ -25,6 +27,7 @@
         self.base = base;
         self.direction = direction;
         self.position = CGPointMake(0, 0);
+        lastSize = 0;
         [self createSprites];
     }
     return self;
@@ -43,10 +46,6 @@
     
     BOOL applyChanges = YES;
     
-//    if([self getSize] > [self.base size]){
-//        applyChanges = NO;
-//    }
-    
     ArrowBase *base = self.base;
     
     if ([base.upArrow getSize] + [base.downArrow getSize] + [base.leftArrow getSize] + [base.rightArrow getSize] > base.size) {
@@ -63,18 +62,17 @@
         _endLocation = savedEndLocation;
         return;
     }
+    
+    
     [self createSprites];
 }
 
-- (Direction)getDirection {
-    return DirectionFromTwoLocations(self.location, self.endLocation);
-}
 
 - (int)getSize {
     int xDiff = self.endLocation.x - self.location.x;
     int yDiff = self.endLocation.y - self.location.y;
     
-    switch ([self getDirection]) {
+    switch ([self direction]) {
         case RIGHT:
             return xDiff;
         case UP:
@@ -88,20 +86,30 @@
     }
 }
 
+-(void) removeChildrenByTag:(NSInteger)tag cleanup:(BOOL)cleanup
+{
+    NSMutableArray* willRemove = [[NSMutableArray alloc] init];
+    for(int i=0; i< [[self children] count];i++){
+        if([[[self children] objectAtIndex:i] tag] == tag){
+            [willRemove addObject:[[self children] objectAtIndex:i]];
+        }
+    }
+    for(int i=0;i<[willRemove count];i++){
+        [self removeChild:[willRemove objectAtIndex:i] cleanup:cleanup];
+    }
+}
+
 - (void) createSprites {
-    [self removeAllChildrenWithCleanup:YES];
-    
+    [self removeChildrenByTag:40 cleanup:YES];
     int size = [self getSize];
     
     if(size <= 0)
         return;
     
     Location location;
-    
     CCSprite *sprite;
-    CCSprite *back;
     
-    switch ([self getDirection]) {
+    switch ([self direction]) {
         case RIGHT:
             location = LocationMake(self.location.x + size, self.location.y);
             sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
@@ -124,25 +132,15 @@
             
     }
     
-//    if ([self.map getRandomNumberForLocation:location] % 2) {
-//        back = [CCSprite spriteWithFile:@"tile_flower.png"];
-//    } else {
-//        back = [CCSprite spriteWithFile:@"tile_grass.png"];
-//    }
-    
+    sprite.tag = 40;
     sprite.position = [self pointFromLocation:location];
-    back.position = [self pointFromLocation:location];
-    
-//    [self addChild:back];
     [self addChild:sprite];
     
     for (int i = 1; i < size; i++) {
         Location location;
         
         CCSprite *sprite;
-        CCSprite *back;
-        
-        switch ([self getDirection]) {
+        switch ([self direction]) {
             case RIGHT:
                 sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
                 location = LocationMake(self.location.x + i, self.location.y);
@@ -164,60 +162,92 @@
                 break;
         }
         
-//        if ([self.map getRandomNumberForLocation:location] % 2) {
-//            back = [CCSprite spriteWithFile:@"tile_flower.png"];
-//        } else {
-//            back = [CCSprite spriteWithFile:@"tile_grass.png"];
-//        }
-        
+        sprite.tag = 40;
         sprite.position = [self pointFromLocation:location];
-        back.position = [self pointFromLocation:location];
-    
-//        [self addChild:back];
         [self addChild:sprite];
     }
 }
 
 - (void) animateBackgrounds{
-    for(int i = 0; i < [self getSize]; i++){
-        CCSprite *backSprite = [CCSprite spriteWithFile:@"tile_0a.png"];
-        backSprite.position = [self pointFromLocation:[self locationAtOrder:i+1]];
-        [self addChild:backSprite];
-        [self reorderChild:backSprite z:-3];
-        backSprite.opacity = 0;
-        
-        CCSequence *mySeq = [CCSequence actions:[CCDelayTime actionWithDuration:0.0f+i*0.2f],[CCFadeIn actionWithDuration:0.5f], nil];
-        
-        [backSprite runAction:mySeq];
-        
-        CCSprite *backSprite2 = [CCSprite spriteWithFile:@"tile_0b.png"];
-        backSprite2.position = [self pointFromLocation:[self locationAtOrder:i+1]];
-        [self addChild:backSprite2];
-        [self reorderChild:backSprite2 z:-3];
-        backSprite2.opacity = 0;
-        
-        CCSequence *mySeq2 = [CCSequence actions:[CCDelayTime actionWithDuration:0.5f+i*0.2f],[CCFadeIn actionWithDuration:0.5f], nil];
-        
-        [backSprite2 runAction:mySeq2];
-        
-        CCSprite *backSprite3 = [CCSprite spriteWithFile:@"tile_0c.png"];
-        backSprite3.position = [self pointFromLocation:[self locationAtOrder:i+1]];
-        [self addChild:backSprite3];
-        [self reorderChild:backSprite3 z:-3];
-        backSprite3.opacity = 0;
-        
-        CCSequence *mySeq3 = [CCSequence actions:[CCDelayTime actionWithDuration:1.0f+i*0.2f],[CCFadeIn actionWithDuration:0.5f],nil];
-        
-        [backSprite3 runAction:mySeq3];
-       
+    
+    [self removeChildrenByTag:41 cleanup:YES];
+    int max = lastSize > [self getSize] ? lastSize : [self getSize];
+    int min = lastSize < [self getSize] ? lastSize : [self getSize];
+    
+    
+    for(int i=0;i<max;i++){
+        if(i < min){
+            [self backgroundAtOrder:i+1 withDuration:0.0f withDelay:0.0f];
+        }
+        else {
+            float delayConstant = lastSize < [self getSize] ? (i-min) : (max-i);
+            [self backgroundAtOrder:i+1 withDuration:0.5f withDelay:delayConstant*0.2f];
+            
+        }
         
     }
+    
+    lastSize = [self getSize];
+}
+
+-(void) backgroundAtOrder:(int)order withDuration:(float)duration withDelay:(float)delay
+{
+    
+    CCSprite *backSprite = [CCSprite spriteWithFile:@"tile_0a.png"];
+    backSprite.tag = 41;
+    backSprite.position = [self pointFromLocation:[self locationAtOrder:order]];
+    [self addChild:backSprite];
+    [self reorderChild:backSprite z:-3];
+        
+    CCSprite *backSprite2 = [CCSprite spriteWithFile:@"tile_0b.png"];
+    backSprite2.tag = 41;
+    backSprite2.position = [self pointFromLocation:[self locationAtOrder:order]];
+    [self addChild:backSprite2];
+    [self reorderChild:backSprite2 z:-3];
+    
+    
+    CCSprite *backSprite3 = [CCSprite spriteWithFile:@"tile_0c.png"];
+    backSprite3.tag = 41;
+    backSprite3.position = [self pointFromLocation:[self locationAtOrder:order]];
+    [self addChild:backSprite3];
+    [self reorderChild:backSprite3 z:-3];
+    
+    
+    if(duration > 0 ){
+        if(order > lastSize){
+            backSprite.opacity = 0;
+            CCSequence *mySeq = [CCSequence actions:[CCDelayTime actionWithDuration:duration*0.0f+delay],[CCFadeIn actionWithDuration:duration], nil];
+            [backSprite runAction:mySeq];
+            
+            backSprite2.opacity = 0;
+            CCSequence *mySeq2 = [CCSequence actions:[CCDelayTime actionWithDuration:duration*1.0f+delay],[CCFadeIn actionWithDuration:duration], nil];
+            [backSprite2 runAction:mySeq2];
+
+            backSprite3.opacity = 0;
+            
+            CCSequence *mySeq3 = [CCSequence actions:[CCDelayTime actionWithDuration:duration*2.0f+delay],[CCFadeIn actionWithDuration:duration],nil];
+            
+            [backSprite3 runAction:mySeq3];
+            
+        }
+        else {
+            CCSequence *mySeq = [CCSequence actions:[CCDelayTime actionWithDuration:duration*2.0f+delay],[CCFadeOut actionWithDuration:duration], nil];
+            [backSprite runAction:mySeq];
+            
+            CCSequence *mySeq2 = [CCSequence actions:[CCDelayTime actionWithDuration:duration*1.0f+delay],[CCFadeOut actionWithDuration:duration], nil];
+            [backSprite2 runAction:mySeq2];
+            
+            CCSequence *mySeq3 = [CCSequence actions:[CCDelayTime actionWithDuration:duration*0.0f+delay],[CCFadeOut actionWithDuration:duration],nil];
+            [backSprite3 runAction:mySeq3];
+        }
+    }
+
 }
 
 - (BOOL)hitTestWithLocation:(Location) location
 {
     
-    switch([self getDirection]){
+    switch([self direction]){
         case RIGHT:
             return (self.location.y == location.y && self.location.x < location.x && self.endLocation.x >= location.x);
         case LEFT:
@@ -255,7 +285,7 @@
 {
     if(order > 0) {
         int x;int y;
-        switch (self.direction) {
+        switch ([self direction]) {
             case DOWN:
                 x = self.location.x;
                 y = self.location.y - order;
@@ -281,7 +311,7 @@
         }
         return LocationMake(x, y);
     }
-    return LocationMake(0, 0);
+    return LocationMake(-1, -1);
 }
 
 - (void)markWateredLocationsIn:(NSMutableDictionary *)bitMap
