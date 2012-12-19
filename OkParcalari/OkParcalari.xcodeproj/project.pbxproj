@@ -33,10 +33,6 @@
 		0502758F1678BDA000A2520F /* timing_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275771678BDA000A2520F /* timing_bg.png */; };
 		050275921678BDE600A2520F /* btn_newgame-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275901678BDE600A2520F /* btn_newgame-ipadhd.png */; };
 		050275931678BDE600A2520F /* btn_newgame.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275911678BDE600A2520F /* btn_newgame.png */; };
-		0502759A1678BE5F00A2520F /* main_bg-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275941678BE5F00A2520F /* main_bg-ipadhd.png */; };
-		0502759B1678BE5F00A2520F /* main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275951678BE5F00A2520F /* main_bg.png */; };
-		0502759E1678BE5F00A2520F /* main_toprak-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275981678BE5F00A2520F /* main_toprak-ipadhd.png */; };
-		0502759F1678BE5F00A2520F /* main_toprak.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275991678BE5F00A2520F /* main_toprak.png */; };
 		058C21E01680A0BF0063F60E /* 0x0a-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 058C1F881680A0BE0063F60E /* 0x0a-ipadhd.png */; };
 		058C21E11680A0BF0063F60E /* 0x0a.png in Resources */ = {isa = PBXBuildFile; fileRef = 058C1F891680A0BE0063F60E /* 0x0a.png */; };
 		058C21E21680A0BF0063F60E /* 0x0b-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 058C1F8A1680A0BE0063F60E /* 0x0b-ipadhd.png */; };
@@ -764,14 +760,6 @@
 		41F9356E16723EAB001E56FF /* GameMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F9356D16723EAB001E56FF /* GameMap.m */; };
 		41F93572167241F2001E56FF /* MapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F93571167241F2001E56FF /* MapEntity.m */; };
 		41F9358016760BC2001E56FF /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F9357F16760BC2001E56FF /* Arrow.m */; };
-		AE8198F41678AB9C00776E8E /* tile_border-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AE8198EC1678AB9C00776E8E /* tile_border-ipadhd.png */; };
-		AE8198F51678AB9C00776E8E /* tile_border.png in Resources */ = {isa = PBXBuildFile; fileRef = AE8198ED1678AB9C00776E8E /* tile_border.png */; };
-		AE8198F61678AB9C00776E8E /* tile_flower-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AE8198EE1678AB9C00776E8E /* tile_flower-ipadhd.png */; };
-		AE8198F71678AB9C00776E8E /* tile_flower.png in Resources */ = {isa = PBXBuildFile; fileRef = AE8198EF1678AB9C00776E8E /* tile_flower.png */; };
-		AE8198F81678AB9C00776E8E /* tile_grass-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AE8198F01678AB9C00776E8E /* tile_grass-ipadhd.png */; };
-		AE8198F91678AB9C00776E8E /* tile_grass.png in Resources */ = {isa = PBXBuildFile; fileRef = AE8198F11678AB9C00776E8E /* tile_grass.png */; };
-		AE8198FA1678AB9C00776E8E /* tile_soil-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AE8198F21678AB9C00776E8E /* tile_soil-ipadhd.png */; };
-		AE8198FB1678AB9C00776E8E /* tile_soil.png in Resources */ = {isa = PBXBuildFile; fileRef = AE8198F31678AB9C00776E8E /* tile_soil.png */; };
 		AEFC524D167879050070B777 /* arrow_base_1-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AEFC5219167879050070B777 /* arrow_base_1-ipadhd.png */; };
 		AEFC524E167879050070B777 /* arrow_base_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AEFC521A167879050070B777 /* arrow_base_1.png */; };
 		AEFC524F167879050070B777 /* arrow_base_2-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AEFC521B167879050070B777 /* arrow_base_2-ipadhd.png */; };
@@ -3128,14 +3116,6 @@
 				AEFC527E167879050070B777 /* arrow_vertical.png in Resources */,
 				AEFC527F167879050070B777 /* game_bg-ipadhd.png in Resources */,
 				AEFC5280167879050070B777 /* game_bg.png in Resources */,
-				AE8198F41678AB9C00776E8E /* tile_border-ipadhd.png in Resources */,
-				AE8198F51678AB9C00776E8E /* tile_border.png in Resources */,
-				AE8198F61678AB9C00776E8E /* tile_flower-ipadhd.png in Resources */,
-				AE8198F71678AB9C00776E8E /* tile_flower.png in Resources */,
-				AE8198F81678AB9C00776E8E /* tile_grass-ipadhd.png in Resources */,
-				AE8198F91678AB9C00776E8E /* tile_grass.png in Resources */,
-				AE8198FA1678AB9C00776E8E /* tile_soil-ipadhd.png in Resources */,
-				AE8198FB1678AB9C00776E8E /* tile_soil.png in Resources */,
 				050275781678BDA000A2520F /* timer_num_0-ipadhd.png in Resources */,
 				050275791678BDA000A2520F /* timer_num_0.png in Resources */,
 				0502757A1678BDA000A2520F /* timer_num_1-ipadhd.png in Resources */,
@@ -3162,10 +3142,6 @@
 				0502758F1678BDA000A2520F /* timing_bg.png in Resources */,
 				050275921678BDE600A2520F /* btn_newgame-ipadhd.png in Resources */,
 				050275931678BDE600A2520F /* btn_newgame.png in Resources */,
-				0502759A1678BE5F00A2520F /* main_bg-ipadhd.png in Resources */,
-				0502759B1678BE5F00A2520F /* main_bg.png in Resources */,
-				0502759E1678BE5F00A2520F /* main_toprak-ipadhd.png in Resources */,
-				0502759F1678BE5F00A2520F /* main_toprak.png in Resources */,
 				05D2EBDF167F5ADC005C2E10 /* gameboard-ipadhd.png in Resources */,
 				05D2EBE0167F5ADC005C2E10 /* gameboard.png in Resources */,
 				05D2EBE1167F5ADC005C2E10 /* main_frame-ipadhd.png in Resources */,
