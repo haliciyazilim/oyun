@@ -9,7 +9,7 @@
 #import "ArrowGameLayer.h"
 #import "GameMap.h"
 #import "MapEntity.h"
-#import "Stopwatch.h"
+//#import "Stopwatch.h"
 
 @implementation ArrowGameLayer
 
@@ -70,9 +70,7 @@
         self.arrowGame = [[ArrowGame alloc] init];
         [self addChild:self.arrowGame];
         
-        _gameTimer = [Stopwatch StopwatchWithMinutes:0 andSeconds:0];
-        [_gameTimer startTimer];
-        [self addChild:_gameTimer];
+        
 	}
 	return self;
 }

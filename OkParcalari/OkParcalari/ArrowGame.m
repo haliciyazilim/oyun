@@ -11,6 +11,7 @@
 #import "GameMap.h"
 #import "ArrowBase.h"
 #import "Arrow.h"
+#import "Stopwatch.h"
 
 @interface ArrowGame()
 @property (readonly) GameMap* map;
@@ -66,6 +67,10 @@
         
         lastDirection = NONE;
         
+        _gameTimer = [Stopwatch StopwatchWithMinutes:0 andSeconds:0];
+        [_gameTimer startTimer];
+        [self addChild:_gameTimer];
+        
     }
     return self;
 }
@@ -94,6 +99,7 @@
             if([value compare:@"0"] == 0)
                 return NO;
         }
+    [_gameTimer stopTimer];
     return YES;
 }
 

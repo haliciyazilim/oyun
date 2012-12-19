@@ -10,14 +10,14 @@
 #import "ArrowGame.h"
 #import "ArrowBase.h"
 
-@class Stopwatch;
+//@class Stopwatch;
 
 @interface ArrowGameLayer : CCLayer
 
 +(CCScene *) scene;
 
 @property ArrowGame *arrowGame;
-@property Stopwatch *gameTimer;
+//@property Stopwatch *gameTimer;
 
 - (void) gameEnded;
 
