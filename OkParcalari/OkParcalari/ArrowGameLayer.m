@@ -9,7 +9,6 @@
 #import "ArrowGameLayer.h"
 #import "GameMap.h"
 #import "MapEntity.h"
-//#import "Stopwatch.h"
 
 @implementation ArrowGameLayer
 
@@ -47,7 +46,6 @@
         frameView.position = ccp(size.width * 0.5, size.height * 0.5);
 
         CCSprite *topView = [CCSprite spriteWithFile:@"gameboard.png"];
-//        topView.position = ccp(size.width * 0.5, size.height * 0.5);
         topView.position = ccp(384,384);
         
         CCSprite *timerView = [CCSprite spriteWithFile:@"timing_bg.png"];

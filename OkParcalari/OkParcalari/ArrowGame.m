@@ -87,7 +87,6 @@
     
     //ask all the arrow bases if they are correct.
     NSSet* set = [self.map allEntries];
-    NSLog(@"entity count: %d",[[set allObjects] count]);
     [set enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         MapEntity* entity = (MapEntity*)obj;
         [entity markWateredLocationsIn:bitMap];
@@ -109,7 +108,6 @@
         return;
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
-    NSLog(@"%@",[currentEntity class]);
     
 }
 
@@ -170,10 +168,6 @@
     isHoldingArrowBase  = NO;
     currentEntity       = nil;
     lastDirection       = NONE;
-    
-    if([self isGameFinished] == YES)
-        NSLog(@"game is finished");
-    else NSLog(@"game is not finished yet");
 }
 
 - (void) newGame:(GameMap*) map
@@ -185,7 +179,4 @@
 {
     return [GameMap sharedInstance];
 }
-
-
-
 @end

@@ -114,7 +114,6 @@ static GameMap *sharedInstance = nil;
 
 - (BOOL) isLocationInsideMap:(Location) location
 {
-    NSLog(@"c:%d r:%d x:%d y:%d",self.rows,self.cols,location.x,location.y);
     return (location.x >= 0 && location.y >= 0 && location.x < self.cols && location.y < self.rows);
 }
 
