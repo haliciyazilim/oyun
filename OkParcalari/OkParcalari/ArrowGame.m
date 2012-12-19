@@ -137,10 +137,15 @@
                 [base extendArrowWithEndLocation:location];
             }
             
+        }else if(lastDirection != NONE && (lastDirection != currentDirection) && currentDirection != NONE){
+            [base compressArrowAtDirection:lastDirection];
+            [base extendArrowWithEndLocation:location];
+            lastDirection = currentDirection;
         }
                 
     }
 }
+
 - (Location) projectedLocation:(Location) location
 {
     location = LocationMake(location.x - startLocation.x,location.y - startLocation.y);
@@ -151,6 +156,7 @@
     
     return LocationMake(location.x + startLocation.x, location.y + startLocation.y);
 }
+
 - (void) touchEnded:(Location) location
 {
     if(currentEntity != nil && [currentEntity class] == [Arrow class]){
