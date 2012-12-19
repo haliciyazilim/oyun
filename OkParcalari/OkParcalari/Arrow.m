@@ -46,9 +46,6 @@
     Direction direction = DirectionFromTwoLocations(self.location, endLocation);
     if(direction != NONE && direction != self.direction)
         return;
-
-    endLocation = [self projectedLocation:endLocation];
-    
     Location savedEndLocation = self.endLocation;
     _endLocation = endLocation;
     
@@ -311,23 +308,7 @@
     return NO;
 }
 
-- (Location) projectedLocation:(Location) location
-{
-    location = LocationMake(location.x - self.location.x,location.y - self.location.y);
-    switch (self.direction) {
-        case UP:
-        case DOWN:
-            location = LocationMake(0, location.y);
-            break;
-        case LEFT:
-        case RIGHT:
-            location = LocationMake(location.x, 0);
-            break;
-        default:
-            break;
-    }
-    return LocationMake(location.x + self.location.x, location.y + self.location.y);
-}
+
 
 - (Location) locationAtOrder:(int)order
 {

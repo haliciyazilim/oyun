@@ -109,6 +109,8 @@
 
 - (void) touchMoved:(Location) location
 {
+    location = [self projectedLocation:location];
+    
     if([self.map isLocationInsideMap:location] == NO)
         return;
     
@@ -139,7 +141,16 @@
                 
     }
 }
-
+- (Location) projectedLocation:(Location) location
+{
+    location = LocationMake(location.x - startLocation.x,location.y - startLocation.y);
+    if(abs(location.x) > abs(location.y))
+        location = LocationMake(location.x, 0);
+    else
+        location = LocationMake(0, location.y);
+    
+    return LocationMake(location.x + startLocation.x, location.y + startLocation.y);
+}
 - (void) touchEnded:(Location) location
 {
     if(currentEntity != nil && [currentEntity class] == [Arrow class]){
