@@ -1,0 +1,22 @@
+{
+    mapsize:{
+        rows:10,
+        cols:10
+    },
+    entities:[
+        {
+            class:"ArrowBase",
+            location:{
+                x:6,
+                y:0
+            },
+            size:7
+        }
+    ],
+    maptheme:{
+    
+    },
+    mapname:"Garden",
+    mapnumber:15,
+
+}

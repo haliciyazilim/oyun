@@ -62,7 +62,9 @@ static GameMap *sharedInstance = nil;
 
 + (GameMap *)loadFromFile:(NSString *)fileName
 {
-    return nil;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
 }
 
 + (GameMap *)sharedInstance {
@@ -71,7 +73,6 @@ static GameMap *sharedInstance = nil;
             sharedInstance = [[self alloc] init];
         }
     }
-    
     return sharedInstance;
 }
 
@@ -122,7 +123,6 @@ static GameMap *sharedInstance = nil;
 
 - (BOOL) isLocationInsideMap:(Location) location
 {
-    NSLog(@"c:%d r:%d x:%d y:%d",self.rows,self.cols,location.x,location.y);
     return (location.x >= 0 && location.y >= 0 && location.x < self.cols && location.y < self.rows);
 }
 

@@ -34,6 +34,8 @@
         
         [self addChild:self.map];
         
+        [ArrowGameMap loadFromFile:@"map"];
+        
         ArrowBase * base;
         base = [[ArrowBase alloc] initWithLocation:LocationMake(6, 0) andSize:7];
         [self.map addChild:base];
@@ -75,25 +77,26 @@
 {
     //create empty bitmap
     NSMutableDictionary* bitMap = [[NSMutableDictionary alloc] init];
-    for(int i=0;i<self.map.rows;i++)
+    for(int i=0;i<self.map.rows;i++){
         for(int j=0;j<self.map.cols;j++){
             [bitMap setValue:@"0" forKey:LocationToString(LocationMake(i, j))];
         }
+    }
     
     //ask all the arrow bases if they are correct.
     NSSet* set = [self.map allEntries];
-    NSLog(@"entity count: %d",[[set allObjects] count]);
     [set enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         MapEntity* entity = (MapEntity*)obj;
         [entity markWateredLocationsIn:bitMap];
     }];
     
-    for(int i=0;i<self.map.rows;i++)
+    for(int i=0;i<self.map.rows;i++){
         for(int j=0;j<self.map.cols;j++){
             NSString* value = (NSString*)[bitMap valueForKey:LocationToString(LocationMake(i, j))];
             if([value compare:@"0"] == 0)
                 return NO;
         }
+    }
     return YES;
 }
 
@@ -103,7 +106,6 @@
         return;
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
-    NSLog(@"%@",[currentEntity class]);
     
 }
 
