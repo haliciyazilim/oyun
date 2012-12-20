@@ -71,7 +71,9 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [IntroLayer scene]]; 
+	[director_ pushScene: [IntroLayer scene]];
+    
+    [director_ enableRetinaDisplay:YES];
 
 	
 	// Create a Navigation Controller with the Director

@@ -12,6 +12,7 @@
 #import "ArrowBase.h"
 #import "Arrow.h"
 #import "Stopwatch.h"
+#import "InAppPurchaseManager.h"
 
 @interface ArrowGame()
 @property (readonly) GameMap* map;
@@ -70,6 +71,9 @@
         _gameTimer = [Stopwatch StopwatchWithMinutes:0 andSeconds:0];
         [_gameTimer startTimer];
         [self addChild:_gameTimer];
+        
+        InAppPurchaseManager * inAppPurchaseManager = [InAppPurchaseManager sharedInstance];
+        [inAppPurchaseManager requestProUpgradeProductData];
         
     }
     return self;
