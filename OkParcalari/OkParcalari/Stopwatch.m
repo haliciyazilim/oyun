@@ -20,7 +20,6 @@
         _seconds = seconds;
         _minutes = minutes;
         _isPaused = 0;
-//        self.position = CGPointMake(330, 20);
         [self initializeTimerSprites];
         return self;
     }
@@ -82,7 +81,6 @@
     _sprite3File = @"timer_num_0.png";
     _sprite4File = @"timer_num_0.png";
     _dotFile = @"timer_num_nokta.png";
-    NSLog(@"%@",_sprite1File);
     
     CCSprite *timerNum1 = [CCSprite spriteWithFile:_sprite1File];
     timerNum1.position = ccp(size.width * 0.817, size.height * 0.5445);
@@ -113,7 +111,6 @@
 }
 
 - (void) updateTimerSprites {
-//    [self removeAllChildrenWithCleanup:NO];
     
     CGSize size = [[CCDirector sharedDirector] winSize];
     

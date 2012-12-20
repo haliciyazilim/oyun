@@ -15,10 +15,12 @@
 #import "ArrowGameMap.h"
 
 @class GameMap;
+@class Stopwatch;
 
 @interface ArrowGame : CCNode
 
 @property NSMutableArray *arrowBases;
+@property Stopwatch *gameTimer;
 
 - (BOOL) isGameFinished;
 

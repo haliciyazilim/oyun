@@ -198,9 +198,7 @@
         else {
             float delayConstant = lastSize < [self getSize] ? (i-min) : (max-i);
             [self backgroundAtOrder:i+1 withDuration:0.5f withDelay:delayConstant*0.2f];
-            
         }
-        
     }
     
     lastSize = [self getSize];
@@ -246,7 +244,6 @@
             [backSprite3 runAction:[self fadeOutSequenceWithDelay:duration*0.0f+delay withDuration:duration]];
         }
     }
-
 }
 
 - (void) incrementActionCount
@@ -307,8 +304,6 @@
     }
     return NO;
 }
-
-
 
 - (Location) locationAtOrder:(int)order
 {

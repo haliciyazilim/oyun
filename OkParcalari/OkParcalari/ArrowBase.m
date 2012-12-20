@@ -74,8 +74,6 @@
     
     back.position = CGPointMake(0, 0);
 
-    
-    //    sprite.position = CGPointMake(32, 32);
     [self addChild:back];
     [self addChild:sprite];
     
@@ -100,7 +98,6 @@
 }
 
 - (BOOL) isCorrect {
-//    return (self.leftArrowSize + self.rightArrowSize + self.upArrowSize + self.downArrowSize == self.size);
     return NO;
 }
 
@@ -138,7 +135,6 @@
 
 - (void) markWateredLocationsIn:(NSMutableDictionary *)bitMap
 {
-	
     [bitMap setValue:@"1" forKey:LocationToString(self.location)];
 }
 

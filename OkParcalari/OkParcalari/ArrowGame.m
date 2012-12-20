@@ -11,6 +11,7 @@
 #import "GameMap.h"
 #import "ArrowBase.h"
 #import "Arrow.h"
+#import "Stopwatch.h"
 
 @interface ArrowGame()
 @property (readonly) GameMap* map;
@@ -68,6 +69,10 @@
         
         lastDirection = NONE;
         
+        _gameTimer = [Stopwatch StopwatchWithMinutes:0 andSeconds:0];
+        [_gameTimer startTimer];
+        [self addChild:_gameTimer];
+        
     }
     return self;
 }
@@ -97,6 +102,7 @@
                 return NO;
         }
     }
+    [_gameTimer stopTimer];
     return YES;
 }
 
@@ -172,10 +178,6 @@
     isHoldingArrowBase  = NO;
     currentEntity       = nil;
     lastDirection       = NONE;
-    
-    if([self isGameFinished] == YES)
-        NSLog(@"game is finished");
-    else NSLog(@"game is not finished yet");
 }
 
 - (void) newGame:(GameMap*) map
@@ -187,7 +189,4 @@
 {
     return [GameMap sharedInstance];
 }
-
-
-
 @end
