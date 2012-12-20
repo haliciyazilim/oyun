@@ -36,6 +36,8 @@
         
         [self addChild:self.map];
         
+        [ArrowGameMap loadFromFile:@"map"];
+        
         ArrowBase * base;
         base = [[ArrowBase alloc] initWithLocation:LocationMake(6, 0) andSize:7];
         [self.map addChild:base];
@@ -84,10 +86,11 @@
 {
     //create empty bitmap
     NSMutableDictionary* bitMap = [[NSMutableDictionary alloc] init];
-    for(int i=0;i<self.map.rows;i++)
+    for(int i=0;i<self.map.rows;i++){
         for(int j=0;j<self.map.cols;j++){
             [bitMap setValue:@"0" forKey:LocationToString(LocationMake(i, j))];
         }
+    }
     
     //ask all the arrow bases if they are correct.
     NSSet* set = [self.map allEntries];
@@ -96,12 +99,13 @@
         [entity markWateredLocationsIn:bitMap];
     }];
     
-    for(int i=0;i<self.map.rows;i++)
+    for(int i=0;i<self.map.rows;i++){
         for(int j=0;j<self.map.cols;j++){
             NSString* value = (NSString*)[bitMap valueForKey:LocationToString(LocationMake(i, j))];
             if([value compare:@"0"] == 0)
                 return NO;
         }
+    }
     [_gameTimer stopTimer];
     return YES;
 }
@@ -145,10 +149,15 @@
                 [base extendArrowWithEndLocation:location];
             }
             
+        }else if(lastDirection != NONE && (lastDirection != currentDirection) && currentDirection != NONE){
+            [base compressArrowAtDirection:lastDirection];
+            [base extendArrowWithEndLocation:location];
+            lastDirection = currentDirection;
         }
                 
     }
 }
+
 - (Location) projectedLocation:(Location) location
 {
     location = LocationMake(location.x - startLocation.x,location.y - startLocation.y);
@@ -159,6 +168,7 @@
     
     return LocationMake(location.x + startLocation.x, location.y + startLocation.y);
 }
+
 - (void) touchEnded:(Location) location
 {
     if(currentEntity != nil && [currentEntity class] == [Arrow class]){

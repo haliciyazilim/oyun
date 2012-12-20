@@ -54,7 +54,9 @@ static GameMap *sharedInstance = nil;
 
 + (GameMap *)loadFromFile:(NSString *)fileName
 {
-    return nil;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
 }
 
 + (GameMap *)sharedInstance {
@@ -63,7 +65,6 @@ static GameMap *sharedInstance = nil;
             sharedInstance = [[self alloc] init];
         }
     }
-    
     return sharedInstance;
 }
 

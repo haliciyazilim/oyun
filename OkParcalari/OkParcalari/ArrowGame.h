@@ -12,6 +12,8 @@
 
 #import "ArrowBase.h"
 
+#import "ArrowGameMap.h"
+
 @class GameMap;
 @class Stopwatch;
 
