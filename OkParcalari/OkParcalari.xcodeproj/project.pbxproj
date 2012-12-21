@@ -33,6 +33,9 @@
 		0502758F1678BDA000A2520F /* timing_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275771678BDA000A2520F /* timing_bg.png */; };
 		050275921678BDE600A2520F /* btn_newgame-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275901678BDE600A2520F /* btn_newgame-ipadhd.png */; };
 		050275931678BDE600A2520F /* btn_newgame.png in Resources */ = {isa = PBXBuildFile; fileRef = 050275911678BDE600A2520F /* btn_newgame.png */; };
+		050F588C1683031300618D14 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 050F588B1683031300618D14 /* InAppPurchaseManager.m */; };
+		050F58901683056200618D14 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 050F588F1683056200618D14 /* SKProduct+LocalizedPrice.m */; };
+		050F5892168305B400618D14 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050F5891168305B400618D14 /* StoreKit.framework */; };
 		058C21E01680A0BF0063F60E /* 0x0a-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 058C1F881680A0BE0063F60E /* 0x0a-ipadhd.png */; };
 		058C21E11680A0BF0063F60E /* 0x0a.png in Resources */ = {isa = PBXBuildFile; fileRef = 058C1F891680A0BE0063F60E /* 0x0a.png */; };
 		058C21E21680A0BF0063F60E /* 0x0b-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 058C1F8A1680A0BE0063F60E /* 0x0b-ipadhd.png */; };
@@ -863,6 +866,11 @@
 		050275971678BE5F00A2520F /* main_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main_frame.png; path = Resources/images/main_frame.png; sourceTree = "<group>"; };
 		050275981678BE5F00A2520F /* main_toprak-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "main_toprak-ipadhd.png"; path = "Resources/images/main_toprak-ipadhd.png"; sourceTree = "<group>"; };
 		050275991678BE5F00A2520F /* main_toprak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main_toprak.png; path = Resources/images/main_toprak.png; sourceTree = "<group>"; };
+		050F588A1683031300618D14 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
+		050F588B1683031300618D14 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
+		050F588E1683056200618D14 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
+		050F588F1683056200618D14 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
+		050F5891168305B400618D14 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		058C1F881680A0BE0063F60E /* 0x0a-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "0x0a-ipadhd.png"; path = "tiles/0x0a-ipadhd.png"; sourceTree = "<group>"; };
 		058C1F891680A0BE0063F60E /* 0x0a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 0x0a.png; path = tiles/0x0a.png; sourceTree = "<group>"; };
 		058C1F8A1680A0BE0063F60E /* 0x0b-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "0x0b-ipadhd.png"; path = "tiles/0x0b-ipadhd.png"; sourceTree = "<group>"; };
@@ -1828,6 +1836,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050F5892168305B400618D14 /* StoreKit.framework in Frameworks */,
 				410AA1301670D9B500F6DCCA /* QuartzCore.framework in Frameworks */,
 				410AA1321670D9B500F6DCCA /* OpenGLES.framework in Frameworks */,
 				410AA1341670D9B500F6DCCA /* OpenAL.framework in Frameworks */,
@@ -1973,6 +1982,17 @@
 				050275771678BDA000A2520F /* timing_bg.png */,
 			);
 			name = button_and_timers;
+			sourceTree = "<group>";
+		};
+		050F588D1683054500618D14 /* InAppPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				050F588A1683031300618D14 /* InAppPurchaseManager.h */,
+				050F588B1683031300618D14 /* InAppPurchaseManager.m */,
+				050F588E1683056200618D14 /* SKProduct+LocalizedPrice.h */,
+				050F588F1683056200618D14 /* SKProduct+LocalizedPrice.m */,
+			);
+			name = InAppPurchase;
 			sourceTree = "<group>";
 		};
 		05D2EBCB167F587A005C2E10 /* fiskiye_images */ = {
@@ -2626,6 +2646,7 @@
 		410AA12E1670D9B500F6DCCA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				050F5891168305B400618D14 /* StoreKit.framework */,
 				410AA12F1670D9B500F6DCCA /* QuartzCore.framework */,
 				410AA1311670D9B500F6DCCA /* OpenGLES.framework */,
 				410AA1331670D9B500F6DCCA /* OpenAL.framework */,
@@ -2642,6 +2663,7 @@
 		410AA1411670D9B500F6DCCA /* OkParcalari */ = {
 			isa = PBXGroup;
 			children = (
+				050F588D1683054500618D14 /* InAppPurchase */,
 				41F9358116760BE6001E56FF /* Common */,
 				410AA2DA16716B6500F6DCCA /* Views */,
 				410AA2CC1670F12D00F6DCCA /* Models */,
@@ -3956,6 +3978,8 @@
 				41F93572167241F2001E56FF /* MapEntity.m in Sources */,
 				41F9358016760BC2001E56FF /* Arrow.m in Sources */,
 				0591F8131679EF9800C3B558 /* Stopwatch.m in Sources */,
+				050F588C1683031300618D14 /* InAppPurchaseManager.m in Sources */,
+				050F58901683056200618D14 /* SKProduct+LocalizedPrice.m in Sources */,
 				AE1F1A531681F68B00F27894 /* ArrowGameMap.m in Sources */,
 				AE1F1A731682075500F27894 /* NSObject+SBJson.m in Sources */,
 				AE1F1A741682075500F27894 /* SBJsonParser.m in Sources */,
@@ -4003,6 +4027,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -4013,6 +4038,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PROVISIONING_PROFILE = "04A6FDA2-5B29-4E62-B2C8-E1011D8BABD3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04A6FDA2-5B29-4E62-B2C8-E1011D8BABD3";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4023,6 +4050,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4035,6 +4064,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "04A6FDA2-5B29-4E62-B2C8-E1011D8BABD3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04A6FDA2-5B29-4E62-B2C8-E1011D8BABD3";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4045,6 +4076,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OkParcalari/Prefix.pch;
@@ -4056,6 +4089,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
