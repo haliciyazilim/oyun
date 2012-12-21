@@ -16,6 +16,15 @@
 
 
 @implementation ArrowBase
+
++ (ArrowBase*) arrowBaseFromDictionary:(NSDictionary*)dict
+{
+    Location location = LocationMakeFromDictionary([dict objectForKey:@"location"]);
+    int size = [(NSNumber*)[dict objectForKey:@"size"] intValue];
+    ArrowBase* arrowBase = [[ArrowBase alloc] initWithLocation:location andSize:size];
+    return arrowBase;
+}
+
 + (id) ArrowBaseWithLocation:(Location)location andSize:(int)size {
     return [[ArrowBase alloc] initWithLocation:location andSize:size];
 }

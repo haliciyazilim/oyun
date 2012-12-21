@@ -12,21 +12,36 @@
 
 
 + (GameMap*) loadFromFile:(NSString*)fileName{
-    GameMap* map = [self sharedInstance];
+    GameMap* gameMap = [self sharedInstance];
 
     NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"gamemap"]
                                                   encoding:NSUTF8StringEncoding
                                                      error:NULL];
-
     
     SBJsonParser *parser = [[SBJsonParser alloc] init];
-
-    NSArray *statuses = [parser objectWithString:content error:nil];
-    for (NSDictionary *status in statuses) {
+	
+    NSDictionary* map = [parser objectWithString:content];
+    
+    
+    
+    
+    if( [(NSNumber*)[map valueForKey:@"version"] intValue] == 1){
+        NSDictionary* size = [map valueForKey:@"mapsize"];
+        gameMap.rows = [(NSNumber*)[size valueForKey:@"rows"] intValue];
+        gameMap.cols = [(NSNumber*)[size valueForKey:@"cols"] intValue];
         
-        
+        for(NSDictionary* entitiy in [map objectForKey:@"entities"]){
+            if([(NSString*)[entitiy valueForKey:@"class"] compare:@"ArrowBase"] == 0){
+                ArrowBase * base = [ArrowBase arrowBaseFromDictionary:entitiy];
+                [gameMap addChild:base];
+            }
+        }
     }
-    return map;
+    
+    return gameMap;
 }
+
+
+
 
 @end

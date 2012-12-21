@@ -760,6 +760,8 @@
 		41F9356E16723EAB001E56FF /* GameMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F9356D16723EAB001E56FF /* GameMap.m */; };
 		41F93572167241F2001E56FF /* MapEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F93571167241F2001E56FF /* MapEntity.m */; };
 		41F9358016760BC2001E56FF /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F9357F16760BC2001E56FF /* Arrow.m */; };
+		AE0949A01684B08C00B62B8F /* haydn in Resources */ = {isa = PBXBuildFile; fileRef = AE09499E1684B08C00B62B8F /* haydn */; };
+		AE0949A11684B08C00B62B8F /* haydn.packageinfo in Resources */ = {isa = PBXBuildFile; fileRef = AE09499F1684B08C00B62B8F /* haydn.packageinfo */; };
 		AE1F1A531681F68B00F27894 /* ArrowGameMap.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A521681F68B00F27894 /* ArrowGameMap.m */; };
 		AE1F1A731682075500F27894 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A5B1682075500F27894 /* NSObject+SBJson.m */; };
 		AE1F1A741682075500F27894 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A5E1682075500F27894 /* SBJsonParser.m */; };
@@ -1729,6 +1731,8 @@
 		41F93571167241F2001E56FF /* MapEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapEntity.m; sourceTree = "<group>"; };
 		41F9357E16760BC2001E56FF /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
 		41F9357F16760BC2001E56FF /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
+		AE09499E1684B08C00B62B8F /* haydn */ = {isa = PBXFileReference; lastKnownFileType = folder; name = haydn; path = Resources/maps/haydn; sourceTree = "<group>"; };
+		AE09499F1684B08C00B62B8F /* haydn.packageinfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = haydn.packageinfo; path = Resources/maps/haydn.packageinfo; sourceTree = "<group>"; };
 		AE1F1A511681F68B00F27894 /* ArrowGameMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowGameMap.h; sourceTree = "<group>"; };
 		AE1F1A521681F68B00F27894 /* ArrowGameMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowGameMap.m; sourceTree = "<group>"; };
 		AE1F1A5A1682075500F27894 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
@@ -2653,6 +2657,8 @@
 		410AA1421670D9B600F6DCCA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AE09499E1684B08C00B62B8F /* haydn */,
+				AE09499F1684B08C00B62B8F /* haydn.packageinfo */,
 				AE1F1A7F16820A9E00F27894 /* map.gamemap */,
 				41F9357316724597001E56FF /* Images */,
 			);
@@ -3828,6 +3834,8 @@
 				058C24361680A0BF0063F60E /* 9x9c-ipadhd.png in Resources */,
 				058C24371680A0BF0063F60E /* 9x9c.png in Resources */,
 				AE1F1A8016820A9E00F27894 /* map.gamemap in Resources */,
+				AE0949A01684B08C00B62B8F /* haydn in Resources */,
+				AE0949A11684B08C00B62B8F /* haydn.packageinfo in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

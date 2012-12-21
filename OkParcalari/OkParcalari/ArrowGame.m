@@ -28,6 +28,7 @@
     Location currentLocation;
     Direction lastDirection;
 }
+
 - (id)init
 {
     self = [super init];
@@ -35,37 +36,37 @@
         
         [self addChild:self.map];
         
-        [ArrowGameMap loadFromFile:@"map"];
+        [ArrowGameMap loadFromFile:@"haydn/haydn_4"];
         
-        ArrowBase * base;
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(6, 0) andSize:7];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(1, 1) andSize:2];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(3, 1) andSize:2];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(7, 2) andSize:9];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(7, 3) andSize:4];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(7, 4) andSize:2];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(2, 4) andSize:4];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(0, 5) andSize:6];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(4, 5) andSize:3];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(8, 6) andSize:13];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(2, 7) andSize:7];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(1, 8) andSize:9];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(5, 8) andSize:2];
-        [self.map addChild:base];
-        base = [[ArrowBase alloc] initWithLocation:LocationMake(9, 9) andSize:16];
-        [self.map addChild:base];
+//        ArrowBase * base;
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(6, 0) andSize:7];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(1, 1) andSize:2];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(3, 1) andSize:2];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(7, 2) andSize:9];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(7, 3) andSize:4];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(7, 4) andSize:2];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(2, 4) andSize:4];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(0, 5) andSize:6];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(4, 5) andSize:3];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(8, 6) andSize:13];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(2, 7) andSize:7];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(1, 8) andSize:9];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(5, 8) andSize:2];
+//        [self.map addChild:base];
+//        base = [[ArrowBase alloc] initWithLocation:LocationMake(9, 9) andSize:16];
+//        [self.map addChild:base];
         
         lastDirection = NONE;
         
@@ -102,6 +103,7 @@
                 return NO;
         }
     }
+    NSLog(@"***GAME IS FINISHED***");
     [_gameTimer stopTimer];
     return YES;
 }
@@ -167,17 +169,24 @@
 
 - (void) touchEnded:(Location) location
 {
-    if(currentEntity != nil && [currentEntity class] == [Arrow class]){
-        [(Arrow *)currentEntity animateBackgrounds];
+    if(currentEntity != nil){
+        if([currentEntity class] == [Arrow class]){
+            [(Arrow *)currentEntity animateBackgrounds];
+            
+        }
+        else if([currentEntity class] == [ArrowBase class] && lastDirection != NONE){
+            Arrow *arrow = [(ArrowBase *)currentEntity arrowAtDirection:lastDirection];
+            [arrow animateBackgrounds];
+        }
+        [self isGameFinished];
     }
-    else if(currentEntity != nil && [currentEntity class] == [ArrowBase class] && lastDirection != NONE){
-        Arrow *arrow = [(ArrowBase *)currentEntity arrowAtDirection:lastDirection];
-        [arrow animateBackgrounds];
-    }
+    
+    
     isHoldingArrow      = NO;
     isHoldingArrowBase  = NO;
     currentEntity       = nil;
     lastDirection       = NONE;
+    
 }
 
 - (void) newGame:(GameMap*) map

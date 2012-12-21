@@ -23,6 +23,8 @@
 @property Arrow* leftArrow;
 @property Arrow* rightArrow;
 
++ (ArrowBase*) arrowBaseFromDictionary:(NSDictionary*)dict;
+
 + (id) ArrowBaseWithLocation:(Location)location andSize:(int)size;
 
 - (id) initWithLocation:(Location)location andSize:(int)size;

@@ -21,6 +21,13 @@ NSString* LocationToString(Location location){
     
 }
 
+
+Location LocationMakeFromDictionary(NSDictionary* dict){
+    int x = [(NSNumber*)[dict objectForKey:@"x"] intValue];
+    int y = [(NSNumber*)[dict objectForKey:@"y"] intValue];
+    return LocationMake(x, y);
+}
+
 Direction DirectionFromTwoLocations(Location start, Location end){
     if(start.x == end.x && start.y > end.y)
         return DOWN;

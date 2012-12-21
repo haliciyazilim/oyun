@@ -19,6 +19,8 @@ typedef struct {
 
 Location LocationMake(int x, int y);
 
+Location LocationMakeFromDictionary(NSDictionary* dict);
+
 NSString* LocationToString(Location location);
 
 typedef enum {LEFT,RIGHT,UP,DOWN,NONE} Direction;

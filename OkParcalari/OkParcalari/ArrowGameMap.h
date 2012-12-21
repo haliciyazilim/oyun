@@ -8,6 +8,7 @@
 
 #import "GameMap.h"
 #import "SBJson.h"
+#import "ArrowBase.h"
 
 @interface ArrowGameMap : GameMap
 
