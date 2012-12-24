@@ -36,6 +36,8 @@
 		050F588C1683031300618D14 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 050F588B1683031300618D14 /* InAppPurchaseManager.m */; };
 		050F58901683056200618D14 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 050F588F1683056200618D14 /* SKProduct+LocalizedPrice.m */; };
 		050F5892168305B400618D14 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050F5891168305B400618D14 /* StoreKit.framework */; };
+		0536AC701688763700125A19 /* MainGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536AC6F1688763700125A19 /* MainGameLayer.m */; };
+		0536AC7416887D2A00125A19 /* MapSelectionLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536AC7316887D2A00125A19 /* MapSelectionLayer.m */; };
 		058C21E01680A0BF0063F60E /* 0x0a-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 058C1F881680A0BE0063F60E /* 0x0a-ipadhd.png */; };
 		058C21E11680A0BF0063F60E /* 0x0a.png in Resources */ = {isa = PBXBuildFile; fileRef = 058C1F891680A0BE0063F60E /* 0x0a.png */; };
 		058C21E21680A0BF0063F60E /* 0x0b-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 058C1F8A1680A0BE0063F60E /* 0x0b-ipadhd.png */; };
@@ -871,6 +873,10 @@
 		050F588E1683056200618D14 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
 		050F588F1683056200618D14 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
 		050F5891168305B400618D14 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		0536AC6E1688763700125A19 /* MainGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameLayer.h; sourceTree = "<group>"; };
+		0536AC6F1688763700125A19 /* MainGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGameLayer.m; sourceTree = "<group>"; };
+		0536AC7216887D2A00125A19 /* MapSelectionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSelectionLayer.h; sourceTree = "<group>"; };
+		0536AC7316887D2A00125A19 /* MapSelectionLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSelectionLayer.m; sourceTree = "<group>"; };
 		058C1F881680A0BE0063F60E /* 0x0a-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "0x0a-ipadhd.png"; path = "tiles/0x0a-ipadhd.png"; sourceTree = "<group>"; };
 		058C1F891680A0BE0063F60E /* 0x0a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 0x0a.png; path = tiles/0x0a.png; sourceTree = "<group>"; };
 		058C1F8A1680A0BE0063F60E /* 0x0b-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "0x0b-ipadhd.png"; path = "tiles/0x0b-ipadhd.png"; sourceTree = "<group>"; };
@@ -3053,6 +3059,10 @@
 				410AA2CA1670F09700F6DCCA /* ArrowGameLayer.m */,
 				410AA2BF1670D9B800F6DCCA /* IntroLayer.h */,
 				410AA2C01670D9B800F6DCCA /* IntroLayer.m */,
+				0536AC6E1688763700125A19 /* MainGameLayer.h */,
+				0536AC6F1688763700125A19 /* MainGameLayer.m */,
+				0536AC7216887D2A00125A19 /* MapSelectionLayer.h */,
+				0536AC7316887D2A00125A19 /* MapSelectionLayer.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3993,6 +4003,8 @@
 				AE1F1A7C1682075500F27894 /* SBJsonTokeniser.m in Sources */,
 				AE1F1A7D1682075500F27894 /* SBJsonUTF8Stream.m in Sources */,
 				AE1F1A7E1682075500F27894 /* SBJsonWriter.m in Sources */,
+				0536AC701688763700125A19 /* MainGameLayer.m in Sources */,
+				0536AC7416887D2A00125A19 /* MapSelectionLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

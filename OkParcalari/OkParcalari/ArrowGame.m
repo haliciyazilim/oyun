@@ -75,9 +75,6 @@
         [_gameTimer startTimer];
         [self addChild:_gameTimer];
         
-        InAppPurchaseManager * inAppPurchaseManager = [InAppPurchaseManager sharedInstance];
-        [inAppPurchaseManager requestProUpgradeProductData];
-        
     }
     return self;
 }

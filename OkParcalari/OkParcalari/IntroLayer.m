@@ -9,7 +9,7 @@
 
 // Import the interfaces
 #import "IntroLayer.h"
-#import "ArrowGameLayer.h"
+#import "MainGameLayer.h"
 
 
 #pragma mark - IntroLayer
@@ -49,6 +49,6 @@
 
 -(void) makeTransition:(ccTime)dt
 {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ArrowGameLayer scene] withColor:ccWHITE]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MainGameLayer scene] withColor:ccWHITE]];
 }
 @end
