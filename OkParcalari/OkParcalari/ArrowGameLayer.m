@@ -50,9 +50,8 @@
         
         CCSprite *timerView = [CCSprite spriteWithFile:@"timing_bg.png"];
         timerView.position = ccp(size.width * 0.85, size.height * 0.54);
-        
-        
-        CCSprite *buttonView = [CCSprite spriteWithFile:@"btn_newgame.png"];
+                
+        CCSprite *buttonView = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
         buttonView.position = ccp(size.width * 0.86, size.height * 0.38);
         
         [self addChild:background];
