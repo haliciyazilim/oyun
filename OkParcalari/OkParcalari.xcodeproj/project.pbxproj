@@ -783,6 +783,7 @@
 		AE1F1A8016820A9E00F27894 /* map.gamemap in Resources */ = {isa = PBXBuildFile; fileRef = AE1F1A7F16820A9E00F27894 /* map.gamemap */; };
 		AE8983BD168879B200F83F3F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE8983BF168879B200F83F3F /* Localizable.strings */; };
 		AE8983C31688835D00F83F3F /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8983C21688835D00F83F3F /* Util.m */; };
+		AE8983D11689C63400F83F3F /* MapSelectionCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8983D01689C63400F83F3F /* MapSelectionCollectionViewController.m */; };
 		AEFC524D167879050070B777 /* arrow_base_1-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AEFC5219167879050070B777 /* arrow_base_1-ipadhd.png */; };
 		AEFC524E167879050070B777 /* arrow_base_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AEFC521A167879050070B777 /* arrow_base_1.png */; };
 		AEFC524F167879050070B777 /* arrow_base_2-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = AEFC521B167879050070B777 /* arrow_base_2-ipadhd.png */; };
@@ -1789,6 +1790,8 @@
 		AE8983C016887C8100F83F3F /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE8983C11688835D00F83F3F /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		AE8983C21688835D00F83F3F /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		AE8983CF1689C63400F83F3F /* MapSelectionCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSelectionCollectionViewController.h; sourceTree = "<group>"; };
+		AE8983D01689C63400F83F3F /* MapSelectionCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSelectionCollectionViewController.m; sourceTree = "<group>"; };
 		AEFC5219167879050070B777 /* arrow_base_1-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow_base_1-ipadhd.png"; path = "Resources/images/arrow_base_1-ipadhd.png"; sourceTree = "<group>"; };
 		AEFC521A167879050070B777 /* arrow_base_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_base_1.png; path = Resources/images/arrow_base_1.png; sourceTree = "<group>"; };
 		AEFC521B167879050070B777 /* arrow_base_2-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow_base_2-ipadhd.png"; path = "Resources/images/arrow_base_2-ipadhd.png"; sourceTree = "<group>"; };
@@ -3070,6 +3073,8 @@
 				0536AC6F1688763700125A19 /* MainGameLayer.m */,
 				0536AC7216887D2A00125A19 /* MapSelectionLayer.h */,
 				0536AC7316887D2A00125A19 /* MapSelectionLayer.m */,
+				AE8983CF1689C63400F83F3F /* MapSelectionCollectionViewController.h */,
+				AE8983D01689C63400F83F3F /* MapSelectionCollectionViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -4017,6 +4022,7 @@
 				AE8983C31688835D00F83F3F /* Util.m in Sources */,
 				0536AC701688763700125A19 /* MainGameLayer.m in Sources */,
 				0536AC7416887D2A00125A19 /* MapSelectionLayer.m in Sources */,
+				AE8983D11689C63400F83F3F /* MapSelectionCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

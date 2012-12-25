@@ -9,7 +9,9 @@
 #import "MapSelectionLayer.h"
 
 @implementation MapSelectionLayer
-
+{
+    MapSelectionCollectionViewController* collectionViewController;
+}
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -33,7 +35,8 @@
 {
     if(self = [super init]){
         
-        
+        collectionViewController = [[MapSelectionCollectionViewController alloc] init];
+        [[[CCDirector sharedDirector] view] addSubview:[collectionViewController view]];
         self.isTouchEnabled = YES;
     }
     return self;
