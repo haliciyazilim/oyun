@@ -12,14 +12,14 @@
 
 @implementation ArrowGameLayer
 
-+(CCScene *) scene
++(CCScene *) sceneWithFile:(NSString *)fileName
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
 	ArrowGameLayer *layer = [ArrowGameLayer node];
-	
+	[layer initializeGameWithFile:fileName];
 	// add layer as a child to scene
 	[scene addChild: layer];
 	
@@ -64,12 +64,17 @@
         [self reorderChild:topView z:998];
         
 		self.isTouchEnabled = YES;
-        self.arrowGame = [[ArrowGame alloc] init];
-        [self addChild:self.arrowGame];
         
         
 	}
 	return self;
+}
+
+- (void) initializeGameWithFile:(NSString*)fileName
+{
+    self.arrowGame = [[ArrowGame alloc] initWithFile:fileName];
+    [self addChild:self.arrowGame];
+    
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -22,6 +22,8 @@
 @property NSMutableArray *arrowBases;
 @property Stopwatch *gameTimer;
 
+- (id)initWithFile:(NSString*)fileName;
+
 - (BOOL) isGameFinished;
 
 - (void) touchBegan:(Location) location;

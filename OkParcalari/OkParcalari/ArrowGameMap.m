@@ -11,9 +11,34 @@
 @implementation ArrowGameMap
 
 
+
++ (NSArray*) loadMapsFromFile:(NSString*)fileName{
+    NSMutableArray* maps = [[NSMutableArray alloc] init];
+    
+    NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"packageinfo"]
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+	
+    NSDictionary* file = [parser objectWithString:content];
+    
+    
+    
+    
+    if( [(NSNumber*)[file valueForKey:@"version"] intValue] == 1){
+               
+        for(NSString* mapName in [file objectForKey:@"maps"]){
+            [maps addObject:mapName];
+        }
+    }
+
+    return (NSArray*)maps;
+}
+
 + (GameMap*) loadFromFile:(NSString*)fileName{
     GameMap* gameMap = [self sharedInstance];
-
+    
     NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"gamemap"]
                                                   encoding:NSUTF8StringEncoding
                                                      error:NULL];

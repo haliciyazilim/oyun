@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-
+#import "ArrowGameMap.h"
+#import "ArrowGameLayer.h"
 
 
 @interface MapSelectionCollectionViewController : UICollectionViewController <UICollectionViewDelegate>

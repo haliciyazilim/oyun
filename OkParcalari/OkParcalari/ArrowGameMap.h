@@ -11,5 +11,7 @@
 #import "ArrowBase.h"
 
 @interface ArrowGameMap : GameMap
++ (NSArray*) loadMapsFromFile:(NSString*)fileName;
 
++ (GameMap*) loadFromFile:(NSString*)fileName;
 @end

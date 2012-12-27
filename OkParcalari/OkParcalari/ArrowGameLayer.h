@@ -15,7 +15,8 @@
 
 @interface ArrowGameLayer : CCLayer
 
-+(CCScene *) scene;
++(CCScene *) sceneWithFile:(NSString*)fileName;
+- (void) initializeGameWithFile:(NSString*)fileName;
 
 @property ArrowGame *arrowGame;
 //@property Stopwatch *gameTimer;

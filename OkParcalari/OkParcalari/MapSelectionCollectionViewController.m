@@ -15,7 +15,9 @@
 
 
 @implementation MapSelectionCollectionViewController
-
+{
+    NSArray* maps;
+}
 - (id)init
 {
     self = [super init];
@@ -34,7 +36,7 @@
         [self.collectionView setFrame:CGRectMake(self.collectionView.frame.origin.x+35, self.collectionView.frame.origin.y+200, self.collectionView.frame.size.width-70.0, self.collectionView.frame.size.height-300	)];
         NSLog(@"%f,%f,%f,%f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y,self.collectionView.frame.size.width,self.collectionView.frame.size.height);
         [self.collectionView setContentInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)];
-
+        maps = [ArrowGameMap loadMapsFromFile:@"haydn"];
     }
     return self;
 }
@@ -44,7 +46,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+
     
     
 }
@@ -54,7 +56,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 100;
+    return [maps count];
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,10 +66,9 @@
         cell = [[UICollectionViewCell alloc] init];
     }
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
-//    [label setBackgroundColor:[UIColor blackColor]];
-    [label setText:@"deneme label"];
-    [cell addSubview:label];
     
+    [label setText:[maps objectAtIndex:indexPath.row]];
+    [cell addSubview:label];
     
     return cell;
 }
@@ -77,6 +78,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"haydn/%@",[maps objectAtIndex:indexPath.row]]] withColor:ccWHITE]];
+    [[[CCDirector sharedDirector] navigationController] popViewControllerAnimated:YES];
+
 }
 
 @end

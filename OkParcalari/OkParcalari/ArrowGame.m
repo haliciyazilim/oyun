@@ -30,44 +30,15 @@
     Direction lastDirection;
 }
 
-- (id)init
+- (id)initWithFile:(NSString*)fileName
 {
     self = [super init];
     if (self) {
         
         [self addChild:self.map];
         
-        [ArrowGameMap loadFromFile:@"haydn/haydn_4"];
-        
-//        ArrowBase * base;
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(6, 0) andSize:7];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(1, 1) andSize:2];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(3, 1) andSize:2];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(7, 2) andSize:9];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(7, 3) andSize:4];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(7, 4) andSize:2];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(2, 4) andSize:4];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(0, 5) andSize:6];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(4, 5) andSize:3];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(8, 6) andSize:13];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(2, 7) andSize:7];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(1, 8) andSize:9];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(5, 8) andSize:2];
-//        [self.map addChild:base];
-//        base = [[ArrowBase alloc] initWithLocation:LocationMake(9, 9) andSize:16];
-//        [self.map addChild:base];
+        [ArrowGameMap loadFromFile:fileName];
+
         
         lastDirection = NONE;
         
