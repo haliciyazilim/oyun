@@ -36,9 +36,28 @@
         [self.collectionView setFrame:CGRectMake(self.collectionView.frame.origin.x+35, self.collectionView.frame.origin.y+200, self.collectionView.frame.size.width-70.0, self.collectionView.frame.size.height-300	)];
         NSLog(@"%f,%f,%f,%f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y,self.collectionView.frame.size.width,self.collectionView.frame.size.height);
         [self.collectionView setContentInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)];
+
         maps = [ArrowGameMap loadMapsFromFile:@"haydn"];
+
+        
+        UIView *myView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 700.0, 1024.0, 68.0)];
+        [myView setBackgroundColor:[UIColor blueColor]];
+        UIButton *myButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [myButton addTarget:self
+                     action:@selector(openStore)
+         forControlEvents:UIControlEventTouchUpInside];
+        [myButton setFrame:CGRectMake(800.0, 12.0, 200.0, 44.0)];
+        [myButton setTitle:@"Game Unlock" forState:UIControlStateNormal];
+        [myButton setTitle:@"highligted" forState:UIControlStateHighlighted];
+//        [myButton setBackgroundColor:[UIColor yellowColor]];
+        [myView addSubview:myButton];
+        [self.view addSubview:myView];
+        
     }
     return self;
+}
+-(void)openStore{
+    NSLog(@"store will open here");
 }
 
 
