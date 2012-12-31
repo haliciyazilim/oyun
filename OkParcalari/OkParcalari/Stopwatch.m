@@ -69,6 +69,11 @@
     [self schedule:@selector(updateStopwatch:) interval:0.1];
 }
 
+-(int)getElapsedSeconds
+{
+    return _seconds + (_minutes*60);
+}
+
 - (void) stopTimer {
     [self unschedule:@selector(updateStopwatch:)];
 }

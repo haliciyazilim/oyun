@@ -13,6 +13,7 @@
 #import "ArrowBase.h"
 
 #import "ArrowGameMap.h"
+#import "GameCenterManager.h"
 
 @class GameMap;
 @class Stopwatch;

@@ -66,7 +66,10 @@
     return gameMap;
 }
 
-
++ (void)saveScore:(int)elapsedTime
+{
+    
+}
 
 
 @end

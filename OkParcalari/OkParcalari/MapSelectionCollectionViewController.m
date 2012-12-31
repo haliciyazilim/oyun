@@ -53,6 +53,11 @@
         [myView addSubview:myButton];
         [self.view addSubview:myView];
         
+        
+        /*<[[TEST*/
+        [[GameCenterManager sharedInstance] getScores];
+        /*TEST]]>*/
+        
     }
     return self;
 }

@@ -16,5 +16,7 @@
 
 + (GameCenterManager *) sharedInstance;
 - (void) authenticateLocalUser;
+- (void) saveScore:(int)score category:(NSString*)category;
 
+-(void) getScores;
 @end
