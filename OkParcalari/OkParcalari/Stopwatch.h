@@ -37,5 +37,6 @@
 - (void) stopTimer;
 - (void) initializeTimerSprites;
 - (void) updateTimerSprites;
+- (int)  getElapsedSeconds;
 
 @end

@@ -28,6 +28,7 @@
     Location endLocation;
     Location currentLocation;
     Direction lastDirection;
+    NSString* currentGameMapFileName;
 }
 
 - (id)initWithFile:(NSString*)fileName
@@ -38,8 +39,7 @@
         [self addChild:self.map];
         
         [ArrowGameMap loadFromFile:fileName];
-
-        
+        currentGameMapFileName = fileName;
         lastDirection = NONE;
         
         _gameTimer = [Stopwatch StopwatchWithMinutes:0 andSeconds:0];
@@ -76,7 +76,10 @@
         }
     }
     NSLog(@"***GAME IS FINISHED***");
+    
     [_gameTimer stopTimer];
+    [[GameCenterManager sharedInstance] saveScore:[_gameTimer getElapsedSeconds] category:[currentGameMapFileName lastPathComponent]];
+    
     return YES;
 }
 

@@ -69,4 +69,44 @@ static GameCenterManager *sharedManager = nil;
     }
 }
 
+- (void) saveScore:(int)score category:(NSString*)category
+{
+    NSLog(@"entered saveScore");
+    NSLog(@"score: %d, category: %@",score,category);
+    GKScore* gkScore =
+    [[GKScore alloc]
+     initWithCategory:category];
+    
+    //3: Set the score value
+    gkScore.value = score;
+    
+    //4: Send the score to Game Center
+    [gkScore reportScoreWithCompletionHandler:
+     ^(NSError* error) {
+         NSLog(@"score is reported");
+    }];
+}
+
+-(void) getScores
+{
+    if([GKLocalPlayer localPlayer].isAuthenticated) {
+        NSArray *arr = [[NSArray alloc] initWithObjects:[GKLocalPlayer localPlayer].playerID, nil];
+        GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
+        if(board != nil) {
+            board.timeScope = GKLeaderboardTimeScopeAllTime;
+            board.range = NSMakeRange(1, 1);
+            board.category = @"HighscoreTable";
+            [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+                if (error != nil) {
+                    // handle the error.
+                    NSLog(@"Error retrieving score.", nil);
+                }
+                if (scores != nil) {
+                    NSLog(@"My Score: %lld", ((GKScore*)[scores objectAtIndex:0]).value);
+                }
+            }];
+        }
+    }
+}
+
 @end

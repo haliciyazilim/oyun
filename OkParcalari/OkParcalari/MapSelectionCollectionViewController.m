@@ -17,6 +17,7 @@
 @implementation MapSelectionCollectionViewController
 {
     NSArray* maps;
+    NSArray* completedMaps;	
 }
 - (id)init
 {
@@ -49,9 +50,13 @@
         [myButton setFrame:CGRectMake(800.0, 12.0, 200.0, 44.0)];
         [myButton setTitle:@"Game Unlock" forState:UIControlStateNormal];
         [myButton setTitle:@"highligted" forState:UIControlStateHighlighted];
-//        [myButton setBackgroundColor:[UIColor yellowColor]];
         [myView addSubview:myButton];
         [self.view addSubview:myView];
+        
+        
+        /*<[[TEST*/
+        [[GameCenterManager sharedInstance] getScores];
+        /*TEST]]>*/
         
     }
     return self;
@@ -104,7 +109,7 @@
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"haydn/%@",[maps objectAtIndex:indexPath.row]]] withColor:ccWHITE]];
     [[[CCDirector sharedDirector] navigationController] popViewControllerAnimated:YES];
-
+    
 }
 
 @end
