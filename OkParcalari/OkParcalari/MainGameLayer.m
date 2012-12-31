@@ -8,6 +8,7 @@
 
 #import "MainGameLayer.h"
 #import "MapSelectionLayer.h"
+#import "GameCenterManager.h"
 
 @implementation MainGameLayer{
     CCSprite *newGameButton;
@@ -30,6 +31,7 @@
 
 - (void)onEnter{
     [super onEnter];
+        [[GameCenterManager sharedInstance] authenticateLocalUser];
 }
 
 -(id) init

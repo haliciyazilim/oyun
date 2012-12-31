@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "IntroLayer.h"
+#import "GameCenterManager.h"
 
 @implementation AppController
 
