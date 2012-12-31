@@ -42,7 +42,7 @@
         
         UIView *myView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 700.0, 1024.0, 68.0)];
         [myView setBackgroundColor:[UIColor blueColor]];
-        UIButton *myButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        UIButton *myButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [myButton addTarget:self
                      action:@selector(openStore)
          forControlEvents:UIControlEventTouchUpInside];

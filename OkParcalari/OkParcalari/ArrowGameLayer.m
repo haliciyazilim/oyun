@@ -9,6 +9,8 @@
 #import "ArrowGameLayer.h"
 #import "GameMap.h"
 #import "MapEntity.h"
+#import "CCBReader.h"
+#import "Squirt.h"
 
 @implementation ArrowGameLayer
 
@@ -51,17 +53,25 @@
         CCSprite *timerView = [CCSprite spriteWithFile:@"timing_bg.png"];
         timerView.position = ccp(size.width * 0.85, size.height * 0.54);
                 
-        CCSprite *buttonView = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
-        buttonView.position = ccp(size.width * 0.86, size.height * 0.38);
+//        CCSprite *buttonView = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
+//        buttonView.position = ccp(size.width * 0.86, size.height * 0.38);
+        
+        
         
         [self addChild:background];
         [self addChild:timerView];
+
         
-        [self addChild:buttonView];
+//        [self addChild:buttonView];
         [self addChild:frameView];
         [self reorderChild:frameView z:999];
         [self addChild:topView];
         [self reorderChild:topView z:998];
+        
+        CCNode *mySquirt = [CCBReader nodeGraphFromFile:@"Spray.ccbi"];
+        mySquirt.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
+        
+        [self addChild:mySquirt];
         
 		self.isTouchEnabled = YES;
         
@@ -79,7 +89,9 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
     [self.arrowGame touchBegan:[self locationFromTouches:touches]];
+    
 }
 
 -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
