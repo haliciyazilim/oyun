@@ -70,7 +70,8 @@
         Squirt *mySquirt = (Squirt *)[CCBReader nodeGraphFromFile:@"Spray.ccbi"];
         mySquirt.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
         [self addChild:mySquirt];
-        [mySquirt setRotation:0.5];
+        mySquirt.rotation = 60.0;
+        
         Squirt *mySquirt2 = (Squirt *)[CCBReader nodeGraphFromFile:@"Spray.ccbi"];
         mySquirt2.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
         [self addChild:mySquirt2];
