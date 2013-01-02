@@ -67,21 +67,7 @@
         [self addChild:topView];
         [self reorderChild:topView z:998];
         
-//        Squirt *mySquirt = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
-//        mySquirt.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
-//        [self addChild:mySquirt];
-//        
-//        Squirt *mySquirt2 = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
-//        mySquirt2.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
-//        [self addChild:mySquirt2];
-//
-//        Squirt *mySquirt3 = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
-//        mySquirt3.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
-//        [self addChild:mySquirt3];
-//        
-//        [mySquirt runAnimationWithSequenceNamed:@"Timeline1"];
-//        [mySquirt2 runAnimationWithSequenceNamed:@"Timeline2"];
-//        [mySquirt3 runAnimationWithSequenceNamed:@"Timeline3"];
+        
         
 		self.isTouchEnabled = YES;
         
@@ -99,8 +85,25 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    CGSize size = [[CCDirector sharedDirector] winSize];
     
     [self.arrowGame touchBegan:[self locationFromTouches:touches]];
+    
+    Squirt *mySquirt = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
+    mySquirt.position = ccp(size.width * 0.5+36, size.height * 0.5+32);
+    [self addChild:mySquirt];
+    
+    Squirt *mySquirt2 = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
+    mySquirt2.position = ccp(size.width * 0.5+36, size.height * 0.5+32);
+    [self addChild:mySquirt2];
+    
+    Squirt *mySquirt3 = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
+    mySquirt3.position = ccp(size.width * 0.5+36, size.height * 0.5+32);
+    [self addChild:mySquirt3];
+    
+    [mySquirt runAnimationWithSequenceNamed:@"Timeline1"];
+    [mySquirt2 runAnimationWithSequenceNamed:@"Timeline2"];
+    [mySquirt3 runAnimationWithSequenceNamed:@"Timeline3"];
     
 }
 
