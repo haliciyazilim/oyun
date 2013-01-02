@@ -11,6 +11,7 @@
 #import "MapEntity.h"
 #import "CCBReader.h"
 #import "Squirt.h"
+#import "CCBAnimationManager.h"
 
 @implementation ArrowGameLayer
 
@@ -56,8 +57,6 @@
 //        CCSprite *buttonView = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
 //        buttonView.position = ccp(size.width * 0.86, size.height * 0.38);
         
-        
-        
         [self addChild:background];
         [self addChild:timerView];
 
@@ -68,10 +67,15 @@
         [self addChild:topView];
         [self reorderChild:topView z:998];
         
-        CCNode *mySquirt = [CCBReader nodeGraphFromFile:@"Spray.ccbi"];
+        Squirt *mySquirt = (Squirt *)[CCBReader nodeGraphFromFile:@"Spray.ccbi"];
         mySquirt.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
-        
         [self addChild:mySquirt];
+        [mySquirt setRotation:0.5];
+        Squirt *mySquirt2 = (Squirt *)[CCBReader nodeGraphFromFile:@"Spray.ccbi"];
+        mySquirt2.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
+        [self addChild:mySquirt2];
+        [mySquirt runAnimation];
+        [mySquirt2 runAnimation];
         
 		self.isTouchEnabled = YES;
         

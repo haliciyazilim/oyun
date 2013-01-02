@@ -6,9 +6,10 @@
 //
 //
 
-#import "CCNode.h"
-#import "CCBAnimationManager.h"
+//#import "CCBAnimationManager.h"
 
-@interface Squirt : CCNode <CCBAnimationManagerDelegate>
+@interface Squirt : CCNode
+
+- (void) runAnimation;
 
 @end

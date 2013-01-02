@@ -232,11 +232,11 @@
     if(duration > 0 ){
         if(order > lastSize){
             backSprite.opacity = 0;
-            [backSprite runAction:[self fadeInSequenceWithDelay:duration*0.0f+delay withDuration:duration]];
             backSprite2.opacity = 0;
-            [backSprite2 runAction:[self fadeInSequenceWithDelay:duration*1.0f*delay withDuration:duration]];
             backSprite3.opacity = 0;
-            [backSprite3 runAction:[self fadeInSequenceWithDelay:duration*2.0f+delay withDuration:duration]];
+            [backSprite runAction:  [self fadeInSequenceWithDelay:duration*0.0f+delay withDuration:duration]];
+            [backSprite2 runAction: [self fadeInSequenceWithDelay:duration*1.0f+delay withDuration:duration]];
+            [backSprite3 runAction: [self fadeInSequenceWithDelay:duration*2.0f+delay withDuration:duration]];
         }
         else {
             [backSprite runAction:[self fadeOutSequenceWithDelay:duration*2.0f+delay withDuration:duration]];

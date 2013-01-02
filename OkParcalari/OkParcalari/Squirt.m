@@ -7,19 +7,14 @@
 //
 
 #import "Squirt.h"
+#import "CCBAnimationManager.h"
 
 @implementation Squirt
 
-- (void) didLoadFromCCB
-{
-    // Setup a delegate method for the animationManager of the explostion
+- (void) runAnimation{
     CCBAnimationManager* animationManager = self.userObject;
-    animationManager.delegate = self;
-}
-
-- (void) completedAnimationSequenceNamed:(NSString *)name
-{
-    // Remove the explosion object after the animation has finished
+    NSLog(@"*************animationManager: %@***************", animationManager);
+    [animationManager runAnimationsForSequenceNamed:@"SquirtLoop"];
 }
 
 @end
