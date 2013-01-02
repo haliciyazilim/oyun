@@ -167,10 +167,13 @@
     sprite.position = [self pointFromLocation:location];
     [self addChild:sprite];
     
+    
+    sprite = [CCSprite spriteWithFile:@"arrow_base_fiskiye.png"];
+    sprite.tag = 40;
+    sprite.position = [self pointFromLocation:location];
+    [self addChild:sprite];
+    
     for (int i = 1; i < size; i++) {
-        Location location;
-        
-        CCSprite *sprite;
         switch ([self direction]) {
             case RIGHT:
                 sprite = [CCSprite spriteWithFile:@"arrow_horizontal.png"];
@@ -196,6 +199,15 @@
         sprite.tag = 40;
         sprite.position = [self pointFromLocation:location];
         [self addChild:sprite];
+        
+        
+        sprite = [CCSprite spriteWithFile:@"arrow_base_fiskiye.png"];
+        sprite.tag = 40;
+        sprite.position = [self pointFromLocation:location];
+        [self addChild:sprite];
+        
+        
+        
     }
 }
 

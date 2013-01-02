@@ -212,6 +212,8 @@
 		AE1F1A7D1682075500F27894 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A701682075500F27894 /* SBJsonUTF8Stream.m */; };
 		AE1F1A7E1682075500F27894 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A721682075500F27894 /* SBJsonWriter.m */; };
 		AE8983BD168879B200F83F3F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE8983BF168879B200F83F3F /* Localizable.strings */; };
+		AE9CD0E81694695000C42824 /* GameHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9CD0E71694695000C42824 /* GameHistory.m */; };
+		AE9CD0EB16946E2000C42824 /* game_history.json in Resources */ = {isa = PBXBuildFile; fileRef = AE9CD0EA16946E2000C42824 /* game_history.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1268,6 +1270,9 @@
 		AE1F1A721682075500F27894 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		AE8983BE168879B200F83F3F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE8983C016887C8100F83F3F /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AE9CD0E61694695000C42824 /* GameHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistory.h; sourceTree = "<group>"; };
+		AE9CD0E71694695000C42824 /* GameHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistory.m; sourceTree = "<group>"; };
+		AE9CD0EA16946E2000C42824 /* game_history.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = game_history.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2144,6 +2149,8 @@
 				05A38944169451D2005ADBED /* ArrowGameMap.m */,
 				05A38945169451D2005ADBED /* Squirt.h */,
 				05A38946169451D2005ADBED /* Squirt.m */,
+				AE9CD0E61694695000C42824 /* GameHistory.h */,
+				AE9CD0E71694695000C42824 /* GameHistory.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2265,6 +2272,7 @@
 				05A38F1316945217005ADBED /* maps */,
 				05A38918169451BD005ADBED /* CCBReader */,
 				059D6723169438A800B6B4E6 /* themes */,
+				AE9CD0EA16946E2000C42824 /* game_history.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2757,6 +2765,7 @@
 				05A38F97169456AC005ADBED /* spray-ipadhd.png in Resources */,
 				05A38F98169456AC005ADBED /* spray.png in Resources */,
 				0595C207169463F4006B7E87 /* Squirt.ccbi in Resources */,
+				AE9CD0EB16946E2000C42824 /* game_history.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2903,6 +2912,7 @@
 				05A38F10169451D4005ADBED /* IntroLayer.m in Sources */,
 				05A38F11169451D4005ADBED /* MainGameLayer.m in Sources */,
 				05A38F12169451D4005ADBED /* MapSelectionCollectionViewController.m in Sources */,
+				AE9CD0E81694695000C42824 /* GameHistory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
