@@ -114,20 +114,12 @@
 - (void) createSprites {
     [self removeChildrenByTag:40 cleanup:YES];
     int size = [self getSize];
-    
-    
-    
-    
+
     if(size <= 0)
         return;
     
-    
-    
-    
-    
     Location location;
     CCSprite *sprite;
-    
     
     switch ([self direction]) {
         case RIGHT:
@@ -147,7 +139,7 @@
             break;
     }
     sprite.tag = 40;
-    sprite.position = [self pointFromLocation:location];
+    sprite.position = [self pointFromLocation:[self location]];
     [self addChild:sprite];
     
     switch ([self direction]) {
@@ -170,9 +162,7 @@
         case NONE:
         default:
             break;
-            
     }
-    
     sprite.tag = 40;
     sprite.position = [self pointFromLocation:location];
     [self addChild:sprite];

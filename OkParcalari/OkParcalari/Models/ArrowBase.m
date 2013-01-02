@@ -40,10 +40,7 @@
         self.rightArrow = [[Arrow alloc] initWithLocation:self.location andDirection:RIGHT forBase:self];
         self.leftArrow  = [[Arrow alloc] initWithLocation:self.location andDirection:LEFT forBase:self];
         
-        [self addChild:self.upArrow];
-        [self addChild:self.downArrow];
-        [self addChild:self.leftArrow];
-        [self addChild:self.rightArrow];
+        
         
         [self createSprite];
     }
@@ -82,8 +79,12 @@
     CCSprite *back = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%dx%dc.png",self.location.x,self.location.y]];
     
     back.position = CGPointMake(0, 0);
-
+    
     [self addChild:back];
+    [self addChild:self.upArrow];
+    [self addChild:self.downArrow];
+    [self addChild:self.leftArrow];
+    [self addChild:self.rightArrow];
     [self addChild:sprite];
     
     
