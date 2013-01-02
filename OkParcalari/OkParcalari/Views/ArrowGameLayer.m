@@ -67,16 +67,21 @@
         [self addChild:topView];
         [self reorderChild:topView z:998];
         
-        Squirt *mySquirt = (Squirt *)[CCBReader nodeGraphFromFile:@"Spray.ccbi"];
-        mySquirt.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
-        [self addChild:mySquirt];
-        mySquirt.rotation = 60.0;
-        
-        Squirt *mySquirt2 = (Squirt *)[CCBReader nodeGraphFromFile:@"Spray.ccbi"];
-        mySquirt2.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
-        [self addChild:mySquirt2];
-        [mySquirt runAnimation];
-        [mySquirt2 runAnimation];
+//        Squirt *mySquirt = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
+//        mySquirt.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
+//        [self addChild:mySquirt];
+//        
+//        Squirt *mySquirt2 = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
+//        mySquirt2.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
+//        [self addChild:mySquirt2];
+//
+//        Squirt *mySquirt3 = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
+//        mySquirt3.position = ccp(size.width * 0.5+32, size.height * 0.5+32);
+//        [self addChild:mySquirt3];
+//        
+//        [mySquirt runAnimationWithSequenceNamed:@"Timeline1"];
+//        [mySquirt2 runAnimationWithSequenceNamed:@"Timeline2"];
+//        [mySquirt3 runAnimationWithSequenceNamed:@"Timeline3"];
         
 		self.isTouchEnabled = YES;
         

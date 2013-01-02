@@ -10,6 +10,6 @@
 
 @interface Squirt : CCNode
 
-- (void) runAnimation;
+- (void) runAnimationWithSequenceNamed:(NSString *)sequenceName;
 
 @end

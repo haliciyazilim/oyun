@@ -11,10 +11,9 @@
 
 @implementation Squirt
 
-- (void) runAnimation{
+- (void) runAnimationWithSequenceNamed:(NSString *)sequenceName{
     CCBAnimationManager* animationManager = self.userObject;
-    NSLog(@"*************animationManager: %@***************", animationManager);
-    [animationManager runAnimationsForSequenceNamed:@"SquirtLoop"];
+    [animationManager runAnimationsForSequenceNamed:sequenceName];
 }
 
 @end
