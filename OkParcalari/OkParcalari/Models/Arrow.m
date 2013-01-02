@@ -115,11 +115,40 @@
     [self removeChildrenByTag:40 cleanup:YES];
     int size = [self getSize];
     
+    
+    
+    
     if(size <= 0)
         return;
     
+    
+    
+    
+    
     Location location;
     CCSprite *sprite;
+    
+    
+    switch ([self direction]) {
+        case RIGHT:
+            sprite = [CCSprite spriteWithFile:@"arrow_left_start.png"];
+            break;
+        case LEFT:
+            sprite = [CCSprite spriteWithFile:@"arrow_right_start.png"];
+            break;
+        case UP:
+            sprite = [CCSprite spriteWithFile:@"arrow_down_start.png"];
+            break;
+        case DOWN:
+            sprite = [CCSprite spriteWithFile:@"arrow_up_start.png"];
+            break;
+            
+        default:
+            break;
+    }
+    sprite.tag = 40;
+    sprite.position = [self pointFromLocation:location];
+    [self addChild:sprite];
     
     switch ([self direction]) {
         case RIGHT:
