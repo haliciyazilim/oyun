@@ -49,6 +49,22 @@
         [self addChild:_gameTimer];
         _isGamePaused = NO;
         
+        [GameHistory saveScore:35 forMap:@"xcvxcv"];
+        [GameHistory readScoresFromFile];
+        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
+        [GameHistory saveScore:12 forMap:@"hfdsgd"];
+        [GameHistory readScoresFromFile];
+        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
+        [GameHistory saveScore:54 forMap:@"sdfsdf"];
+        [GameHistory readScoresFromFile];
+        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
+        [GameHistory saveScore:22 forMap:@"zxc"];
+        [GameHistory readScoresFromFile];
+        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
+        [GameHistory saveScore:87 forMap:@"xcvxcv"];
+        [GameHistory readScoresFromFile];
+        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
+        
     }
     return self;
 }
