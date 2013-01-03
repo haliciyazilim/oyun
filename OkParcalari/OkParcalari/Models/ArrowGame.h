@@ -39,7 +39,7 @@
 
 - (void) newGame:(GameMap*) map;
 
-
+- (void) pauseTimer;
 
 
 @end

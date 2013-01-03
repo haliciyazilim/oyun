@@ -17,7 +17,8 @@
 @property long long int minutes;
 
 @property NSDate *startTime;
-@property NSDate *lastUpdated;
+@property NSDate *lastPausedTime;
+@property long long int totalPausedTimeInterval;
 
 @property NSString *sprite1File;
 @property NSString *sprite2File;

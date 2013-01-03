@@ -102,12 +102,22 @@
 
 - (void) touchBegan:(Location) location
 {
-    if([self.map isLocationInsideMap:location] == NO)
+    if([self.map isLocationInsideMap:location] == NO){
         return;
+    }
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
 
     startLocation = location;
     
+}
+
+- (void) pauseTimer {
+    if([_gameTimer isPaused]){
+        [_gameTimer resumeTimer];
+    }
+    else{
+        [_gameTimer pauseTimer];
+    }
 }
 
 - (void) touchMoved:(Location) location

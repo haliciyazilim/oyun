@@ -14,6 +14,9 @@
 #import "CCBAnimationManager.h"
 
 @implementation ArrowGameLayer
+{
+    CCSprite *buttonView;
+}
 
 +(CCScene *) sceneWithFile:(NSString *)fileName
 {
@@ -25,6 +28,8 @@
 	[layer initializeGameWithFile:fileName];
 	// add layer as a child to scene
 	[scene addChild: layer];
+    
+    
 	
 	// return the scene
 	return scene;
@@ -54,20 +59,18 @@
         CCSprite *timerView = [CCSprite spriteWithFile:@"timing_bg.png"];
         timerView.position = ccp(size.width * 0.85, size.height * 0.54);
                 
-//        CCSprite *buttonView = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
-//        buttonView.position = ccp(size.width * 0.86, size.height * 0.38);
+        buttonView = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
+        buttonView.position = ccp(size.width * 0.86, size.height * 0.38);
         
         [self addChild:background];
         [self addChild:timerView];
 
         
-//        [self addChild:buttonView];
+        [self addChild:buttonView];
         [self addChild:frameView];
         [self reorderChild:frameView z:999];
         [self addChild:topView];
         [self reorderChild:topView z:998];
-        
-        
         
 		self.isTouchEnabled = YES;
         
@@ -85,26 +88,12 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    CGSize size = [[CCDirector sharedDirector] winSize];
-    
-    [self.arrowGame touchBegan:[self locationFromTouches:touches]];
-    
-//    Squirt *mySquirt = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
-//    mySquirt.position = ccp(size.width * 0.5+36, size.height * 0.5+32);
-//    [self addChild:mySquirt];
-//    
-//    Squirt *mySquirt2 = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
-//    mySquirt2.position = ccp(size.width * 0.5+36, size.height * 0.5+32);
-//    [self addChild:mySquirt2];
-//    
-//    Squirt *mySquirt3 = (Squirt *)[CCBReader nodeGraphFromFile:@"Squirt.ccbi"];
-//    mySquirt3.position = ccp(size.width * 0.5+36, size.height * 0.5+32);
-//    [self addChild:mySquirt3];
-//    
-//    [mySquirt runAnimationWithSequenceNamed:@"Timeline1"];
-//    [mySquirt2 runAnimationWithSequenceNamed:@"Timeline2"];
-//    [mySquirt3 runAnimationWithSequenceNamed:@"Timeline3"];
-    
+    if(CGRectContainsPoint([buttonView boundingBox], [self pointFromTouches:touches])){
+        [self.arrowGame pauseTimer];
+    }
+    else{
+        [self.arrowGame touchBegan:[self locationFromTouches:touches]];
+    }
 }
 
 -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
