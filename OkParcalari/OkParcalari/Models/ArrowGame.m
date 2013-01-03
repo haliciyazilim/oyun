@@ -45,7 +45,9 @@
         
         _gameTimer = [Stopwatch StopwatchWithMinutes:0 andSeconds:0];
         [_gameTimer startTimer];
+        _gameTimer.tag = 78;
         [self addChild:_gameTimer];
+        _isGamePaused = NO;
         
     }
     return self;
@@ -90,18 +92,16 @@
         return;
     }
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
-
     startLocation = location;
     
 }
-
-- (void) pauseTimer {
-    if([_gameTimer isPaused]){
-        [_gameTimer resumeTimer];
-    }
-    else{
-        [_gameTimer pauseTimer];
-    }
+- (void) pauseGame {
+    _isGamePaused = YES;
+    [_gameTimer pauseTimer];
+}
+- (void) resumeGame {
+    _isGamePaused = NO;
+    [_gameTimer resumeTimer];
 }
 
 - (void) touchMoved:(Location) location
@@ -181,7 +181,6 @@
 
 - (void) newGame:(GameMap*) map
 {
-    
 }
 
 - (GameMap*) map

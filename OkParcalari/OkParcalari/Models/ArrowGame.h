@@ -22,6 +22,7 @@
 
 @property NSMutableArray *arrowBases;
 @property Stopwatch *gameTimer;
+@property BOOL isGamePaused;
 
 - (id)initWithFile:(NSString*)fileName;
 
@@ -35,7 +36,9 @@
 
 - (void) newGame:(GameMap*) map;
 
-- (void) pauseTimer;
+- (void) pauseGame;
+
+- (void) resumeGame;
 
 
 @end

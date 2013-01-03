@@ -21,6 +21,8 @@
 @property ArrowGame *arrowGame;
 //@property Stopwatch *gameTimer;
 
+- (void) restartGame;
+- (void) inGameMenuWillClose;
 - (void) gameEnded;
 
 @end

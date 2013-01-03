@@ -19,10 +19,10 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	MainGameLayer *layer = [MainGameLayer node];
+	MainGameLayer *gameLayer = [MainGameLayer node];
 	
 	// add layer as a child to scene
-	[scene addChild: layer];
+	[scene addChild:gameLayer];
 	
 	// return the scene
 	return scene;
