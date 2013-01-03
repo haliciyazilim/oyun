@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		050F5892168305B400618D14 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050F5891168305B400618D14 /* StoreKit.framework */; };
 		0595C207169463F4006B7E87 /* Squirt.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 0595C206169463F4006B7E87 /* Squirt.ccbi */; };
+		0595C20F16947613006B7E87 /* WaterSpray.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595C20E16947613006B7E87 /* WaterSpray.m */; };
 		05A38925169451BD005ADBED /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3891A169451BD005ADBED /* CCBAnimationManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		05A38926169451BD005ADBED /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3891C169451BD005ADBED /* CCBKeyframe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		05A38927169451BD005ADBED /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3891E169451BD005ADBED /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -219,6 +220,8 @@
 /* Begin PBXFileReference section */
 		050F5891168305B400618D14 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0595C206169463F4006B7E87 /* Squirt.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = Squirt.ccbi; sourceTree = "<group>"; };
+		0595C20D16947613006B7E87 /* WaterSpray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterSpray.h; sourceTree = "<group>"; };
+		0595C20E16947613006B7E87 /* WaterSpray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterSpray.m; sourceTree = "<group>"; };
 		059D674B169438F100B6B4E6 /* game_bg-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_bg-ipadhd.png"; sourceTree = "<group>"; };
 		059D674C169438F100B6B4E6 /* game_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_bg.png; sourceTree = "<group>"; };
 		059D674D169438F100B6B4E6 /* gameboard-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameboard-ipadhd.png"; sourceTree = "<group>"; };
@@ -2149,6 +2152,8 @@
 				05A38944169451D2005ADBED /* ArrowGameMap.m */,
 				05A38945169451D2005ADBED /* Squirt.h */,
 				05A38946169451D2005ADBED /* Squirt.m */,
+				0595C20D16947613006B7E87 /* WaterSpray.h */,
+				0595C20E16947613006B7E87 /* WaterSpray.m */,
 				AE9CD0E61694695000C42824 /* GameHistory.h */,
 				AE9CD0E71694695000C42824 /* GameHistory.m */,
 			);
@@ -2251,13 +2256,13 @@
 		410AA1411670D9B500F6DCCA /* OkParcalari */ = {
 			isa = PBXGroup;
 			children = (
+				410AA2B91670D9B800F6DCCA /* AppDelegate.h */,
+				410AA2BA1670D9B800F6DCCA /* AppDelegate.m */,
 				05A3892B169451D2005ADBED /* Common */,
 				05A38934169451D2005ADBED /* GameCenter */,
 				05A38937169451D2005ADBED /* InAppPurchase */,
 				05A3893C169451D2005ADBED /* Models */,
 				05A38C2D169451D3005ADBED /* Views */,
-				410AA2B91670D9B800F6DCCA /* AppDelegate.h */,
-				410AA2BA1670D9B800F6DCCA /* AppDelegate.m */,
 				410AA1421670D9B600F6DCCA /* Resources */,
 				410AA15C1670D9B600F6DCCA /* libs */,
 				410AA2B51670D9B800F6DCCA /* Supporting Files */,
@@ -2913,6 +2918,7 @@
 				05A38F11169451D4005ADBED /* MainGameLayer.m in Sources */,
 				05A38F12169451D4005ADBED /* MapSelectionCollectionViewController.m in Sources */,
 				AE9CD0E81694695000C42824 /* GameHistory.m in Sources */,
+				0595C20F16947613006B7E87 /* WaterSpray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

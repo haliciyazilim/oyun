@@ -69,6 +69,7 @@ NSString* StringFromDirection(Direction direction){
         _location = location;
         self.entities = [[NSMutableSet alloc] init];
         self.position = [self pointFromLocation:location];
+        self.parentEntity = nil;
     }
     return self;
 }
@@ -81,7 +82,9 @@ NSString* StringFromDirection(Direction direction){
     [super addChild:entity];
     
     if ([entity isKindOfClass:[MapEntity class]]) {
-        [self.entities addObject:entity];
+        MapEntity* mapEntity = (MapEntity*)entity;
+        [self.entities addObject:mapEntity];
+        mapEntity.parentEntity = self;
     }
 }
 

@@ -12,6 +12,7 @@
 #import "ArrowBase.h"
 #import "Arrow.h"
 #import "Stopwatch.h"
+#import "WaterSpray.h"
 #import "InAppPurchaseManager.h"
 
 @interface ArrowGame()
@@ -88,6 +89,7 @@
     if([self.map isLocationInsideMap:location] == NO)
         return;
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
+
     startLocation = location;
     
 }
@@ -106,6 +108,9 @@
             lastDirection = currentDirection;
     }else
         isInTheSameLocation = YES;
+    
+    
+    
     
     if(currentEntity.class == [Arrow class]){
         Arrow* arrow = (Arrow*)currentEntity;

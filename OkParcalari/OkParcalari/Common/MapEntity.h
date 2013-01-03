@@ -35,6 +35,8 @@ NSString* StringFromDirection(Direction direction);
 
 @property (nonatomic) Location location;
 
+@property MapEntity* parentEntity;
+
 @property NSMutableSet* entities;
 
 - (id) initWithLocation:(Location)location;

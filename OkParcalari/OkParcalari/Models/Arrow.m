@@ -7,6 +7,7 @@
 //
 
 #import "Arrow.h"
+#import "WaterSpray.h"
 
 #define DELAY_ACTION_TAG 141
 #define ACTION_TAG 142
@@ -172,6 +173,7 @@
     sprite.tag = 40;
     sprite.position = [self pointFromLocation:location];
     [self addChild:sprite];
+    [self reorderChild:sprite z:993];
     
     for (int i = 1; i < size; i++) {
         switch ([self direction]) {
@@ -200,12 +202,11 @@
         sprite.position = [self pointFromLocation:location];
         [self addChild:sprite];
         
-        
         sprite = [CCSprite spriteWithFile:@"arrow_base_fiskiye.png"];
         sprite.tag = 40;
         sprite.position = [self pointFromLocation:location];
         [self addChild:sprite];
-        
+        [self reorderChild:sprite z:993];
         
         
     }
@@ -262,6 +263,13 @@
     
     if(duration > 0 ){
         if(order > lastSize){
+            
+            WaterSpray *mySpray = [[WaterSpray alloc] initWithPoint: [self pointFromLocation:[self locationAtOrder:order]]];
+            mySpray.tag = 100+order;
+            [mySpray callScheduleSprayingWithDelay:delay];
+            [self addChild:mySpray];
+            
+            delay += 1.0;
             backSprite.opacity = 0;
             backSprite2.opacity = 0;
             backSprite3.opacity = 0;
@@ -270,12 +278,14 @@
             [backSprite3 runAction: [self fadeInSequenceWithDelay:duration*2.0f+delay withDuration:duration]];
         }
         else {
+            [self removeChildrenByTag:100+order cleanup:YES];
             [backSprite runAction:[self fadeOutSequenceWithDelay:duration*2.0f+delay withDuration:duration]];
             [backSprite2 runAction:[self fadeOutSequenceWithDelay:duration*1.0f+delay withDuration:duration]];
             [backSprite3 runAction:[self fadeOutSequenceWithDelay:duration*0.0f+delay withDuration:duration]];
         }
     }
 }
+
 
 - (void) incrementActionCount
 {
