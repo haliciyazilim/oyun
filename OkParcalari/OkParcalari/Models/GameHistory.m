@@ -43,8 +43,16 @@
 
 +(void)saveScore:(int)score forMap:(NSString*)map
 {
-    Score* s = [Score score:score map:map];
-    [[GameHistory _scores] addObject:s];
+    if([GameHistory scoreForMap:map] == nil)
+    {
+        Score* s = [Score score:score map:map];
+        [[GameHistory _scores] addObject:s];
+    }
+    else if([[GameHistory scoreForMap:map] score] > score)
+    {
+        
+        [[GameHistory scoreForMap:map] setScore:score];
+    }
     [GameHistory writeScoresToFile];
 }
 
@@ -55,12 +63,11 @@
 
 +(Score*)scoreForMap:(NSString*)mapName
 {
-    
+    for (Score* score in [GameHistory scores]) {
+        if([[score mapName] compare:mapName] == 0)
+            return score;
+    }
     return nil;
-}
-+(void) hata
-{
-    NSLog(@"hata");
 }
 
 +(void) writeScoresToFile

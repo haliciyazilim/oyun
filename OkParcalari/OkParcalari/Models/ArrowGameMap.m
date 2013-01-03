@@ -10,9 +10,8 @@
 
 @implementation ArrowGameMap
 
-
-
 + (NSArray*) loadMapsFromFile:(NSString*)fileName{
+    
     NSMutableArray* maps = [[NSMutableArray alloc] init];
     
     NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"packageinfo"]
@@ -23,9 +22,6 @@
 	
     NSDictionary* file = [parser objectWithString:content];
     
-    
-    
-    
     if( [(NSNumber*)[file valueForKey:@"version"] intValue] == 1){
                
         for(NSString* mapName in [file objectForKey:@"maps"]){
@@ -34,9 +30,11 @@
     }
 
     return (NSArray*)maps;
+    
 }
 
 + (GameMap*) loadFromFile:(NSString*)fileName{
+    
     GameMap* gameMap = [self sharedInstance];
     
     NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"gamemap"]
@@ -46,9 +44,6 @@
     SBJsonParser *parser = [[SBJsonParser alloc] init];
 	
     NSDictionary* map = [parser objectWithString:content];
-    
-    
-    
     
     if( [(NSNumber*)[map valueForKey:@"version"] intValue] == 1){
         NSDictionary* size = [map valueForKey:@"mapsize"];
@@ -64,7 +59,7 @@
     }
     
     return gameMap;
+    
 }
-
 
 @end

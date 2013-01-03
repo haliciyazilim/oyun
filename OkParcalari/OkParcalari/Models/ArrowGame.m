@@ -56,7 +56,7 @@
         [GameHistory saveScore:54 forMap:@"sdfsdf"];
         [GameHistory readScoresFromFile];
         NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
-        [GameHistory saveScore:22 forMap:@"zxc"];
+        [GameHistory saveScore:17 forMap:@"zxwwwwc"];
         [GameHistory readScoresFromFile];
         NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
         [GameHistory saveScore:87 forMap:@"xcvxcv"];
@@ -92,7 +92,6 @@
                 return NO;
         }
     }
-    NSLog(@"***GAME IS FINISHED***");
     
     [_gameTimer stopTimer];
     [[GameCenterManager sharedInstance] saveScore:[_gameTimer getElapsedSeconds] category:[currentGameMapFileName lastPathComponent]];
@@ -186,7 +185,6 @@
         }
         [self isGameFinished];
     }
-    
     
     isHoldingArrow      = NO;
     isHoldingArrowBase  = NO;
