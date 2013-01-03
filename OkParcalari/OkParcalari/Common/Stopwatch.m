@@ -39,6 +39,7 @@
 - (void) updateStopwatch:(ccTime)dt {
     if (!_isPaused) {
         long long int interval = (long long int)[[NSDate date] timeIntervalSinceDate:_startTime];
+        interval -= _totalPausedTimeInterval;
         _seconds = interval % 60;
         _minutes = interval / 60;
         [self updateTimerSprites];
@@ -46,19 +47,22 @@
 }
 
 - (void) startTimer {
-    [self schedule:@selector(updateStopwatch:) interval:0.1];
+    [self schedule:@selector(updateStopwatch:)];
     _startTime = [NSDate date];
+    _totalPausedTimeInterval = 0;
     _isPaused = 0;
 }
 
 - (void) pauseTimer {
-    [self unschedule:@selector(updateStopwatch:)];
     _isPaused = 1;
+    [self unschedule:@selector(updateStopwatch:)];
+    _lastPausedTime = [NSDate date];
 }
 
 - (void) resumeTimer {
+    _totalPausedTimeInterval += (long long int)[[NSDate date] timeIntervalSinceDate:_lastPausedTime];
+    [self schedule:@selector(updateStopwatch:)];
     _isPaused = 0;
-    [self schedule:@selector(updateStopwatch:) interval:0.1];
 }
 
 - (void) resetTimer {
@@ -66,7 +70,7 @@
     _minutes = 0;
     _isPaused = 0;
     [self unschedule:@selector(updateStopwatch:)];
-    [self schedule:@selector(updateStopwatch:) interval:0.1];
+    [self schedule:@selector(updateStopwatch:)];
 }
 
 -(int)getElapsedSeconds
