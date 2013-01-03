@@ -13,7 +13,10 @@
 #import "ArrowBase.h"
 
 #import "ArrowGameMap.h"
+
 #import "GameCenterManager.h"
+
+#import "GameHistory.h"
 
 @class GameMap;
 @class Stopwatch;
@@ -21,6 +24,7 @@
 @interface ArrowGame : CCNode
 
 @property NSMutableArray *arrowBases;
+
 @property Stopwatch *gameTimer;
 
 - (id)initWithFile:(NSString*)fileName;

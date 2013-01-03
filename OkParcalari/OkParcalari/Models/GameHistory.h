@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SBJson.h"
 
 
 @interface Score : NSObject
@@ -27,5 +28,7 @@
 +(NSArray*)scores;
 
 +(Score*)scoreForMap:(NSString*)mapName;
+
++(void) readScoresFromFile;
 
 @end
