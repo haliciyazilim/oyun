@@ -93,7 +93,6 @@
                 return NO;
         }
     }
-    NSLog(@"***GAME IS FINISHED***");
     
     [_gameTimer stopTimer];
     [[GameCenterManager sharedInstance] saveScore:[_gameTimer getElapsedSeconds] category:[currentGameMapFileName lastPathComponent]];
@@ -186,7 +185,6 @@
         }
         [self isGameFinished];
     }
-    
     
     isHoldingArrow      = NO;
     isHoldingArrowBase  = NO;
