@@ -10,6 +10,9 @@
 
 
 @implementation Stopwatch
+{
+    double totalPausedTimeInterval;
+}
 
 + (id) StopwatchWithMinutes:(int)minutes andSeconds:(int)seconds {
     return [[Stopwatch alloc] initWithMinutes:minutes andSeconds:seconds];
@@ -38,10 +41,10 @@
 
 - (void) updateStopwatch:(ccTime)dt {
     if (!_isPaused) {
-        long long int interval = (long long int)[[NSDate date] timeIntervalSinceDate:_startTime];
-        interval -= _totalPausedTimeInterval;
-        _seconds = interval % 60;
-        _minutes = interval / 60;
+        double interval = (double)[[NSDate date] timeIntervalSinceDate:_startTime];
+        interval -= totalPausedTimeInterval;
+        _seconds = (int)floor(interval) % 60;
+        _minutes = (int)floor(interval) / 60;
         [self updateTimerSprites];
     }
 }
@@ -49,7 +52,7 @@
 - (void) startTimer {
     [self schedule:@selector(updateStopwatch:)];
     _startTime = [NSDate date];
-    _totalPausedTimeInterval = 0;
+    totalPausedTimeInterval = 0;
     _isPaused = 0;
 }
 
@@ -60,7 +63,7 @@
 }
 
 - (void) resumeTimer {
-    _totalPausedTimeInterval += (long long int)[[NSDate date] timeIntervalSinceDate:_lastPausedTime];
+    totalPausedTimeInterval += (double)[[NSDate date] timeIntervalSinceDate:_lastPausedTime];
     [self schedule:@selector(updateStopwatch:)];
     _isPaused = 0;
 }

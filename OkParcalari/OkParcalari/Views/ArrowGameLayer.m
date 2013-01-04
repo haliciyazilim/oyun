@@ -7,6 +7,7 @@
 //
 
 #import "ArrowGameLayer.h"
+#import "InGameMenuLayer.h"
 #import "GameMap.h"
 #import "MapEntity.h"
 #import "CCBReader.h"
@@ -16,6 +17,7 @@
 @implementation ArrowGameLayer
 {
     CCSprite *buttonView;
+    NSString *_fileName;
 }
 
 +(CCScene *) sceneWithFile:(NSString *)fileName
@@ -27,7 +29,9 @@
 	ArrowGameLayer *layer = [ArrowGameLayer node];
 	[layer initializeGameWithFile:fileName];
 	// add layer as a child to scene
+//    InGameMenuLayer *menuLayer = [InGameMenuLayer node];
 	[scene addChild: layer];
+//    [scene addChild:menuLayer];
     
     
 	
@@ -81,15 +85,21 @@
 
 - (void) initializeGameWithFile:(NSString*)fileName
 {
+    _fileName = fileName;
     self.arrowGame = [[ArrowGame alloc] initWithFile:fileName];
     [self addChild:self.arrowGame];
+}
+
+- (void) restartGame {
     
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSLog(@"touchesBegan");
     if(CGRectContainsPoint([buttonView boundingBox], [self pointFromTouches:touches])){
-        [self.arrowGame pauseTimer];
+        [self.arrowGame pauseGame];
+        [self showInGameMenu];
     }
     else{
         [self.arrowGame touchBegan:[self locationFromTouches:touches]];
@@ -121,6 +131,17 @@
     return location;
 }
 
+- (void) showInGameMenu {
+    InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
+    menuLayer.callerLayer = self;
+    [self addChild:menuLayer];
+    [self reorderChild:menuLayer z:1111];
+    self.isTouchEnabled = NO;
+}
+- (void) inGameMenuWillClose {
+    [self.arrowGame resumeGame];
+    self.isTouchEnabled = YES;
+}
 -(void) gameEnded
 {
     
