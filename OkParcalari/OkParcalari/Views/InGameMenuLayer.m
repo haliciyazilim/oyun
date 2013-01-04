@@ -71,8 +71,8 @@
 - (void) onEnter {
     [super onEnter];
 }
-- (void) resumeGame {
-    [(ArrowGameLayer *)self.callerLayer inGameMenuWillClose];
+
+- (void) removeAllButtons {
     [menuItem1 removeFromSuperview];
     [menuItem2 removeFromSuperview];
     [menuItem3 removeFromSuperview];
@@ -81,17 +81,14 @@
     menuItem2 = nil;
     menuItem3 = nil;
     menuItem4 = nil;
+}
+- (void) resumeGame {
+    [self removeAllButtons];
+    [(ArrowGameLayer *)self.callerLayer inGameMenuWillClose];
     [self removeFromParentAndCleanup:YES];
 }
 - (void) restartGame {
-    [menuItem1 removeFromSuperview];
-    [menuItem2 removeFromSuperview];
-    [menuItem3 removeFromSuperview];
-    [menuItem4 removeFromSuperview];
-    menuItem1 = nil;
-    menuItem2 = nil;
-    menuItem3 = nil;
-    menuItem4 = nil;
+    [self removeAllButtons];
     [(ArrowGameLayer *)self.callerLayer restartGame];
     [self removeFromParentAndCleanup:YES];
     
