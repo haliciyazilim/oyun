@@ -47,6 +47,8 @@
 		0500BAD21695D62F008E36CC /* ingamebtn_settings-tr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0500BAAE1695D62F008E36CC /* ingamebtn_settings-tr@2x.png */; };
 		050324861695A766005BC798 /* InGameMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 050324851695A766005BC798 /* InGameMenuLayer.m */; };
 		050F5892168305B400618D14 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050F5891168305B400618D14 /* StoreKit.framework */; };
+		054C4547169731BF006BE27F /* btn_newgame-tr-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 054C4545169731BF006BE27F /* btn_newgame-tr-ipadhd.png */; };
+		054C4548169731BF006BE27F /* btn_newgame-tr.png in Resources */ = {isa = PBXBuildFile; fileRef = 054C4546169731BF006BE27F /* btn_newgame-tr.png */; };
 		0595C207169463F4006B7E87 /* Squirt.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 0595C206169463F4006B7E87 /* Squirt.ccbi */; };
 		0595C20F16947613006B7E87 /* WaterSpray.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595C20E16947613006B7E87 /* WaterSpray.m */; };
 		05A38925169451BD005ADBED /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3891A169451BD005ADBED /* CCBAnimationManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -298,6 +300,8 @@
 		050324841695A765005BC798 /* InGameMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameMenuLayer.h; sourceTree = "<group>"; };
 		050324851695A766005BC798 /* InGameMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameMenuLayer.m; sourceTree = "<group>"; };
 		050F5891168305B400618D14 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		054C4545169731BF006BE27F /* btn_newgame-tr-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_newgame-tr-ipadhd.png"; sourceTree = "<group>"; };
+		054C4546169731BF006BE27F /* btn_newgame-tr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_newgame-tr.png"; sourceTree = "<group>"; };
 		0595C206169463F4006B7E87 /* Squirt.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = Squirt.ccbi; sourceTree = "<group>"; };
 		0595C20D16947613006B7E87 /* WaterSpray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterSpray.h; sourceTree = "<group>"; };
 		0595C20E16947613006B7E87 /* WaterSpray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterSpray.m; sourceTree = "<group>"; };
@@ -1535,6 +1539,8 @@
 			children = (
 				0500BA7B1695CE12008E36CC /* btn_newgame-en-ipadhd.png */,
 				0500BA7C1695CE12008E36CC /* btn_newgame-en.png */,
+				054C4545169731BF006BE27F /* btn_newgame-tr-ipadhd.png */,
+				054C4546169731BF006BE27F /* btn_newgame-tr.png */,
 			);
 			name = buttons;
 			path = Resources/images/theme_fiskiye/buttons;
@@ -2933,6 +2939,8 @@
 				0500BAD01695D62F008E36CC /* ingamebtn_settings-en@2x.png in Resources */,
 				0500BAD11695D62F008E36CC /* ingamebtn_settings-tr.png in Resources */,
 				0500BAD21695D62F008E36CC /* ingamebtn_settings-tr@2x.png in Resources */,
+				054C4547169731BF006BE27F /* btn_newgame-tr-ipadhd.png in Resources */,
+				054C4548169731BF006BE27F /* btn_newgame-tr.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
