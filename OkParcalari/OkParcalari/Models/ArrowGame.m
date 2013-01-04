@@ -45,7 +45,6 @@
         
         _gameTimer = [Stopwatch StopwatchWithMinutes:0 andSeconds:0];
         [_gameTimer startTimer];
-        _gameTimer.tag = 78;
         [self addChild:_gameTimer];
         _isGamePaused = NO;
         
@@ -109,6 +108,7 @@
     }
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
+    NSLog(@"%@",currentEntity);
     
 }
 - (void) pauseGame {
@@ -197,6 +197,12 @@
 
 - (void) newGame:(GameMap*) map
 {
+}
+
+- (void) cleanMap {
+    [self.map removeAllChildrenWithCleanup:YES];
+    [self removeAllChildrenWithCleanup:YES];
+    [self.map removeFromParentAndCleanup:YES];
 }
 
 - (GameMap*) map

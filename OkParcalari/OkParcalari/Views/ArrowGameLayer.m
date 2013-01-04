@@ -91,7 +91,10 @@
 }
 
 - (void) restartGame {
-    
+    [self.arrowGame cleanMap];
+    [self.arrowGame removeFromParentAndCleanup:YES];
+    self.isTouchEnabled = YES;
+    [self initializeGameWithFile:_fileName];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

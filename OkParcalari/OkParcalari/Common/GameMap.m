@@ -120,4 +120,16 @@ static GameMap *sharedInstance = nil;
     return set;
 }
 
+- (void)removeAllChildrenWithCleanup:(BOOL)cleanup
+{
+    [self.entities enumerateObjectsUsingBlock:^(MapEntity* entity, BOOL *stop) {
+        [entity removeAllChildrenWithCleanup:cleanup];
+    }];
+    
+    [self.entities removeAllObjects];
+    
+    [super removeAllChildrenWithCleanup:cleanup];
+    
+}
+
 @end

@@ -164,4 +164,16 @@ NSString* StringFromDirection(Direction direction){
 {
     [NSException raise:@"Invoked abstract method" format:@"Invoked abstract method"];
 }
+
+- (void)removeAllChildrenWithCleanup:(BOOL)cleanup
+{
+    [self.entities enumerateObjectsUsingBlock:^(MapEntity* entity, BOOL *stop) {
+        [entity removeAllChildrenWithCleanup:cleanup];
+    }];
+    
+    [self.entities removeAllObjects];
+    
+    [super removeAllChildrenWithCleanup:cleanup];
+    
+}
 @end
