@@ -51,6 +51,10 @@
         [menuItem3 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_mainmenu", @"png")] forState:UIControlStateNormal];
         [menuItem3 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_mainmenu_hover", @"png")] forState:UIControlStateHighlighted];
         
+        [menuItem3 addTarget:self
+                      action:@selector(returnToMainMenu)
+            forControlEvents:UIControlEventTouchUpInside];
+        
         menuItem4 = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem4 setFrame:CGRectMake(432.0, 441.0, 163.0, 57.0)];
         [menuItem4 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_settings", @"png")] forState:UIControlStateNormal];
@@ -91,7 +95,11 @@
     [self removeAllButtons];
     [(ArrowGameLayer *)self.callerLayer restartGame];
     [self removeFromParentAndCleanup:YES];
-    
+}
+- (void) returnToMainMenu {
+    [self removeAllButtons];
+    [(ArrowGameLayer *)self.callerLayer returnToMainMenu];
+    [self removeFromParentAndCleanup:YES];
 }
 
 @end

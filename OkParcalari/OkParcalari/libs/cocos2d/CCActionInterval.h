@@ -320,7 +320,9 @@ typedef struct _ccBezierConfig {
 */
 @interface CCFadeOut : CCActionInterval <NSCopying>
 {
+    GLubyte opacityValue_;
 }
++(id)actionWithDuration:(ccTime)d andOpacityValue:(GLubyte)opacityVal;
 @end
 
 /** Fades an object that implements the CCRGBAProtocol protocol. It modifies the opacity from the current value to a custom one.

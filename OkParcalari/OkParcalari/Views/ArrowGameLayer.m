@@ -13,6 +13,7 @@
 #import "CCBReader.h"
 #import "Squirt.h"
 #import "CCBAnimationManager.h"
+#import "MapSelectionCollectionViewController.h"
 
 @implementation ArrowGameLayer
 {
@@ -144,6 +145,14 @@
 - (void) inGameMenuWillClose {
     [self.arrowGame resumeGame];
     self.isTouchEnabled = YES;
+}
+- (void) returnToMainMenu {
+    [self.arrowGame cleanMap];
+    [self.arrowGame removeFromParentAndCleanup:YES];
+//    [[CCDirector sharedDirector] popScene];
+//    [self removeAllChildrenWithCleanup:YES];
+    [self removeFromParentAndCleanup:YES];
+    [[[CCDirector sharedDirector] navigationController] pushViewController:[[MapSelectionCollectionViewController alloc] init] animated:YES];
 }
 -(void) gameEnded
 {

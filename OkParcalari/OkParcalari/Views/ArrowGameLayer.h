@@ -23,6 +23,7 @@
 
 - (void) restartGame;
 - (void) inGameMenuWillClose;
+- (void) returnToMainMenu;
 - (void) gameEnded;
 
 @end

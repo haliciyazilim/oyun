@@ -36,9 +36,7 @@
     [_squirt2 runAnimationWithSequenceNamed:@"Timeline2"];
     [_squirt3 runAnimationWithSequenceNamed:@"Timeline3"];
     
-    CGFloat randomTime = arc4random_uniform(40)+20;
-    NSLog(@"%f",randomTime);
-//    [self scheduleOnce:@selector(scheduleSpraying) delay:randomTime];
+    CGFloat randomTime = arc4random_uniform(45 )+30;
     [self schedule:@selector(scheduleSpraying) interval:0 repeat:1 delay:randomTime];
 }
 

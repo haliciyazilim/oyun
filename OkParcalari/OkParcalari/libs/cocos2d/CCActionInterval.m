@@ -1035,9 +1035,32 @@ static inline CGFloat bezierat( float a, float b, float c, float d, ccTime t )
 //
 #pragma mark - CCFadeOut
 @implementation CCFadeOut
++(id)actionWithDuration:(ccTime)d andOpacityValue:(GLubyte)opacityVal{
+    NSLog(@"here1");
+    return [[[self alloc] initWithDuration:d andOpacityValue:opacityVal] autorelease];
+}
+
+-(id) initWithDuration: (ccTime) d andOpacityValue:(GLubyte)opacityVal
+{
+    NSLog(@"here2");
+	if( (self=[super init]) ) {
+		duration_ = d;
+        opacityValue_ = opacityVal;
+        
+		// prevent division by 0
+		// This comparison could be in step:, but it might decrease the performance
+		// by 3% in heavy based action games.
+		if( duration_ == 0 )
+			duration_ = FLT_EPSILON;
+		elapsed_ = 0;
+		firstTick_ = YES;
+	}
+	return self;
+}
 -(void) update: (ccTime) t
 {
-	[(id<CCRGBAProtocol>) target_ setOpacity: 255 *(1-t)];
+    NSLog(@"entered fadeout's update and opacityValue_:%u",opacityValue_);
+	[(id<CCRGBAProtocol>) target_ setOpacity: opacityValue_ *(1-t)];
 }
 
 -(CCActionInterval*) reverse

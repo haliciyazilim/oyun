@@ -11,12 +11,14 @@
 
 #define DELAY_ACTION_TAG 141
 #define ACTION_TAG 142
+#define BACKSPRITE1_TAG 5600
+#define BACKSPRITE2_TAG 5700
+#define BACKSPRITE3_TAG 5800
 
 @implementation Arrow
 {
     int lastSize;
     BOOL isActionWaiting;
-    
     int actionCount;
 }
 
@@ -214,11 +216,6 @@
 
 - (void) animateBackgrounds{
     
-    if(actionCount > 0){
-        isActionWaiting = YES;
-        return;
-    }
-    [self removeChildrenByTag:41 cleanup:YES];
     int max = lastSize > [self getSize] ? lastSize : [self getSize];
     int min = lastSize < [self getSize] ? lastSize : [self getSize];
     
@@ -234,34 +231,50 @@
     }
     
     lastSize = [self getSize];
+    
 }
 
 -(void) backgroundAtOrder:(int)order withDuration:(float)duration withDelay:(float)delay
 {
+    
     NSString *fileName1 = [NSString stringWithFormat:@"%dx%da.png",[self locationAtOrder:order].x,[self locationAtOrder:order].y];
     NSString *fileName2 = [NSString stringWithFormat:@"%dx%db.png",[self locationAtOrder:order].x,[self locationAtOrder:order].y];
     NSString *fileName3 = [NSString stringWithFormat:@"%dx%dc.png",[self locationAtOrder:order].x,[self locationAtOrder:order].y];
-    CCSprite *backSprite = [CCSprite spriteWithFile:fileName1];
-    backSprite.tag = 41;
-    backSprite.position = [self pointFromLocation:[self locationAtOrder:order]];
-    [self addChild:backSprite];
-    [self reorderChild:backSprite z:-3];
-        
-    CCSprite *backSprite2 = [CCSprite spriteWithFile:fileName2];
-    backSprite2.tag = 41;
-    backSprite2.position = [self pointFromLocation:[self locationAtOrder:order]];
-    [self addChild:backSprite2];
-    [self reorderChild:backSprite2 z:-3];
     
+    CCSprite *backSprite1 = (CCSprite*)[self getChildByTag:BACKSPRITE1_TAG+order] ;
+    CCSprite *backSprite2 = (CCSprite*)[self getChildByTag:BACKSPRITE2_TAG+order] ;
+    CCSprite *backSprite3 = (CCSprite*)[self getChildByTag:BACKSPRITE3_TAG+order] ;
     
-    CCSprite *backSprite3 = [CCSprite spriteWithFile:fileName3];
-
-    backSprite3.tag = 41;
-    backSprite3.position = [self pointFromLocation:[self locationAtOrder:order]];
-    [self addChild:backSprite3];
-    [self reorderChild:backSprite3 z:-3];
+    if(backSprite1 == nil){
+        backSprite1 = [CCSprite spriteWithFile:fileName1];
+        backSprite1.tag = BACKSPRITE1_TAG+order;
+        backSprite1.position = [self pointFromLocation:[self locationAtOrder:order]];
+        [self addChild:backSprite1];
+        backSprite1.opacity = 0;
+        [self reorderChild:backSprite1 z:-3];
+    }
     
+    if(backSprite2 == nil){
+        backSprite2 = [CCSprite spriteWithFile:fileName2];
+        backSprite2.tag = BACKSPRITE2_TAG+order;
+        backSprite2.position = [self pointFromLocation:[self locationAtOrder:order]];
+        [self addChild:backSprite2];
+        backSprite2.opacity = 0;
+        [self reorderChild:backSprite2 z:-3];
+    }
+    
+    if(backSprite3 == nil){
+        backSprite3 = [CCSprite spriteWithFile:fileName3];
+        backSprite3.tag = BACKSPRITE3_TAG+order;
+        backSprite3.position = [self pointFromLocation:[self locationAtOrder:order]];
+        backSprite3.opacity = 0;
+        [self addChild:backSprite3];
+        [self reorderChild:backSprite3 z:-3];
+    }
+    
+//    delay += 1.0f;
     if(duration > 0 ){
+        [self stopBackspriteAtOrder:order];
         if(order > lastSize){
             
             WaterSpray *mySpray = [[WaterSpray alloc] initWithPoint: [self pointFromLocation:[self locationAtOrder:order]]];
@@ -270,61 +283,50 @@
             [self addChild:mySpray];
             
             delay += 1.0;
-            backSprite.opacity = 0;
-            backSprite2.opacity = 0;
-            backSprite3.opacity = 0;
-            [backSprite runAction:  [self fadeInSequenceWithDelay:duration*0.0f+delay withDuration:duration]];
+            [backSprite1 runAction:  [self fadeInSequenceWithDelay:duration*0.0f+delay withDuration:duration]];
             [backSprite2 runAction: [self fadeInSequenceWithDelay:duration*1.0f+delay withDuration:duration]];
             [backSprite3 runAction: [self fadeInSequenceWithDelay:duration*2.0f+delay withDuration:duration]];
         }
         else {
             [self removeChildrenByTag:100+order cleanup:YES];
-            [backSprite runAction:[self fadeOutSequenceWithDelay:duration*2.0f+delay withDuration:duration]];
-            [backSprite2 runAction:[self fadeOutSequenceWithDelay:duration*1.0f+delay withDuration:duration]];
+            float durationConstant1 = (float)backSprite2.opacity/255 + (float)backSprite3.opacity/255;
+            float durationConstant2 = (float)backSprite3.opacity/255;
+            [backSprite1 runAction:[self fadeOutSequenceWithDelay:duration*durationConstant1+delay withDuration:duration]];
+            [backSprite2 runAction:[self fadeOutSequenceWithDelay:duration*durationConstant2+delay withDuration:duration]];
             [backSprite3 runAction:[self fadeOutSequenceWithDelay:duration*0.0f+delay withDuration:duration]];
         }
     }
 }
 
-
-- (void) incrementActionCount
-{
-    actionCount++;
+- (void) stopBackspriteAtOrder:(int)order {
+    [[self getChildByTag:BACKSPRITE1_TAG+order] stopAllActions];
+    [[self getChildByTag:BACKSPRITE2_TAG+order] stopAllActions];
+    [[self getChildByTag:BACKSPRITE3_TAG+order] stopAllActions];
 }
-
--(void) decrementActionCount
-{
-    actionCount--;
-    if(actionCount == 0 && isActionWaiting == YES)
-        [self animateBackgrounds];
-}
-
 
 - (CCSequence*) fadeOutSequenceWithDelay:(float)delay withDuration:(float) duration
 {
     CCDelayTime* delayAction = [CCDelayTime actionWithDuration:delay];
-    CCFadeOut*  action = [CCFadeOut actionWithDuration:duration];
+    CCFadeTo* action = [CCFadeTo actionWithDuration:duration opacity:0];
     delayAction.tag = DELAY_ACTION_TAG;
     action.tag = ACTION_TAG;
-        
+    
     return [CCSequence actions:
-            [CCCallFuncN actionWithTarget:self selector:@selector(incrementActionCount)],
             delayAction,
             action,
-            [CCCallFuncN actionWithTarget:self selector:@selector(decrementActionCount)], nil];
+            nil];
 }
 
 - (CCSequence*) fadeInSequenceWithDelay:(float)delay withDuration:(float) duration
 {
     CCDelayTime* delayAction = [CCDelayTime actionWithDuration:delay];
-    CCFadeIn*  action = [CCFadeIn actionWithDuration:duration];
+    CCFadeTo*  action = [CCFadeTo actionWithDuration:duration opacity:255];
     delayAction.tag = DELAY_ACTION_TAG;
     action.tag = ACTION_TAG;
     return [CCSequence actions:
-            [CCCallFuncN actionWithTarget:self selector:@selector(incrementActionCount)],
             delayAction,
             action,
-            [CCCallFuncN actionWithTarget:self selector:@selector(decrementActionCount)], nil];
+            nil];
 }
 
 - (BOOL)hitTestWithLocation:(Location) location
