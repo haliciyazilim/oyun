@@ -8,6 +8,7 @@
 
 #import "MainGameLayer.h"
 #import "GameCenterManager.h"
+#import "Util.h"
 
 @implementation MainGameLayer{
     CCSprite *newGameButton;
@@ -41,7 +42,7 @@
         background.position = ccp(size.width * 0.5, size.height * 0.5);
         [self addChild:background];
         
-        newGameButton = [CCSprite spriteWithFile:@"btn_newgame.png"];
+        newGameButton = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
         newGameButton.position = ccp(size.width * 0.5, size.height * 0.5);
         
         [self addChild:newGameButton];
