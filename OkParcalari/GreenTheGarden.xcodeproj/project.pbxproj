@@ -4461,7 +4461,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4475,8 +4475,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = GreenTheGarden;
-				PROVISIONING_PROFILE = "04A6FDA2-5B29-4E62-B2C8-E1011D8BABD3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04A6FDA2-5B29-4E62-B2C8-E1011D8BABD3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CE2C686-9103-4A8E-9454-E9705116427B";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4487,8 +4486,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OkParcalari/Prefix.pch;
@@ -4500,8 +4499,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = GreenTheGarden;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CE2C686-9103-4A8E-9454-E9705116427B";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
