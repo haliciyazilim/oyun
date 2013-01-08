@@ -12,6 +12,8 @@
 #import "IntroLayer.h"
 #import "GameCenterManager.h"
 
+#import <FacebookSDK/FacebookSDK.h>
+
 @implementation AppController
 
 @synthesize window=window_, navController=navController_, director=director_;
@@ -108,6 +110,7 @@
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
+    [FBSettings publishInstall:[FBSession defaultAppID]];
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
 }
