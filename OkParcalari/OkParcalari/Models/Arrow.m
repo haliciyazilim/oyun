@@ -214,6 +214,19 @@
     }
 }
 
+- (void) removeSquirts
+{
+    int max = lastSize > [self getSize] ? lastSize : [self getSize];
+    int min = lastSize < [self getSize] ? lastSize : [self getSize];
+    
+    
+    for(int i=0;i<max;i++){
+        if(i >= min && lastSize > [self getSize]){
+            [self removeChildrenByTag:100+i+1 cleanup:YES];
+        }
+    }
+}
+
 - (void) animateBackgrounds{
     
     int max = lastSize > [self getSize] ? lastSize : [self getSize];
@@ -297,6 +310,7 @@
         }
     }
 }
+
 
 - (void) stopBackspriteAtOrder:(int)order {
     [[self getChildByTag:BACKSPRITE1_TAG+order] stopAllActions];

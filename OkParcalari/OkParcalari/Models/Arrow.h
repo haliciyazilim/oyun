@@ -24,4 +24,5 @@
 - (id)initWithLocation:(Location)location andDirection:(Direction)direction forBase:(ArrowBase*)base;
 - (void)animateBackgrounds;
 
+- (void) removeSquirts;
 @end

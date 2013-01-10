@@ -140,6 +140,7 @@
     if(currentEntity.class == [Arrow class]){
         Arrow* arrow = (Arrow*)currentEntity;
         arrow.endLocation = location;
+        [arrow removeSquirts];
         
     }
     else if(currentEntity.class == [ArrowBase class]){
