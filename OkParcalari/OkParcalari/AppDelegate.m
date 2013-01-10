@@ -79,6 +79,7 @@
     [director_ enableRetinaDisplay:YES];
 
 	
+    
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
 	navController_.navigationBarHidden = YES;
