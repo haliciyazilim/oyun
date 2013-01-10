@@ -57,8 +57,6 @@
 		05A38C38169451D3005ADBED /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38931169451D2005ADBED /* Stopwatch.m */; };
 		05A38C39169451D3005ADBED /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38933169451D2005ADBED /* Util.m */; };
 		05A38C3A169451D3005ADBED /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38936169451D2005ADBED /* GameCenterManager.m */; };
-		05A38C3B169451D3005ADBED /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38939169451D2005ADBED /* InAppPurchaseManager.m */; };
-		05A38C3C169451D3005ADBED /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3893B169451D2005ADBED /* SKProduct+LocalizedPrice.m */; };
 		05A38C3D169451D3005ADBED /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3893E169451D2005ADBED /* Arrow.m */; };
 		05A38C3E169451D3005ADBED /* ArrowBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38940169451D2005ADBED /* ArrowBase.m */; };
 		05A38C3F169451D3005ADBED /* ArrowGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38942169451D2005ADBED /* ArrowGame.m */; };
@@ -978,10 +976,6 @@
 		05A38933169451D2005ADBED /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		05A38935169451D2005ADBED /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
 		05A38936169451D2005ADBED /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
-		05A38938169451D2005ADBED /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
-		05A38939169451D2005ADBED /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
-		05A3893A169451D2005ADBED /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
-		05A3893B169451D2005ADBED /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
 		05A3893D169451D2005ADBED /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
 		05A3893E169451D2005ADBED /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
 		05A3893F169451D2005ADBED /* ArrowBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowBase.h; sourceTree = "<group>"; };
@@ -2115,10 +2109,6 @@
 		05A38937169451D2005ADBED /* InAppPurchase */ = {
 			isa = PBXGroup;
 			children = (
-				05A38938169451D2005ADBED /* InAppPurchaseManager.h */,
-				05A38939169451D2005ADBED /* InAppPurchaseManager.m */,
-				05A3893A169451D2005ADBED /* SKProduct+LocalizedPrice.h */,
-				05A3893B169451D2005ADBED /* SKProduct+LocalizedPrice.m */,
 			);
 			path = InAppPurchase;
 			sourceTree = "<group>";
@@ -4398,8 +4388,6 @@
 				05A38C38169451D3005ADBED /* Stopwatch.m in Sources */,
 				05A38C39169451D3005ADBED /* Util.m in Sources */,
 				05A38C3A169451D3005ADBED /* GameCenterManager.m in Sources */,
-				05A38C3B169451D3005ADBED /* InAppPurchaseManager.m in Sources */,
-				05A38C3C169451D3005ADBED /* SKProduct+LocalizedPrice.m in Sources */,
 				05A38C3D169451D3005ADBED /* Arrow.m in Sources */,
 				05A38C3E169451D3005ADBED /* ArrowBase.m in Sources */,
 				05A38C3F169451D3005ADBED /* ArrowGame.m in Sources */,
