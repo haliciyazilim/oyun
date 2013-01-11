@@ -40,8 +40,6 @@
         self.rightArrow = [[Arrow alloc] initWithLocation:self.location andDirection:RIGHT forBase:self];
         self.leftArrow  = [[Arrow alloc] initWithLocation:self.location andDirection:LEFT forBase:self];
         
-        
-        
         [self createSprite];
     }
     
