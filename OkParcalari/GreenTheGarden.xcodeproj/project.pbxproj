@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		050324861695A766005BC798 /* InGameMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 050324851695A766005BC798 /* InGameMenuLayer.m */; };
+		05070B0E16A03B12009A2004 /* splash_garden-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05070B0816A03B12009A2004 /* splash_garden-ipadhd.png */; };
+		05070B0F16A03B12009A2004 /* splash_garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 05070B0916A03B12009A2004 /* splash_garden.png */; };
+		05070B1016A03B12009A2004 /* splash_sky-ipadhd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 05070B0A16A03B12009A2004 /* splash_sky-ipadhd.jpg */; };
+		05070B1116A03B12009A2004 /* splash_sky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 05070B0B16A03B12009A2004 /* splash_sky.jpg */; };
+		05070B1216A03B12009A2004 /* splash_spray-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05070B0C16A03B12009A2004 /* splash_spray-ipadhd.png */; };
+		05070B1316A03B12009A2004 /* splash_spray.png in Resources */ = {isa = PBXBuildFile; fileRef = 05070B0D16A03B12009A2004 /* splash_spray.png */; };
+		05070B1716A048F1009A2004 /* mainLayer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 05070B1616A048F1009A2004 /* mainLayer.ccbi */; };
 		050F5892168305B400618D14 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050F5891168305B400618D14 /* StoreKit.framework */; };
 		0576EC8B169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC67169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png */; };
 		0576EC8C169EE05F00D6EF4A /* ingame_menu_btnbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC68169EE05F00D6EF4A /* ingame_menu_btnbg.png */; };
@@ -954,6 +961,13 @@
 /* Begin PBXFileReference section */
 		050324841695A765005BC798 /* InGameMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameMenuLayer.h; sourceTree = "<group>"; };
 		050324851695A766005BC798 /* InGameMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameMenuLayer.m; sourceTree = "<group>"; };
+		05070B0816A03B12009A2004 /* splash_garden-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_garden-ipadhd.png"; sourceTree = "<group>"; };
+		05070B0916A03B12009A2004 /* splash_garden.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_garden.png; sourceTree = "<group>"; };
+		05070B0A16A03B12009A2004 /* splash_sky-ipadhd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "splash_sky-ipadhd.jpg"; sourceTree = "<group>"; };
+		05070B0B16A03B12009A2004 /* splash_sky.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = splash_sky.jpg; sourceTree = "<group>"; };
+		05070B0C16A03B12009A2004 /* splash_spray-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_spray-ipadhd.png"; sourceTree = "<group>"; };
+		05070B0D16A03B12009A2004 /* splash_spray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_spray.png; sourceTree = "<group>"; };
+		05070B1616A048F1009A2004 /* mainLayer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainLayer.ccbi; sourceTree = "<group>"; };
 		050F5891168305B400618D14 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0576EC67169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_menu_btnbg-ipadhd.png"; sourceTree = "<group>"; };
 		0576EC68169EE05F00D6EF4A /* ingame_menu_btnbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_menu_btnbg.png; sourceTree = "<group>"; };
@@ -2123,6 +2137,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05070B0716A03B12009A2004 /* splash */ = {
+			isa = PBXGroup;
+			children = (
+				05070B0816A03B12009A2004 /* splash_garden-ipadhd.png */,
+				05070B0916A03B12009A2004 /* splash_garden.png */,
+				05070B0A16A03B12009A2004 /* splash_sky-ipadhd.jpg */,
+				05070B0B16A03B12009A2004 /* splash_sky.jpg */,
+				05070B0C16A03B12009A2004 /* splash_spray-ipadhd.png */,
+				05070B0D16A03B12009A2004 /* splash_spray.png */,
+			);
+			name = splash;
+			path = Resources/images/theme_fiskiye/splash;
+			sourceTree = "<group>";
+		};
 		059D6723169438A800B6B4E6 /* themes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2135,6 +2163,7 @@
 			isa = PBXGroup;
 			children = (
 				AE2DDBF116A05BB6001BEFAC /* map_selection */,
+				05070B0716A03B12009A2004 /* splash */,
 				41DF3D9E169B294000B9678B /* arrow_base */,
 				41DF3DD5169B294000B9678B /* backgrounds */,
 				41DF3DDE169B294000B9678B /* buttons */,
@@ -2797,6 +2826,7 @@
 		41DF3DE3169B294000B9678B /* ccbs */ = {
 			isa = PBXGroup;
 			children = (
+				05070B1616A048F1009A2004 /* mainLayer.ccbi */,
 				41DF3DE4169B294000B9678B /* Squirt.ccbi */,
 			);
 			name = ccbs;
@@ -4429,6 +4459,13 @@
 				AE2DDC2F16A05BC4001BEFAC /* level_star_pasive@2x.png in Resources */,
 				AE2DDC3016A05BC4001BEFAC /* map_selection_layer.png in Resources */,
 				AE2DDC3316A05BFC001BEFAC /* map_selection_layer-ipadhd.png in Resources */,
+				05070B0E16A03B12009A2004 /* splash_garden-ipadhd.png in Resources */,
+				05070B0F16A03B12009A2004 /* splash_garden.png in Resources */,
+				05070B1016A03B12009A2004 /* splash_sky-ipadhd.jpg in Resources */,
+				05070B1116A03B12009A2004 /* splash_sky.jpg in Resources */,
+				05070B1216A03B12009A2004 /* splash_spray-ipadhd.png in Resources */,
+				05070B1316A03B12009A2004 /* splash_spray.png in Resources */,
+				05070B1716A048F1009A2004 /* mainLayer.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4610,7 +4647,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
-					"COCOS2D_DEBUG=1",
+					"COCOS2D_DEBUG=0",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;

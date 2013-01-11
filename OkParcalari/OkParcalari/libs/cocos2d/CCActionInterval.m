@@ -1036,13 +1036,11 @@ static inline CGFloat bezierat( float a, float b, float c, float d, ccTime t )
 #pragma mark - CCFadeOut
 @implementation CCFadeOut
 +(id)actionWithDuration:(ccTime)d andOpacityValue:(GLubyte)opacityVal{
-    NSLog(@"here1");
     return [[[self alloc] initWithDuration:d andOpacityValue:opacityVal] autorelease];
 }
 
 -(id) initWithDuration: (ccTime) d andOpacityValue:(GLubyte)opacityVal
 {
-    NSLog(@"here2");
 	if( (self=[super init]) ) {
 		duration_ = d;
         opacityValue_ = opacityVal;
@@ -1059,7 +1057,6 @@ static inline CGFloat bezierat( float a, float b, float c, float d, ccTime t )
 }
 -(void) update: (ccTime) t
 {
-    NSLog(@"entered fadeout's update and opacityValue_:%u",opacityValue_);
 	[(id<CCRGBAProtocol>) target_ setOpacity: opacityValue_ *(1-t)];
 }
 
