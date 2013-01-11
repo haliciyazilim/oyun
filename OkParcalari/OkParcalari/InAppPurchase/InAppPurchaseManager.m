@@ -7,6 +7,7 @@
 //
 
 #import "InAppPurchaseManager.h"
+#import "InAppPurchaseStoreLayer.h"
 
 #define kInAppPurchaseProUpgradeProductId @"com.halici.OkParcalari.GameUnlock"
 
@@ -24,18 +25,21 @@ static InAppPurchaseManager *sharedInstance = nil;
     return sharedInstance;
 }
 
-- (void)loadStore
+- (InAppPurchaseStoreLayer *)loadStore
 {
     // restarts any purchases if they were interrupted last time the app was open
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+//    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    
+    InAppPurchaseStoreLayer *storeLayer = [[InAppPurchaseStoreLayer alloc] init];
+    return storeLayer;
     
     // get the product description (defined in early sections)
-    [self requestProUpgradeProductData];
+//    [self requestProUpgradeProductData];
 }
 
 - (void)requestProUpgradeProductData
 {
-    NSSet *productIdentifiers = [NSSet setWithObject:@"com.halici.OkParcalari.GameUnlock"];
+    NSSet *productIdentifiers = [NSSet setWithObject:@"com.halici.GreenTheGarden.GameUnlock"];
     productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
     productsRequest.delegate = self;
     [productsRequest start];

@@ -12,6 +12,8 @@
 #define kInAppPurchaseManagerTransactionFailedNotification @"kInAppPurchaseManagerTransactionFailedNotification"
 #define kInAppPurchaseManagerTransactionSucceededNotification @"kInAppPurchaseManagerTransactionSucceededNotification"
 
+@class InAppPurchaseStoreLayer;
+
 @interface InAppPurchaseManager : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 {
     SKProduct *proUpgradeProduct;
@@ -21,7 +23,7 @@
 + (InAppPurchaseManager *) sharedInstance;
 
 - (void)requestProUpgradeProductData;
-- (void)loadStore;
+- (InAppPurchaseStoreLayer *)loadStore;
 - (BOOL)canMakePurchases;
 - (void)purchaseProUpgrade;
 

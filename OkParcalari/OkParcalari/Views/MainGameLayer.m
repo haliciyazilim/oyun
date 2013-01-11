@@ -8,6 +8,7 @@
 
 #import "MainGameLayer.h"
 #import "GameCenterManager.h"
+#import "GreenTheGardenIAPHelper.h"
 #import "Util.h"
 
 @implementation MainGameLayer{
@@ -31,7 +32,13 @@
 
 - (void)onEnter{
     [super onEnter];
-        [[GameCenterManager sharedInstance] authenticateLocalUser];
+    [[GameCenterManager sharedInstance] authenticateLocalUser];
+//    [GreenTheGardenIAPHelper sharedInstance];
+//    [[GameCenterManager sharedInstance] saveScore:9 category:@"high_score"];
+//    [[GameCenterManager sharedInstance] getScores];
+
+    
+    
 }
 
 -(id) init
@@ -47,6 +54,8 @@
         
         [self addChild:newGameButton];
         self.isTouchEnabled = YES;
+        
+        
     }
     return self;
 }
