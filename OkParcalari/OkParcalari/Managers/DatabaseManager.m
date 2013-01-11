@@ -93,6 +93,20 @@ static DatabaseManager *sharedInstance = nil;
     return [mutableFetchResults objectAtIndex:0];
 }
 
+- (NSArray *)getMapsForPackage:(NSString *)packageId {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"packageId == %@", packageId];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    return [self.managedObjectContext executeFetchRequest:request error:&error];
+}
+
 - (void)insertMaps:(NSArray *)maps forPackage:(NSString *)packageId {
     for (NSString *mapId in maps) {
         Map *aMap = [NSEntityDescription insertNewObjectForEntityForName:@"Map"

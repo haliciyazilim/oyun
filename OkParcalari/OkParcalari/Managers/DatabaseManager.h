@@ -23,5 +23,6 @@
 - (BOOL)isEmpty;
 - (void)insertMaps:(NSArray *)maps forPackage:(NSString *)packageId;
 - (Map *)getMapWithID:(NSString *)mapId;
+- (NSArray *)getMapsForPackage:(NSString *)packageId;
 
 @end
