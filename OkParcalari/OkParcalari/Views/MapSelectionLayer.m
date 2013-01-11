@@ -7,11 +7,13 @@
 //
 
 #import "MapSelectionLayer.h"
-#import "Util.h"
 
 @implementation MapSelectionLayer
 {
-    CCSprite *newGameButton;
+    UIScrollView* scrollView;
+    CGSize unitSize;
+    CGSize buttonSize;
+    int rowCount;
 }
 
 +(CCScene *) scene
@@ -31,28 +33,46 @@
 
 - (void)onEnter{
     [super onEnter];
-//    [[GameCenterManager sharedInstance] authenticateLocalUser];
-    //    [GreenTheGardenIAPHelper sharedInstance];
-    //    [[GameCenterManager sharedInstance] saveScore:9 category:@"high_score"];
-    //    [[GameCenterManager sharedInstance] getScores];
     
-
+    NSArray* maps = [ArrowGameMap loadMapsFromFile:@"haydn"];
+//    NSLog(@"maps.count: %d",maps.count);
+//    NSLog(@"content width: %f",unitSize.width*ceil((float)maps.count/(float)rowCount));
+    [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount), unitSize.height*rowCount)];
+    
+    int index = 0;
+    for (Map* map in maps) {
+        UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(
+                                                                      (index/rowCount)*unitSize.width,
+                                                                      (index%rowCount)*unitSize.height,
+                                                                      buttonSize.width,
+                                                                      buttonSize.height)];
+        [button setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"level_bg.png"]]];
+                
+        [scrollView addSubview:button];
+        
+        index++;
+    }
     
 }
 
 -(id) init
 {
     if(self = [super init]){
-//        CGSize size = [[CCDirector sharedDirector] winSize];
-//        CCSprite *background = [CCSprite spriteWithFile:@"game_bg.png"];
-//        background.position = ccp(size.width * 0.5, size.height * 0.5);
-//        [self addChild:background];
-//        
-//        newGameButton = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
-//        newGameButton.position = ccp(size.width * 0.5, size.height * 0.5);
-//        
-//        [self addChild:newGameButton];
-//        self.isTouchEnabled = YES;
+        
+        buttonSize = CGSizeMake(158.0, 182.0);
+        unitSize = CGSizeMake(250.0, 190.0);
+        rowCount = 2;
+        
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        CCSprite *background = [CCSprite spriteWithFile:@"map_selection_layer.png"];
+        background.position = ccp(size.width * 0.5, size.height * 0.5);
+        [self addChild:background];
+        
+        scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(100.0, 300.0, 924.0, 400.0)];
+        [scrollView setBackgroundColor:[UIColor colorWithWhite:255.0 alpha:0.5]];
+        [scrollView setBackgroundColor:[UIColor clearColor]];
+        [scrollView setShowsHorizontalScrollIndicator:NO];
+        [[[CCDirector sharedDirector] view] addSubview:scrollView];
         
         
     }
