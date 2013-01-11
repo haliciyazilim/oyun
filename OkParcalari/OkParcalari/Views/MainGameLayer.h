@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "MapSelectionCollectionViewController.h"
+#import "MapSelectionLayer.h"
 
 @interface MainGameLayer : CCLayer
 

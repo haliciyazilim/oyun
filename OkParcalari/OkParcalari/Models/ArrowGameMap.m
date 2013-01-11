@@ -10,27 +10,34 @@
 
 @implementation ArrowGameMap
 
-+ (NSArray*) loadMapsFromFile:(NSString*)fileName{
-    
-    NSMutableArray* maps = [[NSMutableArray alloc] init];
-    
-    NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"packageinfo"]
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-	
-    NSDictionary* file = [parser objectWithString:content];
-    
-    if( [(NSNumber*)[file valueForKey:@"version"] intValue] == 1){
-               
-        for(NSString* mapName in [file objectForKey:@"maps"]){
-            [maps addObject:mapName];
++ (NSArray*) loadMapsFromFile:(NSString*)fileName
+{
+    if([[DatabaseManager sharedInstance] isEmpty]){
+        NSMutableArray* maps = [[NSMutableArray alloc] init];
+        
+        NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"packageinfo"]
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:NULL];
+        
+        SBJsonParser *parser = [[SBJsonParser alloc] init];
+        
+        NSDictionary* file = [parser objectWithString:content];
+        
+        if( [(NSNumber*)[file valueForKey:@"version"] intValue] == 1){
+            
+            for(NSString* mapName in [file objectForKey:@"maps"]){
+                [maps addObject:mapName];
+            }
         }
+
+
+        [[DatabaseManager sharedInstance] insertMaps:maps forPackage:fileName];
+
+
     }
 
-    return (NSArray*)maps;
-    
+    return [[DatabaseManager sharedInstance] getMapsForPackage:fileName];
+
 }
 
 + (GameMap*) loadFromFile:(NSString*)fileName{

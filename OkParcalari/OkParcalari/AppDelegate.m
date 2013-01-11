@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "IntroLayer.h"
 #import "GameCenterManager.h"
+#import "DatabaseManager.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -22,7 +23,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     [GreenTheGardenIAPHelper sharedInstance];
     
 	// Create the main window
