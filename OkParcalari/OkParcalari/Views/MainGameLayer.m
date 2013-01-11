@@ -10,9 +10,11 @@
 #import "GameCenterManager.h"
 #import "GreenTheGardenIAPHelper.h"
 #import "Util.h"
+#import "CCBReader.h"
 
 @implementation MainGameLayer{
     CCSprite *newGameButton;
+    NSArray *_products;
 }
 
 +(CCScene *) scene
@@ -32,30 +34,52 @@
 
 - (void)onEnter{
     [super onEnter];
+    CGSize size = [[CCDirector sharedDirector] winSize];
     [[GameCenterManager sharedInstance] authenticateLocalUser];
-//    [GreenTheGardenIAPHelper sharedInstance];
+//    [[GreenTheGardenIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+//        _products = products;
+//    }];
 //    [[GameCenterManager sharedInstance] saveScore:9 category:@"high_score"];
 //    [[GameCenterManager sharedInstance] getScores];
-
     
+    CCLayerColor *colorLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
+    colorLayer.position = ccp(size.width*0.0,size.height*0.0);
+    
+    CCLayer *backLayer = (CCLayer *)[CCBReader nodeGraphFromFile:@"mainLayer.ccbi"];
+    backLayer.position = ccp(size.width*0.0, size.height*0.0);
+    
+    [self addChild:colorLayer];
+    [self addChild:backLayer];
     
 }
+
+//- (void)productPurchased:(NSNotification *)notification {
+//    
+//    NSString * productIdentifier = notification.object;
+//    [_products enumerateObjectsUsingBlock:^(SKProduct * product, NSUInteger idx, BOOL *stop) {
+//        if ([product.productIdentifier isEqualToString:productIdentifier]) {
+//            NSLog(@"successfully purchased %@",productIdentifier);
+//            *stop = YES;
+//        }
+//    }];
+//    
+//}
 
 -(id) init
 {
     if(self = [super init]){
         CGSize size = [[CCDirector sharedDirector] winSize];
-        CCSprite *background = [CCSprite spriteWithFile:@"game_bg.png"];
-        background.position = ccp(size.width * 0.5, size.height * 0.5);
-        [self addChild:background];
+//        CCSprite *background = [CCSprite spriteWithFile:@"game_bg.png"];
+//        background.position = ccp(size.width * 0.5, size.height * 0.5);
+//        [self addChild:background];
         
         newGameButton = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
         newGameButton.position = ccp(size.width * 0.5, size.height * 0.5);
         
-        [self addChild:newGameButton];
+        [self addChild:newGameButton z:997];
         self.isTouchEnabled = YES;
         
-        
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     }
     return self;
 }
@@ -66,8 +90,23 @@
     CGPoint point = [self pointFromTouches:touches];
     if(CGRectContainsPoint([newGameButton boundingBox], point)){
         [self makeTransition];
+//        [self buyButtonTapped];
     }
+//    else{
+//        [self restoreTapped];
+//    }
 }
+
+//- (void) buyButtonTapped {
+//    SKProduct *product = [_products objectAtIndex:0];
+//    
+//    NSLog(@"Buying %@...", product.productIdentifier);
+//    [[GreenTheGardenIAPHelper sharedInstance] buyProduct:product];
+//}
+//
+//- (void)restoreTapped {
+//    [[GreenTheGardenIAPHelper sharedInstance] restoreCompletedTransactions];
+//}
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
