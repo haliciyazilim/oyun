@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface MapPackage
 
@@ -16,13 +17,16 @@
 
 @end
 
-@interface Map : NSObject
+@interface Map : NSManagedObjectModel
 
+@property NSString *mapId;
+@property NSString *packageId;
+@property NSNumber *score;
 @property BOOL isFinished;
+
 @property BOOL isPurchased;
 @property BOOL isLocked;
 @property int  starCount;
-@property int  mapId;
 @property MapPackage* package;
 
 @end

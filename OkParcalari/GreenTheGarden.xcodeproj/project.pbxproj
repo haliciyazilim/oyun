@@ -181,6 +181,9 @@
 		410AA2B81670D9B800F6DCCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2B71670D9B800F6DCCA /* main.m */; };
 		410AA2BB1670D9B800F6DCCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2BA1670D9B800F6DCCA /* AppDelegate.m */; };
 		410AA2C81670E99800F6DCCA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410AA2C71670E99800F6DCCA /* Default-568h@2x.png */; };
+		41B78B9616A044DE00C327E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B78B9516A044DE00C327E3 /* CoreData.framework */; };
+		41B78B9A16A0453400C327E3 /* GreenTheGarden.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41B78B9816A0453400C327E3 /* GreenTheGarden.xcdatamodeld */; };
+		41B78B9D16A045F400C327E3 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B78B9C16A045F400C327E3 /* DatabaseManager.m */; };
 		41D8DDCD169C51C40041B503 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D8DDCC169C51C40041B503 /* FacebookSDK.framework */; };
 		41D8DDD8169C55CC0041B503 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */; };
 		41D8DDDE169C562B0041B503 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D8DDDB169C562B0041B503 /* Accounts.framework */; };
@@ -1274,6 +1277,10 @@
 		410AA2B91670D9B800F6DCCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		410AA2BA1670D9B800F6DCCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		410AA2C71670E99800F6DCCA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		41B78B9516A044DE00C327E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		41B78B9916A0453400C327E3 /* GreenTheGarden.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GreenTheGarden.xcdatamodel; sourceTree = "<group>"; };
+		41B78B9B16A045F400C327E3 /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatabaseManager.h; path = Managers/DatabaseManager.h; sourceTree = "<group>"; };
+		41B78B9C16A045F400C327E3 /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatabaseManager.m; path = Managers/DatabaseManager.m; sourceTree = "<group>"; };
 		41D8DDCC169C51C40041B503 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		41D8DDDB169C562B0041B503 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -2031,6 +2038,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41B78B9616A044DE00C327E3 /* CoreData.framework in Frameworks */,
 				41D8DDDE169C562B0041B503 /* Accounts.framework in Frameworks */,
 				41D8DDDF169C562B0041B503 /* AdSupport.framework in Frameworks */,
 				41D8DDE0169C562B0041B503 /* Social.framework in Frameworks */,
@@ -2217,6 +2225,7 @@
 		410AA1201670D9B500F6DCCA = {
 			isa = PBXGroup;
 			children = (
+				41B78B9816A0453400C327E3 /* GreenTheGarden.xcdatamodeld */,
 				410AA2C71670E99800F6DCCA /* Default-568h@2x.png */,
 				410AA1411670D9B500F6DCCA /* OkParcalari */,
 				410AA12E1670D9B500F6DCCA /* Frameworks */,
@@ -2235,6 +2244,7 @@
 		410AA12E1670D9B500F6DCCA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				41B78B9516A044DE00C327E3 /* CoreData.framework */,
 				41D8DDCC169C51C40041B503 /* FacebookSDK.framework */,
 				41D8DDDB169C562B0041B503 /* Accounts.framework */,
 				41D8DDDC169C562B0041B503 /* AdSupport.framework */,
@@ -3474,6 +3484,8 @@
 		AE996768169F13CE00983CEA /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				41B78B9B16A045F400C327E3 /* DatabaseManager.h */,
+				41B78B9C16A045F400C327E3 /* DatabaseManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -4432,6 +4444,8 @@
 				AE996767169EEC4300983CEA /* Map.m in Sources */,
 				0576ECB4169EF06E00D6EF4A /* IAPHelper.m in Sources */,
 				0576ECB7169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m in Sources */,
+				41B78B9A16A0453400C327E3 /* GreenTheGarden.xcdatamodeld in Sources */,
+				41B78B9D16A045F400C327E3 /* DatabaseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4578,6 +4592,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		41B78B9816A0453400C327E3 /* GreenTheGarden.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				41B78B9916A0453400C327E3 /* GreenTheGarden.xcdatamodel */,
+			);
+			currentVersion = 41B78B9916A0453400C327E3 /* GreenTheGarden.xcdatamodel */;
+			path = GreenTheGarden.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 410AA1221670D9B500F6DCCA /* Project object */;
 }
