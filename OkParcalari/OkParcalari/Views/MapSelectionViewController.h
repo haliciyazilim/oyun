@@ -11,6 +11,6 @@
 
 @interface MapSelectionViewController : UIViewController
 
-- (void) insertMap:(Map*)map;
+//- (void) insertMap:(Map*)map;
 
 @end

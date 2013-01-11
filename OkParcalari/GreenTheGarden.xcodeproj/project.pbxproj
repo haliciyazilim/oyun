@@ -2021,8 +2021,6 @@
 		AE996762169EEA9500983CEA /* MapSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSelectionViewController.m; sourceTree = "<group>"; };
 		AE996765169EEC4300983CEA /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
 		AE996766169EEC4300983CEA /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
-		AE996769169F13DB00983CEA /* DatabaseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DatabaseManager.h; path = Managers/DatabaseManager.h; sourceTree = "<group>"; };
-		AE99676A169F13DB00983CEA /* DatabaseManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DatabaseManager.m; path = Managers/DatabaseManager.m; sourceTree = "<group>"; };
 		AE9CD0E61694695000C42824 /* GameHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistory.h; sourceTree = "<group>"; };
 		AE9CD0E71694695000C42824 /* GameHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistory.m; sourceTree = "<group>"; };
 		AE9CD0EA16946E2000C42824 /* game_history.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = game_history.json; sourceTree = "<group>"; };
@@ -3476,8 +3474,6 @@
 		AE996768169F13CE00983CEA /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				AE996769169F13DB00983CEA /* DatabaseManager.h */,
-				AE99676A169F13DB00983CEA /* DatabaseManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";

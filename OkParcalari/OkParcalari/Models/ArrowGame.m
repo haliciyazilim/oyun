@@ -13,7 +13,6 @@
 #import "Arrow.h"
 #import "Stopwatch.h"
 #import "WaterSpray.h"
-#import "InAppPurchaseManager.h"
 
 @interface ArrowGame()
 @property (readonly) GameMap* map;
