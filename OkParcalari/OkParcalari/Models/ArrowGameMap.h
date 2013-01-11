@@ -9,6 +9,7 @@
 #import "GameMap.h"
 #import "SBJson.h"
 #import "ArrowBase.h"
+#import "DatabaseManager.h"
 
 @interface ArrowGameMap : GameMap
 + (NSArray*) loadMapsFromFile:(NSString*)fileName;

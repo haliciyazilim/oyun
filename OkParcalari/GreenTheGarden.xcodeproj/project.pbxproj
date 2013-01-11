@@ -912,8 +912,8 @@
 		AE1F1A7C1682075500F27894 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A6E1682075500F27894 /* SBJsonTokeniser.m */; };
 		AE1F1A7D1682075500F27894 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A701682075500F27894 /* SBJsonUTF8Stream.m */; };
 		AE1F1A7E1682075500F27894 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A721682075500F27894 /* SBJsonWriter.m */; };
+		AE2DDBF016A0582A001BEFAC /* MapSelectionLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2DDBEF16A0582A001BEFAC /* MapSelectionLayer.m */; };
 		AE8983BD168879B200F83F3F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE8983BF168879B200F83F3F /* Localizable.strings */; };
-		AE996763169EEA9500983CEA /* MapSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE996762169EEA9500983CEA /* MapSelectionViewController.m */; };
 		AE996767169EEC4300983CEA /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = AE996766169EEC4300983CEA /* Map.m */; };
 		AE9CD0E81694695000C42824 /* GameHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9CD0E71694695000C42824 /* GameHistory.m */; };
 		AE9CD0EB16946E2000C42824 /* game_history.json in Resources */ = {isa = PBXBuildFile; fileRef = AE9CD0EA16946E2000C42824 /* game_history.json */; };
@@ -2022,10 +2022,10 @@
 		AE1F1A701682075500F27894 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		AE1F1A711682075500F27894 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		AE1F1A721682075500F27894 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		AE2DDBEE16A0582A001BEFAC /* MapSelectionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSelectionLayer.h; sourceTree = "<group>"; };
+		AE2DDBEF16A0582A001BEFAC /* MapSelectionLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSelectionLayer.m; sourceTree = "<group>"; };
 		AE8983BE168879B200F83F3F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE8983C016887C8100F83F3F /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		AE996761169EEA9500983CEA /* MapSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSelectionViewController.h; sourceTree = "<group>"; };
-		AE996762169EEA9500983CEA /* MapSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSelectionViewController.m; sourceTree = "<group>"; };
 		AE996765169EEC4300983CEA /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
 		AE996766169EEC4300983CEA /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
 		AE9CD0E61694695000C42824 /* GameHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistory.h; sourceTree = "<group>"; };
@@ -2206,8 +2206,8 @@
 				050324851695A766005BC798 /* InGameMenuLayer.m */,
 				05A38C34169451D3005ADBED /* MapSelectionCollectionViewController.h */,
 				05A38C35169451D3005ADBED /* MapSelectionCollectionViewController.m */,
-				AE996761169EEA9500983CEA /* MapSelectionViewController.h */,
-				AE996762169EEA9500983CEA /* MapSelectionViewController.m */,
+				AE2DDBEE16A0582A001BEFAC /* MapSelectionLayer.h */,
+				AE2DDBEF16A0582A001BEFAC /* MapSelectionLayer.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4440,12 +4440,12 @@
 				AE9CD0E81694695000C42824 /* GameHistory.m in Sources */,
 				0595C20F16947613006B7E87 /* WaterSpray.m in Sources */,
 				050324861695A766005BC798 /* InGameMenuLayer.m in Sources */,
-				AE996763169EEA9500983CEA /* MapSelectionViewController.m in Sources */,
 				AE996767169EEC4300983CEA /* Map.m in Sources */,
 				0576ECB4169EF06E00D6EF4A /* IAPHelper.m in Sources */,
 				0576ECB7169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m in Sources */,
 				41B78B9A16A0453400C327E3 /* GreenTheGarden.xcdatamodeld in Sources */,
 				41B78B9D16A045F400C327E3 /* DatabaseManager.m in Sources */,
+				AE2DDBF016A0582A001BEFAC /* MapSelectionLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
