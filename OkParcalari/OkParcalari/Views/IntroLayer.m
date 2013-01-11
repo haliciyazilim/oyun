@@ -38,13 +38,13 @@
 {
 	[super onEnter];
 
-	CGSize size = [[CCDirector sharedDirector] winSize];
-    CCSprite *background = [CCSprite spriteWithFile:@"game_bg.png"];
-    background.position = ccp(size.width/2, size.height/2);
-    [self addChild:background];
+//	CGSize size = [[CCDirector sharedDirector] winSize];
+//    CCSprite *background = [CCSprite spriteWithFile:@"game_bg.png"];
+//    background.position = ccp(size.width/2, size.height/2);
+//    [self addChild:background];
 
 	// In one second transition to the new scene
-	[self scheduleOnce:@selector(makeTransition:) delay:1];
+	[self scheduleOnce:@selector(makeTransition:) delay:0];
 }
 
 -(void) makeTransition:(ccTime)dt
