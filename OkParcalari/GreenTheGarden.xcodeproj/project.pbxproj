@@ -45,6 +45,8 @@
 		0576ECAC169EE05F00D6EF4A /* ingamebtn_settings-en@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC88169EE05F00D6EF4A /* ingamebtn_settings-en@2x.png */; };
 		0576ECAD169EE05F00D6EF4A /* ingamebtn_settings-tr.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC89169EE05F00D6EF4A /* ingamebtn_settings-tr.png */; };
 		0576ECAE169EE05F00D6EF4A /* ingamebtn_settings-tr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC8A169EE05F00D6EF4A /* ingamebtn_settings-tr@2x.png */; };
+		0576ECB4169EF06E00D6EF4A /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0576ECB3169EF06E00D6EF4A /* IAPHelper.m */; };
+		0576ECB7169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0576ECB6169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m */; };
 		0595C20F16947613006B7E87 /* WaterSpray.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595C20E16947613006B7E87 /* WaterSpray.m */; };
 		05A38925169451BD005ADBED /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3891A169451BD005ADBED /* CCBAnimationManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		05A38926169451BD005ADBED /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3891C169451BD005ADBED /* CCBKeyframe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -952,6 +954,10 @@
 		0576EC88169EE05F00D6EF4A /* ingamebtn_settings-en@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingamebtn_settings-en@2x.png"; sourceTree = "<group>"; };
 		0576EC89169EE05F00D6EF4A /* ingamebtn_settings-tr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingamebtn_settings-tr.png"; sourceTree = "<group>"; };
 		0576EC8A169EE05F00D6EF4A /* ingamebtn_settings-tr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingamebtn_settings-tr@2x.png"; sourceTree = "<group>"; };
+		0576ECB2169EF06E00D6EF4A /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		0576ECB3169EF06E00D6EF4A /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		0576ECB5169EF53A00D6EF4A /* GreenTheGardenIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenTheGardenIAPHelper.h; sourceTree = "<group>"; };
+		0576ECB6169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenTheGardenIAPHelper.m; sourceTree = "<group>"; };
 		0595C20D16947613006B7E87 /* WaterSpray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterSpray.h; sourceTree = "<group>"; };
 		0595C20E16947613006B7E87 /* WaterSpray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterSpray.m; sourceTree = "<group>"; };
 		05A38919169451BD005ADBED /* CCBAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBAnimationManager.h; sourceTree = "<group>"; };
@@ -2109,6 +2115,10 @@
 		05A38937169451D2005ADBED /* InAppPurchase */ = {
 			isa = PBXGroup;
 			children = (
+				0576ECB2169EF06E00D6EF4A /* IAPHelper.h */,
+				0576ECB3169EF06E00D6EF4A /* IAPHelper.m */,
+				0576ECB5169EF53A00D6EF4A /* GreenTheGardenIAPHelper.h */,
+				0576ECB6169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m */,
 			);
 			path = InAppPurchase;
 			sourceTree = "<group>";
@@ -4400,6 +4410,8 @@
 				AE9CD0E81694695000C42824 /* GameHistory.m in Sources */,
 				0595C20F16947613006B7E87 /* WaterSpray.m in Sources */,
 				050324861695A766005BC798 /* InGameMenuLayer.m in Sources */,
+				0576ECB4169EF06E00D6EF4A /* IAPHelper.m in Sources */,
+				0576ECB7169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

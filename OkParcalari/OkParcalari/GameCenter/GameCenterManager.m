@@ -63,6 +63,9 @@ static GameCenterManager *sharedManager = nil;
     if ([GKLocalPlayer localPlayer].isAuthenticated && !_isUserAuthenticated) {
         NSLog(@"Authentication changed: player authenticated.");
         _isUserAuthenticated = TRUE;
+        
+            [[GameCenterManager sharedInstance] getScores];
+        
     } else if (![GKLocalPlayer localPlayer].isAuthenticated && _isUserAuthenticated) {
         NSLog(@"Authentication changed: player not authenticated");
         _isUserAuthenticated = FALSE;
@@ -89,23 +92,33 @@ static GameCenterManager *sharedManager = nil;
 
 -(void) getScores
 {
+    
     if([GKLocalPlayer localPlayer].isAuthenticated) {
         NSArray *arr = [[NSArray alloc] initWithObjects:[GKLocalPlayer localPlayer].playerID, nil];
         GKLeaderboard *board = [[GKLeaderboard alloc] initWithPlayerIDs:arr];
         if(board != nil) {
             board.timeScope = GKLeaderboardTimeScopeAllTime;
             board.range = NSMakeRange(1, 1);
-            board.category = @"HighscoreTable";
+            board.category = @"high_score";
             [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
                 if (error != nil) {
                     // handle the error.
                     NSLog(@"Error retrieving score.", nil);
                 }
+                
                 if (scores != nil) {
-                    NSLog(@"My Score: %lld", ((GKScore*)[scores objectAtIndex:0]).value);
+                    for (GKScore *score in scores) {
+                        NSLog(@"My Score: %lld", score.value);
+                    }
                 }
             }];
         }
+        else{
+            NSLog(@"board is nil");
+        }
+    }
+    else{
+        NSLog(@"user is not authenticated");
     }
 }
 
