@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "Util.h"
 #import "ArrowGameMap.h"
+#import "ArrowGameLayer.h"
 
 @interface MapSelectionLayer : CCLayer
 {

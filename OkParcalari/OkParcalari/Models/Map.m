@@ -15,4 +15,22 @@
 
 @implementation Map
 
+@dynamic mapId;
+@dynamic packageId;
+@dynamic score;
+@dynamic isFinished;
+
+@synthesize isPurchased;
+@synthesize isLocked;
+@synthesize starCount;
+@synthesize package;
+
+-(id)init
+{
+    if(self = [super init]){
+        self.isLocked = NO;
+    }
+    return self;
+}
+
 @end

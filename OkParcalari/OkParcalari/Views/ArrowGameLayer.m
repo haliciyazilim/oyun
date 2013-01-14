@@ -14,6 +14,7 @@
 #import "Squirt.h"
 #import "CCBAnimationManager.h"
 #import "MapSelectionCollectionViewController.h"
+#import "MapSelectionLayer.h"
 
 @implementation ArrowGameLayer
 {
@@ -152,7 +153,9 @@
 //    [[CCDirector sharedDirector] popScene];
 //    [self removeAllChildrenWithCleanup:YES];
     [self removeFromParentAndCleanup:YES];
-    [[[CCDirector sharedDirector] navigationController] pushViewController:[[MapSelectionCollectionViewController alloc] init] animated:YES];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+//    [[[CCDirector sharedDirector] navigationController] pushViewController:[[MapSelectionCollectionViewController alloc] init] animated:YES];
+    
 }
 -(void) gameEnded
 {

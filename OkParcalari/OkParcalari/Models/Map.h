@@ -17,7 +17,7 @@
 
 @end
 
-@interface Map : NSManagedObjectModel
+@interface Map : NSManagedObject
 
 @property NSString *mapId;
 @property NSString *packageId;

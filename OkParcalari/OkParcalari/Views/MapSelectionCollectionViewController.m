@@ -107,7 +107,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"haydn/%@",[maps objectAtIndex:indexPath.row]]] withColor:ccWHITE]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"haydn_%@",[maps objectAtIndex:indexPath.row]]] withColor:ccWHITE]];
     [[[CCDirector sharedDirector] navigationController] popViewControllerAnimated:YES];
     
 }
