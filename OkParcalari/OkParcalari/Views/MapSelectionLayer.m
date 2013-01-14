@@ -35,9 +35,9 @@
     [super onEnter];
     
     NSArray* maps = [ArrowGameMap loadMapsFromFile:@"haydn"];
-//    NSLog(@"maps.count: %d",maps.count);
-//    NSLog(@"content width: %f",unitSize.width*ceil((float)maps.count/(float)rowCount));
     [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount), unitSize.height*rowCount)];
+    
+    CGFloat topMargin = 31.0;
     
     int index = 0;
     for (Map* map in maps) {
@@ -51,6 +51,38 @@
         [scrollView addSubview:button];
         
         index++;
+        
+        if(index < 10){
+            UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",index]]];
+//            CGRect rect = CGRectMake(40.0, 20.0, view.image.size.width, view.image.size.height);
+            view.frame = CGRectMake((float)(buttonSize.width - view.image.size.width) * 0.5+5.0, topMargin, view.image.size.width, view.image.size.height);
+//            NSLog(@"buttonSize.width: %f, view.image.size.width",buttonSize.width);
+            [button addSubview:view];
+        }
+        else{
+            UIImageView* firstDigit  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",index/10]]];
+            UIImageView* secondDigit = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",index%10]]];
+            CGFloat width = firstDigit.image.size.width + secondDigit.image.size.width;
+            firstDigit.frame  = CGRectMake((buttonSize.width - width) * 0.5 + 5.0, topMargin, firstDigit.image.size.width,firstDigit.image.size.height);
+            secondDigit.frame = CGRectMake((buttonSize.width - width) * 0.5 + 5.0 + firstDigit.image.size.width, topMargin, secondDigit.image.size.width,secondDigit.image.size.height);
+            [button addSubview:firstDigit];
+            [button addSubview:secondDigit];
+        }
+    
+        UIImage* passiveStar = [UIImage imageNamed:@"level_star_pasive.png"];
+        UIImage* activeStar  = [UIImage imageNamed:@"level_star_active.png"];
+        NSLog(@"buttonSize.width: %f, passiveStar.size.width * 3: %f ",buttonSize.width,passiveStar.size.width*3);
+        for(int i=0;i<3;i++){
+            UIImageView* view;
+            if(i==0 || i==1)
+                view = [[UIImageView alloc] initWithImage:activeStar];
+            else
+                view = [[UIImageView alloc] initWithImage:passiveStar];
+            view.frame = CGRectMake((buttonSize.width - passiveStar.size.width * 3) * 0.5 + 5.0 + passiveStar.size.width * i, buttonSize.height - passiveStar.size.height - 20.0, passiveStar.size.width, passiveStar.size.height);
+            [button addSubview:view];
+        }
+        
+        
     }
     
 }
@@ -93,13 +125,6 @@
     
 }
 
--(CGPoint)pointFromTouches:(NSSet*) touches
-{
-//    UITouch* touch = [touches anyObject];
-//    CGPoint point = [touch locationInView:[touch view]];
-//    point = [[CCDirector sharedDirector] convertToGL:point];
-//    return point;
-}
 -(void) makeTransition
 {
     NSLog(@"entered makeTransition");
