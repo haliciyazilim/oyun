@@ -100,6 +100,7 @@
         else {
             
             [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+            [button addTarget:self action:@selector(onDown:) forControlEvents:UIControlEventTouchDown] ;
             if(map.isFinished){
                 int score = [map.score intValue];
                 map.starCount = score < 60 ? 3 : (score < 120 ? 2 : ( score < 300 ? 1 : 0));
@@ -118,6 +119,11 @@
 
     }
     
+}
+
+-(void)onDown:(UIButton*)button
+{
+    [button setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"level_bg_selected.png"]]];
 }
 
 -(void)onClick:(UIButton*)button
