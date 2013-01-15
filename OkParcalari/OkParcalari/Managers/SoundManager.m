@@ -24,7 +24,6 @@ static SoundManager *sharedSoundManager = nil;
 {
     self = [super init];
     if (self) {
-//        _background=@"backgroundMusic.mp3";
     }
     return self;
 }

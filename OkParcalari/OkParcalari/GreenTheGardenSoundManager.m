@@ -7,6 +7,7 @@
 //
 
 #import "GreenTheGardenSoundManager.h"
+#import "SimpleAudioEngine.h"
 
 @implementation GreenTheGardenSoundManager
 
@@ -25,6 +26,11 @@ static GreenTheGardenSoundManager *sharedSoundManager = nil;
         NSArray *objectsArray = [[NSArray alloc] initWithObjects:@"", nil];
         NSArray *keysArray = [[NSArray alloc] initWithObjects:@"", nil];
         self.effects = [[NSMutableDictionary alloc] initWithObjects:objectsArray forKeys:keysArray];
+        
+        [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:self.backgroundMusic];
+        for (NSString *effect in self.effects) {
+            [[SimpleAudioEngine sharedEngine] preloadEffect:effect];
+        }
     }
     return self;
 }

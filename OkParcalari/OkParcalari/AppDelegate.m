@@ -22,11 +22,10 @@
 
 @synthesize window=window_, navController=navController_, director=director_;
 
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [GreenTheGardenIAPHelper sharedInstance];
+    [GreenTheGardenSoundManager sharedSoundManager];
     
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -86,7 +85,12 @@
     
     [director_ enableRetinaDisplay:YES];
 
-	[[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
+    if(1) {
+        ;
+    }
+    else{
+        [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
+    }
     
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
