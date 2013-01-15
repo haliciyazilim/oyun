@@ -11,6 +11,8 @@
 @implementation MapSelectionLayer
 {
     UIScrollView* scrollView;
+    UIImageView *leafView;
+    UIImageView *maskView;
     CGSize unitSize;
     CGSize buttonSize;
     int rowCount;
@@ -131,6 +133,8 @@
 //    NSLog(@"button tag: %d",button.tag);
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"haydn_%d",button.tag]] withColor:ccWHITE]];
     [scrollView removeFromSuperview];
+    [maskView removeFromSuperview];
+    [leafView removeFromSuperview];
     [self removeFromParentAndCleanup:YES];
 }
 
@@ -142,16 +146,23 @@
         unitSize = CGSizeMake(180.0, 190.0);
         rowCount = 2;
         
-        CGSize size = [[CCDirector sharedDirector] winSize];
-        CCSprite *background = [CCSprite spriteWithFile:@"map_selection_layer.png"];
-        background.position = ccp(size.width * 0.5, size.height * 0.5);
-        [self addChild:background];
+//        CGSize size = [[CCDirector sharedDirector] winSize];
+//        CCSprite *background = [CCSprite spriteWithFile:@"map_selection_layer.png"];
+//        background.position = ccp(size.width * 0.5, size.height * 0.5);
+//        [self addChild:background z:1005];
+        
+        maskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_masklayer.png"]];
+        
+        [[[CCDirector sharedDirector] view] addSubview:maskView];
         
         scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 300.0, 1024.0, 400.0)];
         [scrollView setBackgroundColor:[UIColor colorWithWhite:255.0 alpha:0.5]];
         [scrollView setBackgroundColor:[UIColor clearColor]];
         [scrollView setShowsHorizontalScrollIndicator:NO];
         [[[CCDirector sharedDirector] view] addSubview:scrollView];
+        
+        leafView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_leaflayer.png"]];
+        [[[CCDirector sharedDirector] view] addSubview:leafView];
         
         
     }

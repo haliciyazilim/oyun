@@ -35,4 +35,9 @@ static GreenTheGardenSoundManager *sharedSoundManager = nil;
     return self;
 }
 
+- (void) setIsBackgroundMusicMuted:(BOOL)isBackgroundMusicMuted {
+    _isBackgroundMusicMuted = isBackgroundMusicMuted;
+    
+}
+
 @end

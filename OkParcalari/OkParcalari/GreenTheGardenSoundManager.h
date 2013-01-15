@@ -10,4 +10,7 @@
 
 @interface GreenTheGardenSoundManager : SoundManager
 
+@property (nonatomic) BOOL isBackgroundMusicMuted;
+@property (nonatomic) BOOL isEffectsMuted;
+
 @end
