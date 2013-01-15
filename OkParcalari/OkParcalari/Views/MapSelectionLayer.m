@@ -92,11 +92,18 @@
         if(map.isLocked){
             UIImageView* passiveLayer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"level_bg_pasive.png"]];
             [button addSubview:passiveLayer];
+            UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"level_locked.png"]];
+            lock.frame = CGRectMake(buttonSize.width*0.5 - lock.image.size.width*0.5 + 5.0, buttonSize.height * 0.5 , lock.image.size.width , lock.image.size.height);
+            [button addSubview:lock];
+            
         }
         else {
             
             [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
             if(map.isFinished){
+                int score = [map.score intValue];
+                map.starCount = score < 60 ? 3 : (score < 120 ? 2 : ( score < 300 ? 1 : 0));
+                NSLog(@"score: %d",score);
                 for(int i=0;i<3;i++){
                     UIImageView* view;
                     if(i < map.starCount)
