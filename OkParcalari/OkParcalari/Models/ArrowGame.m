@@ -94,7 +94,13 @@
     }
     
     [_gameTimer stopTimer];
-    [[GameCenterManager sharedInstance] saveScore:[_gameTimer getElapsedSeconds] category:[currentGameMapFileName lastPathComponent]];
+    //save game
+    Map* map = [[DatabaseManager sharedInstance] getMapWithID:currentGameMapFileName];
+    if([map.score intValue] > [self.gameTimer getElapsedSeconds] || map.isFinished == NO){
+        map.score  = [NSNumber numberWithInt:[self.gameTimer getElapsedSeconds]];
+        map.isFinished = YES;
+        [[DatabaseManager sharedInstance] saveContext];
+    }
     
     return YES;
 }
@@ -195,6 +201,7 @@
 
 - (void) newGame:(GameMap*) map
 {
+    
 }
 
 - (void) cleanMap {

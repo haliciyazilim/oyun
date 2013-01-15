@@ -28,5 +28,6 @@
 @property BOOL isLocked;
 @property int  starCount;
 @property MapPackage* package;
+@property BOOL isNotPlayedActiveGame;
 
 @end
