@@ -16,10 +16,13 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 #import "GreenTheGardenIAPHelper.h"
+#import "SoundManager.h"
 
 @implementation AppController
 
-@synthesize window=window_, navController=navController_, director=director_;
+@synthesize window=window_, navController=navController_, director=director_, backgroundMusic=backgroundMusic_;
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -95,7 +98,9 @@
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
-	
+    
+    backgroundMusic_ = [SoundManager sharedSoundManager];
+    [backgroundMusic_ playBackgroundMusic];
 	return YES;
 }
 
@@ -123,14 +128,20 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-	if( [navController_ visibleViewController] == director_ )
+	if( [navController_ visibleViewController] == director_ ){
 		[director_ stopAnimation];
+        
+        //[backgroundMusic_ stopBackgroundMusic];
+
+    }
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
-	if( [navController_ visibleViewController] == director_ )
+	if( [navController_ visibleViewController] == director_ ){
 		[director_ startAnimation];
+        [backgroundMusic_ resumeBackgroundMusic];
+    }
 }
 
 // application will be killed
