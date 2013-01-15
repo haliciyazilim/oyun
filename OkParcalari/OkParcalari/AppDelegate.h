@@ -15,12 +15,10 @@
 	UINavigationController *navController_;
 
 	CCDirectorIOS	*__unsafe_unretained director_;							// weak ref
-    SoundManager *backgroundMusic_;
 }
 
 @property (nonatomic, strong) UIWindow *window;
 @property (readonly) UINavigationController *navController;
 @property (unsafe_unretained, readonly) CCDirectorIOS *director;
-@property SoundManager * backgroundMusic;
 
 @end
