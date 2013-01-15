@@ -61,8 +61,8 @@
                                                                       buttonSize.height)];
         
         button.tag = index;
-        [button setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"level_bg.png"]]];
-                
+        [button setBackgroundImage:[UIImage imageNamed:@"level_bg.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"level_bg_selected.png"] forState:UIControlStateHighlighted];
         [scrollView addSubview:button];
         
         index++;
@@ -100,7 +100,7 @@
         else {
             
             [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-            [button addTarget:self action:@selector(onDown:) forControlEvents:UIControlEventTouchDown] ;
+//            [button addTarget:self action:@selector(onDown:) forControlEvents:UIControlEventTouchDown] ;
             if(map.isFinished){
                 int score = [map.score intValue];
                 map.starCount = score < 60 ? 3 : (score < 120 ? 2 : ( score < 300 ? 1 : 0));
