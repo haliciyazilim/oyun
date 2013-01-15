@@ -16,11 +16,11 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 #import "GreenTheGardenIAPHelper.h"
-#import "SoundManager.h"
+#import "GreenTheGardenSoundManager.h"
 
 @implementation AppController
 
-@synthesize window=window_, navController=navController_, director=director_, backgroundMusic=backgroundMusic_;
+@synthesize window=window_, navController=navController_, director=director_;
 
 
 
@@ -86,7 +86,7 @@
     
     [director_ enableRetinaDisplay:YES];
 
-	
+	[[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
     
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
@@ -99,8 +99,6 @@
 	// make main window visible
 	[window_ makeKeyAndVisible];
     
-    backgroundMusic_ = [SoundManager sharedSoundManager];
-    [backgroundMusic_ playBackgroundMusic];
 	return YES;
 }
 
@@ -140,7 +138,6 @@
 {
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ startAnimation];
-        [backgroundMusic_ resumeBackgroundMusic];
     }
 }
 

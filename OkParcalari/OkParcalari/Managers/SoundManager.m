@@ -9,13 +9,6 @@
 #import "SoundManager.h"
 #import "SimpleAudioEngine.h"
 
-@interface SoundManager()
-
-@property NSString * background;
-
-@end
-
-
 @implementation SoundManager
 
 static SoundManager *sharedSoundManager = nil;
@@ -31,14 +24,14 @@ static SoundManager *sharedSoundManager = nil;
 {
     self = [super init];
     if (self) {
-        _background=@"backgroundMusic.mp3";
+//        _background=@"backgroundMusic.mp3";
     }
     return self;
 }
 
 
 -(void)playBackgroundMusic{
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:_background loop:YES];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:_backgroundMusic loop:YES];
 }
 
 -(void)resumeBackgroundMusic{
@@ -49,8 +42,8 @@ static SoundManager *sharedSoundManager = nil;
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 }
 
--(void)playEffect:(NSString *)item{
-    [[SimpleAudioEngine sharedEngine] playEffect:item];
+-(void)playEffect:(NSString *)itemKey{
+    [[SimpleAudioEngine sharedEngine] playEffect:[self.effects objectForKey:itemKey]];
 }
 
 

@@ -10,7 +10,9 @@
 
 @interface SoundManager : NSObject
 
+@property NSString *backgroundMusic;
 
+@property NSMutableDictionary *effects;
 
 + (SoundManager *) sharedSoundManager;
 

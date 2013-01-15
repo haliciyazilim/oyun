@@ -69,6 +69,7 @@
 		05450C0E16A545580096FAC3 /* logofront_the-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05450BDA16A545580096FAC3 /* logofront_the-ipadhd.png */; };
 		05450C0F16A545580096FAC3 /* logofront_the.png in Resources */ = {isa = PBXBuildFile; fileRef = 05450BDB16A545580096FAC3 /* logofront_the.png */; };
 		05450C1216A545750096FAC3 /* LOGOAnimation.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 05450C1116A545750096FAC3 /* LOGOAnimation.ccbi */; };
+		05642F5F16A56FF600B8E206 /* GreenTheGardenSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05642F5E16A56FF600B8E206 /* GreenTheGardenSoundManager.m */; };
 		0576EC8B169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC67169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png */; };
 		0576EC8C169EE05F00D6EF4A /* ingame_menu_btnbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC68169EE05F00D6EF4A /* ingame_menu_btnbg.png */; };
 		0576EC8D169EE05F00D6EF4A /* ingame_menu_frame-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC69169EE05F00D6EF4A /* ingame_menu_frame-ipadhd.png */; };
@@ -1068,6 +1069,8 @@
 		05450BDA16A545580096FAC3 /* logofront_the-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logofront_the-ipadhd.png"; sourceTree = "<group>"; };
 		05450BDB16A545580096FAC3 /* logofront_the.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logofront_the.png; sourceTree = "<group>"; };
 		05450C1116A545750096FAC3 /* LOGOAnimation.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = LOGOAnimation.ccbi; path = OkParcalari/Resources/images/theme_fiskiye/ccbs/LOGOAnimation.ccbi; sourceTree = SOURCE_ROOT; };
+		05642F5D16A56FF600B8E206 /* GreenTheGardenSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenTheGardenSoundManager.h; sourceTree = "<group>"; };
+		05642F5E16A56FF600B8E206 /* GreenTheGardenSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenTheGardenSoundManager.m; sourceTree = "<group>"; };
 		0576EC67169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_menu_btnbg-ipadhd.png"; sourceTree = "<group>"; };
 		0576EC68169EE05F00D6EF4A /* ingame_menu_btnbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_menu_btnbg.png; sourceTree = "<group>"; };
 		0576EC69169EE05F00D6EF4A /* ingame_menu_frame-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_menu_frame-ipadhd.png"; sourceTree = "<group>"; };
@@ -3768,6 +3771,8 @@
 				41B78B9C16A045F400C327E3 /* DatabaseManager.m */,
 				AEB8D28916A456CF00262CF5 /* SoundManager.h */,
 				AEB8D28A16A456D000262CF5 /* SoundManager.m */,
+				05642F5D16A56FF600B8E206 /* GreenTheGardenSoundManager.h */,
+				05642F5E16A56FF600B8E206 /* GreenTheGardenSoundManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -4613,7 +4618,6 @@
 				AE74543C16A4534800D0AF37 /* haydn_7.gamemap in Resources */,
 				AE74543D16A4534800D0AF37 /* haydn_8.gamemap in Resources */,
 				AE74543E16A4534800D0AF37 /* haydn_9.gamemap in Resources */,
-
 				05450BDC16A545580096FAC3 /* logo_araiplik-ipadhd.png in Resources */,
 				05450BDD16A545580096FAC3 /* logo_araiplik.png in Resources */,
 				05450BDE16A545580096FAC3 /* logo_ustiplik-ipadhd.png in Resources */,
@@ -4667,9 +4671,7 @@
 				05450C0E16A545580096FAC3 /* logofront_the-ipadhd.png in Resources */,
 				05450C0F16A545580096FAC3 /* logofront_the.png in Resources */,
 				05450C1216A545750096FAC3 /* LOGOAnimation.ccbi in Resources */,
-
 				AEB8D28616A452D100262CF5 /* backgroundMusic.mp3 in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4824,6 +4826,7 @@
 				41B78B9D16A045F400C327E3 /* DatabaseManager.m in Sources */,
 				AE2DDBF016A0582A001BEFAC /* MapSelectionLayer.m in Sources */,
 				AEB8D28B16A456D000262CF5 /* SoundManager.m in Sources */,
+				05642F5F16A56FF600B8E206 /* GreenTheGardenSoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
