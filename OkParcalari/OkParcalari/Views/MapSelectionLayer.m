@@ -46,6 +46,7 @@
     for (Map* map in maps) {
         if(map.isFinished == NO){
             if(nonPlayedActiveGameCount > 0){
+                map.isNotPlayedActiveGame = YES;
                 nonPlayedActiveGameCount--;
                 map.isLocked = NO;
             }
@@ -85,25 +86,26 @@
     
         UIImage* passiveStar = [UIImage imageNamed:@"level_star_passive.png"];
         UIImage* activeStar  = [UIImage imageNamed:@"level_star_active.png"];
-        NSLog(@"buttonSize.width: %f, passiveStar.size.width * 3: %f ",buttonSize.width,passiveStar.size.width*3);
+//        NSLog(@"buttonSize.width: %f, passiveStar.size.width * 3: %f ",buttonSize.width,passiveStar.size.width*3);
         
         
         if(map.isLocked){
             UIImageView* passiveLayer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"level_bg_pasive.png"]];
             [button addSubview:passiveLayer];
         }
-        else{
+        else {
             
             [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-            
-            for(int i=0;i<3;i++){
-                UIImageView* view;
-                if(i < map.starCount)
-                    view = [[UIImageView alloc] initWithImage:activeStar];
-                else
-                    view = [[UIImageView alloc] initWithImage:passiveStar];
-                view.frame = CGRectMake((buttonSize.width - passiveStar.size.width * 3) * 0.5 + 5.0 + passiveStar.size.width * i, buttonSize.height - passiveStar.size.height - 20.0, passiveStar.size.width, passiveStar.size.height);
-                [button addSubview:view];
+            if(map.isFinished){
+                for(int i=0;i<3;i++){
+                    UIImageView* view;
+                    if(i < map.starCount)
+                        view = [[UIImageView alloc] initWithImage:activeStar];
+                    else
+                        view = [[UIImageView alloc] initWithImage:passiveStar];
+                    view.frame = CGRectMake((buttonSize.width - passiveStar.size.width * 3) * 0.5 + 5.0 + passiveStar.size.width * i, buttonSize.height - passiveStar.size.height - 20.0, passiveStar.size.width, passiveStar.size.height);
+                    [button addSubview:view];
+                }
             }
         }
 
@@ -113,7 +115,7 @@
 
 -(void)onClick:(UIButton*)button
 {
-    NSLog(@"button tag: %d",button.tag);
+//    NSLog(@"button tag: %d",button.tag);
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"haydn_%d",button.tag]] withColor:ccWHITE]];
     [scrollView removeFromSuperview];
     [self removeFromParentAndCleanup:YES];
@@ -145,7 +147,7 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"entered touchesEnded");
+//    NSLog(@"entered touchesEnded");
 //    CGPoint point = [self pointFromTouches:touches];
 //    if(CGRectContainsPoint([newGameButton boundingBox], point)){
 //        [self makeTransition];

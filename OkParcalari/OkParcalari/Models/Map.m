@@ -24,6 +24,8 @@
 @synthesize isLocked;
 @synthesize starCount;
 @synthesize package;
+@synthesize isNotPlayedActiveGame;
+
 
 -(id)init
 {
