@@ -51,6 +51,16 @@
     [self addChild:colorLayer];
     [self addChild:backLayer];
     
+    [self scheduleOnce:@selector(addLogo:) delay:2.0];
+    
+}
+
+- (void) addLogo:(ccTime)dt {
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    CCLayer *logoLayer = (CCLayer *)[CCBReader nodeGraphFromFile:@"LOGOAnimation.ccbi"];
+    logoLayer.position = ccp(size.width*0.74, size.height*0.75);
+    
+    [self addChild:logoLayer];
 }
 
 //- (void)productPurchased:(NSNotification *)notification {
