@@ -15,7 +15,7 @@
     static GreenTheGardenIAPHelper * sharedInstance;
     dispatch_once(&once, ^{
         NSSet * productIdentifiers = [NSSet setWithObjects:
-                                      @"com.halici.GreenTheGarden.gameUnlock"
+                                      @"com.halici.GreenTheGarden.gameUnlock",
                                       nil];
         sharedInstance = [[self alloc] initWithProductIdentifiers:productIdentifiers];
     });
