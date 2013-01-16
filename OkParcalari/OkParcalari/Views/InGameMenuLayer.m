@@ -21,15 +21,17 @@
 - (id) init {
     if (self = [super init]) {
         CGSize size = [[CCDirector sharedDirector] winSize];
+        CGFloat top = size.height*0.5;
+        CGFloat left = 412.0;
         
         CCSprite *background = [CCSprite spriteWithFile:@"ingame_menu_frame.png"];
         background.position = ccp(size.width * 0.5, size.height * 0.5);
         
         CCSprite *menuFrame = [CCSprite spriteWithFile:@"ingame_menu_btnbg.png"];
-        menuFrame.position = ccp(size.width * 0.5, size.height * 0.5);
+        menuFrame.position = ccp(size.width * 0.5+4.0, size.height * 0.5-4.0);
         
         menuItem1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem1 setFrame:CGRectMake(412.0, 240.0, 206, 66.0)];
+        [menuItem1 setFrame:CGRectMake(left, top-103.0, 206, 66.0)];
         [menuItem1 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_resume", @"png")] forState:UIControlStateNormal];
         [menuItem1 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_resume_hover", @"png")] forState:UIControlStateHighlighted];
         
@@ -38,7 +40,7 @@
            forControlEvents:UIControlEventTouchUpInside];
         
         menuItem2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem2 setFrame:CGRectMake(412.0, 310.0, 206, 66.0)];
+        [menuItem2 setFrame:CGRectMake(left, top-33.0, 206, 66.0)];
         [menuItem2 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_restart", @"png")] forState:UIControlStateNormal];
         [menuItem2 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_restart_hover", @"png")] forState:UIControlStateHighlighted];
         
@@ -47,7 +49,7 @@
             forControlEvents:UIControlEventTouchUpInside];
         
         menuItem3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem3 setFrame:CGRectMake(412.0, 380.0, 206.0, 66.0)];
+        [menuItem3 setFrame:CGRectMake(left, top+37.0, 206.0, 66.0)];
         [menuItem3 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_mainmenu", @"png")] forState:UIControlStateNormal];
         [menuItem3 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_mainmenu_hover", @"png")] forState:UIControlStateHighlighted];
         
