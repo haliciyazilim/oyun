@@ -15,7 +15,7 @@
     UIButton *menuItem1;
     UIButton *menuItem2;
     UIButton *menuItem3;
-    UIButton *menuItem4;
+//    UIButton *menuItem4;
 }
 
 - (id) init {
@@ -29,7 +29,7 @@
         menuFrame.position = ccp(size.width * 0.5, size.height * 0.5);
         
         menuItem1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem1 setFrame:CGRectMake(412.0, 252.0, 206, 66.0)];
+        [menuItem1 setFrame:CGRectMake(412.0, 240.0, 206, 66.0)];
         [menuItem1 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_resume", @"png")] forState:UIControlStateNormal];
         [menuItem1 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_resume_hover", @"png")] forState:UIControlStateHighlighted];
         
@@ -38,7 +38,7 @@
            forControlEvents:UIControlEventTouchUpInside];
         
         menuItem2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem2 setFrame:CGRectMake(412.0, 309.0, 206, 66.0)];
+        [menuItem2 setFrame:CGRectMake(412.0, 310.0, 206, 66.0)];
         [menuItem2 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_restart", @"png")] forState:UIControlStateNormal];
         [menuItem2 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_restart_hover", @"png")] forState:UIControlStateHighlighted];
         
@@ -47,7 +47,7 @@
             forControlEvents:UIControlEventTouchUpInside];
         
         menuItem3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem3 setFrame:CGRectMake(412.0, 366.0, 206.0, 66.0)];
+        [menuItem3 setFrame:CGRectMake(412.0, 380.0, 206.0, 66.0)];
         [menuItem3 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_mainmenu", @"png")] forState:UIControlStateNormal];
         [menuItem3 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_mainmenu_hover", @"png")] forState:UIControlStateHighlighted];
         
@@ -55,10 +55,10 @@
                       action:@selector(returnToMainMenu)
             forControlEvents:UIControlEventTouchUpInside];
         
-        menuItem4 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem4 setFrame:CGRectMake(412.0, 423.0, 206.0, 66.0)];
-        [menuItem4 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_settings", @"png")] forState:UIControlStateNormal];
-        [menuItem4 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_settings_hover", @"png")] forState:UIControlStateHighlighted];
+//        menuItem4 = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [menuItem4 setFrame:CGRectMake(412.0, 450.0, 206.0, 66.0)];
+//        [menuItem4 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_settings", @"png")] forState:UIControlStateNormal];
+//        [menuItem4 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_settings_hover", @"png")] forState:UIControlStateHighlighted];
         
         [self addChild:background];
         [self addChild:menuFrame];
@@ -66,7 +66,7 @@
         [[[CCDirector sharedDirector] view] addSubview:menuItem1];
         [[[CCDirector sharedDirector] view] addSubview:menuItem2];
         [[[CCDirector sharedDirector] view] addSubview:menuItem3];
-        [[[CCDirector sharedDirector] view] addSubview:menuItem4];
+//        [[[CCDirector sharedDirector] view] addSubview:menuItem4];
         
         self.isTouchEnabled = YES;
     }
@@ -80,11 +80,11 @@
     [menuItem1 removeFromSuperview];
     [menuItem2 removeFromSuperview];
     [menuItem3 removeFromSuperview];
-    [menuItem4 removeFromSuperview];
+//    [menuItem4 removeFromSuperview];
     menuItem1 = nil;
     menuItem2 = nil;
     menuItem3 = nil;
-    menuItem4 = nil;
+//    menuItem4 = nil;
 }
 - (void) resumeGame {
     [self removeAllButtons];
