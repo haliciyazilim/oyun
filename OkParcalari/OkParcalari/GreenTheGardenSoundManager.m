@@ -34,34 +34,21 @@ static GreenTheGardenSoundManager *sharedSoundManager = nil;
         
         NSNumber *isMusicMuted = [[NSUserDefaults standardUserDefaults] objectForKey:@"isBackgroundMusicMuted"];
         if(!isMusicMuted){
-            _isBackgroundMusicMuted = NO;
+            self.isBackgroundMusicMuted = NO;
         }
         else{
-            _isBackgroundMusicMuted = [isMusicMuted boolValue];
+            self.isBackgroundMusicMuted = [isMusicMuted boolValue];
         }
         NSNumber *isEffMuted = [[NSUserDefaults standardUserDefaults] objectForKey:@"isEffectsMuted"];
         if(!isEffMuted){
-            _isEffectsMuted = NO;
+            self.isEffectsMuted = NO;
         }
         else{
-            _isEffectsMuted = [isEffMuted boolValue];
+            self.isEffectsMuted = [isEffMuted boolValue];
         }
 
     }
     return self;
-}
-
-- (void) setIsBackgroundMusicMuted:(BOOL)isBackgroundMusicMuted {
-    _isBackgroundMusicMuted = isBackgroundMusicMuted;
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isBackgroundMusicMuted] forKey:@"isBackgroundMusicMuted"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void) setIsEffectsMuted:(BOOL)isEffectsMuted {
-    _isEffectsMuted = isEffectsMuted;
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isEffectsMuted] forKey:@"isEffectsMuted"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
