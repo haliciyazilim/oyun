@@ -43,17 +43,10 @@
     
 //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     
-    BOOL isMuted = [[GreenTheGardenSoundManager sharedSoundManager] isBackgroundMusicMuted];
-    
-    if (!isMuted) {
-        if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying){
-            [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
-            [[GreenTheGardenSoundManager sharedSoundManager] setIsStarted:YES];
-        }
+    if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying){
+        [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
     }
-    else {
-        ;
-    }
+
     
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -137,60 +130,59 @@
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
+    NSLog(@"*******willResignActive*********");
 	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
+    [[GreenTheGardenSoundManager sharedSoundManager] stopBackgroundMusic];
+    [SimpleAudioEngine end];
+    
 }
 
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
+    NSLog(@"*******didBecomeActive*********");
     [FBSettings publishInstall:[FBSession defaultAppID]];
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
+    
+    if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying) {
+        [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
+        NSLog(@"Background music is not playing");
+    } else {
+        NSLog(@"Background music is playing");
+    }
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+        NSLog(@"*******didEnterBackground*********");
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ stopAnimation];
-        
-        [[GreenTheGardenSoundManager sharedSoundManager] stopBackgroundMusic];
-        [SimpleAudioEngine end];
     }
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
+        NSLog(@"*******willEnterForeground*********");
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ startAnimation];
     }
     
-    BOOL isMuted = [[GreenTheGardenSoundManager sharedSoundManager] isBackgroundMusicMuted];
     
-    if (!isMuted) {
-        if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying) {
-//            if(![[GreenTheGardenSoundManager sharedSoundManager] isStarted]) {
-                [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
-//            }
-            NSLog(@"Background music is not playing");
-        } else {
-            NSLog(@"Background music is playing");
-        }
-    }
-    else {
-        ;
-    }
 }
 
 // application will be killed
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+        NSLog(@"*******willTerminate*********");
 	CC_DIRECTOR_END();
 }
 
 // purge memory
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
+        NSLog(@"*******didReceiveMemoryWarning*********");
 	[[CCDirector sharedDirector] purgeCachedData];
 }
 
