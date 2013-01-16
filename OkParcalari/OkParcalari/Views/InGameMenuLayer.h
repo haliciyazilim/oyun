@@ -12,4 +12,6 @@
 
 @property CCLayer *callerLayer;
 
+- (void) resumeGame;
+
 @end
