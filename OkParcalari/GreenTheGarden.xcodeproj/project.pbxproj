@@ -258,6 +258,8 @@
 		410AA2B81670D9B800F6DCCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2B71670D9B800F6DCCA /* main.m */; };
 		410AA2BB1670D9B800F6DCCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2BA1670D9B800F6DCCA /* AppDelegate.m */; };
 		410AA2C81670E99800F6DCCA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410AA2C71670E99800F6DCCA /* Default-568h@2x.png */; };
+		41ABD07616A5961B00E9C4EB /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ABD07516A5961B00E9C4EB /* libFlurry.a */; };
+		41ABD07816A5962F00E9C4EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ABD07716A5962F00E9C4EB /* SystemConfiguration.framework */; };
 		41B78B9616A044DE00C327E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B78B9516A044DE00C327E3 /* CoreData.framework */; };
 		41B78B9A16A0453400C327E3 /* GreenTheGarden.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41B78B9816A0453400C327E3 /* GreenTheGarden.xcdatamodeld */; };
 		41B78B9D16A045F400C327E3 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B78B9C16A045F400C327E3 /* DatabaseManager.m */; };
@@ -1456,6 +1458,9 @@
 		410AA2B91670D9B800F6DCCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		410AA2BA1670D9B800F6DCCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		410AA2C71670E99800F6DCCA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		41ABD07416A5961B00E9C4EB /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		41ABD07516A5961B00E9C4EB /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
+		41ABD07716A5962F00E9C4EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		41B78B9516A044DE00C327E3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		41B78B9916A0453400C327E3 /* GreenTheGarden.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GreenTheGarden.xcdatamodel; sourceTree = "<group>"; };
 		41B78B9B16A045F400C327E3 /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatabaseManager.h; path = Managers/DatabaseManager.h; sourceTree = "<group>"; };
@@ -2243,6 +2248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05A1417F16A5A5C900026343 /* MediaPlayer.framework in Frameworks */,
+				41ABD07816A5962F00E9C4EB /* SystemConfiguration.framework in Frameworks */,
 				41B78B9616A044DE00C327E3 /* CoreData.framework in Frameworks */,
 				41D8DDDE169C562B0041B503 /* Accounts.framework in Frameworks */,
 				41D8DDDF169C562B0041B503 /* AdSupport.framework in Frameworks */,
@@ -2258,6 +2264,7 @@
 				410AA13C1670D9B500F6DCCA /* Foundation.framework in Frameworks */,
 				410AA13E1670D9B500F6DCCA /* CoreGraphics.framework in Frameworks */,
 				410AA1401670D9B500F6DCCA /* GameKit.framework in Frameworks */,
+				41ABD07616A5961B00E9C4EB /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2535,6 +2542,7 @@
 			isa = PBXGroup;
 			children = (
 				05A1417E16A5A5C900026343 /* MediaPlayer.framework */,
+				41ABD07716A5962F00E9C4EB /* SystemConfiguration.framework */,
 				41B78B9516A044DE00C327E3 /* CoreData.framework */,
 				41D8DDCC169C51C40041B503 /* FacebookSDK.framework */,
 				41D8DDDB169C562B0041B503 /* Accounts.framework */,
@@ -2589,6 +2597,7 @@
 		410AA15C1670D9B600F6DCCA /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				41ABD07316A5961B00E9C4EB /* Flurry */,
 				AE1F1A591682075500F27894 /* SBJson */,
 				410AA2731670D9B700F6DCCA /* LICENSE_cocos2d.txt */,
 				410AA2821670D9B800F6DCCA /* LICENSE_CocosDenshion.txt */,
@@ -2929,6 +2938,15 @@
 				AE8983BF168879B200F83F3F /* Localizable.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		41ABD07316A5961B00E9C4EB /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				41ABD07416A5961B00E9C4EB /* Flurry.h */,
+				41ABD07516A5961B00E9C4EB /* libFlurry.a */,
+			);
+			path = Flurry;
 			sourceTree = "<group>";
 		};
 		41DF3D9E169B294000B9678B /* arrow_base */ = {
@@ -4910,8 +4928,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -4923,8 +4941,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "04A6FDA2-5B29-4E62-B2C8-E1011D8BABD3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04A6FDA2-5B29-4E62-B2C8-E1011D8BABD3";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4934,7 +4952,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -4945,8 +4963,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "04A6FDA2-5B29-4E62-B2C8-E1011D8BABD3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04A6FDA2-5B29-4E62-B2C8-E1011D8BABD3";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4957,8 +4975,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4970,13 +4988,18 @@
 				HEADER_SEARCH_PATHS = "\"OkParcalari/libs/kazmath/include\"";
 				INFOPLIST_FILE = OkParcalari/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OkParcalari/Flurry\"",
+				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = GreenTheGarden;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CE2C686-9103-4A8E-9454-E9705116427B";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4987,8 +5010,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4999,13 +5022,18 @@
 				HEADER_SEARCH_PATHS = "\"OkParcalari/libs/kazmath/include\"";
 				INFOPLIST_FILE = OkParcalari/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OkParcalari/Flurry\"",
+				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = GreenTheGarden;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CE2C686-9103-4A8E-9454-E9705116427B";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
