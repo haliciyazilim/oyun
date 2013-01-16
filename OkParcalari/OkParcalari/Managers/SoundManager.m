@@ -44,6 +44,33 @@ static SoundManager *sharedSoundManager = nil;
 -(void)playEffect:(NSString *)itemKey{
     [[SimpleAudioEngine sharedEngine] playEffect:[self.effects objectForKey:itemKey]];
 }
+- (void) setIsBackgroundMusicMuted:(BOOL)isBackgroundMusicMuted {
+    _isBackgroundMusicMuted = isBackgroundMusicMuted;
+    
+    if(isBackgroundMusicMuted){
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:0.0];
+    }
+    else{
+        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:1.0];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isBackgroundMusicMuted] forKey:@"isBackgroundMusicMuted"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void) setIsEffectsMuted:(BOOL)isEffectsMuted {
+    _isEffectsMuted = isEffectsMuted;
+    
+    if(isEffectsMuted){
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.0];
+    }
+    else{
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:1.0];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isEffectsMuted] forKey:@"isEffectsMuted"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 
 
