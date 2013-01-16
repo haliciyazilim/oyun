@@ -16,6 +16,7 @@
 		05070B1316A03B12009A2004 /* splash_spray.png in Resources */ = {isa = PBXBuildFile; fileRef = 05070B0D16A03B12009A2004 /* splash_spray.png */; };
 		05070B1716A048F1009A2004 /* mainLayer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 05070B1616A048F1009A2004 /* mainLayer.ccbi */; };
 		050F5892168305B400618D14 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050F5891168305B400618D14 /* StoreKit.framework */; };
+		051F135816A6A9AE002E1FA4 /* jungle_01.caff in Resources */ = {isa = PBXBuildFile; fileRef = 051F135716A6A9AE002E1FA4 /* jungle_01.caff */; };
 		05450BDC16A545580096FAC3 /* logo_araiplik-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05450BA816A545580096FAC3 /* logo_araiplik-ipadhd.png */; };
 		05450BDD16A545580096FAC3 /* logo_araiplik.png in Resources */ = {isa = PBXBuildFile; fileRef = 05450BA916A545580096FAC3 /* logo_araiplik.png */; };
 		05450BDE16A545580096FAC3 /* logo_ustiplik-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05450BAA16A545580096FAC3 /* logo_ustiplik-ipadhd.png */; };
@@ -1006,7 +1007,6 @@
 		AE996767169EEC4300983CEA /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = AE996766169EEC4300983CEA /* Map.m */; };
 		AE9CD0E81694695000C42824 /* GameHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9CD0E71694695000C42824 /* GameHistory.m */; };
 		AE9CD0EB16946E2000C42824 /* game_history.json in Resources */ = {isa = PBXBuildFile; fileRef = AE9CD0EA16946E2000C42824 /* game_history.json */; };
-		AEB8D28616A452D100262CF5 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AEB8D28516A452D100262CF5 /* backgroundMusic.mp3 */; };
 		AEB8D28B16A456D000262CF5 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB8D28A16A456D000262CF5 /* SoundManager.m */; };
 /* End PBXBuildFile section */
 
@@ -1021,6 +1021,7 @@
 		05070B0D16A03B12009A2004 /* splash_spray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_spray.png; sourceTree = "<group>"; };
 		05070B1616A048F1009A2004 /* mainLayer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainLayer.ccbi; sourceTree = "<group>"; };
 		050F5891168305B400618D14 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		051F135716A6A9AE002E1FA4 /* jungle_01.caff */ = {isa = PBXFileReference; lastKnownFileType = file; path = jungle_01.caff; sourceTree = "<group>"; };
 		05450BA816A545580096FAC3 /* logo_araiplik-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_araiplik-ipadhd.png"; sourceTree = "<group>"; };
 		05450BA916A545580096FAC3 /* logo_araiplik.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_araiplik.png; sourceTree = "<group>"; };
 		05450BAA16A545580096FAC3 /* logo_ustiplik-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_ustiplik-ipadhd.png"; sourceTree = "<group>"; };
@@ -2212,7 +2213,6 @@
 		AE9CD0E61694695000C42824 /* GameHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistory.h; sourceTree = "<group>"; };
 		AE9CD0E71694695000C42824 /* GameHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistory.m; sourceTree = "<group>"; };
 		AE9CD0EA16946E2000C42824 /* game_history.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = game_history.json; sourceTree = "<group>"; };
-		AEB8D28516A452D100262CF5 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		AEB8D28916A456CF00262CF5 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundManager.h; path = Managers/SoundManager.h; sourceTree = "<group>"; };
 		AEB8D28A16A456D000262CF5 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundManager.m; path = Managers/SoundManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2256,6 +2256,15 @@
 			);
 			name = splash;
 			path = Resources/images/theme_fiskiye/splash;
+			sourceTree = "<group>";
+		};
+		051F135416A6A788002E1FA4 /* music */ = {
+			isa = PBXGroup;
+			children = (
+				051F135716A6A9AE002E1FA4 /* jungle_01.caff */,
+			);
+			name = music;
+			path = Resources/music;
 			sourceTree = "<group>";
 		};
 		05450BA716A545580096FAC3 /* logo */ = {
@@ -2546,7 +2555,7 @@
 		410AA1421670D9B600F6DCCA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AEB8D28816A452FC00262CF5 /* Music */,
+				051F135416A6A788002E1FA4 /* music */,
 				41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */,
 				05A38C01169451D3005ADBED /* Info.plist */,
 				05A38F1316945217005ADBED /* maps */,
@@ -3793,14 +3802,6 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
-		AEB8D28816A452FC00262CF5 /* Music */ = {
-			isa = PBXGroup;
-			children = (
-				AEB8D28516A452D100262CF5 /* backgroundMusic.mp3 */,
-			);
-			name = Music;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4685,13 +4686,13 @@
 				05450C0E16A545580096FAC3 /* logofront_the-ipadhd.png in Resources */,
 				05450C0F16A545580096FAC3 /* logofront_the.png in Resources */,
 				05450C1216A545750096FAC3 /* LOGOAnimation.ccbi in Resources */,
-				AEB8D28616A452D100262CF5 /* backgroundMusic.mp3 in Resources */,
 				AE2556AD16A5802E001EA8B1 /* level_bg_selected.png in Resources */,
 				AE2556AE16A5802E001EA8B1 /* level_bg_selected@2x.png in Resources */,
 				05A1417716A5963700026343 /* map_selection_leaflayer.png in Resources */,
 				05A1417916A5963700026343 /* map_selection_masklayer.png in Resources */,
 				05A1417C16A5966600026343 /* map_selection_leaflayer@2x.png in Resources */,
 				05A1417D16A5966600026343 /* map_selection_masklayer@2x.png in Resources */,
+				051F135816A6A9AE002E1FA4 /* jungle_01.caff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
