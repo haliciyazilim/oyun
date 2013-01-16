@@ -6,6 +6,8 @@
 //
 //
 
+#define MENU_TAG 994
+
 #import "ArrowGameLayer.h"
 #import "InGameMenuLayer.h"
 #import "GameMap.h"
@@ -15,11 +17,12 @@
 #import "CCBAnimationManager.h"
 #import "MapSelectionCollectionViewController.h"
 #import "MapSelectionLayer.h"
+#import "GreenTheGardenSoundManager.h"
 
 @implementation ArrowGameLayer
 {
-    CCSprite *buttonView;
     NSString *_fileName;
+    UIView *inGameButtonsView;
 }
 
 +(CCScene *) sceneWithFile:(NSString *)fileName
@@ -40,10 +43,47 @@
 	// return the scene
 	return scene;
 }
+-(void)onExit{
+    [inGameButtonsView removeFromSuperview];
+}
 -(void)onEnter{
     [super onEnter];
+    inGameButtonsView = [[UIView alloc] initWithFrame:CGRectMake(900.0, 20.0, 105.0, 35.0)];
+//    [inGameButtonsView setBackgroundColor:[UIColor redColor]];
+    
+    UIButton* fxButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 2.0, 30.0, 30.0)];
+    if([[GreenTheGardenSoundManager sharedSoundManager] isEffectsMuted]){
+        [fxButton setBackgroundImage:[UIImage imageNamed:@"game_btnfx_off.png"] forState:UIControlStateNormal];
+        [fxButton setBackgroundImage:[UIImage imageNamed:@"game_btnfx_off.png"] forState:UIControlStateHighlighted];
+    }
+    else{
+        [fxButton setBackgroundImage:[UIImage imageNamed:@"game_btnfx_on.png"] forState:UIControlStateNormal];
+        [fxButton setBackgroundImage:[UIImage imageNamed:@"game_btnfx_on.png"] forState:UIControlStateHighlighted];
+    }
+    [fxButton addTarget:self action:@selector(fxClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton* musicButton = [[UIButton alloc] initWithFrame:CGRectMake(38.0, 2.0, 30.0, 30.0)];
+    if([[GreenTheGardenSoundManager sharedSoundManager] isBackgroundMusicMuted]){
+        [musicButton setBackgroundImage:[UIImage imageNamed:@"game_btnsound_off.png"] forState:UIControlStateNormal];
+        [musicButton setBackgroundImage:[UIImage imageNamed:@"game_btnsound_off.png"] forState:UIControlStateHighlighted];
+    }
+    else{
+        [musicButton setBackgroundImage:[UIImage imageNamed:@"game_btnsound_on.png"] forState:UIControlStateNormal];
+        [musicButton setBackgroundImage:[UIImage imageNamed:@"game_btnsound_on.png"] forState:UIControlStateHighlighted];
+    }
+    [musicButton addTarget:self action:@selector(musicClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton* menuButton = [[UIButton alloc] initWithFrame:CGRectMake(75.0, 2.0, 30.0, 30.0)];
+    [menuButton setBackgroundImage:[UIImage imageNamed:@"game_btnmenu.png"] forState:UIControlStateNormal];
+    [menuButton setBackgroundImage:[UIImage imageNamed:@"game_btnmenu_selected.png"] forState:UIControlStateHighlighted];
+    [menuButton addTarget:self action:@selector(showInGameMenu) forControlEvents:UIControlEventTouchUpInside];
+    
+    [inGameButtonsView addSubview:fxButton];
+    [inGameButtonsView addSubview:musicButton];
+    [inGameButtonsView addSubview:menuButton];
+    
+    [[[CCDirector sharedDirector] view] addSubview:inGameButtonsView];
 }
-
 // on "init" you need to initialize your instance
 -(id) init
 {
@@ -61,23 +101,43 @@
 
         CCSprite *topView = [CCSprite spriteWithFile:@"gameboard.png"];
         topView.position = ccp(384,384);
-                
-        buttonView = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
-        buttonView.position = ccp(size.width * 0.86, size.height * 0.38);
+        
+        CCSprite *logoView = [CCSprite spriteWithFile:@"game_logo.png"];
+        logoView.position = ccp(782,549);
         
         [self addChild:background];
-        
-        [self addChild:buttonView];
-        [self addChild:frameView];
-        [self reorderChild:frameView z:999];
-        [self addChild:topView];
-        [self reorderChild:topView z:998];
+        [self addChild:topView z:998];
+        [self addChild:frameView z:999];
+        [self addChild:logoView z:1000];
         
 		self.isTouchEnabled = YES;
-        
-        
 	}
 	return self;
+}
+
+- (void)fxClicked:(UIButton *)button {
+    if([[GreenTheGardenSoundManager sharedSoundManager] isEffectsMuted]){
+        [button setBackgroundImage:[UIImage imageNamed:@"game_btnfx_on.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"game_btnfx_on.png"] forState:UIControlStateHighlighted];
+        [[GreenTheGardenSoundManager sharedSoundManager] setIsEffectsMuted:NO];
+    }
+    else{
+        [button setBackgroundImage:[UIImage imageNamed:@"game_btnfx_off.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"game_btnfx_off.png"] forState:UIControlStateHighlighted];
+        [[GreenTheGardenSoundManager sharedSoundManager] setIsEffectsMuted:YES];
+    }
+}
+- (void)musicClicked:(UIButton *)button {
+    if([[GreenTheGardenSoundManager sharedSoundManager] isBackgroundMusicMuted]){
+        [button setBackgroundImage:[UIImage imageNamed:@"game_btnsound_on.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"game_btnsound_on.png"] forState:UIControlStateHighlighted];
+        [[GreenTheGardenSoundManager sharedSoundManager] setIsBackgroundMusicMuted:NO];
+    }
+    else{
+        [button setBackgroundImage:[UIImage imageNamed:@"game_btnsound_off.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"game_btnsound_off.png"] forState:UIControlStateHighlighted];
+        [[GreenTheGardenSoundManager sharedSoundManager] setIsBackgroundMusicMuted:YES];
+    }
 }
 
 - (void) initializeGameWithFile:(NSString*)fileName
@@ -96,14 +156,14 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesBegan");
-    if(CGRectContainsPoint([buttonView boundingBox], [self pointFromTouches:touches])){
-        [self.arrowGame pauseGame];
-        [self showInGameMenu];
-    }
-    else{
+//    NSLog(@"touchesBegan");
+//    if(CGRectContainsPoint([buttonView boundingBox], [self pointFromTouches:touches])){
+//        [self.arrowGame pauseGame];
+//        [self showInGameMenu];
+//    }
+//    else{
         [self.arrowGame touchBegan:[self locationFromTouches:touches]];
-    }
+//    }
 }
 
 -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -132,11 +192,19 @@
 }
 
 - (void) showInGameMenu {
-    InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
-    menuLayer.callerLayer = self;
-    [self addChild:menuLayer];
-    [self reorderChild:menuLayer z:1111];
-    self.isTouchEnabled = NO;
+    InGameMenuLayer *child = (InGameMenuLayer*)[self getChildByTag:MENU_TAG];
+    if(child){
+        [child resumeGame];
+    }
+    else{
+        [self.arrowGame pauseGame];
+        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
+        menuLayer.callerLayer = self;
+        menuLayer.tag = MENU_TAG;
+        [self addChild:menuLayer];
+        [self reorderChild:menuLayer z:1111];
+        self.isTouchEnabled = NO;
+    }
 }
 - (void) inGameMenuWillClose {
     [self.arrowGame resumeGame];
@@ -145,12 +213,8 @@
 - (void) returnToMainMenu {
     [self.arrowGame cleanMap];
     [self.arrowGame removeFromParentAndCleanup:YES];
-//    [[CCDirector sharedDirector] popScene];
-//    [self removeAllChildrenWithCleanup:YES];
     [self removeFromParentAndCleanup:YES];
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
-//    [[[CCDirector sharedDirector] navigationController] pushViewController:[[MapSelectionCollectionViewController alloc] init] animated:YES];
-    
 }
 -(void) gameEnded
 {
