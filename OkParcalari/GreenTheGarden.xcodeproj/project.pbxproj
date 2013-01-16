@@ -113,6 +113,7 @@
 		05A1417916A5963700026343 /* map_selection_masklayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1417516A5963700026343 /* map_selection_masklayer.png */; };
 		05A1417C16A5966600026343 /* map_selection_leaflayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1417A16A5966600026343 /* map_selection_leaflayer@2x.png */; };
 		05A1417D16A5966600026343 /* map_selection_masklayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1417B16A5966600026343 /* map_selection_masklayer@2x.png */; };
+		05A1417F16A5A5C900026343 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1417E16A5A5C900026343 /* MediaPlayer.framework */; };
 		05A38925169451BD005ADBED /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3891A169451BD005ADBED /* CCBAnimationManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		05A38926169451BD005ADBED /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3891C169451BD005ADBED /* CCBKeyframe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		05A38927169451BD005ADBED /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A3891E169451BD005ADBED /* CCBReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1121,6 +1122,7 @@
 		05A1417516A5963700026343 /* map_selection_masklayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_selection_masklayer.png; path = Resources/images/theme_fiskiye/map_selection/map_selection_masklayer.png; sourceTree = "<group>"; };
 		05A1417A16A5966600026343 /* map_selection_leaflayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map_selection_leaflayer@2x.png"; path = "Resources/images/theme_fiskiye/map_selection/map_selection_leaflayer@2x.png"; sourceTree = "<group>"; };
 		05A1417B16A5966600026343 /* map_selection_masklayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map_selection_masklayer@2x.png"; path = "Resources/images/theme_fiskiye/map_selection/map_selection_masklayer@2x.png"; sourceTree = "<group>"; };
+		05A1417E16A5A5C900026343 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		05A38919169451BD005ADBED /* CCBAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBAnimationManager.h; sourceTree = "<group>"; };
 		05A3891A169451BD005ADBED /* CCBAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBAnimationManager.m; sourceTree = "<group>"; };
 		05A3891B169451BD005ADBED /* CCBKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBKeyframe.h; sourceTree = "<group>"; };
@@ -2220,6 +2222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A1417F16A5A5C900026343 /* MediaPlayer.framework in Frameworks */,
 				41B78B9616A044DE00C327E3 /* CoreData.framework in Frameworks */,
 				41D8DDDE169C562B0041B503 /* Accounts.framework in Frameworks */,
 				41D8DDDF169C562B0041B503 /* AdSupport.framework in Frameworks */,
@@ -2502,6 +2505,7 @@
 		410AA12E1670D9B500F6DCCA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05A1417E16A5A5C900026343 /* MediaPlayer.framework */,
 				41B78B9516A044DE00C327E3 /* CoreData.framework */,
 				41D8DDCC169C51C40041B503 /* FacebookSDK.framework */,
 				41D8DDDB169C562B0041B503 /* Accounts.framework */,

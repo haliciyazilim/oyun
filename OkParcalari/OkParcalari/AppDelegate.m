@@ -17,6 +17,10 @@
 
 #import "GreenTheGardenIAPHelper.h"
 #import "GreenTheGardenSoundManager.h"
+#import "CDAudioManager.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVAudioSession.h>
+#import "SimpleAudioEngine.h"
 
 @implementation AppController
 
@@ -24,8 +28,32 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
+    
     [GreenTheGardenIAPHelper sharedInstance];
     [GreenTheGardenSoundManager sharedSoundManager];
+    
+//    [CDAudioManager configure:kAMM_FxPlusMusic];
+//    if (otherAudioIsPlaying) {
+//        [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryAmbient error: nil];
+//    } else {
+//        [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategorySoloAmbient error: nil];
+//    }
+    
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    BOOL isMuted = [[GreenTheGardenSoundManager sharedSoundManager] isBackgroundMusicMuted];
+    
+    if (!isMuted) {
+        if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying){
+            [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
+            [[GreenTheGardenSoundManager sharedSoundManager] setIsStarted:YES];
+        }
+    }
+    else {
+        ;
+    }
     
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -84,13 +112,6 @@
 	[director_ pushScene: [IntroLayer scene]];
     
     [director_ enableRetinaDisplay:YES];
-
-    if(1) {
-        ;
-    }
-    else{
-        [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
-    }
     
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
@@ -133,8 +154,8 @@
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ stopAnimation];
         
-        //[backgroundMusic_ stopBackgroundMusic];
-
+        [[GreenTheGardenSoundManager sharedSoundManager] stopBackgroundMusic];
+        [SimpleAudioEngine end];
     }
 }
 
@@ -142,6 +163,22 @@
 {
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ startAnimation];
+    }
+    
+    BOOL isMuted = [[GreenTheGardenSoundManager sharedSoundManager] isBackgroundMusicMuted];
+    
+    if (!isMuted) {
+        if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying) {
+//            if(![[GreenTheGardenSoundManager sharedSoundManager] isStarted]) {
+                [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
+//            }
+            NSLog(@"Background music is not playing");
+        } else {
+            NSLog(@"Background music is playing");
+        }
+    }
+    else {
+        ;
     }
 }
 

@@ -10,7 +10,10 @@
 
 @interface GreenTheGardenSoundManager : SoundManager
 
++ (GreenTheGardenSoundManager *) sharedSoundManager;
+
 @property (nonatomic) BOOL isBackgroundMusicMuted;
 @property (nonatomic) BOOL isEffectsMuted;
+@property (nonatomic) BOOL isStarted;
 
 @end
