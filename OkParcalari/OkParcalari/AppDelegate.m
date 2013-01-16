@@ -14,6 +14,7 @@
 #import "DatabaseManager.h"
 
 #import <FacebookSDK/FacebookSDK.h>
+#import "Flurry.h"
 
 #import "GreenTheGardenIAPHelper.h"
 #import "GreenTheGardenSoundManager.h"
@@ -28,6 +29,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Flurry startSession:@"PW345B45PR4W3D6Z2V8H"];
     
 //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
     
