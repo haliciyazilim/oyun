@@ -137,6 +137,7 @@
     [scrollView removeFromSuperview];
     [maskView removeFromSuperview];
     [leafView removeFromSuperview];
+    [barView removeFromSuperview];
     [self removeFromParentAndCleanup:YES];
 }
 
