@@ -30,6 +30,7 @@ static SoundManager *sharedSoundManager = nil;
 
 
 -(void)playBackgroundMusic{
+    [self setIsBackgroundMusicMuted:_isBackgroundMusicMuted];
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:_backgroundMusic loop:YES];
 }
 
@@ -42,6 +43,7 @@ static SoundManager *sharedSoundManager = nil;
 }
 
 -(void)playEffect:(NSString *)itemKey{
+    [self setIsEffectsMuted:_isEffectsMuted];
     [[SimpleAudioEngine sharedEngine] playEffect:[self.effects objectForKey:itemKey]];
 }
 - (void) setIsBackgroundMusicMuted:(BOOL)isBackgroundMusicMuted {
