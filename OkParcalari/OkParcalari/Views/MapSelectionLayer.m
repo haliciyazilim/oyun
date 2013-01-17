@@ -116,6 +116,11 @@
                 }
             }
         }
+        
+        /*<[[TEST*/
+            //delete after testing
+            [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+        /*TEST]]>*/
 
     }
     
