@@ -11,8 +11,10 @@
 @interface SoundManager : NSObject
 
 @property NSString *backgroundMusic;
-
 @property NSMutableDictionary *effects;
+
+@property (nonatomic) BOOL isBackgroundMusicMuted;
+@property (nonatomic) BOOL isEffectsMuted;
 
 + (SoundManager *) sharedSoundManager;
 

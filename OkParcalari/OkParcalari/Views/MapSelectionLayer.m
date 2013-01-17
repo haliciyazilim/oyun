@@ -7,10 +7,14 @@
 //
 
 #import "MapSelectionLayer.h"
+#import "GreenTheGardenSoundManager.h"
 
 @implementation MapSelectionLayer
 {
     UIScrollView* scrollView;
+    UIView *barView;
+    UIImageView *leafView;
+    UIImageView *maskView;
     CGSize unitSize;
     CGSize buttonSize;
     int rowCount;
@@ -136,6 +140,9 @@
 //    NSLog(@"button tag: %d",button.tag);
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"haydn_%d",button.tag]] withColor:ccWHITE]];
     [scrollView removeFromSuperview];
+    [maskView removeFromSuperview];
+    [leafView removeFromSuperview];
+    [barView removeFromSuperview];
     [self removeFromParentAndCleanup:YES];
 }
 
@@ -147,20 +154,82 @@
         unitSize = CGSizeMake(180.0, 190.0);
         rowCount = 2;
         
-        CGSize size = [[CCDirector sharedDirector] winSize];
-        CCSprite *background = [CCSprite spriteWithFile:@"map_selection_layer.png"];
-        background.position = ccp(size.width * 0.5, size.height * 0.5);
-        [self addChild:background];
+//        CGSize size = [[CCDirector sharedDirector] winSize];
+//        CCSprite *background = [CCSprite spriteWithFile:@"map_selection_layer.png"];
+//        background.position = ccp(size.width * 0.5, size.height * 0.5);
+//        [self addChild:background z:1005];
+        
+        maskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_masklayer.png"]];
         
         scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 300.0, 1024.0, 400.0)];
         [scrollView setBackgroundColor:[UIColor colorWithWhite:255.0 alpha:0.5]];
         [scrollView setBackgroundColor:[UIColor clearColor]];
         [scrollView setShowsHorizontalScrollIndicator:NO];
-        [[[CCDirector sharedDirector] view] addSubview:scrollView];
         
+        leafView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_leaflayer.png"]];
+        
+        barView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 708.0, 1024.0, 60)];
+        UIButton* infoButton = [[UIButton alloc] initWithFrame:CGRectMake(35.0, 17.0, 26.0, 28.0)];
+        [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info.png"] forState:UIControlStateNormal];
+        [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info.png"] forState:UIControlStateHighlighted];
+        
+        UIButton* fxButton = [[UIButton alloc] initWithFrame:CGRectMake(63.0, 17.0, 26.0, 28.0)];
+        if([[GreenTheGardenSoundManager sharedSoundManager] isEffectsMuted]){
+            [fxButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_fx_off.png"] forState:UIControlStateNormal];
+            [fxButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_fx_off.png"] forState:UIControlStateHighlighted];
+        }
+        else{
+            [fxButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_fx_on.png"] forState:UIControlStateNormal];
+            [fxButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_fx_on.png"] forState:UIControlStateHighlighted];
+        }
+        [fxButton addTarget:self action:@selector(fxClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton* musicButton = [[UIButton alloc] initWithFrame:CGRectMake(92.0, 17.0, 26.0, 28.0)];
+        if([[GreenTheGardenSoundManager sharedSoundManager] isBackgroundMusicMuted]){
+            [musicButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_off.png"] forState:UIControlStateNormal];
+            [musicButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_off.png"] forState:UIControlStateHighlighted];
+        }
+        else{
+            [musicButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_on.png"] forState:UIControlStateNormal];
+            [musicButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_on.png"] forState:UIControlStateHighlighted];
+        }
+        [musicButton addTarget:self action:@selector(musicClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [barView addSubview:infoButton];
+        [barView addSubview:fxButton];
+        [barView addSubview:musicButton];
+        
+        [[[CCDirector sharedDirector] view] addSubview:maskView];
+        [[[CCDirector sharedDirector] view] addSubview:scrollView];
+        [[[CCDirector sharedDirector] view] addSubview:leafView];
+        [[[CCDirector sharedDirector] view] addSubview:barView];
         
     }
     return self;
+}
+- (void)fxClicked:(UIButton *)button {
+    if([[GreenTheGardenSoundManager sharedSoundManager] isEffectsMuted]){
+        [button setBackgroundImage:[UIImage imageNamed:@"map_barbtn_fx_on.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"map_barbtn_fx_on.png"] forState:UIControlStateHighlighted];
+        [[GreenTheGardenSoundManager sharedSoundManager] setIsEffectsMuted:NO];
+    }
+    else{
+        [button setBackgroundImage:[UIImage imageNamed:@"map_barbtn_fx_off.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"map_barbtn_fx_off.png"] forState:UIControlStateHighlighted];
+        [[GreenTheGardenSoundManager sharedSoundManager] setIsEffectsMuted:YES];
+    }
+}
+- (void)musicClicked:(UIButton *)button {
+    if([[GreenTheGardenSoundManager sharedSoundManager] isBackgroundMusicMuted]){
+        [button setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_on.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_on.png"] forState:UIControlStateHighlighted];
+        [[GreenTheGardenSoundManager sharedSoundManager] setIsBackgroundMusicMuted:NO];
+    }
+    else{
+        [button setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_off.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_off.png"] forState:UIControlStateHighlighted];
+        [[GreenTheGardenSoundManager sharedSoundManager] setIsBackgroundMusicMuted:YES];
+    }
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

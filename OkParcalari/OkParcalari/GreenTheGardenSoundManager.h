@@ -10,4 +10,6 @@
 
 @interface GreenTheGardenSoundManager : SoundManager
 
++ (GreenTheGardenSoundManager *) sharedSoundManager;
+
 @end

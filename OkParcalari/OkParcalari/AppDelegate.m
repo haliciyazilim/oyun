@@ -14,19 +14,41 @@
 #import "DatabaseManager.h"
 
 #import <FacebookSDK/FacebookSDK.h>
+#import "Flurry.h"
 
 #import "GreenTheGardenIAPHelper.h"
 #import "GreenTheGardenSoundManager.h"
+#import "CDAudioManager.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVAudioSession.h>
+#import "SimpleAudioEngine.h"
 
 @implementation AppController
 
 @synthesize window=window_, navController=navController_, director=director_;
 
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Flurry startSession:@"PW345B45PR4W3D6Z2V8H"];
+    
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
+    
     [GreenTheGardenIAPHelper sharedInstance];
+    [GreenTheGardenSoundManager sharedSoundManager];
+    
+//    [CDAudioManager configure:kAMM_FxPlusMusic];
+//    if (otherAudioIsPlaying) {
+//        [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryAmbient error: nil];
+//    } else {
+//        [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategorySoloAmbient error: nil];
+//    }
+    
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying){
+        [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
+    }
+
     
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -85,8 +107,6 @@
 	[director_ pushScene: [IntroLayer scene]];
     
     [director_ enableRetinaDisplay:YES];
-
-	[[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
     
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
@@ -112,44 +132,59 @@
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
+    NSLog(@"*******willResignActive*********");
 	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
+    [[GreenTheGardenSoundManager sharedSoundManager] stopBackgroundMusic];
+    [SimpleAudioEngine end];
+    
 }
 
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
+    NSLog(@"*******didBecomeActive*********");
     [FBSettings publishInstall:[FBSession defaultAppID]];
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
+    
+    if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying) {
+        [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
+        NSLog(@"Background music is not playing");
+    } else {
+        NSLog(@"Background music is playing");
+    }
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+        NSLog(@"*******didEnterBackground*********");
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ stopAnimation];
-        
-        //[backgroundMusic_ stopBackgroundMusic];
-
     }
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
+        NSLog(@"*******willEnterForeground*********");
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ startAnimation];
     }
+    
+    
 }
 
 // application will be killed
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+        NSLog(@"*******willTerminate*********");
 	CC_DIRECTOR_END();
 }
 
 // purge memory
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
+        NSLog(@"*******didReceiveMemoryWarning*********");
 	[[CCDirector sharedDirector] purgeCachedData];
 }
 

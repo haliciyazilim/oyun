@@ -7,6 +7,7 @@
 //
 
 #import "GreenTheGardenSoundManager.h"
+#import "SimpleAudioEngine.h"
 
 @implementation GreenTheGardenSoundManager
 
@@ -21,10 +22,31 @@ static GreenTheGardenSoundManager *sharedSoundManager = nil;
 
 - (id) init {
     if(self = [super init]) {
-        self.backgroundMusic = @"backgroundMusic.mp3";
+        self.backgroundMusic = @"jungle_01.caff";
         NSArray *objectsArray = [[NSArray alloc] initWithObjects:@"", nil];
         NSArray *keysArray = [[NSArray alloc] initWithObjects:@"", nil];
         self.effects = [[NSMutableDictionary alloc] initWithObjects:objectsArray forKeys:keysArray];
+        
+        [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:self.backgroundMusic];
+        for (NSString *effect in self.effects) {
+            [[SimpleAudioEngine sharedEngine] preloadEffect:effect];
+        }
+        
+        NSNumber *isMusicMuted = [[NSUserDefaults standardUserDefaults] objectForKey:@"isBackgroundMusicMuted"];
+        if(!isMusicMuted){
+            self.isBackgroundMusicMuted = NO;
+        }
+        else{
+            self.isBackgroundMusicMuted = [isMusicMuted boolValue];
+        }
+        NSNumber *isEffMuted = [[NSUserDefaults standardUserDefaults] objectForKey:@"isEffectsMuted"];
+        if(!isEffMuted){
+            self.isEffectsMuted = NO;
+        }
+        else{
+            self.isEffectsMuted = [isEffMuted boolValue];
+        }
+
     }
     return self;
 }
