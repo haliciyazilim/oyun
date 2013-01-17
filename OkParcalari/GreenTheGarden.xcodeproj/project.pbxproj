@@ -40,6 +40,8 @@
 		05070B1316A03B12009A2004 /* splash_spray.png in Resources */ = {isa = PBXBuildFile; fileRef = 05070B0D16A03B12009A2004 /* splash_spray.png */; };
 		05070B1716A048F1009A2004 /* mainLayer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 05070B1616A048F1009A2004 /* mainLayer.ccbi */; };
 		050F5892168305B400618D14 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050F5891168305B400618D14 /* StoreKit.framework */; };
+		05199A0416A8363E00104735 /* LOGOAnimation-son.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 05199A0316A8363E00104735 /* LOGOAnimation-son.ccbi */; };
+		05199A0716A8366500104735 /* LOGOAnimation-son-noAutoPlay.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 05199A0616A8366500104735 /* LOGOAnimation-son-noAutoPlay.ccbi */; };
 		051F135816A6A9AE002E1FA4 /* jungle_01.caff in Resources */ = {isa = PBXBuildFile; fileRef = 051F135716A6A9AE002E1FA4 /* jungle_01.caff */; };
 		05450BDC16A545580096FAC3 /* logo_araiplik-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05450BA816A545580096FAC3 /* logo_araiplik-ipadhd.png */; };
 		05450BDD16A545580096FAC3 /* logo_araiplik.png in Resources */ = {isa = PBXBuildFile; fileRef = 05450BA916A545580096FAC3 /* logo_araiplik.png */; };
@@ -1065,6 +1067,8 @@
 		05070B0D16A03B12009A2004 /* splash_spray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_spray.png; sourceTree = "<group>"; };
 		05070B1616A048F1009A2004 /* mainLayer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainLayer.ccbi; sourceTree = "<group>"; };
 		050F5891168305B400618D14 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		05199A0316A8363E00104735 /* LOGOAnimation-son.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LOGOAnimation-son.ccbi"; sourceTree = "<group>"; };
+		05199A0616A8366500104735 /* LOGOAnimation-son-noAutoPlay.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LOGOAnimation-son-noAutoPlay.ccbi"; sourceTree = "<group>"; };
 		051F135716A6A9AE002E1FA4 /* jungle_01.caff */ = {isa = PBXFileReference; lastKnownFileType = file; path = jungle_01.caff; sourceTree = "<group>"; };
 		05450BA816A545580096FAC3 /* logo_araiplik-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_araiplik-ipadhd.png"; sourceTree = "<group>"; };
 		05450BA916A545580096FAC3 /* logo_araiplik.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_araiplik.png; sourceTree = "<group>"; };
@@ -3069,6 +3073,8 @@
 			isa = PBXGroup;
 			children = (
 				05450C1116A545750096FAC3 /* LOGOAnimation.ccbi */,
+				05199A0616A8366500104735 /* LOGOAnimation-son-noAutoPlay.ccbi */,
+				05199A0316A8363E00104735 /* LOGOAnimation-son.ccbi */,
 				05070B1616A048F1009A2004 /* mainLayer.ccbi */,
 				41DF3DE4169B294000B9678B /* Squirt.ccbi */,
 			);
@@ -4783,6 +4789,8 @@
 				050139E016A6F4910078DC35 /* game_btnsound_off@2x.png in Resources */,
 				050139E116A6F4910078DC35 /* game_btnsound_on.png in Resources */,
 				050139E216A6F4910078DC35 /* game_btnsound_on@2x.png in Resources */,
+				05199A0416A8363E00104735 /* LOGOAnimation-son.ccbi in Resources */,
+				05199A0716A8366500104735 /* LOGOAnimation-son-noAutoPlay.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
