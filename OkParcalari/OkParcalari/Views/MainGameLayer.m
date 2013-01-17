@@ -11,9 +11,12 @@
 #import "GreenTheGardenIAPHelper.h"
 #import "Util.h"
 #import "CCBReader.h"
+#import "CCBAnimationManager.h"
+//#import "Util.h"
 
 @implementation MainGameLayer{
     CCSprite *newGameButton;
+    CCLabelTTF *tapToStart;
     NSArray *_products;
 }
 
@@ -36,11 +39,6 @@
     [super onEnter];
     CGSize size = [[CCDirector sharedDirector] winSize];
     [[GameCenterManager sharedInstance] authenticateLocalUser];
-//    [[GreenTheGardenIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
-//        _products = products;
-//    }];
-//    [[GameCenterManager sharedInstance] saveScore:9 category:@"high_score"];
-//    [[GameCenterManager sharedInstance] getScores];
     
     CCLayerColor *colorLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
     colorLayer.position = ccp(size.width*0.0,size.height*0.0);
@@ -50,16 +48,34 @@
     
     [self addChild:colorLayer];
     [self addChild:backLayer];
-    
     [self scheduleOnce:@selector(addLogo:) delay:2.0];
+    [self scheduleOnce:@selector(addTapToStart) delay:5.25];
     
+}
+- (void) addTapToStart {
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    tapToStart = [CCLabelTTF labelWithString:NSLocalizedString(@"TAP_TO_START", nil) fontName:@"Futura-Medium" fontSize:24.0];
+    tapToStart.position = ccp(size.width * 0.5,size.height * 0.5);
+    [self addChild:tapToStart z:1999];
+    [self schedule:@selector(fadeOutTap) interval:0.5 repeat:0 delay:0.0];
+}
+- (void) fadeOutTap {
+    [self unschedule:@selector(fadeOutTap)];
+    CCFadeTo *fadeTo = [CCFadeTo actionWithDuration:0.5];
+    [tapToStart runAction:fadeTo];
+    [self schedule:@selector(fadeInTap) interval:0.5 repeat:0 delay:0.0];
+}
+- (void) fadeInTap {
+    [self unschedule:@selector(fadeInTap)];
+    CCFadeIn *fadeIn = [CCFadeIn actionWithDuration:0.5];
+    [tapToStart runAction:fadeIn];
+    [self schedule:@selector(fadeOutTap) interval:0.5 repeat:0 delay:0.0];
 }
 
 - (void) addLogo:(ccTime)dt {
     CGSize size = [[CCDirector sharedDirector] winSize];
     CCLayer *logoLayer = (CCLayer *)[CCBReader nodeGraphFromFile:@"LOGOAnimation.ccbi"];
     logoLayer.position = ccp(size.width*0.74, size.height*0.75);
-    
     [self addChild:logoLayer];
 }
 
@@ -78,15 +94,15 @@
 -(id) init
 {
     if(self = [super init]){
-        CGSize size = [[CCDirector sharedDirector] winSize];
+//        CGSize size = [[CCDirector sharedDirector] winSize];
 //        CCSprite *background = [CCSprite spriteWithFile:@"game_bg.png"];
 //        background.position = ccp(size.width * 0.5, size.height * 0.5);
 //        [self addChild:background];
         
-        newGameButton = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
-        newGameButton.position = ccp(size.width * 0.5, size.height * 0.5);
-        
-        [self addChild:newGameButton z:997];
+//        newGameButton = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
+//        newGameButton.position = ccp(size.width * 0.5, size.height * 0.5);
+//        
+//        [self addChild:newGameButton z:997];
         self.isTouchEnabled = YES;
         
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
@@ -97,14 +113,7 @@
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSLog(@"entered touchesEnded");
-    CGPoint point = [self pointFromTouches:touches];
-    if(CGRectContainsPoint([newGameButton boundingBox], point)){
-        [self makeTransition];
-//        [self buyButtonTapped];
-    }
-//    else{
-//        [self restoreTapped];
-//    }
+    [self makeTransition];
 }
 
 //- (void) buyButtonTapped {
@@ -132,10 +141,8 @@
 }
 -(void) makeTransition
 {
-    NSLog(@"entered makeTransition");
     [self removeFromParentAndCleanup:YES];
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
-//    [[[CCDirector sharedDirector] navigationController] pushViewController:[[MapSelectionCollectionViewController alloc] init] animated:YES];
 }
 
 @end
