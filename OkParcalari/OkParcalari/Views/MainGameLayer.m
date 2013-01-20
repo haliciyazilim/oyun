@@ -55,9 +55,10 @@
 - (void) addTapToStart {
     CGSize size = [[CCDirector sharedDirector] winSize];
     tapToStart = [CCLabelTTF labelWithString:NSLocalizedString(@"TAP_TO_START", nil) fontName:@"Futura-Medium" fontSize:24.0];
-    tapToStart.position = ccp(size.width * 0.5,size.height * 0.5);
+    tapToStart.position = ccp(size.width * 0.5,size.height * 0.15);
     [self addChild:tapToStart z:1999];
     [self schedule:@selector(fadeOutTap) interval:0.5 repeat:0 delay:0.0];
+    self.isTouchEnabled = YES;
 }
 - (void) fadeOutTap {
     [self unschedule:@selector(fadeOutTap)];
@@ -103,7 +104,10 @@
 //        newGameButton.position = ccp(size.width * 0.5, size.height * 0.5);
 //        
 //        [self addChild:newGameButton z:997];
-        self.isTouchEnabled = YES;
+//        [[GreenTheGardenIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+//            _products = products;
+//        }];
+//        self.isTouchEnabled = YES;
         
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     }
@@ -114,14 +118,15 @@
 {
     NSLog(@"entered touchesEnded");
     [self makeTransition];
+//    [self buyButtonTapped];
 }
 
-//- (void) buyButtonTapped {
-//    SKProduct *product = [_products objectAtIndex:0];
-//    
-//    NSLog(@"Buying %@...", product.productIdentifier);
-//    [[GreenTheGardenIAPHelper sharedInstance] buyProduct:product];
-//}
+- (void) buyButtonTapped {
+    SKProduct *product = [_products objectAtIndex:0];
+    
+    NSLog(@"Buying %@...", product.productIdentifier);
+    [[GreenTheGardenIAPHelper sharedInstance] buyProduct:product];
+}
 //
 //- (void)restoreTapped {
 //    [[GreenTheGardenIAPHelper sharedInstance] restoreCompletedTransactions];
@@ -143,6 +148,7 @@
 {
     [self removeFromParentAndCleanup:YES];
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+//    [[CCDirector sharedDirector] replaceScene:[CCTransitionShrinkGrow transitionWithDuration:2.0 scene:[MapSelectionLayer scene]]];
 }
 
 @end
