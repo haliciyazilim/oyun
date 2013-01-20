@@ -1161,6 +1161,7 @@
 		0576ECB3169EF06E00D6EF4A /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		0576ECB5169EF53A00D6EF4A /* GreenTheGardenIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenTheGardenIAPHelper.h; sourceTree = "<group>"; };
 		0576ECB6169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenTheGardenIAPHelper.m; sourceTree = "<group>"; };
+		0589620316A9961600A10A62 /* GreenTheGardenAppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenTheGardenAppSpecificValues.h; sourceTree = "<group>"; };
 		0595C20D16947613006B7E87 /* WaterSpray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterSpray.h; sourceTree = "<group>"; };
 		0595C20E16947613006B7E87 /* WaterSpray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterSpray.m; sourceTree = "<group>"; };
 		05A1417316A5963700026343 /* map_selection_leaflayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_selection_leaflayer.png; path = Resources/images/theme_fiskiye/map_selection/map_selection_leaflayer.png; sourceTree = "<group>"; };
@@ -2435,6 +2436,7 @@
 			children = (
 				05A38935169451D2005ADBED /* GameCenterManager.h */,
 				05A38936169451D2005ADBED /* GameCenterManager.m */,
+				0589620316A9961600A10A62 /* GreenTheGardenAppSpecificValues.h */,
 			);
 			path = GameCenter;
 			sourceTree = "<group>";

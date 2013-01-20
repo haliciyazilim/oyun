@@ -63,7 +63,12 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
     [_productsRequest start];
     
 }
-
+- (BOOL)canMakePurchases {
+    return [SKPaymentQueue canMakePayments];
+}
+-(void)loadStore {
+    @throw [NSException exceptionWithName:@"Invalid Store" reason:@"loadStore method must be implemented in subclass" userInfo:nil];
+}
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
     for (SKPaymentTransaction * transaction in transactions) {
@@ -154,8 +159,13 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
     
     NSLog(@"Buying %@...", product.productIdentifier);
     
-    SKPayment * payment = [SKPayment paymentWithProduct:product];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
+    if([self canMakePurchases]){
+        SKPayment * payment = [SKPayment paymentWithProduct:product];
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
+    }
+    else{
+        NSLog(@"check your settings, in-app purchase is not allowed on your device.");
+    }
     
 }
 

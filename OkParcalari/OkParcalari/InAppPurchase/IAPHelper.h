@@ -17,9 +17,12 @@ typedef void (^RequestProductsCompletionHandler)(BOOL success, NSArray * product
 - (id)initWithProductIdentifiers:(NSSet *)productIdentifiers;
 - (void)requestProductsWithCompletionHandler:(RequestProductsCompletionHandler)completionHandler;
 
+- (BOOL)canMakePurchases;
 - (void)buyProduct:(SKProduct *)product;
 - (BOOL)productPurchased:(NSString *)productIdentifier;
 
 - (void)restoreCompletedTransactions;
+
+- (void)loadStore;
 
 @end
