@@ -6,6 +6,8 @@
 //
 //
 
+#define GAME_LAYER_TAG 582
+
 #import "MapSelectionLayer.h"
 #import "GreenTheGardenSoundManager.h"
 
@@ -35,9 +37,7 @@
 	return scene;
 }
 
-- (void)onEnterTransitionDidFinish{
-    [super onEnterTransitionDidFinish];
-    
+- (void)onEnter{
     CGFloat topMargin = 31.0;
     CGFloat contentLeftPadding = 400.0;
     
@@ -154,11 +154,6 @@
         unitSize = CGSizeMake(180.0, 190.0);
         rowCount = 2;
         
-//        CGSize size = [[CCDirector sharedDirector] winSize];
-//        CCSprite *background = [CCSprite spriteWithFile:@"map_selection_layer.png"];
-//        background.position = ccp(size.width * 0.5, size.height * 0.5);
-//        [self addChild:background z:1005];
-        
         maskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_masklayer.png"]];
         
         scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 300.0, 1024.0, 400.0)];
@@ -169,6 +164,10 @@
         leafView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_leaflayer.png"]];
         
         barView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 708.0, 1024.0, 60)];
+        UIButton *unlockButton = [[UIButton alloc] initWithFrame:CGRectMake(800.0, 17.0, 150.0, 28.0)];
+        [unlockButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"map_barbtn_unlock", @"png")] forState:UIControlStateNormal];
+        [unlockButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"map_barbtn_unlock", @"png")] forState:UIControlStateHighlighted];
+        [unlockButton addTarget:self action:@selector(addStore) forControlEvents:UIControlEventTouchUpInside];
         UIButton* infoButton = [[UIButton alloc] initWithFrame:CGRectMake(35.0, 17.0, 26.0, 28.0)];
         [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info.png"] forState:UIControlStateNormal];
         [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info.png"] forState:UIControlStateHighlighted];
@@ -198,6 +197,7 @@
         [barView addSubview:infoButton];
         [barView addSubview:fxButton];
         [barView addSubview:musicButton];
+        [barView addSubview:unlockButton];
         
         [[[CCDirector sharedDirector] view] addSubview:maskView];
         [[[CCDirector sharedDirector] view] addSubview:scrollView];
@@ -234,11 +234,6 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    NSLog(@"entered touchesEnded");
-//    CGPoint point = [self pointFromTouches:touches];
-//    if(CGRectContainsPoint([newGameButton boundingBox], point)){
-//        [self makeTransition];
-//    }
 }
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -249,8 +244,6 @@
 -(void) makeTransition
 {
     NSLog(@"entered makeTransition");
-    //	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
-//    [[[CCDirector sharedDirector] navigationController] pushViewController:[[MapSelectionCollectionViewController alloc] init] animated:YES];
 }
 
 @end
