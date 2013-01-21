@@ -35,8 +35,8 @@
 	return scene;
 }
 
-- (void)onEnter{
-    [super onEnter];
+- (void)onEnterTransitionDidFinish{
+    [super onEnterTransitionDidFinish];
     
     CGFloat topMargin = 31.0;
     CGFloat contentLeftPadding = 400.0;

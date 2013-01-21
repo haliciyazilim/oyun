@@ -144,10 +144,15 @@
     point = [[CCDirector sharedDirector] convertToGL:point];
     return point;
 }
+-(void)onExit{
+    [self removeFromParentAndCleanup:YES];
+}
 -(void) makeTransition
 {
-    [self removeFromParentAndCleanup:YES];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+//    [self removeFromParentAndCleanup:YES];
+//    [self removeFromParentAndCleanup:YES];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:2.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+//    [[CCDirector sharedDirector] replaceScene:[CCTransitionShrinkGrow transitionWithDuration:2.0 scene:[MapSelectionLayer scene]]];
 //    [[CCDirector sharedDirector] replaceScene:[CCTransitionShrinkGrow transitionWithDuration:2.0 scene:[MapSelectionLayer scene]]];
 }
 
