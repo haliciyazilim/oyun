@@ -10,15 +10,18 @@
 
 #import "MapSelectionLayer.h"
 #import "GreenTheGardenSoundManager.h"
+#import "GreenTheGardenIAPHelper.h"
 
 @implementation MapSelectionLayer
 {
+    UIView *store;
     UIScrollView* scrollView;
     UIView *barView;
     UIImageView *leafView;
     UIImageView *maskView;
     CGSize unitSize;
     CGSize buttonSize;
+    NSArray *_products;
     int rowCount;
 }
 
@@ -128,6 +131,12 @@
 
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+    
+}
+
+- (void)onExit {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:IAPHelperProductPurchasedNotification object:nil];
 }
 
 -(void)onDown:(UIButton*)button
@@ -138,7 +147,7 @@
 -(void)onClick:(UIButton*)button
 {
 //    NSLog(@"button tag: %d",button.tag);
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"haydn_%d",button.tag]] withColor:ccWHITE]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"haydn_%d",button.tag]] withColor:ccWHITE]];
     [scrollView removeFromSuperview];
     [maskView removeFromSuperview];
     [leafView removeFromSuperview];
@@ -149,7 +158,7 @@
 -(id) init
 {
     if(self = [super init]){
-        
+//        CGSize size = [[CCDirector sharedDirector] winSize];
         buttonSize = CGSizeMake(158.0, 182.0);
         unitSize = CGSizeMake(180.0, 190.0);
         rowCount = 2;
@@ -164,15 +173,18 @@
         leafView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_leaflayer.png"]];
         
         barView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 708.0, 1024.0, 60)];
-        UIButton *unlockButton = [[UIButton alloc] initWithFrame:CGRectMake(800.0, 17.0, 150.0, 28.0)];
+        
+        UIButton *unlockButton = [[UIButton alloc] initWithFrame:CGRectMake(783.0, 17.0, 150.0, 28.0)];
         [unlockButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"map_barbtn_unlock", @"png")] forState:UIControlStateNormal];
-        [unlockButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"map_barbtn_unlock", @"png")] forState:UIControlStateHighlighted];
+        [unlockButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"map_barbtn_unlock_hover", @"png")] forState:UIControlStateHighlighted];
         [unlockButton addTarget:self action:@selector(addStore) forControlEvents:UIControlEventTouchUpInside];
+        
+        
         UIButton* infoButton = [[UIButton alloc] initWithFrame:CGRectMake(35.0, 17.0, 26.0, 28.0)];
         [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info.png"] forState:UIControlStateNormal];
-        [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info.png"] forState:UIControlStateHighlighted];
+        [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info_hover.png"] forState:UIControlStateHighlighted];
         
-        UIButton* fxButton = [[UIButton alloc] initWithFrame:CGRectMake(63.0, 17.0, 26.0, 28.0)];
+        UIButton* fxButton = [[UIButton alloc] initWithFrame:CGRectMake(70.0, 17.0, 26.0, 28.0)];
         if([[GreenTheGardenSoundManager sharedSoundManager] isEffectsMuted]){
             [fxButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_fx_off.png"] forState:UIControlStateNormal];
             [fxButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_fx_off.png"] forState:UIControlStateHighlighted];
@@ -183,7 +195,7 @@
         }
         [fxButton addTarget:self action:@selector(fxClicked:) forControlEvents:UIControlEventTouchUpInside];
         
-        UIButton* musicButton = [[UIButton alloc] initWithFrame:CGRectMake(92.0, 17.0, 26.0, 28.0)];
+        UIButton* musicButton = [[UIButton alloc] initWithFrame:CGRectMake(106.0, 17.0, 26.0, 28.0)];
         if([[GreenTheGardenSoundManager sharedSoundManager] isBackgroundMusicMuted]){
             [musicButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_off.png"] forState:UIControlStateNormal];
             [musicButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_off.png"] forState:UIControlStateHighlighted];
@@ -193,7 +205,7 @@
             [musicButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_on.png"] forState:UIControlStateHighlighted];
         }
         [musicButton addTarget:self action:@selector(musicClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
+
         [barView addSubview:infoButton];
         [barView addSubview:fxButton];
         [barView addSubview:musicButton];
@@ -206,6 +218,36 @@
         
     }
     return self;
+}
+- (void)productPurchased:(NSNotification *)notification {
+
+    NSString * productIdentifier = notification.object;
+    [_products enumerateObjectsUsingBlock:^(SKProduct * product, NSUInteger idx, BOOL *stop) {
+        if ([product.productIdentifier isEqualToString:productIdentifier]) {
+            NSLog(@"successfully purchased %@",productIdentifier);
+            *stop = YES;
+        }
+    }];
+
+}
+- (void)buyPro {
+    NSLog(@"entered buyPro at callerLayer");
+    [[GreenTheGardenIAPHelper sharedInstance] buyProduct:[_products objectAtIndex:0]];
+}
+- (void)restorePurchases {
+    NSLog(@"entered restore purchases at caller layer");
+    [[GreenTheGardenIAPHelper sharedInstance] restoreCompletedTransactions];
+}
+-(void)addStore {
+    [[GreenTheGardenIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+        _products = products;
+    }];
+    [[GreenTheGardenIAPHelper sharedInstance] setCallerLayer:self];
+    store = [[GreenTheGardenIAPHelper sharedInstance] createStore];
+    [[[CCDirector sharedDirector] view] addSubview:store];
+}
+- (void)closeStore {
+    [store removeFromSuperview];
 }
 - (void)fxClicked:(UIButton *)button {
     if([[GreenTheGardenSoundManager sharedSoundManager] isEffectsMuted]){

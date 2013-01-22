@@ -19,4 +19,6 @@
 
 +(CCScene *) scene;
 
+- (void) closeStore;
+
 @end
