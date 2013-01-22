@@ -27,6 +27,9 @@
         CCSprite *background = [CCSprite spriteWithFile:@"ingame_menu_frame.png"];
         background.position = ccp(size.width * 0.5, size.height * 0.5);
         
+        CCSprite *win = [CCSprite spriteWithFile:@"YOU_WIN.png"];
+        win.position = ccp(size.width * 0.5, size.height * 0.5);
+        
         CCSprite *menuFrame = [CCSprite spriteWithFile:@"ingame_menu_btnbg.png"];
         menuFrame.position = ccp(size.width * 0.5+4.0, size.height * 0.5-4.0);
         
@@ -57,12 +60,8 @@
                       action:@selector(returnToMainMenu)
             forControlEvents:UIControlEventTouchUpInside];
         
-//        menuItem4 = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [menuItem4 setFrame:CGRectMake(412.0, 450.0, 206.0, 66.0)];
-//        [menuItem4 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_settings", @"png")] forState:UIControlStateNormal];
-//        [menuItem4 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_settings_hover", @"png")] forState:UIControlStateHighlighted];
-        
         [self addChild:background];
+//        [self addChild:win];
         [self addChild:menuFrame];
         
         [[[CCDirector sharedDirector] view] addSubview:menuItem1];
