@@ -10,6 +10,10 @@
 
 @interface GreenTheGardenIAPHelper : IAPHelper
 
+@property CCLayer *callerLayer;
+
 + (GreenTheGardenIAPHelper *) sharedInstance;
+
+- (UIView *) createStore;
 
 @end
