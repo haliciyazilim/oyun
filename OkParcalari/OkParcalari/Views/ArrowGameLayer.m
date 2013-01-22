@@ -156,14 +156,7 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    NSLog(@"touchesBegan");
-//    if(CGRectContainsPoint([buttonView boundingBox], [self pointFromTouches:touches])){
-//        [self.arrowGame pauseGame];
-//        [self showInGameMenu];
-//    }
-//    else{
-        [self.arrowGame touchBegan:[self locationFromTouches:touches]];
-//    }
+    [self.arrowGame touchBegan:[self locationFromTouches:touches]];
 }
 
 -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -218,6 +211,6 @@
 }
 -(void) gameEnded
 {
-    
+    NSLog(@"entered gameEnded");
 }
 @end
