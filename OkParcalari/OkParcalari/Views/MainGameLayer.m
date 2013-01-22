@@ -49,7 +49,7 @@
     [self addChild:colorLayer];
     [self addChild:backLayer];
     [self scheduleOnce:@selector(addLogo:) delay:2.0];
-    [self scheduleOnce:@selector(addTapToStart) delay:5.25];
+    [self scheduleOnce:@selector(addTapToStart) delay:1.25];
     
 }
 - (void) addTapToStart {
@@ -147,7 +147,7 @@
 -(void) makeTransition
 {
     [self removeFromParentAndCleanup:YES];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:2.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
 }
 
 @end
