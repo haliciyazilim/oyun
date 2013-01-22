@@ -194,6 +194,8 @@
 		05D6F34416AD7DBD004F6EF4 /* map_barbtn_info_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D6F34216AD7DBD004F6EF4 /* map_barbtn_info_hover@2x.png */; };
 		05D6F34616AD873A004F6EF4 /* map_barbtn_unlock-en-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D6F34516AD873A004F6EF4 /* map_barbtn_unlock-en-ipadhd.png */; };
 		05FE671716AEBD8600CCCD0C /* AchievementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE671616AEBD8600CCCD0C /* AchievementManager.m */; };
+		05FE671F16AED07D00CCCD0C /* inapp_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 05FE671D16AED07D00CCCD0C /* inapp_image.png */; };
+		05FE672016AED07D00CCCD0C /* inapp_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05FE671E16AED07D00CCCD0C /* inapp_image@2x.png */; };
 		410AA1301670D9B500F6DCCA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA12F1670D9B500F6DCCA /* QuartzCore.framework */; };
 		410AA1321670D9B500F6DCCA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA1311670D9B500F6DCCA /* OpenGLES.framework */; };
 		410AA1341670D9B500F6DCCA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA1331670D9B500F6DCCA /* OpenAL.framework */; };
@@ -1306,6 +1308,8 @@
 		05D6F34516AD873A004F6EF4 /* map_barbtn_unlock-en-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map_barbtn_unlock-en-ipadhd.png"; path = "Resources/images/theme_fiskiye/map_selection/map_barbtn_unlock-en-ipadhd.png"; sourceTree = "<group>"; };
 		05FE671516AEBD8600CCCD0C /* AchievementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementManager.h; sourceTree = "<group>"; };
 		05FE671616AEBD8600CCCD0C /* AchievementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementManager.m; sourceTree = "<group>"; };
+		05FE671D16AED07D00CCCD0C /* inapp_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inapp_image.png; sourceTree = "<group>"; };
+		05FE671E16AED07D00CCCD0C /* inapp_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inapp_image@2x.png"; sourceTree = "<group>"; };
 		410AA12B1670D9B500F6DCCA /* GreenTheGarden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenTheGarden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		410AA12F1670D9B500F6DCCA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		410AA1311670D9B500F6DCCA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -2617,6 +2621,8 @@
 			children = (
 				05CEDA1616AE8CC300C7FAF2 /* inapp_back.png */,
 				05CEDA1716AE8CC300C7FAF2 /* inapp_back@2x.png */,
+				05FE671D16AED07D00CCCD0C /* inapp_image.png */,
+				05FE671E16AED07D00CCCD0C /* inapp_image@2x.png */,
 				05CEDA1816AE8CC300C7FAF2 /* inapp_btn_buynow_hover-en.png */,
 				05CEDA1916AE8CC300C7FAF2 /* inapp_btn_buynow_hover-en@2x.png */,
 				05CEDA1A16AE8CC300C7FAF2 /* inapp_btn_buynow_hover-tr.png */,
@@ -4935,6 +4941,8 @@
 				05CEDA4316AE92EA00C7FAF2 /* inapp_btn_purchase-en@2x.png in Resources */,
 				05CEDA4416AE92EA00C7FAF2 /* inapp_btn_purchase-tr.png in Resources */,
 				05CEDA4516AE92EA00C7FAF2 /* inapp_btn_purchase-tr@2x.png in Resources */,
+				05FE671F16AED07D00CCCD0C /* inapp_image.png in Resources */,
+				05FE672016AED07D00CCCD0C /* inapp_image@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

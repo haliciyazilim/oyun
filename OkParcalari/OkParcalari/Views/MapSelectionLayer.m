@@ -21,7 +21,7 @@
     UIImageView *maskView;
     CGSize unitSize;
     CGSize buttonSize;
-    NSArray *_products;
+//    NSArray *_products;
     int rowCount;
 }
 
@@ -232,7 +232,17 @@
 }
 - (void)buyPro {
     NSLog(@"entered buyPro at callerLayer");
-    [[GreenTheGardenIAPHelper sharedInstance] buyProduct:[_products objectAtIndex:0]];
+    if([[GreenTheGardenIAPHelper sharedInstance] canMakePurchases]){
+        [[GreenTheGardenIAPHelper sharedInstance] buyProduct:[_products objectAtIndex:0]];
+    }
+    else{
+        UIAlertView *couldNotMakePurchasesAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"IN_APP_PURCHASES", nil)
+                                                                             message:NSLocalizedString(@"COULD_NOT_MAKE_PURCHASES", nil)
+                                                                            delegate:self
+                                                                   cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                                   otherButtonTitles:nil,nil];
+        [couldNotMakePurchasesAlert show];
+    }
 }
 - (void)restorePurchases {
     NSLog(@"entered restore purchases at caller layer");
@@ -240,11 +250,22 @@
 }
 -(void)addStore {
     [[GreenTheGardenIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
-        _products = products;
+        NSLog(@"%d",success);
+        if(success){
+            _products = products;
+            [[GreenTheGardenIAPHelper sharedInstance] setCallerLayer:self];
+            store = [[GreenTheGardenIAPHelper sharedInstance] createStore];
+            [[[CCDirector sharedDirector] view] addSubview:store];
+        } else{
+            UIAlertView *couldNotGetProducts = [[UIAlertView alloc] initWithTitle:@""
+                                                                                 message:NSLocalizedString(@"CONNECTION_ERROR", nil)
+                                                                                delegate:self
+                                                                       cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                                       otherButtonTitles:nil,nil];
+            [couldNotGetProducts show];
+        }
     }];
-    [[GreenTheGardenIAPHelper sharedInstance] setCallerLayer:self];
-    store = [[GreenTheGardenIAPHelper sharedInstance] createStore];
-    [[[CCDirector sharedDirector] view] addSubview:store];
+    
 }
 - (void)closeStore {
     [store removeFromSuperview];

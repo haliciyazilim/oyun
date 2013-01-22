@@ -7,10 +7,11 @@
 //
 
 #import "IAPHelper.h"
+#import "MapSelectionLayer.h"
 
 @interface GreenTheGardenIAPHelper : IAPHelper
 
-@property CCLayer *callerLayer;
+@property MapSelectionLayer *callerLayer;
 
 + (GreenTheGardenIAPHelper *) sharedInstance;
 
