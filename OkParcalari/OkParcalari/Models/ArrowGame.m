@@ -108,7 +108,7 @@
     AchievementManager *achievement=[[AchievementManager alloc]init];
     //[achievement getAchievements];
     
-    [achievement submitAchievement:kAchievementWarmingUp percentComplete:50.0];
+    [achievement submitAchievement:kAchievementWarmingUp percentComplete:100.0];
     
 
     
