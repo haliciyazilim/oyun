@@ -15,7 +15,6 @@
 #import "CCBReader.h"
 #import "Squirt.h"
 #import "CCBAnimationManager.h"
-#import "MapSelectionCollectionViewController.h"
 #import "MapSelectionLayer.h"
 #import "GreenTheGardenSoundManager.h"
 
