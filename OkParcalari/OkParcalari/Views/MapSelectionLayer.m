@@ -21,6 +21,7 @@
     UIImageView *maskView;
     CGSize unitSize;
     CGSize buttonSize;
+    NSString* packageFileName;
 //    NSArray *_products;
     int rowCount;
 }
@@ -40,7 +41,8 @@
 	return scene;
 }
 
-- (void)onEnter{
+- (void) loadMapIcons
+{
     CGFloat topMargin = 31.0;
     CGFloat contentLeftPadding = 400.0;
     
@@ -76,9 +78,9 @@
         
         if(map.order < 10){
             UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",map.order]]];
-//            CGRect rect = CGRectMake(40.0, 20.0, view.image.size.width, view.image.size.height);
+            //            CGRect rect = CGRectMake(40.0, 20.0, view.image.size.width, view.image.size.height);
             view.frame = CGRectMake((float)(buttonSize.width - view.image.size.width) * 0.5+5.0, topMargin, view.image.size.width, view.image.size.height);
-//            NSLog(@"buttonSize.width: %f, view.image.size.width",buttonSize.width);
+            //            NSLog(@"buttonSize.width: %f, view.image.size.width",buttonSize.width);
             [button addSubview:view];
         }
         else{
@@ -90,10 +92,10 @@
             [button addSubview:firstDigit];
             [button addSubview:secondDigit];
         }
-    
+        
         UIImage* passiveStar = [UIImage imageNamed:@"level_star_passive.png"];
         UIImage* activeStar  = [UIImage imageNamed:@"level_star_active.png"];
-//        NSLog(@"buttonSize.width: %f, passiveStar.size.width * 3: %f ",buttonSize.width,passiveStar.size.width*3);
+        //        NSLog(@"buttonSize.width: %f, passiveStar.size.width * 3: %f ",buttonSize.width,passiveStar.size.width*3);
         
         
         if(map.isLocked){
@@ -107,7 +109,7 @@
         else {
             
             [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-//            [button addTarget:self action:@selector(onDown:) forControlEvents:UIControlEventTouchDown] ;
+            //            [button addTarget:self action:@selector(onDown:) forControlEvents:UIControlEventTouchDown] ;
             if(map.isFinished){
                 int score = [map.score intValue];
                 map.starCount = score < 60 ? 3 : (score < 120 ? 2 : ( score < 300 ? 1 : 0));
@@ -125,12 +127,16 @@
         }
         
         /*<[[TEST*/
-            //delete after testing
-            [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+        //delete after testing
+        [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
         /*TEST]]>*/
-
+        
     }
-    
+
+}
+
+- (void)onEnter{
+    [self loadMapIcons];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     
 }
@@ -155,9 +161,15 @@
     [self removeFromParentAndCleanup:YES];
 }
 
+- (void) setPackage:(NSString*)package
+{
+    packageFileName = package;
+}
+
 -(id) init
 {
     if(self = [super init]){
+        packageFileName = @"standart";
 //        CGSize size = [[CCDirector sharedDirector] winSize];
         buttonSize = CGSizeMake(158.0, 182.0);
         unitSize = CGSizeMake(180.0, 190.0);
@@ -308,5 +320,16 @@
 {
     NSLog(@"entered makeTransition");
 }
+
+static MAP_DIFFICULTY difficulty = EASY;
++(MAP_DIFFICULTY) getDifficulty
+{
+    return difficulty;
+}
++(void) setDifficulty:(MAP_DIFFICULTY)_difficulty
+{
+    difficulty = _difficulty;
+}
+
 
 @end

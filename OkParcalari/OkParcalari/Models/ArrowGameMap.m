@@ -36,13 +36,13 @@
         [[DatabaseManager sharedInstance] insertMaps:maps forPackage:fileName];
         NSArray* managedMapObjects = [[DatabaseManager sharedInstance] getMapsForPackage:fileName];
         for (Map* map in managedMapObjects) {
-            NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@""]
+            NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:map.mapId ofType:@"gamemap"]
                                                           encoding:NSUTF8StringEncoding
                                                              error:NULL];
             
 //            [NSBundle mainBundle] 
             SBJsonParser *parser = [[SBJsonParser alloc] init];
-            NSLog(@"content: %@",content);
+            NSLog(@"%@ content: %@",map.mapId,content);
             NSDictionary* jsonMap = [parser objectWithString:content];
             if([[jsonMap valueForKey:@"version"] intValue] == 1){
                 map.difficulty  = (MAP_DIFFICULTY)[[jsonMap valueForKey:@"difficulty"] intValue];
@@ -63,7 +63,7 @@
     
     GameMap* gameMap = [self sharedInstance];
     
-    NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@""]
+    NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"gamemap"]
                                                   encoding:NSUTF8StringEncoding
                                                      error:NULL];
     
