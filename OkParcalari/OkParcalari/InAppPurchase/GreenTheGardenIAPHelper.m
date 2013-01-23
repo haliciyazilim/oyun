@@ -47,11 +47,22 @@
     [restoreButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_purchase_hover", @"png")] forState:UIControlStateHighlighted];
     [restoreButton addTarget:self.callerLayer action:@selector(restorePurchases) forControlEvents:UIControlEventTouchUpInside];
     
+    UIImageView *unlockImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_image.png"]];
+    [unlockImage setFrame:CGRectMake(355.0, 260.0, 153.0, 178.0)];
+    
+    NSString *header = [[self.callerLayer.products objectAtIndex:0] localizedTitle];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(768.0, 260.0, 165.0, 40.0)];
+    [headerLabel setBackgroundColor:[UIColor clearColor]];
+    [headerLabel setTextAlignment:NSTextAlignmentCenter];
+    [headerLabel setText:header];
+    
     [storeView addSubview:backgroundView];
     [storeView addSubview:backView];
     [storeView addSubview:closeButton];
     [storeView addSubview:buyButton];
     [storeView addSubview:restoreButton];
+    [storeView addSubview:unlockImage];
+    [storeView addSubview:headerLabel];
     
     return storeView;
 }

@@ -8,6 +8,7 @@
 
 #import "Arrow.h"
 #import "WaterSpray.h"
+#import "GreenTheGardenSoundManager.h"
 
 #define DELAY_ACTION_TAG 141
 #define ACTION_TAG 142
@@ -145,6 +146,10 @@
     sprite.position = [self pointFromLocation:[self location]];
     [self addChild:sprite];
     
+    
+    [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"move"];
+    NSLog(@"MOve Efekti çalması gerek.");
+    
     switch ([self direction]) {
         case RIGHT:
             location = LocationMake(self.location.x + size, self.location.y);
@@ -240,6 +245,7 @@
         else {
             float delayConstant = lastSize < [self getSize] ? (i-min) : (max-i);
             [self backgroundAtOrder:i+1 withDuration:0.5f withDelay:delayConstant*0.2f];
+            
         }
     }
     
@@ -294,6 +300,9 @@
             mySpray.tag = 100+order;
             [mySpray callScheduleSprayingWithDelay:delay];
             [self addChild:mySpray];
+            
+            [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"fiskiye"];
+            NSLog(@"fiksiye efekti çalması gerek.");
             
             delay += 1.0;
             [backSprite1 runAction:  [self fadeInSequenceWithDelay:duration*0.0f+delay withDuration:duration]];

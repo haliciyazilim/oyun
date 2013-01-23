@@ -17,6 +17,8 @@
     
 }
 
+@property NSArray* products;
+
 +(CCScene *) scene;
 
 - (void) closeStore;

@@ -124,7 +124,6 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
-    
     NSLog(@"Loaded list of products...");
     _productsRequest = nil;
     
@@ -142,7 +141,7 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
-    
+    NSLog(@"**********entered didFailWithError");
     NSLog(@"Failed to load list of products.");
     _productsRequest = nil;
     

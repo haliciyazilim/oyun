@@ -11,3 +11,7 @@
 "NEW_GAME" = "Yeni Oyun";
 "CURRENCY" = "TL";
 "TAP_TO_START" = "Başlamak için dokununuz";
+"COULD_NOT_MAKE_PURCHASES" = "Tam sürümü edinebilmek için Ayarlar uygulamasından Uygulama İçi Alım seçeneğini etkinleştirmeniz gerekmektedir.";
+"IN_APP_PURCHASES" = "Uygulama İçi Alım";
+"OK" = "Tamam";
+"CONNECTION_ERROR" = "Bağlantı hatası oluştu. Lütfen daha sonra tekrar deneyiniz.";
