@@ -69,7 +69,7 @@
                                                                       buttonSize.width,
                                                                       buttonSize.height)];
         
-        button.tag = index;
+        button.tag = [map.mapId intValue];
         [button setBackgroundImage:[UIImage imageNamed:@"level_bg.png"] forState:UIControlStateNormal];
         [button setBackgroundImage:[UIImage imageNamed:@"level_bg_selected.png"] forState:UIControlStateHighlighted];
         [scrollView addSubview:button];
@@ -153,7 +153,7 @@
 -(void)onClick:(UIButton*)button
 {
 //    NSLog(@"button tag: %d",button.tag);
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"haydn_%d",button.tag]] withColor:ccWHITE]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"%d",button.tag]] withColor:ccWHITE]];
     [scrollView removeFromSuperview];
     [maskView removeFromSuperview];
     [leafView removeFromSuperview];
