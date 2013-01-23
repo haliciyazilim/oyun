@@ -67,7 +67,7 @@
     return storeView;
 }
 - (void)closeStore {
-    [(MapSelectionLayer *)self.callerLayer closeStore];
+    [self.callerLayer closeStore];
 }
 
 @end

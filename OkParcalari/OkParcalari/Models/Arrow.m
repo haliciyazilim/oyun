@@ -46,7 +46,9 @@
 }
 
 - (void)setEndLocation:(Location)endLocation {
-    
+    if(self.endLocation.x == endLocation.x && self.endLocation.y == endLocation.y){
+        return;
+    }
     Direction direction = DirectionFromTwoLocations(self.location, endLocation);
     if(direction != NONE && direction != self.direction)
         return;
@@ -147,9 +149,6 @@
     [self addChild:sprite];
     
     
-    [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"move"];
-    NSLog(@"MOve Efekti çalması gerek.");
-    
     switch ([self direction]) {
         case RIGHT:
             location = LocationMake(self.location.x + size, self.location.y);
@@ -174,6 +173,12 @@
     sprite.tag = 40;
     sprite.position = [self pointFromLocation:location];
     [self addChild:sprite];
+    
+    if([self direction] != NONE){
+        NSLog(@"%d",[self direction]);
+        [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"move"];
+        NSLog(@"MOve Efekti çalması gerek.");
+    }
     
     
     sprite = [CCSprite spriteWithFile:@"arrow_base_fiskiye.png"];

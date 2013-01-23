@@ -41,6 +41,10 @@
 		05070B1716A048F1009A2004 /* mainLayer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 05070B1616A048F1009A2004 /* mainLayer.ccbi */; };
 		050F5892168305B400618D14 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050F5891168305B400618D14 /* StoreKit.framework */; };
 		051F135816A6A9AE002E1FA4 /* jungle_01.caff in Resources */ = {isa = PBXBuildFile; fileRef = 051F135716A6A9AE002E1FA4 /* jungle_01.caff */; };
+		0544506B16AFE6CB00AF38EC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0544506716AFE6CB00AF38EC /* Icon-72.png */; };
+		0544506C16AFE6CB00AF38EC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0544506816AFE6CB00AF38EC /* Icon-72@2x.png */; };
+		0544506D16AFE6CB00AF38EC /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 0544506916AFE6CB00AF38EC /* Icon-Small-50.png */; };
+		0544506E16AFE6CB00AF38EC /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0544506A16AFE6CB00AF38EC /* Icon-Small-50@2x.png */; };
 		05450BDC16A545580096FAC3 /* logo_araiplik-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05450BA816A545580096FAC3 /* logo_araiplik-ipadhd.png */; };
 		05450BDD16A545580096FAC3 /* logo_araiplik.png in Resources */ = {isa = PBXBuildFile; fileRef = 05450BA916A545580096FAC3 /* logo_araiplik.png */; };
 		05450BDE16A545580096FAC3 /* logo_ustiplik-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05450BAA16A545580096FAC3 /* logo_ustiplik-ipadhd.png */; };
@@ -1193,6 +1197,10 @@
 		05070B1616A048F1009A2004 /* mainLayer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainLayer.ccbi; sourceTree = "<group>"; };
 		050F5891168305B400618D14 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		051F135716A6A9AE002E1FA4 /* jungle_01.caff */ = {isa = PBXFileReference; lastKnownFileType = file; path = jungle_01.caff; sourceTree = "<group>"; };
+		0544506716AFE6CB00AF38EC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/Icon-72.png"; sourceTree = "<group>"; };
+		0544506816AFE6CB00AF38EC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "Resources/Icon-72@2x.png"; sourceTree = "<group>"; };
+		0544506916AFE6CB00AF38EC /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Resources/Icon-Small-50.png"; sourceTree = "<group>"; };
+		0544506A16AFE6CB00AF38EC /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50@2x.png"; path = "Resources/Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		05450BA816A545580096FAC3 /* logo_araiplik-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_araiplik-ipadhd.png"; sourceTree = "<group>"; };
 		05450BA916A545580096FAC3 /* logo_araiplik.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_araiplik.png; sourceTree = "<group>"; };
 		05450BAA16A545580096FAC3 /* logo_ustiplik-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_ustiplik-ipadhd.png"; sourceTree = "<group>"; };
@@ -2890,6 +2898,10 @@
 		410AA1421670D9B600F6DCCA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0544506716AFE6CB00AF38EC /* Icon-72.png */,
+				0544506816AFE6CB00AF38EC /* Icon-72@2x.png */,
+				0544506916AFE6CB00AF38EC /* Icon-Small-50.png */,
+				0544506A16AFE6CB00AF38EC /* Icon-Small-50@2x.png */,
 				051F135416A6A788002E1FA4 /* music */,
 				41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */,
 				05A38C01169451D3005ADBED /* Info.plist */,
@@ -5302,6 +5314,10 @@
 				AEF476F016AFD29A003EA995 /* 10098.gamemap in Resources */,
 				AEF476F116AFD29A003EA995 /* 10099.gamemap in Resources */,
 				AEF476F216AFD29A003EA995 /* standart.packageinfo in Resources */,
+				0544506B16AFE6CB00AF38EC /* Icon-72.png in Resources */,
+				0544506C16AFE6CB00AF38EC /* Icon-72@2x.png in Resources */,
+				0544506D16AFE6CB00AF38EC /* Icon-Small-50.png in Resources */,
+				0544506E16AFE6CB00AF38EC /* Icon-Small-50@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
