@@ -19,6 +19,10 @@
 @dynamic packageId;
 @dynamic score;
 @dynamic isFinished;
+@dynamic difficulty;
+@dynamic stepCount;
+@dynamic tileCount;
+@dynamic order;
 
 @synthesize isPurchased;
 @synthesize isLocked;

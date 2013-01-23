@@ -44,7 +44,7 @@
     CGFloat topMargin = 31.0;
     CGFloat contentLeftPadding = 400.0;
     
-    NSArray* maps = [ArrowGameMap loadMapsFromFile:@"haydn"];
+    NSArray* maps = [ArrowGameMap loadMapsFromFile:@"standart"];
     [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount)+unitSize.width*0.5+contentLeftPadding, unitSize.height*rowCount)];
     
     
@@ -74,16 +74,16 @@
         
         index++;
         
-        if(index < 10){
-            UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",index]]];
+        if(map.order < 10){
+            UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",map.order]]];
 //            CGRect rect = CGRectMake(40.0, 20.0, view.image.size.width, view.image.size.height);
             view.frame = CGRectMake((float)(buttonSize.width - view.image.size.width) * 0.5+5.0, topMargin, view.image.size.width, view.image.size.height);
 //            NSLog(@"buttonSize.width: %f, view.image.size.width",buttonSize.width);
             [button addSubview:view];
         }
         else{
-            UIImageView* firstDigit  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",index/10]]];
-            UIImageView* secondDigit = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",index%10]]];
+            UIImageView* firstDigit  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",map.order/10]]];
+            UIImageView* secondDigit = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",map.order%10]]];
             CGFloat width = firstDigit.image.size.width + secondDigit.image.size.width;
             firstDigit.frame  = CGRectMake((buttonSize.width - width) * 0.5 + 5.0, topMargin, firstDigit.image.size.width,firstDigit.image.size.height);
             secondDigit.frame = CGRectMake((buttonSize.width - width) * 0.5 + 5.0 + firstDigit.image.size.width, topMargin, secondDigit.image.size.width,secondDigit.image.size.height);

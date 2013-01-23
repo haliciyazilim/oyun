@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+typedef enum MAP_DIFFICULTY {
+    EASY = 1,
+    NORMAL = 2,
+    HARD = 3,
+    INSANE = 4
+    } MAP_DIFFICULTY;
+
 @interface MapPackage
 
 @property NSString* name;
@@ -23,6 +30,11 @@
 @property NSString *packageId;
 @property NSNumber *score;
 @property BOOL isFinished;
+@property MAP_DIFFICULTY difficulty;
+@property int stepCount;
+@property int tileCount;
+@property int order;
+
 
 @property BOOL isPurchased;
 @property BOOL isLocked;

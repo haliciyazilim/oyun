@@ -35,7 +35,7 @@
     
     [GreenTheGardenIAPHelper sharedInstance];
     [GreenTheGardenSoundManager sharedSoundManager];
-    
+//    [[DatabaseManager sharedInstance] ]
 //    [CDAudioManager configure:kAMM_FxPlusMusic];
 //    if (otherAudioIsPlaying) {
 //        [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryAmbient error: nil];

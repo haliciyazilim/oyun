@@ -15,9 +15,11 @@
 #import "CCBReader.h"
 #import "Squirt.h"
 #import "CCBAnimationManager.h"
-#import "MapSelectionCollectionViewController.h"
 #import "MapSelectionLayer.h"
 #import "GreenTheGardenSoundManager.h"
+
+#import "AchievementManager.h"
+#import "GreenTheGardenAppSpecificValues.h"
 
 @implementation ArrowGameLayer
 {
@@ -211,6 +213,11 @@
 }
 -(void) gameEnded
 {
+    AchievementManager *achievement=[[AchievementManager alloc]init];
+    //[achievement getAchievements];
+    
+    [achievement submitAchievement:kAchievementWarmingUp percentComplete:50.0];
+    
     NSLog(@"entered gameEnded");
 }
 @end

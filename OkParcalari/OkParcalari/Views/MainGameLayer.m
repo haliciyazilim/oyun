@@ -14,6 +14,9 @@
 #import "CCBAnimationManager.h"
 //#import "Util.h"
 
+#import "AchievementManager.h"
+#import "GreenTheGardenAppSpecificValues.h"
+
 @implementation MainGameLayer{
     CCSprite *newGameButton;
     CCLabelTTF *tapToStart;
@@ -39,6 +42,18 @@
     [super onEnter];
     CGSize size = [[CCDirector sharedDirector] winSize];
     [[GameCenterManager sharedInstance] authenticateLocalUser];
+    
+    //
+    
+    
+    
+    AchievementManager *achievement=[[AchievementManager alloc]init];
+    [achievement getAchievements];
+    
+    //[achievement submitAchievement:kAchievementWarmingUp percentComplete:50.0];
+    
+    //
+    
     
     CCLayerColor *colorLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
     colorLayer.position = ccp(size.width*0.0,size.height*0.0);

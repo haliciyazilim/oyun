@@ -98,13 +98,17 @@ static DatabaseManager *sharedInstance = nil;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map"
                                               inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entity];
-    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
                               @"packageId == %@", packageId];
     [request setPredicate:predicate];
     
+    
     NSError *error = nil;
-    return [self.managedObjectContext executeFetchRequest:request error:&error];
+    NSArray* result =  [self.managedObjectContext executeFetchRequest:request error:&error];
+    result = [result sortedArrayUsingComparator:^NSComparisonResult(Map *obj1, Map *obj2) {
+        return obj1.order - obj2.order;      
+    }];
+    return result;
 }
 
 - (void)insertMaps:(NSArray *)maps forPackage:(NSString *)packageId {
@@ -114,7 +118,10 @@ static DatabaseManager *sharedInstance = nil;
         [aMap setIsFinished:NO];
         [aMap setPackageId:packageId];
         [aMap setMapId:mapId];
-        [aMap setScore:[NSNumber numberWithInt:INT16_MAX]];
+        [aMap setScore:[NSNumber numberWithInt:INT32_MAX]];
+        [aMap setDifficulty:-1];
+        [aMap setStepCount:-1];
+        [aMap setTileCount:0];
     }
     [self saveContext];
 }
