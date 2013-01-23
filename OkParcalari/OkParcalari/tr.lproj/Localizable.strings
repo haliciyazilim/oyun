@@ -15,3 +15,4 @@
 "IN_APP_PURCHASES" = "Uygulama İçi Alım";
 "OK" = "Tamam";
 "CONNECTION_ERROR" = "Bağlantı hatası oluştu. Lütfen daha sonra tekrar deneyiniz.";
+"SERVER_ERROR" = "sadasd";

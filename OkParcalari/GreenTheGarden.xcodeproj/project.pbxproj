@@ -100,6 +100,7 @@
 		05450C1216A545750096FAC3 /* LOGOAnimation.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 05450C1116A545750096FAC3 /* LOGOAnimation.ccbi */; };
 		05642F5F16A56FF600B8E206 /* GreenTheGardenSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05642F5E16A56FF600B8E206 /* GreenTheGardenSoundManager.m */; };
 		0572091716AD958300FC02E1 /* ingame_menu_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572091616AD958300FC02E1 /* ingame_menu_frame@2x.png */; };
+		0572C10B16AFF71F00B9BF9D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572C10A16AFF71F00B9BF9D /* Reachability.m */; };
 		0576EC8B169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC67169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png */; };
 		0576EC8C169EE05F00D6EF4A /* ingame_menu_btnbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC68169EE05F00D6EF4A /* ingame_menu_btnbg.png */; };
 		0576EC8D169EE05F00D6EF4A /* ingame_menu_frame-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC69169EE05F00D6EF4A /* ingame_menu_frame-ipadhd.png */; };
@@ -1257,6 +1258,8 @@
 		05642F5D16A56FF600B8E206 /* GreenTheGardenSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenTheGardenSoundManager.h; sourceTree = "<group>"; };
 		05642F5E16A56FF600B8E206 /* GreenTheGardenSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenTheGardenSoundManager.m; sourceTree = "<group>"; };
 		0572091616AD958300FC02E1 /* ingame_menu_frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_menu_frame@2x.png"; sourceTree = "<group>"; };
+		0572C10916AFF71F00B9BF9D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		0572C10A16AFF71F00B9BF9D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		0576EC67169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_menu_btnbg-ipadhd.png"; sourceTree = "<group>"; };
 		0576EC68169EE05F00D6EF4A /* ingame_menu_btnbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_menu_btnbg.png; sourceTree = "<group>"; };
 		0576EC69169EE05F00D6EF4A /* ingame_menu_frame-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_menu_frame-ipadhd.png"; sourceTree = "<group>"; };
@@ -2692,6 +2695,8 @@
 				05A38931169451D2005ADBED /* Stopwatch.m */,
 				05A38932169451D2005ADBED /* Util.h */,
 				05A38933169451D2005ADBED /* Util.m */,
+				0572C10916AFF71F00B9BF9D /* Reachability.h */,
+				0572C10A16AFF71F00B9BF9D /* Reachability.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -5473,6 +5478,7 @@
 				AEB8D28B16A456D000262CF5 /* SoundManager.m in Sources */,
 				05642F5F16A56FF600B8E206 /* GreenTheGardenSoundManager.m in Sources */,
 				05FE671716AEBD8600CCCD0C /* AchievementManager.m in Sources */,
+				0572C10B16AFF71F00B9BF9D /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
