@@ -14,6 +14,9 @@
 #import "Stopwatch.h"
 #import "WaterSpray.h"
 
+#import "AchievementManager.h"
+#import "GreenTheGardenAppSpecificValues.h"
+
 @interface ArrowGame()
 @property (readonly) GameMap* map;
 @end
@@ -101,6 +104,14 @@
         map.isFinished = YES;
         [[DatabaseManager sharedInstance] saveContext];
     }
+    NSLog(@"Oyun bitti.");
+    AchievementManager *achievement=[[AchievementManager alloc]init];
+    //[achievement getAchievements];
+    
+    [achievement submitAchievement:kAchievementWarmingUp percentComplete:50.0];
+    
+
+    
     
     return YES;
 }
