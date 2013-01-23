@@ -249,22 +249,53 @@
     [[GreenTheGardenIAPHelper sharedInstance] restoreCompletedTransactions];
 }
 -(void)addStore {
-    [[GreenTheGardenIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
-        NSLog(@"%d",success);
-        if(success){
-            _products = products;
-            [[GreenTheGardenIAPHelper sharedInstance] setCallerLayer:self];
-            store = [[GreenTheGardenIAPHelper sharedInstance] createStore];
-            [[[CCDirector sharedDirector] view] addSubview:store];
-        } else{
-            UIAlertView *couldNotGetProducts = [[UIAlertView alloc] initWithTitle:@""
-                                                                                 message:NSLocalizedString(@"CONNECTION_ERROR", nil)
-                                                                                delegate:self
-                                                                       cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                                       otherButtonTitles:nil,nil];
-            [couldNotGetProducts show];
-        }
-    }];
+    if(!self.reachability){
+        self.reachability = [Reachability reachabilityForInternetConnection];
+    }
+    NetworkStatus netStatus = [self.reachability currentReachabilityStatus];
+    if(netStatus == NotReachable){
+        UIAlertView *noConnection = [[UIAlertView alloc] initWithTitle:@""
+                                                                      message:NSLocalizedString(@"CONNECTION_ERROR", nil)
+                                                                     delegate:self
+                                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                            otherButtonTitles:nil,nil];
+        [noConnection show];
+    }
+    else{
+        UIView *storeView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
+        
+        UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingame_menu_frame.png"]];
+        UIImageView *backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_back.png"]];
+        [backView setFrame:CGRectMake(322.0, 231.0, 380.0, 306.0)];
+        
+        UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [activity setColor:[UIColor blackColor]];
+        [activity setHidesWhenStopped:YES];
+        [activity startAnimating];
+        activity.frame = CGRectMake(161.0, 115.0, 60.0, 60.0);
+        
+        [storeView addSubview:backgroundView];
+        [backView addSubview:activity];
+        [storeView addSubview:backView];
+        [[[CCDirector sharedDirector] view] addSubview:storeView];
+        [[GreenTheGardenIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+            if([products count] != 0){
+                [storeView removeFromSuperview];
+                _products = products;
+                [[GreenTheGardenIAPHelper sharedInstance] setCallerLayer:self];
+                store = [[GreenTheGardenIAPHelper sharedInstance] createStore];
+                [[[CCDirector sharedDirector] view] addSubview:store];
+            }
+            else{
+                UIAlertView *couldNotGetProducts = [[UIAlertView alloc] initWithTitle:@""
+                                                                                     message:NSLocalizedString(@"SERVER_ERROR", nil)
+                                                                                    delegate:self
+                                                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                                           otherButtonTitles:nil,nil];
+                [couldNotGetProducts show];
+            }
+        }];
+    }
     
 }
 - (void)closeStore {

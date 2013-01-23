@@ -11,6 +11,7 @@
 #import "Util.h"
 #import "ArrowGameMap.h"
 #import "ArrowGameLayer.h"
+#import "Reachability.h"
 
 @interface MapSelectionLayer : CCLayer
 {
@@ -18,6 +19,7 @@
 }
 
 @property NSArray* products;
+@property (strong, nonatomic) Reachability *reachability;
 
 +(CCScene *) scene;
 
