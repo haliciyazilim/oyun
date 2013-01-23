@@ -51,7 +51,7 @@
     
     
     int index = 0;
-    int nonPlayedActiveGameCount = 2;
+    int nonPlayedActiveGameCount = 5;
     for (Map* map in maps) {
         if(map.isFinished == NO){
             if(nonPlayedActiveGameCount > 0){

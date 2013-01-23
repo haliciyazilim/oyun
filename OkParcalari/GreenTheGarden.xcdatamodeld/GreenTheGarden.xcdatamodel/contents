@@ -3,6 +3,7 @@
     <entity name="Map" representedClassName="Map" syncable="YES">
         <attribute name="difficulty" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="isFinished" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isPurchased" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
         <attribute name="mapId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="packageId" optional="YES" attributeType="String" syncable="YES"/>
@@ -11,6 +12,6 @@
         <attribute name="tileCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Map" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="Map" positionX="160" positionY="192" width="128" height="180"/>
     </elements>
 </model>
