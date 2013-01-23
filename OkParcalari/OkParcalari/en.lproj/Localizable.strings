@@ -14,3 +14,4 @@
 "IN_APP_PURCHASES" = "In-App Purchases";
 "OK" = "OK";
 "CONNECTION_ERROR" = "There seems to be a connection error. Please try again later.";
+"SERVER_ERROR" = "asdasd";
