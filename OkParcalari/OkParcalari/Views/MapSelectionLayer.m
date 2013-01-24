@@ -240,6 +240,10 @@
             *stop = YES;
         }
     }];
+    
+    // do neccessary operations after product purchased here,
+    // close store,
+    // refresh map selection layer etc..
 
 }
 - (void)buyPro {
