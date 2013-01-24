@@ -22,6 +22,9 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVAudioSession.h>
 #import "SimpleAudioEngine.h"
+#import "GreenTheGardenGCSpecificValues.h"
+#import "AchievementManager.h"
+
 
 @implementation AppController
 
@@ -138,6 +141,10 @@
     [[GreenTheGardenSoundManager sharedSoundManager] stopBackgroundMusic];
     [SimpleAudioEngine end];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:[AchievementManager sharedAchievementManager] name:kAuthenticationChangedNotification object:nil];
+
+    
+    
 }
 
 // call got rejected
@@ -154,6 +161,8 @@
     } else {
         NSLog(@"Background music is playing");
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:[AchievementManager sharedAchievementManager] selector:@selector(loadAchievements) name:kAuthenticationChangedNotification object:nil];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application

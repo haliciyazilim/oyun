@@ -7,6 +7,7 @@
 //
 
 #import "GameCenterManager.h"
+#import "GreenTheGardenGCSpecificValues.h"
 
 @implementation GameCenterManager
 
@@ -64,7 +65,9 @@ static GameCenterManager *sharedManager = nil;
         NSLog(@"Authentication changed: player authenticated.");
         _isUserAuthenticated = TRUE;
         
-            [[GameCenterManager sharedInstance] getScores];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kAuthenticationChangedNotification object:nil userInfo:nil];
+        
+        [[GameCenterManager sharedInstance] getScores];
         
     } else if (![GKLocalPlayer localPlayer].isAuthenticated && _isUserAuthenticated) {
         NSLog(@"Authentication changed: player not authenticated");
