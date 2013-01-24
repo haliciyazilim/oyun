@@ -105,8 +105,6 @@
 		05642F5F16A56FF600B8E206 /* GreenTheGardenSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05642F5E16A56FF600B8E206 /* GreenTheGardenSoundManager.m */; };
 		0572091716AD958300FC02E1 /* ingame_menu_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572091616AD958300FC02E1 /* ingame_menu_frame@2x.png */; };
 		0572C10B16AFF71F00B9BF9D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572C10A16AFF71F00B9BF9D /* Reachability.m */; };
-		0572C12E16B03B9C00B9BF9D /* GKAchievementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572C12B16B03B9C00B9BF9D /* GKAchievementHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0572C12F16B03B9C00B9BF9D /* GKAchievementNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572C12D16B03B9C00B9BF9D /* GKAchievementNotification.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0576EC8B169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC67169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png */; };
 		0576EC8C169EE05F00D6EF4A /* ingame_menu_btnbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC68169EE05F00D6EF4A /* ingame_menu_btnbg.png */; };
 		0576EC8D169EE05F00D6EF4A /* ingame_menu_frame-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC69169EE05F00D6EF4A /* ingame_menu_frame-ipadhd.png */; };
@@ -1288,10 +1286,6 @@
 		0572091616AD958300FC02E1 /* ingame_menu_frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_menu_frame@2x.png"; sourceTree = "<group>"; };
 		0572C10916AFF71F00B9BF9D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		0572C10A16AFF71F00B9BF9D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		0572C12A16B03B9C00B9BF9D /* GKAchievementHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKAchievementHandler.h; sourceTree = "<group>"; };
-		0572C12B16B03B9C00B9BF9D /* GKAchievementHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKAchievementHandler.m; sourceTree = "<group>"; };
-		0572C12C16B03B9C00B9BF9D /* GKAchievementNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKAchievementNotification.h; sourceTree = "<group>"; };
-		0572C12D16B03B9C00B9BF9D /* GKAchievementNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKAchievementNotification.m; sourceTree = "<group>"; };
 		0576EC67169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_menu_btnbg-ipadhd.png"; sourceTree = "<group>"; };
 		0576EC68169EE05F00D6EF4A /* ingame_menu_btnbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_menu_btnbg.png; sourceTree = "<group>"; };
 		0576EC69169EE05F00D6EF4A /* ingame_menu_frame-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_menu_frame-ipadhd.png"; sourceTree = "<group>"; };
@@ -2766,10 +2760,6 @@
 		05A38934169451D2005ADBED /* GameCenter */ = {
 			isa = PBXGroup;
 			children = (
-				0572C12A16B03B9C00B9BF9D /* GKAchievementHandler.h */,
-				0572C12B16B03B9C00B9BF9D /* GKAchievementHandler.m */,
-				0572C12C16B03B9C00B9BF9D /* GKAchievementNotification.h */,
-				0572C12D16B03B9C00B9BF9D /* GKAchievementNotification.m */,
 				05A38935169451D2005ADBED /* GameCenterManager.h */,
 				05A38936169451D2005ADBED /* GameCenterManager.m */,
 				05FE671516AEBD8600CCCD0C /* AchievementManager.h */,
@@ -5584,8 +5574,6 @@
 				05642F5F16A56FF600B8E206 /* GreenTheGardenSoundManager.m in Sources */,
 				05FE671716AEBD8600CCCD0C /* AchievementManager.m in Sources */,
 				0572C10B16AFF71F00B9BF9D /* Reachability.m in Sources */,
-				0572C12E16B03B9C00B9BF9D /* GKAchievementHandler.m in Sources */,
-				0572C12F16B03B9C00B9BF9D /* GKAchievementNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
