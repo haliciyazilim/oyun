@@ -8,6 +8,7 @@
 
 #import "AchievementManager.h"
 #import "GameCenterManager.h"
+#import "GKAchievementHandler.h"
 //#import "GreenTheGardenAppSpecificValues.h"
 
 
@@ -48,6 +49,7 @@
         achievement.percentComplete = percent;
         [achievement reportAchievementWithCompletionHandler:^(NSError *error)
          {
+             [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"deneme title" andMessage:@"Earned 100 points online."];
              if (error != nil)
              {
                  NSLog(@"Error in reporting achievements: %@", error);

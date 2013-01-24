@@ -68,6 +68,9 @@
     NSNumberFormatter *priceFormatter = [[NSNumberFormatter alloc] init];
     [priceFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
     [priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    SKProduct *myProduct = [self.callerLayer.products objectAtIndex:0];
+    
+    [priceFormatter setLocale:myProduct.priceLocale];
     
     NSString *priceStr = [priceFormatter stringFromNumber:[[self.callerLayer.products objectAtIndex:0] price]];
     
