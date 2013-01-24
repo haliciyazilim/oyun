@@ -34,9 +34,9 @@ typedef enum MAP_DIFFICULTY {
 @property int stepCount;
 @property int tileCount;
 @property int order;
-
-
 @property BOOL isPurchased;
+
+
 @property BOOL isLocked;
 @property int  starCount;
 @property MapPackage* package;
