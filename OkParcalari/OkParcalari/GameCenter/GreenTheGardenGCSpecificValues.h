@@ -11,3 +11,6 @@
 // Achievements IDs
 #define kAchievementWarmingUp @"com.halici.GreenTheGarden.achievements.WarmingUp"
 #define kAchievementPathToStardom @"com.halici.GreenTheGarden.achievements.PathToStardom"
+
+// GameCemter NOtifications
+#define kAuthenticationChangedNotification @"AuthenticedChanged"
