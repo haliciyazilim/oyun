@@ -122,6 +122,7 @@ static DatabaseManager *sharedInstance = nil;
         [aMap setDifficulty:-1];
         [aMap setStepCount:-1];
         [aMap setTileCount:0];
+        [aMap setIsPurchased:NO];
     }
     [self saveContext];
 }

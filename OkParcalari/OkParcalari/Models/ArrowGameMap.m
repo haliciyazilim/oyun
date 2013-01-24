@@ -45,7 +45,7 @@
             NSLog(@"%@ content: %@",map.mapId,content);
             NSDictionary* jsonMap = [parser objectWithString:content];
             if([[jsonMap valueForKey:@"version"] intValue] == 1){
-                map.difficulty  = (MAP_DIFFICULTY)[[jsonMap valueForKey:@"difficulty"] intValue];
+                map.difficulty  = difficultyFromString([jsonMap valueForKey:@"difficulty"]);
                 map.stepCount   = [[jsonMap valueForKey:@"stepCount"] intValue];
                 map.tileCount   = [[jsonMap valueForKey:@"tileCount"] intValue];
             
