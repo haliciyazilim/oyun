@@ -17,4 +17,6 @@
 
 - (UIView *) createStore;
 
+- (BOOL) isPro;
+
 @end
