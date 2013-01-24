@@ -40,6 +40,10 @@
 		05070B1316A03B12009A2004 /* splash_spray.png in Resources */ = {isa = PBXBuildFile; fileRef = 05070B0D16A03B12009A2004 /* splash_spray.png */; };
 		05070B1716A048F1009A2004 /* mainLayer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 05070B1616A048F1009A2004 /* mainLayer.ccbi */; };
 		050F5892168305B400618D14 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050F5891168305B400618D14 /* StoreKit.framework */; };
+		0516437616B173FB000EBBE7 /* map_barbtn_gc.png in Resources */ = {isa = PBXBuildFile; fileRef = 0516437216B173FB000EBBE7 /* map_barbtn_gc.png */; };
+		0516437716B173FB000EBBE7 /* map_barbtn_gc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0516437316B173FB000EBBE7 /* map_barbtn_gc@2x.png */; };
+		0516437816B173FB000EBBE7 /* map_barbtn_gc_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 0516437416B173FB000EBBE7 /* map_barbtn_gc_hover.png */; };
+		0516437916B173FB000EBBE7 /* map_barbtn_gc_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0516437516B173FB000EBBE7 /* map_barbtn_gc_hover@2x.png */; };
 		051F135816A6A9AE002E1FA4 /* jungle_01.caff in Resources */ = {isa = PBXBuildFile; fileRef = 051F135716A6A9AE002E1FA4 /* jungle_01.caff */; };
 		0544506B16AFE6CB00AF38EC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0544506716AFE6CB00AF38EC /* Icon-72.png */; };
 		0544506C16AFE6CB00AF38EC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0544506816AFE6CB00AF38EC /* Icon-72@2x.png */; };
@@ -1217,6 +1221,10 @@
 		05070B1616A048F1009A2004 /* mainLayer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainLayer.ccbi; sourceTree = "<group>"; };
 		050F5891168305B400618D14 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0516436916B159FD000EBBE7 /* GreenTheGardenIAPSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenTheGardenIAPSpecificValues.h; sourceTree = "<group>"; };
+		0516437216B173FB000EBBE7 /* map_barbtn_gc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_barbtn_gc.png; sourceTree = "<group>"; };
+		0516437316B173FB000EBBE7 /* map_barbtn_gc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_barbtn_gc@2x.png"; sourceTree = "<group>"; };
+		0516437416B173FB000EBBE7 /* map_barbtn_gc_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_barbtn_gc_hover.png; sourceTree = "<group>"; };
+		0516437516B173FB000EBBE7 /* map_barbtn_gc_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_barbtn_gc_hover@2x.png"; sourceTree = "<group>"; };
 		051F135716A6A9AE002E1FA4 /* jungle_01.caff */ = {isa = PBXFileReference; lastKnownFileType = file; path = jungle_01.caff; sourceTree = "<group>"; };
 		0544506716AFE6CB00AF38EC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/Icon-72.png"; sourceTree = "<group>"; };
 		0544506816AFE6CB00AF38EC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "Resources/Icon-72@2x.png"; sourceTree = "<group>"; };
@@ -2608,6 +2616,18 @@
 			path = Resources/images/theme_fiskiye/splash;
 			sourceTree = "<group>";
 		};
+		0516437116B173FB000EBBE7 /* game_center */ = {
+			isa = PBXGroup;
+			children = (
+				0516437216B173FB000EBBE7 /* map_barbtn_gc.png */,
+				0516437316B173FB000EBBE7 /* map_barbtn_gc@2x.png */,
+				0516437416B173FB000EBBE7 /* map_barbtn_gc_hover.png */,
+				0516437516B173FB000EBBE7 /* map_barbtn_gc_hover@2x.png */,
+			);
+			name = game_center;
+			path = Resources/images/theme_fiskiye/game_center;
+			sourceTree = "<group>";
+		};
 		051F135416A6A788002E1FA4 /* music */ = {
 			isa = PBXGroup;
 			children = (
@@ -2690,6 +2710,7 @@
 			isa = PBXGroup;
 			children = (
 				05CEDA1316AE818300C7FAF2 /* YOU_WIN.png */,
+				0516437116B173FB000EBBE7 /* game_center */,
 				05D6F31816AD6EED004F6EF4 /* in_app_store */,
 				05450BA716A545580096FAC3 /* logo */,
 				AE2DDBF116A05BB6001BEFAC /* map_selection */,
@@ -5403,6 +5424,10 @@
 				05F3853416B12E3A00E7D2E9 /* gk-icon@2x.png in Resources */,
 				05F3853516B12E3A00E7D2E9 /* gk-notification.png in Resources */,
 				05F3853616B12E3A00E7D2E9 /* gk-notification@2x.png in Resources */,
+				0516437616B173FB000EBBE7 /* map_barbtn_gc.png in Resources */,
+				0516437716B173FB000EBBE7 /* map_barbtn_gc@2x.png in Resources */,
+				0516437816B173FB000EBBE7 /* map_barbtn_gc_hover.png in Resources */,
+				0516437916B173FB000EBBE7 /* map_barbtn_gc_hover@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
