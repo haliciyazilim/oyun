@@ -14,7 +14,10 @@ typedef enum MAP_DIFFICULTY {
     NORMAL = 2,
     HARD = 3,
     INSANE = 4
-    } MAP_DIFFICULTY;
+} MAP_DIFFICULTY;
+MAP_DIFFICULTY difficultyFromString(NSString* string);
+NSString* stringOfDifficulty(MAP_DIFFICULTY difficulty);
+
 
 @interface MapPackage
 

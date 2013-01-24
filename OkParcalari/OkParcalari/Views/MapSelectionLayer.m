@@ -22,6 +22,10 @@
     CGSize unitSize;
     CGSize buttonSize;
     NSString* packageFileName;
+    CGFloat topMargin;
+    CGFloat contentLeftPadding;
+    UIImage* passiveStar;
+    UIImage* activeStar;
 //    NSArray *_products;
     int rowCount;
 }
@@ -41,139 +45,18 @@
 	return scene;
 }
 
-- (void) loadMapIcons
-{
-    CGFloat topMargin = 31.0;
-    CGFloat contentLeftPadding = 400.0;
-    
-    NSArray* maps = [ArrowGameMap loadMapsFromFile:@"standart"];
-    [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount)+unitSize.width*0.5+contentLeftPadding, unitSize.height*rowCount)];
-    
-    
-    int index = 0;
-    int nonPlayedActiveGameCount = 5;
-    for (Map* map in maps) {
-        if(map.isFinished == NO){
-            if(nonPlayedActiveGameCount > 0){
-                map.isNotPlayedActiveGame = YES;
-                nonPlayedActiveGameCount--;
-                map.isLocked = NO;
-            }
-            else
-                map.isLocked = YES;
-        }
-        
-        UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(
-                                                                      (index/rowCount)*unitSize.width + (index%rowCount == 1 ? unitSize.width*0.5 : 0)+contentLeftPadding,
-                                                                      (index%rowCount)*unitSize.height,
-                                                                      buttonSize.width,
-                                                                      buttonSize.height)];
-        
-        button.tag = [map.mapId intValue];
-        [button setBackgroundImage:[UIImage imageNamed:@"level_bg.png"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"level_bg_selected.png"] forState:UIControlStateHighlighted];
-        [scrollView addSubview:button];
-        
-        index++;
-        
-        if(map.order < 10){
-            UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",map.order]]];
-            //            CGRect rect = CGRectMake(40.0, 20.0, view.image.size.width, view.image.size.height);
-            view.frame = CGRectMake((float)(buttonSize.width - view.image.size.width) * 0.5+5.0, topMargin, view.image.size.width, view.image.size.height);
-            //            NSLog(@"buttonSize.width: %f, view.image.size.width",buttonSize.width);
-            [button addSubview:view];
-        }
-        else{
-            UIImageView* firstDigit  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",map.order/10]]];
-            UIImageView* secondDigit = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",map.order%10]]];
-            CGFloat width = firstDigit.image.size.width + secondDigit.image.size.width;
-            firstDigit.frame  = CGRectMake((buttonSize.width - width) * 0.5 + 5.0, topMargin, firstDigit.image.size.width,firstDigit.image.size.height);
-            secondDigit.frame = CGRectMake((buttonSize.width - width) * 0.5 + 5.0 + firstDigit.image.size.width, topMargin, secondDigit.image.size.width,secondDigit.image.size.height);
-            [button addSubview:firstDigit];
-            [button addSubview:secondDigit];
-        }
-        
-        UIImage* passiveStar = [UIImage imageNamed:@"level_star_passive.png"];
-        UIImage* activeStar  = [UIImage imageNamed:@"level_star_active.png"];
-        //        NSLog(@"buttonSize.width: %f, passiveStar.size.width * 3: %f ",buttonSize.width,passiveStar.size.width*3);
-        
-        
-        if(map.isLocked){
-            UIImageView* passiveLayer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"level_bg_pasive.png"]];
-            [button addSubview:passiveLayer];
-            UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"level_locked.png"]];
-            lock.frame = CGRectMake(buttonSize.width*0.5 - lock.image.size.width*0.5 + 5.0, buttonSize.height * 0.5 , lock.image.size.width , lock.image.size.height);
-            [button addSubview:lock];
-            
-        }
-        else {
-            
-            [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-            //            [button addTarget:self action:@selector(onDown:) forControlEvents:UIControlEventTouchDown] ;
-            if(map.isFinished){
-                int score = [map.score intValue];
-                map.starCount = score < 60 ? 3 : (score < 120 ? 2 : ( score < 300 ? 1 : 0));
-                NSLog(@"score: %d",score);
-                for(int i=0;i<3;i++){
-                    UIImageView* view;
-                    if(i < map.starCount)
-                        view = [[UIImageView alloc] initWithImage:activeStar];
-                    else
-                        view = [[UIImageView alloc] initWithImage:passiveStar];
-                    view.frame = CGRectMake((buttonSize.width - passiveStar.size.width * 3) * 0.5 + 5.0 + passiveStar.size.width * i, buttonSize.height - passiveStar.size.height - 20.0, passiveStar.size.width, passiveStar.size.height);
-                    [button addSubview:view];
-                }
-            }
-        }
-        
-        /*<[[TEST*/
-        //delete after testing
-        [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-        /*TEST]]>*/
-        
-    }
-
-}
-
-- (void)onEnter{
-    [self loadMapIcons];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
-    
-}
-
-- (void)onExit {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:IAPHelperProductPurchasedNotification object:nil];
-}
-
--(void)onDown:(UIButton*)button
-{
-    [button setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"level_bg_selected.png"]]];
-}
-
--(void)onClick:(UIButton*)button
-{
-//    NSLog(@"button tag: %d",button.tag);
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"%d",button.tag]] withColor:ccWHITE]];
-    [scrollView removeFromSuperview];
-    [maskView removeFromSuperview];
-    [leafView removeFromSuperview];
-    [barView removeFromSuperview];
-    [self removeFromParentAndCleanup:YES];
-}
-
-- (void) setPackage:(NSString*)package
-{
-    packageFileName = package;
-}
-
 -(id) init
 {
     if(self = [super init]){
         packageFileName = @"standart";
-//        CGSize size = [[CCDirector sharedDirector] winSize];
-        buttonSize = CGSizeMake(158.0, 182.0);
-        unitSize = CGSizeMake(180.0, 190.0);
-        rowCount = 2;
+        //        CGSize size = [[CCDirector sharedDirector] winSize];
+        buttonSize = CGSizeMake(111.0, 128.0);
+        unitSize = CGSizeMake(120.0, 135.0);
+        topMargin = 31.0;
+        contentLeftPadding = 400.0;
+        rowCount = 3;
+        passiveStar = [UIImage imageNamed:@"level_star_passive.png"];
+        activeStar  = [UIImage imageNamed:@"level_star_active.png"];
         
         maskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_masklayer.png"]];
         
@@ -217,7 +100,7 @@
             [musicButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_on.png"] forState:UIControlStateHighlighted];
         }
         [musicButton addTarget:self action:@selector(musicClicked:) forControlEvents:UIControlEventTouchUpInside];
-
+        
         [barView addSubview:infoButton];
         [barView addSubview:fxButton];
         [barView addSubview:musicButton];
@@ -231,6 +114,155 @@
     }
     return self;
 }
+
+
+- (UIButton*) buttonForMap:(Map*)map atIndex:(int)index
+{
+    
+    UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(
+                                                           (index/rowCount)*unitSize.width + (unitSize.width*0.5*(index%rowCount))+contentLeftPadding,
+                                                           (index%rowCount)*unitSize.height,
+                                                           buttonSize.width,
+                                                           buttonSize.height)];
+    button.tag = [map.mapId intValue];
+//    NSLog(@"map_%@_bg.png: %d",stringOfDifficulty(map.difficulty),map.difficulty);
+    [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"map_%@_bg.png",stringOfDifficulty(map.difficulty)]] forState:UIControlStateNormal];
+    
+    [scrollView addSubview:button];
+    if(map.order < 10){
+        UIImageView* view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",map.order]]];
+        view.frame = CGRectMake((float)(buttonSize.width - view.image.size.width) * 0.5+5.0, topMargin, view.image.size.width, view.image.size.height);
+        [button addSubview:view];
+    }
+    else{
+        UIImageView* firstDigit  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",map.order/10]]];
+        UIImageView* secondDigit = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_num_%d.png",map.order%10]]];
+        CGFloat width = firstDigit.image.size.width + secondDigit.image.size.width;
+        firstDigit.frame  = CGRectMake((buttonSize.width - width) * 0.5 + 5.0, topMargin, firstDigit.image.size.width,firstDigit.image.size.height);
+        secondDigit.frame = CGRectMake((buttonSize.width - width) * 0.5 + 5.0 + firstDigit.image.size.width, topMargin, secondDigit.image.size.width,secondDigit.image.size.height);
+        [button addSubview:firstDigit];
+        [button addSubview:secondDigit];
+    }
+    if(!map.isPurchased){
+        [button addTarget:self action:@selector(addStore) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else if(map.isLocked){
+        UIImageView* passiveLayer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"map_%@_mask.png",stringOfDifficulty(map.difficulty)]]];
+//        [passiveLayer setFrame:CGRectMake(20.0, 20.0, passiveLayer.image.size.width, passiveLayer.image.size.height)];
+        [passiveLayer setAlpha:0.7];
+        [button addSubview:passiveLayer];
+        
+        UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"level_locked.png"]];
+        lock.frame = CGRectMake(buttonSize.width*0.5 - lock.image.size.width*0.5 + 5.0, buttonSize.height * 0.5 , lock.image.size.width , lock.image.size.height);
+        [button addSubview:lock];
+        
+    }
+    else {
+        
+        [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if(map.isFinished){
+            int score = [map.score intValue];
+            map.starCount = score < 60 ? 3 : (score < 120 ? 2 : ( score < 300 ? 1 : 0));
+            NSLog(@"score: %d",score);
+            for(int i=0;i<3;i++){
+                UIImageView* view;
+                if(i < map.starCount)
+                    view = [[UIImageView alloc] initWithImage:activeStar];
+                else
+                    view = [[UIImageView alloc] initWithImage:passiveStar];
+                view.frame = CGRectMake((buttonSize.width - passiveStar.size.width * 3) * 0.5 + 5.0 + passiveStar.size.width * i, buttonSize.height - passiveStar.size.height - 20.0, passiveStar.size.width, passiveStar.size.height);
+                [button addSubview:view];
+            }
+        }
+    }
+    
+
+    return button;
+}
+
+-(void) refreshScrollView
+{
+    for (UIView* view in scrollView.subviews) {
+        if([view isKindOfClass:[UIButton class]]){
+            [view removeFromSuperview];
+        }
+    }
+    
+    [self loadMapIcons];
+
+    
+}
+
+- (void) loadMapIcons
+{
+    NSArray* maps = [ArrowGameMap loadMapsFromFile:@"standart"];
+    [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount)+unitSize.width*0.5+contentLeftPadding, unitSize.height*rowCount)];
+    [scrollView setFrame:CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.contentSize.height)];
+    int index = 0;
+    int nonPlayedActiveGameCount = 5;
+    int freeMapsCount = 5;
+    for (Map* map in maps) {
+        if(freeMapsCount > 0){
+            map.isPurchased = YES;
+            freeMapsCount--;
+        }
+        if(map.isFinished == NO){
+            if(nonPlayedActiveGameCount > 0){
+                map.isNotPlayedActiveGame = YES;
+                nonPlayedActiveGameCount--;
+                map.isLocked = NO;
+            }
+            else
+                map.isLocked = YES;
+        }
+        
+        NSLog(@"difficulty: %@",stringOfDifficulty(map.difficulty));
+        
+        [self buttonForMap:map atIndex:index];
+        
+        
+                
+        /*<[[TEST*/
+        //delete after testing
+//        [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+        /*TEST]]>*/
+        index++;
+    }
+
+}
+
+- (void)onEnter{
+    [self loadMapIcons];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+    
+}
+
+- (void)onExit {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:IAPHelperProductPurchasedNotification object:nil];
+}
+
+-(void)onDown:(UIButton*)button
+{
+    [button setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"level_bg_selected.png"]]];
+}
+
+-(void)onClick:(UIButton*)button
+{
+//    NSLog(@"button tag: %d",button.tag);
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"%d",button.tag]] withColor:ccWHITE]];
+    [scrollView removeFromSuperview];
+    [maskView removeFromSuperview];
+    [leafView removeFromSuperview];
+    [barView removeFromSuperview];
+    [self removeFromParentAndCleanup:YES];
+}
+
+- (void) setPackage:(NSString*)package
+{
+    packageFileName = package;
+}
+
 - (void)productPurchased:(NSNotification *)notification {
 
     NSString * productIdentifier = notification.object;
