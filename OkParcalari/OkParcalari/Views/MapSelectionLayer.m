@@ -399,6 +399,7 @@
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
 {
     [tempVC dismissModalViewControllerAnimated:YES];
+    [tempVC.view removeFromSuperview];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
