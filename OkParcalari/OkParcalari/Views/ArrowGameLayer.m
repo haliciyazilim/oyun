@@ -222,6 +222,9 @@ static ArrowGameLayer* __lastInstance;
     self.isTouchEnabled = YES;
 }
 - (void) returnToMainMenu {
+    if(gameWinView){
+        [gameWinView removeFromSuperview];
+    }
     [self.arrowGame cleanMap];
     [self.arrowGame removeFromParentAndCleanup:YES];
     [self removeFromParentAndCleanup:YES];
@@ -229,6 +232,7 @@ static ArrowGameLayer* __lastInstance;
 }
 -(void) gameEnded
 {
+    self.isTouchEnabled = NO;
     
     Map* map = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
     NSString *levelNumStr = [NSString stringWithFormat:@"%d",map.order];
@@ -284,6 +288,7 @@ static ArrowGameLayer* __lastInstance;
     [mainMenu setFrame:CGRectMake(19.0, 263.0, 139.0, 55.0)];
     [mainMenu setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_mainmenu", @"png")] forState:UIControlStateNormal];
     [mainMenu setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_mainmenu_hover", @"png")] forState:UIControlStateHighlighted];
+    [mainMenu addTarget:self action:@selector(returnToMainMenu) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *buttonsDot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_nokta.png"]];
     buttonsDot.frame = CGRectMake(153.0, 263.0, 20.0, 55.0);
@@ -309,13 +314,13 @@ static ArrowGameLayer* __lastInstance;
     [tweetButton addTarget:self action:@selector(shareOnTwitter) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *activeStar1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
-    activeStar1.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+    activeStar1.frame = CGRectMake(star1.center.x, star1.center.y, 0.0, 0.0);
     activeStar1.alpha = 0.0;
     UIImageView *activeStar2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
-    activeStar2.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+    activeStar2.frame = CGRectMake(star2.center.x, star2.center.y, 0.0, 0.0);
     activeStar2.alpha = 0.0;
     UIImageView *activeStar3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
-    activeStar3.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+    activeStar3.frame = CGRectMake(star3.center.x, star3.center.y, 0.0, 0.0);
     activeStar3.alpha = 0.0;
     
     [gameWinView addSubview:background];
@@ -344,40 +349,108 @@ static ArrowGameLayer* __lastInstance;
     [gameWinView addSubview:holderFrame];
     
     [[[CCDirector sharedDirector] view] addSubview:gameWinView];
-    
-    [UIView animateWithDuration:0.5 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        star1.alpha = 0.0;
-        star1.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+
+    // opacities
+    [UIView animateWithDuration:0.7 delay:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        activeStar1.alpha = 1.0;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            star2.alpha = 0.0;
-            star2.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+        ;
+    }];
+    [UIView animateWithDuration:0.7 delay:1.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        activeStar2.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        ;
+    }];
+    [UIView animateWithDuration:0.7 delay:1.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        activeStar3.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        ;
+    }];
+    /////////
+    // frames
+    [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        activeStar1.frame = CGRectMake(24.0, 11.0, 110.0, 107.0);
+    } completion:^(BOOL finished) {
+        [star1 removeFromSuperview];
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                star3.alpha = 0.0;
-                star3.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
-            } completion:^(BOOL finished) {
-                ;
-            }];
+            ;
         }];
     }];
-    
-    [UIView animateWithDuration:0.5 delay:1.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        activeStar1.alpha = 1.0;
-        activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
+    [UIView animateWithDuration:1.0 delay:1.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        activeStar2.frame = CGRectMake(111.0, -15.0, 110.0, 107.0);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            activeStar2.alpha = 1.0;
+        [star2 removeFromSuperview];
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                activeStar3.alpha = 1.0;
-                activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
-            } completion:^(BOOL finished) {
-                ;
-            }];
+            ;
         }];
     }];
+    [UIView animateWithDuration:1.0 delay:2.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        activeStar3.frame = CGRectMake(197.0, 11.0, 110.0, 107.0);
+    } completion:^(BOOL finished) {
+        [star3 removeFromSuperview];
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
+        } completion:^(BOOL finished) {
+            ;
+        }];
+    }];
+    ///////
+    
+    
+//    [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        activeStar1.alpha = 1.0;
+//        activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//            activeStar2.alpha = 1.0;
+//            activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//                activeStar3.alpha = 1.0;
+//                activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
+//            } completion:^(BOOL finished) {
+//                ;
+//            }];
+//        }];
+//    }];
+    
+//    [UIView animateWithDuration:0.5 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        star1.alpha = 0.0;
+//        star1.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//            star2.alpha = 0.0;
+//            star2.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//                star3.alpha = 0.0;
+//                star3.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+//            } completion:^(BOOL finished) {
+//                ;
+//            }];
+//        }];
+//    }];
+//    
+//    [UIView animateWithDuration:0.5 delay:1.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        activeStar1.alpha = 1.0;
+//        activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//            activeStar2.alpha = 1.0;
+//            activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//                activeStar3.alpha = 1.0;
+//                activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
+//            } completion:^(BOOL finished) {
+//                ;
+//            }];
+//        }];
+//    }];
 }
 
 - (void) shareOnFacebook {
