@@ -19,6 +19,7 @@
     UIButton *buyButton;
     UIButton *restoreButton;
     BOOL isClosed;
+    BOOL isAlertShown;
 }
 
 + (GreenTheGardenIAPHelper *)sharedInstance {
@@ -27,21 +28,25 @@
     dispatch_once(&once, ^{
         NSDictionary *products = @{iProUpgradeKey : iProUpgradeSecret};
         sharedInstance = [[self alloc] initWithProductsDictionary:products];
+        [[NSNotificationCenter defaultCenter] addObserver:sharedInstance selector:@selector(productPurchaseCompleted:) name:IAPHelperProductPurchasedNotification object:nil];
     });
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchaseCompleted:) name:IAPHelperProductPurchasedNotification object:nil];
     return sharedInstance;
 }
-- (void)productPurchaseCompleted:(NSNotification *)notification {
+
+- (void)productPurchaseCompleted:(NSNotification *)notif {
     [self closeStore];
-    UIAlertView *couldNotGetProducts = [[UIAlertView alloc] initWithTitle:@""
-                                                                  message:NSLocalizedString(@"PRODUCT_PURCHASED", nil)
-                                                                 delegate:self
-                                                        cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                        otherButtonTitles:nil,nil];
-    [couldNotGetProducts show];
+    if(!isAlertShown){
+        UIAlertView *productPurchased = [[UIAlertView alloc] initWithTitle:@""
+                                                                   message:NSLocalizedString(@"PRODUCT_PURCHASED", nil)
+                                                                  delegate:self
+                                                         cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                         otherButtonTitles:nil,nil];
+        [productPurchased show];
+        isAlertShown = YES;
+    }
 }
 - (void) createStore {
-    
+    isAlertShown = NO;
     isClosed = NO;
     storeView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
     
@@ -78,20 +83,20 @@
     
 
     headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 260.0, 160.0, 40.0)];
-    [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:22.0]];
+    [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20.0]];
     [headerLabel setBackgroundColor:[UIColor clearColor]];
     [headerLabel setTextAlignment:NSTextAlignmentLeft];
     [headerLabel setText:@""];
     
-    descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 300.0, 160.0, 100.0)];
-    [descriptionLabel setFont:[UIFont fontWithName:@"Helvetica" size:20.0]];
+    descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 290.0, 160.0, 130.0)];
+    [descriptionLabel setFont:[UIFont fontWithName:@"Helvetica" size:15.0]];
     [descriptionLabel setBackgroundColor:[UIColor clearColor]];
     [descriptionLabel setTextAlignment:NSTextAlignmentLeft];
-    [descriptionLabel setNumberOfLines:3];
+    [descriptionLabel setNumberOfLines:6];
     [descriptionLabel setText:@""];
     
-    priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 400.0, 160.0, 40.0)];
-    [priceLabel setFont:[UIFont fontWithName:@"Helvetica" size:20.0]];
+    priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 410.0, 160.0, 40.0)];
+    [priceLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16.0]];
     [priceLabel setBackgroundColor:[UIColor clearColor]];
     [priceLabel setTextAlignment:NSTextAlignmentLeft];
     [priceLabel setText:@""];
