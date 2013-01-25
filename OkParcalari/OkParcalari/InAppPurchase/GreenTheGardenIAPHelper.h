@@ -15,7 +15,7 @@
 
 + (GreenTheGardenIAPHelper *) sharedInstance;
 
-- (UIView *) createStore;
+- (void) createStore;
 
 - (BOOL) isPro;
 

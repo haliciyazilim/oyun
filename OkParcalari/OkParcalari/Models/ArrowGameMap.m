@@ -42,7 +42,7 @@
             
 //            [NSBundle mainBundle] 
             SBJsonParser *parser = [[SBJsonParser alloc] init];
-            NSLog(@"%@ content: %@",map.mapId,content);
+//            NSLog(@"%@ content: %@",map.mapId,content);
             NSDictionary* jsonMap = [parser objectWithString:content];
             if([[jsonMap valueForKey:@"version"] intValue] == 1){
                 map.difficulty  = difficultyFromString([jsonMap valueForKey:@"difficulty"]);
@@ -50,7 +50,7 @@
                 map.tileCount   = [[jsonMap valueForKey:@"tileCount"] intValue];
             
                 map.order       = [[jsonMap valueForKey:@"order"] intValue];
-                NSLog(@"map.order: %d, [jsonMap valueForKey:@'order']: %@, [[jsonMap valueForKey:@'order'] intValue]: %d",map.order,[jsonMap valueForKey:@"order"],[[jsonMap valueForKey:@"order"] intValue]);
+//                NSLog(@"map.order: %d, [jsonMap valueForKey:@'order']: %@, [[jsonMap valueForKey:@'order'] intValue]: %d",map.order,[jsonMap valueForKey:@"order"],[[jsonMap valueForKey:@"order"] intValue]);
                 
             }
             [[DatabaseManager sharedInstance] saveContext];

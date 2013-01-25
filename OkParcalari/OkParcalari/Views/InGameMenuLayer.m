@@ -24,7 +24,7 @@
         CGFloat top = size.height*0.5;
         CGFloat left = 412.0;
         
-        CCSprite *background = [CCSprite spriteWithFile:@"ingame_menu_frame.png"];
+        CCSprite *background = [CCSprite spriteWithFile:@"ingame_menu_frame_Nopaque.png"];
         background.position = ccp(size.width * 0.5, size.height * 0.5);
         
         CCSprite *win = [CCSprite spriteWithFile:@"YOU_WIN.png"];

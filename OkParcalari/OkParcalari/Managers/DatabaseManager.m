@@ -111,6 +111,7 @@ static DatabaseManager *sharedInstance = nil;
     return result;
 }
 
+
 - (void)insertMaps:(NSArray *)maps forPackage:(NSString *)packageId {
     for (NSString *mapId in maps) {
         Map *aMap = [NSEntityDescription insertNewObjectForEntityForName:@"Map"
