@@ -19,16 +19,19 @@
     UIView *barView;
     UIImageView *leafView;
     UIImageView *maskView;
+    UIImageView *logoView;
     CGSize unitSize;
     CGSize buttonSize;
     NSString* packageFileName;
     CGFloat topMargin;
-    CGFloat contentLeftPadding;
+    CGFloat contentPadding;
     UIImage* passiveStar;
     UIImage* activeStar;
 //    NSArray *_products;
     int rowCount;
 }
+
+
 
 +(CCScene *) scene
 {
@@ -52,11 +55,13 @@
         //        CGSize size = [[CCDirector sharedDirector] winSize];
         buttonSize = CGSizeMake(111.0, 128.0);
         unitSize = CGSizeMake(120.0, 135.0);
-        topMargin = 31.0;
-        contentLeftPadding = 400.0;
+        topMargin = 26.0;
+        contentPadding = 400.0;
         rowCount = 3;
         passiveStar = [UIImage imageNamed:@"level_star_passive.png"];
         activeStar  = [UIImage imageNamed:@"level_star_active.png"];
+        
+        
         
         maskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_masklayer.png"]];
         
@@ -66,6 +71,10 @@
         [scrollView setShowsHorizontalScrollIndicator:NO];
         
         leafView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_leaflayer.png"]];
+        
+        
+        logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GreenTheGarden_Logo.png"]];
+        [logoView setFrame:CGRectMake(521, 69, logoView.image.size.width, logoView.image.size.height)];
         
         barView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 708.0, 1024.0, 60)];
         
@@ -107,6 +116,7 @@
         [barView addSubview:unlockButton];
         
         [[[CCDirector sharedDirector] view] addSubview:maskView];
+        [[[CCDirector sharedDirector] view] addSubview:logoView];
         [[[CCDirector sharedDirector] view] addSubview:scrollView];
         [[[CCDirector sharedDirector] view] addSubview:leafView];
         [[[CCDirector sharedDirector] view] addSubview:barView];
@@ -120,13 +130,14 @@
 {
     
     UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(
-                                                           (index/rowCount)*unitSize.width + (unitSize.width*0.5*(index%rowCount))+contentLeftPadding,
+                                                           (index/rowCount)*unitSize.width + (unitSize.width*0.5*(index%rowCount))+contentPadding,
                                                            (index%rowCount)*unitSize.height,
                                                            buttonSize.width,
                                                            buttonSize.height)];
     button.tag = [map.mapId intValue];
-//    NSLog(@"map_%@_bg.png: %d",stringOfDifficulty(map.difficulty),map.difficulty);
     [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"map_%@_bg.png",stringOfDifficulty(map.difficulty)]] forState:UIControlStateNormal];
+    
+    BOOL isPassive = map.isLocked || !map.isPurchased;
     
     [scrollView addSubview:button];
     if(map.order < 10){
@@ -143,21 +154,29 @@
         [button addSubview:firstDigit];
         [button addSubview:secondDigit];
     }
-    if(!map.isPurchased){
-        [button addTarget:self action:@selector(addStore) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else if(map.isLocked){
+    
+    if(isPassive){
         UIImageView* passiveLayer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"map_%@_mask.png",stringOfDifficulty(map.difficulty)]]];
-//        [passiveLayer setFrame:CGRectMake(20.0, 20.0, passiveLayer.image.size.width, passiveLayer.image.size.height)];
-        [passiveLayer setAlpha:0.7];
+        [passiveLayer setAlpha:0.80];
+        
         [button addSubview:passiveLayer];
         
-        UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"level_locked.png"]];
-        lock.frame = CGRectMake(buttonSize.width*0.5 - lock.image.size.width*0.5 + 5.0, buttonSize.height * 0.5 , lock.image.size.width , lock.image.size.height);
-        [button addSubview:lock];
+        if(!map.isPurchased){
+            [passiveLayer setAlpha:1.0];
+            [button addTarget:self action:@selector(addStore) forControlEvents:UIControlEventTouchUpInside];
+            UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"level_locked.png"]];
+//            lock.image = [lock.image resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20) resizingMode:UIImageResizingModeStretch];
+            lock.frame = CGRectMake(buttonSize.width*0.5 - lock.image.size.width*0.5 + 5.0, buttonSize.height * 0.5 , lock.image.size.width, lock.image.size.height);
+            [button addSubview:lock];
+        }
+        else if(map.isLocked){
+//            UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"level_locked.png"]];
+//            lock.frame = CGRectMake(buttonSize.width*0.5 - lock.image.size.width*0.5 + 5.0, buttonSize.height * 0.5 , lock.image.size.width , lock.image.size.height);
+//            [button addSubview:lock];
+            
+        }
         
-    }
-    else {
+    }else {
         
         [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -197,11 +216,13 @@
 - (void) loadMapIcons
 {
     NSArray* maps = [ArrowGameMap loadMapsFromFile:@"standart"];
-    [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount)+unitSize.width*0.5+contentLeftPadding, unitSize.height*rowCount)];
+    
+    
+    [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount)+unitSize.width*0.5+contentPadding*2.0, unitSize.height*rowCount)];
     [scrollView setFrame:CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.contentSize.height)];
     int index = 0;
     int nonPlayedActiveGameCount = 5;
-    int freeMapsCount = 5;
+    int freeMapsCount = 20;
     for (Map* map in maps) {
         if(freeMapsCount > 0){
             map.isPurchased = YES;
@@ -213,27 +234,22 @@
                 nonPlayedActiveGameCount--;
                 map.isLocked = NO;
             }
-            else
+            else{
                 map.isLocked = YES;
+            }
         }
         
-        NSLog(@"difficulty: %@",stringOfDifficulty(map.difficulty));
-        
         [self buttonForMap:map atIndex:index];
-        
-        
-                
-        /*<[[TEST*/
-        //delete after testing
-//        [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-        /*TEST]]>*/
         index++;
     }
+//    [scrollView scrollRectToVisible:CGSizeMake([MapSelectionLayer getLastScroll], 0) animated:NO];
+    [scrollView setContentOffset:CGPointMake([MapSelectionLayer getLastScroll], 0.0)];
+    
 
 }
 
 - (void)onEnter{
-    [self loadMapIcons];
+    [self refreshScrollView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     
 }
@@ -250,11 +266,13 @@
 -(void)onClick:(UIButton*)button
 {
 //    NSLog(@"button tag: %d",button.tag);
+    [MapSelectionLayer setLastScroll:scrollView.contentOffset.x];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"%d",button.tag]] withColor:ccWHITE]];
     [scrollView removeFromSuperview];
     [maskView removeFromSuperview];
     [leafView removeFromSuperview];
     [barView removeFromSuperview];
+    [logoView removeFromSuperview];
     [self removeFromParentAndCleanup:YES];
 }
 
@@ -388,15 +406,25 @@
     NSLog(@"entered makeTransition");
 }
 
-static MAP_DIFFICULTY difficulty = EASY;
-+(MAP_DIFFICULTY) getDifficulty
+//static MAP_DIFFICULTY difficulty = EASY;
+//+(MAP_DIFFICULTY) getDifficulty
+//{
+//    return difficulty;
+//}
+//+(void) setDifficulty:(MAP_DIFFICULTY)_difficulty
+//{
+//    difficulty = _difficulty;
+//}
+
+static int __lastScroll = 0;
+
++(int)getLastScroll
 {
-    return difficulty;
-}
-+(void) setDifficulty:(MAP_DIFFICULTY)_difficulty
-{
-    difficulty = _difficulty;
+    return __lastScroll;
 }
 
++(void)setLastScroll:(int)scroll{
+    __lastScroll = scroll;
+}
 
 @end

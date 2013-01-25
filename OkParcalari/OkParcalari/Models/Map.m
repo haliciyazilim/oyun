@@ -23,8 +23,8 @@
 @dynamic stepCount;
 @dynamic tileCount;
 @dynamic order;
-@dynamic isPurchased;
 
+@synthesize isPurchased;
 @synthesize isLocked;
 @synthesize starCount;
 @synthesize package;
