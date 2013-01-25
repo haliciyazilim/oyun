@@ -112,6 +112,14 @@
     
     return YES;
 }
+- (void) pauseGame {
+    _isGamePaused = YES;
+    [_gameTimer pauseTimer];
+}
+- (void) resumeGame {
+    _isGamePaused = NO;
+    [_gameTimer resumeTimer];
+}
 
 - (void) touchBegan:(Location) location
 {
@@ -120,16 +128,8 @@
     }
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
-    NSLog(@"%@",currentEntity);
+//    NSLog(@"%@",currentEntity);
     
-}
-- (void) pauseGame {
-    _isGamePaused = YES;
-    [_gameTimer pauseTimer];
-}
-- (void) resumeGame {
-    _isGamePaused = NO;
-    [_gameTimer resumeTimer];
 }
 
 - (void) touchMoved:(Location) location

@@ -1181,6 +1181,7 @@
 		AEE4D88216B03E04008017F2 /* 10097.gamemap in Resources */ = {isa = PBXBuildFile; fileRef = AEE4D81E16B03E04008017F2 /* 10097.gamemap */; };
 		AEE4D88316B03E04008017F2 /* 10098.gamemap in Resources */ = {isa = PBXBuildFile; fileRef = AEE4D81F16B03E04008017F2 /* 10098.gamemap */; };
 		AEE4D88416B03E04008017F2 /* standart.packageinfo in Resources */ = {isa = PBXBuildFile; fileRef = AEE4D82016B03E04008017F2 /* standart.packageinfo */; };
+		AEEF67C216B28086005B516B /* TutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEF67C116B28086005B516B /* TutorialManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2565,6 +2566,8 @@
 		AEE4D81E16B03E04008017F2 /* 10097.gamemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10097.gamemap; sourceTree = "<group>"; };
 		AEE4D81F16B03E04008017F2 /* 10098.gamemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10098.gamemap; sourceTree = "<group>"; };
 		AEE4D82016B03E04008017F2 /* standart.packageinfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = standart.packageinfo; sourceTree = "<group>"; };
+		AEEF67C016B28086005B516B /* TutorialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialManager.h; sourceTree = "<group>"; };
+		AEEF67C116B28086005B516B /* TutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4247,6 +4250,8 @@
 				AEB8D28A16A456D000262CF5 /* SoundManager.m */,
 				05642F5D16A56FF600B8E206 /* GreenTheGardenSoundManager.h */,
 				05642F5E16A56FF600B8E206 /* GreenTheGardenSoundManager.m */,
+				AEEF67C016B28086005B516B /* TutorialManager.h */,
+				AEEF67C116B28086005B516B /* TutorialManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -5574,6 +5579,7 @@
 				05642F5F16A56FF600B8E206 /* GreenTheGardenSoundManager.m in Sources */,
 				05FE671716AEBD8600CCCD0C /* AchievementManager.m in Sources */,
 				0572C10B16AFF71F00B9BF9D /* Reachability.m in Sources */,
+				AEEF67C216B28086005B516B /* TutorialManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

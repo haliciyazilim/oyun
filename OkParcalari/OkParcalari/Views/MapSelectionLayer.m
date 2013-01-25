@@ -61,8 +61,6 @@
         passiveStar = [UIImage imageNamed:@"level_star_passive.png"];
         activeStar  = [UIImage imageNamed:@"level_star_active.png"];
         
-        
-        
         maskView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_masklayer.png"]];
         
         scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 300.0, 1024.0, 400.0)];
@@ -71,7 +69,6 @@
         [scrollView setShowsHorizontalScrollIndicator:NO];
         
         leafView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map_selection_leaflayer.png"]];
-        
         
         logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GreenTheGarden_Logo.png"]];
         [logoView setFrame:CGRectMake(521, 69, logoView.image.size.width, logoView.image.size.height)];
@@ -221,8 +218,8 @@
     [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount)+unitSize.width*0.5+contentPadding*2.0, unitSize.height*rowCount)];
     [scrollView setFrame:CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.contentSize.height)];
     int index = 0;
-    int nonPlayedActiveGameCount = 5;
-    int freeMapsCount = 20;
+    int nonPlayedActiveGameCount = 2;
+    int freeMapsCount = [[GreenTheGardenIAPHelper sharedInstance] isPro] ? [maps count] : 6;
     for (Map* map in maps) {
         if(freeMapsCount > 0){
             map.isPurchased = YES;
