@@ -50,21 +50,9 @@
         [self addChild:_gameTimer];
         _isGamePaused = NO;
         
-//        [GameHistory saveScore:35 forMap:@"xcvxcv"];
-//        [GameHistory readScoresFromFile];
-//        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
-//        [GameHistory saveScore:12 forMap:@"hfdsgd"];
-//        [GameHistory readScoresFromFile];
-//        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
-//        [GameHistory saveScore:54 forMap:@"sdfsdf"];
-//        [GameHistory readScoresFromFile];
-//        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
-//        [GameHistory saveScore:22 forMap:@"zxc"];
-//        [GameHistory readScoresFromFile];
-//        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
-//        [GameHistory saveScore:87 forMap:@"xcvxcv"];
-//        [GameHistory readScoresFromFile];
-//        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
+        if([[TutorialManager sharedInstance] isTutorialEnabled] && [[TutorialManager sharedInstance] isTutoringMap:fileName]){
+            [[TutorialManager sharedInstance] startTutorial];
+        }
         
     }
     return self;
@@ -128,7 +116,11 @@
     }
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
-//    NSLog(@"%@",currentEntity);
+    if([[TutorialManager sharedInstance] isTutorialActive]){
+        if(![[TutorialManager sharedInstance] isCorrectEntitity:currentEntity]){
+            currentEntity = nil;
+        }
+    }
     
 }
 

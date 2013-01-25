@@ -1179,6 +1179,14 @@
 		AEE4D88316B03E04008017F2 /* 10098.gamemap in Resources */ = {isa = PBXBuildFile; fileRef = AEE4D81F16B03E04008017F2 /* 10098.gamemap */; };
 		AEE4D88416B03E04008017F2 /* standart.packageinfo in Resources */ = {isa = PBXBuildFile; fileRef = AEE4D82016B03E04008017F2 /* standart.packageinfo */; };
 		AEEF67C216B28086005B516B /* TutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEEF67C116B28086005B516B /* TutorialManager.m */; };
+		AEF7E0B316B2BCC1004FA442 /* tut_dialog.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF7E0AB16B2BCC1004FA442 /* tut_dialog.png */; };
+		AEF7E0B416B2BCC1004FA442 /* tut_dialog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF7E0AC16B2BCC1004FA442 /* tut_dialog@2x.png */; };
+		AEF7E0B516B2BCC1004FA442 /* tut_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF7E0AD16B2BCC1004FA442 /* tut_dot.png */; };
+		AEF7E0B616B2BCC1004FA442 /* tut_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF7E0AE16B2BCC1004FA442 /* tut_dot@2x.png */; };
+		AEF7E0B716B2BCC1004FA442 /* tut_point.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF7E0AF16B2BCC1004FA442 /* tut_point.png */; };
+		AEF7E0B816B2BCC1004FA442 /* tut_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF7E0B016B2BCC1004FA442 /* tut_point@2x.png */; };
+		AEF7E0B916B2BCC1004FA442 /* tut_point_starter.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF7E0B116B2BCC1004FA442 /* tut_point_starter.png */; };
+		AEF7E0BA16B2BCC1004FA442 /* tut_point_starter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF7E0B216B2BCC1004FA442 /* tut_point_starter@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2562,6 +2570,14 @@
 		AEE4D82016B03E04008017F2 /* standart.packageinfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = standart.packageinfo; sourceTree = "<group>"; };
 		AEEF67C016B28086005B516B /* TutorialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialManager.h; sourceTree = "<group>"; };
 		AEEF67C116B28086005B516B /* TutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialManager.m; sourceTree = "<group>"; };
+		AEF7E0AB16B2BCC1004FA442 /* tut_dialog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tut_dialog.png; sourceTree = "<group>"; };
+		AEF7E0AC16B2BCC1004FA442 /* tut_dialog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tut_dialog@2x.png"; sourceTree = "<group>"; };
+		AEF7E0AD16B2BCC1004FA442 /* tut_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tut_dot.png; sourceTree = "<group>"; };
+		AEF7E0AE16B2BCC1004FA442 /* tut_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tut_dot@2x.png"; sourceTree = "<group>"; };
+		AEF7E0AF16B2BCC1004FA442 /* tut_point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tut_point.png; sourceTree = "<group>"; };
+		AEF7E0B016B2BCC1004FA442 /* tut_point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tut_point@2x.png"; sourceTree = "<group>"; };
+		AEF7E0B116B2BCC1004FA442 /* tut_point_starter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tut_point_starter.png; sourceTree = "<group>"; };
+		AEF7E0B216B2BCC1004FA442 /* tut_point_starter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tut_point_starter@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2700,6 +2716,7 @@
 		059D6724169438C000B6B4E6 /* squirt */ = {
 			isa = PBXGroup;
 			children = (
+				AEF7E0AA16B2BCC1004FA442 /* tutorial */,
 				05CEDA1316AE818300C7FAF2 /* YOU_WIN.png */,
 				0516437116B173FB000EBBE7 /* game_center */,
 				05D6F31816AD6EED004F6EF4 /* in_app_store */,
@@ -4353,6 +4370,22 @@
 			path = standart;
 			sourceTree = "<group>";
 		};
+		AEF7E0AA16B2BCC1004FA442 /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				AEF7E0AB16B2BCC1004FA442 /* tut_dialog.png */,
+				AEF7E0AC16B2BCC1004FA442 /* tut_dialog@2x.png */,
+				AEF7E0AD16B2BCC1004FA442 /* tut_dot.png */,
+				AEF7E0AE16B2BCC1004FA442 /* tut_dot@2x.png */,
+				AEF7E0AF16B2BCC1004FA442 /* tut_point.png */,
+				AEF7E0B016B2BCC1004FA442 /* tut_point@2x.png */,
+				AEF7E0B116B2BCC1004FA442 /* tut_point_starter.png */,
+				AEF7E0B216B2BCC1004FA442 /* tut_point_starter@2x.png */,
+			);
+			name = tutorial;
+			path = Resources/images/theme_fiskiye/tutorial;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5411,6 +5444,14 @@
 				05C9B54A16B28A6200B12524 /* ingame_menu_frame_Nopaque.png in Resources */,
 				05C9B54D16B28AD800B12524 /* inapp_menu_frame.png in Resources */,
 				05C9B54E16B28AD800B12524 /* inapp_menu_frame@2x.png in Resources */,
+				AEF7E0B316B2BCC1004FA442 /* tut_dialog.png in Resources */,
+				AEF7E0B416B2BCC1004FA442 /* tut_dialog@2x.png in Resources */,
+				AEF7E0B516B2BCC1004FA442 /* tut_dot.png in Resources */,
+				AEF7E0B616B2BCC1004FA442 /* tut_dot@2x.png in Resources */,
+				AEF7E0B716B2BCC1004FA442 /* tut_point.png in Resources */,
+				AEF7E0B816B2BCC1004FA442 /* tut_point@2x.png in Resources */,
+				AEF7E0B916B2BCC1004FA442 /* tut_point_starter.png in Resources */,
+				AEF7E0BA16B2BCC1004FA442 /* tut_point_starter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

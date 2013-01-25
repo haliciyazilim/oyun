@@ -18,6 +18,8 @@
 
 #import "GameHistory.h"
 
+#import "TutorialManager.h"
+
 @class GameMap;
 @class Stopwatch;
 
