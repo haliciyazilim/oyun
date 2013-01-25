@@ -107,7 +107,9 @@ static ArrowGame* __lastInstance;
         [[DatabaseManager sharedInstance] saveContext];
     }
     
-    [[AchievementManager sharedAchievementManager]submitAchievement:kAchievementPathToStardom percentComplete:100.0];
+    
+    [[AchievementManager sharedAchievementManager]checkAchievements:map];
+    //[[AchievementManager sharedAchievementManager]submitAchievement:kAchievementPathToStardom percentComplete:100.0];
     [[ArrowGameLayer lastInstance] gameEnded];
     [ArrowGame cleanLastInstance];
     return YES;
