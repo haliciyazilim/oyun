@@ -66,6 +66,7 @@ static ArrowGame* __lastInstance;
         
         if([[TutorialManager sharedInstance] isTutorialEnabled] && [[TutorialManager sharedInstance] isTutoringMap:fileName]){
             [[TutorialManager sharedInstance] startTutorial];
+//            [[TutorialManager sharedInstance] performSelector:@selector(startTutorial) withObject:nil afterDelay:0.01];
         }
     }
     return self;
