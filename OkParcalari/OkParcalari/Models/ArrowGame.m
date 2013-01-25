@@ -63,6 +63,10 @@ static ArrowGame* __lastInstance;
         [_gameTimer startTimer];
         [self addChild:_gameTimer];
         _isGamePaused = NO;
+        
+        if([[TutorialManager sharedInstance] isTutorialEnabled] && [[TutorialManager sharedInstance] isTutoringMap:fileName]){
+            [[TutorialManager sharedInstance] startTutorial];
+        }
     }
     return self;
 }
@@ -123,7 +127,11 @@ static ArrowGame* __lastInstance;
     }
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
-//    NSLog(@"%@",currentEntity);
+    if([[TutorialManager sharedInstance] isTutorialActive]){
+        if(![[TutorialManager sharedInstance] isCorrectEntitity:currentEntity]){
+            currentEntity = nil;
+        }
+    }
     
 }
 
