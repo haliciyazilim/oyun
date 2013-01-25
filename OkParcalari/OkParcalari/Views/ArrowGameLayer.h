@@ -25,5 +25,9 @@
 - (void) inGameMenuWillClose;
 - (void) returnToMainMenu;
 - (void) gameEnded;
+- (void) showInGameMenu;
+
++(ArrowGameLayer*)lastInstance;
++(void)cleanLastInstance;
 
 @end

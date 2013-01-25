@@ -46,5 +46,8 @@
 
 - (void) cleanMap;
 
++(ArrowGame*)lastInstance;
++(void)cleanLastInstance;
+
 
 @end

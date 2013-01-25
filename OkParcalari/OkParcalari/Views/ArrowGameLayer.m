@@ -25,6 +25,7 @@
 {
     NSString *_fileName;
     UIView *inGameButtonsView;
+    UIView *gameWinView;
 }
 
 +(CCScene *) sceneWithFile:(NSString *)fileName
@@ -45,6 +46,19 @@
 	// return the scene
 	return scene;
 }
+
+static ArrowGameLayer* __lastInstance;
+
++(ArrowGameLayer*)lastInstance
+{
+    return __lastInstance;
+}
+
++(void)cleanLastInstance
+{
+    __lastInstance = nil;
+}
+
 -(void)onExit{
     [inGameButtonsView removeFromSuperview];
 }
@@ -114,6 +128,7 @@
         
 		self.isTouchEnabled = YES;
 	}
+    __lastInstance = self;
 	return self;
 }
 
@@ -213,7 +228,8 @@
 }
 -(void) gameEnded
 {
-   
-    NSLog(@"entered gameEnded");
+    gameWinView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
+    
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
 }
 @end

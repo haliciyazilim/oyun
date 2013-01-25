@@ -135,16 +135,14 @@
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
-    NSLog(@"*******willResignActive*********");
+    [[ArrowGame lastInstance] pauseGame];
+    [[ArrowGameLayer lastInstance] showInGameMenu];
 	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
     [[GreenTheGardenSoundManager sharedSoundManager] stopBackgroundMusic];
     [SimpleAudioEngine end];
     
     [[NSNotificationCenter defaultCenter] removeObserver:[AchievementManager sharedAchievementManager] name:kAuthenticationChangedNotification object:nil];
-
-    
-    
 }
 
 // call got rejected

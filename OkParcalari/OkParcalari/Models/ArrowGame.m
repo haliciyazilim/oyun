@@ -13,6 +13,7 @@
 #import "Arrow.h"
 #import "Stopwatch.h"
 #import "WaterSpray.h"
+#import "ArrowGameLayer.h"
 
 #import "AchievementManager.h"
 #import "GreenTheGardenGCSpecificValues.h"
@@ -34,10 +35,23 @@
     NSString* currentGameMapFileName;
 }
 
+static ArrowGame* __lastInstance;
+
++(ArrowGame*)lastInstance
+{
+    return __lastInstance;
+}
+
++(void)cleanLastInstance
+{
+    __lastInstance = nil;
+}
+
 - (id)initWithFile:(NSString*)fileName
 {
     self = [super init];
     if (self) {
+        __lastInstance = self;
         
         [self addChild:self.map];
         
@@ -49,23 +63,6 @@
         [_gameTimer startTimer];
         [self addChild:_gameTimer];
         _isGamePaused = NO;
-        
-//        [GameHistory saveScore:35 forMap:@"xcvxcv"];
-//        [GameHistory readScoresFromFile];
-//        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
-//        [GameHistory saveScore:12 forMap:@"hfdsgd"];
-//        [GameHistory readScoresFromFile];
-//        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
-//        [GameHistory saveScore:54 forMap:@"sdfsdf"];
-//        [GameHistory readScoresFromFile];
-//        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
-//        [GameHistory saveScore:22 forMap:@"zxc"];
-//        [GameHistory readScoresFromFile];
-//        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
-//        [GameHistory saveScore:87 forMap:@"xcvxcv"];
-//        [GameHistory readScoresFromFile];
-//        NSLog(@"[GameHistory scores].count = %d",[[GameHistory scores] count]);
-        
     }
     return self;
 }
@@ -104,12 +101,10 @@
         map.isFinished = YES;
         [[DatabaseManager sharedInstance] saveContext];
     }
-    NSLog(@"Oyun bitti.");
-    
     
     [[AchievementManager sharedAchievementManager]submitAchievement:kAchievementPathToStardom percentComplete:100.0];
-    
-    
+    [[ArrowGameLayer lastInstance] gameEnded];
+    [ArrowGame cleanLastInstance];
     return YES;
 }
 - (void) pauseGame {
