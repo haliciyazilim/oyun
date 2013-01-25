@@ -16,3 +16,4 @@
 "OK" = "Tamam";
 "CONNECTION_ERROR" = "Bağlantı hatası oluştu. Lütfen daha sonra tekrar deneyiniz.";
 "SERVER_ERROR" = "sadasd";
+"PRODUCT_PURCHASED" = "Tam sürüm başarılı bir şekilde açıldı. Satın aldığınız için teşekkür ederiz.";
