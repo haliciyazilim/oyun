@@ -8,7 +8,6 @@
 
 #import "AchievementManager.h"
 #import "GameCenterManager.h"
-#import "GKAchievementHandler.h"
 //#import "GreenTheGardenAppSpecificValues.h"
 
 
@@ -103,18 +102,31 @@ static AchievementManager * sharedAchievementManager=nil;
     
     NSLog(@"IsExist: %d",isExist);
     
-    if (achievement || isExist==NO)
+    //if (achievement || isExist==NO) // esas sorgu bu.
+    if (achievement) // Test için duruyor bu.
     {
+
         achievement.percentComplete = percent;
+        achievement.showsCompletionBanner = YES; 
         [achievement reportAchievementWithCompletionHandler:^(NSError *error)
          {
+             
              if (achievement.percentComplete==100.0) {
                  GKAchievementDescription *achievementDescription=[[GKAchievementDescription alloc] init];
                  achievementDescription=[_achievementDescriptions objectForKey:achievement.identifier];
-                 [[GKAchievementHandler defaultHandler] notifyAchievementTitle:achievementDescription.title andMessage:achievementDescription.achievedDescription];
+                
              }
              
-             
+             dispatch_async(dispatch_get_main_queue(), ^(void)
+                            {
+                                if (error == NULL) {
+                                    NSLog(@"Successfully sent archievement!");
+                                    [[AchievementManager sharedAchievementManager]loadAchievements];
+                                } else {
+                                    NSLog(@"Achievement failed to send... will try again \
+                                          later.  Reason: %@", error.localizedDescription);
+                                }
+                            });
              if (error != nil)
              {
                  NSLog(@"Error in reporting achievements: %@", error);

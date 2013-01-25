@@ -27,6 +27,8 @@
     UIImage* activeStar;
 //    NSArray *_products;
     int rowCount;
+    
+    UIViewController * tempVC;
 }
 
 +(CCScene *) scene
@@ -100,10 +102,18 @@
         }
         [musicButton addTarget:self action:@selector(musicClicked:) forControlEvents:UIControlEventTouchUpInside];
         
+        UIButton *gameCenterButton = [[UIButton alloc] initWithFrame:CGRectMake(142.0, 17.0, 26.0, 28.0)];
+        [gameCenterButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_gc.png"] forState:UIControlStateNormal];
+        [gameCenterButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_gc_hover.png"] forState:UIControlStateHighlighted];
+        [gameCenterButton addTarget:self action:@selector(showGameCenter) forControlEvents:UIControlEventTouchUpInside];
+
+        
         [barView addSubview:infoButton];
         [barView addSubview:fxButton];
         [barView addSubview:musicButton];
+        [barView addSubview:gameCenterButton];
         [barView addSubview:unlockButton];
+
         
         [[[CCDirector sharedDirector] view] addSubview:maskView];
         [[[CCDirector sharedDirector] view] addSubview:scrollView];
@@ -307,6 +317,23 @@
         [button setBackgroundImage:[UIImage imageNamed:@"map_barbtn_music_off.png"] forState:UIControlStateHighlighted];
         [[GreenTheGardenSoundManager sharedSoundManager] setIsBackgroundMusicMuted:YES];
     }
+}
+
+- (void) showGameCenter
+{
+    NSLog(@"show GameCenter");
+    tempVC = [[UIViewController alloc] init];
+    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    if (gameCenterController != nil)
+    {
+        gameCenterController.gameCenterDelegate = self;
+        [[[CCDirector sharedDirector] view] addSubview:tempVC.view];
+        [tempVC presentModalViewController:gameCenterController animated:YES];
+    }
+}
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [tempVC dismissModalViewControllerAnimated:YES];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
