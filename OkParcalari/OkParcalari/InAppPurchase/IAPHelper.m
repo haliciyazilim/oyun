@@ -25,7 +25,6 @@ NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProdu
     NSMutableSet * _purchasedProductIdentifiers;
     NSString *_deviceName;
 }
-
 - (id) initWithProductsDictionary:(NSDictionary *)products {
     if ( self = [super init] ) {
         _iProducts = [NSDictionary dictionaryWithDictionary:products];
@@ -50,27 +49,18 @@ NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProdu
     }
     return self;
 }
-
 - (void)restoreCompletedTransactions {
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
-
 - (void)requestProductsWithCompletionHandler:(RequestProductsCompletionHandler)completionHandler {
-    
-    // 1
     _completionHandler = [completionHandler copy];
     
-    // 2
     _productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:_productIdentifiers];
     _productsRequest.delegate = self;
     [_productsRequest start];
-    
 }
 - (BOOL)canMakePurchases {
     return [SKPaymentQueue canMakePayments];
-}
--(void)loadStore {
-    @throw [NSException exceptionWithName:@"Invalid Store" reason:@"loadStore method must be implemented in subclass" userInfo:nil];
 }
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
@@ -90,35 +80,29 @@ NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProdu
         }
     };
 }
-
 - (void)completeTransaction:(SKPaymentTransaction *)transaction {
-    NSLog(@"completeTransaction...");
-    
     [self provideContentForProductIdentifier:transaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
-
 - (void)restoreTransaction:(SKPaymentTransaction *)transaction {
-    NSLog(@"restoreTransaction...");
-    
     [self provideContentForProductIdentifier:transaction.originalTransaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
 - (void)failedTransaction:(SKPaymentTransaction *)transaction {
-    
-    NSLog(@"failedTransaction...");
     if (transaction.error.code != SKErrorPaymentCancelled)
     {
-        NSLog(@"Transaction error: %@", transaction.error.localizedDescription);
+        NSString *errorStr = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"PRODUCT_PURCHASE_FAILED", nil),transaction.error.localizedDescription];
+        UIAlertView *productPurchased = [[UIAlertView alloc] initWithTitle:@""
+                                                                   message:errorStr
+                                                                  delegate:self
+                                                         cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                         otherButtonTitles:nil,nil];
+        [productPurchased show];
     }
-    
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
-
-// Add new method
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier {
-    
     [_purchasedProductIdentifiers addObject:productIdentifier];
     
     NSString *productDeviceStr = [NSString stringWithFormat:@"%@%@",[_iProducts objectForKey:productIdentifier],_deviceName];
@@ -126,54 +110,34 @@ NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProdu
     [[NSUserDefaults standardUserDefaults] setObject:[self sha1:productDeviceStr] forKey:productIdentifier];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductPurchasedNotification object:productIdentifier userInfo:nil];
-    
 }
-
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
-//    NSLog(@"Loaded list of products...");
     _productsRequest = nil;
     
     NSArray * skProducts = response.products;
-//    for (SKProduct * skProduct in skProducts) {
-//        NSLog(@"Found product: %@ %@ %0.2f",
-//              skProduct.productIdentifier,
-//              skProduct.localizedTitle,
-//              skProduct.price.floatValue);
-//    }
     
     _completionHandler(YES, skProducts);
     _completionHandler = nil;
-    
 }
-
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
-//    NSLog(@"**********entered didFailWithError");
-//    NSLog(@"Failed to load list of products.");
     _productsRequest = nil;
     
     _completionHandler(NO, nil);
     _completionHandler = nil;
-    
 }
-
 - (BOOL)productPurchased:(NSString *)productIdentifier {
     return [_purchasedProductIdentifiers containsObject:productIdentifier];
 }
-
 - (void)buyProduct:(SKProduct *)product {
-    
-    NSLog(@"Buying %@...", product.productIdentifier);
     
     if([self canMakePurchases]){
         SKPayment * payment = [SKPayment paymentWithProduct:product];
         [[SKPaymentQueue defaultQueue] addPayment:payment];
     }
     else{
-        NSLog(@"check your settings, in-app purchase is not allowed on your device.");
     }
     
 }
-
 -(NSString*) sha1:(NSString*)input
 {
     const char *cstr = [input cStringUsingEncoding:NSUTF8StringEncoding];
@@ -189,7 +153,5 @@ NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProdu
         [output appendFormat:@"%02x", digest[i]];
     
     return output;
-    
 }
-
 @end
