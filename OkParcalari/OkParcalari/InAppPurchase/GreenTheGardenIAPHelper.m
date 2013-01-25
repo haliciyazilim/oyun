@@ -11,24 +11,47 @@
 #import "GreenTheGardenIAPSpecificValues.h"
 
 @implementation GreenTheGardenIAPHelper
+{
+    UIView *storeView;
+    UILabel *descriptionLabel;
+    UILabel *headerLabel;
+    UILabel *priceLabel;
+    UIButton *buyButton;
+    UIButton *restoreButton;
+    BOOL isClosed;
+}
 
 + (GreenTheGardenIAPHelper *)sharedInstance {
     static dispatch_once_t once;
     static GreenTheGardenIAPHelper * sharedInstance;
     dispatch_once(&once, ^{
-//        NSSet * productIdentifiers = [NSSet setWithObjects:
-//                                      iProUpgrade,
-//                                      nil];
-//        NSDictionary *products = [[NSDictionary alloc] initWithObjects:@[iProUpgrade] forKeys:@[iProUpgradeKey]];
         NSDictionary *products = @{iProUpgradeKey : iProUpgradeSecret};
         sharedInstance = [[self alloc] initWithProductsDictionary:products];
     });
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchaseCompleted:) name:IAPHelperProductPurchasedNotification object:nil];
     return sharedInstance;
 }
-- (UIView *) createStore {
-    UIView *storeView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
+- (void)productPurchaseCompleted:(NSNotification *)notification {
+    [self closeStore];
+    UIAlertView *couldNotGetProducts = [[UIAlertView alloc] initWithTitle:@""
+                                                                  message:NSLocalizedString(@"PRODUCT_PURCHASED", nil)
+                                                                 delegate:self
+                                                        cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                        otherButtonTitles:nil,nil];
+    [couldNotGetProducts show];
+}
+- (void) createStore {
     
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingame_menu_frame.png"]];
+    isClosed = NO;
+    storeView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
+    
+    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [activity setColor:[UIColor blackColor]];
+    [activity setHidesWhenStopped:YES];
+    [activity startAnimating];
+    activity.frame = CGRectMake(221.0, 95.0, 60.0, 60.0);
+    
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_menu_frame.png"]];
     UIImageView *backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_back.png"]];
     [backView setFrame:CGRectMake(322.0, 231.0, 380.0, 306.0)];
     
@@ -38,51 +61,42 @@
     [closeButton setBackgroundImage:[UIImage imageNamed:@"inapp_btn_close_hover.png"] forState:UIControlStateHighlighted];
     [closeButton addTarget:self action:@selector(closeStore) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *buyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    buyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [buyButton setFrame:CGRectMake(520.0, 443.0, 148.0, 69.0)];
     [buyButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_buynow", @"png")] forState:UIControlStateNormal];
     [buyButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_buynow_hover", @"png")] forState:UIControlStateHighlighted];
-    [buyButton addTarget:self.callerLayer action:@selector(buyPro) forControlEvents:UIControlEventTouchUpInside];
+
     
-    UIButton *restoreButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    restoreButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [restoreButton setFrame:CGRectMake(357.0, 443.0, 148.0, 69.0)];
     [restoreButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_purchase", @"png")] forState:UIControlStateNormal];
     [restoreButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_purchase_hover", @"png")] forState:UIControlStateHighlighted];
-    [restoreButton addTarget:self.callerLayer action:@selector(restorePurchases) forControlEvents:UIControlEventTouchUpInside];
+
     
     UIImageView *unlockImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_image.png"]];
     [unlockImage setFrame:CGRectMake(355.0, 260.0, 153.0, 178.0)];
     
-    NSString *header = [[self.callerLayer.products objectAtIndex:0] localizedTitle];
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 260.0, 160.0, 40.0)];
+
+    headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 260.0, 160.0, 40.0)];
     [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:22.0]];
     [headerLabel setBackgroundColor:[UIColor clearColor]];
     [headerLabel setTextAlignment:NSTextAlignmentLeft];
-    [headerLabel setText:header];
+    [headerLabel setText:@""];
     
-    NSString *description = [[self.callerLayer.products objectAtIndex:0] localizedDescription];
-    UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 300.0, 160.0, 100.0)];
+    descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 300.0, 160.0, 100.0)];
     [descriptionLabel setFont:[UIFont fontWithName:@"Helvetica" size:20.0]];
     [descriptionLabel setBackgroundColor:[UIColor clearColor]];
     [descriptionLabel setTextAlignment:NSTextAlignmentLeft];
     [descriptionLabel setNumberOfLines:3];
-    [descriptionLabel setText:description];
+    [descriptionLabel setText:@""];
     
-    NSNumberFormatter *priceFormatter = [[NSNumberFormatter alloc] init];
-    [priceFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
-    [priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    SKProduct *myProduct = [self.callerLayer.products objectAtIndex:0];
-    
-    [priceFormatter setLocale:myProduct.priceLocale];
-    
-    NSString *priceStr = [priceFormatter stringFromNumber:[[self.callerLayer.products objectAtIndex:0] price]];
-    
-    UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 400.0, 160.0, 40.0)];
+    priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 400.0, 160.0, 40.0)];
     [priceLabel setFont:[UIFont fontWithName:@"Helvetica" size:20.0]];
     [priceLabel setBackgroundColor:[UIColor clearColor]];
     [priceLabel setTextAlignment:NSTextAlignmentLeft];
-    [priceLabel setText:priceStr];
-    
+    [priceLabel setText:@""];
+
+    [backView addSubview:activity];
     [storeView addSubview:backgroundView];
     [storeView addSubview:backView];
     [storeView addSubview:closeButton];
@@ -92,11 +106,69 @@
     [storeView addSubview:headerLabel];
     [storeView addSubview:descriptionLabel];
     [storeView addSubview:priceLabel];
+
     
-    return storeView;
+    [[[CCDirector sharedDirector] view] addSubview:storeView];
+    
+    [self requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+        if(!isClosed){
+            if([products count] != 0){
+                self.products = products;
+                NSString *description = [[self.products objectAtIndex:0] localizedDescription];
+                NSString *header = [[self.products objectAtIndex:0] localizedTitle];
+               
+                NSNumberFormatter *priceFormatter = [[NSNumberFormatter alloc] init];
+                [priceFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+                [priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+                SKProduct *myProduct = [self.products objectAtIndex:0];
+                
+                [priceFormatter setLocale:myProduct.priceLocale];
+                
+                NSString *priceStr = [priceFormatter stringFromNumber:[[self.products objectAtIndex:0] price]];
+                
+                [activity stopAnimating];
+                [activity removeFromSuperview];
+                
+                [headerLabel setText:header];
+                [descriptionLabel setText:description];
+                [priceLabel setText:priceStr];
+                
+                [buyButton addTarget:self action:@selector(buyPro) forControlEvents:UIControlEventTouchUpInside];
+                
+                [restoreButton addTarget:self action:@selector(restorePurchases) forControlEvents:UIControlEventTouchUpInside];
+            }
+            else{
+                UIAlertView *couldNotGetProducts = [[UIAlertView alloc] initWithTitle:@""
+                                                                              message:NSLocalizedString(@"SERVER_ERROR", nil)
+                                                                             delegate:self
+                                                                    cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                                    otherButtonTitles:nil,nil];
+                [couldNotGetProducts show];
+            }
+        }
+    }];
+}
+
+- (void)buyPro {
+    if([[GreenTheGardenIAPHelper sharedInstance] canMakePurchases]){
+        [[GreenTheGardenIAPHelper sharedInstance] buyProduct:[self.products objectAtIndex:0]];
+    }
+    else{
+        UIAlertView *couldNotMakePurchasesAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"IN_APP_PURCHASES", nil)
+                                                                             message:NSLocalizedString(@"COULD_NOT_MAKE_PURCHASES", nil)
+                                                                            delegate:self
+                                                                   cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                                   otherButtonTitles:nil,nil];
+        [couldNotMakePurchasesAlert show];
+    }
+}
+- (void)restorePurchases {
+    [[GreenTheGardenIAPHelper sharedInstance] restoreCompletedTransactions];
 }
 - (void)closeStore {
-    [self.callerLayer closeStore];
+    isClosed = YES;
+    [storeView removeFromSuperview];
+    storeView = nil;
 }
 - (BOOL) isPro {
     return [self productPurchased:iProUpgradeKey];

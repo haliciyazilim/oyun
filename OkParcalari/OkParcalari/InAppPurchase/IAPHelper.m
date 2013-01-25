@@ -7,9 +7,10 @@
 //
 
 NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurchasedNotification";
+NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProductPurchaseDidFailedNotification";
 
 #import "IAPHelper.h"
-//#import <StoreKit/StoreKit.h>
+#import <CommonCrypto/CommonDigest.h>
 
 @interface IAPHelper () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 @end
@@ -22,45 +23,20 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
     NSSet * _productIdentifiers;
     NSArray * _productKeys;
     NSMutableSet * _purchasedProductIdentifiers;
+    NSString *_deviceName;
 }
-
-//- (id)initWithProductIdentifiers:(NSSet *)productIdentifiers andKeys:(NSSet *)productKeys{
-//    
-//    if ((self = [super init])) {
-//        
-//        // Store product identifiers
-//        _productIdentifiers = productIdentifiers;
-//        _productKeys = productKeys;
-//        
-//        // Check for previously purchased products
-//        _purchasedProductIdentifiers = [NSMutableSet set];
-//        for (NSString * productIdentifier in _productIdentifiers) {
-////            BOOL productPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:productIdentifier];
-//            BOOL productPurchased;
-//            if([[NSUserDefaults standardUserDefaults] stringForKey:productIdentifier])
-//            if (productPurchased) {
-//                [_purchasedProductIdentifiers addObject:productIdentifier];
-//                NSLog(@"Previously purchased: %@", productIdentifier);
-//            } else {
-//                NSLog(@"Not purchased: %@", productIdentifier);
-//            }
-//        }
-//        
-//        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-//        
-//    }
-//    return self;
-//}
 
 - (id) initWithProductsDictionary:(NSDictionary *)products {
     if ( self = [super init] ) {
         _iProducts = [NSDictionary dictionaryWithDictionary:products];
         _productIdentifiers = [NSSet setWithArray:[_iProducts allKeys]];
         _purchasedProductIdentifiers = [NSMutableSet set];
+        _deviceName = [[UIDevice currentDevice] name];
         
         for ( NSString * productIdentifier in [_iProducts allKeys]) {
             BOOL productPurchased;
-            if ([[[NSUserDefaults standardUserDefaults] stringForKey:productIdentifier] isEqualToString:[_iProducts objectForKey:productIdentifier]]) {
+            NSString *productDeviceStr = [NSString stringWithFormat:@"%@%@",[_iProducts objectForKey:productIdentifier],_deviceName];
+            if ([[[NSUserDefaults standardUserDefaults] stringForKey:productIdentifier] isEqualToString:[self sha1:productDeviceStr]]) {
                 productPurchased = YES;
             }
             else{
@@ -144,8 +120,10 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier {
     
     [_purchasedProductIdentifiers addObject:productIdentifier];
-//    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:productIdentifier];
-    [[NSUserDefaults standardUserDefaults] setObject:[_iProducts objectForKey:productIdentifier] forKey:productIdentifier];
+    
+    NSString *productDeviceStr = [NSString stringWithFormat:@"%@%@",[_iProducts objectForKey:productIdentifier],_deviceName];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[self sha1:productDeviceStr] forKey:productIdentifier];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductPurchasedNotification object:productIdentifier userInfo:nil];
     
@@ -193,6 +171,24 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
     else{
         NSLog(@"check your settings, in-app purchase is not allowed on your device.");
     }
+    
+}
+
+-(NSString*) sha1:(NSString*)input
+{
+    const char *cstr = [input cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [NSData dataWithBytes:cstr length:input.length];
+    
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
+    
+    CC_SHA1(data.bytes, data.length, digest);
+    
+    NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    
+    return output;
     
 }
 

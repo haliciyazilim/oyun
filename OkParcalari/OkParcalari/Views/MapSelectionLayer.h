@@ -7,22 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <GameKit/GameKit.h>
 #import "cocos2d.h"
 #import "Util.h"
 #import "ArrowGameMap.h"
 #import "ArrowGameLayer.h"
 #import "Reachability.h"
 
-@interface MapSelectionLayer : CCLayer
+
+@interface MapSelectionLayer : CCLayer <GKGameCenterControllerDelegate>
 {
     
 }
 
-@property NSArray* products;
 @property (strong, nonatomic) Reachability *reachability;
 
 +(CCScene *) scene;
-
-- (void) closeStore;
 
 @end
