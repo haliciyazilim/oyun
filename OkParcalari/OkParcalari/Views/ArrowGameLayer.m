@@ -202,19 +202,20 @@ static ArrowGameLayer* __lastInstance;
 }
 
 - (void) showInGameMenu {
-    InGameMenuLayer *child = (InGameMenuLayer*)[self getChildByTag:MENU_TAG];
-    if(child){
-        [child resumeGame];
-    }
-    else{
-        [self.arrowGame pauseGame];
-        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
-        menuLayer.callerLayer = self;
-        menuLayer.tag = MENU_TAG;
-        [self addChild:menuLayer];
-        [self reorderChild:menuLayer z:1111];
-        self.isTouchEnabled = NO;
-    }
+//    InGameMenuLayer *child = (InGameMenuLayer*)[self getChildByTag:MENU_TAG];
+//    if(child){
+//        [child resumeGame];
+//    }
+//    else{
+//        [self.arrowGame pauseGame];
+//        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
+//        menuLayer.callerLayer = self;
+//        menuLayer.tag = MENU_TAG;
+//        [self addChild:menuLayer];
+//        [self reorderChild:menuLayer z:1111];
+//        self.isTouchEnabled = NO;
+//    }
+    [self gameEnded];
 }
 - (void) inGameMenuWillClose {
     [self.arrowGame resumeGame];
@@ -228,8 +229,161 @@ static ArrowGameLayer* __lastInstance;
 }
 -(void) gameEnded
 {
+    
+    Map* map = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
+    NSString *levelNumStr = [NSString stringWithFormat:@"%d",map.order];
+    
     gameWinView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
     
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_menu_frame.png"]];
+    
+    UIView *holderFrame = [[UIView alloc] initWithFrame:CGRectMake(350.0, 200.0, 327.0, 395.0)];
+    
+    UIImageView *star1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_passive.png"]];
+    star1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
+    UIImageView *star2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_passive.png"]];
+    star2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
+    UIImageView *star3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_passive.png"]];
+    star3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
+    
+    UIImageView *levelNumHolder = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_mapnum.png"]];
+    levelNumHolder.frame = CGRectMake(122.0, 80.0, 80.0, 75.0);
+    
+    UILabel *levelNum = [[UILabel alloc] initWithFrame:CGRectMake(140.0, 100.0, 45.0, 30.0)];
+    [levelNum setBackgroundColor:[UIColor clearColor]];
+    [levelNum setFont:[UIFont fontWithName:@"Helvetica-Bold" size:30]];
+    [levelNum setTextAlignment:NSTextAlignmentCenter];
+    [levelNum setTextColor:[UIColor colorWithRed:0.309 green:0.176 blue:0.0 alpha:1.0]];
+    [levelNum setShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.4]];
+    [levelNum setShadowOffset:CGSizeMake(0, 1)];
+    [levelNum setText:levelNumStr];
+    
+    UIImageView *rope1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_ayrac.png"]];
+    rope1.frame = CGRectMake(0.0, 111.0, 327.0, 13.0);
+    
+    UIView *timerHolder = [[UIView alloc] initWithFrame:CGRectMake(45.0, 160.0, 240.0, 75.0)];
+    UIImageView *num1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_num_0.png"]];
+    num1.frame = CGRectMake(0.0, 0.0, 55.0, 75.0);
+    
+    UIImageView *num2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_num_0.png"]];
+    num2.frame = CGRectMake(55.0, 0.0, 55.0, 75.0);
+    
+    UIImageView *dot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_num_nokta.png"]];
+    dot.frame = CGRectMake(110.0, 0.0, 21.0, 75.0);
+    
+    UIImageView *num3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_num_0.png"]];
+    num3.frame = CGRectMake(130.0, 0.0, 55.0, 75.0);
+    
+    UIImageView *num4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_num_0.png"]];
+    num4.frame = CGRectMake(185.0, 0.0, 55.0, 75.0);
+    
+    UIImageView *rope2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_ayrac.png"]];
+    rope2.frame = CGRectMake(0.0, 250.0, 327.0, 13.0);
+    
+    UIButton *mainMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+    [mainMenu setFrame:CGRectMake(19.0, 263.0, 139.0, 55.0)];
+    [mainMenu setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_mainmenu", @"png")] forState:UIControlStateNormal];
+    [mainMenu setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_mainmenu_hover", @"png")] forState:UIControlStateHighlighted];
+    
+    UIImageView *buttonsDot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_nokta.png"]];
+    buttonsDot.frame = CGRectMake(153.0, 263.0, 20.0, 55.0);
+    
+    UIButton *nextGame = [UIButton buttonWithType:UIButtonTypeCustom];
+    [nextGame setFrame:CGRectMake(173.0, 263.0, 139.0, 55.0)];
+    [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next", @"png")] forState:UIControlStateNormal];
+    [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next_hover", @"png")] forState:UIControlStateHighlighted];
+    
+    UIImageView *rope3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_ayrac.png"]];
+    rope3.frame = CGRectMake(0.0, 318.0, 327.0, 13.0);
+    
+    UIButton *faceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [faceButton setFrame:CGRectMake(100.0, 345.0, 50.0, 50.0)];
+    [faceButton setBackgroundImage:[UIImage imageNamed:@"youwin_social_face.png"] forState:UIControlStateNormal];
+    [faceButton setBackgroundImage:[UIImage imageNamed:@"youwin_social_face_hover.png"] forState:UIControlStateHighlighted];
+    [faceButton addTarget:self action:@selector(shareOnFacebook) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *tweetButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [tweetButton setFrame:CGRectMake(179.0, 345.0, 50.0, 50.0)];
+    [tweetButton setBackgroundImage:[UIImage imageNamed:@"youwin_social_tweet.png"] forState:UIControlStateNormal];
+    [tweetButton setBackgroundImage:[UIImage imageNamed:@"youwin_social_tweet_hover.png"] forState:UIControlStateHighlighted];
+    [tweetButton addTarget:self action:@selector(shareOnTwitter) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *activeStar1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
+    activeStar1.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+    activeStar1.alpha = 0.0;
+    UIImageView *activeStar2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
+    activeStar2.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+    activeStar2.alpha = 0.0;
+    UIImageView *activeStar3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
+    activeStar3.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+    activeStar3.alpha = 0.0;
+    
+    [gameWinView addSubview:background];
+    [holderFrame addSubview:star1];
+    [holderFrame addSubview:star2];
+    [holderFrame addSubview:star3];
+    [holderFrame addSubview:activeStar1];
+    [holderFrame addSubview:activeStar2];
+    [holderFrame addSubview:activeStar3];
+    [holderFrame addSubview:rope1];
+    [holderFrame addSubview:levelNumHolder];
+    [holderFrame addSubview:levelNum];
+    [timerHolder addSubview:num1];
+    [timerHolder addSubview:num2];
+    [timerHolder addSubview:dot];
+    [timerHolder addSubview:num3];
+    [timerHolder addSubview:num4];
+    [holderFrame addSubview:timerHolder];
+    [holderFrame addSubview:rope2];
+    [holderFrame addSubview:mainMenu];
+    [holderFrame addSubview:buttonsDot];
+    [holderFrame addSubview:nextGame];
+    [holderFrame addSubview:rope3];
+    [holderFrame addSubview:faceButton];
+    [holderFrame addSubview:tweetButton];
+    [gameWinView addSubview:holderFrame];
+    
+    [[[CCDirector sharedDirector] view] addSubview:gameWinView];
+    
+    [UIView animateWithDuration:0.5 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        star1.alpha = 0.0;
+        star1.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            star2.alpha = 0.0;
+            star2.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                star3.alpha = 0.0;
+                star3.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
+            } completion:^(BOOL finished) {
+                ;
+            }];
+        }];
+    }];
+    
+    [UIView animateWithDuration:0.5 delay:1.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        activeStar1.alpha = 1.0;
+        activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            activeStar2.alpha = 1.0;
+            activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                activeStar3.alpha = 1.0;
+                activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
+            } completion:^(BOOL finished) {
+                ;
+            }];
+        }];
+    }];
+}
+
+- (void) shareOnFacebook {
+    
+}
+- (void) shareOnTwitter {
+    
 }
 @end
