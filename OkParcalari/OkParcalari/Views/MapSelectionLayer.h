@@ -18,11 +18,8 @@
     
 }
 
-@property NSArray* products;
 @property (strong, nonatomic) Reachability *reachability;
 
 +(CCScene *) scene;
-
-- (void) closeStore;
 
 @end

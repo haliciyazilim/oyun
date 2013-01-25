@@ -14,7 +14,6 @@
 
 @implementation MapSelectionLayer
 {
-    UIView *store;
     UIScrollView* scrollView;
     UIView *barView;
     UIImageView *leafView;
@@ -264,37 +263,7 @@
 }
 
 - (void)productPurchased:(NSNotification *)notification {
-
-    NSString * productIdentifier = notification.object;
-    [_products enumerateObjectsUsingBlock:^(SKProduct * product, NSUInteger idx, BOOL *stop) {
-        if ([product.productIdentifier isEqualToString:productIdentifier]) {
-            NSLog(@"successfully purchased %@",productIdentifier);
-            *stop = YES;
-        }
-    }];
-    
-    // do neccessary operations after product purchased here,
-    // close store,
-    // refresh map selection layer etc..
-
-}
-- (void)buyPro {
-    NSLog(@"entered buyPro at callerLayer");
-    if([[GreenTheGardenIAPHelper sharedInstance] canMakePurchases]){
-        [[GreenTheGardenIAPHelper sharedInstance] buyProduct:[_products objectAtIndex:0]];
-    }
-    else{
-        UIAlertView *couldNotMakePurchasesAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"IN_APP_PURCHASES", nil)
-                                                                             message:NSLocalizedString(@"COULD_NOT_MAKE_PURCHASES", nil)
-                                                                            delegate:self
-                                                                   cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                                   otherButtonTitles:nil,nil];
-        [couldNotMakePurchasesAlert show];
-    }
-}
-- (void)restorePurchases {
-    NSLog(@"entered restore purchases at caller layer");
-    [[GreenTheGardenIAPHelper sharedInstance] restoreCompletedTransactions];
+    [self refreshScrollView];
 }
 -(void)addStore {
     if(!self.reachability){
@@ -310,44 +279,10 @@
         [noConnection show];
     }
     else{
-        UIView *storeView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
-        
-        UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ingame_menu_frame.png"]];
-        UIImageView *backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_back.png"]];
-        [backView setFrame:CGRectMake(322.0, 231.0, 380.0, 306.0)];
-        
-        UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        [activity setColor:[UIColor blackColor]];
-        [activity setHidesWhenStopped:YES];
-        [activity startAnimating];
-        activity.frame = CGRectMake(161.0, 115.0, 60.0, 60.0);
-        
-        [storeView addSubview:backgroundView];
-        [backView addSubview:activity];
-        [storeView addSubview:backView];
-        [[[CCDirector sharedDirector] view] addSubview:storeView];
-        [[GreenTheGardenIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
-            if([products count] != 0){
-                [storeView removeFromSuperview];
-                _products = products;
-                [[GreenTheGardenIAPHelper sharedInstance] setCallerLayer:self];
-                store = [[GreenTheGardenIAPHelper sharedInstance] createStore];
-                [[[CCDirector sharedDirector] view] addSubview:store];
-            }
-            else{
-                UIAlertView *couldNotGetProducts = [[UIAlertView alloc] initWithTitle:@""
-                                                                                     message:NSLocalizedString(@"SERVER_ERROR", nil)
-                                                                                    delegate:self
-                                                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                                           otherButtonTitles:nil,nil];
-                [couldNotGetProducts show];
-            }
-        }];
+        [[GreenTheGardenIAPHelper sharedInstance] setCallerLayer:self];
+        [[GreenTheGardenIAPHelper sharedInstance] createStore];
     }
     
-}
-- (void)closeStore {
-    [store removeFromSuperview];
 }
 - (void)fxClicked:(UIButton *)button {
     if([[GreenTheGardenSoundManager sharedSoundManager] isEffectsMuted]){

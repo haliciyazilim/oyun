@@ -107,7 +107,7 @@
     NSLog(@"Oyun bitti.");
     
     
-    [[AchievementManager sharedAchievementManager]submitAchievement:kAchievementPathToStardom percentComplete:70.0];
+    [[AchievementManager sharedAchievementManager]submitAchievement:kAchievementPathToStardom percentComplete:100.0];
     
     
     return YES;
