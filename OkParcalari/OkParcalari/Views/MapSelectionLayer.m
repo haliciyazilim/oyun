@@ -26,6 +26,7 @@
     CGFloat contentPadding;
     UIImage* passiveStar;
     UIImage* activeStar;
+    UIButton *unlockButton;
 //    NSArray *_products;
     int rowCount;
     
@@ -76,12 +77,6 @@
         
         barView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 708.0, 1024.0, 60)];
         
-        UIButton *unlockButton = [[UIButton alloc] initWithFrame:CGRectMake(783.0, 17.0, 150.0, 28.0)];
-        [unlockButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"map_barbtn_unlock", @"png")] forState:UIControlStateNormal];
-        [unlockButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"map_barbtn_unlock_hover", @"png")] forState:UIControlStateHighlighted];
-        [unlockButton addTarget:self action:@selector(addStore) forControlEvents:UIControlEventTouchUpInside];
-        
-        
         UIButton* infoButton = [[UIButton alloc] initWithFrame:CGRectMake(35.0, 17.0, 26.0, 28.0)];
         [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info.png"] forState:UIControlStateNormal];
         [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info_hover.png"] forState:UIControlStateHighlighted];
@@ -118,7 +113,14 @@
         [barView addSubview:fxButton];
         [barView addSubview:musicButton];
         [barView addSubview:gameCenterButton];
-        [barView addSubview:unlockButton];
+        
+        if(![[GreenTheGardenIAPHelper sharedInstance] isPro]){
+            unlockButton = [[UIButton alloc] initWithFrame:CGRectMake(783.0, 17.0, 150.0, 28.0)];
+            [unlockButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"map_barbtn_unlock", @"png")] forState:UIControlStateNormal];
+            [unlockButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"map_barbtn_unlock_hover", @"png")] forState:UIControlStateHighlighted];
+            [unlockButton addTarget:self action:@selector(addStore) forControlEvents:UIControlEventTouchUpInside];
+            [barView addSubview:unlockButton];
+        }
 
         
         [[[CCDirector sharedDirector] view] addSubview:maskView];
@@ -288,6 +290,7 @@
 }
 
 - (void)productPurchased:(NSNotification *)notification {
+    [unlockButton removeFromSuperview];
     [self refreshScrollView];
 }
 -(void)addStore {
