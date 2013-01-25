@@ -4,7 +4,6 @@
 //
 //  Created by Alperen Kavun on 10.01.2013.
 //
-//
 
 #import "GreenTheGardenIAPHelper.h"
 #import "MapSelectionLayer.h"
@@ -21,7 +20,6 @@
     BOOL isClosed;
     BOOL isAlertShown;
 }
-
 + (GreenTheGardenIAPHelper *)sharedInstance {
     static dispatch_once_t once;
     static GreenTheGardenIAPHelper * sharedInstance;
@@ -32,7 +30,6 @@
     });
     return sharedInstance;
 }
-
 - (void)productPurchaseCompleted:(NSNotification *)notif {
     [self closeStore];
     if(!isAlertShown){
@@ -70,17 +67,14 @@
     [buyButton setFrame:CGRectMake(520.0, 443.0, 148.0, 69.0)];
     [buyButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_buynow", @"png")] forState:UIControlStateNormal];
     [buyButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_buynow_hover", @"png")] forState:UIControlStateHighlighted];
-
     
     restoreButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [restoreButton setFrame:CGRectMake(357.0, 443.0, 148.0, 69.0)];
     [restoreButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_purchase", @"png")] forState:UIControlStateNormal];
     [restoreButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_purchase_hover", @"png")] forState:UIControlStateHighlighted];
 
-    
     UIImageView *unlockImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_image.png"]];
     [unlockImage setFrame:CGRectMake(355.0, 260.0, 153.0, 178.0)];
-    
 
     headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 260.0, 160.0, 40.0)];
     [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20.0]];
@@ -111,7 +105,6 @@
     [storeView addSubview:headerLabel];
     [storeView addSubview:descriptionLabel];
     [storeView addSubview:priceLabel];
-
     
     [[[CCDirector sharedDirector] view] addSubview:storeView];
     
@@ -153,7 +146,6 @@
         }
     }];
 }
-
 - (void)buyPro {
     if([[GreenTheGardenIAPHelper sharedInstance] canMakePurchases]){
         [[GreenTheGardenIAPHelper sharedInstance] buyProduct:[self.products objectAtIndex:0]];
