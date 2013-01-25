@@ -15,7 +15,7 @@
 #import "WaterSpray.h"
 
 #import "AchievementManager.h"
-#import "GreenTheGardenAppSpecificValues.h"
+#import "GreenTheGardenGCSpecificValues.h"
 
 @interface ArrowGame()
 @property (readonly) GameMap* map;
@@ -105,12 +105,9 @@
         [[DatabaseManager sharedInstance] saveContext];
     }
     NSLog(@"Oyun bitti.");
-    AchievementManager *achievement=[[AchievementManager alloc]init];
-    //[achievement getAchievements];
     
-    [achievement submitAchievement:kAchievementWarmingUp percentComplete:100.0];
     
-
+    [[AchievementManager sharedAchievementManager]submitAchievement:kAchievementPathToStardom percentComplete:100.0];
     
     
     return YES;

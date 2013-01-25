@@ -8,6 +8,7 @@
 
 #import "GreenTheGardenIAPHelper.h"
 #import "MapSelectionLayer.h"
+#import "GreenTheGardenIAPSpecificValues.h"
 
 @implementation GreenTheGardenIAPHelper
 
@@ -15,10 +16,12 @@
     static dispatch_once_t once;
     static GreenTheGardenIAPHelper * sharedInstance;
     dispatch_once(&once, ^{
-        NSSet * productIdentifiers = [NSSet setWithObjects:
-                                      @"com.halici.GreenTheGarden.gameUnlock",
-                                      nil];
-        sharedInstance = [[self alloc] initWithProductIdentifiers:productIdentifiers];
+//        NSSet * productIdentifiers = [NSSet setWithObjects:
+//                                      iProUpgrade,
+//                                      nil];
+//        NSDictionary *products = [[NSDictionary alloc] initWithObjects:@[iProUpgrade] forKeys:@[iProUpgradeKey]];
+        NSDictionary *products = @{iProUpgradeKey : iProUpgradeSecret};
+        sharedInstance = [[self alloc] initWithProductsDictionary:products];
     });
     return sharedInstance;
 }
@@ -94,6 +97,9 @@
 }
 - (void)closeStore {
     [self.callerLayer closeStore];
+}
+- (BOOL) isPro {
+    return [self productPurchased:iProUpgradeKey];
 }
 
 @end

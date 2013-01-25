@@ -15,7 +15,7 @@
 //#import "Util.h"
 
 #import "AchievementManager.h"
-#import "GreenTheGardenAppSpecificValues.h"
+#import "GreenTheGardenGCSpecificValues.h"
 
 @implementation MainGameLayer{
     CCSprite *newGameButton;
@@ -47,10 +47,7 @@
     
     
     
-    AchievementManager *achievement=[[AchievementManager alloc]init];
-    [achievement getAchievements];
-    
-    //[achievement submitAchievement:kAchievementWarmingUp percentComplete:50.0];
+    [AchievementManager sharedAchievementManager];
     
     //
     

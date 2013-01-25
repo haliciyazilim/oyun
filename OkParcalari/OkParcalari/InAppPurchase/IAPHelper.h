@@ -14,7 +14,9 @@ typedef void (^RequestProductsCompletionHandler)(BOOL success, NSArray * product
 
 @interface IAPHelper : NSObject
 
-- (id)initWithProductIdentifiers:(NSSet *)productIdentifiers;
+@property NSDictionary *iProducts;
+
+- (id)initWithProductsDictionary:(NSDictionary *)products;
 - (void)requestProductsWithCompletionHandler:(RequestProductsCompletionHandler)completionHandler;
 
 - (BOOL)canMakePurchases;

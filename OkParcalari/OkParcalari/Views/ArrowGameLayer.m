@@ -19,7 +19,7 @@
 #import "GreenTheGardenSoundManager.h"
 
 #import "AchievementManager.h"
-#import "GreenTheGardenAppSpecificValues.h"
+#import "GreenTheGardenGCSpecificValues.h"
 
 @implementation ArrowGameLayer
 {
@@ -213,11 +213,7 @@
 }
 -(void) gameEnded
 {
-    AchievementManager *achievement=[[AchievementManager alloc]init];
-    //[achievement getAchievements];
-    
-    [achievement submitAchievement:kAchievementWarmingUp percentComplete:50.0];
-    
+   
     NSLog(@"entered gameEnded");
 }
 @end
