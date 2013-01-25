@@ -314,13 +314,19 @@ static ArrowGameLayer* __lastInstance;
     [tweetButton addTarget:self action:@selector(shareOnTwitter) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *activeStar1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
-    activeStar1.frame = CGRectMake(star1.center.x, star1.center.y, 0.0, 0.0);
+//    activeStar1.frame = CGRectMake(star1.center.x, star1.center.y, 0.0, 0.0);
+    activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
+    activeStar1.transform = CGAffineTransformMakeScale(0.0, 0.0);
     activeStar1.alpha = 0.0;
     UIImageView *activeStar2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
-    activeStar2.frame = CGRectMake(star2.center.x, star2.center.y, 0.0, 0.0);
+//    activeStar2.frame = CGRectMake(star2.center.x, star2.center.y, 0.0, 0.0);
+    activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
+    activeStar2.transform = CGAffineTransformMakeScale(0.0, 0.0);
     activeStar2.alpha = 0.0;
     UIImageView *activeStar3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
-    activeStar3.frame = CGRectMake(star3.center.x, star3.center.y, 0.0, 0.0);
+//    activeStar3.frame = CGRectMake(star3.center.x, star3.center.y, 0.0, 0.0);
+    activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
+    activeStar3.transform = CGAffineTransformMakeScale(0.0, 0.0);
     activeStar3.alpha = 0.0;
     
     [gameWinView addSubview:background];
@@ -369,31 +375,37 @@ static ArrowGameLayer* __lastInstance;
     /////////
     // frames
     [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        activeStar1.frame = CGRectMake(24.0, 11.0, 110.0, 107.0);
+//        activeStar1.frame = CGRectMake(24.0, 11.0, 110.0, 107.0);
+        activeStar1.transform = CGAffineTransformMakeScale(1.5, 1.5);
     } completion:^(BOOL finished) {
         [star1 removeFromSuperview];
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
+//            activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
+            activeStar1.transform = CGAffineTransformMakeScale(1.0, 1.0);
         } completion:^(BOOL finished) {
             ;
         }];
     }];
     [UIView animateWithDuration:1.0 delay:1.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        activeStar2.frame = CGRectMake(111.0, -15.0, 110.0, 107.0);
+//        activeStar2.frame = CGRectMake(111.0, -15.0, 110.0, 107.0);
+        activeStar2.transform = CGAffineTransformMakeScale(1.5, 1.5);
     } completion:^(BOOL finished) {
         [star2 removeFromSuperview];
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
+//            activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
+            activeStar2.transform = CGAffineTransformMakeScale(1.0, 1.0);
         } completion:^(BOOL finished) {
             ;
         }];
     }];
     [UIView animateWithDuration:1.0 delay:2.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        activeStar3.frame = CGRectMake(197.0, 11.0, 110.0, 107.0);
+//        activeStar3.frame = CGRectMake(197.0, 11.0, 110.0, 107.0);
+        activeStar3.transform = CGAffineTransformMakeScale(1.5, 1.5);
     } completion:^(BOOL finished) {
         [star3 removeFromSuperview];
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
+//            activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
+            activeStar3.transform = CGAffineTransformMakeScale(1.0, 1.0);
         } completion:^(BOOL finished) {
             ;
         }];
