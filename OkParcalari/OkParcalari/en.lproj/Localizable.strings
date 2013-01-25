@@ -17,3 +17,4 @@
 "SERVER_ERROR" = "There seems to be an error with the iTunes Store. Please try again later.";
 "PRODUCT_PURCHASED" = "You have successfully unlocked the full game. Enjoy!";
 "PRODUCT_PURCHASE_FAILED" = "Error: ";
+"TAP_TO_CLOSE" = "Tap to close";

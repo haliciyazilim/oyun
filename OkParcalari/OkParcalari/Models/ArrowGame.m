@@ -66,6 +66,7 @@ static ArrowGame* __lastInstance;
         
         if([[TutorialManager sharedInstance] isTutorialEnabled] && [[TutorialManager sharedInstance] isTutoringMap:fileName]){
             [[TutorialManager sharedInstance] startTutorial];
+//            [[TutorialManager sharedInstance] performSelector:@selector(startTutorial) withObject:nil afterDelay:0.01];
         }
     }
     return self;
@@ -106,7 +107,9 @@ static ArrowGame* __lastInstance;
         [[DatabaseManager sharedInstance] saveContext];
     }
     
-    [[AchievementManager sharedAchievementManager]submitAchievement:kAchievementPathToStardom percentComplete:100.0];
+    
+    [[AchievementManager sharedAchievementManager]checkAchievements:map];
+    //[[AchievementManager sharedAchievementManager]submitAchievement:kAchievementPathToStardom percentComplete:100.0];
     [[ArrowGameLayer lastInstance] gameEnded];
     [ArrowGame cleanLastInstance];
     return YES;
