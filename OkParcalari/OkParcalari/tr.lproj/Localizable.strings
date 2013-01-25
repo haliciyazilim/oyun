@@ -15,5 +15,7 @@
 "IN_APP_PURCHASES" = "Uygulama İçi Alım";
 "OK" = "Tamam";
 "CONNECTION_ERROR" = "Bağlantı hatası oluştu. Lütfen daha sonra tekrar deneyiniz.";
-"SERVER_ERROR" = "sadasd";
-"PRODUCT_PURCHASED" = "Tam sürüm başarılı bir şekilde açıldı. Satın aldığınız için teşekkür ederiz.";
+"SERVER_ERROR" = "iTunes Store ile ilgili bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.";
+"PRODUCT_PURCHASED" = "You have successfully unlocked the full game. Enjoy!";
+"PRODUCT_PURCHASED" = "Tam sürüme başarıyla geçildi. İyi oyunlar!";
+"PRODUCT_PURCHASE_FAILED" = "Hata: ";
