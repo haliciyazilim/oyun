@@ -8,7 +8,7 @@
 
 #import "AchievementManager.h"
 #import "GameCenterManager.h"
-//#import "GreenTheGardenAppSpecificValues.h"
+#import "GreenTheGardenGCSpecificValues.h"
 
 
 @implementation AchievementManager
@@ -145,6 +145,12 @@ static AchievementManager * sharedAchievementManager=nil;
              // handle the error.
          }
     }];
+}
+
+-(void)checkAchievements: (Map*) playedMap{
+    NSLog(@"MAp.score: %@", playedMap.score);
+    if(playedMap.score.intValue<60)
+    [self submitAchievement:kAchievementFastMindQuickHands percentComplete:100];
 }
 
 @end
