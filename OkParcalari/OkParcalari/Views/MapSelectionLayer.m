@@ -339,19 +339,34 @@
 
 - (void) showGameCenter
 {
-    NSLog(@"show GameCenter");
-    tempVC = [[UIViewController alloc] init];
-    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
-    if (gameCenterController != nil)
-    {
-        gameCenterController.gameCenterDelegate = self;
-        [[[CCDirector sharedDirector] view] addSubview:tempVC.view];
-        [tempVC presentModalViewController:gameCenterController animated:YES];
+    if(!self.reachability){
+        self.reachability = [Reachability reachabilityForInternetConnection];
+    }
+    NetworkStatus netStatus = [self.reachability currentReachabilityStatus];
+    if(netStatus == NotReachable){
+        UIAlertView *noConnection = [[UIAlertView alloc] initWithTitle:@""
+                                                               message:NSLocalizedString(@"CONNECTION_ERROR", nil)
+                                                              delegate:self
+                                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                     otherButtonTitles:nil,nil];
+        [noConnection show];
+    }
+    else{
+        NSLog(@"show GameCenter");
+        tempVC = [[UIViewController alloc] init];
+        GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+        if (gameCenterController != nil){
+            gameCenterController.gameCenterDelegate = self;
+            [[[CCDirector sharedDirector] view] addSubview:tempVC.view];
+            [tempVC presentModalViewController:gameCenterController animated:YES];
+        }
     }
 }
+
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
 {
     [tempVC dismissModalViewControllerAnimated:YES];
+    [tempVC.view removeFromSuperview];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
