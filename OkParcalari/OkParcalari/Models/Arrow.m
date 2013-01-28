@@ -175,9 +175,9 @@
     [self addChild:sprite];
     
     if([self direction] != NONE){
-        NSLog(@"%d",[self direction]);
+        //NSLog(@"%d",[self direction]);
         [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"move"];
-        NSLog(@"MOve Efekti çalması gerek.");
+        //NSLog(@"MOve Efekti çalması gerek.");
     }
     
     
@@ -307,7 +307,7 @@
             [self addChild:mySpray];
             
             [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"fiskiye"];
-            NSLog(@"fiksiye efekti çalması gerek.");
+            //NSLog(@"fiksiye efekti çalması gerek.");
             
             delay += 1.0;
             [backSprite1 runAction:  [self fadeInSequenceWithDelay:duration*0.0f+delay withDuration:duration]];
