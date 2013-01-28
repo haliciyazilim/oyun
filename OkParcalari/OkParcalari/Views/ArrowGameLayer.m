@@ -231,10 +231,10 @@ static ArrowGameLayer* __lastInstance;
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
 }
 - (void) nextGame {
-    Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
-    int oldMapOrder = oldMap.order;
-    NSString *oldMapPackage = oldMap.packageId;
-    Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:oldMapOrder+1] forPackage:oldMapPackage];
+//    Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
+//    int oldMapOrder = oldMap.order;
+//    NSString *oldMapPackage = oldMap.packageId;
+//    Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:oldMapOrder+1] forPackage:oldMapPackage];
     
 }
 -(void) gameEnded
