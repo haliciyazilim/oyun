@@ -135,8 +135,10 @@
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
-    [[ArrowGame lastInstance] pauseGame];
-    [[ArrowGameLayer lastInstance] showInGameMenu];
+    if([[ArrowGame lastInstance] isGameRunning]){
+        [[ArrowGame lastInstance] pauseGame];
+        [[ArrowGameLayer lastInstance] showInGameMenu];
+    }
 	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
     [[GreenTheGardenSoundManager sharedSoundManager] stopBackgroundMusic];
