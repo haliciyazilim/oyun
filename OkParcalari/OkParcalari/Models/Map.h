@@ -41,6 +41,7 @@ NSString* stringOfDifficulty(MAP_DIFFICULTY difficulty);
 @property BOOL isLocked;
 
 @property int  starCount;
+@property int solveCount;
 @property MapPackage* package;
 @property BOOL isNotPlayedActiveGame;
 

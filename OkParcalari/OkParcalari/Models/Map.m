@@ -25,8 +25,9 @@
 @dynamic order;
 @dynamic isPurchased;
 @dynamic isLocked;
+@dynamic starCount;
+@dynamic solveCount;
 
-@synthesize starCount;
 @synthesize package;
 @synthesize isNotPlayedActiveGame;
 
