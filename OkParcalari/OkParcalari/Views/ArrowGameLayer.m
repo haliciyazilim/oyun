@@ -230,6 +230,9 @@ static ArrowGameLayer* __lastInstance;
     [self removeFromParentAndCleanup:YES];
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
 }
+- (void) nextGame {
+    
+}
 -(void) gameEnded
 {
     self.isTouchEnabled = NO;
@@ -297,6 +300,7 @@ static ArrowGameLayer* __lastInstance;
     [nextGame setFrame:CGRectMake(173.0, 263.0, 139.0, 55.0)];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next", @"png")] forState:UIControlStateNormal];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next_hover", @"png")] forState:UIControlStateHighlighted];
+    [nextGame addTarget:self action:@selector(nextMap) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *rope3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_ayrac.png"]];
     rope3.frame = CGRectMake(0.0, 318.0, 327.0, 13.0);

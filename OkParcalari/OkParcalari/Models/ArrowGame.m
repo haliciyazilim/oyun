@@ -63,6 +63,7 @@ static ArrowGame* __lastInstance;
         [_gameTimer startTimer];
         [self addChild:_gameTimer];
         _isGamePaused = NO;
+        _isGameRunning = YES;
         
         if([[TutorialManager sharedInstance] isTutorialEnabled] && [[TutorialManager sharedInstance] isTutoringMap:fileName]){
             [[TutorialManager sharedInstance] startTutorial];
@@ -111,15 +112,18 @@ static ArrowGame* __lastInstance;
     [[AchievementManager sharedAchievementManager]checkAchievements:map];
     //[[AchievementManager sharedAchievementManager]submitAchievement:kAchievementPathToStardom percentComplete:100.0];
     [[ArrowGameLayer lastInstance] gameEnded];
+    _isGameRunning = NO;
     [ArrowGame cleanLastInstance];
     return YES;
 }
 - (void) pauseGame {
     _isGamePaused = YES;
+    _isGameRunning = NO;
     [_gameTimer pauseTimer];
 }
 - (void) resumeGame {
     _isGamePaused = NO;
+    _isGameRunning = YES;
     [_gameTimer resumeTimer];
 }
 

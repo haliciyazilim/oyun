@@ -29,6 +29,7 @@
 
 @property Stopwatch *gameTimer;
 @property BOOL isGamePaused;
+@property BOOL isGameRunning;
 
 - (id)initWithFile:(NSString*)fileName;
 
