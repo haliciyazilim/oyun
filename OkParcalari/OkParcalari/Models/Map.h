@@ -37,9 +37,9 @@ NSString* stringOfDifficulty(MAP_DIFFICULTY difficulty);
 @property int stepCount;
 @property int tileCount;
 @property int order;
-
 @property BOOL isPurchased;
 @property BOOL isLocked;
+
 @property int  starCount;
 @property MapPackage* package;
 @property BOOL isNotPlayedActiveGame;

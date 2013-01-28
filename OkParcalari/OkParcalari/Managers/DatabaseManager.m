@@ -61,8 +61,10 @@ static DatabaseManager *sharedInstance = nil;
     if (![self.managedObjectContext save:&error]) {
         // Handle the error.
     }
+    [self updateMaps];
 }
-
+- (void) updateMaps {
+}
 - (BOOL)isEmpty {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map" inManagedObjectContext:self.managedObjectContext];
@@ -105,7 +107,12 @@ static DatabaseManager *sharedInstance = nil;
     
     NSError *error = nil;
     NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-    return [mutableFetchResults objectAtIndex:0];
+    
+    if (mutableFetchResults == nil || mutableFetchResults.count == 0) {
+        return nil;
+    } else {
+        return [mutableFetchResults objectAtIndex:0];
+    }
 }
 
 - (NSArray *)getMapsForPackage:(NSString *)packageId {
@@ -139,6 +146,7 @@ static DatabaseManager *sharedInstance = nil;
         [aMap setStepCount:-1];
         [aMap setTileCount:0];
         [aMap setIsPurchased:NO];
+        [aMap setIsLocked:YES];
     }
     [self saveContext];
 }
