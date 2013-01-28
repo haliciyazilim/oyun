@@ -109,8 +109,11 @@ static ArrowGame* __lastInstance;
     }
     
     
-    [[AchievementManager sharedAchievementManager]checkAchievements:map];
-    //[[AchievementManager sharedAchievementManager]submitAchievement:kAchievementPathToStardom percentComplete:100.0];
+    
+    [[AchievementManager sharedAchievementManager]checkAchievementFastMindQuickHands:map];
+    
+    [[AchievementManager sharedAchievementManager]checkAchievementMapsStars:map];
+    
     [[ArrowGameLayer lastInstance] gameEnded];
     _isGameRunning = NO;
     [ArrowGame cleanLastInstance];
