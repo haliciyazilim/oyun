@@ -16,6 +16,7 @@
 
 #import "AchievementManager.h"
 #import "GreenTheGardenGCSpecificValues.h"
+#import "TransitionManager.h"
 
 @implementation MainGameLayer{
     CCSprite *newGameButton;
@@ -158,8 +159,11 @@
 }
 -(void) makeTransition
 {
-    [self removeFromParentAndCleanup:YES];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+        [self removeFromParentAndCleanup:YES];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+    }];
+    [myManager startTransition];
 }
 
 @end

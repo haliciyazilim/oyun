@@ -8,7 +8,7 @@
 
 #import "CCLayer.h"
 
-@interface InGameMenuLayer : CCLayer
+@interface InGameMenuLayer : CCLayer <UIAlertViewDelegate>
 
 @property CCLayer *callerLayer;
 

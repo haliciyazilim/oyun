@@ -202,20 +202,20 @@ static ArrowGameLayer* __lastInstance;
 }
 
 - (void) showInGameMenu {
-//    InGameMenuLayer *child = (InGameMenuLayer*)[self getChildByTag:MENU_TAG];
-//    if(child){
-//        [child resumeGame];
-//    }
-//    else{
-//        [self.arrowGame pauseGame];
-//        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
-//        menuLayer.callerLayer = self;
-//        menuLayer.tag = MENU_TAG;
-//        [self addChild:menuLayer];
-//        [self reorderChild:menuLayer z:1111];
-//        self.isTouchEnabled = NO;
-//    }
-    [self gameEnded];
+    InGameMenuLayer *child = (InGameMenuLayer*)[self getChildByTag:MENU_TAG];
+    if(child){
+        [child resumeGame];
+    }
+    else{
+        [self.arrowGame pauseGame];
+        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
+        menuLayer.callerLayer = self;
+        menuLayer.tag = MENU_TAG;
+        [self addChild:menuLayer];
+        [self reorderChild:menuLayer z:1111];
+        self.isTouchEnabled = NO;
+    }
+//    [self gameEnded];
 }
 - (void) inGameMenuWillClose {
     [self.arrowGame resumeGame];
@@ -231,10 +231,10 @@ static ArrowGameLayer* __lastInstance;
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
 }
 - (void) nextGame {
-    Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
-    int oldMapOrder = oldMap.order;
-    NSString *oldMapPackage = oldMap.packageId;
-    Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:oldMapOrder+1] forPackage:oldMapPackage];
+//    Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
+//    int oldMapOrder = oldMap.order;
+//    NSString *oldMapPackage = oldMap.packageId;
+//    Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:oldMapOrder+1] forPackage:oldMapPackage];
     
 }
 -(void) gameEnded

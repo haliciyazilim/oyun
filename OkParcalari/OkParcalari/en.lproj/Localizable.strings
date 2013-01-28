@@ -18,3 +18,6 @@
 "PRODUCT_PURCHASED" = "You have successfully unlocked the full game. Enjoy!";
 "PRODUCT_PURCHASE_FAILED" = "Error: ";
 "TAP_TO_CLOSE" = "Tap to close";
+"RESTART_APPROVE" = "Are you sure want to restart the game? Your unsaved progress will be lost!";
+"MAIN_MENU_APPROVE" = "Are you sure want to return to main menu? Your unsaved progress will be lost!";
+"CANCEL" = "Cancel";

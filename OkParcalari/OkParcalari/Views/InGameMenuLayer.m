@@ -10,6 +10,9 @@
 #import "ArrowGameLayer.h"
 #import "Util.h"
 
+#define RESTART_APPROVE_ALERTVIEW_TAG 4
+#define MAIN_MENU_APPROVE_ALERTVIEW_TAG 5
+
 @implementation InGameMenuLayer
 {
     UIButton *menuItem1;
@@ -48,7 +51,7 @@
         [menuItem2 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_restart_hover", @"png")] forState:UIControlStateHighlighted];
         
         [menuItem2 addTarget:self
-                      action:@selector(restartGame)
+                      action:@selector(restartGameApprove)
             forControlEvents:UIControlEventTouchUpInside];
         
         menuItem3 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -57,7 +60,7 @@
         [menuItem3 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_mainmenu_hover", @"png")] forState:UIControlStateHighlighted];
         
         [menuItem3 addTarget:self
-                      action:@selector(returnToMainMenu)
+                      action:@selector(returnToMainMenuApprove)
             forControlEvents:UIControlEventTouchUpInside];
         
         [self addChild:background];
@@ -92,6 +95,24 @@
     [(ArrowGameLayer *)self.callerLayer inGameMenuWillClose];
     [self removeFromParentAndCleanup:YES];
 }
+- (void) restartGameApprove {
+    UIAlertView *restartApprove = [[UIAlertView alloc] initWithTitle:@""
+                                                               message:NSLocalizedString(@"RESTART_APPROVE", nil)
+                                                              delegate:self
+                                                     cancelButtonTitle:NSLocalizedString(@"CANCEL", nil)
+                                                     otherButtonTitles:NSLocalizedString(@"OK", nil),nil];
+    [restartApprove setTag:RESTART_APPROVE_ALERTVIEW_TAG];
+    [restartApprove show];
+}
+- (void) returnToMainMenuApprove {
+    UIAlertView *mainMenuApprove = [[UIAlertView alloc] initWithTitle:@""
+                                                             message:NSLocalizedString(@"MAIN_MENU_APPROVE", nil)
+                                                            delegate:self
+                                                   cancelButtonTitle:NSLocalizedString(@"CANCEL", nil)
+                                                   otherButtonTitles:NSLocalizedString(@"OK", nil),nil];
+    [mainMenuApprove setTag:MAIN_MENU_APPROVE_ALERTVIEW_TAG];
+    [mainMenuApprove show];
+}
 - (void) restartGame {
     [self removeAllButtons];
     [(ArrowGameLayer *)self.callerLayer restartGame];
@@ -101,6 +122,18 @@
     [self removeAllButtons];
     [(ArrowGameLayer *)self.callerLayer returnToMainMenu];
     [self removeFromParentAndCleanup:YES];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(alertView.tag == RESTART_APPROVE_ALERTVIEW_TAG){
+        if (buttonIndex != [alertView cancelButtonIndex]){
+            [self restartGame];
+        }
+    }
+    else if(alertView.tag == MAIN_MENU_APPROVE_ALERTVIEW_TAG){
+        if (buttonIndex != [alertView cancelButtonIndex]) {
+            [self returnToMainMenu];
+        }
+    }
 }
 
 @end
