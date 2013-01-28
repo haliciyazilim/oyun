@@ -93,6 +93,21 @@ static DatabaseManager *sharedInstance = nil;
     return [mutableFetchResults objectAtIndex:0];
 }
 
+- (Map *)getMapWithOrder:(NSNumber *)order forPackage:(NSString *)packageId {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"(order == %@) AND (packageId == %@)", order, packageId];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    return [mutableFetchResults objectAtIndex:0];
+}
+
 - (NSArray *)getMapsForPackage:(NSString *)packageId {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map"
