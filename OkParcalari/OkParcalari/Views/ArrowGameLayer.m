@@ -228,6 +228,7 @@ static ArrowGameLayer* __lastInstance;
     [self.arrowGame cleanMap];
     [self.arrowGame removeFromParentAndCleanup:YES];
     [self removeFromParentAndCleanup:YES];
+    [ArrowGameLayer cleanLastInstance];
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
 }
 - (void) nextGame {
