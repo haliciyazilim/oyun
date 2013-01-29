@@ -19,7 +19,7 @@ MAP_DIFFICULTY difficultyFromString(NSString* string);
 NSString* stringOfDifficulty(MAP_DIFFICULTY difficulty);
 
 
-@interface MapPackage
+@interface MapPackage : NSObject 
 
 @property NSString* name;
 @property int packageId;
@@ -45,5 +45,6 @@ NSString* stringOfDifficulty(MAP_DIFFICULTY difficulty);
 @property BOOL isNotPlayedActiveGame;
 
 -(int)getStarCount;
++ (int) starCountForScore:(int)score andDifficulty:(MAP_DIFFICULTY)difficulty;
 
 @end

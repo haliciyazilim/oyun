@@ -108,13 +108,11 @@ static ArrowGame* __lastInstance;
         [[DatabaseManager sharedInstance] saveContext];
     }
     
-    
-    
     [[AchievementManager sharedAchievementManager]checkAchievementFastMindQuickHands:map];
     
     [[AchievementManager sharedAchievementManager]checkAchievementMapsStars:map];
     
-    [[ArrowGameLayer lastInstance] gameEnded];
+    [[ArrowGameLayer lastInstance] gameEnded:[Map starCountForScore:[self.gameTimer getElapsedSeconds] andDifficulty:map.difficulty]];
     _isGameRunning = NO;
     [ArrowGame cleanLastInstance];
     return YES;

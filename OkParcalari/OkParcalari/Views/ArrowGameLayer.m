@@ -20,6 +20,7 @@
 
 #import "AchievementManager.h"
 #import "GreenTheGardenGCSpecificValues.h"
+#import "TransitionManager.h"
 
 @implementation ArrowGameLayer
 {
@@ -165,10 +166,14 @@ static ArrowGameLayer* __lastInstance;
 }
 
 - (void) restartGame {
-    [self.arrowGame cleanMap];
-    [self.arrowGame removeFromParentAndCleanup:YES];
-    self.isTouchEnabled = YES;
-    [self initializeGameWithFile:_fileName];
+    self.isTouchEnabled = NO;
+    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+        [self.arrowGame cleanMap];
+        [self.arrowGame removeFromParentAndCleanup:YES];
+        self.isTouchEnabled = YES;
+        [self initializeGameWithFile:_fileName];
+    }];
+    [myManager startTransition];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -202,34 +207,39 @@ static ArrowGameLayer* __lastInstance;
 }
 
 - (void) showInGameMenu {
-//    InGameMenuLayer *child = (InGameMenuLayer*)[self getChildByTag:MENU_TAG];
-//    if(child){
-//        [child resumeGame];
-//    }
-//    else{
-//        [self.arrowGame pauseGame];
-//        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
-//        menuLayer.callerLayer = self;
-//        menuLayer.tag = MENU_TAG;
-//        [self addChild:menuLayer];
-//        [self reorderChild:menuLayer z:1111];
-//        self.isTouchEnabled = NO;
-//    }
-    [self gameEnded];
+    InGameMenuLayer *child = (InGameMenuLayer*)[self getChildByTag:MENU_TAG];
+    if(child){
+        [child resumeGame];
+    }
+    else{
+        [self.arrowGame pauseGame];
+        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
+        menuLayer.callerLayer = self;
+        menuLayer.tag = MENU_TAG;
+        [self addChild:menuLayer];
+        [self reorderChild:menuLayer z:1111];
+        self.isTouchEnabled = NO;
+    }
+//    [self gameEnded];
 }
 - (void) inGameMenuWillClose {
     [self.arrowGame resumeGame];
     self.isTouchEnabled = YES;
 }
 - (void) returnToMainMenu {
-    if(gameWinView){
-        [gameWinView removeFromSuperview];
-    }
-    [self.arrowGame cleanMap];
-    [self.arrowGame removeFromParentAndCleanup:YES];
-    [self removeFromParentAndCleanup:YES];
-    [ArrowGameLayer cleanLastInstance];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+    self.isTouchEnabled = NO;
+    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+        if(gameWinView){
+            [gameWinView removeFromSuperview];
+        }
+        [self.arrowGame cleanMap];
+        [self.arrowGame removeFromParentAndCleanup:YES];
+        [self removeFromParentAndCleanup:YES];
+        [ArrowGameLayer cleanLastInstance];
+        [ArrowGame cleanLastInstance];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+    }];
+    [myManager startTransition];
 }
 - (void) nextGame {
 //    Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
@@ -238,7 +248,7 @@ static ArrowGameLayer* __lastInstance;
 //    Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:oldMapOrder+1] forPackage:oldMapPackage];
     
 }
--(void) gameEnded
+-(void) gameEnded:(int)starCount
 {
     self.isTouchEnabled = NO;
     
@@ -252,7 +262,7 @@ static ArrowGameLayer* __lastInstance;
     UIView *holderFrame = [[UIView alloc] initWithFrame:CGRectMake(350.0, 200.0, 327.0, 395.0)];
     
     UIImageView *star1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_passive.png"]];
-    star1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
+    star1.frame = CGRectMake(40.0, 26.0, 80.0, 77.0);
     UIImageView *star2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_passive.png"]];
     star2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
     UIImageView *star3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_passive.png"]];
@@ -322,29 +332,30 @@ static ArrowGameLayer* __lastInstance;
     [tweetButton setBackgroundImage:[UIImage imageNamed:@"youwin_social_tweet_hover.png"] forState:UIControlStateHighlighted];
     [tweetButton addTarget:self action:@selector(shareOnTwitter) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImageView *activeStar1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
-//    activeStar1.frame = CGRectMake(star1.center.x, star1.center.y, 0.0, 0.0);
-    activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
-    activeStar1.transform = CGAffineTransformMakeScale(0.0, 0.0);
-    activeStar1.alpha = 0.0;
-    UIImageView *activeStar2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
-//    activeStar2.frame = CGRectMake(star2.center.x, star2.center.y, 0.0, 0.0);
-    activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
-    activeStar2.transform = CGAffineTransformMakeScale(0.0, 0.0);
-    activeStar2.alpha = 0.0;
-    UIImageView *activeStar3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
-//    activeStar3.frame = CGRectMake(star3.center.x, star3.center.y, 0.0, 0.0);
-    activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
-    activeStar3.transform = CGAffineTransformMakeScale(0.0, 0.0);
-    activeStar3.alpha = 0.0;
+    NSMutableArray *activeStars = [[NSMutableArray alloc] initWithCapacity:starCount];
+    
+    for ( int i = 0; i < starCount; i++) {
+        CGFloat yOffset;
+        if( i % 2 == 0) {
+            yOffset = 0.0;
+        }
+        else{
+            yOffset = -26.0;
+        }
+        UIImageView *activeStar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
+        activeStar.frame = CGRectMake(40.0+i*86, 26.0+yOffset, 80.0, 77.0);
+        activeStar.transform = CGAffineTransformMakeScale(0.0, 0.0);
+        activeStar.alpha = 0.0;
+        [activeStars addObject:activeStar];
+    }
     
     [gameWinView addSubview:background];
     [holderFrame addSubview:star1];
     [holderFrame addSubview:star2];
     [holderFrame addSubview:star3];
-    [holderFrame addSubview:activeStar1];
-    [holderFrame addSubview:activeStar2];
-    [holderFrame addSubview:activeStar3];
+    for ( int i = 0; i < starCount; i++){
+        [holderFrame addSubview:[activeStars objectAtIndex:i]];
+    }
     [holderFrame addSubview:rope1];
     [holderFrame addSubview:levelNumHolder];
     [holderFrame addSubview:levelNum];
@@ -366,53 +377,27 @@ static ArrowGameLayer* __lastInstance;
     [[[CCDirector sharedDirector] view] addSubview:gameWinView];
 
     // opacities
-    [UIView animateWithDuration:0.7 delay:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        activeStar1.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        ;
-    }];
-    [UIView animateWithDuration:0.7 delay:0.7 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        activeStar2.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        ;
-    }];
-    [UIView animateWithDuration:0.7 delay:1.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        activeStar3.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        ;
-    }];
-    /////////
-    // frames
-    [UIView animateWithDuration:1.0 delay:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        activeStar1.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(1.0), CGAffineTransformMakeScale(1.5, 1.5));
-    } completion:^(BOOL finished) {
-        [star1 removeFromSuperview];
-        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            activeStar1.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(0.0), CGAffineTransformMakeScale(1.0, 1.0));
+    for ( int i = 0; i < starCount; i++){
+        [UIView animateWithDuration:0.7 delay:0.2+i*0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [[activeStars objectAtIndex:i] setAlpha:1.0];
         } completion:^(BOOL finished) {
             ;
         }];
-    }];
-    [UIView animateWithDuration:1.0 delay:0.7 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        activeStar2.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(1.0), CGAffineTransformMakeScale(1.5, 1.5));
-    } completion:^(BOOL finished) {
-        [star2 removeFromSuperview];
-        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            activeStar2.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(0.0), CGAffineTransformMakeScale(1.0, 1.0));
+    }
+    for ( int i = 0; i < starCount; i++){
+        [UIView animateWithDuration:1.0 delay:0.2+i*0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            CGAffineTransform myTransform = CGAffineTransformConcat(CGAffineTransformMakeRotation(1.0), CGAffineTransformMakeScale(1.5, 1.5));
+            ((UIView *)[activeStars objectAtIndex:i]).transform = myTransform;
         } completion:^(BOOL finished) {
-            ;
+            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            CGAffineTransform myTransform = CGAffineTransformConcat(CGAffineTransformMakeRotation(0.0), CGAffineTransformMakeScale(1.0, 1.0));
+            ((UIView *)[activeStars objectAtIndex:i]).transform = myTransform;
+            } completion:^(BOOL finished) {
+                ;
+            }];
         }];
-    }];
-    [UIView animateWithDuration:1.0 delay:1.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        activeStar3.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(1.0), CGAffineTransformMakeScale(1.5, 1.5));
-    } completion:^(BOOL finished) {
-        [star3 removeFromSuperview];
-        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            activeStar3.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(0.0), CGAffineTransformMakeScale(1.0, 1.0));
-        } completion:^(BOOL finished) {
-            ;
-        }];
-    }];
+    }
+
 }
 
 - (void) shareOnFacebook {
