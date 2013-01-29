@@ -13,6 +13,7 @@
 #import "GreenTheGardenIAPHelper.h"
 #import "AchievementManager.h"
 #import "GreenTheGardenGCSpecificValues.h"
+#import "TransitionManager.h"
 
 
 @implementation MapSelectionLayer
@@ -34,6 +35,7 @@
     int rowCount;
     
     UIViewController * tempVC;
+    UIView * infoScreen;
     BOOL shouldCancel;
 }
 
@@ -84,6 +86,7 @@
         UIButton* infoButton = [[UIButton alloc] initWithFrame:CGRectMake(35.0, 17.0, 26.0, 28.0)];
         [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info.png"] forState:UIControlStateNormal];
         [infoButton setBackgroundImage:[UIImage imageNamed:@"map_barbtn_info_hover.png"] forState:UIControlStateHighlighted];
+        [infoButton addTarget:self action:@selector(infoScreen) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton* fxButton = [[UIButton alloc] initWithFrame:CGRectMake(70.0, 17.0, 26.0, 28.0)];
         if([[GreenTheGardenSoundManager sharedSoundManager] isEffectsMuted]){
@@ -270,14 +273,18 @@
 -(void)onClick:(UIButton*)button
 {
 //    NSLog(@"button tag: %d",button.tag);
-    [MapSelectionLayer setLastScroll:scrollView.contentOffset.x];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"%d",button.tag]] withColor:ccWHITE]];
-    [scrollView removeFromSuperview];
-    [maskView removeFromSuperview];
-    [leafView removeFromSuperview];
-    [barView removeFromSuperview];
-    [logoView removeFromSuperview];
-    [self removeFromParentAndCleanup:YES];
+    self.isTouchEnabled = NO;
+    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+        [MapSelectionLayer setLastScroll:scrollView.contentOffset.x];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"%d",button.tag]] withColor:ccWHITE]];
+        [scrollView removeFromSuperview];
+        [maskView removeFromSuperview];
+        [leafView removeFromSuperview];
+        [barView removeFromSuperview];
+        [logoView removeFromSuperview];
+        [self removeFromParentAndCleanup:YES];
+    }];
+    [myManager startTransition];
 }
 
 - (void) setPackage:(NSString*)package
@@ -365,8 +372,32 @@
     [tempVC.view removeFromSuperview];
 }
 
+-(void) infoScreen{
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    
+    UIImageView * background=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_back.png" ]];
+    CGFloat bgWidth=background.frame.size.width;
+    CGFloat bgHeight=background.frame.size.height;
+    
+    UIButton * btnClose=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnClose setFrame:CGRectMake((winSize.width-bgWidth)/2, (winSize.height-bgHeight)/2-bgHeight+45.0, 45.0, 45.0)];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"inapp_btn_close.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"inapp_btn_close_hover.png"] forState:UIControlStateHighlighted];
+    [btnClose addTarget:self action:@selector(closeInfoScreen) forControlEvents:UIControlEventTouchUpInside];
+
+    infoScreen=[[UIView alloc] initWithFrame:CGRectMake((winSize.width-bgWidth)/2, (winSize.height-bgHeight)/2, bgWidth, bgHeight)];
+    [infoScreen addSubview:background];
+    [infoScreen addSubview:btnClose];
+    [[[CCDirector sharedDirector] view]addSubview:infoScreen];
+}
+-(void)closeInfoScreen{
+    [infoScreen removeFromSuperview];
+}
+
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    [infoScreen removeFromSuperview];
 }
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
