@@ -101,6 +101,7 @@ typedef void (^ IteratorBlock)();
 
 -(void)showHelperSignsFrom:(Location)from to:(Location)to onCompletion:(IteratorBlock)block
 {
+    Direction direction = DirectionFromTwoLocations(from, to);
     float delay = 0;
     CGPoint fromPoint = [self pointFromLocation:from];
     CGPoint toPoint = [self pointFromLocation:to];
@@ -111,50 +112,76 @@ typedef void (^ IteratorBlock)();
     starterHelper.alpha = 0;
     
     [[[CCDirector sharedDirector] view] addSubview:starterHelper];
-    
+    starterHelper = [self rotatedImageView:starterHelper forDirection:direction];
     [UIView animateWithDuration:1 animations:^{
         starterHelper.alpha = 1;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:1 animations:^{
-//            starterHelper.alpha = 0;
+            starterHelper.alpha = 0;
         }];
     }];
+    
+    UIImageView* finalHelper = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_point.png"]];
+    delay+=0.5;
+    [finalHelper setFrame:CGRectMake(fromPoint.x, fromPoint.y, finalHelper.image.size.width, finalHelper.image.size.height)];
+    finalHelper.alpha = 1;
+    [[[CCDirector sharedDirector] view] addSubview:finalHelper];
+    finalHelper = [self rotatedImageView:finalHelper forDirection:direction];
+    
     
     Arrow* arrow = [(ArrowBase*)[[GameMap sharedInstance] entityAtLocation:from] arrowAtDirection:DirectionFromTwoLocations(from, to)];
     int difference = differenceBetweenTwoLocations(from, to);
     for(int i=1;i<difference;i++){
-        delay += 0.5;
+        
         Location tempLocation = [arrow locationAtOrder:i];
         CGPoint tempPoint = [self pointFromLocation:tempLocation];
         UIImageView* tempHelper = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_dot.png"]];
         [tempHelper setFrame:CGRectMake(tempPoint.x, tempPoint.y, tempHelper.image.size.width, tempHelper.image.size.height)];
         tempHelper.alpha = 0.0;
         [[[CCDirector sharedDirector] view] addSubview:tempHelper];
+        tempHelper = [self rotatedImageView:tempHelper forDirection:direction];
+        delay += 0.5;
+        
         [UIView animateWithDuration:1 delay:delay options:UIViewAnimationCurveEaseInOut animations:^{
             tempHelper.alpha = 1.0;
+            
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:1.0 animations:^{
-//                tempHelper.alpha = 0.0;
-            }];
+            
+            
         }];
     }
-    UIImageView* finalHelper = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_point.png"]];
-    delay+=0.5;
-    [finalHelper setFrame:CGRectMake(toPoint.x, toPoint.y, finalHelper.image.size.width, finalHelper.image.size.height)];
-    finalHelper.alpha = 0;
-    [[[CCDirector sharedDirector] view] addSubview:finalHelper];
-    [UIView animateWithDuration:1 delay:delay options:UIViewAnimationCurveEaseInOut animations:^{
-        finalHelper.alpha = 1;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1 animations:^{
-//            finalHelper.alpha = 0;
-        }];
+//    [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
+//        finalHelper.alpha = 1;
+//    } completion:nil];
+    [UIView animateWithDuration:5.0  animations:^{
+        [finalHelper setFrame:CGRectMake(toPoint.x, toPoint.y, finalHelper.image.size.width, finalHelper.image.size.height)];
+//        finalHelper.transform = CGAffineTransformTranslate(finalHelper.transform, toPoint.x, toPoint.y);
     }];
-    
-
-    
+    NSLog(@"toPoint.x - fromPoint.x: %f, toPoint.y - fromPoint.y: %f", toPoint.x, toPoint.y);
 }
 
+-(UIImageView*)rotatedImageView:(UIImageView*)imageView forDirection:(Direction)direction
+{
+    float angle;
+    switch (direction) {
+        case UP:
+            angle = - M_PI * 0.5;
+            break;
+        case DOWN:
+            angle = + M_PI * 0.5;
+            break;
+        case LEFT:
+            angle = - M_PI * 1;
+            break;
+        case RIGHT:
+            angle = - M_PI * 0.5;
+            break;
+        case NONE:
+            return imageView;
+    }
+    imageView.transform = CGAffineTransformRotate(imageView.transform, angle);
+    return imageView;
+}
 -(void)skipTutorial
 {
     
