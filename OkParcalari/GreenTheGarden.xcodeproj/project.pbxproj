@@ -197,6 +197,8 @@
 		0576ECAE169EE05F00D6EF4A /* ingamebtn_settings-tr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0576EC8A169EE05F00D6EF4A /* ingamebtn_settings-tr@2x.png */; };
 		0576ECB4169EF06E00D6EF4A /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0576ECB3169EF06E00D6EF4A /* IAPHelper.m */; };
 		0576ECB7169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0576ECB6169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m */; };
+		057E222416B6AC0000DCF50C /* TransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 057E222316B6AC0000DCF50C /* TransitionManager.m */; };
+		057E222716B6B75800DCF50C /* game_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 057E222616B6B75800DCF50C /* game_bg@2x.png */; };
 		0595C20F16947613006B7E87 /* WaterSpray.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595C20E16947613006B7E87 /* WaterSpray.m */; };
 		05A1417716A5963700026343 /* map_selection_leaflayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1417316A5963700026343 /* map_selection_leaflayer.png */; };
 		05A1417916A5963700026343 /* map_selection_masklayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1417516A5963700026343 /* map_selection_masklayer.png */; };
@@ -1442,6 +1444,9 @@
 		0576ECB3169EF06E00D6EF4A /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		0576ECB5169EF53A00D6EF4A /* GreenTheGardenIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenTheGardenIAPHelper.h; sourceTree = "<group>"; };
 		0576ECB6169EF53A00D6EF4A /* GreenTheGardenIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenTheGardenIAPHelper.m; sourceTree = "<group>"; };
+		057E222216B6AC0000DCF50C /* TransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransitionManager.h; path = Managers/TransitionManager.h; sourceTree = "<group>"; };
+		057E222316B6AC0000DCF50C /* TransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransitionManager.m; path = Managers/TransitionManager.m; sourceTree = "<group>"; };
+		057E222616B6B75800DCF50C /* game_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_bg@2x.png"; sourceTree = "<group>"; };
 		0589620316A9961600A10A62 /* GreenTheGardenGCSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenTheGardenGCSpecificValues.h; sourceTree = "<group>"; };
 		0595C20D16947613006B7E87 /* WaterSpray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterSpray.h; sourceTree = "<group>"; };
 		0595C20E16947613006B7E87 /* WaterSpray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterSpray.m; sourceTree = "<group>"; };
@@ -3592,6 +3597,7 @@
 				050139C816A6F1F90078DC35 /* game_logo.png */,
 				41DF3DD6169B294000B9678B /* game_bg-ipadhd.png */,
 				41DF3DD7169B294000B9678B /* game_bg.png */,
+				057E222616B6B75800DCF50C /* game_bg@2x.png */,
 				41DF3DD8169B294000B9678B /* gameboard-ipadhd.png */,
 				41DF3DD9169B294000B9678B /* gameboard.png */,
 				41DF3DDA169B294000B9678B /* main_frame-ipadhd.png */,
@@ -4437,6 +4443,8 @@
 				05642F5E16A56FF600B8E206 /* GreenTheGardenSoundManager.m */,
 				AEEF67C016B28086005B516B /* TutorialManager.h */,
 				AEEF67C116B28086005B516B /* TutorialManager.m */,
+				057E222216B6AC0000DCF50C /* TransitionManager.h */,
+				057E222316B6AC0000DCF50C /* TransitionManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -5685,6 +5693,7 @@
 				0558395C16B2CC6B00B33B1C /* youwin_star_active@2x.png in Resources */,
 				0558395D16B2CC6B00B33B1C /* youwin_star_passive.png in Resources */,
 				0558395E16B2CC6B00B33B1C /* youwin_star_passive@2x.png in Resources */,
+				057E222716B6B75800DCF50C /* game_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5842,6 +5851,7 @@
 				05FE671716AEBD8600CCCD0C /* AchievementManager.m in Sources */,
 				0572C10B16AFF71F00B9BF9D /* Reachability.m in Sources */,
 				AEEF67C216B28086005B516B /* TutorialManager.m in Sources */,
+				057E222416B6AC0000DCF50C /* TransitionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

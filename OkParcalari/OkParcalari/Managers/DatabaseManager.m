@@ -61,8 +61,10 @@ static DatabaseManager *sharedInstance = nil;
     if (![self.managedObjectContext save:&error]) {
         // Handle the error.
     }
+    [self updateMaps];
 }
-
+- (void) updateMaps {
+}
 - (BOOL)isEmpty {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map" inManagedObjectContext:self.managedObjectContext];
@@ -93,6 +95,26 @@ static DatabaseManager *sharedInstance = nil;
     return [mutableFetchResults objectAtIndex:0];
 }
 
+- (Map *)getMapWithOrder:(NSNumber *)order forPackage:(NSString *)packageId {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"(order == %@) AND (packageId == %@)", order, packageId];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    
+    if (mutableFetchResults == nil || mutableFetchResults.count == 0) {
+        return nil;
+    } else {
+        return [mutableFetchResults objectAtIndex:0];
+    }
+}
+
 - (NSArray *)getMapsForPackage:(NSString *)packageId {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map"
@@ -111,6 +133,24 @@ static DatabaseManager *sharedInstance = nil;
     return result;
 }
 
+- (NSArray *)getMapsForDifficulty:(int)difficulty {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"difficulty == %i", difficulty];
+    [request setPredicate:predicate];
+    
+    
+    NSError *error = nil;
+    NSArray* result =  [self.managedObjectContext executeFetchRequest:request error:&error];
+    result = [result sortedArrayUsingComparator:^NSComparisonResult(Map *obj1, Map *obj2) {
+        return obj1.order - obj2.order;
+    }];
+    return result;
+}
+
 
 - (void)insertMaps:(NSArray *)maps forPackage:(NSString *)packageId {
     for (NSString *mapId in maps) {
@@ -124,6 +164,7 @@ static DatabaseManager *sharedInstance = nil;
         [aMap setStepCount:-1];
         [aMap setTileCount:0];
         [aMap setIsPurchased:NO];
+        [aMap setIsLocked:YES];
     }
     [self saveContext];
 }

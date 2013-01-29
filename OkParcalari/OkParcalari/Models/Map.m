@@ -23,10 +23,11 @@
 @dynamic stepCount;
 @dynamic tileCount;
 @dynamic order;
+@dynamic isPurchased;
+@dynamic isLocked;
+@dynamic starCount;
+@dynamic solveCount;
 
-@synthesize isPurchased;
-@synthesize isLocked;
-@synthesize starCount;
 @synthesize package;
 @synthesize isNotPlayedActiveGame;
 

@@ -8,6 +8,7 @@
 
 #import "AchievementManager.h"
 #import "GameCenterManager.h"
+#import "DatabaseManager.h"
 #import "GreenTheGardenGCSpecificValues.h"
 
 
@@ -44,7 +45,7 @@ static AchievementManager * sharedAchievementManager=nil;
         }
         for (GKAchievementDescription *achievementDescription in descriptions) {
             [achievementDescriptions setObject:achievementDescription forKey:achievementDescription.identifier];
-            NSLog(@"Acievement Descripticon: %@", achievementDescription.achievedDescription);
+//            NSLog(@"Acievement Descripticon: %@", achievementDescription.achievedDescription);
         
         }
     }];
@@ -60,13 +61,13 @@ static AchievementManager * sharedAchievementManager=nil;
     [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error)
      {
          
-         NSLog(@"Load Acievements Count: %i", [achievements count]);
+//         NSLog(@"Load Acievements Count: %i", [achievements count]);
          if (error == nil)
          {
              for (GKAchievement* achievement in achievements){
                  if(achievement.percentComplete==100.0){
                      [achievementsDictionary setObject: achievement forKey: achievement.identifier];
-                     NSLog(@"Load Acievements: %@, percent: %f", achievement.identifier,achievement.percentComplete);
+//                     NSLog(@"Load Acievements: %@, percent: %f", achievement.identifier,achievement.percentComplete);
                  }
                  
              }
@@ -95,12 +96,12 @@ static AchievementManager * sharedAchievementManager=nil;
     if(loadedAchievement!=NULL){
         isExist=YES;
         //loadedAchievement=[[GKAchievement alloc] initWithIdentifier:strAchievement];
-        NSLog(@"Loaded Achievement: %@, Lid: %@, Lpercent: %f", loadedAchievement,loadedAchievement.identifier,loadedAchievement.percentComplete);
+//        NSLog(@"Loaded Achievement: %@, Lid: %@, Lpercent: %f", loadedAchievement,loadedAchievement.identifier,loadedAchievement.percentComplete);
     }
     
-    NSLog(@"Gelen Başarı: %@, percet: %f",achievement.identifier, achievement.percentComplete);
+//    NSLog(@"Gelen Başarı: %@, percet: %f",achievement.identifier, achievement.percentComplete);
     
-    NSLog(@"IsExist: %d",isExist);
+//    NSLog(@"IsExist: %d",isExist);
     
     //if (achievement || isExist==NO) // esas sorgu bu.
     if (achievement) // Test için duruyor bu.
@@ -147,10 +148,48 @@ static AchievementManager * sharedAchievementManager=nil;
     }];
 }
 
--(void)checkAchievements: (Map*) playedMap{
-    NSLog(@"MAp.score: %@", playedMap.score);
+-(void)checkAchievementFastMindQuickHands: (Map*) playedMap{
+//    NSLog(@"MAp.score: %@", playedMap.score);
     if(playedMap.score.intValue<60)
     [self submitAchievement:kAchievementFastMindQuickHands percentComplete:100];
+}
+
+-(void) checkAchievementMapsStars:(Map*) playedMap{
+    // Check maps for difficulty
+    NSArray * maps=[[DatabaseManager sharedInstance] getMapsForDifficulty:playedMap.difficulty];
+    int mapsCount=maps.count;
+    int solvedMapsCount=0;
+    
+    for(Map * map in maps){
+        if (map.isFinished) {
+            solvedMapsCount++;
+        }
+    }
+//    NSLog(@"Çözülen Haritananın zorluğu: %i, Aynı zorlutaki tüm harita sayısı: %i, çözülmüş harita sayısı: %i",playedMap.difficulty,mapsCount,solvedMapsCount);
+    
+
+        NSString * achievement=[[NSString alloc] init];
+        switch (playedMap.difficulty) {
+            case 1:
+                achievement=kAchievementEasyMapsCompletionist;
+                break;
+            case 2:
+                achievement=kAchievementNormalMapsCompletionist;
+                break;
+            case 3:
+                achievement=kAchievementHardMapsCompletionist;
+                break;
+            case 4:
+                achievement=kAchievementInsaneMapsCompletionist;
+                break;
+            default:
+                break;
+        }
+    double percentComplete=solvedMapsCount*100/mapsCount;
+//    NSLog(@"Göndereilcek değer: %f",percentComplete);
+    [self submitAchievement:achievement percentComplete:percentComplete];
+    
+    
 }
 
 @end
