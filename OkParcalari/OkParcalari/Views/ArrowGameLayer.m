@@ -20,6 +20,7 @@
 
 #import "AchievementManager.h"
 #import "GreenTheGardenGCSpecificValues.h"
+#import "TransitionManager.h"
 
 @implementation ArrowGameLayer
 {
@@ -165,10 +166,14 @@ static ArrowGameLayer* __lastInstance;
 }
 
 - (void) restartGame {
-    [self.arrowGame cleanMap];
-    [self.arrowGame removeFromParentAndCleanup:YES];
-    self.isTouchEnabled = YES;
-    [self initializeGameWithFile:_fileName];
+    self.isTouchEnabled = NO;
+    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+        [self.arrowGame cleanMap];
+        [self.arrowGame removeFromParentAndCleanup:YES];
+        self.isTouchEnabled = YES;
+        [self initializeGameWithFile:_fileName];
+    }];
+    [myManager startTransition];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -202,34 +207,39 @@ static ArrowGameLayer* __lastInstance;
 }
 
 - (void) showInGameMenu {
-//    InGameMenuLayer *child = (InGameMenuLayer*)[self getChildByTag:MENU_TAG];
-//    if(child){
-//        [child resumeGame];
-//    }
-//    else{
-//        [self.arrowGame pauseGame];
-//        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
-//        menuLayer.callerLayer = self;
-//        menuLayer.tag = MENU_TAG;
-//        [self addChild:menuLayer];
-//        [self reorderChild:menuLayer z:1111];
-//        self.isTouchEnabled = NO;
-//    }
-    [self gameEnded];
+    InGameMenuLayer *child = (InGameMenuLayer*)[self getChildByTag:MENU_TAG];
+    if(child){
+        [child resumeGame];
+    }
+    else{
+        [self.arrowGame pauseGame];
+        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
+        menuLayer.callerLayer = self;
+        menuLayer.tag = MENU_TAG;
+        [self addChild:menuLayer];
+        [self reorderChild:menuLayer z:1111];
+        self.isTouchEnabled = NO;
+    }
+//    [self gameEnded];
 }
 - (void) inGameMenuWillClose {
     [self.arrowGame resumeGame];
     self.isTouchEnabled = YES;
 }
 - (void) returnToMainMenu {
-    if(gameWinView){
-        [gameWinView removeFromSuperview];
-    }
-    [self.arrowGame cleanMap];
-    [self.arrowGame removeFromParentAndCleanup:YES];
-    [self removeFromParentAndCleanup:YES];
-    [ArrowGameLayer cleanLastInstance];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+    self.isTouchEnabled = NO;
+    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+        if(gameWinView){
+            [gameWinView removeFromSuperview];
+        }
+        [self.arrowGame cleanMap];
+        [self.arrowGame removeFromParentAndCleanup:YES];
+        [self removeFromParentAndCleanup:YES];
+        [ArrowGameLayer cleanLastInstance];
+        [ArrowGame cleanLastInstance];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+    }];
+    [myManager startTransition];
 }
 - (void) nextGame {
 //    Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
