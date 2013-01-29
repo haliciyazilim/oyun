@@ -23,3 +23,8 @@
 "RESTART_APPROVE" = "Yeniden başlamak istediğinize emin misiniz? Kaydedilmemiş ilerlemeniz kaybolacaktır!";
 "MAIN_MENU_APPROVE" = "Ana menüye dönmek istediğinize emin misiniz? Kaydedilmemiş ilerlemeniz kaybolacaktır!";
 "CANCEL" = "İptal";
+
+// Credits
+"PROGRAMMING"="Programlama";
+"ART"="Sanatsal İşler";
+"MUSIC"="Müzik";
