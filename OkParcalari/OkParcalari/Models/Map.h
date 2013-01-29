@@ -19,7 +19,7 @@ MAP_DIFFICULTY difficultyFromString(NSString* string);
 NSString* stringOfDifficulty(MAP_DIFFICULTY difficulty);
 
 
-@interface MapPackage
+@interface MapPackage : NSObject 
 
 @property NSString* name;
 @property int packageId;
