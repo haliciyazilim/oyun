@@ -11,6 +11,9 @@
 #import "MapSelectionLayer.h"
 #import "GreenTheGardenSoundManager.h"
 #import "GreenTheGardenIAPHelper.h"
+#import "AchievementManager.h"
+#import "GreenTheGardenGCSpecificValues.h"
+
 
 @implementation MapSelectionLayer
 {
@@ -31,6 +34,7 @@
     int rowCount;
     
     UIViewController * tempVC;
+    BOOL shouldCancel;
 }
 
 
@@ -190,11 +194,10 @@
         
         if(map.isFinished){
             int score = [map.score intValue];
-            map.starCount = score < 60 ? 3 : (score < 120 ? 2 : ( score < 300 ? 1 : 0));
             NSLog(@"score: %d",score);
             for(int i=0;i<3;i++){
                 UIImageView* view;
-                if(i < map.starCount)
+                if(i < [map getStarCount])
                     view = [[UIImageView alloc] initWithImage:activeStar];
                 else
                     view = [[UIImageView alloc] initWithImage:passiveStar];
@@ -229,24 +232,7 @@
     [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount)+unitSize.width*0.5+contentPadding*2.0, unitSize.height*rowCount)];
     [scrollView setFrame:CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.contentSize.height)];
     int index = 0;
-    int nonPlayedActiveGameCount = 2;
-    int freeMapsCount = [[GreenTheGardenIAPHelper sharedInstance] isPro] ? [maps count] : 6;
     for (Map* map in maps) {
-        if(freeMapsCount > 0){
-            map.isPurchased = YES;
-            freeMapsCount--;
-        }
-        if(map.isFinished == NO){
-            if(nonPlayedActiveGameCount > 0){
-                map.isNotPlayedActiveGame = YES;
-                nonPlayedActiveGameCount--;
-                map.isLocked = NO;
-            }
-            else{
-                map.isLocked = YES;
-            }
-        }
-        
         [self buttonForMap:map atIndex:index];
         index++;
     }
@@ -260,10 +246,20 @@
     [self refreshScrollView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     
+    double delayInSeconds = 10.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (!shouldCancel) {
+            [[AchievementManager sharedAchievementManager]submitAchievement:kAchievementNothingToDoHere percentComplete:100];
+        }
+    });
+    
+    
 }
 
 - (void)onExit {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:IAPHelperProductPurchasedNotification object:nil];
+    shouldCancel=YES;
 }
 
 -(void)onDown:(UIButton*)button

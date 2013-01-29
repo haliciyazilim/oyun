@@ -21,6 +21,22 @@ NSString* LocationToString(Location location){
     
 }
 
+int differenceBetweenTwoLocations(Location from,Location to)
+{
+    int xDiff = from.x - to.x;
+    int yDiff = from.y - to.y;
+    
+    switch (DirectionFromTwoLocations(from, to)) {
+        case RIGHT:
+        case LEFT:
+            return abs(xDiff);
+        case UP:
+        case DOWN:
+            return abs(yDiff);
+        default:
+            return 0;
+    }
+}
 
 Location LocationMakeFromDictionary(NSDictionary* dict){
     int x = [(NSNumber*)[dict objectForKey:@"x"] intValue];

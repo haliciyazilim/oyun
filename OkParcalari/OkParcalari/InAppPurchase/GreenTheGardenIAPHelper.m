@@ -8,6 +8,8 @@
 #import "GreenTheGardenIAPHelper.h"
 #import "MapSelectionLayer.h"
 #import "GreenTheGardenIAPSpecificValues.h"
+#import "AchievementManager.h"
+#import "GreenTheGardenGCSpecificValues.h"
 
 @implementation GreenTheGardenIAPHelper
 {
@@ -40,6 +42,9 @@
                                                          otherButtonTitles:nil,nil];
         [productPurchased show];
         isAlertShown = YES;
+        
+        [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementBeAPro percentComplete:100.00];
+        
     }
 }
 - (void) createStore {

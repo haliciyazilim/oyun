@@ -25,11 +25,10 @@
 @dynamic order;
 @dynamic isPurchased;
 @dynamic isLocked;
-@dynamic starCount;
 @dynamic solveCount;
+@dynamic isNotPlayedActiveGame;
 
 @synthesize package;
-@synthesize isNotPlayedActiveGame;
 
 
 -(id)init
@@ -69,4 +68,44 @@ NSString* stringOfDifficulty(MAP_DIFFICULTY difficulty){
             return nil;
     }
 }
+
+- (int)getStarCount
+{
+    if(self.isFinished == NO)
+        return -1;
+    int oneStarUpperLimit, twoStarUpperLimit, threeStarUpperLimit;
+    switch (self.difficulty) {
+        case EASY:
+            oneStarUpperLimit = 275;
+            twoStarUpperLimit = 175;
+            threeStarUpperLimit = 100;
+            break;
+        case NORMAL:
+            oneStarUpperLimit = 400;
+            twoStarUpperLimit = 250;
+            threeStarUpperLimit = 150;
+            break;
+        case HARD:
+            oneStarUpperLimit = 550;
+            twoStarUpperLimit = 350;
+            threeStarUpperLimit = 250;
+            break;
+        case INSANE:
+            oneStarUpperLimit = 900;
+            twoStarUpperLimit = 600;
+            threeStarUpperLimit = 400;
+            break;
+    }
+    
+    if([self.score intValue] < threeStarUpperLimit)
+        return 3;
+    else if([self.score intValue] < twoStarUpperLimit)
+        return 2;
+    else if([self.score intValue] < oneStarUpperLimit)
+        return 1;
+    else
+        return 0;
+}
+
+
 @end
