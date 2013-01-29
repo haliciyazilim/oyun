@@ -44,7 +44,7 @@
     [[[CCDirector sharedDirector] view] addSubview:transitionImage];
     [[[CCDirector sharedDirector] view] addSubview:transitionImage2];
     [[[CCDirector sharedDirector] view] addSubview:transitionImage3];
-    [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:1.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         transitionImage.frame = CGRectMake(0.0, 0.0, 1024.0, 768.0);
         transitionImage2.frame = CGRectMake(0.0, 0.0, 1024.0, 768.0);
         transitionImage3.alpha = 1.0;
@@ -53,7 +53,7 @@
     }];
 }
 - (void) openTransitionLayers {
-    [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:1.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         transitionImage.frame = CGRectMake(0.0, 768.0, 1024.0, 768.0);
         transitionImage2.frame = CGRectMake(0.0, -768.0, 1024.0, 768.0);
         transitionImage3.alpha = 0.0;
@@ -74,10 +74,10 @@
 - (void) performRealTransition{
     transition();
 //    [[[CCDirector sharedDirector] view] bringSubviewToFront:myImage];
-    double delayInSeconds = 1.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//    double delayInSeconds = 1.0;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self openTransitionLayers];
-    });
+//    });
 }
 @end

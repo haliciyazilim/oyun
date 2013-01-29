@@ -380,7 +380,7 @@
 - (Location) locationAtOrder:(int)order
 {
     if(order > 0) {
-        int x;int y;
+        int x=-1;int y=-1;
         switch ([self direction]) {
             case DOWN:
                 x = self.location.x;
