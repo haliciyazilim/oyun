@@ -11,6 +11,9 @@
 #import "MapSelectionLayer.h"
 #import "GreenTheGardenSoundManager.h"
 #import "GreenTheGardenIAPHelper.h"
+#import "AchievementManager.h"
+#import "GreenTheGardenGCSpecificValues.h"
+
 
 @implementation MapSelectionLayer
 {
@@ -31,6 +34,7 @@
     int rowCount;
     
     UIViewController * tempVC;
+    BOOL shouldCancel;
 }
 
 
@@ -260,10 +264,20 @@
     [self refreshScrollView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     
+    double delayInSeconds = 10.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (!shouldCancel) {
+            [[AchievementManager sharedAchievementManager]submitAchievement:kAchievementNothingToDoHere percentComplete:100];
+        }
+    });
+    
+    
 }
 
 - (void)onExit {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:IAPHelperProductPurchasedNotification object:nil];
+    shouldCancel=YES;
 }
 
 -(void)onDown:(UIButton*)button
