@@ -69,12 +69,13 @@ NSString* stringOfDifficulty(MAP_DIFFICULTY difficulty){
     }
 }
 
-- (int)getStarCount
+- (int)getStarCount{
+    return [Map starCountForScore:[self.score intValue] andDifficulty:self.difficulty];
+}
++ (int) starCountForScore:(int)score andDifficulty:(MAP_DIFFICULTY)difficulty
 {
-    if(self.isFinished == NO)
-        return -1;
     int oneStarUpperLimit, twoStarUpperLimit, threeStarUpperLimit;
-    switch (self.difficulty) {
+    switch (difficulty) {
         case EASY:
             oneStarUpperLimit = 275;
             twoStarUpperLimit = 175;
@@ -97,11 +98,11 @@ NSString* stringOfDifficulty(MAP_DIFFICULTY difficulty){
             break;
     }
     
-    if([self.score intValue] < threeStarUpperLimit)
+    if(score < threeStarUpperLimit)
         return 3;
-    else if([self.score intValue] < twoStarUpperLimit)
+    else if(score < twoStarUpperLimit)
         return 2;
-    else if([self.score intValue] < oneStarUpperLimit)
+    else if(score < oneStarUpperLimit)
         return 1;
     else
         return 0;

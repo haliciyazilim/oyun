@@ -24,7 +24,7 @@
 - (void) restartGame;
 - (void) inGameMenuWillClose;
 - (void) returnToMainMenu;
-- (void) gameEnded;
+- (void) gameEnded:(int)starCount;
 - (void) showInGameMenu;
 
 +(ArrowGameLayer*)lastInstance;
