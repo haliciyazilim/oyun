@@ -45,5 +45,6 @@ NSString* stringOfDifficulty(MAP_DIFFICULTY difficulty);
 @property BOOL isNotPlayedActiveGame;
 
 -(int)getStarCount;
++ (int) starCountForScore:(int)score andDifficulty:(MAP_DIFFICULTY)difficulty;
 
 @end
