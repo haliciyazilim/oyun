@@ -22,7 +22,7 @@ static GreenTheGardenSoundManager *sharedSoundManager = nil;
 
 - (id) init {
     if(self = [super init]) {
-        self.backgroundMusic = @"jungle_01.caff";
+        self.backgroundMusic = @"GreenTheGardenMenu.mp3";
         NSArray *objectsArray = [[NSArray alloc] initWithObjects:@"move.mp3", nil];
         NSArray *keysArray = [[NSArray alloc] initWithObjects:@"move", nil];
         self.effects = [[NSMutableDictionary alloc] initWithObjects:objectsArray forKeys:keysArray];
