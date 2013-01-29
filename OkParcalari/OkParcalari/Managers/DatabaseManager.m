@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #import "DatabaseManager.h"
+#import "GreenTheGardenIAPHelper.h"
 
 static DatabaseManager *sharedInstance = nil;
 
@@ -19,7 +20,6 @@ static DatabaseManager *sharedInstance = nil;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-#pragma mark - Singleton and init methods
 
 + (id)allocWithZone:(NSZone *)zone
 {
@@ -54,7 +54,6 @@ static DatabaseManager *sharedInstance = nil;
     return sharedInstance;
 }
 
-#pragma mark -
 
 - (void)saveContext {
     NSError *error = nil;
@@ -64,6 +63,40 @@ static DatabaseManager *sharedInstance = nil;
     [self updateMaps];
 }
 - (void) updateMaps {
+    NSLog(@"I'm here");
+    int nonPlayedActiveGameCount = 5;
+    int freeMapsCount = 10;
+    int index = 0;
+    NSArray* maps = [[DatabaseManager sharedInstance] getMapsForPackage:@"standart"];
+    int purchasedMapsCount = [[GreenTheGardenIAPHelper sharedInstance] isPro] ? [maps count] : freeMapsCount;
+    purchasedMapsCount = freeMapsCount;
+    for (Map* map in maps) {
+        if(purchasedMapsCount > 0){
+            map.isPurchased = YES;
+            NSLog(@"purchased map %@",map.mapId);
+            purchasedMapsCount--;
+        }
+        else{
+            map.isPurchased = NO;
+        }
+        if(map.isFinished == NO){
+            if(nonPlayedActiveGameCount > 0){
+                map.isNotPlayedActiveGame = YES;
+                nonPlayedActiveGameCount--;
+                map.isLocked = NO;
+            }
+            else{
+                map.isLocked = YES;
+            }
+        }
+        
+        index++;
+    }
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        // Handle the error.
+    }
+    
 }
 - (BOOL)isEmpty {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -165,6 +198,7 @@ static DatabaseManager *sharedInstance = nil;
         [aMap setTileCount:0];
         [aMap setIsPurchased:NO];
         [aMap setIsLocked:YES];
+        [aMap setIsNotPlayedActiveGame:NO];
     }
     [self saveContext];
 }

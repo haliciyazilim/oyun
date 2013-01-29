@@ -190,11 +190,10 @@
         
         if(map.isFinished){
             int score = [map.score intValue];
-            map.starCount = score < 60 ? 3 : (score < 120 ? 2 : ( score < 300 ? 1 : 0));
             NSLog(@"score: %d",score);
             for(int i=0;i<3;i++){
                 UIImageView* view;
-                if(i < map.starCount)
+                if(i < [map getStarCount])
                     view = [[UIImageView alloc] initWithImage:activeStar];
                 else
                     view = [[UIImageView alloc] initWithImage:passiveStar];
@@ -229,24 +228,7 @@
     [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount)+unitSize.width*0.5+contentPadding*2.0, unitSize.height*rowCount)];
     [scrollView setFrame:CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.contentSize.height)];
     int index = 0;
-    int nonPlayedActiveGameCount = 5;
-    int freeMapsCount = [[GreenTheGardenIAPHelper sharedInstance] isPro] ? [maps count] : 10;
     for (Map* map in maps) {
-        if(freeMapsCount > 0){
-            map.isPurchased = YES;
-            freeMapsCount--;
-        }
-        if(map.isFinished == NO){
-            if(nonPlayedActiveGameCount > 0){
-                map.isNotPlayedActiveGame = YES;
-                nonPlayedActiveGameCount--;
-                map.isLocked = NO;
-            }
-            else{
-                map.isLocked = YES;
-            }
-        }
-        
         [self buttonForMap:map atIndex:index];
         index++;
     }
