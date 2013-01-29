@@ -105,6 +105,7 @@ typedef void (^ IteratorBlock)();
     float delay = 0;
     CGPoint fromPoint = [self pointFromLocation:from];
     CGPoint toPoint = [self pointFromLocation:to];
+    Arrow* arrow = [(ArrowBase*)[[GameMap sharedInstance] entityAtLocation:from] arrowAtDirection:DirectionFromTwoLocations(from, to)];
     
     UIImageView* starterHelper = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_point_starter.png"]];
     
@@ -113,23 +114,22 @@ typedef void (^ IteratorBlock)();
     
     [[[CCDirector sharedDirector] view] addSubview:starterHelper];
     starterHelper = [self rotatedImageView:starterHelper forDirection:direction];
-    [UIView animateWithDuration:1 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         starterHelper.alpha = 1;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             starterHelper.alpha = 0;
         }];
     }];
     
     UIImageView* finalHelper = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_point.png"]];
     delay+=0.5;
-    [finalHelper setFrame:CGRectMake(fromPoint.x, fromPoint.y, finalHelper.image.size.width, finalHelper.image.size.height)];
-    finalHelper.alpha = 1;
+    CGPoint startingPoint = [self pointFromLocation:[arrow locationAtOrder:1]];
+    [finalHelper setFrame:CGRectMake(startingPoint.x, startingPoint.y, finalHelper.image.size.width, finalHelper.image.size.height)];
+    finalHelper.alpha = 0.0;
     [[[CCDirector sharedDirector] view] addSubview:finalHelper];
     finalHelper = [self rotatedImageView:finalHelper forDirection:direction];
     
-    
-    Arrow* arrow = [(ArrowBase*)[[GameMap sharedInstance] entityAtLocation:from] arrowAtDirection:DirectionFromTwoLocations(from, to)];
     int difference = differenceBetweenTwoLocations(from, to);
     for(int i=1;i<difference;i++){
         
@@ -140,9 +140,9 @@ typedef void (^ IteratorBlock)();
         tempHelper.alpha = 0.0;
         [[[CCDirector sharedDirector] view] addSubview:tempHelper];
         tempHelper = [self rotatedImageView:tempHelper forDirection:direction];
-        delay += 0.5;
+        delay += 0.25;
         
-        [UIView animateWithDuration:1 delay:delay options:UIViewAnimationCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.5 delay:delay options:UIViewAnimationCurveLinear animations:^{
             tempHelper.alpha = 1.0;
             
         } completion:^(BOOL finished) {
@@ -150,14 +150,15 @@ typedef void (^ IteratorBlock)();
             
         }];
     }
-//    [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
-//        finalHelper.alpha = 1;
-//    } completion:nil];
-    [UIView animateWithDuration:5.0  animations:^{
+    [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
+        finalHelper.alpha = 1;
+    } completion:nil];
+    [UIView animateWithDuration:delay delay:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
         [finalHelper setFrame:CGRectMake(toPoint.x, toPoint.y, finalHelper.image.size.width, finalHelper.image.size.height)];
-//        finalHelper.transform = CGAffineTransformTranslate(finalHelper.transform, toPoint.x, toPoint.y);
-    }];
-    NSLog(@"toPoint.x - fromPoint.x: %f, toPoint.y - fromPoint.y: %f", toPoint.x, toPoint.y);
+        //        finalHelper.transform = CGAffineTransformTranslate(finalHelper.transform, toPoint.x, toPoint.y);
+        
+    } completion:nil];
+//    NSLog(@"toPoint.x - fromPoint.x: %f, toPoint.y - fromPoint.y: %f", toPoint.x, toPoint.y);
 }
 
 -(UIImageView*)rotatedImageView:(UIImageView*)imageView forDirection:(Direction)direction
