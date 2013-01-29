@@ -1073,6 +1073,8 @@
 		41DF4373169B294200B9678B /* timer_num_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DF408A169B294100B9678B /* timer_num_9.png */; };
 		41DF4374169B294200B9678B /* timer_num_nokta-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DF408B169B294100B9678B /* timer_num_nokta-ipadhd.png */; };
 		41DF4375169B294200B9678B /* timer_num_nokta.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DF408C169B294100B9678B /* timer_num_nokta.png */; };
+		AE0FC16216B81ED700079E85 /* tut_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0FC16016B81ED700079E85 /* tut_arrow.png */; };
+		AE0FC16316B81ED700079E85 /* tut_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0FC16116B81ED700079E85 /* tut_arrow@2x.png */; };
 		AE1F1A731682075500F27894 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A5B1682075500F27894 /* NSObject+SBJson.m */; };
 		AE1F1A741682075500F27894 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A5E1682075500F27894 /* SBJsonParser.m */; };
 		AE1F1A751682075500F27894 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1F1A601682075500F27894 /* SBJsonStreamParser.m */; };
@@ -2506,6 +2508,8 @@
 		41DF408A169B294100B9678B /* timer_num_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timer_num_9.png; sourceTree = "<group>"; };
 		41DF408B169B294100B9678B /* timer_num_nokta-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timer_num_nokta-ipadhd.png"; sourceTree = "<group>"; };
 		41DF408C169B294100B9678B /* timer_num_nokta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timer_num_nokta.png; sourceTree = "<group>"; };
+		AE0FC16016B81ED700079E85 /* tut_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tut_arrow.png; sourceTree = "<group>"; };
+		AE0FC16116B81ED700079E85 /* tut_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tut_arrow@2x.png"; sourceTree = "<group>"; };
 		AE1F1A5A1682075500F27894 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		AE1F1A5B1682075500F27894 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		AE1F1A5C1682075500F27894 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -4573,6 +4577,8 @@
 		AEF7E0AA16B2BCC1004FA442 /* tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				AE0FC16016B81ED700079E85 /* tut_arrow.png */,
+				AE0FC16116B81ED700079E85 /* tut_arrow@2x.png */,
 				AEF7E0AB16B2BCC1004FA442 /* tut_dialog.png */,
 				AEF7E0AC16B2BCC1004FA442 /* tut_dialog@2x.png */,
 				AEF7E0AD16B2BCC1004FA442 /* tut_dot.png */,
@@ -5711,6 +5717,8 @@
 				05C4B5B716B7C64500A078F1 /* transition_grass@2x.png in Resources */,
 				05C4B5B816B7C64500A078F1 /* transition_leafs.png in Resources */,
 				05C4B5B916B7C64500A078F1 /* transition_leafs@2x.png in Resources */,
+				AE0FC16216B81ED700079E85 /* tut_arrow.png in Resources */,
+				AE0FC16316B81ED700079E85 /* tut_arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,6 +27,7 @@ typedef void (^ IteratorBlock)();
     BOOL isTutorialActive;
     int currentStepIndex;
     BOOL canInteract;
+    UIImageView* currentTutorialArrow;
 }
 
 +(TutorialManager *)sharedInstance
@@ -50,8 +51,6 @@ typedef void (^ IteratorBlock)();
         firstStep.startTile = LocationMake(0, 0);
         firstStep.targetTile = LocationMake(0, 9);
         firstStep.description = @"Deneme description";
-        
-        
         
         [tutorialSteps addObject:firstStep];
     }
@@ -80,7 +79,7 @@ typedef void (^ IteratorBlock)();
     NSString* tutorialStartMessage = @"asdasd asd asd asd as dasdasdasdasd asd asd asd asd asd ads asd asd asd ddsa das das dasd  asdf asrqwr asdf asdf asfasrf qewr af asfd qwr asde asrq e";
     [self showDialogMessage:tutorialStartMessage andCallback:^{
         [self nextStep];
-    } ];
+    }];
 }
 
 -(void) nextStep
@@ -95,70 +94,34 @@ typedef void (^ IteratorBlock)();
 
 -(CGPoint) pointFromLocation:(Location)location
 {
-    
-     return [[GameMap sharedInstance] pointFromGridLocation:LocationMake(location.x,[[GameMap sharedInstance] rows] - location.y - 1)];
+    return [[GameMap sharedInstance] pointFromGridLocation:LocationMake(location.x,[[GameMap sharedInstance] rows] - location.y - 1)];
 }
 
 -(void)showHelperSignsFrom:(Location)from to:(Location)to onCompletion:(IteratorBlock)block
 {
     Direction direction = DirectionFromTwoLocations(from, to);
-    float delay = 0;
-    CGPoint fromPoint = [self pointFromLocation:from];
     CGPoint toPoint = [self pointFromLocation:to];
     Arrow* arrow = [(ArrowBase*)[[GameMap sharedInstance] entityAtLocation:from] arrowAtDirection:DirectionFromTwoLocations(from, to)];
-    
-    UIImageView* starterHelper = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_point_starter.png"]];
-    
-    [starterHelper setFrame:CGRectMake(fromPoint.x, fromPoint.y, starterHelper.image.size.width, starterHelper.image.size.height)];
-    starterHelper.alpha = 0;
-    
-    [[[CCDirector sharedDirector] view] addSubview:starterHelper];
-    starterHelper = [self rotatedImageView:starterHelper forDirection:direction];
-    [UIView animateWithDuration:0.5 animations:^{
-        starterHelper.alpha = 1;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5 animations:^{
-            starterHelper.alpha = 0;
-        }];
-    }];
-    
-    UIImageView* finalHelper = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_point.png"]];
-    delay+=0.5;
     CGPoint startingPoint = [self pointFromLocation:[arrow locationAtOrder:1]];
-    [finalHelper setFrame:CGRectMake(startingPoint.x, startingPoint.y, finalHelper.image.size.width, finalHelper.image.size.height)];
-    finalHelper.alpha = 0.0;
-    [[[CCDirector sharedDirector] view] addSubview:finalHelper];
-    finalHelper = [self rotatedImageView:finalHelper forDirection:direction];
-    
     int difference = differenceBetweenTwoLocations(from, to);
-    for(int i=1;i<difference;i++){
-        
-        Location tempLocation = [arrow locationAtOrder:i];
-        CGPoint tempPoint = [self pointFromLocation:tempLocation];
-        UIImageView* tempHelper = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_dot.png"]];
-        [tempHelper setFrame:CGRectMake(tempPoint.x, tempPoint.y, tempHelper.image.size.width, tempHelper.image.size.height)];
-        tempHelper.alpha = 0.0;
-        [[[CCDirector sharedDirector] view] addSubview:tempHelper];
-        tempHelper = [self rotatedImageView:tempHelper forDirection:direction];
-        delay += 0.25;
-        
-        [UIView animateWithDuration:0.5 delay:delay options:UIViewAnimationCurveLinear animations:^{
-            tempHelper.alpha = 1.0;
+
+    UIImageView* tutorialArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_arrow.png"]];
+    tutorialArrow = [self rotatedImageView:tutorialArrow forDirection:direction];
+    [tutorialArrow setFrame:CGRectMake(startingPoint.x, startingPoint.y, [GameMap sharedInstance].tileSize.width * 1, tutorialArrow.image.size.height)];
+    [[[CCDirector sharedDirector] view] addSubview:tutorialArrow];
+    [tutorialArrow setClipsToBounds:YES];
+    [tutorialArrow setContentMode:UIViewContentModeRight];
+    tutorialArrow.alpha = 0.0;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        tutorialArrow.alpha = 1.0;
+    }];
+    [UIView animateWithDuration:2.0 delay:0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [tutorialArrow setFrame:CGRectMake(toPoint.x, toPoint.y, [GameMap sharedInstance].tileSize.width * 1, [GameMap sharedInstance].tileSize.width * difference)];
+    } completion:^(BOOL finished) {
             
-        } completion:^(BOOL finished) {
-            
-            
-        }];
-    }
-    [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
-        finalHelper.alpha = 1;
-    } completion:nil];
-    [UIView animateWithDuration:delay delay:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
-        [finalHelper setFrame:CGRectMake(toPoint.x, toPoint.y, finalHelper.image.size.width, finalHelper.image.size.height)];
-        //        finalHelper.transform = CGAffineTransformTranslate(finalHelper.transform, toPoint.x, toPoint.y);
-        
-    } completion:nil];
-//    NSLog(@"toPoint.x - fromPoint.x: %f, toPoint.y - fromPoint.y: %f", toPoint.x, toPoint.y);
+    }];
+    currentTutorialArrow = tutorialArrow;
 }
 
 -(UIImageView*)rotatedImageView:(UIImageView*)imageView forDirection:(Direction)direction
@@ -203,15 +166,32 @@ typedef void (^ IteratorBlock)();
     return YES;
 }
 
--(BOOL)isCorrectEntitity:(MapEntity*)entity
+-(BOOL)isCorrectEntitity:(ArrowBase*)entity
 {
     Location startLocation = ((TutorialStep*)[tutorialSteps objectAtIndex:currentStepIndex]).startTile;
     return entity.location.x == startLocation.x && entity.location.y == startLocation.y;
 }
 
--(BOOL)checkEntity:(MapEntity*)entity
+-(BOOL)checkEntity:(ArrowBase*)entity
 {
-    return NO;
+    TutorialStep* currentStep = (TutorialStep*)[tutorialSteps objectAtIndex:currentStepIndex];
+    Location from = currentStep.startTile;
+    Location to = currentStep.targetTile;
+    
+    Arrow* arrow = [entity arrowAtDirection:DirectionFromTwoLocations(from, to)];
+    BOOL result = NO;
+    if(arrow.endLocation.x == to.x && arrow.endLocation.y == to.y)
+        result = YES;
+    if(result == YES){
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            currentTutorialArrow.alpha = 0;
+        } completion:^(BOOL finished) {
+            [currentTutorialArrow removeFromSuperview];
+            currentTutorialArrow = nil;
+        }];
+    }
+    
+    return result;
 }
 
 -(void)showDialogMessage:(NSString*)message andCallback:(IteratorBlock)block

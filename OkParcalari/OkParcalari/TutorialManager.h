@@ -32,8 +32,8 @@
 
 -(BOOL)shouldDisableOtherEntities;
 
--(BOOL)isCorrectEntitity:(MapEntity*)entity;
+-(BOOL)isCorrectEntitity:(ArrowBase*)entity;
 
--(BOOL)checkEntity:(MapEntity*)entity;
+-(BOOL)checkEntity:(ArrowBase*)entity;
 
 @end
