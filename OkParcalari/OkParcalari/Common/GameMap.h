@@ -26,6 +26,8 @@
 
 - (Location) convertAbsolutePointToGridPoint:(CGPoint) absolutePoint;
 
+- (CGPoint) pointFromGridLocation:(Location) location;
+
 - (MapEntity*)entityAtLocation:(Location) location;
 
 - (NSSet*)entitiesAtLocation:(Location) location;

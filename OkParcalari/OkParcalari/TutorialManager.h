@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "MapEntity.h"
 #import "Map.h"
+#import "GameMap.h"
+#import "ArrowBase.h"
 
 @interface TutorialManager : NSObject
 

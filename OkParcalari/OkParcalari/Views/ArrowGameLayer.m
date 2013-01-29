@@ -366,112 +366,53 @@ static ArrowGameLayer* __lastInstance;
     [[[CCDirector sharedDirector] view] addSubview:gameWinView];
 
     // opacities
-    [UIView animateWithDuration:0.7 delay:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:0.7 delay:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
         activeStar1.alpha = 1.0;
     } completion:^(BOOL finished) {
         ;
     }];
-    [UIView animateWithDuration:0.7 delay:1.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:0.7 delay:0.7 options:UIViewAnimationOptionCurveEaseIn animations:^{
         activeStar2.alpha = 1.0;
     } completion:^(BOOL finished) {
         ;
     }];
-    [UIView animateWithDuration:0.7 delay:1.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:0.7 delay:1.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
         activeStar3.alpha = 1.0;
     } completion:^(BOOL finished) {
         ;
     }];
     /////////
     // frames
-    [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-//        activeStar1.frame = CGRectMake(24.0, 11.0, 110.0, 107.0);
-        activeStar1.transform = CGAffineTransformMakeScale(1.5, 1.5);
+    [UIView animateWithDuration:1.0 delay:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        activeStar1.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(1.0), CGAffineTransformMakeScale(1.5, 1.5));
     } completion:^(BOOL finished) {
         [star1 removeFromSuperview];
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-//            activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
-            activeStar1.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            activeStar1.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(0.0), CGAffineTransformMakeScale(1.0, 1.0));
         } completion:^(BOOL finished) {
             ;
         }];
     }];
-    [UIView animateWithDuration:1.0 delay:1.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
-//        activeStar2.frame = CGRectMake(111.0, -15.0, 110.0, 107.0);
-        activeStar2.transform = CGAffineTransformMakeScale(1.5, 1.5);
+    [UIView animateWithDuration:1.0 delay:0.7 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        activeStar2.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(1.0), CGAffineTransformMakeScale(1.5, 1.5));
     } completion:^(BOOL finished) {
         [star2 removeFromSuperview];
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-//            activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
-            activeStar2.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            activeStar2.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(0.0), CGAffineTransformMakeScale(1.0, 1.0));
         } completion:^(BOOL finished) {
             ;
         }];
     }];
-    [UIView animateWithDuration:1.0 delay:2.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-//        activeStar3.frame = CGRectMake(197.0, 11.0, 110.0, 107.0);
-        activeStar3.transform = CGAffineTransformMakeScale(1.5, 1.5);
+    [UIView animateWithDuration:1.0 delay:1.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        activeStar3.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(1.0), CGAffineTransformMakeScale(1.5, 1.5));
     } completion:^(BOOL finished) {
         [star3 removeFromSuperview];
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-//            activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
-            activeStar3.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            activeStar3.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(0.0), CGAffineTransformMakeScale(1.0, 1.0));
         } completion:^(BOOL finished) {
             ;
         }];
     }];
-    ///////
-    
-    
-//    [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//        activeStar1.alpha = 1.0;
-//        activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
-//    } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//            activeStar2.alpha = 1.0;
-//            activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
-//        } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//                activeStar3.alpha = 1.0;
-//                activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
-//            } completion:^(BOOL finished) {
-//                ;
-//            }];
-//        }];
-//    }];
-    
-//    [UIView animateWithDuration:0.5 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//        star1.alpha = 0.0;
-//        star1.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
-//    } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//            star2.alpha = 0.0;
-//            star2.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
-//        } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//                star3.alpha = 0.0;
-//                star3.frame = CGRectMake(levelNumHolder.center.x, levelNumHolder.center.y, 0.0, 0.0);
-//            } completion:^(BOOL finished) {
-//                ;
-//            }];
-//        }];
-//    }];
-//    
-//    [UIView animateWithDuration:0.5 delay:1.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//        activeStar1.alpha = 1.0;
-//        activeStar1.frame = CGRectMake(39.0, 26.0, 80.0, 77.0);
-//    } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//            activeStar2.alpha = 1.0;
-//            activeStar2.frame = CGRectMake(126.0, 0.0, 80.0, 77.0);
-//        } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//                activeStar3.alpha = 1.0;
-//                activeStar3.frame = CGRectMake(212.0, 26.0, 80.0, 77.0);
-//            } completion:^(BOOL finished) {
-//                ;
-//            }];
-//        }];
-//    }];
 }
 
 - (void) shareOnFacebook {
