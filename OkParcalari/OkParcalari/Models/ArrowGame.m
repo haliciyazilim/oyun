@@ -150,11 +150,9 @@ static ArrowGame* __lastInstance;
     if(startLocation.x != location.x || startLocation.y != location.y){
         if(lastDirection == NONE)
             lastDirection = currentDirection;
-    }else
+    }else{
         isInTheSameLocation = YES;
-    
-    
-    
+    }
     
     if(currentEntity.class == [Arrow class]){
         Arrow* arrow = (Arrow*)currentEntity;

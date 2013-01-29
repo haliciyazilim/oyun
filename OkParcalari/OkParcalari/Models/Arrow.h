@@ -17,12 +17,21 @@
 @interface Arrow : MapEntity
 
 @property (nonatomic) Location endLocation;
+
 @property BOOL isSelected;
+
 @property Direction direction;
+
 @property ArrowBase* base;
 
 - (id)initWithLocation:(Location)location andDirection:(Direction)direction forBase:(ArrowBase*)base;
+
 - (void)animateBackgrounds;
 
+- (int) getSize;
+
+- (Location) locationAtOrder:(int)order;
+
 - (void) removeSquirts;
+
 @end

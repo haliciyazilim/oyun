@@ -23,12 +23,12 @@
     int actionCount;
 }
 
-- (id)init
+- (id) init
 {
     return [self initWithLocation:LocationMake(0, 0)];
 }
 
-- (id)initWithLocation:(Location)location andDirection:(Direction)direction forBase:(ArrowBase*)base
+- (id) initWithLocation:(Location)location andDirection:(Direction)direction forBase:(ArrowBase*)base
 {
     self = [super initWithLocation:location];
     if (self) {
@@ -45,7 +45,7 @@
     return self;
 }
 
-- (void)setEndLocation:(Location)endLocation {
+- (void) setEndLocation:(Location)endLocation {
     if(self.endLocation.x == endLocation.x && self.endLocation.y == endLocation.y){
         return;
     }
@@ -79,7 +79,8 @@
 }
 
 
-- (int)getSize {
+- (int) getSize
+{
     int xDiff = self.endLocation.x - self.location.x;
     int yDiff = self.endLocation.y - self.location.y;
     
@@ -357,7 +358,7 @@
             nil];
 }
 
-- (BOOL)hitTestWithLocation:(Location) location
+- (BOOL) hitTestWithLocation:(Location) location
 {
     
     switch([self direction]){
@@ -409,7 +410,7 @@
     return LocationMake(-1, -1);
 }
 
-- (void)markWateredLocationsIn:(NSMutableDictionary *)bitMap
+- (void) markWateredLocationsIn:(NSMutableDictionary *)bitMap
 {
     for(int i=1; i<=[self getSize];i++)
        [bitMap setValue:@"1" forKey:LocationToString([self locationAtOrder:i])];

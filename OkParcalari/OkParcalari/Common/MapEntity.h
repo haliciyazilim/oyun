@@ -23,6 +23,8 @@ Location LocationMakeFromDictionary(NSDictionary* dict);
 
 NSString* LocationToString(Location location);
 
+int differenceBetweenTwoLocations(Location from, Location to);
+
 typedef enum {LEFT,RIGHT,UP,DOWN,NONE} Direction;
 
 Direction DirectionFromTwoLocations(Location start, Location end);

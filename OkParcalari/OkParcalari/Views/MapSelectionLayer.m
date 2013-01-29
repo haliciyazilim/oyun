@@ -229,8 +229,8 @@
     [scrollView setContentSize:CGSizeMake(unitSize.width*ceil((float)maps.count/(float)rowCount)+unitSize.width*0.5+contentPadding*2.0, unitSize.height*rowCount)];
     [scrollView setFrame:CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.contentSize.height)];
     int index = 0;
-    int nonPlayedActiveGameCount = 2;
-    int freeMapsCount = [[GreenTheGardenIAPHelper sharedInstance] isPro] ? [maps count] : 6;
+    int nonPlayedActiveGameCount = 5;
+    int freeMapsCount = [[GreenTheGardenIAPHelper sharedInstance] isPro] ? [maps count] : 10;
     for (Map* map in maps) {
         if(freeMapsCount > 0){
             map.isPurchased = YES;

@@ -79,7 +79,7 @@ static GameMap *sharedInstance = nil;
 
 -(CGPoint) pointFromGridLocation:(Location) location
 {
-    return CGPointMake(location.x*self.tileSize.width, location.y*self.tileSize.height);
+    return CGPointMake(location.x*self.tileSize.width+self.position.x, location.y*self.tileSize.height+self.position.y);
 }
 
 
