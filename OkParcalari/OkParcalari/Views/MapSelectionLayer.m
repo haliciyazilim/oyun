@@ -34,7 +34,7 @@
     int rowCount;
     
     UIViewController * tempVC;
-    UIView * infoScreen;
+    UIView * backgroundUIView;
     BOOL shouldCancel;
 }
 
@@ -369,30 +369,163 @@
 
 -(void) infoScreen{
     CGSize winSize = [CCDirector sharedDirector].winSize;
+    UIImageView *backgroundImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_menu_frame.png"]];
+    backgroundUIView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winSize.width, winSize.height)];
+    
     
     UIImageView * background=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_back.png" ]];
     CGFloat bgWidth=background.frame.size.width;
     CGFloat bgHeight=background.frame.size.height;
     
     UIButton * btnClose=[UIButton buttonWithType:UIButtonTypeCustom];
-    [btnClose setFrame:CGRectMake((winSize.width-bgWidth)/2, (winSize.height-bgHeight)/2-bgHeight+45.0, 45.0, 45.0)];
+    [btnClose setFrame:CGRectMake(bgWidth-45.0,0.0, 45.0, 45.0)];
     [btnClose setBackgroundImage:[UIImage imageNamed:@"inapp_btn_close.png"] forState:UIControlStateNormal];
     [btnClose setBackgroundImage:[UIImage imageNamed:@"inapp_btn_close_hover.png"] forState:UIControlStateHighlighted];
     [btnClose addTarget:self action:@selector(closeInfoScreen) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UIView * mask=[[UIView alloc]initWithFrame:CGRectMake(20, 20, bgWidth-40, bgHeight-40)];
+    [mask setBackgroundColor:[UIColor clearColor]];
+    mask.clipsToBounds=YES;
 
-    infoScreen=[[UIView alloc] initWithFrame:CGRectMake((winSize.width-bgWidth)/2, (winSize.height-bgHeight)/2, bgWidth, bgHeight)];
+    
+    UIView * credits=[[UIView alloc]initWithFrame:CGRectMake(0, mask.frame.size.width-80, mask.frame.size.width, winSize.height)];
+    [credits setBackgroundColor:[UIColor clearColor]];
+    
+    // Company Name
+    UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0, credits.frame.size.width, 40.0)];
+    [cName setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+    [cName setTextAlignment:NSTextAlignmentCenter];
+    [cName setBackgroundColor:[UIColor clearColor]];
+    [cName setText:@"HALICI BİLGİ İŞLEM A.Ş."];
+    
+    // Adress
+    UILabel * cAdress=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 40, credits.frame.size.width, 40.0)];
+    [cAdress setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+    [cAdress setTextAlignment:NSTextAlignmentCenter];
+    [cAdress setBackgroundColor:[UIColor clearColor]];
+    [cAdress setNumberOfLines:2];
+    [cAdress setText:@"ODTÜ-Halıcı Yazılımevi, İnönü Bulvarı 06531, \nODTÜ-Teknokent/ANKARA"];
+    
+    // Mail
+    UILabel * cMail=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 80, credits.frame.size.width, 40.0)];
+    [cMail setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+    [cMail setTextAlignment:NSTextAlignmentCenter];
+    [cMail setBackgroundColor:[UIColor clearColor]];
+    [cMail setText:@"iletisim@halici.com.tr"];
+    
+    
+    // Programming
+    UILabel * cProgramming=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 160, credits.frame.size.width, 40.0)];
+    [cProgramming setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+    [cProgramming setTextAlignment:NSTextAlignmentCenter];
+    [cProgramming setBackgroundColor:[UIColor clearColor]];
+    [cProgramming setText:NSLocalizedString(@"PROGRAMMING",nil)];
+    
+    // Names
+    NSArray * names=[[NSArray alloc] initWithObjects:@"Eren HALICI",@"Yunus Eren GÜZEL", @"Abdullah KARACABEY",@"Alperen KAVUN", nil];
+    for(int i=0; i<names.count;i++){
+        UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 200+i*40, credits.frame.size.width, 40.0)];
+        [cName setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+        [cName setTextAlignment:NSTextAlignmentCenter];
+        [cName setBackgroundColor:[UIColor clearColor]];
+        [cName setNumberOfLines:2];
+        [cName setText:names[i]];
+        [credits addSubview:cName];
+    }
+    
+
+    // Art
+    UILabel * cArt=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 400, credits.frame.size.width, 40.0)];
+    [cArt setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+    [cArt setTextAlignment:NSTextAlignmentCenter];
+    [cArt setBackgroundColor:[UIColor clearColor]];
+    [cArt setText:NSLocalizedString(@"ART", nil)];
+    
+    UILabel * cArtName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 440, credits.frame.size.width, 40.0)];
+    [cArtName setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+    [cArtName setTextAlignment:NSTextAlignmentCenter];
+    [cArtName setBackgroundColor:[UIColor clearColor]];
+    [cArtName setNumberOfLines:2];
+    [cArtName setText:@"Ebuzer Egemen DURSUN"];
+    
+    
+    // Music
+    UILabel * cMusic=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 520, credits.frame.size.width, 40.0)];
+    [cMusic setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+    [cMusic setTextAlignment:NSTextAlignmentCenter];
+    [cMusic setBackgroundColor:[UIColor clearColor]];
+    [cMusic setText:NSLocalizedString(@"MUSIC", nil)];
+    
+    NSArray * namesMusic=[[NSArray alloc] initWithObjects:@"Onur IŞIKLI",@"Eren HALICI", nil];
+    for(int i=0; i<namesMusic.count;i++){
+        UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 560+i*40, credits.frame.size.width, 40.0)];
+        [cName setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+        [cName setTextAlignment:NSTextAlignmentCenter];
+        [cName setBackgroundColor:[UIColor clearColor]];
+        [cName setNumberOfLines:2];
+        [cName setText:namesMusic[i]];
+        [credits addSubview:cName];
+    }
+    
+
+    // Copyright
+    UILabel * cCRight=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 680, credits.frame.size.width, 40.0)];
+    [cCRight setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+    [cCRight setTextAlignment:NSTextAlignmentCenter];
+    [cCRight setBackgroundColor:[UIColor clearColor]];
+    [cCRight setText:NSLocalizedString(@"Copyright © 2013", nil)];
+
+    
+
+    [credits addSubview:cName];
+    [credits addSubview:cAdress];
+    [credits addSubview:cMail];
+    [credits addSubview:cProgramming];
+    [credits addSubview:cArt];
+    [credits addSubview:cArtName];
+    [credits addSubview:cMusic];
+    [credits addSubview:cCRight];
+    [mask addSubview:credits];
+    
+    UIView * infoScreen=[[UIView alloc] initWithFrame:CGRectMake((winSize.width-bgWidth)/2, (winSize.height-bgHeight)/2, bgWidth, bgHeight)];
+//    infoScreen.clipsToBounds=YES;
+    [infoScreen setBackgroundColor:[UIColor clearColor]];
+    
     [infoScreen addSubview:background];
+    [infoScreen addSubview:mask];
     [infoScreen addSubview:btnClose];
-    [[[CCDirector sharedDirector] view]addSubview:infoScreen];
+    
+    [backgroundUIView addSubview:backgroundImgView];
+    [backgroundUIView addSubview:infoScreen];
+    [[[CCDirector sharedDirector] view]addSubview:backgroundUIView];
+    
+//    cName.transform=CGAffineTransformMakeTranslation(0, 0);
+//    CGRect frame=cName.frame;
+//    frame.origin.y=550.0;
+//    cName.frame=frame;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:30.0f];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(closeInfoScreen)];
+    
+    CGAffineTransform transform=CGAffineTransformMakeTranslation(0, -1000);
+    credits.transform=transform;
+    [UIView commitAnimations];
 }
+
+
+
 -(void)closeInfoScreen{
-    [infoScreen removeFromSuperview];
+    [backgroundUIView removeFromSuperview];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
-    [infoScreen removeFromSuperview];
 }
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
