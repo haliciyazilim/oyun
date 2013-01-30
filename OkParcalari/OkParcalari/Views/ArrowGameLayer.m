@@ -161,6 +161,7 @@ static ArrowGameLayer* __lastInstance;
 - (void) initializeGameWithFile:(NSString*)fileName
 {
     _fileName = fileName;
+    __lastInstance = self;
     self.arrowGame = [[ArrowGame alloc] initWithFile:fileName];
     [self addChild:self.arrowGame];
 }
@@ -170,6 +171,8 @@ static ArrowGameLayer* __lastInstance;
     TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
         [self.arrowGame cleanMap];
         [self.arrowGame removeFromParentAndCleanup:YES];
+        [ArrowGame cleanLastInstance];
+        [ArrowGameLayer cleanLastInstance];
         self.isTouchEnabled = YES;
         [self initializeGameWithFile:_fileName];
     }];
@@ -231,6 +234,7 @@ static ArrowGameLayer* __lastInstance;
     TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
         if(gameWinView){
             [gameWinView removeFromSuperview];
+            gameWinView = nil;
         }
         [self.arrowGame cleanMap];
         [self.arrowGame removeFromParentAndCleanup:YES];
@@ -242,10 +246,26 @@ static ArrowGameLayer* __lastInstance;
     [myManager startTransition];
 }
 - (void) nextGame {
-//    Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
-//    int oldMapOrder = oldMap.order;
-//    NSString *oldMapPackage = oldMap.packageId;
-//    Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:oldMapOrder+1] forPackage:oldMapPackage];
+    Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
+    int oldMapOrder = oldMap.order;
+    NSString *oldMapPackage = oldMap.packageId;
+    Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:oldMapOrder+1] forPackage:oldMapPackage];
+    if (newMap != nil && newMap.isPurchased) {
+        self.isTouchEnabled = NO;
+        TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+            if(gameWinView){
+                [gameWinView removeFromSuperview];
+                gameWinView = nil;
+            }
+            [self.arrowGame cleanMap];
+            [self.arrowGame removeFromParentAndCleanup:YES];
+            self.isTouchEnabled = YES;
+            [ArrowGame cleanLastInstance];
+            [ArrowGameLayer cleanLastInstance];
+            [self initializeGameWithFile:newMap.mapId];
+        }];
+        [myManager startTransition];
+    }
     
 }
 -(void) gameEnded:(int)starCount
@@ -315,7 +335,7 @@ static ArrowGameLayer* __lastInstance;
     [nextGame setFrame:CGRectMake(173.0, 263.0, 139.0, 55.0)];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next", @"png")] forState:UIControlStateNormal];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next_hover", @"png")] forState:UIControlStateHighlighted];
-    [nextGame addTarget:self action:@selector(nextMap) forControlEvents:UIControlEventTouchUpInside];
+    [nextGame addTarget:self action:@selector(nextGame) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *rope3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_ayrac.png"]];
     rope3.frame = CGRectMake(0.0, 318.0, 327.0, 13.0);

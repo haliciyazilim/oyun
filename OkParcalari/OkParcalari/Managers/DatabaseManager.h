@@ -21,6 +21,7 @@
 - (NSURL *)applicationDocumentsDirectory;
 - (void)saveContext;
 - (BOOL)isEmpty;
+- (void) updateMaps;
 - (void)insertMaps:(NSArray *)maps forPackage:(NSString *)packageId;
 - (Map *)getMapWithID:(NSString *)mapId;
 - (Map *)getMapWithOrder:(NSNumber *)order forPackage:(NSString *)packageId;
