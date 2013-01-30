@@ -294,6 +294,7 @@
 
 - (void)productPurchased:(NSNotification *)notification {
     [unlockButton removeFromSuperview];
+    [[DatabaseManager sharedInstance] updateMaps];
     [self refreshScrollView];
 }
 -(void)addStore {
