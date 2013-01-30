@@ -119,6 +119,7 @@
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
+    NSLog(@"willResignActive");
     if([[ArrowGame lastInstance] isGameRunning]){
         [[ArrowGame lastInstance] pauseGame];
         [[ArrowGameLayer lastInstance] showInGameMenu];
