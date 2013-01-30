@@ -22,4 +22,5 @@
 -(void) submitAchievement: (NSString*) identifier percentComplete: (float) percent;
 -(void)checkAchievementFastMindQuickHands: (Map*) playedMap;
 -(void) checkAchievementMapsStars:(Map*) playedMap;
+-(void)checkAchievementWarmingUp;
 @end
