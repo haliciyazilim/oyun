@@ -27,5 +27,6 @@
 - (Map *)getMapWithOrder:(NSNumber *)order forPackage:(NSString *)packageId;
 - (NSArray *)getMapsForPackage:(NSString *)packageId;
 - (NSArray *)getMapsForDifficulty:(int)difficulty;
+- (NSArray *)getAllMaps;
 
 @end
