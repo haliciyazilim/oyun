@@ -13,10 +13,12 @@
 
 @property (nonatomic) BOOL isGameCenterAvailable;
 @property (nonatomic) BOOL isUserAuthenticated;
+@property NSArray * leaderboardCategories;
+@property NSArray * leaderboardTitles;
 
 + (GameCenterManager *) sharedInstance;
 - (void) authenticateLocalUser;
-- (void) saveScore:(int)score category:(NSString*)category;
+- (void) submitScore:(int)score category:(NSString*)category;
 
 -(void) getScores;
 @end

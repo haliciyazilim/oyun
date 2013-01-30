@@ -11,6 +11,7 @@
 #import "Map.h"
 #import "GameMap.h"
 #import "ArrowBase.h"
+#import "ArrowGame.h"
 
 @interface TutorialManager : NSObject
 
@@ -26,14 +27,22 @@
 
 -(void)startTutorial;
 
+-(void)finishTutorial;
+
 -(void)skipTutorial;
 
 -(BOOL)isTutorialActive;
 
 -(BOOL)shouldDisableOtherEntities;
 
--(BOOL)isCorrectEntitity:(MapEntity*)entity;
+-(BOOL)isCorrectEntitity:(ArrowBase*)entity;
 
--(BOOL)checkEntity:(MapEntity*)entity;
+-(void)checkEntity:(ArrowBase*)entity;
+
+-(void)pauseTutorial;
+
+-(void)resumeTutorial;
+
+-(void)updateForMovedBase:(ArrowBase*)arrowBase;
 
 @end
