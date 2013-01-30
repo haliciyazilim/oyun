@@ -10,6 +10,7 @@
 typedef void (^ IteratorBlock)();
 @interface UISetTouchBeganView : UIView
 -(void)setTouchesBegan:(IteratorBlock)block;
+-(BOOL)isInsideTouchesBegan;
 @end
 
 @interface TutorialStep : NSObject
@@ -32,9 +33,9 @@ typedef void (^ IteratorBlock)();
     UIImageView* balloonImageView;
 }
 
+static TutorialManager* currentInstance = nil;
 +(TutorialManager *)sharedInstance
 {
-    static TutorialManager* currentInstance = nil;
     if(currentInstance == nil){
         currentInstance = [[TutorialManager alloc] init];
     }
@@ -118,6 +119,13 @@ typedef void (^ IteratorBlock)();
     
     [currentTutorialArrow removeFromSuperview];
     currentTutorialArrow = nil;
+    
+    currentStepIndex = -1;
+    [tutorialSteps removeAllObjects];
+    
+    currentInstance = nil;
+
+    
 }
 
 -(void) nextStep
@@ -154,6 +162,13 @@ typedef void (^ IteratorBlock)();
     else
         lastMovedArrowEndLocation = arrow.endLocation;
     
+    TutorialStep* currentStep = (TutorialStep*)[tutorialSteps objectAtIndex:currentStepIndex];
+    Location from = currentStep.startTile;
+    Location to = currentStep.targetTile;
+    if(arrowSize > differenceBetweenTwoLocations(from, to))
+        arrowSize = differenceBetweenTwoLocations(from, to);
+    
+    
     
     Location startingLocation;
     if(arrowSize > 0)
@@ -172,9 +187,6 @@ typedef void (^ IteratorBlock)();
             break;
     }
     CGPoint startingPoint = [self pointFromLocation:startingLocation];
-//    TutorialStep* currentStep = (TutorialStep*)[tutorialSteps objectAtIndex:currentStepIndex];
-//    Location from = currentStep.startTile;
-//    Location to = currentStep.targetTile;
     [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         switch(arrow.direction){
             case UP:
@@ -289,10 +301,12 @@ typedef void (^ IteratorBlock)();
 -(void)pauseTutorial
 {
     [currentTutorialArrow setAlpha:0.0];
+    [balloonImageView setAlpha:0.0];
 }
 
 -(void)resumeTutorial
 {
+    [currentTutorialArrow setAlpha:1.0];
     [currentTutorialArrow setAlpha:1.0];
 }
 
@@ -335,10 +349,11 @@ typedef void (^ IteratorBlock)();
     if(arrow.endLocation.x == to.x && arrow.endLocation.y == to.y)
         result = YES;
     if(result == YES){
-//        [self performSelector:@selector(nextStep) withObject:self afterDelay:0.1];
-        [self showDialogMessage:@"Congratulations!" andCallback:^{
-            [self nextStep];
-        }];
+        NSLog(@"result = YES arrow.endlocation.x:%d to.x:%d arrow.endLocation.y:%d to.y:%d",arrow.endLocation.x, to.x, arrow.endLocation.y, to.y);
+        [self performSelector:@selector(nextStep) withObject:self afterDelay:0.0];
+//        [self showDialogMessage:@"Congratulations!" andCallback:^{
+//            [self nextStep];
+//        }];
         __block UIImageView* previousTutorialArrow = currentTutorialArrow;
         currentTutorialArrow = nil;
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -419,7 +434,10 @@ typedef void (^ IteratorBlock)();
     
     __weak UISetTouchBeganView* weakBackground = background;
     [self showInstruction:message forTile:location];
+    __block BOOL insideBlock = NO;
     [background setTouchesBegan:^{
+        if(insideBlock == YES) return;
+        else insideBlock = YES;
         [UIView animateWithDuration:0.2 animations:^{
             CGPoint point = [self pointFromLocation:location];
             [balloonImageView setFrame:CGRectMake(point.x-29, point.y+10, balloonImageView.image.size.width, 0)];
@@ -482,6 +500,7 @@ typedef void (^ IteratorBlock)();
 @implementation UISetTouchBeganView
 {
     IteratorBlock touchBeganBlock;
+    BOOL isInsideTouchesBegan;
 }
 
 
@@ -490,10 +509,17 @@ typedef void (^ IteratorBlock)();
     touchBeganBlock = block;
 }
 
+-(BOOL)isInsideTouchesBegan
+{
+    return isInsideTouchesBegan;
+}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    touchBeganBlock();
+    isInsideTouchesBegan = YES;
+    if(touchBeganBlock != nil)
+        touchBeganBlock();
+    isInsideTouchesBegan = NO;
 }
 
 @end
