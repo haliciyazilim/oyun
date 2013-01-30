@@ -115,7 +115,7 @@ static ArrowGame* __lastInstance;
     [[GameCenterManager sharedInstance] submitScore:[map.score intValue] category:[[GameCenterManager sharedInstance]leaderboardCategories][0]];
 
     
-    [[ArrowGameLayer lastInstance] gameEnded:[Map starCountForScore:[self.gameTimer getElapsedSeconds] andDifficulty:map.difficulty]];
+    [[ArrowGameLayer lastInstance] gameEnded:[Map starCountForScore:[self.gameTimer getElapsedSeconds] andDifficulty:map.difficulty] andElapsedSeconds:[self.gameTimer getElapsedSeconds]];
     _isGameRunning = NO;
     [ArrowGame cleanLastInstance];
     return YES;
