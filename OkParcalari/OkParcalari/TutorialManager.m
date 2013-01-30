@@ -29,6 +29,7 @@ typedef void (^ IteratorBlock)();
     BOOL canInteract;
     UIImageView* currentTutorialArrow;
     Location lastMovedArrowEndLocation;
+    UIImageView* balloonImageView;
 }
 
 +(TutorialManager *)sharedInstance
@@ -52,7 +53,7 @@ typedef void (^ IteratorBlock)();
         TutorialStep* firstStep = [[TutorialStep alloc] init];
         firstStep.startTile = LocationMake(0, 0);
         firstStep.targetTile = LocationMake(0, 9);
-        firstStep.description = @"Deneme description";
+        firstStep.description = @"Go on and water 9 tiles by dragging upwards from this pump.";
         [tutorialSteps addObject:firstStep];
         
         TutorialStep* secondStep = [[TutorialStep alloc] init];
@@ -95,15 +96,26 @@ typedef void (^ IteratorBlock)();
 {
     isTutorialActive = YES;
     currentStepIndex =-1;
-    NSString* tutorialStartMessage = @"asdasd asd asd asd as dasdasdasdasd asd asd asd asd asd ads asd asd asd ddsa das das dasd  asdf asrqwr asdf asdf asfasrf qewr af asfd qwr asde asrq e";
+    NSString* tutorialStartMessage = @"Welcome to Green The Garden. Your objective is to green the garden! You will use water pumps and pipes in your quest.";
     [self showDialogMessage:tutorialStartMessage andCallback:^{
-        [self nextStep];
+        [self showInstruction:@"This is a water pump. Water pumps have varying water pressures" forTile:LocationMake(0, 0) withCompletionBlock:^{
+           [self showInstruction:@"This pump can water 9 tiles" forTile:LocationMake(0,0) withCompletionBlock:^{
+               [self showInstruction:@"You can only have straight pipes emanating from the water pumps." forTile:LocationMake(0, 0) withCompletionBlock:^{
+                   [self nextStep];
+               }];
+           }];
+        }];
+        
     }];
 }
 
 -(void)finishTutorial
 {
     isTutorialActive = NO;
+    
+    [balloonImageView removeFromSuperview];
+    balloonImageView = nil;
+    
     [currentTutorialArrow removeFromSuperview];
     currentTutorialArrow = nil;
 }
@@ -115,6 +127,7 @@ typedef void (^ IteratorBlock)();
     if(currentStepIndex >= [tutorialSteps count]){
         [self showDialogMessage:@"End of Tutorial" andCallback:^{
             [self finishTutorial];
+            //ABDULLAH KARACABEY
         }];
         return;
     }
@@ -122,9 +135,11 @@ typedef void (^ IteratorBlock)();
     [self showHelperSignsFrom:step.startTile to:step.targetTile onCompletion:^{
         
     }];
-    [self showInstructionForTile:step.startTile];
+    
+    [self showInstruction:step.description forTile:step.startTile];
     
 }
+
 
 -(CGPoint) pointFromLocation:(Location)location
 {
@@ -157,7 +172,6 @@ typedef void (^ IteratorBlock)();
             break;
     }
     CGPoint startingPoint = [self pointFromLocation:startingLocation];
-//    
 //    TutorialStep* currentStep = (TutorialStep*)[tutorialSteps objectAtIndex:currentStepIndex];
 //    Location from = currentStep.startTile;
 //    Location to = currentStep.targetTile;
@@ -201,8 +215,8 @@ typedef void (^ IteratorBlock)();
     [UIView animateWithDuration:0.5 animations:^{
         tutorialArrow.alpha = 1.0;
     }];
-    float duration = 0.30 * difference;
-    [UIView animateWithDuration:duration delay:0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    float duration = 0.2 * difference;
+    [UIView animateWithDuration:duration delay:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         switch (direction) {
             case UP:
                 [tutorialArrow setFrame:CGRectMake(toPoint.x, toPoint.y, [GameMap sharedInstance].tileSize.width * 1, [GameMap sharedInstance].tileSize.width * difference)];
@@ -284,8 +298,16 @@ typedef void (^ IteratorBlock)();
 
 -(BOOL)isCorrectEntitity:(ArrowBase*)entity
 {
+    [UIView animateWithDuration:0.5 animations:^{
+        balloonImageView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [balloonImageView removeFromSuperview];
+        balloonImageView = nil;
+    }];
+    
     Location startLocation = ((TutorialStep*)[tutorialSteps objectAtIndex:currentStepIndex]).startTile;
     return entity.location.x == startLocation.x && entity.location.y == startLocation.y;
+    
 }
 
 -(void)updateForMovedBase:(ArrowBase*)arrowBase
@@ -303,6 +325,7 @@ typedef void (^ IteratorBlock)();
 {
     if(![self isCorrectEntitity:entity])
         return;
+    
     TutorialStep* currentStep = (TutorialStep*)[tutorialSteps objectAtIndex:currentStepIndex];
     Location from = currentStep.startTile;
     Location to = currentStep.targetTile;
@@ -312,32 +335,36 @@ typedef void (^ IteratorBlock)();
     if(arrow.endLocation.x == to.x && arrow.endLocation.y == to.y)
         result = YES;
     if(result == YES){
+//        [self performSelector:@selector(nextStep) withObject:self afterDelay:0.1];
         [self showDialogMessage:@"Congratulations!" andCallback:^{
             [self nextStep];
         }];
+        __block UIImageView* previousTutorialArrow = currentTutorialArrow;
+        currentTutorialArrow = nil;
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            currentTutorialArrow.alpha = 0;
+            previousTutorialArrow.alpha = 0;
         } completion:^(BOOL finished) {
-            [currentTutorialArrow removeFromSuperview];
-            currentTutorialArrow = nil;
+            [previousTutorialArrow removeFromSuperview];
+            previousTutorialArrow = nil;
         }];
     }
     else{
         [self shortenCurrentArrowForArrow:arrow];
-        
     }
-    
-    
 }
 
 -(void)showDialogMessage:(NSString*)message andCallback:(IteratorBlock)block
 {
     UIView* dialog = [[UIView alloc] init];
-    [dialog setFrame:CGRectMake(512-189, 384 - 152, 379, 305)];
+    [dialog setFrame:CGRectMake(512, 384, 0, 0)];
     [dialog setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"inapp_back.png"]]];
     [dialog setUserInteractionEnabled:NO];
+    [dialog setClipsToBounds:YES];
     dialog.alpha = 0;
-    [UIView animateWithDuration:1.0 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
+        [dialog setFrame:CGRectMake(512-189, 384 - 152, 379, 305)];
+    }];
+    [UIView animateWithDuration:0.5 animations:^{
         dialog.alpha = 1;
     }];
     
@@ -384,12 +411,69 @@ typedef void (^ IteratorBlock)();
     
 }
 
--(void)showInstructionForTile:(Location)location
+-(void)showInstruction:(NSString*)message forTile:(Location)location withCompletionBlock:(IteratorBlock)block
+{
+    UISetTouchBeganView* background = [[UISetTouchBeganView alloc] init];
+    background.frame = CGRectMake(0, 0, 1024, 768);
+    [[[CCDirector sharedDirector] view] addSubview:background];
+    
+    __weak UISetTouchBeganView* weakBackground = background;
+    [self showInstruction:message forTile:location];
+    [background setTouchesBegan:^{
+        [UIView animateWithDuration:0.2 animations:^{
+            CGPoint point = [self pointFromLocation:location];
+            [balloonImageView setFrame:CGRectMake(point.x-29, point.y+10, balloonImageView.image.size.width, 0)];
+        } completion:^(BOOL finished) {
+            [weakBackground removeFromSuperview];
+            [balloonImageView removeFromSuperview];
+            balloonImageView = nil;
+            block();
+        }];
+    }];
+}
+
+-(void)showInstruction:(NSString*)message forTile:(Location)location
 {
     CGPoint point = [self pointFromLocation:location];
-    UIImageView* balloonImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_dialog.png"]];
-    [balloonImageView setFrame:CGRectMake(point.x-29, point.y-balloonImageView.image.size.height, balloonImageView.image.size.width, balloonImageView.image.size.height)];
+    UIImage* balloonImage = [UIImage imageNamed:@"tut_dialog.png"];
+    balloonImage = [self imageWithImage:balloonImage convertToSize:CGSizeMake(300.0, 100.0)];
+//    balloonImage
+    
+    balloonImageView = [[UIImageView alloc] initWithImage:balloonImage];
+    [balloonImageView setFrame:CGRectMake(point.x-29, point.y+10, balloonImageView.image.size.width, 0)];
+    [balloonImageView setClipsToBounds:YES];
+    [UIView animateWithDuration:0.1 animations:^{
+        [balloonImageView setFrame:CGRectMake(point.x-29, point.y-balloonImageView.image.size.height+10, balloonImageView.image.size.width, balloonImageView.image.size.height)];
+    }];
+    
+//    UILabel* instructionLabel = [[UILabel alloc] init];
+//    instructionLabel.frame = CGRectMake(20, 10, 220, 50);
+//    [instructionLabel setText:message];
+//    [instructionLabel setBackgroundColor:[UIColor clearColor]];
+//    [instructionLabel setNumberOfLines:2];
+//    [instructionLabel setContentMode:UIViewContentModeTop];
+//    [balloonImageView addSubview:instructionLabel];
+
+    UITextView* instructionTextView = [[UITextView alloc] init];
+    instructionTextView.frame = CGRectMake(5, 0, balloonImage.size.width-40, 50);
+    [instructionTextView setText:message];
+    [instructionTextView setTextColor:[UIColor whiteColor]];
+    [instructionTextView setBackgroundColor:[UIColor clearColor]];
+    [instructionTextView setContentMode:UIViewContentModeTop];
+    [instructionTextView setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0]];
+    
+    [balloonImageView addSubview:instructionTextView];
+    
+    
     [[[CCDirector sharedDirector] view] addSubview:balloonImageView];
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
 }
 @end
 
