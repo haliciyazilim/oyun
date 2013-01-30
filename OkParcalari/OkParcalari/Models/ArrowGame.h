@@ -47,6 +47,10 @@
 
 - (void) cleanMap;
 
+- (void) pauseTimer;
+
+- (void) resumeTimer;
+
 
 +(ArrowGame*)lastInstance;
 +(void)cleanLastInstance;

@@ -131,6 +131,16 @@ static ArrowGame* __lastInstance;
     [[TutorialManager sharedInstance] resumeTutorial];
 }
 
+- (void) pauseTimer
+{
+    [_gameTimer pauseTimer];
+}
+
+- (void) resumeTimer
+{
+    [_gameTimer resumeTimer];
+}
+
 - (void) touchBegan:(Location) location
 {
     if([self.map isLocationInsideMap:location] == NO){
@@ -139,7 +149,8 @@ static ArrowGame* __lastInstance;
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
     startLocation = location;
     if([[TutorialManager sharedInstance] isTutorialActive]){
-        if(![[TutorialManager sharedInstance] isCorrectEntitity:(ArrowBase*)currentEntity]){
+        ArrowBase* base = ([currentEntity class] == [ArrowBase class]) ? (ArrowBase*)currentEntity : ((Arrow*)currentEntity).base;
+        if(![[TutorialManager sharedInstance] isCorrectEntitity:(ArrowBase*)base]){
             currentEntity = nil;
         }
     }
@@ -200,13 +211,16 @@ static ArrowGame* __lastInstance;
     if(currentEntity != nil){
         if([currentEntity class] == [Arrow class]){
             [(Arrow *)currentEntity animateBackgrounds];
+            if([[TutorialManager sharedInstance] isTutorialActive]){
+                [[TutorialManager sharedInstance] checkEntity:((Arrow *)currentEntity).base];
+            }
             
         }
         else if([currentEntity class] == [ArrowBase class] && lastDirection != NONE){
             Arrow *arrow = [(ArrowBase *)currentEntity arrowAtDirection:lastDirection];
             [arrow animateBackgrounds];
             if([[TutorialManager sharedInstance] isTutorialActive]){
-                [[TutorialManager sharedInstance] checkEntity:(ArrowBase*)currentEntity];
+                [[TutorialManager sharedInstance] checkEntity:(ArrowBase *)currentEntity];
             }
         }
         [self isGameFinished];

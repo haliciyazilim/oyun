@@ -53,19 +53,19 @@ typedef void (^ IteratorBlock)();
         firstStep.startTile = LocationMake(0, 0);
         firstStep.targetTile = LocationMake(0, 9);
         firstStep.description = @"Deneme description";
-//        [tutorialSteps addObject:firstStep];
+        [tutorialSteps addObject:firstStep];
         
         TutorialStep* secondStep = [[TutorialStep alloc] init];
         secondStep.startTile = LocationMake(2,4);
         secondStep.targetTile = LocationMake(2, 1);
         secondStep.description = @"Deneme description";
-//        [tutorialSteps addObject:secondStep];
+        [tutorialSteps addObject:secondStep];
         
         TutorialStep* thirdStep = [[TutorialStep alloc] init];
         thirdStep.startTile = LocationMake(8,8);
         thirdStep.targetTile = LocationMake(1, 8);
         thirdStep.description = @"Deneme falan";
-//        [tutorialSteps addObject:thirdStep];
+        [tutorialSteps addObject:thirdStep];
         
         TutorialStep* forthStep = [[TutorialStep alloc] init];
         forthStep.startTile = LocationMake(1, 0);
@@ -323,6 +323,10 @@ typedef void (^ IteratorBlock)();
             currentTutorialArrow = nil;
         }];
     }
+    else{
+        [self shortenCurrentArrowForArrow:arrow];
+        
+    }
     
     
 }
@@ -363,10 +367,12 @@ typedef void (^ IteratorBlock)();
     [background setUserInteractionEnabled:YES];
     [background setFrame:CGRectMake(0, 0, 1024, 768)];
     __weak UISetTouchBeganView* weakBackground = background;
-
+    
+    [[ArrowGame lastInstance] pauseTimer];
     [background setTouchesBegan:^{
         [dialog removeFromSuperview];
         [weakBackground removeFromSuperview];
+        [[ArrowGame lastInstance] resumeTimer];
         block();
     }];
     

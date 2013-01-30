@@ -11,6 +11,7 @@
 #import "Map.h"
 #import "GameMap.h"
 #import "ArrowBase.h"
+#import "ArrowGame.h"
 
 @interface TutorialManager : NSObject
 
