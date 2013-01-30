@@ -34,24 +34,8 @@
 {
     [Flurry startSession:@"PW345B45PR4W3D6Z2V8H"];
     
-//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
-    
     [GreenTheGardenIAPHelper sharedInstance];
     [GreenTheGardenSoundManager sharedSoundManager];
-//    [[DatabaseManager sharedInstance] ]
-//    [CDAudioManager configure:kAMM_FxPlusMusic];
-//    if (otherAudioIsPlaying) {
-//        [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryAmbient error: nil];
-//    } else {
-//        [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategorySoloAmbient error: nil];
-//    }
-    
-//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
-//    if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying){
-//        [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
-//    }
-
     
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -150,16 +134,14 @@
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
-    NSLog(@"*******didBecomeActive*********");
     [FBSettings publishInstall:[FBSession defaultAppID]];
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
     
     if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying) {
         [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
-        NSLog(@"Background music is not playing");
     } else {
-        NSLog(@"Background music is playing");
+        ;
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:[AchievementManager sharedAchievementManager] selector:@selector(loadAchievements) name:kAuthenticationChangedNotification object:nil];
@@ -167,7 +149,6 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-        NSLog(@"*******didEnterBackground*********");
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ stopAnimation];
     }
@@ -175,25 +156,20 @@
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
-        NSLog(@"*******willEnterForeground*********");
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ startAnimation];
     }
-    
-    
 }
 
 // application will be killed
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-        NSLog(@"*******willTerminate*********");
 	CC_DIRECTOR_END();
 }
 
 // purge memory
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
-        NSLog(@"*******didReceiveMemoryWarning*********");
 	[[CCDirector sharedDirector] purgeCachedData];
 }
 
@@ -202,11 +178,8 @@
 {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
-
 - (void) dealloc
 {
     
 }
-
 @end
-
