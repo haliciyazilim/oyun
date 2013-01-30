@@ -122,6 +122,7 @@ typedef void (^ IteratorBlock)();
     [self showHelperSignsFrom:step.startTile to:step.targetTile onCompletion:^{
         
     }];
+    [self showInstructionForTile:step.startTile];
     
 }
 
@@ -160,7 +161,7 @@ typedef void (^ IteratorBlock)();
 //    TutorialStep* currentStep = (TutorialStep*)[tutorialSteps objectAtIndex:currentStepIndex];
 //    Location from = currentStep.startTile;
 //    Location to = currentStep.targetTile;
-    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         switch(arrow.direction){
             case UP:
                 [currentTutorialArrow setFrame:CGRectMake(currentTutorialArrow.frame.origin.x, currentTutorialArrow.frame.origin.y, currentTutorialArrow.frame.size.width,abs(currentTutorialArrow.frame.origin.y - startingPoint.y))];
@@ -189,7 +190,6 @@ typedef void (^ IteratorBlock)();
     Arrow* arrow = [(ArrowBase*)[[GameMap sharedInstance] entityAtLocation:from] arrowAtDirection:DirectionFromTwoLocations(from, to)];
     CGPoint startingPoint = [self pointFromLocation:[arrow locationAtOrder:1]];
     int difference = differenceBetweenTwoLocations(from, to);
-//    NSLog(@"helperSigns from:%d,%d",from.)
     UIImageView* tutorialArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_arrow.png"]];
     tutorialArrow = [self rotatedImageView:tutorialArrow forDirection:direction];
     [tutorialArrow setFrame:CGRectMake(startingPoint.x, startingPoint.y, [GameMap sharedInstance].tileSize.width * 1, tutorialArrow.image.size.height)];
@@ -249,7 +249,6 @@ typedef void (^ IteratorBlock)();
         case NONE:
             return imageView;
     }
-//    [imageView setContentMode:contentMode];
     imageView.transform = CGAffineTransformRotate(imageView.transform, angle);
     return imageView;
 }
@@ -387,7 +386,10 @@ typedef void (^ IteratorBlock)();
 
 -(void)showInstructionForTile:(Location)location
 {
-    
+    CGPoint point = [self pointFromLocation:location];
+    UIImageView* balloonImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_dialog.png"]];
+    [balloonImageView setFrame:CGRectMake(point.x-29, point.y-balloonImageView.image.size.height, balloonImageView.image.size.width, balloonImageView.image.size.height)];
+    [[[CCDirector sharedDirector] view] addSubview:balloonImageView];
 }
 @end
 
