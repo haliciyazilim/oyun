@@ -103,7 +103,7 @@ static AchievementManager * sharedAchievementManager=nil;
     
 //    NSLog(@"IsExist: %d",isExist);
     
-    if (achievement || isExist==NO) // esas sorgu bu.
+    if (achievement && isExist==NO) // esas sorgu bu.
 //    if (achievement) // Test için duruyor bu.
     {
 
