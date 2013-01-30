@@ -154,9 +154,6 @@ static AchievementManager * sharedAchievementManager=nil;
     [self submitAchievement:kAchievementFastMindQuickHands percentComplete:100];
 }
 
--(void)checkAchievementWarmingUp{
-    [self submitAchievement:kAchievementWarmingUp percentComplete:100];
-}
 
 -(void) checkAchievementMapsStars:(Map*) playedMap{
     // Check maps for difficulty
