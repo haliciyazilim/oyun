@@ -23,6 +23,8 @@
 "RESTART_APPROVE" = "Yeniden başlamak istediğinize emin misiniz? Kaydedilmemiş ilerlemeniz kaybolacaktır!";
 "MAIN_MENU_APPROVE" = "Ana menüye dönmek istediğinize emin misiniz? Kaydedilmemiş ilerlemeniz kaybolacaktır!";
 "CANCEL" = "İptal";
+"NO_MAP" = "harita yok";
+"NO_PURCHASED" = "satin al once";
 
 // Credits
 "PROGRAMMING"="Programlama";
