@@ -41,13 +41,12 @@
 
 - (void) touchEnded:(Location) location;
 
-- (void) newGame:(GameMap*) map;
-
 - (void) pauseGame;
 
 - (void) resumeGame;
 
 - (void) cleanMap;
+
 
 +(ArrowGame*)lastInstance;
 +(void)cleanLastInstance;

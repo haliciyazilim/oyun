@@ -26,6 +26,8 @@
 
 -(void)startTutorial;
 
+-(void)finishTutorial;
+
 -(void)skipTutorial;
 
 -(BOOL)isTutorialActive;
@@ -34,6 +36,12 @@
 
 -(BOOL)isCorrectEntitity:(ArrowBase*)entity;
 
--(BOOL)checkEntity:(ArrowBase*)entity;
+-(void)checkEntity:(ArrowBase*)entity;
+
+-(void)pauseTutorial;
+
+-(void)resumeTutorial;
+
+-(void)updateForMovedBase:(ArrowBase*)arrowBase;
 
 @end

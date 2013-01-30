@@ -69,6 +69,7 @@ static ArrowGame* __lastInstance;
             [[TutorialManager sharedInstance] startTutorial];
 //            [[TutorialManager sharedInstance] performSelector:@selector(startTutorial) withObject:nil afterDelay:0.01];
         }
+        
     }
     return self;
 }
@@ -121,11 +122,13 @@ static ArrowGame* __lastInstance;
     _isGamePaused = YES;
     _isGameRunning = NO;
     [_gameTimer pauseTimer];
+    [[TutorialManager sharedInstance] pauseTutorial];
 }
 - (void) resumeGame {
     _isGamePaused = NO;
     _isGameRunning = YES;
     [_gameTimer resumeTimer];
+    [[TutorialManager sharedInstance] resumeTutorial];
 }
 
 - (void) touchBegan:(Location) location
@@ -164,9 +167,16 @@ static ArrowGame* __lastInstance;
         arrow.endLocation = location;
         [arrow removeSquirts];
         
+        if([[TutorialManager sharedInstance] isTutorialActive]){
+            [[TutorialManager sharedInstance] updateForMovedBase:arrow.base];
+        }
     }
     else if(currentEntity.class == [ArrowBase class]){
         ArrowBase* base = (ArrowBase*) currentEntity;
+        
+        if([[TutorialManager sharedInstance] isTutorialActive]){
+            [[TutorialManager sharedInstance] updateForMovedBase:base];
+        }
         if(lastDirection != NONE && (lastDirection == currentDirection || currentDirection == NONE)){
             if(isInTheSameLocation){
                 [base compressArrowAtDirection:lastDirection];
@@ -219,19 +229,19 @@ static ArrowGame* __lastInstance;
     return LocationMake(location.x + startLocation.x, location.y + startLocation.y);
 }
 
-- (void) newGame:(GameMap*) map
-{
-    
-}
 
 - (void) cleanMap {
+    [[TutorialManager sharedInstance] finishTutorial];
     [self.map removeAllChildrenWithCleanup:YES];
     [self removeAllChildrenWithCleanup:YES];
     [self.map removeFromParentAndCleanup:YES];
 }
 
+
+
 - (GameMap*) map
 {
     return [GameMap sharedInstance];
 }
+
 @end
