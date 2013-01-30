@@ -164,6 +164,24 @@ static DatabaseManager *sharedInstance = nil;
     return result;
 }
 
+- (NSArray *)getAllMaps{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    NSPredicate *predicate = nil;
+    [request setPredicate:predicate];
+    
+    
+    NSError *error = nil;
+    NSArray* result =  [self.managedObjectContext executeFetchRequest:request error:&error];
+    result = [result sortedArrayUsingComparator:^NSComparisonResult(Map *obj1, Map *obj2) {
+        return obj1.order - obj2.order;
+    }];
+    return result;
+}
+
+
 - (NSArray *)getMapsForDifficulty:(int)difficulty {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Map"
