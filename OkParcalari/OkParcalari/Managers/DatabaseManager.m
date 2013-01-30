@@ -63,7 +63,6 @@ static DatabaseManager *sharedInstance = nil;
     [self updateMaps];
 }
 - (void) updateMaps {
-    NSLog(@"I'm here");
     int nonPlayedActiveGameCount = 5;
     int freeMapsCount = 10;
     int index = 0;
@@ -73,7 +72,6 @@ static DatabaseManager *sharedInstance = nil;
     for (Map* map in maps) {
         if(purchasedMapsCount > 0){
             map.isPurchased = YES;
-            NSLog(@"purchased map %@",map.mapId);
             purchasedMapsCount--;
         }
         else{
