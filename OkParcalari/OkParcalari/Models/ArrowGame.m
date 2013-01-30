@@ -110,8 +110,10 @@ static ArrowGame* __lastInstance;
     }
     
     [[AchievementManager sharedAchievementManager]checkAchievementFastMindQuickHands:map];
-    
     [[AchievementManager sharedAchievementManager]checkAchievementMapsStars:map];
+    
+    [[GameCenterManager sharedInstance] submitScore:[map.score intValue] category:[[GameCenterManager sharedInstance]leaderboardCategories][0]];
+
     
     [[ArrowGameLayer lastInstance] gameEnded:[Map starCountForScore:[self.gameTimer getElapsedSeconds] andDifficulty:map.difficulty]];
     _isGameRunning = NO;

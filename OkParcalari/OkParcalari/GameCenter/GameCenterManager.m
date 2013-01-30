@@ -68,6 +68,8 @@ static GameCenterManager *sharedManager = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:kAuthenticationChangedNotification object:nil userInfo:nil];
         
         [[GameCenterManager sharedInstance] getScores];
+        [[GameCenterManager sharedInstance] loadCategoriesAndTitles];
+
         
     } else if (![GKLocalPlayer localPlayer].isAuthenticated && _isUserAuthenticated) {
         NSLog(@"Authentication changed: player not authenticated");
@@ -75,7 +77,17 @@ static GameCenterManager *sharedManager = nil;
     }
 }
 
-- (void) saveScore:(int)score category:(NSString*)category
+- (void) loadCategoriesAndTitles
+{
+    [GKLeaderboard loadCategoriesWithCompletionHandler:^(NSArray *categories, NSArray *titles, NSError *error) {
+        _leaderboardCategories = categories;
+        _leaderboardTitles = titles;
+        
+        NSLog(@"LeaderBoard Categori: %@ Title: %@", categories,titles);
+    }];
+}
+
+- (void) submitScore:(int)score category:(NSString*)category
 {
     NSLog(@"entered saveScore");
     NSLog(@"score: %d, category: %@",score,category);
