@@ -103,8 +103,8 @@ static AchievementManager * sharedAchievementManager=nil;
     
 //    NSLog(@"IsExist: %d",isExist);
     
-    //if (achievement || isExist==NO) // esas sorgu bu.
-    if (achievement) // Test için duruyor bu.
+    if (achievement || isExist==NO) // esas sorgu bu.
+//    if (achievement) // Test için duruyor bu.
     {
 
         achievement.percentComplete = percent;
@@ -159,35 +159,48 @@ static AchievementManager * sharedAchievementManager=nil;
     NSArray * maps=[[DatabaseManager sharedInstance] getMapsForDifficulty:playedMap.difficulty];
     int mapsCount=maps.count;
     int solvedMapsCount=0;
+    int star3Count=0;
     
     for(Map * map in maps){
         if (map.isFinished) {
             solvedMapsCount++;
         }
+        if (map.getStarCount==3) {
+            star3Count++;
+        }
     }
-//    NSLog(@"Çözülen Haritananın zorluğu: %i, Aynı zorlutaki tüm harita sayısı: %i, çözülmüş harita sayısı: %i",playedMap.difficulty,mapsCount,solvedMapsCount);
+    NSLog(@"Çözülen Haritananın zorluğu: %i, Aynı zorlutaki tüm harita sayısı: %i, çözülmüş harita sayısı: %i",playedMap.difficulty,mapsCount,solvedMapsCount);
+    
     
 
-        NSString * achievement=[[NSString alloc] init];
+        NSString * achievementCompletionist=[[NSString alloc] init];
+        NSString * achievementPerfectionist=[[NSString alloc] init];
         switch (playedMap.difficulty) {
             case 1:
-                achievement=kAchievementEasyMapsCompletionist;
+                achievementCompletionist=kAchievementEasyMapsCompletionist;
+                achievementPerfectionist =kAchievementEasyMapsPerfectionist;
                 break;
             case 2:
-                achievement=kAchievementNormalMapsCompletionist;
+                achievementCompletionist=kAchievementNormalMapsCompletionist;
+                achievementPerfectionist=kAchievementNormalMapsPerfectionist;
                 break;
             case 3:
-                achievement=kAchievementHardMapsCompletionist;
+                achievementCompletionist=kAchievementHardMapsCompletionist;
+                achievementPerfectionist=kAchievementHardMapsPerfectionist;
                 break;
             case 4:
-                achievement=kAchievementInsaneMapsCompletionist;
+                achievementCompletionist=kAchievementInsaneMapsCompletionist;
+                achievementPerfectionist=kAchievementInsaneMapsPerfectionist;
                 break;
             default:
                 break;
         }
-    double percentComplete=solvedMapsCount*100/mapsCount;
-//    NSLog(@"Göndereilcek değer: %f",percentComplete);
-    [self submitAchievement:achievement percentComplete:percentComplete];
+    double solvedMapPercentComplete=solvedMapsCount*100/mapsCount;
+    double star3PercentComplete=star3Count*100/mapsCount;
+    
+
+    [self submitAchievement:achievementCompletionist percentComplete:solvedMapPercentComplete];
+    [self submitAchievement:achievementPerfectionist percentComplete:star3PercentComplete];
     
     
 }

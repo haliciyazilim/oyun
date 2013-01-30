@@ -161,6 +161,7 @@ static ArrowGameLayer* __lastInstance;
 - (void) initializeGameWithFile:(NSString*)fileName
 {
     _fileName = fileName;
+    __lastInstance = self;
     self.arrowGame = [[ArrowGame alloc] initWithFile:fileName];
     [self addChild:self.arrowGame];
 }
@@ -170,6 +171,8 @@ static ArrowGameLayer* __lastInstance;
     TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
         [self.arrowGame cleanMap];
         [self.arrowGame removeFromParentAndCleanup:YES];
+        [ArrowGame cleanLastInstance];
+        [ArrowGameLayer cleanLastInstance];
         self.isTouchEnabled = YES;
         [self initializeGameWithFile:_fileName];
     }];
@@ -231,6 +234,7 @@ static ArrowGameLayer* __lastInstance;
     TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
         if(gameWinView){
             [gameWinView removeFromSuperview];
+            gameWinView = nil;
         }
         [self.arrowGame cleanMap];
         [self.arrowGame removeFromParentAndCleanup:YES];
@@ -242,18 +246,73 @@ static ArrowGameLayer* __lastInstance;
     [myManager startTransition];
 }
 - (void) nextGame {
-//    Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
-//    int oldMapOrder = oldMap.order;
-//    NSString *oldMapPackage = oldMap.packageId;
-//    Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:oldMapOrder+1] forPackage:oldMapPackage];
+    Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
+    int oldMapOrder = oldMap.order;
+    NSString *oldMapPackage = oldMap.packageId;
+    Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:oldMapOrder+1] forPackage:oldMapPackage];
+    if (!newMap) {
+        UIAlertView *noMap = [[UIAlertView alloc] initWithTitle:@""
+                                                                   message:NSLocalizedString(@"NO_MAP", nil)
+                                                                  delegate:self
+                                                         cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                         otherButtonTitles:nil,nil];
+        [noMap show];
+    }
+    else if (!newMap.isPurchased) {
+        UIAlertView *noPurchased = [[UIAlertView alloc] initWithTitle:@""
+                                                                   message:NSLocalizedString(@"NO_PURCHASED", nil)
+                                                                  delegate:self
+                                                         cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                         otherButtonTitles:nil,nil];
+        [noPurchased show];
+    }
+    else{
+        self.isTouchEnabled = NO;
+        TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+            if(gameWinView){
+                [gameWinView removeFromSuperview];
+                gameWinView = nil;
+            }
+            [self.arrowGame cleanMap];
+            [self.arrowGame removeFromParentAndCleanup:YES];
+            self.isTouchEnabled = YES;
+            [ArrowGame cleanLastInstance];
+            [ArrowGameLayer cleanLastInstance];
+            [self initializeGameWithFile:newMap.mapId];
+        }];
+        [myManager startTransition];
+    }
     
 }
--(void) gameEnded:(int)starCount
+-(void) gameEnded:(int)starCount andElapsedSeconds:(int)elapsedSeconds
 {
     self.isTouchEnabled = NO;
     
     Map* map = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
     NSString *levelNumStr = [NSString stringWithFormat:@"%d",map.order];
+    
+    int minutes = elapsedSeconds / 60;
+    int seconds = elapsedSeconds % 60;
+    
+    NSString *fileName1, *fileName2, *fileName3, *fileName4;
+    
+    if (minutes < 10) {
+        fileName1 = @"youwin_num_0.png";
+        fileName2 = [NSString stringWithFormat:@"youwin_num_%d.png",minutes];
+    }
+    else {
+        fileName1 = [NSString stringWithFormat:@"youwin_num_%d.png",minutes/10];
+        fileName2 = [NSString stringWithFormat:@"youwin_num_%d.png",minutes%10];
+    }
+    
+    if (seconds < 10) {
+        fileName3 = @"youwin_num_0.png";
+        fileName4 = [NSString stringWithFormat:@"youwin_num_%d.png",seconds];
+    }
+    else {
+        fileName3 = [NSString stringWithFormat:@"youwin_num_%d.png",seconds/10];
+        fileName4 = [NSString stringWithFormat:@"youwin_num_%d.png",seconds%10];
+    }
     
     gameWinView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
     
@@ -283,21 +342,29 @@ static ArrowGameLayer* __lastInstance;
     UIImageView *rope1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_ayrac.png"]];
     rope1.frame = CGRectMake(0.0, 111.0, 327.0, 13.0);
     
-    UIView *timerHolder = [[UIView alloc] initWithFrame:CGRectMake(45.0, 160.0, 240.0, 75.0)];
-    UIImageView *num1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_num_0.png"]];
-    num1.frame = CGRectMake(0.0, 0.0, 55.0, 75.0);
+    UIView *timerHolder = [[UIView alloc] initWithFrame:CGRectMake(39.0, 160.0, 252.0, 75.0)];
+    UIImageView *num1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:fileName1]];
+    num1.frame = CGRectMake(0.0, 0.0, 57.0, 75.0);
+    num1.transform = CGAffineTransformMakeScale(4.0, 4.0);
+    num1.alpha = 0.0;
     
-    UIImageView *num2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_num_0.png"]];
-    num2.frame = CGRectMake(55.0, 0.0, 55.0, 75.0);
+    UIImageView *num2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:fileName2]];
+    num2.frame = CGRectMake(57.0, 0.0, 57.0, 75.0);
+    num2.transform = CGAffineTransformMakeScale(4.0, 4.0);
+    num2.alpha = 0.0;
     
     UIImageView *dot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_num_nokta.png"]];
-    dot.frame = CGRectMake(110.0, 0.0, 21.0, 75.0);
+    dot.frame = CGRectMake(114.0, 0.0, 25.0, 75.0);
     
-    UIImageView *num3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_num_0.png"]];
-    num3.frame = CGRectMake(130.0, 0.0, 55.0, 75.0);
+    UIImageView *num3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:fileName3]];
+    num3.frame = CGRectMake(138.0, 0.0, 57.0, 75.0);
+    num3.transform = CGAffineTransformMakeScale(4.0, 4.0);
+    num3.alpha = 0.0;
     
-    UIImageView *num4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_num_0.png"]];
-    num4.frame = CGRectMake(185.0, 0.0, 55.0, 75.0);
+    UIImageView *num4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:fileName4]];
+    num4.frame = CGRectMake(195.0, 0.0, 57.0, 75.0);
+    num4.transform = CGAffineTransformMakeScale(4.0, 4.0);
+    num4.alpha = 0.0;
     
     UIImageView *rope2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_ayrac.png"]];
     rope2.frame = CGRectMake(0.0, 250.0, 327.0, 13.0);
@@ -315,7 +382,7 @@ static ArrowGameLayer* __lastInstance;
     [nextGame setFrame:CGRectMake(173.0, 263.0, 139.0, 55.0)];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next", @"png")] forState:UIControlStateNormal];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next_hover", @"png")] forState:UIControlStateHighlighted];
-    [nextGame addTarget:self action:@selector(nextMap) forControlEvents:UIControlEventTouchUpInside];
+    [nextGame addTarget:self action:@selector(nextGame) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *rope3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_ayrac.png"]];
     rope3.frame = CGRectMake(0.0, 318.0, 327.0, 13.0);
@@ -378,14 +445,14 @@ static ArrowGameLayer* __lastInstance;
 
     // opacities
     for ( int i = 0; i < starCount; i++){
-        [UIView animateWithDuration:0.7 delay:0.2+i*0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [UIView animateWithDuration:0.7 delay:1.2+i*0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
             [[activeStars objectAtIndex:i] setAlpha:1.0];
         } completion:^(BOOL finished) {
             ;
         }];
     }
     for ( int i = 0; i < starCount; i++){
-        [UIView animateWithDuration:1.0 delay:0.2+i*0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [UIView animateWithDuration:1.0 delay:1.2+i*0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
             CGAffineTransform myTransform = CGAffineTransformConcat(CGAffineTransformMakeRotation(1.0), CGAffineTransformMakeScale(1.5, 1.5));
             ((UIView *)[activeStars objectAtIndex:i]).transform = myTransform;
         } completion:^(BOOL finished) {
@@ -397,6 +464,18 @@ static ArrowGameLayer* __lastInstance;
             }];
         }];
     }
+    [UIView animateWithDuration:0.8 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        num1.alpha = 1.0;
+        num2.alpha = 1.0;
+        num3.alpha = 1.0;
+        num4.alpha = 1.0;
+        num1.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        num2.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        num3.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        num4.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    } completion:^(BOOL finished) {
+        ;
+    }];
 
 }
 

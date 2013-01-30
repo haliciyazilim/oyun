@@ -249,7 +249,7 @@
     [self refreshScrollView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     
-    double delayInSeconds = 10.0;
+    double delayInSeconds = 120.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         if (!shouldCancel) {
@@ -294,6 +294,7 @@
 
 - (void)productPurchased:(NSNotification *)notification {
     [unlockButton removeFromSuperview];
+    [[DatabaseManager sharedInstance] updateMaps];
     [self refreshScrollView];
 }
 -(void)addStore {
@@ -397,16 +398,19 @@
     UIView * credits=[[UIView alloc]initWithFrame:CGRectMake(0, mask.frame.size.width-80, mask.frame.size.width, winSize.height)];
     [credits setBackgroundColor:[UIColor clearColor]];
     
+    float fontSizeL=17.0;
+    float fontSizeM=14.0;
+    
     // Company Name
     UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0, credits.frame.size.width, 40.0)];
-    [cName setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+    [cName setFont:[UIFont fontWithName:@"Helvetica-Bold" size:fontSizeL]];
     [cName setTextAlignment:NSTextAlignmentCenter];
     [cName setBackgroundColor:[UIColor clearColor]];
     [cName setText:@"HALICI BİLGİ İŞLEM A.Ş."];
     
     // Adress
     UILabel * cAdress=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 40, credits.frame.size.width, 40.0)];
-    [cAdress setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+    [cAdress setFont:[UIFont fontWithName:@"Helvetica" size:fontSizeM]];
     [cAdress setTextAlignment:NSTextAlignmentCenter];
     [cAdress setBackgroundColor:[UIColor clearColor]];
     [cAdress setNumberOfLines:2];
@@ -414,7 +418,7 @@
     
     // Mail
     UILabel * cMail=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 80, credits.frame.size.width, 40.0)];
-    [cMail setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+    [cMail setFont:[UIFont fontWithName:@"Helvetica" size:fontSizeM]];
     [cMail setTextAlignment:NSTextAlignmentCenter];
     [cMail setBackgroundColor:[UIColor clearColor]];
     [cMail setText:@"iletisim@halici.com.tr"];
@@ -422,7 +426,7 @@
     
     // Programming
     UILabel * cProgramming=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 160, credits.frame.size.width, 40.0)];
-    [cProgramming setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+    [cProgramming setFont:[UIFont fontWithName:@"Helvetica-Bold" size:fontSizeL]];
     [cProgramming setTextAlignment:NSTextAlignmentCenter];
     [cProgramming setBackgroundColor:[UIColor clearColor]];
     [cProgramming setText:NSLocalizedString(@"PROGRAMMING",nil)];
@@ -431,7 +435,7 @@
     NSArray * names=[[NSArray alloc] initWithObjects:@"Eren HALICI",@"Yunus Eren GÜZEL", @"Abdullah KARACABEY",@"Alperen KAVUN", nil];
     for(int i=0; i<names.count;i++){
         UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 200+i*40, credits.frame.size.width, 40.0)];
-        [cName setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+        [cName setFont:[UIFont fontWithName:@"Helvetica" size:fontSizeM]];
         [cName setTextAlignment:NSTextAlignmentCenter];
         [cName setBackgroundColor:[UIColor clearColor]];
         [cName setNumberOfLines:2];
@@ -442,13 +446,13 @@
 
     // Art
     UILabel * cArt=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 400, credits.frame.size.width, 40.0)];
-    [cArt setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+    [cArt setFont:[UIFont fontWithName:@"Helvetica-Bold" size:fontSizeL]];
     [cArt setTextAlignment:NSTextAlignmentCenter];
     [cArt setBackgroundColor:[UIColor clearColor]];
     [cArt setText:NSLocalizedString(@"ART", nil)];
     
     UILabel * cArtName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 440, credits.frame.size.width, 40.0)];
-    [cArtName setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+    [cArtName setFont:[UIFont fontWithName:@"Helvetica" size:fontSizeM]];
     [cArtName setTextAlignment:NSTextAlignmentCenter];
     [cArtName setBackgroundColor:[UIColor clearColor]];
     [cArtName setNumberOfLines:2];
@@ -457,7 +461,7 @@
     
     // Music
     UILabel * cMusic=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 520, credits.frame.size.width, 40.0)];
-    [cMusic setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+    [cMusic setFont:[UIFont fontWithName:@"Helvetica-Bold" size:fontSizeL]];
     [cMusic setTextAlignment:NSTextAlignmentCenter];
     [cMusic setBackgroundColor:[UIColor clearColor]];
     [cMusic setText:NSLocalizedString(@"MUSIC", nil)];
@@ -465,7 +469,7 @@
     NSArray * namesMusic=[[NSArray alloc] initWithObjects:@"Onur IŞIKLI",@"Eren HALICI", nil];
     for(int i=0; i<namesMusic.count;i++){
         UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 560+i*40, credits.frame.size.width, 40.0)];
-        [cName setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+        [cName setFont:[UIFont fontWithName:@"Helvetica" size:fontSizeM]];
         [cName setTextAlignment:NSTextAlignmentCenter];
         [cName setBackgroundColor:[UIColor clearColor]];
         [cName setNumberOfLines:2];
@@ -476,7 +480,7 @@
 
     // Copyright
     UILabel * cCRight=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 680, credits.frame.size.width, 40.0)];
-    [cCRight setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0]];
+    [cCRight setFont:[UIFont fontWithName:@"Helvetica-Bold" size:fontSizeL]];
     [cCRight setTextAlignment:NSTextAlignmentCenter];
     [cCRight setBackgroundColor:[UIColor clearColor]];
     [cCRight setText:NSLocalizedString(@"Copyright © 2013", nil)];

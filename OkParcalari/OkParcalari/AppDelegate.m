@@ -48,9 +48,9 @@
     
 //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     
-    if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying){
-        [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
-    }
+//    if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] != MPMusicPlaybackStatePlaying){
+//        [[GreenTheGardenSoundManager sharedSoundManager] playBackgroundMusic];
+//    }
 
     
 	// Create the main window

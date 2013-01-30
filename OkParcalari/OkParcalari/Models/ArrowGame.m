@@ -109,13 +109,24 @@ static ArrowGame* __lastInstance;
         [[DatabaseManager sharedInstance] saveContext];
     }
     
+    //Achievement Check
     [[AchievementManager sharedAchievementManager]checkAchievementFastMindQuickHands:map];
     [[AchievementManager sharedAchievementManager]checkAchievementMapsStars:map];
     
-    [[GameCenterManager sharedInstance] submitScore:[map.score intValue] category:[[GameCenterManager sharedInstance]leaderboardCategories][0]];
+    
+    // submit Score
+    NSArray *allMaps=[[DatabaseManager sharedInstance] getAllMaps];
+//    NSLog(@"All MAps Count: %i",allMaps.count);
+    
+    int starCount=0;
+    for (Map * map in allMaps)
+        starCount+=map.getStarCount;
+    NSLog(@"StarCount: %i",starCount);
+        
+    [[GameCenterManager sharedInstance] submitScore:starCount category:[[GameCenterManager sharedInstance]leaderboardCategories][0]];
 
     
-    [[ArrowGameLayer lastInstance] gameEnded:[Map starCountForScore:[self.gameTimer getElapsedSeconds] andDifficulty:map.difficulty]];
+    [[ArrowGameLayer lastInstance] gameEnded:[Map starCountForScore:[self.gameTimer getElapsedSeconds] andDifficulty:map.difficulty] andElapsedSeconds:[self.gameTimer getElapsedSeconds]];
     _isGameRunning = NO;
     [ArrowGame cleanLastInstance];
     return YES;
@@ -141,6 +152,7 @@ static ArrowGame* __lastInstance;
 - (void) resumeTimer
 {
     [_gameTimer resumeTimer];
+    
 }
 
 - (void) touchBegan:(Location) location
