@@ -154,6 +154,7 @@ static AchievementManager * sharedAchievementManager=nil;
     [self submitAchievement:kAchievementFastMindQuickHands percentComplete:100];
 }
 
+
 -(void) checkAchievementMapsStars:(Map*) playedMap{
     // Check maps for difficulty
     NSArray * maps=[[DatabaseManager sharedInstance] getMapsForDifficulty:playedMap.difficulty];

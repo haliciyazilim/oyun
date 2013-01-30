@@ -221,7 +221,6 @@
 		05A38C40169451D3005ADBED /* ArrowGameMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38944169451D2005ADBED /* ArrowGameMap.m */; };
 		05A38C41169451D3005ADBED /* Squirt.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38946169451D2005ADBED /* Squirt.m */; };
 		05A38F0F169451D4005ADBED /* ArrowGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38C2F169451D3005ADBED /* ArrowGameLayer.m */; };
-		05A38F10169451D4005ADBED /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38C31169451D3005ADBED /* IntroLayer.m */; };
 		05A38F11169451D4005ADBED /* MainGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38C33169451D3005ADBED /* MainGameLayer.m */; };
 		05C4B5B616B7C64500A078F1 /* transition_grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C4B5B216B7C64500A078F1 /* transition_grass.png */; };
 		05C4B5B716B7C64500A078F1 /* transition_grass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C4B5B316B7C64500A078F1 /* transition_grass@2x.png */; };
@@ -1519,8 +1518,6 @@
 		05A38C29169451D3005ADBED /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		05A38C2E169451D3005ADBED /* ArrowGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowGameLayer.h; sourceTree = "<group>"; };
 		05A38C2F169451D3005ADBED /* ArrowGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowGameLayer.m; sourceTree = "<group>"; };
-		05A38C30169451D3005ADBED /* IntroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
-		05A38C31169451D3005ADBED /* IntroLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		05A38C32169451D3005ADBED /* MainGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameLayer.h; sourceTree = "<group>"; };
 		05A38C33169451D3005ADBED /* MainGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGameLayer.m; sourceTree = "<group>"; };
 		05C4B5B216B7C64500A078F1 /* transition_grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition_grass.png; sourceTree = "<group>"; };
@@ -3049,8 +3046,6 @@
 			children = (
 				05A38C2E169451D3005ADBED /* ArrowGameLayer.h */,
 				05A38C2F169451D3005ADBED /* ArrowGameLayer.m */,
-				05A38C30169451D3005ADBED /* IntroLayer.h */,
-				05A38C31169451D3005ADBED /* IntroLayer.m */,
 				05A38C32169451D3005ADBED /* MainGameLayer.h */,
 				05A38C33169451D3005ADBED /* MainGameLayer.m */,
 				050324841695A765005BC798 /* InGameMenuLayer.h */,
@@ -5864,7 +5859,6 @@
 				05A38C40169451D3005ADBED /* ArrowGameMap.m in Sources */,
 				05A38C41169451D3005ADBED /* Squirt.m in Sources */,
 				05A38F0F169451D4005ADBED /* ArrowGameLayer.m in Sources */,
-				05A38F10169451D4005ADBED /* IntroLayer.m in Sources */,
 				05A38F11169451D4005ADBED /* MainGameLayer.m in Sources */,
 				AE9CD0E81694695000C42824 /* GameHistory.m in Sources */,
 				0595C20F16947613006B7E87 /* WaterSpray.m in Sources */,

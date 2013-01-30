@@ -7,6 +7,8 @@
 //
 
 #import "TutorialManager.h"
+#import "AchievementManager.h"
+#import "GreenTheGardenGCSpecificValues.h"
 typedef void (^ IteratorBlock)();
 @interface UISetTouchBeganView : UIView
 -(void)setTouchesBegan:(IteratorBlock)block;
@@ -135,7 +137,7 @@ static TutorialManager* currentInstance = nil;
     if(currentStepIndex >= [tutorialSteps count]){
         [self showDialogMessage:@"End of Tutorial" andCallback:^{
             [self finishTutorial];
-            //ABDULLAH KARACABEY
+            [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementBabySteps percentComplete:100.0];
         }];
         return;
     }
