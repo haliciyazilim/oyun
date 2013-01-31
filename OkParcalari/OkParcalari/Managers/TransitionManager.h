@@ -16,6 +16,4 @@ typedef void (^ TransitionBlock)();
 
 - (void) makeTransitionWithBlock:(TransitionBlock)transitionBlock;
 
-//- (void) startTransition;
-
 @end
