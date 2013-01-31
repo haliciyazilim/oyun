@@ -4,27 +4,50 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--In Game View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController id="2" customClass="RMViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="RMInGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="timer_holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="5aB-fE-kpk"/>
+                            <imageView contentMode="scaleToFill" image="photo_holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="7LS-dE-HRg"/>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5aB-fE-kpk" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="383" type="user" id="9CP-C7-dgA"/>
+                            <constraint firstAttribute="bottom" secondItem="5aB-fE-kpk" secondAttribute="bottom" constant="60" id="KZl-OV-2Wu"/>
+                            <constraint firstItem="7LS-dE-HRg" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" type="default" id="TEQ-Ud-FBX"/>
+                            <constraint firstItem="7LS-dE-HRg" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="sxL-35-HRI"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="photoHolder" destination="7LS-dE-HRg" id="FbO-n8-Xad"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-406" y="-364"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="photo_holder.png" width="374" height="284"/>
+        <image name="timer_holder.png" width="85" height="37"/>
+    </resources>
     <classes>
-        <class className="RMViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMViewController.h"/>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RMInGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMInGameViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="photoHolder" candidateClass="UIImageView"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

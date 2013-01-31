@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RMInGameViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UIImageView *photoHolder;
+@property UIImageView* grids;
++(RMInGameViewController*)lastInstance;
 @end
