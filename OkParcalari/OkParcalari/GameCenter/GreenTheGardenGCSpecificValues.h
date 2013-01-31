@@ -6,7 +6,13 @@
 //
 //
 
+//Free MapsCount
+#define kNonPlayedActiveGameCount 6
+#define kFreeMapsCount 9
+
 // Leaderboard IDs (if any)
+#define kLeaderBoardStar @"high_score"
+#define kLeaderBoardFinishedMap @"total_solved_map"
 
 // Achievements IDs
 #define kAchievementWarmingUp @"com.halici.GreenTheGarden.achievements.WarmingUp"

@@ -11,6 +11,7 @@
 
 #import "DatabaseManager.h"
 #import "GreenTheGardenIAPHelper.h"
+#import "GreenTheGardenGCSpecificValues.h"
 
 static DatabaseManager *sharedInstance = nil;
 
@@ -63,8 +64,8 @@ static DatabaseManager *sharedInstance = nil;
     [self updateMaps];
 }
 - (void) updateMaps {
-    int nonPlayedActiveGameCount = 5;
-    int freeMapsCount = 10;
+    int nonPlayedActiveGameCount = kNonPlayedActiveGameCount;
+    int freeMapsCount = kFreeMapsCount;
     int index = 0;
     NSArray* maps = [[DatabaseManager sharedInstance] getMapsForPackage:@"standart"];
     int purchasedMapsCount = [[GreenTheGardenIAPHelper sharedInstance] isPro] ? [maps count] : freeMapsCount;
@@ -172,6 +173,9 @@ static DatabaseManager *sharedInstance = nil;
     NSPredicate *predicate = nil;
     [request setPredicate:predicate];
     
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"order" ascending:YES];
+    [request setSortDescriptors:@[sortDescriptor]];
     
     NSError *error = nil;
     NSArray* result =  [self.managedObjectContext executeFetchRequest:request error:&error];

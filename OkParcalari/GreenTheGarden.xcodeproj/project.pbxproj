@@ -226,6 +226,10 @@
 		05C4B5B716B7C64500A078F1 /* transition_grass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C4B5B316B7C64500A078F1 /* transition_grass@2x.png */; };
 		05C4B5B816B7C64500A078F1 /* transition_leafs.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C4B5B416B7C64500A078F1 /* transition_leafs.png */; };
 		05C4B5B916B7C64500A078F1 /* transition_leafs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C4B5B516B7C64500A078F1 /* transition_leafs@2x.png */; };
+		05C950F016BA9D1D008D5C4A /* congratulation-en.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C950EC16BA9D1D008D5C4A /* congratulation-en.png */; };
+		05C950F216BA9D1D008D5C4A /* congratulation-tr.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C950EE16BA9D1D008D5C4A /* congratulation-tr.png */; };
+		05C950F616BA9DB6008D5C4A /* congratulation-en-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C950F416BA9DB6008D5C4A /* congratulation-en-ipadhd.png */; };
+		05C950F716BA9DB6008D5C4A /* congratulation-tr-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C950F516BA9DB6008D5C4A /* congratulation-tr-ipadhd.png */; };
 		05C9B54916B28A6200B12524 /* ingame_menu_frame_Nopaque-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C9B54716B28A6200B12524 /* ingame_menu_frame_Nopaque-ipadhd.png */; };
 		05C9B54A16B28A6200B12524 /* ingame_menu_frame_Nopaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C9B54816B28A6200B12524 /* ingame_menu_frame_Nopaque.png */; };
 		05C9B54D16B28AD800B12524 /* inapp_menu_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C9B54B16B28AD800B12524 /* inapp_menu_frame.png */; };
@@ -383,6 +387,7 @@
 		41B78B9A16A0453400C327E3 /* GreenTheGarden.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41B78B9816A0453400C327E3 /* GreenTheGarden.xcdatamodeld */; };
 		41B78B9D16A045F400C327E3 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B78B9C16A045F400C327E3 /* DatabaseManager.m */; };
 		41CC93FB16B7F19000569BDC /* GreenTheGardenMenu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41CC93FA16B7F19000569BDC /* GreenTheGardenMenu.mp3 */; };
+		41D3AC6616BAA73D00C74610 /* libFlurryAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D3AC6516BAA73D00C74610 /* libFlurryAds.a */; };
 		41D8DDCD169C51C40041B503 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D8DDCC169C51C40041B503 /* FacebookSDK.framework */; };
 		41D8DDD8169C55CC0041B503 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */; };
 		41D8DDDE169C562B0041B503 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D8DDDB169C562B0041B503 /* Accounts.framework */; };
@@ -1526,6 +1531,10 @@
 		05C4B5B316B7C64500A078F1 /* transition_grass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transition_grass@2x.png"; sourceTree = "<group>"; };
 		05C4B5B416B7C64500A078F1 /* transition_leafs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition_leafs.png; sourceTree = "<group>"; };
 		05C4B5B516B7C64500A078F1 /* transition_leafs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transition_leafs@2x.png"; sourceTree = "<group>"; };
+		05C950EC16BA9D1D008D5C4A /* congratulation-en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "congratulation-en.png"; sourceTree = "<group>"; };
+		05C950EE16BA9D1D008D5C4A /* congratulation-tr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "congratulation-tr.png"; sourceTree = "<group>"; };
+		05C950F416BA9DB6008D5C4A /* congratulation-en-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "congratulation-en-ipadhd.png"; sourceTree = "<group>"; };
+		05C950F516BA9DB6008D5C4A /* congratulation-tr-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "congratulation-tr-ipadhd.png"; sourceTree = "<group>"; };
 		05C9B54716B28A6200B12524 /* ingame_menu_frame_Nopaque-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_menu_frame_Nopaque-ipadhd.png"; sourceTree = "<group>"; };
 		05C9B54816B28A6200B12524 /* ingame_menu_frame_Nopaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_menu_frame_Nopaque.png; sourceTree = "<group>"; };
 		05C9B54B16B28AD800B12524 /* inapp_menu_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inapp_menu_frame.png; sourceTree = "<group>"; };
@@ -1819,6 +1828,9 @@
 		41B78B9B16A045F400C327E3 /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatabaseManager.h; path = Managers/DatabaseManager.h; sourceTree = "<group>"; };
 		41B78B9C16A045F400C327E3 /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatabaseManager.m; path = Managers/DatabaseManager.m; sourceTree = "<group>"; };
 		41CC93FA16B7F19000569BDC /* GreenTheGardenMenu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GreenTheGardenMenu.mp3; sourceTree = "<group>"; };
+		41D3AC6316BAA73D00C74610 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		41D3AC6416BAA73D00C74610 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
+		41D3AC6516BAA73D00C74610 /* libFlurryAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds.a; sourceTree = "<group>"; };
 		41D8DDCC169C51C40041B503 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		41D8DDDB169C562B0041B503 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -2731,6 +2743,7 @@
 				410AA13E1670D9B500F6DCCA /* CoreGraphics.framework in Frameworks */,
 				410AA1401670D9B500F6DCCA /* GameKit.framework in Frameworks */,
 				41ABD07616A5961B00E9C4EB /* libFlurry.a in Frameworks */,
+				41D3AC6616BAA73D00C74610 /* libFlurryAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3199,6 +3212,7 @@
 			isa = PBXGroup;
 			children = (
 				41ABD07316A5961B00E9C4EB /* Flurry */,
+				41D3AC6216BAA73D00C74610 /* FlurryAds */,
 				AE1F1A591682075500F27894 /* SBJson */,
 				410AA2731670D9B700F6DCCA /* LICENSE_cocos2d.txt */,
 				410AA2821670D9B800F6DCCA /* LICENSE_CocosDenshion.txt */,
@@ -3550,6 +3564,16 @@
 			path = Flurry;
 			sourceTree = "<group>";
 		};
+		41D3AC6216BAA73D00C74610 /* FlurryAds */ = {
+			isa = PBXGroup;
+			children = (
+				41D3AC6316BAA73D00C74610 /* FlurryAdDelegate.h */,
+				41D3AC6416BAA73D00C74610 /* FlurryAds.h */,
+				41D3AC6516BAA73D00C74610 /* libFlurryAds.a */,
+			);
+			path = FlurryAds;
+			sourceTree = "<group>";
+		};
 		41DF3D9E169B294000B9678B /* arrow_base */ = {
 			isa = PBXGroup;
 			children = (
@@ -3664,6 +3688,10 @@
 		41DF3DE5169B294000B9678B /* in_game_menu */ = {
 			isa = PBXGroup;
 			children = (
+				05C950EC16BA9D1D008D5C4A /* congratulation-en.png */,
+				05C950EE16BA9D1D008D5C4A /* congratulation-tr.png */,
+				05C950F416BA9DB6008D5C4A /* congratulation-en-ipadhd.png */,
+				05C950F516BA9DB6008D5C4A /* congratulation-tr-ipadhd.png */,
 				0576EC67169EE05F00D6EF4A /* ingame_menu_btnbg-ipadhd.png */,
 				0576EC68169EE05F00D6EF4A /* ingame_menu_btnbg.png */,
 				05C9B54716B28A6200B12524 /* ingame_menu_frame_Nopaque-ipadhd.png */,
@@ -5726,6 +5754,10 @@
 				41CC93FB16B7F19000569BDC /* GreenTheGardenMenu.mp3 in Resources */,
 				AED218AA16BA6C0000271930 /* tut_highlight.png in Resources */,
 				AED218AB16BA6C0000271930 /* tut_highlight@2x.png in Resources */,
+				05C950F016BA9D1D008D5C4A /* congratulation-en.png in Resources */,
+				05C950F216BA9D1D008D5C4A /* congratulation-tr.png in Resources */,
+				05C950F616BA9DB6008D5C4A /* congratulation-en-ipadhd.png in Resources */,
+				05C950F716BA9DB6008D5C4A /* congratulation-tr-ipadhd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5978,6 +6010,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OkParcalari/Flurry\"",
+					"\"$(SRCROOT)/OkParcalari/FlurryAds\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -6012,6 +6045,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OkParcalari/Flurry\"",
+					"\"$(SRCROOT)/OkParcalari/FlurryAds\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",

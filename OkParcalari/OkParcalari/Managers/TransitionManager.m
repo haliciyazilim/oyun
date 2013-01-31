@@ -9,6 +9,8 @@
 #import "TransitionManager.h"
 #import "MapSelectionLayer.h"
 
+#import "FlurryAds.h"
+
 @implementation TransitionManager
 {
     TransitionBlock transition;
@@ -16,14 +18,22 @@
     UIImageView *transitionImage2;
     UIImageView *transitionImage3;
 }
-- (id) initWithTransitionBlock:(TransitionBlock)transitionBlock {
-    if (self = [super init]) {
-        transition = transitionBlock;
+
+static TransitionManager* currentInstance = nil;
+
++ (TransitionManager *)sharedInstance
+{
+    if(currentInstance == nil){
+        currentInstance = [[TransitionManager alloc] init];
     }
-    return self;
+    
+    return currentInstance;
 }
 
-- (void) closeTransitionLayers {
+- (void) makeTransitionWithBlock:(TransitionBlock)transitionBlock {
+
+    transition = transitionBlock;
+    
     NSLog(@"making closing");
     [[[CCDirector sharedDirector] view] setUserInteractionEnabled:NO];
     
@@ -49,9 +59,44 @@
         transitionImage2.frame = CGRectMake(0.0, 0.0, 1024.0, 768.0);
         transitionImage3.alpha = 1.0;
     } completion:^(BOOL finished) {
-        [self performRealTransition];
+        if ([FlurryAds adReadyForSpace:@"GreenTheGardenTransition"]) {
+            [FlurryAds displayAdForSpace:@"GreenTheGardenTransition"
+                                  onView:[CCDirector sharedDirector].view];
+            [FlurryAds setAdDelegate:self];
+        } else {
+            [FlurryAds fetchAdForSpace:@"GreenTheGardenTransition"
+                                 frame:[CCDirector sharedDirector].view.frame
+                                  size:FULLSCREEN];
+            
+            [self performRealTransition];
+        }
     }];
+
 }
+
+- (BOOL) spaceShouldDisplay:(NSString*)adSpace interstitial:(BOOL)
+interstitial {
+    if (interstitial) {
+        // Pause app state here
+    }
+    
+    // Continue ad display
+    return YES;
+}
+
+- (void)spaceDidDismiss:(NSString *)adSpace interstitial:(BOOL)interstitial {
+    if (interstitial) {
+        // Resume app state here
+        
+        [FlurryAds fetchAdForSpace:@"GreenTheGardenTransition"
+                             frame:[CCDirector sharedDirector].view.frame
+                              size:FULLSCREEN];
+
+        [self performRealTransition];
+    }
+}
+
+
 - (void) openTransitionLayers {
     [UIView animateWithDuration:1.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         transitionImage.frame = CGRectMake(0.0, 768.0, 1024.0, 768.0);
@@ -68,16 +113,13 @@
     }];
 }
 
-- (void) startTransition {
-    [self closeTransitionLayers];
-}
 - (void) performRealTransition{
     transition();
-//    [[[CCDirector sharedDirector] view] bringSubviewToFront:myImage];
-//    double delayInSeconds = 1.0;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self openTransitionLayers];
-//    });
+    [self openTransitionLayers];
 }
+
+- (void)dealloc {
+    [FlurryAds setAdDelegate:nil];
+}
+
 @end

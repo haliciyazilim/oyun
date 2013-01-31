@@ -15,6 +15,7 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "Flurry.h"
+#import "FlurryAds.h"
 
 #import "GreenTheGardenIAPHelper.h"
 #import "GreenTheGardenSoundManager.h"
@@ -25,7 +26,6 @@
 #import "GreenTheGardenGCSpecificValues.h"
 #import "AchievementManager.h"
 
-
 @implementation AppController
 
 @synthesize window=window_, navController=navController_, director=director_;
@@ -33,6 +33,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Flurry startSession:@"PW345B45PR4W3D6Z2V8H"];
+    [FlurryAds initialize:[CCDirector sharedDirector]];
     
     [GreenTheGardenIAPHelper sharedInstance];
     [GreenTheGardenSoundManager sharedSoundManager];
@@ -114,16 +115,11 @@
 {
 	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
-
-
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
-    NSLog(@"willResignActive");
     if([[ArrowGame lastInstance] isGameRunning]){
-        NSLog(@"game is running");
         [[[ArrowGameLayer lastInstance] arrowGame] pauseGame];
-//        [[ArrowGameLayer lastInstance] showInGameMenu];
     }
 	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
@@ -136,10 +132,10 @@
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
-    NSLog(@"didbecomeActive");
     [FBSettings publishInstall:[FBSession defaultAppID]];
     if([ArrowGameLayer lastInstance]){
-        [[ArrowGameLayer lastInstance] showInGameMenu];
+        if(![[ArrowGameLayer lastInstance] isRestaurantOpened])
+            [[ArrowGameLayer lastInstance] showInGameMenu:NO];
     }
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
@@ -155,7 +151,6 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-    NSLog(@"didEnterBackground");
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ stopAnimation];
     }

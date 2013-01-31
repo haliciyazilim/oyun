@@ -9,6 +9,8 @@
 #import "Arrow.h"
 #import "WaterSpray.h"
 #import "GreenTheGardenSoundManager.h"
+#import "AchievementManager.h"
+#import "GreenTheGardenGCSpecificValues.h"
 
 #define DELAY_ACTION_TAG 141
 #define ACTION_TAG 142
@@ -258,7 +260,7 @@
     if(max != min){
         moveCount++;
         if(moveCount >=10){
-            //ABDULLAH KARACABEY
+            [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementBipolar percentComplete:100.0];
         }
     }
     
