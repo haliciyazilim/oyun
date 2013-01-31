@@ -113,20 +113,30 @@ static ArrowGame* __lastInstance;
     [[AchievementManager sharedAchievementManager]checkAchievementFastMindQuickHands:map];
     [[AchievementManager sharedAchievementManager]checkAchievementMapsStars:map];
     
+    
     if([map.mapId isEqual:@"10000"])
         [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementWarmingUp percentComplete:100.0];
+    
+    if(![self isAnyBaseDeformed])
+        [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementTrustMeINowWhatImDoing percentComplete:100.0];
     
     // submit Score
     NSArray *allMaps=[[DatabaseManager sharedInstance] getAllMaps];
 //    NSLog(@"All MAps Count: %i",allMaps.count);
     
     int starCount=0;
-    for (Map * map in allMaps)
+    int finishedMaps=0;
+    
+    for (Map * map in allMaps){
         starCount+=map.getStarCount;
+        if(map.isFinished)
+            finishedMaps++;
+    }
     NSLog(@"StarCount: %i",starCount);
-        
-    [[GameCenterManager sharedInstance] submitScore:starCount category:[[GameCenterManager sharedInstance]leaderboardCategories][0]];
-
+    
+    [[GameCenterManager sharedInstance] submitScore:starCount category:kLeaderBoardStar];
+    [[GameCenterManager sharedInstance] submitScore:finishedMaps category:kLeaderBoardFinishedMap];
+    
     
     [[ArrowGameLayer lastInstance] gameEnded:[Map starCountForScore:[self.gameTimer getElapsedSeconds] andDifficulty:map.difficulty] andElapsedSeconds:[self.gameTimer getElapsedSeconds]];
     _isGameRunning = NO;
@@ -274,7 +284,7 @@ static ArrowGame* __lastInstance;
     return [GameMap sharedInstance];
 }
 
-//ABDULLAH KARACABEY
+
 - (BOOL) isAnyBaseDeformed
 {
     NSArray* bases = [[[GameMap sharedInstance] allEntries] allObjects];

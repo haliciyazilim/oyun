@@ -19,13 +19,15 @@
     UIButton *menuItem2;
     UIButton *menuItem3;
 //    UIButton *menuItem4;
+    BOOL isRestaurantForAlert;
 }
 
-- (id) init {
+- (id) initWithRestaurant:(BOOL)isRestaurant {
     if (self = [super init]) {
         CGSize size = [[CCDirector sharedDirector] winSize];
         CGFloat top = size.height*0.5;
         CGFloat left = 412.0;
+        isRestaurantForAlert = isRestaurant;
         
         CCSprite *background = [CCSprite spriteWithFile:@"ingame_menu_frame_Nopaque.png"];
         background.position = ccp(size.width * 0.5, size.height * 0.5);
@@ -36,14 +38,20 @@
         CCSprite *menuFrame = [CCSprite spriteWithFile:@"ingame_menu_btnbg.png"];
         menuFrame.position = ccp(size.width * 0.5+4.0, size.height * 0.5-4.0);
         
+        
         menuItem1 = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem1 setFrame:CGRectMake(left, top-103.0, 206, 66.0)];
         [menuItem1 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_resume", @"png")] forState:UIControlStateNormal];
         [menuItem1 setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"ingamebtn_resume_hover", @"png")] forState:UIControlStateHighlighted];
         
-        [menuItem1 addTarget:self
-                     action:@selector(resumeGame)
-           forControlEvents:UIControlEventTouchUpInside];
+        if(!isRestaurant){
+            [menuItem1 addTarget:self
+                         action:@selector(resumeGame)
+               forControlEvents:UIControlEventTouchUpInside];
+        }
+        else{
+            [menuItem1 setEnabled:NO];
+        }
         
         menuItem2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem2 setFrame:CGRectMake(left, top-33.0, 206, 66.0)];
@@ -66,6 +74,11 @@
         [self addChild:background];
 //        [self addChild:win];
         [self addChild:menuFrame];
+        if(isRestaurant){
+            CCSprite *congrat = [CCSprite spriteWithFile:LocalizedImageName(@"congratulation", @"png")];
+            congrat.position = ccp(size.width*0.5,size.height*0.8);
+            [self addChild:congrat];
+        }
         
         [[[CCDirector sharedDirector] view] addSubview:menuItem1];
         [[[CCDirector sharedDirector] view] addSubview:menuItem2];
@@ -96,22 +109,28 @@
     [self removeFromParentAndCleanup:YES];
 }
 - (void) restartGameApprove {
-    UIAlertView *restartApprove = [[UIAlertView alloc] initWithTitle:@""
-                                                               message:NSLocalizedString(@"RESTART_APPROVE", nil)
-                                                              delegate:self
-                                                     cancelButtonTitle:NSLocalizedString(@"CANCEL", nil)
-                                                     otherButtonTitles:NSLocalizedString(@"OK", nil),nil];
-    [restartApprove setTag:RESTART_APPROVE_ALERTVIEW_TAG];
-    [restartApprove show];
+    if(!isRestaurantForAlert){
+        UIAlertView *restartApprove = [[UIAlertView alloc] initWithTitle:@""
+                                                                   message:NSLocalizedString(@"RESTART_APPROVE", nil)
+                                                                  delegate:self
+                                                         cancelButtonTitle:NSLocalizedString(@"CANCEL", nil)
+                                                         otherButtonTitles:NSLocalizedString(@"OK", nil),nil];
+        [restartApprove setTag:RESTART_APPROVE_ALERTVIEW_TAG];
+        [restartApprove show];
+    }
+    [self restartGame];
 }
 - (void) returnToMainMenuApprove {
-    UIAlertView *mainMenuApprove = [[UIAlertView alloc] initWithTitle:@""
-                                                             message:NSLocalizedString(@"MAIN_MENU_APPROVE", nil)
-                                                            delegate:self
-                                                   cancelButtonTitle:NSLocalizedString(@"CANCEL", nil)
-                                                   otherButtonTitles:NSLocalizedString(@"OK", nil),nil];
-    [mainMenuApprove setTag:MAIN_MENU_APPROVE_ALERTVIEW_TAG];
-    [mainMenuApprove show];
+    if(!isRestaurantForAlert){
+        UIAlertView *mainMenuApprove = [[UIAlertView alloc] initWithTitle:@""
+                                                                 message:NSLocalizedString(@"MAIN_MENU_APPROVE", nil)
+                                                                delegate:self
+                                                       cancelButtonTitle:NSLocalizedString(@"CANCEL", nil)
+                                                       otherButtonTitles:NSLocalizedString(@"OK", nil),nil];
+        [mainMenuApprove setTag:MAIN_MENU_APPROVE_ALERTVIEW_TAG];
+        [mainMenuApprove show];
+    }
+    [self returnToMainMenu];
 }
 - (void) restartGame {
     [self removeAllButtons];

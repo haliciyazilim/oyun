@@ -19,13 +19,14 @@
 - (void) initializeGameWithFile:(NSString*)fileName;
 
 @property ArrowGame *arrowGame;
+@property BOOL isRestaurantOpened;
 //@property Stopwatch *gameTimer;
 
 - (void) restartGame;
 - (void) inGameMenuWillClose;
 - (void) returnToMainMenu;
 - (void) gameEnded:(int)starCount andElapsedSeconds:(int)elapsedSeconds;
-- (void) showInGameMenu;
+- (void) showInGameMenu:(BOOL)isRestaurant;
 
 +(ArrowGameLayer*)lastInstance;
 +(void)cleanLastInstance;
