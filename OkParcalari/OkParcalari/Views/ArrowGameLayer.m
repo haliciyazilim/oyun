@@ -265,15 +265,7 @@ static ArrowGameLayer* __lastInstance;
     int oldMapOrder = oldMap.order;
     NSString *oldMapPackage = oldMap.packageId;
     Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:oldMapOrder+1] forPackage:oldMapPackage];
-    if (!newMap) {
-        UIAlertView *noMap = [[UIAlertView alloc] initWithTitle:@""
-                                                                   message:NSLocalizedString(@"NO_MAP", nil)
-                                                                  delegate:self
-                                                         cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                         otherButtonTitles:nil,nil];
-        [noMap show];
-    }
-    else if (!newMap.isPurchased) {
+    if (!newMap.isPurchased) {
         UIAlertView *noPurchased = [[UIAlertView alloc] initWithTitle:@""
                                                                    message:NSLocalizedString(@"NO_PURCHASED", nil)
                                                                   delegate:self
@@ -305,6 +297,10 @@ static ArrowGameLayer* __lastInstance;
     
     Map* map = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
     NSString *levelNumStr = [NSString stringWithFormat:@"%d",map.order];
+    
+    int mapOrder = map.order;
+    NSString *oldMapPackage = map.packageId;
+    Map *newMap = [[DatabaseManager sharedInstance] getMapWithOrder:[NSNumber numberWithInt:mapOrder+1] forPackage:oldMapPackage];
     
     int minutes = elapsedSeconds / 60;
     int seconds = elapsedSeconds % 60;
@@ -397,7 +393,12 @@ static ArrowGameLayer* __lastInstance;
     [nextGame setFrame:CGRectMake(173.0, 263.0, 139.0, 55.0)];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next", @"png")] forState:UIControlStateNormal];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next_hover", @"png")] forState:UIControlStateHighlighted];
-    [nextGame addTarget:self action:@selector(nextGame) forControlEvents:UIControlEventTouchUpInside];
+    if(newMap){
+        [nextGame addTarget:self action:@selector(nextGame) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else{
+        [nextGame setEnabled:NO];
+    }
     
     UIImageView *rope3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_ayrac.png"]];
     rope3.frame = CGRectMake(0.0, 318.0, 327.0, 13.0);
