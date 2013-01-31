@@ -11,6 +11,7 @@
 
 #import "DatabaseManager.h"
 #import "GreenTheGardenIAPHelper.h"
+#import "GreenTheGardenGCSpecificValues.h"
 
 static DatabaseManager *sharedInstance = nil;
 
@@ -63,8 +64,8 @@ static DatabaseManager *sharedInstance = nil;
     [self updateMaps];
 }
 - (void) updateMaps {
-    int nonPlayedActiveGameCount = 6;
-    int freeMapsCount = 9;
+    int nonPlayedActiveGameCount = kNonPlayedActiveGameCount;
+    int freeMapsCount = kFreeMapsCount;
     int index = 0;
     NSArray* maps = [[DatabaseManager sharedInstance] getMapsForPackage:@"standart"];
     int purchasedMapsCount = [[GreenTheGardenIAPHelper sharedInstance] isPro] ? [maps count] : freeMapsCount;
