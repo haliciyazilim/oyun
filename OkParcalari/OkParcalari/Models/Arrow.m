@@ -177,7 +177,7 @@
     }
     sprite.tag = 40;
     sprite.position = [self pointFromLocation:location];
-    [self addChild:sprite];
+    [self addChild:sprite z:0] ;
     
     if([self direction] != NONE){
         //NSLog(@"%d",[self direction]);
@@ -190,7 +190,7 @@
     sprite.tag = 40;
     sprite.position = [self pointFromLocation:location];
     [self addChild:sprite];
-    [self reorderChild:sprite z:993];
+    [self reorderChild:sprite z:100];
     
     for (int i = 1; i < size; i++) {
         switch ([self direction]) {
@@ -217,13 +217,13 @@
         
         sprite.tag = 40;
         sprite.position = [self pointFromLocation:location];
-        [self addChild:sprite];
+        [self addChild:sprite z:0];
         
         sprite = [CCSprite spriteWithFile:@"arrow_base_fiskiye.png"];
         sprite.tag = 40;
         sprite.position = [self pointFromLocation:location];
         [self addChild:sprite];
-        [self reorderChild:sprite z:993];
+        [self reorderChild:sprite z:100];
         
         
     }
@@ -323,7 +323,7 @@
             WaterSpray *mySpray = [[WaterSpray alloc] initWithPoint: [self pointFromLocation:[self locationAtOrder:order]]];
             mySpray.tag = 100+order;
             [mySpray callScheduleSprayingWithDelay:delay];
-            [self addChild:mySpray];
+            [self addChild:mySpray z:10];
             
             [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"fiskiye"];
             //NSLog(@"fiksiye efekti çalması gerek.");
