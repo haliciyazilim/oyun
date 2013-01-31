@@ -17,6 +17,7 @@
 #import "CCBAnimationManager.h"
 #import "MapSelectionLayer.h"
 #import "GreenTheGardenSoundManager.h"
+#import "Stopwatch.h"
 
 #import "AchievementManager.h"
 #import "GreenTheGardenGCSpecificValues.h"
@@ -62,6 +63,7 @@ static ArrowGameLayer* __lastInstance;
 
 -(void)onExit{
     [inGameButtonsView removeFromSuperview];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachedToRestaurantNotification object:nil];
 }
 -(void)onEnter{
     [super onEnter];
@@ -95,11 +97,21 @@ static ArrowGameLayer* __lastInstance;
     [menuButton setBackgroundImage:[UIImage imageNamed:@"game_btnmenu_selected.png"] forState:UIControlStateHighlighted];
     [menuButton addTarget:self action:@selector(showInGameMenu) forControlEvents:UIControlEventTouchUpInside];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachedToRestaurant:) name:kReachedToRestaurantNotification object:nil];
+    
     [inGameButtonsView addSubview:fxButton];
     [inGameButtonsView addSubview:musicButton];
     [inGameButtonsView addSubview:menuButton];
     
     [[[CCDirector sharedDirector] view] addSubview:inGameButtonsView];
+}
+- (void) reachedToRestaurant:(NSNotification *)notif {
+    [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementTheRestaurant percentComplete:100.0];
+    // open restaurant screen
+    NSLog(@"reached to restaurant");
+    [self.arrowGame pauseGame];
+    [self gameEnded:0 andElapsedSeconds:99*60+59];
+    
 }
 // on "init" you need to initialize your instance
 -(id) init
@@ -215,7 +227,9 @@ static ArrowGameLayer* __lastInstance;
         [child resumeGame];
     }
     else{
-        [self.arrowGame pauseGame];
+        if([self.arrowGame isGameRunning]){
+            [self.arrowGame pauseGame];
+        }
         InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
         menuLayer.callerLayer = self;
         menuLayer.tag = MENU_TAG;
@@ -226,6 +240,7 @@ static ArrowGameLayer* __lastInstance;
 //    [self gameEnded];
 }
 - (void) inGameMenuWillClose {
+    NSLog(@"inGameMenuWillClose");
     [self.arrowGame resumeGame];
     self.isTouchEnabled = YES;
 }
