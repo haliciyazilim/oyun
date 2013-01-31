@@ -152,6 +152,8 @@ static AchievementManager * sharedAchievementManager=nil;
     }];
 }
 
+// Specific Methods
+
 -(void)checkAchievementFastMindQuickHands: (Map*) playedMap{
 //    NSLog(@"MAp.score: %@", playedMap.score);
     if(playedMap.score.intValue<60)
@@ -166,12 +168,19 @@ static AchievementManager * sharedAchievementManager=nil;
     int solvedMapsCount=0;
     int star3Count=0;
     
+    int solvedFreeMapsCount=0;
+    int freeMapsStar3Count=0;
+    
     for(Map * map in maps){
         if (map.isFinished) {
             solvedMapsCount++;
+            if(map.order<=kFreeMapsCount)
+                solvedFreeMapsCount++;
         }
         if (map.getStarCount==3) {
             star3Count++;
+            if(map.order<=kFreeMapsCount)
+                freeMapsStar3Count++;
         }
     }
     NSLog(@"Çözülen Haritananın zorluğu: %i, Aynı zorlutaki tüm harita sayısı: %i, çözülmüş harita sayısı: %i",playedMap.difficulty,mapsCount,solvedMapsCount);
@@ -203,9 +212,21 @@ static AchievementManager * sharedAchievementManager=nil;
     double solvedMapPercentComplete=solvedMapsCount*100/mapsCount;
     double star3PercentComplete=star3Count*100/mapsCount;
     
-
+    double solvedFreeMapPercentComplete=solvedFreeMapsCount*100/kFreeMapsCount;
+    double freeStar3PercentComplete=freeMapsStar3Count*100/kFreeMapsCount;
+    
+//    Maps with difficulty
     [self submitAchievement:achievementCompletionist percentComplete:solvedMapPercentComplete];
     [self submitAchievement:achievementPerfectionist percentComplete:star3PercentComplete];
+    
+//    Free Maps
+    [self submitAchievement:kAchievementFreeMapCompletionist percentComplete:solvedFreeMapPercentComplete];
+    [self submitAchievement:kAchievementFreeMapsPerfectionist percentComplete:freeStar3PercentComplete];
+    
+//    pathtuStardom
+    if(playedMap.getStarCount==3)
+        [self submitAchievement:kAchievementPathToStardom percentComplete:100.0];
+    
     
     
 }
