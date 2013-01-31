@@ -121,8 +121,9 @@
 {
     NSLog(@"willResignActive");
     if([[ArrowGame lastInstance] isGameRunning]){
-        [[ArrowGame lastInstance] pauseGame];
-        [[ArrowGameLayer lastInstance] showInGameMenu];
+        NSLog(@"game is running");
+        [[[ArrowGameLayer lastInstance] arrowGame] pauseGame];
+//        [[ArrowGameLayer lastInstance] showInGameMenu];
     }
 	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
@@ -135,7 +136,11 @@
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
+    NSLog(@"didbecomeActive");
     [FBSettings publishInstall:[FBSession defaultAppID]];
+    if([ArrowGameLayer lastInstance]){
+        [[ArrowGameLayer lastInstance] showInGameMenu];
+    }
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
     
@@ -150,6 +155,7 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+    NSLog(@"didEnterBackground");
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ stopAnimation];
     }
