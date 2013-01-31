@@ -188,6 +188,9 @@ static ArrowGame* __lastInstance;
     }else{
         isInTheSameLocation = YES;
     }
+    if(lastDirection != NONE && currentDirection != lastDirection)
+        return;
+    lastDirection = currentDirection;
     
     if(currentEntity.class == [Arrow class]){
         Arrow* arrow = (Arrow*)currentEntity;
@@ -205,6 +208,8 @@ static ArrowGame* __lastInstance;
             [[TutorialManager sharedInstance] updateForMovedBase:base];
         }
         if(lastDirection != NONE && (lastDirection == currentDirection || currentDirection == NONE)){
+            Arrow* arrow = [base arrowAtDirection:currentDirection];
+//            arrow.endLocation = location;
             if(isInTheSameLocation){
                 [base compressArrowAtDirection:lastDirection];
             }
@@ -212,12 +217,15 @@ static ArrowGame* __lastInstance;
                 [base extendArrowWithEndLocation:location];
             }
             
-        }else if(lastDirection != NONE && (lastDirection != currentDirection) && currentDirection != NONE){
-            [base compressArrowAtDirection:lastDirection];
-            [base extendArrowWithEndLocation:location];
-            lastDirection = currentDirection;
+            [arrow removeSquirts];
+            
         }
-                
+//        else if(lastDirection != NONE && (lastDirection != currentDirection) && currentDirection != NONE){
+////            [base compressArrowAtDirection:lastDirection];
+////            [base extendArrowWithEndLocation:location];
+//            lastDirection = currentDirection;
+//        }
+        
     }
 }
 
@@ -266,7 +274,6 @@ static ArrowGame* __lastInstance;
     [self removeAllChildrenWithCleanup:YES];
     [self.map removeFromParentAndCleanup:YES];
 }
-
 
 
 - (GameMap*) map
