@@ -21,6 +21,8 @@
     int lastSize;
     BOOL isActionWaiting;
     int actionCount;
+    BOOL isDeformed;
+    int moveCount;
 }
 
 - (id) init
@@ -33,6 +35,8 @@
     self = [super initWithLocation:location];
     if (self) {
         self.isSelected = NO;
+        isDeformed = NO;
+        moveCount = 0;
         self.endLocation = location;
         self.base = base;
         self.direction = direction;
@@ -238,11 +242,25 @@
     }
 }
 
+- (BOOL) isDeformed
+{
+    return isDeformed;
+};
 - (void) animateBackgrounds{
+    
+    if(lastSize < [self getSize]){
+        isDeformed = YES;
+    }
     
     int max = lastSize > [self getSize] ? lastSize : [self getSize];
     int min = lastSize < [self getSize] ? lastSize : [self getSize];
     
+    if(max != min){
+        moveCount++;
+        if(moveCount >=10){
+            //ABDULLAH KARACABEY
+        }
+    }
     
     for(int i=0;i<max;i++){
         if(i < min){

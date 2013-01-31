@@ -109,6 +109,10 @@
     return NO;
 }
 
+- (BOOL) isDeformed
+{
+    return [self.rightArrow isDeformed] || [self.upArrow isDeformed] || [self.downArrow isDeformed] || [self.leftArrow isDeformed];
+ }
 - (Arrow *) arrowAtDirection:(Direction) direction
 {
     switch (direction) {

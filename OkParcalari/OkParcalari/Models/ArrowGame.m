@@ -274,4 +274,19 @@ static ArrowGame* __lastInstance;
     return [GameMap sharedInstance];
 }
 
+//ABDULLAH KARACABEY
+- (BOOL) isAnyBaseDeformed
+{
+    NSArray* bases = [[[GameMap sharedInstance] allEntries] allObjects];
+    for(int i=0;i<[bases count];i++){
+        ArrowBase* base = [bases objectAtIndex:i];
+        if([base isKindOfClass:[ArrowBase class]]){
+            if([base isDeformed]){
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
 @end

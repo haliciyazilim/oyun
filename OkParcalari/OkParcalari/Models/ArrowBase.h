@@ -34,6 +34,8 @@
 - (Arrow *) extendArrowWithEndLocation:(Location) endLocation;
 
 - (Arrow *) compressArrowAtDirection:(Direction) direction;
+
 - (Arrow *) arrowAtDirection:(Direction) direction;
 
+- (BOOL) isDeformed;
 @end

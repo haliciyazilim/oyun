@@ -34,4 +34,6 @@
 
 - (void) removeSquirts;
 
+- (BOOL) isDeformed;
+
 @end
