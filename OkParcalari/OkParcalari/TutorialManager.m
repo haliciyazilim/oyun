@@ -92,7 +92,7 @@ static TutorialManager* currentInstance = nil;
         thirdStep.startTile = LocationMake(8,8);
         thirdStep.targetTile = LocationMake(1, 8);
         descriptions  = [[NSMutableArray alloc] init];
-        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_3_0", nil) andTile:LocationMake(0, 0)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_3_0", nil) andTile:LocationMake(8, 8)]];
         thirdStep.descriptions = descriptions;
         [tutorialSteps addObject:thirdStep];
         
@@ -157,6 +157,9 @@ static TutorialManager* currentInstance = nil;
     
     currentStepIndex = -1;
     [tutorialSteps removeAllObjects];
+    
+    [highlight removeFromSuperview];
+    highlight = nil;
     
     currentInstance = nil;
 
@@ -385,7 +388,6 @@ static TutorialManager* currentInstance = nil;
         result = YES;
     if(result == YES){
 //        NSLog(@"result = YES arrow.endlocation.x:%d to.x:%d arrow.endLocation.y:%d to.y:%d",arrow.endLocation.x, to.x, arrow.endLocation.y, to.y);
-        [self performSelector:@selector(nextStep) withObject:self afterDelay:0.0];
         [highlight removeFromSuperview];
         highlight = nil;
 //        [self showDialogMessage:@"Congratulations!" andCallback:^{
@@ -399,6 +401,7 @@ static TutorialManager* currentInstance = nil;
             [previousTutorialArrow removeFromSuperview];
             previousTutorialArrow = nil;
         }];
+        [self performSelector:@selector(nextStep) withObject:self afterDelay:0.0];
     }
     else{
         [self shortenCurrentArrowForArrow:arrow];

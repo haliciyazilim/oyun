@@ -21,6 +21,11 @@
     return self;
 }
 
+- (void) cleanChildren {
+    [self removeAllChildrenWithCleanup:YES];
+    isCalled = NO;
+}
+
 - (void) scheduleSpraying {
     [self unschedule:@selector(scheduleSpraying)];
     if(isCalled == NO){
@@ -38,6 +43,9 @@
     
     CGFloat randomTime = arc4random_uniform(45 )+30;
     [self schedule:@selector(scheduleSpraying) interval:0 repeat:1 delay:randomTime];
+    
+    // Big Hack. Instead of 6, we should have a callback for when the animation finishes.
+    [self schedule:@selector(cleanChildren) interval:0 repeat:1 delay:6];
 }
 
 -(void) callScheduleSprayingWithDelay:(ccTime)delay

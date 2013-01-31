@@ -6,6 +6,10 @@
 //
 //
 
+//Free MapsCount
+#define kNonPlayedActiveGameCount 6
+#define kFreeMapsCount 3
+
 // Leaderboard IDs (if any)
 
 // Achievements IDs
