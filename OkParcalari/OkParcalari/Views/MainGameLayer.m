@@ -160,11 +160,10 @@
 -(void) makeTransition
 {
     self.isTouchEnabled = NO;
-    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+    [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
         [self removeFromParentAndCleanup:YES];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
     }];
-    [myManager startTransition];
 }
 
 @end

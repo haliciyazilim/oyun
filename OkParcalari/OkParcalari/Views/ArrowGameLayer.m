@@ -180,7 +180,8 @@ static ArrowGameLayer* __lastInstance;
 
 - (void) restartGame {
     self.isTouchEnabled = NO;
-    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+    
+    [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
         [self.arrowGame cleanMap];
         [self.arrowGame removeFromParentAndCleanup:YES];
         [ArrowGame cleanLastInstance];
@@ -188,7 +189,16 @@ static ArrowGameLayer* __lastInstance;
         self.isTouchEnabled = YES;
         [self initializeGameWithFile:_fileName];
     }];
-    [myManager startTransition];
+    
+//    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+//        [self.arrowGame cleanMap];
+//        [self.arrowGame removeFromParentAndCleanup:YES];
+//        [ArrowGame cleanLastInstance];
+//        [ArrowGameLayer cleanLastInstance];
+//        self.isTouchEnabled = YES;
+//        [self initializeGameWithFile:_fileName];
+//    }];
+//    [myManager startTransition];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -246,7 +256,7 @@ static ArrowGameLayer* __lastInstance;
 }
 - (void) returnToMainMenu {
     self.isTouchEnabled = NO;
-    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+    [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
         if(gameWinView){
             [gameWinView removeFromSuperview];
             gameWinView = nil;
@@ -258,7 +268,20 @@ static ArrowGameLayer* __lastInstance;
         [ArrowGame cleanLastInstance];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
     }];
-    [myManager startTransition];
+    
+//    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+//        if(gameWinView){
+//            [gameWinView removeFromSuperview];
+//            gameWinView = nil;
+//        }
+//        [self.arrowGame cleanMap];
+//        [self.arrowGame removeFromParentAndCleanup:YES];
+//        [self removeFromParentAndCleanup:YES];
+//        [ArrowGameLayer cleanLastInstance];
+//        [ArrowGame cleanLastInstance];
+//        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
+//    }];
+//    [myManager startTransition];
 }
 - (void) nextGame {
     Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
@@ -275,7 +298,7 @@ static ArrowGameLayer* __lastInstance;
     }
     else{
         self.isTouchEnabled = NO;
-        TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+        [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
             if(gameWinView){
                 [gameWinView removeFromSuperview];
                 gameWinView = nil;
@@ -287,7 +310,6 @@ static ArrowGameLayer* __lastInstance;
             [ArrowGameLayer cleanLastInstance];
             [self initializeGameWithFile:newMap.mapId];
         }];
-        [myManager startTransition];
     }
     
 }

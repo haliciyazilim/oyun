@@ -383,6 +383,7 @@
 		41B78B9A16A0453400C327E3 /* GreenTheGarden.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41B78B9816A0453400C327E3 /* GreenTheGarden.xcdatamodeld */; };
 		41B78B9D16A045F400C327E3 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B78B9C16A045F400C327E3 /* DatabaseManager.m */; };
 		41CC93FB16B7F19000569BDC /* GreenTheGardenMenu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41CC93FA16B7F19000569BDC /* GreenTheGardenMenu.mp3 */; };
+		41D3AC6616BAA73D00C74610 /* libFlurryAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D3AC6516BAA73D00C74610 /* libFlurryAds.a */; };
 		41D8DDCD169C51C40041B503 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D8DDCC169C51C40041B503 /* FacebookSDK.framework */; };
 		41D8DDD8169C55CC0041B503 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */; };
 		41D8DDDE169C562B0041B503 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D8DDDB169C562B0041B503 /* Accounts.framework */; };
@@ -1819,6 +1820,9 @@
 		41B78B9B16A045F400C327E3 /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatabaseManager.h; path = Managers/DatabaseManager.h; sourceTree = "<group>"; };
 		41B78B9C16A045F400C327E3 /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatabaseManager.m; path = Managers/DatabaseManager.m; sourceTree = "<group>"; };
 		41CC93FA16B7F19000569BDC /* GreenTheGardenMenu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GreenTheGardenMenu.mp3; sourceTree = "<group>"; };
+		41D3AC6316BAA73D00C74610 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		41D3AC6416BAA73D00C74610 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
+		41D3AC6516BAA73D00C74610 /* libFlurryAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds.a; sourceTree = "<group>"; };
 		41D8DDCC169C51C40041B503 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		41D8DDDB169C562B0041B503 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -2731,6 +2735,7 @@
 				410AA13E1670D9B500F6DCCA /* CoreGraphics.framework in Frameworks */,
 				410AA1401670D9B500F6DCCA /* GameKit.framework in Frameworks */,
 				41ABD07616A5961B00E9C4EB /* libFlurry.a in Frameworks */,
+				41D3AC6616BAA73D00C74610 /* libFlurryAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3199,6 +3204,7 @@
 			isa = PBXGroup;
 			children = (
 				41ABD07316A5961B00E9C4EB /* Flurry */,
+				41D3AC6216BAA73D00C74610 /* FlurryAds */,
 				AE1F1A591682075500F27894 /* SBJson */,
 				410AA2731670D9B700F6DCCA /* LICENSE_cocos2d.txt */,
 				410AA2821670D9B800F6DCCA /* LICENSE_CocosDenshion.txt */,
@@ -3548,6 +3554,16 @@
 				41ABD07516A5961B00E9C4EB /* libFlurry.a */,
 			);
 			path = Flurry;
+			sourceTree = "<group>";
+		};
+		41D3AC6216BAA73D00C74610 /* FlurryAds */ = {
+			isa = PBXGroup;
+			children = (
+				41D3AC6316BAA73D00C74610 /* FlurryAdDelegate.h */,
+				41D3AC6416BAA73D00C74610 /* FlurryAds.h */,
+				41D3AC6516BAA73D00C74610 /* libFlurryAds.a */,
+			);
+			path = FlurryAds;
 			sourceTree = "<group>";
 		};
 		41DF3D9E169B294000B9678B /* arrow_base */ = {
@@ -5978,6 +5994,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OkParcalari/Flurry\"",
+					"\"$(SRCROOT)/OkParcalari/FlurryAds\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -6012,6 +6029,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/OkParcalari/Flurry\"",
+					"\"$(SRCROOT)/OkParcalari/FlurryAds\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",

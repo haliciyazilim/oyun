@@ -274,7 +274,7 @@
 {
 //    NSLog(@"button tag: %d",button.tag);
     self.isTouchEnabled = NO;
-    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
+    [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
         [MapSelectionLayer setLastScroll:scrollView.contentOffset.x];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:[NSString stringWithFormat:@"%d",button.tag]] withColor:ccWHITE]];
         [scrollView removeFromSuperview];
@@ -283,8 +283,8 @@
         [barView removeFromSuperview];
         [logoView removeFromSuperview];
         [self removeFromParentAndCleanup:YES];
+
     }];
-    [myManager startTransition];
 }
 
 - (void) setPackage:(NSString*)package

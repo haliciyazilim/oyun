@@ -12,8 +12,10 @@
 
 typedef void (^ TransitionBlock)();
 
-- (id) initWithTransitionBlock:(TransitionBlock)transitionBlock;
++ (TransitionManager*)sharedInstance;
 
-- (void) startTransition;
+- (void) makeTransitionWithBlock:(TransitionBlock)transitionBlock;
+
+//- (void) startTransition;
 
 @end
