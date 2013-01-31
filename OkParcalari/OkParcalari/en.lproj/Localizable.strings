@@ -27,4 +27,28 @@
 // Credits
 "PROGRAMMING"="Programming";
 "ART"="Art";
-"MUSIC"="Müzik";
+"MUSIC"="Music";
+
+//Tutorial
+
+"TUTORIAL_WELCOME" = "Welcome to Green The Garden. Your objective is to green the garden! You will use water pumps and pipes in your quest.";
+"TUTORIAL_COMPLETED" = "End of Tutorial!";
+
+"TUTORIAL_1_0" = "This is a water pump. Water pumps have varying water pressures";
+"TUTORIAL_1_1" = "This pump can water 9 tiles";
+"TUTORIAL_1_2" = "You can only have straight pipes emanating from the water pumps.";
+"TUTORIAL_1_3" = "Go on and water 9 tiles by dragging upwards from this pump.";
+
+"TUTORIAL_2_0" = "There’s only one water pump which can reach this tile.";
+"TUTORIAL_2_1" = "So, let’s use that pump.";
+"TUTORIAL_2_2" = "Go on and water the tile below by dragging from here.";
+
+"TUTORIAL_3_0" = "The same is true for this tile too.";
+
+"TUTORIAL_4_0" = "";
+
+"TUTORIAL_5_0" = "This pump can water 6 tiles.";
+"TUTORIAL_5_1" = "It has 2 empty tiles to its right and 7 empty tiles below itself.";
+"TUTORIAL_5_2" = "Even if it is used to water both of the tiles to its right it will still have power to water 4 tiles below.";
+"TUTORIAL_5_3" = "So, it is certain that this pump will be watering at least 4 tiles below itself.";
+"TUTORIAL_5_4" = "Go on and water 4 tiles.";
