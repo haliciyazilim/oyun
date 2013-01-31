@@ -67,7 +67,7 @@ static AchievementManager * sharedAchievementManager=nil;
              for (GKAchievement* achievement in achievements){
                  if(achievement.percentComplete==100.0){
                      [achievementsDictionary setObject: achievement forKey: achievement.identifier];
-//                     NSLog(@"Load Acievements: %@, percent: %f", achievement.identifier,achievement.percentComplete);
+                     NSLog(@"Load Acievements: %@, percent: %f", achievement.identifier,achievement.percentComplete);
                  }
                  
              }
@@ -85,15 +85,16 @@ static AchievementManager * sharedAchievementManager=nil;
     
     GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
     
-    NSLog(@"submitted Achievement: %@, Lid: %@, Lpercent: %f", achievement,achievement.identifier,achievement.percentComplete);
+    NSLog(@"submitted Achievement: %@", achievement);
 
     
     BOOL isExist=NO;
     GKAchievement * loadedAchievement=[[GKAchievement alloc] initWithIdentifier:[_achievementsDictionary objectForKey:achievement.identifier]];
     
+    NSLog(@"loaded Achievement: %@, %@", loadedAchievement.self, loadedAchievement.identifier);
     
     
-    if(loadedAchievement!=NULL){
+    if(loadedAchievement.identifier!=nil){
         isExist=YES;
         //loadedAchievement=[[GKAchievement alloc] initWithIdentifier:strAchievement];
 //        NSLog(@"Loaded Achievement: %@, Lid: %@, Lpercent: %f", loadedAchievement,loadedAchievement.identifier,loadedAchievement.percentComplete);
@@ -101,7 +102,7 @@ static AchievementManager * sharedAchievementManager=nil;
     
 //    NSLog(@"Gelen Başarı: %@, percet: %f",achievement.identifier, achievement.percentComplete);
     
-//    NSLog(@"IsExist: %d",isExist);
+    NSLog(@"IsExist: %d",isExist);
     
     if (achievement && isExist==NO) // esas sorgu bu.
 //    if (achievement) // Test için duruyor bu.
@@ -111,8 +112,11 @@ static AchievementManager * sharedAchievementManager=nil;
         achievement.showsCompletionBanner = YES; 
         [achievement reportAchievementWithCompletionHandler:^(NSError *error)
          {
+             NSLog(@"report");
              
              if (achievement.percentComplete==100.0) {
+              NSLog(@"100");   
+                 
                  GKAchievementDescription *achievementDescription=[[GKAchievementDescription alloc] init];
                  achievementDescription=[_achievementDescriptions objectForKey:achievement.identifier];
                 

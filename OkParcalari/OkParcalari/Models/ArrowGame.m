@@ -113,8 +113,8 @@ static ArrowGame* __lastInstance;
     [[AchievementManager sharedAchievementManager]checkAchievementFastMindQuickHands:map];
     [[AchievementManager sharedAchievementManager]checkAchievementMapsStars:map];
     
-    if([map.mapId isEqual:@"1000"])
-        [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementWarmingUp percentComplete:100];
+    if([map.mapId isEqual:@"10000"])
+        [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementWarmingUp percentComplete:100.0];
     
     // submit Score
     NSArray *allMaps=[[DatabaseManager sharedInstance] getAllMaps];

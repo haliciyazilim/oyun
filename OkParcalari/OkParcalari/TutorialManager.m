@@ -15,10 +15,18 @@ typedef void (^ IteratorBlock)();
 -(BOOL)isInsideTouchesBegan;
 @end
 
+@interface TutorialDescription : NSObject
+@property NSString* text;
+@property Location tile;
++(TutorialDescription*)descriptionWithText:(NSString*)text andTile:(Location)tile;
+@end
+
 @interface TutorialStep : NSObject
 @property Location startTile;
 @property Location targetTile;
-@property NSString* description;
+@property NSArray* descriptions;
+@property int currentDescription;
+
 @end
 @implementation TutorialStep
 @end
@@ -33,6 +41,7 @@ typedef void (^ IteratorBlock)();
     UIImageView* currentTutorialArrow;
     Location lastMovedArrowEndLocation;
     UIImageView* balloonImageView;
+    UIImageView* highlight;
 }
 
 static TutorialManager* currentInstance = nil;
@@ -53,29 +62,60 @@ static TutorialManager* currentInstance = nil;
         mapId = @"10000";
         lastMovedArrowEndLocation = LocationMake(-1, -1);
         tutorialSteps = [[NSMutableArray alloc] init];
+        
+        NSMutableArray* descriptions;
+        
         TutorialStep* firstStep = [[TutorialStep alloc] init];
         firstStep.startTile = LocationMake(0, 0);
         firstStep.targetTile = LocationMake(0, 9);
-        firstStep.description = @"Go on and water 9 tiles by dragging upwards from this pump.";
+        firstStep.currentDescription = 0;
+        descriptions  = [[NSMutableArray alloc] init];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_1_0", nil) andTile:LocationMake(0, 0)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_1_1", nil) andTile:LocationMake(0, 0)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_1_2", nil) andTile:LocationMake(0, 0)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_1_3", nil) andTile:LocationMake(0, 0)]];
+        firstStep.descriptions = descriptions;
         [tutorialSteps addObject:firstStep];
-        
+//
         TutorialStep* secondStep = [[TutorialStep alloc] init];
         secondStep.startTile = LocationMake(2,4);
         secondStep.targetTile = LocationMake(2, 1);
-        secondStep.description = @"Deneme description";
+        secondStep.currentDescription = 0;
+        descriptions  = [[NSMutableArray alloc] init];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_2_0", nil) andTile:LocationMake(2, 1)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_2_1", nil) andTile:LocationMake(2, 1)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_2_2", nil) andTile:LocationMake(2, 4)]];
+        secondStep.descriptions = descriptions;
         [tutorialSteps addObject:secondStep];
         
         TutorialStep* thirdStep = [[TutorialStep alloc] init];
         thirdStep.startTile = LocationMake(8,8);
         thirdStep.targetTile = LocationMake(1, 8);
-        thirdStep.description = @"Deneme falan";
+        descriptions  = [[NSMutableArray alloc] init];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_3_0", nil) andTile:LocationMake(0, 0)]];
+        thirdStep.descriptions = descriptions;
         [tutorialSteps addObject:thirdStep];
         
-        TutorialStep* forthStep = [[TutorialStep alloc] init];
-        forthStep.startTile = LocationMake(1, 0);
-        forthStep.targetTile = LocationMake(9, 0);
-        forthStep.description = @"Deneme falan";
-        [tutorialSteps addObject:forthStep];
+//        TutorialStep* forthStep = [[TutorialStep alloc] init];
+//        forthStep.startTile = LocationMake(1, 0);
+//        forthStep.targetTile = LocationMake(9, 0);
+//        descriptions  = [[NSMutableArray alloc] init];
+//        [descriptions addObject:[TutorialDescription descriptionWithText:@"Go on and water 9 tiles by dragging upwards from this pump." andTile:LocationMake(0, 0)]];
+//        forthStep.descriptions = descriptions;
+//        [tutorialSteps addObject:forthStep];
+        
+        
+        TutorialStep* fifthStep = [[TutorialStep alloc] init];
+        fifthStep.startTile = LocationMake(7, 7);
+        fifthStep.targetTile = LocationMake(7, 3);
+        descriptions  = [[NSMutableArray alloc] init];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_5_0", nil) andTile:LocationMake(7, 7)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_5_1", nil) andTile:LocationMake(7, 7)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_5_2", nil) andTile:LocationMake(7, 7)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_5_3", nil) andTile:LocationMake(7, 7)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_5_4", nil) andTile:LocationMake(7, 7)]];
+        fifthStep.descriptions = descriptions;
+        [tutorialSteps addObject:fifthStep];
     }
     return self;
 }
@@ -99,16 +139,9 @@ static TutorialManager* currentInstance = nil;
 {
     isTutorialActive = YES;
     currentStepIndex =-1;
-    NSString* tutorialStartMessage = @"Welcome to Green The Garden. Your objective is to green the garden! You will use water pumps and pipes in your quest.";
+    NSString* tutorialStartMessage = NSLocalizedString(@"TUTORIAL_WELCOME", nil);
     [self showDialogMessage:tutorialStartMessage andCallback:^{
-        [self showInstruction:@"This is a water pump. Water pumps have varying water pressures" forTile:LocationMake(0, 0) withCompletionBlock:^{
-           [self showInstruction:@"This pump can water 9 tiles" forTile:LocationMake(0,0) withCompletionBlock:^{
-               [self showInstruction:@"You can only have straight pipes emanating from the water pumps." forTile:LocationMake(0, 0) withCompletionBlock:^{
-                   [self nextStep];
-               }];
-           }];
-        }];
-        
+        [self nextStep];
     }];
 }
 
@@ -135,18 +168,18 @@ static TutorialManager* currentInstance = nil;
     NSLog(@"next step");
     currentStepIndex++;
     if(currentStepIndex >= [tutorialSteps count]){
-        [self showDialogMessage:@"End of Tutorial" andCallback:^{
+        [self showDialogMessage:NSLocalizedString(@"TUTORIAL_COMPLETED", nil) andCallback:^{
             [self finishTutorial];
             [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementBabySteps percentComplete:100.0];
         }];
         return;
     }
+    highlight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_highlight.png"]];
     TutorialStep* step = [tutorialSteps objectAtIndex:currentStepIndex];
-    [self showHelperSignsFrom:step.startTile to:step.targetTile onCompletion:^{
-        
-    }];
-    
-    [self showInstruction:step.description forTile:step.startTile];
+    CGPoint basePoint = [self pointFromLocation:step.startTile];
+    highlight.frame = CGRectMake(basePoint.x, basePoint.y, highlight.image.size.width, highlight.image.size.height);
+    [[[CCDirector sharedDirector] view] addSubview:highlight];
+    [self nextDescription];
     
 }
 
@@ -351,8 +384,10 @@ static TutorialManager* currentInstance = nil;
     if(arrow.endLocation.x == to.x && arrow.endLocation.y == to.y)
         result = YES;
     if(result == YES){
-        NSLog(@"result = YES arrow.endlocation.x:%d to.x:%d arrow.endLocation.y:%d to.y:%d",arrow.endLocation.x, to.x, arrow.endLocation.y, to.y);
+//        NSLog(@"result = YES arrow.endlocation.x:%d to.x:%d arrow.endLocation.y:%d to.y:%d",arrow.endLocation.x, to.x, arrow.endLocation.y, to.y);
         [self performSelector:@selector(nextStep) withObject:self afterDelay:0.0];
+        [highlight removeFromSuperview];
+        highlight = nil;
 //        [self showDialogMessage:@"Congratulations!" andCallback:^{
 //            [self nextStep];
 //        }];
@@ -368,6 +403,26 @@ static TutorialManager* currentInstance = nil;
     else{
         [self shortenCurrentArrowForArrow:arrow];
     }
+}
+
+-(void)nextDescription
+{
+    TutorialStep* currentStep = (TutorialStep*)[tutorialSteps objectAtIndex:currentStepIndex];
+    TutorialDescription* description = (TutorialDescription*)[currentStep.descriptions objectAtIndex:currentStep.currentDescription];
+    
+    if(currentStep.currentDescription == [currentStep.descriptions count]-1){
+        
+        [self showHelperSignsFrom:currentStep.startTile to:currentStep.targetTile onCompletion:^{}];
+        
+        [self showInstruction:description.text forTile:description.tile];
+    }
+    else{
+        currentStep.currentDescription++;
+        [self showInstruction:description.text forTile:description.tile withCompletionBlock:^{
+            [self nextDescription];
+        }];
+    }
+    
 }
 
 -(void)showDialogMessage:(NSString*)message andCallback:(IteratorBlock)block
@@ -456,7 +511,7 @@ static TutorialManager* currentInstance = nil;
 {
     CGPoint point = [self pointFromLocation:location];
     UIImage* balloonImage = [UIImage imageNamed:@"tut_dialog.png"];
-    balloonImage = [self imageWithImage:balloonImage convertToSize:CGSizeMake(300.0, 100.0)];
+//    balloonImage = [self imageWithImage:balloonImage convertToSize:CGSizeMake(300.0, 100.0)];
 //    balloonImage
     
     balloonImageView = [[UIImageView alloc] initWithImage:balloonImage];
@@ -475,7 +530,7 @@ static TutorialManager* currentInstance = nil;
 //    [balloonImageView addSubview:instructionLabel];
 
     UITextView* instructionTextView = [[UITextView alloc] init];
-    instructionTextView.frame = CGRectMake(5, 0, balloonImage.size.width-40, 50);
+    instructionTextView.frame = CGRectMake(5, 0, balloonImage.size.width-30, 60);
     [instructionTextView setText:message];
     [instructionTextView setTextColor:[UIColor whiteColor]];
     [instructionTextView setBackgroundColor:[UIColor clearColor]];
@@ -497,7 +552,17 @@ static TutorialManager* currentInstance = nil;
 }
 @end
 
+@implementation TutorialDescription
 
++ (TutorialDescription *)descriptionWithText:(NSString *)text andTile :(Location)tile
+{
+    TutorialDescription* description = [[TutorialDescription alloc] init];
+    description.text = text;
+    description.tile = tile;
+    return description;
+}
+
+@end
 
 @implementation UISetTouchBeganView
 {
