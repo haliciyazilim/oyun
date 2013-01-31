@@ -24,7 +24,7 @@
 "MAIN_MENU_APPROVE" = "Ana menüye dönmek istediğinize emin misiniz? Kaydedilmemiş ilerlemeniz kaybolacaktır!";
 "CANCEL" = "İptal";
 "NO_MAP" = "harita yok";
-"NO_PURCHASED" = "satin al once";
+"NO_PURCHASED" = "Ücretiz haritaların sonuncusunu oynadınız. Tam sürüme geçerek bütün haritalara ulaşabilirsiniz.";
 
 // Credits
 "PROGRAMMING"="Programlama";

@@ -8,7 +8,6 @@
 
 #import "Stopwatch.h"
 
-
 @implementation Stopwatch
 {
     double totalPausedTimeInterval;
@@ -45,7 +44,12 @@
         interval -= totalPausedTimeInterval;
         _seconds = (int)floor(interval) % 60;
         _minutes = (int)floor(interval) / 60;
-        [self updateTimerSprites];
+        if (_minutes >= 100) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kReachedToRestaurantNotification object:nil];
+        }
+        else{
+            [self updateTimerSprites];
+        }
     }
 }
 
@@ -57,12 +61,14 @@
 }
 
 - (void) pauseTimer {
+    NSLog(@"entered pauseTimer************");
     _isPaused = 1;
     [self unschedule:@selector(updateStopwatch:)];
     _lastPausedTime = [NSDate date];
 }
 
 - (void) resumeTimer {
+    NSLog(@"entered resumeTimer************");
     totalPausedTimeInterval += (double)[[NSDate date] timeIntervalSinceDate:_lastPausedTime];
     [self schedule:@selector(updateStopwatch:)];
     _isPaused = 0;

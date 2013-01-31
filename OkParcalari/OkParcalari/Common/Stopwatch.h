@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#define kReachedToRestaurantNotification @"reachedToRestaurantNotification"
+
 @interface Stopwatch : CCNode
 
 @property int isPaused;
