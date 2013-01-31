@@ -95,7 +95,7 @@ static ArrowGameLayer* __lastInstance;
     UIButton* menuButton = [[UIButton alloc] initWithFrame:CGRectMake(75.0, 2.0, 30.0, 30.0)];
     [menuButton setBackgroundImage:[UIImage imageNamed:@"game_btnmenu.png"] forState:UIControlStateNormal];
     [menuButton setBackgroundImage:[UIImage imageNamed:@"game_btnmenu_selected.png"] forState:UIControlStateHighlighted];
-    [menuButton addTarget:self action:@selector(showInGameMenu) forControlEvents:UIControlEventTouchUpInside];
+    [menuButton addTarget:self action:@selector(goToMenu) forControlEvents:UIControlEventTouchUpInside];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachedToRestaurant:) name:kReachedToRestaurantNotification object:nil];
     
@@ -105,14 +105,12 @@ static ArrowGameLayer* __lastInstance;
     
     [[[CCDirector sharedDirector] view] addSubview:inGameButtonsView];
 }
-- (void) reachedToRestaurant:(NSNotification *)notif {
-    [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementTheRestaurant percentComplete:100.0];
-    // open restaurant screen
-    NSLog(@"reached to restaurant");
-    [self.arrowGame pauseGame];
-    [self gameEnded:0 andElapsedSeconds:99*60+59];
-    
+-(void)goToMenu{
+    if(!_isRestaurantOpened){
+        [self showInGameMenu:NO];
+    }
 }
+
 // on "init" you need to initialize your instance
 -(id) init
 {
@@ -138,6 +136,8 @@ static ArrowGameLayer* __lastInstance;
         [self addChild:topView z:998];
         [self addChild:frameView z:999];
         [self addChild:logoView z:1000];
+        
+        _isRestaurantOpened = NO;
         
 		self.isTouchEnabled = YES;
 	}
@@ -186,6 +186,7 @@ static ArrowGameLayer* __lastInstance;
         [ArrowGame cleanLastInstance];
         [ArrowGameLayer cleanLastInstance];
         self.isTouchEnabled = YES;
+        _isRestaurantOpened = NO;
         [self initializeGameWithFile:_fileName];
     }];
     [myManager startTransition];
@@ -220,8 +221,13 @@ static ArrowGameLayer* __lastInstance;
     Location location = [[GameMap sharedInstance] convertAbsolutePointToGridPoint:point];
     return location;
 }
-
-- (void) showInGameMenu {
+- (void) reachedToRestaurant:(NSNotification *)notif {
+    [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementTheRestaurant percentComplete:100.0];
+    _isRestaurantOpened = YES;
+    [self showInGameMenu:YES];
+    
+}
+- (void) showInGameMenu:(BOOL)isRestaurant {
     InGameMenuLayer *child = (InGameMenuLayer*)[self getChildByTag:MENU_TAG];
     if(child){
         [child resumeGame];
@@ -230,17 +236,15 @@ static ArrowGameLayer* __lastInstance;
         if([self.arrowGame isGameRunning]){
             [self.arrowGame pauseGame];
         }
-        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] init];
+        InGameMenuLayer *menuLayer = [[InGameMenuLayer alloc] initWithRestaurant:isRestaurant];
         menuLayer.callerLayer = self;
         menuLayer.tag = MENU_TAG;
         [self addChild:menuLayer];
         [self reorderChild:menuLayer z:1111];
         self.isTouchEnabled = NO;
     }
-//    [self gameEnded];
 }
 - (void) inGameMenuWillClose {
-    NSLog(@"inGameMenuWillClose");
     [self.arrowGame resumeGame];
     self.isTouchEnabled = YES;
 }
@@ -251,6 +255,7 @@ static ArrowGameLayer* __lastInstance;
             [gameWinView removeFromSuperview];
             gameWinView = nil;
         }
+        _isRestaurantOpened = NO;
         [self.arrowGame cleanMap];
         [self.arrowGame removeFromParentAndCleanup:YES];
         [self removeFromParentAndCleanup:YES];

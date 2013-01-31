@@ -14,4 +14,6 @@
 
 - (void) resumeGame;
 
+- (id) initWithRestaurant:(BOOL)isRestaurant;
+
 @end
