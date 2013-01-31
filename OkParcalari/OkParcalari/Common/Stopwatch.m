@@ -61,14 +61,12 @@
 }
 
 - (void) pauseTimer {
-    NSLog(@"entered pauseTimer************");
     _isPaused = 1;
     [self unschedule:@selector(updateStopwatch:)];
     _lastPausedTime = [NSDate date];
 }
 
 - (void) resumeTimer {
-    NSLog(@"entered resumeTimer************");
     totalPausedTimeInterval += (double)[[NSDate date] timeIntervalSinceDate:_lastPausedTime];
     [self schedule:@selector(updateStopwatch:)];
     _isPaused = 0;
