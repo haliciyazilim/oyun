@@ -103,6 +103,22 @@
     
 }
 
+static BOOL isEasy = YES;
++ (BOOL) isEasy
+{
+    return  isEasy;
+}
+- (IBAction)difficultyChanged:(id)sender {
+    UISegmentedControl* control = (UISegmentedControl*)sender;
+    if([control selectedSegmentIndex] == 0){
+        isEasy = YES;
+    }
+    else{
+        isEasy = NO;
+    }
+}
+
+
 @end
 
 

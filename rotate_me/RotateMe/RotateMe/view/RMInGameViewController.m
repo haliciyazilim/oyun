@@ -7,6 +7,8 @@
 //
 
 #import "RMInGameViewController.h"
+#import "RMPhotoSelectionViewController.h"
+
 
 
 typedef void (^ IteratorBlock)();
@@ -59,17 +61,34 @@ static RMInGameViewController* lastInstance = nil;
 {
     lastInstance = self;
     
-    rows = 6;
-    cols = 8;
     
-    tileSize = 45;
+    if([RMPhotoSelectionViewController isEasy]){
+        rows = 3;
+        cols = 4;
+        
+        tileSize = 90;
+        
+    }
+    else{
+        rows = 6;
+        cols = 8;
+        
+        tileSize = 45;
+        
+    }
     
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]];
     
         
-    UIImageView* grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
+    UIImageView* grids;
+    if([RMPhotoSelectionViewController isEasy]){
+        grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_double_grid.png"]];
+    }else{
+        grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
+        
+    }
     
     grids.frame = CGRectMake(7, 5, grids.image.size.width, grids.image.size.height);
     grids.alpha = 0.5;

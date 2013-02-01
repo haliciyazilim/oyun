@@ -11,6 +11,9 @@
 
 @interface RMPhotoSelectionViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+- (IBAction)difficultyChanged:(id)sender;
++ (BOOL) isEasy;
+
 
 @property NSMutableArray* photos;
 
