@@ -104,6 +104,9 @@ static ArrowGameLayer* __lastInstance;
     [inGameButtonsView addSubview:menuButton];
     
     [[[CCDirector sharedDirector] view] addSubview:inGameButtonsView];
+    
+    self.arrowGame = [[ArrowGame alloc] initWithFile:_fileName];
+    [self addChild:self.arrowGame];
 }
 -(void)goToMenu{
     if(!_isRestaurantOpened){
@@ -174,8 +177,6 @@ static ArrowGameLayer* __lastInstance;
 {
     _fileName = fileName;
     __lastInstance = self;
-    self.arrowGame = [[ArrowGame alloc] initWithFile:fileName];
-    [self addChild:self.arrowGame];
 }
 
 - (void) restartGame {

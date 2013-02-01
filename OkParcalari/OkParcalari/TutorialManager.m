@@ -42,6 +42,7 @@ typedef void (^ IteratorBlock)();
     Location lastMovedArrowEndLocation;
     UIImageView* balloonImageView;
     UIImageView* highlight;
+    UIView* lastDialog;
 }
 
 static TutorialManager* currentInstance = nil;
@@ -340,12 +341,16 @@ static TutorialManager* currentInstance = nil;
 {
     [currentTutorialArrow setAlpha:0.0];
     [balloonImageView setAlpha:0.0];
+    [highlight setAlpha:0.0];
+    [lastDialog setAlpha:0.0];
 }
 
 -(void)resumeTutorial
 {
+    [highlight setAlpha:1.0];
     [currentTutorialArrow setAlpha:1.0];
     [currentTutorialArrow setAlpha:1.0];
+    [lastDialog setAlpha:1.0];
 }
 
 -(BOOL)isCorrectEntitity:(ArrowBase*)entity
@@ -463,22 +468,27 @@ static TutorialManager* currentInstance = nil;
     [messageTextView setBackgroundColor:[UIColor clearColor]];
     [dialog addSubview:messageTextView];
     
+    lastDialog = dialog;
     
     UISetTouchBeganView* background = [[UISetTouchBeganView alloc] init];
+    
     [background setUserInteractionEnabled:YES];
     [background setFrame:CGRectMake(0, 0, 1024, 768)];
-    __weak UISetTouchBeganView* weakBackground = background;
     
     [[ArrowGame lastInstance] pauseTimer];
-    [background setTouchesBegan:^{
-        [dialog removeFromSuperview];
-        [weakBackground removeFromSuperview];
-        [[ArrowGame lastInstance] resumeTimer];
-        block();
-    }];
     
     [[[CCDirector sharedDirector] view] addSubview:background];
     [[[CCDirector sharedDirector] view] addSubview:dialog];
+    
+    __weak UISetTouchBeganView* weakBackground = background;
+    [background setTouchesBegan:^{
+        [dialog removeFromSuperview];
+        [weakBackground removeFromSuperview];
+        lastDialog = nil;
+        [[ArrowGame lastInstance] resumeTimer];
+        block();
+    }];
+    [background.superview bringSubviewToFront:background];
 }
 
 -(void)closeDialog
