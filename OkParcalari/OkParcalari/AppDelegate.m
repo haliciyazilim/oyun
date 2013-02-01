@@ -32,6 +32,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     [Flurry startSession:@"PW345B45PR4W3D6Z2V8H"];
     [FlurryAds initialize:[CCDirector sharedDirector]];
     
@@ -108,6 +109,10 @@
 	[window_ makeKeyAndVisible];
     
 	return YES;
+}
+
+void uncaughtExceptionHandler(NSException *exception) {
+    [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 // Supported orientations: Landscape. Customize it for your own needs
