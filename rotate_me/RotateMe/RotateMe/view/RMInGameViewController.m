@@ -29,6 +29,7 @@ typedef void (^ IteratorBlock)();
     int cols;
     int tileSize;
     NSArray* croppedImages;
+    UIImage* currentImage;
 }
 +(RMInGameViewController *)lastInstance
 {
@@ -52,6 +53,8 @@ static RMInGameViewController* lastInstance = nil;
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     lastInstance = self;
@@ -65,12 +68,49 @@ static RMInGameViewController* lastInstance = nil;
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]];
     
-    UIImage* image  = [UIImage imageNamed:@"test2.jpg"];
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:image];
+        
+    UIImageView* grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
     
-    imageView.frame = CGRectMake(7, 5, 374-5-9, 284-7-7);
+    grids.frame = CGRectMake(7, 5, grids.image.size.width, grids.image.size.height);
+    grids.alpha = 0.5;
+    [self.photoHolder addSubview:grids];
+    self.grids = grids;
     
-    [imageView setClipsToBounds:YES];
+    [self configureView];
+	// Do any additional setup after loading the view.
+}
+
+- (void) setImage:(UIImage*)image
+{
+    if(currentImage != image){
+        currentImage = image;
+        [self configureView];
+    }
+}
+
+- (IBAction)returnToPhotoSelection:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+
+
+- (void) configureView
+{
+    
+    CGSize canvasSize;
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+        ([UIScreen mainScreen].scale == 2.0)) {
+        canvasSize = CGSizeMake(720, 540);
+        
+    } else {
+        canvasSize = CGSizeMake(360, 270);
+    }
+//    NSLog(@"canvasSize w:%f h:%f",canvasSize.width,canvasSize.height);
+    UIImage* resizedImage = [self imageByScalingAndCropping:currentImage forSize:canvasSize];
+//    UIImage* resizedImage = currentImage;
     for(int x=0; x<cols; x++){
         for(int y=0; y<rows; y++){
             CGRect rect;
@@ -81,31 +121,85 @@ static RMInGameViewController* lastInstance = nil;
                 rect = CGRectMake(x*tileSize, y*tileSize, tileSize, tileSize);
             }
             
-            CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
+            CGImageRef imageRef = CGImageCreateWithImageInRect([resizedImage CGImage], rect);
             UIImage *img = [UIImage imageWithCGImage:imageRef];
-            NSLog(@"%@",img);
             CroppedImageView* imgView = [[CroppedImageView alloc] initWithImage:img];
             imgView.frame = CGRectMake(7+x*tileSize, 5+y*tileSize, tileSize, tileSize);
             if((x+y)%2 == 0)
                 [imgView rotateToAngle:M_PI*0.5];
             [self.photoHolder addSubview:imgView];
-            
-            
+            [self.photoHolder insertSubview:imgView belowSubview:self.grids];
+                        
         }
     }
     
-    UIImageView* grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
     
-    grids.frame = CGRectMake(7, 5, grids.image.size.width, grids.image.size.height);
-    grids.alpha = 0.5;
-    [self.photoHolder addSubview:grids];
-    self.grids = grids;
-    NSLog(@"%@",self.grids);
-    
-	// Do any additional setup after loading the view.
 }
-
-
+- (UIImage*)imageByScalingAndCropping:(UIImage*)sourceImage forSize:(CGSize)targetSize
+{
+    UIImage *newImage = nil;
+    CGSize imageSize = sourceImage.size;
+    CGFloat width = imageSize.width;
+    CGFloat height = imageSize.height;
+    CGFloat targetWidth = targetSize.width;
+    CGFloat targetHeight = targetSize.height;
+    CGFloat scaleFactor = 0.0;
+    CGFloat scaledWidth = targetWidth;
+    CGFloat scaledHeight = targetHeight;
+    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
+    
+    if (CGSizeEqualToSize(imageSize, targetSize) == NO)
+    {
+        CGFloat widthFactor = targetWidth / width;
+        CGFloat heightFactor = targetHeight / height;
+        
+        if (widthFactor > heightFactor)
+        {
+            scaleFactor = widthFactor; // scale to fit height
+        }
+        else
+        {
+            scaleFactor = heightFactor; // scale to fit width
+        }
+        
+        scaledWidth  = width * scaleFactor;
+        scaledHeight = height * scaleFactor;
+        
+        // center the image
+        if (widthFactor > heightFactor)
+        {
+            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
+        }
+        else
+        {
+            if (widthFactor < heightFactor)
+            {
+                thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+            }
+        }
+    }
+    
+    UIGraphicsBeginImageContext(targetSize); // this will crop
+    
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin = thumbnailPoint;
+    thumbnailRect.size.width  = scaledWidth;
+    thumbnailRect.size.height = scaledHeight;
+    
+    [sourceImage drawInRect:thumbnailRect];
+    
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    if(newImage == nil)
+    {
+        NSLog(@"could not scale image");
+    }
+    
+    //pop the context to get back to the default
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -12,4 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *photoHolder;
 @property UIImageView* grids;
 +(RMInGameViewController*)lastInstance;
+- (void) setImage:(UIImage*)image;
+- (IBAction)returnToPhotoSelection:(id)sender;
 @end
