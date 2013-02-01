@@ -8,6 +8,9 @@
 
 #define MENU_TAG 994
 
+#import <FacebookSDK/FacebookSDK.h>
+#import <Twitter/Twitter.h>
+
 #import "ArrowGameLayer.h"
 #import "InGameMenuLayer.h"
 #import "GameMap.h"
@@ -524,9 +527,170 @@ static ArrowGameLayer* __lastInstance;
 }
 
 - (void) shareOnFacebook {
+    // If a user has *never* logged into your app, request one of
+    // "email", "user_location", or "user_birthday". If you do not
+    // pass in any permissions, "email" permissions will be automatically
+    // requested for you. Other read permissions can also be included here.
+//    NSArray *permissions =
+//    [NSArray arrayWithObjects:@"email", nil];
+//
+//    [FBSession openActiveSessionWithReadPermissions:permissions
+//                                       allowLoginUI:YES
+//                                  completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+//                                      /* handle success + failure in block */
+//
+//                                      // can include any of the "publish" or "manage" permissions
+//                                      NSArray *permissions =
+//                                      [NSArray arrayWithObjects:@"publish_actions", nil];
+//                                      
+//                                      [[FBSession activeSession] reauthorizeWithPublishPermissions:permissions
+//                                                                                   defaultAudience:FBSessionDefaultAudienceFriends
+//                                                                                 completionHandler:^(FBSession *session, NSError *error) {
+//                                                                                     /* handle success + failure in block */
+//                                                                                 }];
+//                                  }];
     
+    [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"]
+                                       defaultAudience:FBSessionDefaultAudienceEveryone
+                                          allowLoginUI:YES
+                                     completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                         NSLog(@"Success!");
+                                     
+                                         if (status != FBSessionStateOpen) {
+                                             // Show alert
+                                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"FACEBOOK_SESSION_NOT_OPEN_TITLE", nil)
+                                                                                                message:NSLocalizedString(@"FACEBOOK_SESSION_NOT_OPEN", nil)
+                                                                                               delegate:nil
+                                                                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                                                      otherButtonTitles:nil];
+                                             
+                                             [alertView show];
+                                         } else {
+                                             //
+                                             //                                         BOOL displayedNativeDialog =
+                                             //                                         [FBNativeDialogs
+                                             //                                          presentShareDialogModallyFrom:[CCDirector sharedDirector]
+                                             //                                          initialText:@"(Deneme) 1:15'de üç yıldızı çaktım"
+                                             //                                          image:[UIImage imageNamed:@"Icon-72@2x.png"]
+                                             //                                          url:[NSURL URLWithString:@"http://www.halici.com.tr"]
+                                             //                                          handler:^(FBNativeDialogResult result, NSError *error) {
+                                             //                                              if (error) {
+                                             //                                                  /* handle failure */
+                                             //                                              } else {
+                                             //                                                  if (result == FBNativeDialogResultSucceeded) {
+                                             //                                                      /* handle success */
+                                             //                                                  } else {
+                                             //                                                      /* handle user cancel */
+                                             //                                                  }
+                                             //                                              }
+                                             //                                          }];
+                                             //                                         if (!displayedNativeDialog) {
+                                             //                                             /*
+                                             //                                              Fallback to web-based Feed Dialog:
+                                             //                                              https://developers.facebook.com/docs/howtos/feed-dialog-using-ios-sdk/
+                                             //                                              */
+                                             //                                         }
+                                             
+                                             
+                                             // This function will invoke the Feed Dialog to post to a user's Timeline and News Feed
+                                             // It will first attempt to do this natively through iOS 6
+                                             // If that's not supported we'll fall back to the web based dialog.
+                                             
+                                             UIImage *image = [UIImage imageNamed:@"Icon-72@2x.png"];
+                                             
+                                             NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"https://itunes.apple.com/us/app/chp-mobil/id588335596"]];
+                                             
+                                             bool bDisplayedDialog = [FBNativeDialogs presentShareDialogModallyFrom:[CCDirector sharedDirector]
+                                                                                                        initialText:@"Deneme! 5 yildizi caktim ha!"
+                                                                                                              image:nil
+                                                                                                                url:url
+                                                                                                            handler:^(FBNativeDialogResult result, NSError *error) {}];
+                                             
+                                             if (!bDisplayedDialog)
+                                             {
+                                                 
+                                                 // Put together the dialog parameters
+                                                 NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                                                @"Green the Garden", @"name",
+                                                                                @"1:13'te 3 yildizi caktim!", @"caption",
+                                                                                [NSString stringWithFormat:@"I just smashed 1r12 friends! Can you beat my score?"], @"description",
+                                                                                @"http://www.friendsmash.com/images/logo_large.jpg", @"picture",
+                                                                                
+                                                                                // Add the link param for Deep Linking
+                                                                                [NSString stringWithFormat:@"http://www.halici.com.tr"], @"link",
+                                                                                nil];
+                                                 
+                                                 // Invoke the dialog
+                                                 //                                             [appDelegate.facebook dialog:@"feed" andParams:params andDelegate:nil];
+                                                 
+                                                 [FBRequestConnection
+                                                  startWithGraphPath:@"me/feed"
+                                                  parameters:params
+                                                  HTTPMethod:@"POST"
+                                                  completionHandler:^(FBRequestConnection *connection,
+                                                                      id result,
+                                                                      NSError *error) {
+                                                      NSString *alertText;
+                                                      if (error) {
+                                                          alertText = [NSString stringWithFormat:
+                                                                       @"error: domain = %@, code = %d",
+                                                                       error.domain, error.code];
+                                                      } else {
+                                                          alertText = [NSString stringWithFormat:
+                                                                       @"Posted action, id: %@",
+                                                                       [result objectForKey:@"id"]];
+                                                      }
+                                                      // Show the result in an alert
+                                                      [[[UIAlertView alloc] initWithTitle:@"Result"
+                                                                                  message:alertText
+                                                                                 delegate:self
+                                                                        cancelButtonTitle:@"OK!"
+                                                                        otherButtonTitles:nil]
+                                                       show];
+                                                  }];
+                                             }
+                                        }
+                                         
+                                     }];
 }
+
 - (void) shareOnTwitter {
+    TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
+    
+    // Set the initial tweet text. See the framework for additional properties that can be set.
+    [tweetViewController setInitialText:@"Deneme #GreenTheGarden"];
+    
+    [tweetViewController addURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/chp-mobil/id588335596"]];
+    
+    // Create the completion handler block.
+    [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result) {
+        UIAlertView *alertView;
+        switch (result) {
+            case TWTweetComposeViewControllerResultCancelled:
+                // The cancel button was tapped.
+                NSLog(@"Tweet cancelled.");
+                break;
+            case TWTweetComposeViewControllerResultDone:
+                // The tweet was sent.
+                alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"TWEET_SENT", nil)
+                                                       message:nil
+                                                      delegate:nil
+                                             cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                             otherButtonTitles:nil];
+                
+                [alertView show];
+        
+                break;
+            default:
+                break;
+        }
+        
+        // Dismiss the tweet composition view controller.
+        [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
+    }];
+    
+    // Present the tweet composition view controller modally.
+    [[CCDirector sharedDirector] presentModalViewController:tweetViewController animated:YES];
     
 }
 @end

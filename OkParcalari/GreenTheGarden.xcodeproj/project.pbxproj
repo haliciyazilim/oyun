@@ -388,6 +388,7 @@
 		41B78B9D16A045F400C327E3 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B78B9C16A045F400C327E3 /* DatabaseManager.m */; };
 		41CC93FB16B7F19000569BDC /* GreenTheGardenMenu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41CC93FA16B7F19000569BDC /* GreenTheGardenMenu.mp3 */; };
 		41D3AC6616BAA73D00C74610 /* libFlurryAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D3AC6516BAA73D00C74610 /* libFlurryAds.a */; };
+		41D3AC6816BB045B00C74610 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D3AC6716BB045B00C74610 /* Twitter.framework */; };
 		41D8DDCD169C51C40041B503 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D8DDCC169C51C40041B503 /* FacebookSDK.framework */; };
 		41D8DDD8169C55CC0041B503 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */; };
 		41D8DDDE169C562B0041B503 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D8DDDB169C562B0041B503 /* Accounts.framework */; };
@@ -1831,6 +1832,7 @@
 		41D3AC6316BAA73D00C74610 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		41D3AC6416BAA73D00C74610 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
 		41D3AC6516BAA73D00C74610 /* libFlurryAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds.a; sourceTree = "<group>"; };
+		41D3AC6716BB045B00C74610 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		41D8DDCC169C51C40041B503 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		41D8DDDB169C562B0041B503 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -2725,6 +2727,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41D3AC6816BB045B00C74610 /* Twitter.framework in Frameworks */,
 				05A1417F16A5A5C900026343 /* MediaPlayer.framework in Frameworks */,
 				41ABD07816A5962F00E9C4EB /* SystemConfiguration.framework in Frameworks */,
 				41B78B9616A044DE00C327E3 /* CoreData.framework in Frameworks */,
@@ -3151,6 +3154,7 @@
 		410AA12E1670D9B500F6DCCA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				41D3AC6716BB045B00C74610 /* Twitter.framework */,
 				05A1417E16A5A5C900026343 /* MediaPlayer.framework */,
 				41ABD07716A5962F00E9C4EB /* SystemConfiguration.framework */,
 				41B78B9516A044DE00C327E3 /* CoreData.framework */,

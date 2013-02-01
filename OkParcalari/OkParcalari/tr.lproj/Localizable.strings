@@ -30,6 +30,12 @@
 "PROGRAMMING"="Programlama";
 "ART"="Sanatsal İşler";
 "MUSIC"="Müzik";
+
+// Social
+"FACEBOOK_SESSION_NOT_OPEN_TITLE" = "Hata";
+"FACEBOOK_SESSION_NOT_OPEN" = "FaceBook'a bağlı değilsiniz ya da Green The Garden FaceBook'a ileti yollama yetkisine sahip değil.";
+"TWEET_SENT" = "Tweetiniz başarıyla yollandı.";
+
 //Tutorial
 
 "TUTORIAL_WELCOME" = "Welcome to Green The Garden. Your objective is to green the garden! You will use water pumps and pipes in your quest.";

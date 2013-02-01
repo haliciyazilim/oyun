@@ -6,6 +6,10 @@
 //
 //
 
+//Ad Frequecy
+#define kAdRepeatMin 3
+#define kAdRepeatMax 5
+
 //Free MapsCount
 #define kNonPlayedActiveGameCount 6
 #define kFreeMapsCount 9

@@ -118,7 +118,6 @@
         [restartApprove setTag:RESTART_APPROVE_ALERTVIEW_TAG];
         [restartApprove show];
     }
-    [self restartGame];
 }
 - (void) returnToMainMenuApprove {
     if(!isRestaurantForAlert){
@@ -130,7 +129,6 @@
         [mainMenuApprove setTag:MAIN_MENU_APPROVE_ALERTVIEW_TAG];
         [mainMenuApprove show];
     }
-    [self returnToMainMenu];
 }
 - (void) restartGame {
     [self removeAllButtons];
