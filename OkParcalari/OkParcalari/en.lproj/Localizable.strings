@@ -29,6 +29,11 @@
 "ART"="Art";
 "MUSIC"="Music";
 
+// Social
+"FACEBOOK_SESSION_NOT_OPEN_TITLE" = "Error";
+"FACEBOOK_SESSION_NOT_OPEN" = "You're not connected to FaceBook or GreenTheGarden does not have the privilages to send FaceBook updates.";
+"TWEET_SENT" = "Your tweet has been successfully sent.";
+
 //Tutorial
 
 "TUTORIAL_WELCOME" = "Welcome to Green The Garden. Your objective is to green the garden! You will use water pumps and pipes in your quest.";
