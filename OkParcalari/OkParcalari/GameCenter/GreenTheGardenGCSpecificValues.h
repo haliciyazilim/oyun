@@ -47,5 +47,11 @@
 
 #define kAchievementTheRestaurant @"com.halici.GreenTheGarden.achievements.TheRestaurant"
 
-// GameCemter NOtifications
+// GameCemter Notifications
 #define kAuthenticationChangedNotification @"AuthenticedChanged"
+
+// Flurry events
+#define kFlurryEventUnlockFullGame @"Full Game Unlocked"
+#define kFlurryEventMapStarted @"Map Started"
+#define kFlurryEventMapSolved @"Map Solved"
+#define kFlurryEventAllFreeMapsPlayed @"All Free Maps Solved"

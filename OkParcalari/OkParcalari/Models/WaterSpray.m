@@ -8,6 +8,7 @@
 
 #import "WaterSpray.h"
 #import "CCBReader.h"
+#import "GreenTheGardenSoundManager.h"
 
 @implementation WaterSpray
 {
@@ -40,6 +41,23 @@
     [_squirt1 runAnimationWithSequenceNamed:@"Timeline1"];
     [_squirt2 runAnimationWithSequenceNamed:@"Timeline2"];
     [_squirt3 runAnimationWithSequenceNamed:@"Timeline3"];
+    
+    int splash = arc4random_uniform(15);
+    
+    switch (splash) {
+        case 0:
+            [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"splash1"];
+            break;
+        case 1:
+            [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"splash2"];
+            break;
+        case 2:
+            [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"splash3"];
+            break;
+            
+        default:
+            break;
+    }
     
     CGFloat randomTime = arc4random_uniform(45 )+30;
     [self schedule:@selector(scheduleSpraying) interval:0 repeat:1 delay:randomTime];

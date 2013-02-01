@@ -179,6 +179,7 @@ static ArrowGameLayer* __lastInstance;
     __lastInstance = self;
     self.arrowGame = [[ArrowGame alloc] initWithFile:fileName];
     [self addChild:self.arrowGame];
+    [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"environment"];
 }
 
 - (void) restartGame {
