@@ -11,6 +11,7 @@
 
 #import "GreenTheGardenGCSpecificValues.h"
 #import "GreenTheGardenIAPHelper.h"
+#import "Flurry.h"
 #import "FlurryAds.h"
 
 @implementation TransitionManager
@@ -48,7 +49,7 @@ static TransitionManager* currentInstance = nil;
 }
 
 - (void) makeTransitionWithBlock:(TransitionBlock)transitionBlock {
-
+    [Flurry logPageView];
     transition = transitionBlock;
     
     NSLog(@"making closing");
