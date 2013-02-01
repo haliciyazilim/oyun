@@ -41,6 +41,7 @@
 	// 'layer' is an autorelease object.
 	ArrowGameLayer *layer = [ArrowGameLayer node];
 	[layer initializeGameWithFile:fileName];
+    NSLog(@"%@",fileName);
 	// add layer as a child to scene
 //    InGameMenuLayer *menuLayer = [InGameMenuLayer node];
 	[scene addChild: layer];
@@ -108,6 +109,10 @@ static ArrowGameLayer* __lastInstance;
     
     [[[CCDirector sharedDirector] view] addSubview:inGameButtonsView];
     
+//    if(gameWinView != nil){
+//        [gameWinView removeFromSuperview];
+//        gameWinView = nil;
+//    }
     self.arrowGame = [[ArrowGame alloc] initWithFile:_fileName];
     [self addChild:self.arrowGame];
 }
@@ -144,6 +149,8 @@ static ArrowGameLayer* __lastInstance;
         [self addChild:logoView z:1000];
         
         _isRestaurantOpened = NO;
+        _isMenuOpened = NO;
+        _isGameEnded = NO;
         
 		self.isTouchEnabled = YES;
 	}
@@ -186,13 +193,18 @@ static ArrowGameLayer* __lastInstance;
     self.isTouchEnabled = NO;
     
     [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
+        NSString *newFile = [NSString stringWithString:_fileName];
         [self.arrowGame cleanMap];
         [self.arrowGame removeFromParentAndCleanup:YES];
+//        self.isTouchEnabled = YES;
+        _isRestaurantOpened = NO;
+        _isMenuOpened = NO;
+        _isGameEnded = NO;
         [ArrowGame cleanLastInstance];
         [ArrowGameLayer cleanLastInstance];
-        self.isTouchEnabled = YES;
-        _isRestaurantOpened = NO;
-        [self initializeGameWithFile:_fileName];
+//        [self initializeGameWithFile:_fileName];
+        [self removeFromParentAndCleanup:YES];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:newFile] withColor:ccWHITE]];
     }];
     
 //    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
@@ -256,16 +268,20 @@ static ArrowGameLayer* __lastInstance;
         [self addChild:menuLayer];
         [self reorderChild:menuLayer z:1111];
         self.isTouchEnabled = NO;
+        if(!isRestaurant){
+            _isMenuOpened = YES;
+        }
     }
 }
 - (void) inGameMenuWillClose {
     [self.arrowGame resumeGame];
+    _isMenuOpened = NO;
     self.isTouchEnabled = YES;
 }
 - (void) returnToMainMenu {
     self.isTouchEnabled = NO;
     [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
-        if(gameWinView){
+        if(gameWinView != nil){
             [gameWinView removeFromSuperview];
             gameWinView = nil;
         }
@@ -277,20 +293,6 @@ static ArrowGameLayer* __lastInstance;
         [ArrowGame cleanLastInstance];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
     }];
-    
-//    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
-//        if(gameWinView){
-//            [gameWinView removeFromSuperview];
-//            gameWinView = nil;
-//        }
-//        [self.arrowGame cleanMap];
-//        [self.arrowGame removeFromParentAndCleanup:YES];
-//        [self removeFromParentAndCleanup:YES];
-//        [ArrowGameLayer cleanLastInstance];
-//        [ArrowGame cleanLastInstance];
-//        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
-//    }];
-//    [myManager startTransition];
 }
 - (void) nextGame {
     Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
@@ -308,22 +310,30 @@ static ArrowGameLayer* __lastInstance;
     else{
         self.isTouchEnabled = NO;
         [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
-            if(gameWinView){
+            if(gameWinView != nil){
+                NSLog(@"removed gameWinView");
+                NSLog(@"%@",gameWinView);
                 [gameWinView removeFromSuperview];
                 gameWinView = nil;
             }
             [self.arrowGame cleanMap];
             [self.arrowGame removeFromParentAndCleanup:YES];
-            self.isTouchEnabled = YES;
+//            self.isTouchEnabled = YES;
+            _isRestaurantOpened = NO;
+            _isMenuOpened = NO;
+            _isGameEnded = NO;
             [ArrowGame cleanLastInstance];
             [ArrowGameLayer cleanLastInstance];
-            [self initializeGameWithFile:newMap.mapId];
+            [self removeFromParentAndCleanup:YES];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:newMap.mapId] withColor:ccWHITE]];
         }];
     }
     
 }
 -(void) gameEnded:(int)starCount andElapsedSeconds:(int)elapsedSeconds
 {
+    NSLog(@"entered gameEnded");
+    _isGameEnded = YES;
     self.isTouchEnabled = NO;
     
     Map* map = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
@@ -356,6 +366,7 @@ static ArrowGameLayer* __lastInstance;
         fileName4 = [NSString stringWithFormat:@"youwin_num_%d.png",seconds%10];
     }
     
+//    [gameWinView removeFromSuperview];
     gameWinView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
     
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_menu_frame.png"]];
@@ -424,7 +435,7 @@ static ArrowGameLayer* __lastInstance;
     [nextGame setFrame:CGRectMake(173.0, 263.0, 139.0, 55.0)];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next", @"png")] forState:UIControlStateNormal];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next_hover", @"png")] forState:UIControlStateHighlighted];
-    if(newMap){
+    if(newMap != nil){
         [nextGame addTarget:self action:@selector(nextGame) forControlEvents:UIControlEventTouchUpInside];
     }
     else{

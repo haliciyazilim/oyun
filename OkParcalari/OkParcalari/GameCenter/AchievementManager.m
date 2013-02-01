@@ -23,8 +23,6 @@ static AchievementManager * sharedAchievementManager=nil;
     return sharedAchievementManager;
 }
 
-
-
 - (id)init
 {
     self = [super init];
@@ -35,46 +33,35 @@ static AchievementManager * sharedAchievementManager=nil;
     return self;
 }
 
-
 -(void) getAchievements{
     NSMutableDictionary *achievementDescriptions = [[NSMutableDictionary alloc] init];
 
     [GKAchievementDescription loadAchievementDescriptionsWithCompletionHandler:^(NSArray *descriptions, NSError *error) {
         if (error != nil) {
-            NSLog(@"Error getting achievement descriptions: %@", error);
+            ;
         }
         for (GKAchievementDescription *achievementDescription in descriptions) {
             [achievementDescriptions setObject:achievementDescription forKey:achievementDescription.identifier];
-//            NSLog(@"Acievement Descripticon: %@", achievementDescription.achievedDescription);
-        
         }
     }];
     _achievementDescriptions=achievementDescriptions;
-    
 }
 
 - (void) loadAchievements
 {
-    
     NSMutableDictionary *achievementsDictionary = [[NSMutableDictionary alloc] init];
-
     [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error)
      {
-         
-//         NSLog(@"Load Acievements Count: %i", [achievements count]);
          if (error == nil)
          {
              for (GKAchievement* achievement in achievements){
                  if(achievement.percentComplete==100.0){
                      [achievementsDictionary setObject: achievement forKey: achievement.identifier];
-                     NSLog(@"Load Acievements: %@, percent: %f", achievement.identifier,achievement.percentComplete);
                  }
-                 
              }
          }
          else{
-             NSLog(@"Error in loading achievements: %@", error);
-
+             ;
          }
          _achievementsDictionary=achievementsDictionary;
      }];
@@ -85,56 +72,35 @@ static AchievementManager * sharedAchievementManager=nil;
     
     GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
     
-    NSLog(@"submitted Achievement: %@", achievement);
-
-    
     BOOL isExist=NO;
     GKAchievement * loadedAchievement=[[GKAchievement alloc] initWithIdentifier:[_achievementsDictionary objectForKey:achievement.identifier]];
     
-    NSLog(@"loaded Achievement: %@, %@", loadedAchievement.self, loadedAchievement.identifier);
-    
-    
     if(loadedAchievement.identifier!=nil){
         isExist=YES;
-        //loadedAchievement=[[GKAchievement alloc] initWithIdentifier:strAchievement];
-//        NSLog(@"Loaded Achievement: %@, Lid: %@, Lpercent: %f", loadedAchievement,loadedAchievement.identifier,loadedAchievement.percentComplete);
     }
     
-//    NSLog(@"Gelen Başarı: %@, percet: %f",achievement.identifier, achievement.percentComplete);
-    
-    NSLog(@"IsExist: %d",isExist);
-    
-    if (achievement && isExist==NO) // esas sorgu bu.
-//    if (achievement) // Test için duruyor bu.
+    if (achievement && isExist==NO)
     {
 
         achievement.percentComplete = percent;
         achievement.showsCompletionBanner = YES; 
         [achievement reportAchievementWithCompletionHandler:^(NSError *error)
          {
-             NSLog(@"report");
-             
              if (achievement.percentComplete==100.0) {
-              NSLog(@"100");   
-                 
                  GKAchievementDescription *achievementDescription=[[GKAchievementDescription alloc] init];
                  achievementDescription=[_achievementDescriptions objectForKey:achievement.identifier];
-                
              }
-             
              dispatch_async(dispatch_get_main_queue(), ^(void)
                             {
-                                if (error == NULL) {
-                                    NSLog(@"Successfully sent archievement!");
-                                    [[AchievementManager sharedAchievementManager]loadAchievements];
+                                if (error == nil) {
+                                    [[AchievementManager sharedAchievementManager] loadAchievements];
                                 } else {
-                                    NSLog(@"Achievement failed to send... will try again \
-                                          later.  Reason: %@", error.localizedDescription);
+                                    ;
                                 }
                             });
              if (error != nil)
              {
-                 NSLog(@"Error in reporting achievements: %@", error);
+                 ;
              }
          }];
     }
@@ -142,12 +108,10 @@ static AchievementManager * sharedAchievementManager=nil;
 
 - (void) resetAchievements
 {
-    // Clear all locally saved achievement objects.
     _achievementsDictionary = [[NSMutableDictionary alloc] init];
-    // Clear all progress saved on Game Center.
     [GKAchievement resetAchievementsWithCompletionHandler:^(NSError *error){
          if (error != nil){
-             // handle the error.
+             ;
          }
     }];
 }
@@ -155,7 +119,6 @@ static AchievementManager * sharedAchievementManager=nil;
 // Specific Methods
 
 -(void)checkAchievementFastMindQuickHands: (Map*) playedMap{
-//    NSLog(@"MAp.score: %@", playedMap.score);
     if(playedMap.score.intValue<60)
     [self submitAchievement:kAchievementFastMindQuickHands percentComplete:100];
 }
@@ -183,9 +146,6 @@ static AchievementManager * sharedAchievementManager=nil;
                 freeMapsStar3Count++;
         }
     }
-    NSLog(@"Çözülen Haritananın zorluğu: %i, Aynı zorlutaki tüm harita sayısı: %i, çözülmüş harita sayısı: %i",playedMap.difficulty,mapsCount,solvedMapsCount);
-    
-    
 
         NSString * achievementCompletionist=[[NSString alloc] init];
         NSString * achievementPerfectionist=[[NSString alloc] init];
@@ -226,9 +186,6 @@ static AchievementManager * sharedAchievementManager=nil;
 //    pathtuStardom
     if(playedMap.getStarCount==3)
         [self submitAchievement:kAchievementPathToStardom percentComplete:100.0];
-    
-    
-    
 }
 
 @end

@@ -38,24 +38,26 @@
 
 //Tutorial
 
-"TUTORIAL_WELCOME" = "Welcome to Green The Garden. Your objective is to green the garden! You will use water pumps and pipes in your quest.";
-"TUTORIAL_COMPLETED" = "End of Tutorial!";
+"TUTORIAL_WELCOME" = "Hoş geldiniz. Oyundaki göreviniz her bir bahçeyi yeşillendirmektir. Bunun için pompalardan çıkan boruları kullanacaksınız.";
+"TUTORIAL_COMPLETED" = "Bundan sonra bahçeyi tek başına yeşillendireceksin. \nİyi Eğlenceler.";
 
-"TUTORIAL_1_0" = "This is a water pump. Water pumps have varying water pressures";
-"TUTORIAL_1_1" = "This pump can water 9 tiles";
-"TUTORIAL_1_2" = "You can only have straight pipes emanating from the water pumps.";
-"TUTORIAL_1_3" = "Go on and water 9 tiles by dragging upwards from this pump.";
+"TUTORIAL_1_0" = "Bu bir su pompası; her su pompasının farklı bir basınç değeri bulunmaktadır.";
+"TUTORIAL_1_1" = "Bu su pompası 9 kareyi sulayacak basınca sahiptir.";
+"TUTORIAL_1_2" = "Boruları sadece bir doğru şeklinde çıkartabilirsiniz.";
+"TUTORIAL_1_3" = "Şimdi, bu pompadan boruyu yukarı doğru 9 kare çıkart.";
 
-"TUTORIAL_2_0" = "There’s only one water pump which can reach this tile.";
-"TUTORIAL_2_1" = "So, let’s use that pump.";
-"TUTORIAL_2_2" = "Go on and water the tile below by dragging from here.";
+"TUTORIAL_2_0" = "Buraya erşilebilen sadece bir pompa bulunmaktadır.";
+"TUTORIAL_2_1" = "Haydi, o pompayı kullanalım.";
+"TUTORIAL_2_2" = "Şimdi boruyu buradan aşağı doğru çıkart.";
 
-"TUTORIAL_3_0" = "The same is true for this tile too.";
+"TUTORIAL_3_0" = "Aynısı bu kare için de geçerli.";
 
 "TUTORIAL_4_0" = "";
 
-"TUTORIAL_5_0" = "This pump can water 6 tiles.";
+"TUTORIAL_5_0" = "Bu pompa 6 kare sulayabilir.";
 "TUTORIAL_5_1" = "It has 2 empty tiles to its right and 7 empty tiles below itself.";
+"TUTORIAL_5_1" = "Pompanın sağına doğru 2, altına doğru ise 7 karelik boşluk bulunmaktadır.";
 "TUTORIAL_5_2" = "Even if it is used to water both of the tiles to its right it will still have power to water 4 tiles below.";
-"TUTORIAL_5_3" = "So, it is certain that this pump will be watering at least 4 tiles below itself.";
-"TUTORIAL_5_4" = "Go on and water 4 tiles.";
+"TUTORIAL_5_2" = "Eğer bu pompa sağındaki iki kareyi sulamak zorunda olsaydı aşağı doğru 4 kare daha sulayabilirdi.";
+"TUTORIAL_5_3" = "Demek ki, bu pompa aşağı doğru 4 kareyi kesinlikle sulayacaktır.";
+"TUTORIAL_5_4" = "Şimdi 4 karelik alanı sula.";
