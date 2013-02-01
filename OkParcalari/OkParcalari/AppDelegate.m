@@ -134,7 +134,7 @@
 {
     [FBSettings publishInstall:[FBSession defaultAppID]];
     if([ArrowGameLayer lastInstance]){
-        if(![[ArrowGameLayer lastInstance] isRestaurantOpened])
+        if(![[ArrowGameLayer lastInstance] isRestaurantOpened] && ![[ArrowGameLayer lastInstance] isMenuOpened] && ![[ArrowGameLayer lastInstance] isGameEnded])
             [[ArrowGameLayer lastInstance] showInGameMenu:NO];
     }
 	if( [navController_ visibleViewController] == director_ )

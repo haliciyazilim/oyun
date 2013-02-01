@@ -11,6 +11,7 @@
 @implementation Stopwatch
 {
     double totalPausedTimeInterval;
+    int pauseCount;
 }
 
 + (id) StopwatchWithMinutes:(int)minutes andSeconds:(int)seconds {
@@ -18,7 +19,7 @@
 }
 
 - (id) initWithMinutes:(int)minutes andSeconds:(int)seconds {
-    if(self = [super init]){
+    if(self = [self init]){
         _seconds = seconds;
         _minutes = minutes;
         _isPaused = 0;
@@ -33,6 +34,8 @@
         _seconds = 0;
         _minutes = 0;
         _isPaused = 0;
+        pauseCount = 0;
+        _lastPausedTime = nil;
         return self;
     }
     return nil;
@@ -41,9 +44,11 @@
 - (void) updateStopwatch:(ccTime)dt {
     if (!_isPaused) {
         double interval = (double)[[NSDate date] timeIntervalSinceDate:_startTime];
+        int miliseconds = (int)((interval - (int)interval) * 100);
         interval -= totalPausedTimeInterval;
         _seconds = (int)floor(interval) % 60;
         _minutes = (int)floor(interval) / 60;
+        _miliseconds = miliseconds;
         if (_minutes >= 100) {
             [[NSNotificationCenter defaultCenter] postNotificationName:kReachedToRestaurantNotification object:nil];
         }
@@ -61,15 +66,24 @@
 }
 
 - (void) pauseTimer {
-    _isPaused = 1;
-    [self unschedule:@selector(updateStopwatch:)];
-    _lastPausedTime = [NSDate date];
+    pauseCount++;
+    if(pauseCount > 0){
+        _isPaused = 1;
+        [self unschedule:@selector(updateStopwatch:)];
+        if(_lastPausedTime == nil){
+            _lastPausedTime = [NSDate date];
+        }
+    }
 }
 
 - (void) resumeTimer {
-    totalPausedTimeInterval += (double)[[NSDate date] timeIntervalSinceDate:_lastPausedTime];
-    [self schedule:@selector(updateStopwatch:)];
-    _isPaused = 0;
+    pauseCount--;
+    if(pauseCount <= 0){
+        totalPausedTimeInterval += (double)[[NSDate date] timeIntervalSinceDate:_lastPausedTime];
+        [self schedule:@selector(updateStopwatch:)];
+        _isPaused = 0;
+        _lastPausedTime = nil;
+    }
 }
 
 - (void) resetTimer {

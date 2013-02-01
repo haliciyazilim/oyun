@@ -20,6 +20,8 @@
 
 @property ArrowGame *arrowGame;
 @property BOOL isRestaurantOpened;
+@property BOOL isMenuOpened;
+@property BOOL isGameEnded;
 //@property Stopwatch *gameTimer;
 
 - (void) restartGame;

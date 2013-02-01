@@ -41,6 +41,7 @@
 	// 'layer' is an autorelease object.
 	ArrowGameLayer *layer = [ArrowGameLayer node];
 	[layer initializeGameWithFile:fileName];
+    NSLog(@"%@",fileName);
 	// add layer as a child to scene
 //    InGameMenuLayer *menuLayer = [InGameMenuLayer node];
 	[scene addChild: layer];
@@ -144,6 +145,8 @@ static ArrowGameLayer* __lastInstance;
         [self addChild:logoView z:1000];
         
         _isRestaurantOpened = NO;
+        _isMenuOpened = NO;
+        _isGameEnded = NO;
         
 		self.isTouchEnabled = YES;
 	}
@@ -186,13 +189,18 @@ static ArrowGameLayer* __lastInstance;
     self.isTouchEnabled = NO;
     
     [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
+        NSString *newFile = [NSString stringWithString:_fileName];
         [self.arrowGame cleanMap];
         [self.arrowGame removeFromParentAndCleanup:YES];
-        [ArrowGame cleanLastInstance];
-        [ArrowGameLayer cleanLastInstance];
         self.isTouchEnabled = YES;
         _isRestaurantOpened = NO;
-        [self initializeGameWithFile:_fileName];
+        _isMenuOpened = NO;
+        _isGameEnded = NO;
+        [ArrowGame cleanLastInstance];
+        [ArrowGameLayer cleanLastInstance];
+//        [self initializeGameWithFile:_fileName];
+        [self removeFromParentAndCleanup:YES];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:newFile] withColor:ccWHITE]];
     }];
     
 //    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
@@ -256,10 +264,14 @@ static ArrowGameLayer* __lastInstance;
         [self addChild:menuLayer];
         [self reorderChild:menuLayer z:1111];
         self.isTouchEnabled = NO;
+        if(!isRestaurant){
+            _isMenuOpened = YES;
+        }
     }
 }
 - (void) inGameMenuWillClose {
     [self.arrowGame resumeGame];
+    _isMenuOpened = NO;
     self.isTouchEnabled = YES;
 }
 - (void) returnToMainMenu {
@@ -315,15 +327,20 @@ static ArrowGameLayer* __lastInstance;
             [self.arrowGame cleanMap];
             [self.arrowGame removeFromParentAndCleanup:YES];
             self.isTouchEnabled = YES;
+            _isRestaurantOpened = NO;
+            _isMenuOpened = NO;
+            _isGameEnded = NO;
             [ArrowGame cleanLastInstance];
             [ArrowGameLayer cleanLastInstance];
-            [self initializeGameWithFile:newMap.mapId];
+            [self removeFromParentAndCleanup:YES];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:newMap.mapId] withColor:ccWHITE]];
         }];
     }
     
 }
 -(void) gameEnded:(int)starCount andElapsedSeconds:(int)elapsedSeconds
 {
+    _isGameEnded = YES;
     self.isTouchEnabled = NO;
     
     Map* map = [[DatabaseManager sharedInstance] getMapWithID:_fileName];

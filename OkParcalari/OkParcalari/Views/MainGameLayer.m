@@ -44,14 +44,7 @@
     CGSize size = [[CCDirector sharedDirector] winSize];
     [[GameCenterManager sharedInstance] authenticateLocalUser];
     
-    //
-    
-    
-    
     [AchievementManager sharedAchievementManager];
-    
-    //
-    
     
     CCLayerColor *colorLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)];
     colorLayer.position = ccp(size.width*0.0,size.height*0.0);
@@ -62,7 +55,7 @@
     [self addChild:colorLayer];
     [self addChild:backLayer];
     [self scheduleOnce:@selector(addLogo:) delay:2.0];
-    [self scheduleOnce:@selector(addTapToStart) delay:1.25];
+    [self scheduleOnce:@selector(addTapToStart) delay:5.25];
     
 }
 - (void) addTapToStart {
@@ -93,45 +86,16 @@
     [self addChild:logoLayer];
 }
 
-//- (void)productPurchased:(NSNotification *)notification {
-//    
-//    NSString * productIdentifier = notification.object;
-//    [_products enumerateObjectsUsingBlock:^(SKProduct * product, NSUInteger idx, BOOL *stop) {
-//        if ([product.productIdentifier isEqualToString:productIdentifier]) {
-//            NSLog(@"successfully purchased %@",productIdentifier);
-//            *stop = YES;
-//        }
-//    }];
-//    
-//}
-
 -(id) init
 {
     if(self = [super init]){
-//        CGSize size = [[CCDirector sharedDirector] winSize];
-//        CCSprite *background = [CCSprite spriteWithFile:@"game_bg.png"];
-//        background.position = ccp(size.width * 0.5, size.height * 0.5);
-//        [self addChild:background];
-        
-//        newGameButton = [CCSprite spriteWithFile:LocalizedImageName(@"btn_newgame", @"png")];
-//        newGameButton.position = ccp(size.width * 0.5, size.height * 0.5);
-//        
-//        [self addChild:newGameButton z:997];
-//        [[GreenTheGardenIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
-//            _products = products;
-//        }];
-//        self.isTouchEnabled = YES;
-        
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     }
     return self;
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"entered touchesEnded");
     [self makeTransition];
-//    [self buyButtonTapped];
 }
 
 - (void) buyButtonTapped {
@@ -140,10 +104,6 @@
     NSLog(@"Buying %@...", product.productIdentifier);
     [[GreenTheGardenIAPHelper sharedInstance] buyProduct:product];
 }
-//
-//- (void)restoreTapped {
-//    [[GreenTheGardenIAPHelper sharedInstance] restoreCompletedTransactions];
-//}
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
