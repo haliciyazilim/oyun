@@ -11,6 +11,7 @@
 //#import <FacebookSDK/FacebookSDK.h>
 #import "Facebook.h"
 #import <Twitter/Twitter.h>
+#import "Flurry.h"
 
 #import "ArrowGameLayer.h"
 #import "InGameMenuLayer.h"
@@ -29,7 +30,8 @@
 
 @interface ArrowGameLayer ()
 
-- (void) showFaceBookDialogWithAccessToken:(NSString *)accessToken;
+- (void) showFaceBookDialogWithAccessToken:(NSString *)accessToken
+                         andExpirationDate:(NSDate *)expirationDate;
 
 @end
 
@@ -42,6 +44,8 @@
     
     int _elapsedSeconds;
     int _starCount;
+    int _mapOrder;
+    MAP_DIFFICULTY _difficulty;
 }
 
 +(CCScene *) sceneWithFile:(NSString *)fileName
@@ -346,6 +350,9 @@ static ArrowGameLayer* __lastInstance;
 {
     _starCount = starCount;
     _elapsedSeconds = elapsedSeconds;
+    _difficulty = [[DatabaseManager sharedInstance] getMapWithID:_fileName].difficulty;
+    _mapOrder = [[DatabaseManager sharedInstance] getMapWithID:_fileName].order;
+    
     NSLog(@"entered gameEnded");
     _isGameEnded = YES;
     self.isTouchEnabled = NO;
@@ -552,8 +559,17 @@ static ArrowGameLayer* __lastInstance;
 }
 
 - (void) shareOnFacebook {
+    [Flurry logEvent:kFlurryEventFacebookPostPressed
+      withParameters:@{
+            @"Map Order" : [NSNumber numberWithInt:_mapOrder],
+            @"Difficulty" : [NSNumber numberWithInt:_difficulty],
+            @"Star Count" : [NSNumber numberWithInt:_starCount],
+            @"Elapsed Seconds" : [NSNumber numberWithInt:_elapsedSeconds]
+     }];
+    
     if ([[FBSession activeSession] state] == FBSessionStateOpen) {
-        [self showFaceBookDialogWithAccessToken:[[FBSession activeSession] accessToken]];
+        [self showFaceBookDialogWithAccessToken:[[FBSession activeSession] accessToken]
+                              andExpirationDate:[[FBSession activeSession] expirationDate]];
     } else {
         [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"]
                                            defaultAudience:FBSessionDefaultAudienceEveryone
@@ -572,13 +588,15 @@ static ArrowGameLayer* __lastInstance;
                                              
                                              [alertView show];
                                          } else {
-                                             [self showFaceBookDialogWithAccessToken:[session accessToken]];
+                                             [self showFaceBookDialogWithAccessToken:[session accessToken]
+                                                                   andExpirationDate:[session expirationDate]];
                                          }
                                      }];
     }
 }
 
-- (void) showFaceBookDialogWithAccessToken:(NSString *)accessToken {
+- (void) showFaceBookDialogWithAccessToken:(NSString *)accessToken
+                         andExpirationDate:(NSDate *)expirationDate {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:
                                    @{@"name" : @"Green the Garden",
                                    @"caption" : NSLocalizedString(@"FACEBOOK_SHARE_CAPTION", nil),
@@ -588,14 +606,31 @@ static ArrowGameLayer* __lastInstance;
     
     
     // Invoke the dialog
-    Facebook *fb = [[Facebook alloc] initWithAppId:[FBSession defaultAppID] andDelegate:nil];
-    [fb setAccessToken:accessToken];
-    [fb dialog:@"feed" andParams:params andDelegate:nil];
+    _facebook = [[Facebook alloc] initWithAppId:[FBSession defaultAppID] andDelegate:nil];
+    _facebook.accessToken = accessToken;
+    _facebook.expirationDate = expirationDate;
+    [_facebook dialog:@"feed" andParams:params andDelegate:self];
+}
+
+- (void) dialogCompleteWithUrl:(NSURL*) url
+{
+    if ([url.absoluteString rangeOfString:@"post_id="].location != NSNotFound) {
+        // user pressed "Send"
+        [Flurry logEvent:kFlurryEventFacebookPostSent
+          withParameters:@{
+                @"Map Order" : [NSNumber numberWithInt:_mapOrder],
+                @"Difficulty" : [NSNumber numberWithInt:_difficulty],
+                @"Star Count" : [NSNumber numberWithInt:_starCount],
+                @"Elapsed Seconds" : [NSNumber numberWithInt:_elapsedSeconds]
+         }];
+    } else {
+        // user pressed "Cancel" button (although not the circle with X)
+    }
 }
 
 - (NSString *)prepareShareMessageForTwitter:(BOOL)twitter {
     // Set the initial tweet text. See the framework for additional properties that can be set.
-    MAP_DIFFICULTY difficulty = [[DatabaseManager sharedInstance] getMapWithID:_fileName].difficulty;
+    MAP_DIFFICULTY difficulty = _difficulty;
     
     NSString *difficultyString;
     
@@ -634,6 +669,14 @@ static ArrowGameLayer* __lastInstance;
 }
 
 - (void) shareOnTwitter {
+    [Flurry logEvent:kFlurryEventTweetPressed
+      withParameters:@{
+            @"Map Order" : [NSNumber numberWithInt:_mapOrder],
+            @"Difficulty" : [NSNumber numberWithInt:_difficulty],
+            @"Star Count" : [NSNumber numberWithInt:_starCount],
+            @"Elapsed Seconds" : [NSNumber numberWithInt:_elapsedSeconds]
+     }];
+    
     TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
     
     
@@ -647,7 +690,6 @@ static ArrowGameLayer* __lastInstance;
         switch (result) {
             case TWTweetComposeViewControllerResultCancelled:
                 // The cancel button was tapped.
-                NSLog(@"Tweet cancelled.");
                 break;
             case TWTweetComposeViewControllerResultDone:
                 // The tweet was sent.
@@ -658,7 +700,13 @@ static ArrowGameLayer* __lastInstance;
                                              otherButtonTitles:nil];
                 
                 [alertView show];
-        
+                [Flurry logEvent:kFlurryEventTweetSent
+                  withParameters:@{
+                        @"Map Order" : [NSNumber numberWithInt:_mapOrder],
+                        @"Difficulty" : [NSNumber numberWithInt:_difficulty],
+                        @"Star Count" : [NSNumber numberWithInt:_starCount],
+                        @"Elapsed Seconds" : [NSNumber numberWithInt:_elapsedSeconds]
+                 }];
                 break;
             default:
                 break;

@@ -6,6 +6,7 @@
 //
 //
 
+#import "Facebook.h"
 #import "cocos2d.h"
 #import "ArrowGame.h"
 #import "ArrowBase.h"
@@ -13,7 +14,7 @@
 
 //@class Stopwatch;
 
-@interface ArrowGameLayer : CCLayer
+@interface ArrowGameLayer : CCLayer <FBDialogDelegate>
 
 +(CCScene *) sceneWithFile:(NSString*)fileName;
 - (void) initializeGameWithFile:(NSString*)fileName;
@@ -23,6 +24,8 @@
 @property BOOL isMenuOpened;
 @property BOOL isGameEnded;
 //@property Stopwatch *gameTimer;
+
+@property (strong, nonatomic) Facebook *facebook;
 
 - (void) restartGame;
 - (void) inGameMenuWillClose;
