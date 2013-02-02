@@ -7,17 +7,16 @@
 //
 
 #import "RMInGameViewController.h"
-
+#import "RMPhotoSelectionViewController.h"
 
 typedef void (^ IteratorBlock)();
 
-
-
 @interface CroppedImageView : UIImageView
--(void) rotateToAngle:(float)angle;
+@property RMInGameViewController* parent;
+- (void) rotateToAngle:(float)angle;
+- (void) setRotationStateTo:(int)state;
+- (int) getCurrentRotationState;
 @end
-
-
 
 @interface RMInGameViewController ()
 
@@ -28,14 +27,18 @@ typedef void (^ IteratorBlock)();
     int rows;
     int cols;
     int tileSize;
-    NSArray* croppedImages;
     UIImage* currentImage;
+    BOOL isGameFinished;
+    UIImageView* hiddenImage;
 }
+
 +(RMInGameViewController *)lastInstance
 {
     return lastInstance;
 }
+
 static RMInGameViewController* lastInstance = nil;
+
 -(id) init
 {
     if(self = [super init]){
@@ -58,26 +61,40 @@ static RMInGameViewController* lastInstance = nil;
 - (void)viewDidLoad
 {
     lastInstance = self;
+    isGameFinished = NO;
     
-    rows = 6;
-    cols = 8;
-    
-    tileSize = 45;
-    
+    if([RMPhotoSelectionViewController isEasy]){
+        rows = 3;
+        cols = 4;
+        tileSize = 90;
+    }
+    else{
+        rows = 6;
+        cols = 8;
+        tileSize = 45;
+    }
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]];
     
-        
-    UIImageView* grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
+    hiddenImage = [[UIImageView alloc] initWithImage:currentImage];
+    hiddenImage.frame = CGRectMake(7, 5, 374-5-9, 284-7-7);
+    [self.photoHolder addSubview:hiddenImage];
+    [hiddenImage setClipsToBounds:YES];
+    [hiddenImage setContentMode:UIViewContentModeScaleAspectFill];
     
+    UIImageView* grids;
+    if([RMPhotoSelectionViewController isEasy]){
+        grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_double_grid.png"]];
+    }else{
+        grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
+    }
     grids.frame = CGRectMake(7, 5, grids.image.size.width, grids.image.size.height);
     grids.alpha = 0.5;
     [self.photoHolder addSubview:grids];
     self.grids = grids;
     
     [self configureView];
-	// Do any additional setup after loading the view.
 }
 
 - (void) setImage:(UIImage*)image
@@ -94,13 +111,49 @@ static RMInGameViewController* lastInstance = nil;
     }];
 }
 
+- (BOOL) isGameFinished
+{
+    return isGameFinished;
+}
 
+- (BOOL) canGameFinish
+{
+    BOOL isFinished = YES;
+    for(CroppedImageView* croppedImage in self.croppedImages){
+        NSLog(@"state: %d",[croppedImage getCurrentRotationState]);
+        if([croppedImage getCurrentRotationState] != 0)
+            isFinished = NO;
+    }
+    return isFinished;
+}
+
+- (void) endGame
+{
+    isGameFinished = YES;
+    for(CroppedImageView* croppedImage in self.croppedImages){
+        [croppedImage removeFromSuperview];
+    }
+    [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationCurveEaseIn animations:^{
+        self.grids.alpha = 0.0;
+        
+    } completion:^(BOOL finished) {
+        CGRect initialFrame = hiddenImage.frame;
+        [UIView animateWithDuration:0.5 animations:^{
+            hiddenImage.frame = CGRectMake(initialFrame.origin.x - initialFrame.size.width*0.035, initialFrame.origin.y - initialFrame.size.height*0.035, initialFrame.size.width*1.07, initialFrame.size.height*1.07);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.5 animations:^{
+                hiddenImage.frame = initialFrame;
+            }];
+        }];
+    }];
+    
+}
 
 - (void) configureView
 {
-    
     CGSize canvasSize;
     
+    NSMutableArray* croppedImages = [[NSMutableArray alloc] init];
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
         ([UIScreen mainScreen].scale == 2.0)) {
         canvasSize = CGSizeMake(720, 540);
@@ -108,9 +161,7 @@ static RMInGameViewController* lastInstance = nil;
     } else {
         canvasSize = CGSizeMake(360, 270);
     }
-//    NSLog(@"canvasSize w:%f h:%f",canvasSize.width,canvasSize.height);
     UIImage* resizedImage = [self imageByScalingAndCropping:currentImage forSize:canvasSize];
-//    UIImage* resizedImage = currentImage;
     for(int x=0; x<cols; x++){
         for(int y=0; y<rows; y++){
             CGRect rect;
@@ -125,14 +176,24 @@ static RMInGameViewController* lastInstance = nil;
             UIImage *img = [UIImage imageWithCGImage:imageRef];
             CroppedImageView* imgView = [[CroppedImageView alloc] initWithImage:img];
             imgView.frame = CGRectMake(7+x*tileSize, 5+y*tileSize, tileSize, tileSize);
-            if((x+y)%2 == 0)
-                [imgView rotateToAngle:M_PI*0.5];
+            
+            if(arc4random()%100 < 10)
+                [imgView setRotationStateTo: M_PI * 0.0];
+            else if(arc4random()%100 < 40)
+                [imgView setRotationStateTo: M_PI * 0.5];
+            else if(arc4random()%100 < 70)
+                [imgView setRotationStateTo: M_PI * 1.0];
+            else if(arc4random()%100 < 100)
+                [imgView setRotationStateTo: M_PI * 1.5];
+
             [self.photoHolder addSubview:imgView];
             [self.photoHolder insertSubview:imgView belowSubview:self.grids];
+            imgView.parent = self;
+            [croppedImages addObject:imgView];
                         
         }
     }
-    
+    self.croppedImages = croppedImages;
     
 }
 - (UIImage*)imageByScalingAndCropping:(UIImage*)sourceImage forSize:(CGSize)targetSize
@@ -216,6 +277,7 @@ static RMInGameViewController* lastInstance = nil;
     float currentAngle;
 }
 
+
 -(id)initWithImage:(UIImage *)image
 {
     if(self = [super initWithImage:image]){
@@ -231,11 +293,13 @@ static RMInGameViewController* lastInstance = nil;
     currentAngle = angle;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if(isAnimating)
         return;
     isAnimating = YES;
+    if([self.parent isGameFinished])
+        return;
     [self.superview bringSubviewToFront:self];
     [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         CGAffineTransform t1 = CGAffineTransformMakeScale(1.3, 1.3);
@@ -251,8 +315,51 @@ static RMInGameViewController* lastInstance = nil;
         } completion:^(BOOL finished){
             isAnimating = NO;
             [self.superview insertSubview:self belowSubview:[[RMInGameViewController lastInstance] grids]];
+            if([self.parent canGameFinish]){
+                NSLog(@"Game is finished");
+                [self.parent endGame];
+            }
         }];
     }];
+}
+
+-(void)setRotationStateTo:(int)state
+{
+    if(state < 0 || state > 3)
+        return;
+    currentAngle = M_PI * ((float)state / 2.0) ;
+    [self rotateToAngle:currentAngle];
+}
+
+-(int)getCurrentRotationState
+{
+    if(isAnimating)
+        return -2;
+    
+    float angle = currentAngle;
+    
+    while (angle < 0) {
+        angle += M_PI * 2;
+    }
+    while(angle > M_PI * 2){
+        angle -= M_PI * 2;
+    }
+    
+    float error = 0.0001;
+    int state = -1;
+    
+    if(angle >= 0-error && angle <= 0+error )
+        state = 0;
+    else if(angle >= M_PI*0.5-error && angle <= M_PI*0.5+error)
+        state = 1;
+    else if(angle >= M_PI*1.0-error && angle <= M_PI*1.0+error)
+        state = 2;
+    else if(angle >= M_PI*1.5-error && angle <= M_PI*1.5+error)
+        state = 3;
+    else if(angle >= M_PI*2.0-error && angle <= M_PI*2.0+error)
+        state = 0;
+    
+    return state;
 }
 
 @end
