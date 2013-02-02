@@ -20,16 +20,14 @@ static GameCenterManager *sharedManager = nil;
 }
 
 -(void)authenticateLocalUser{
-    NSLog(@"entered authenticateLocalUser");
     if(!_isGameCenterAvailable){
         return;
     }
     NSLog(@"Authenticating local user...");
     if ([GKLocalPlayer localPlayer].authenticated == NO) {
         [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:nil];
-        NSLog(@"*********Authenticated***********");
     } else {
-        NSLog(@"Already authenticated!");
+        ;
     }
 }
 
@@ -62,7 +60,6 @@ static GameCenterManager *sharedManager = nil;
 
 - (void)authenticationChanged {
     if ([GKLocalPlayer localPlayer].isAuthenticated && !_isUserAuthenticated) {
-        NSLog(@"Authentication changed: player authenticated.");
         _isUserAuthenticated = TRUE;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kAuthenticationChangedNotification object:nil userInfo:nil];
@@ -72,7 +69,6 @@ static GameCenterManager *sharedManager = nil;
 
         
     } else if (![GKLocalPlayer localPlayer].isAuthenticated && _isUserAuthenticated) {
-        NSLog(@"Authentication changed: player not authenticated");
         _isUserAuthenticated = FALSE;
     }
 }
@@ -83,14 +79,11 @@ static GameCenterManager *sharedManager = nil;
         _leaderboardCategories = categories;
         _leaderboardTitles = titles;
         
-        NSLog(@"LeaderBoard Categori: %@ Title: %@", categories,titles);
     }];
 }
 
 - (void) submitScore:(int)score category:(NSString*)category
 {
-    NSLog(@"entered saveScore");
-    NSLog(@"score: %d, category: %@",score,category);
     GKScore* gkScore =
     [[GKScore alloc]
      initWithCategory:category];
@@ -101,7 +94,7 @@ static GameCenterManager *sharedManager = nil;
     //4: Send the score to Game Center
     [gkScore reportScoreWithCompletionHandler:
      ^(NSError* error) {
-         NSLog(@"score is reported");
+         ;
     }];
 }
 
@@ -117,8 +110,7 @@ static GameCenterManager *sharedManager = nil;
             board.category = @"high_score";
             [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
                 if (error != nil) {
-                    // handle the error.
-                    NSLog(@"Error retrieving score.", nil);
+                    ;
                 }
                 
                 if (scores != nil) {
@@ -129,11 +121,11 @@ static GameCenterManager *sharedManager = nil;
             }];
         }
         else{
-            NSLog(@"board is nil");
+            ;
         }
     }
     else{
-        NSLog(@"user is not authenticated");
+        ;
     }
 }
 

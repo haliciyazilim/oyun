@@ -13,7 +13,8 @@
 #import "GameCenterManager.h"
 #import "DatabaseManager.h"
 
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
+#import "Facebook.h"
 #import "Flurry.h"
 #import "FlurryAds.h"
 
@@ -139,7 +140,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
     [FBSettings publishInstall:[FBSession defaultAppID]];
     if([ArrowGameLayer lastInstance]){
-        if(![[ArrowGameLayer lastInstance] isRestaurantOpened])
+        if(![[ArrowGameLayer lastInstance] isRestaurantOpened] && ![[ArrowGameLayer lastInstance] isMenuOpened] && ![[ArrowGameLayer lastInstance] isGameEnded])
             [[ArrowGameLayer lastInstance] showInGameMenu:NO];
     }
 	if( [navController_ visibleViewController] == director_ )
@@ -152,6 +153,11 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:[AchievementManager sharedAchievementManager] selector:@selector(loadAchievements) name:kAuthenticationChangedNotification object:nil];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [FBSession.activeSession handleOpenURL:url];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application

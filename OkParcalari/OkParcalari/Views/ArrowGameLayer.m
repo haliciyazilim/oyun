@@ -8,7 +8,8 @@
 
 #define MENU_TAG 994
 
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
+#import "Facebook.h"
 #import <Twitter/Twitter.h>
 
 #import "ArrowGameLayer.h"
@@ -26,11 +27,21 @@
 #import "GreenTheGardenGCSpecificValues.h"
 #import "TransitionManager.h"
 
+@interface ArrowGameLayer ()
+
+- (void) showFaceBookDialogWithAccessToken:(NSString *)accessToken;
+
+@end
+
+
 @implementation ArrowGameLayer
 {
     NSString *_fileName;
     UIView *inGameButtonsView;
     UIView *gameWinView;
+    
+    int _elapsedSeconds;
+    int _starCount;
 }
 
 +(CCScene *) sceneWithFile:(NSString *)fileName
@@ -41,6 +52,7 @@
 	// 'layer' is an autorelease object.
 	ArrowGameLayer *layer = [ArrowGameLayer node];
 	[layer initializeGameWithFile:fileName];
+    NSLog(@"%@",fileName);
 	// add layer as a child to scene
 //    InGameMenuLayer *menuLayer = [InGameMenuLayer node];
 	[scene addChild: layer];
@@ -107,6 +119,13 @@ static ArrowGameLayer* __lastInstance;
     [inGameButtonsView addSubview:menuButton];
     
     [[[CCDirector sharedDirector] view] addSubview:inGameButtonsView];
+    
+//    if(gameWinView != nil){
+//        [gameWinView removeFromSuperview];
+//        gameWinView = nil;
+//    }
+    self.arrowGame = [[ArrowGame alloc] initWithFile:_fileName];
+    [self addChild:self.arrowGame];
 }
 -(void)goToMenu{
     if(!_isRestaurantOpened){
@@ -141,6 +160,8 @@ static ArrowGameLayer* __lastInstance;
         [self addChild:logoView z:1000];
         
         _isRestaurantOpened = NO;
+        _isMenuOpened = NO;
+        _isGameEnded = NO;
         
 		self.isTouchEnabled = YES;
 	}
@@ -177,22 +198,25 @@ static ArrowGameLayer* __lastInstance;
 {
     _fileName = fileName;
     __lastInstance = self;
-    self.arrowGame = [[ArrowGame alloc] initWithFile:fileName];
-    [self addChild:self.arrowGame];
-    [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"environment"];
+//    [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"environment"];
 }
 
 - (void) restartGame {
     self.isTouchEnabled = NO;
     
     [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
+        NSString *newFile = [NSString stringWithString:_fileName];
         [self.arrowGame cleanMap];
         [self.arrowGame removeFromParentAndCleanup:YES];
+//        self.isTouchEnabled = YES;
+        _isRestaurantOpened = NO;
+        _isMenuOpened = NO;
+        _isGameEnded = NO;
         [ArrowGame cleanLastInstance];
         [ArrowGameLayer cleanLastInstance];
-        self.isTouchEnabled = YES;
-        _isRestaurantOpened = NO;
-        [self initializeGameWithFile:_fileName];
+//        [self initializeGameWithFile:_fileName];
+        [self removeFromParentAndCleanup:YES];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:newFile] withColor:ccWHITE]];
     }];
     
 //    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
@@ -256,16 +280,20 @@ static ArrowGameLayer* __lastInstance;
         [self addChild:menuLayer];
         [self reorderChild:menuLayer z:1111];
         self.isTouchEnabled = NO;
+        if(!isRestaurant){
+            _isMenuOpened = YES;
+        }
     }
 }
 - (void) inGameMenuWillClose {
     [self.arrowGame resumeGame];
+    _isMenuOpened = NO;
     self.isTouchEnabled = YES;
 }
 - (void) returnToMainMenu {
     self.isTouchEnabled = NO;
     [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
-        if(gameWinView){
+        if(gameWinView != nil){
             [gameWinView removeFromSuperview];
             gameWinView = nil;
         }
@@ -277,20 +305,6 @@ static ArrowGameLayer* __lastInstance;
         [ArrowGame cleanLastInstance];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
     }];
-    
-//    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
-//        if(gameWinView){
-//            [gameWinView removeFromSuperview];
-//            gameWinView = nil;
-//        }
-//        [self.arrowGame cleanMap];
-//        [self.arrowGame removeFromParentAndCleanup:YES];
-//        [self removeFromParentAndCleanup:YES];
-//        [ArrowGameLayer cleanLastInstance];
-//        [ArrowGame cleanLastInstance];
-//        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[MapSelectionLayer scene] withColor:ccWHITE]];
-//    }];
-//    [myManager startTransition];
 }
 - (void) nextGame {
     Map *oldMap = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
@@ -308,22 +322,32 @@ static ArrowGameLayer* __lastInstance;
     else{
         self.isTouchEnabled = NO;
         [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
-            if(gameWinView){
+            if(gameWinView != nil){
+                NSLog(@"removed gameWinView");
+                NSLog(@"%@",gameWinView);
                 [gameWinView removeFromSuperview];
                 gameWinView = nil;
             }
             [self.arrowGame cleanMap];
             [self.arrowGame removeFromParentAndCleanup:YES];
-            self.isTouchEnabled = YES;
+//            self.isTouchEnabled = YES;
+            _isRestaurantOpened = NO;
+            _isMenuOpened = NO;
+            _isGameEnded = NO;
             [ArrowGame cleanLastInstance];
             [ArrowGameLayer cleanLastInstance];
-            [self initializeGameWithFile:newMap.mapId];
+            [self removeFromParentAndCleanup:YES];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:newMap.mapId] withColor:ccWHITE]];
         }];
     }
     
 }
 -(void) gameEnded:(int)starCount andElapsedSeconds:(int)elapsedSeconds
 {
+    _starCount = starCount;
+    _elapsedSeconds = elapsedSeconds;
+    NSLog(@"entered gameEnded");
+    _isGameEnded = YES;
     self.isTouchEnabled = NO;
     
     Map* map = [[DatabaseManager sharedInstance] getMapWithID:_fileName];
@@ -356,6 +380,7 @@ static ArrowGameLayer* __lastInstance;
         fileName4 = [NSString stringWithFormat:@"youwin_num_%d.png",seconds%10];
     }
     
+//    [gameWinView removeFromSuperview];
     gameWinView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
     
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_menu_frame.png"]];
@@ -424,7 +449,7 @@ static ArrowGameLayer* __lastInstance;
     [nextGame setFrame:CGRectMake(173.0, 263.0, 139.0, 55.0)];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next", @"png")] forState:UIControlStateNormal];
     [nextGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_next_hover", @"png")] forState:UIControlStateHighlighted];
-    if(newMap){
+    if(newMap != nil){
         [nextGame addTarget:self action:@selector(nextGame) forControlEvents:UIControlEventTouchUpInside];
     }
     else{
@@ -527,140 +552,94 @@ static ArrowGameLayer* __lastInstance;
 }
 
 - (void) shareOnFacebook {
-    // If a user has *never* logged into your app, request one of
-    // "email", "user_location", or "user_birthday". If you do not
-    // pass in any permissions, "email" permissions will be automatically
-    // requested for you. Other read permissions can also be included here.
-//    NSArray *permissions =
-//    [NSArray arrayWithObjects:@"email", nil];
-//
-//    [FBSession openActiveSessionWithReadPermissions:permissions
-//                                       allowLoginUI:YES
-//                                  completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-//                                      /* handle success + failure in block */
-//
-//                                      // can include any of the "publish" or "manage" permissions
-//                                      NSArray *permissions =
-//                                      [NSArray arrayWithObjects:@"publish_actions", nil];
-//                                      
-//                                      [[FBSession activeSession] reauthorizeWithPublishPermissions:permissions
-//                                                                                   defaultAudience:FBSessionDefaultAudienceFriends
-//                                                                                 completionHandler:^(FBSession *session, NSError *error) {
-//                                                                                     /* handle success + failure in block */
-//                                                                                 }];
-//                                  }];
-    
-    [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"]
-                                       defaultAudience:FBSessionDefaultAudienceEveryone
-                                          allowLoginUI:YES
-                                     completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-                                         NSLog(@"Success!");
+    if ([[FBSession activeSession] state] == FBSessionStateOpen) {
+        [self showFaceBookDialogWithAccessToken:[[FBSession activeSession] accessToken]];
+    } else {
+        [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"]
+                                           defaultAudience:FBSessionDefaultAudienceEveryone
+                                              allowLoginUI:YES
+                                         completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                             NSLog(@"Success!");
                                      
-                                         if (status != FBSessionStateOpen) {
-                                             // Show alert
-                                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"FACEBOOK_SESSION_NOT_OPEN_TITLE", nil)
-                                                                                                message:NSLocalizedString(@"FACEBOOK_SESSION_NOT_OPEN", nil)
-                                                                                               delegate:nil
-                                                                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                                                      otherButtonTitles:nil];
+                                             if (status != FBSessionStateOpen) {
+                                                 // Show alert
+                                                 UIAlertView *alertView = [[UIAlertView alloc]
+                                                                           initWithTitle:NSLocalizedString(@"FACEBOOK_SESSION_NOT_OPEN_TITLE", nil)
+                                                                           message:NSLocalizedString(@"FACEBOOK_SESSION_NOT_OPEN", nil)
+                                                                           delegate:nil
+                                                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                                           otherButtonTitles:nil];
                                              
                                              [alertView show];
                                          } else {
-                                             //
-                                             //                                         BOOL displayedNativeDialog =
-                                             //                                         [FBNativeDialogs
-                                             //                                          presentShareDialogModallyFrom:[CCDirector sharedDirector]
-                                             //                                          initialText:@"(Deneme) 1:15'de üç yıldızı çaktım"
-                                             //                                          image:[UIImage imageNamed:@"Icon-72@2x.png"]
-                                             //                                          url:[NSURL URLWithString:@"http://www.halici.com.tr"]
-                                             //                                          handler:^(FBNativeDialogResult result, NSError *error) {
-                                             //                                              if (error) {
-                                             //                                                  /* handle failure */
-                                             //                                              } else {
-                                             //                                                  if (result == FBNativeDialogResultSucceeded) {
-                                             //                                                      /* handle success */
-                                             //                                                  } else {
-                                             //                                                      /* handle user cancel */
-                                             //                                                  }
-                                             //                                              }
-                                             //                                          }];
-                                             //                                         if (!displayedNativeDialog) {
-                                             //                                             /*
-                                             //                                              Fallback to web-based Feed Dialog:
-                                             //                                              https://developers.facebook.com/docs/howtos/feed-dialog-using-ios-sdk/
-                                             //                                              */
-                                             //                                         }
-                                             
-                                             
-                                             // This function will invoke the Feed Dialog to post to a user's Timeline and News Feed
-                                             // It will first attempt to do this natively through iOS 6
-                                             // If that's not supported we'll fall back to the web based dialog.
-                                             
-                                             UIImage *image = [UIImage imageNamed:@"Icon-72@2x.png"];
-                                             
-                                             NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"https://itunes.apple.com/us/app/chp-mobil/id588335596"]];
-                                             
-                                             bool bDisplayedDialog = [FBNativeDialogs presentShareDialogModallyFrom:[CCDirector sharedDirector]
-                                                                                                        initialText:@"Deneme! 5 yildizi caktim ha!"
-                                                                                                              image:nil
-                                                                                                                url:url
-                                                                                                            handler:^(FBNativeDialogResult result, NSError *error) {}];
-                                             
-                                             if (!bDisplayedDialog)
-                                             {
-                                                 
-                                                 // Put together the dialog parameters
-                                                 NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                                                @"Green the Garden", @"name",
-                                                                                @"1:13'te 3 yildizi caktim!", @"caption",
-                                                                                [NSString stringWithFormat:@"I just smashed 1r12 friends! Can you beat my score?"], @"description",
-                                                                                @"http://www.friendsmash.com/images/logo_large.jpg", @"picture",
-                                                                                
-                                                                                // Add the link param for Deep Linking
-                                                                                [NSString stringWithFormat:@"http://www.halici.com.tr"], @"link",
-                                                                                nil];
-                                                 
-                                                 // Invoke the dialog
-                                                 //                                             [appDelegate.facebook dialog:@"feed" andParams:params andDelegate:nil];
-                                                 
-                                                 [FBRequestConnection
-                                                  startWithGraphPath:@"me/feed"
-                                                  parameters:params
-                                                  HTTPMethod:@"POST"
-                                                  completionHandler:^(FBRequestConnection *connection,
-                                                                      id result,
-                                                                      NSError *error) {
-                                                      NSString *alertText;
-                                                      if (error) {
-                                                          alertText = [NSString stringWithFormat:
-                                                                       @"error: domain = %@, code = %d",
-                                                                       error.domain, error.code];
-                                                      } else {
-                                                          alertText = [NSString stringWithFormat:
-                                                                       @"Posted action, id: %@",
-                                                                       [result objectForKey:@"id"]];
-                                                      }
-                                                      // Show the result in an alert
-                                                      [[[UIAlertView alloc] initWithTitle:@"Result"
-                                                                                  message:alertText
-                                                                                 delegate:self
-                                                                        cancelButtonTitle:@"OK!"
-                                                                        otherButtonTitles:nil]
-                                                       show];
-                                                  }];
-                                             }
-                                        }
-                                         
+                                             [self showFaceBookDialogWithAccessToken:[session accessToken]];
+                                         }
                                      }];
+    }
+}
+
+- (void) showFaceBookDialogWithAccessToken:(NSString *)accessToken {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:
+                                   @{@"name" : @"Green the Garden",
+                                   @"caption" : NSLocalizedString(@"FACEBOOK_SHARE_CAPTION", nil),
+                                   @"description" : [self prepareShareMessageForTwitter:NO],
+                                   @"picture" : @"http://a1268.phobos.apple.com/us/r30/Purple2/v4/1d/6f/b1/1d6fb17c-b001-a53c-9250-967bc5922479/mzl.plgguvnt.170x170-75.png",
+                                   @"link" : @"https://itunes.apple.com/us/app/green-the-garden/id592099228"}];
+    
+    
+    // Invoke the dialog
+    Facebook *fb = [[Facebook alloc] initWithAppId:[FBSession defaultAppID] andDelegate:nil];
+    [fb setAccessToken:accessToken];
+    [fb dialog:@"feed" andParams:params andDelegate:nil];
+}
+
+- (NSString *)prepareShareMessageForTwitter:(BOOL)twitter {
+    // Set the initial tweet text. See the framework for additional properties that can be set.
+    MAP_DIFFICULTY difficulty = [[DatabaseManager sharedInstance] getMapWithID:_fileName].difficulty;
+    
+    NSString *difficultyString;
+    
+    if (difficulty == EASY) {
+        difficultyString = NSLocalizedString(@"TWEET_MAP_EASY", nil);
+    } else if (difficulty == NORMAL) {
+        difficultyString = NSLocalizedString(@"TWEET_MAP_NORMAL", nil);
+    } else if (difficulty == HARD) {
+        difficultyString = NSLocalizedString(@"TWEET_MAP_HARD", nil);
+    } else if (difficulty == INSANE) {
+        difficultyString = NSLocalizedString(@"TWEET_MAP_INSANSE", nil);
+    }
+    
+    NSString *tweetString;
+    
+    if (_starCount == 0) {
+        if (twitter) {
+            tweetString = [NSString stringWithFormat:NSLocalizedString(@"TWEET_MESSAGE_NO_STAR", nil), difficultyString, _elapsedSeconds];
+        } else {
+            tweetString = [NSString stringWithFormat:NSLocalizedString(@"FACEBOOK_MESSAGE_NO_STAR", nil), difficultyString, _elapsedSeconds];
+        }
+    } else {
+        NSString *localizedString = [NSString stringWithFormat:@"TWEET_%d_STAR", _starCount];
+        NSString *starString = NSLocalizedString(localizedString , nil);
+        NSString *formatString;
+        if (twitter) {
+            formatString = NSLocalizedString(@"TWEET_MESSAGE_WITH_STARS", nil);
+        } else {
+            formatString = NSLocalizedString(@"FACEBOOK_MESSAGE_WITH_STARS", nil);
+        }
+        
+        tweetString = [NSString stringWithFormat:formatString, difficultyString, _elapsedSeconds, starString];
+    }
+
+    return [[[tweetString substringToIndex:1] uppercaseString] stringByAppendingString:[tweetString substringFromIndex:1]];
 }
 
 - (void) shareOnTwitter {
     TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
     
-    // Set the initial tweet text. See the framework for additional properties that can be set.
-    [tweetViewController setInitialText:@"Deneme #GreenTheGarden"];
     
-    [tweetViewController addURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/chp-mobil/id588335596"]];
+    [tweetViewController setInitialText:[self prepareShareMessageForTwitter:YES]];
+    
+    [tweetViewController addURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/green-the-garden/id592099228"]];
     
     // Create the completion handler block.
     [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result) {

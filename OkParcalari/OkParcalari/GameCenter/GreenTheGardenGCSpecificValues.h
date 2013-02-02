@@ -55,3 +55,7 @@
 #define kFlurryEventMapStarted @"Map Started"
 #define kFlurryEventMapSolved @"Map Solved"
 #define kFlurryEventAllFreeMapsPlayed @"All Free Maps Solved"
+#define kFlurryEventFacebookPost @"Facebook Post"
+#define kFlurryEventTweet @"Tweet"
+#define kFlurryEventFirstSession @"First Session"
+#define kFlurryEventInfoScreenView @"Info Screen View"

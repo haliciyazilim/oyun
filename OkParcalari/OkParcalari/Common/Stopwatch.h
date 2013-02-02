@@ -17,6 +17,7 @@
 
 @property long long int seconds;
 @property long long int minutes;
+@property long long int miliseconds;
 
 @property NSDate *startTime;
 @property NSDate *lastPausedTime;

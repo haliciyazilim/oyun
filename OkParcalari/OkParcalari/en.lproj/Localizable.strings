@@ -31,7 +31,21 @@
 
 // Social
 "FACEBOOK_SESSION_NOT_OPEN_TITLE" = "Error";
-"FACEBOOK_SESSION_NOT_OPEN" = "You're not connected to FaceBook or GreenTheGarden does not have the privilages to send FaceBook updates.";
+"FACEBOOK_SESSION_NOT_OPEN" = "You're not connected to Facebook or GreenTheGarden does not have the privilages to send Facebook updates.";
+"FACEBOOK_SHARE_CAPTION" = "Can you beat me?";
+"FACEBOOK_MESSAGE_NO_STAR" = "I solved %@ map in %d seconds.";
+"FACEBOOK_MESSAGE_WITH_STARS" = "I solved %@ map in %d seconds with %@.";
+
+"TWEET_MESSAGE_NO_STAR" = "I solved %@ map in %d seconds in #GreenTheGarden.";
+"TWEET_MESSAGE_WITH_STARS" = "I solved %@ map in %d seconds with %@ in #GreenTheGarden.";
+"TWEET_1_STAR" = "1 star";
+"TWEET_2_STAR" = "2 stars";
+"TWEET_3_STAR" = "3 stars";
+"TWEET_MAP_EASY" = "an easy";
+"TWEET_MAP_NORMAL" = "a normal";
+"TWEET_MAP_HARD" = "a hard";
+"TWEET_MAP_INSANE" = "an insane";
+
 "TWEET_SENT" = "Your tweet has been successfully sent.";
 
 //Tutorial
