@@ -27,9 +27,9 @@
 "NO_PURCHASED" = "Ücretiz haritaların sonuncusunu oynadınız. Tam sürüme geçerek bütün haritalara ulaşabilirsiniz.";
 
 // Credits
-"PROGRAMMING"="Programlama";
-"ART"="Sanatsal İşler";
-"MUSIC"="Müzik";
+"PROGRAMMING"="PROGRAMLAMA";
+"ART"="GÖRSEL TASARIM";
+"MUSIC"="MÜZİK";
 
 // Social
 "FACEBOOK_SESSION_NOT_OPEN_TITLE" = "Hata";

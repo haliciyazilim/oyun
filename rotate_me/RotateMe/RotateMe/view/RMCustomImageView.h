@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TypeDefs.h"
 
 @interface RMCustomImageView : UIImageView
 
-typedef void (^ IteratorBlock)();
 -(void)setTouchesBegan:(IteratorBlock)block;
 -(BOOL)isInsideTouchesBegan;
 @end
