@@ -8,6 +8,8 @@
 
 #define GAME_LAYER_TAG 582
 
+#import "Flurry.h"
+
 #import "MapSelectionLayer.h"
 #import "GreenTheGardenSoundManager.h"
 #import "GreenTheGardenIAPHelper.h"
@@ -374,6 +376,8 @@
 }
 
 -(void) infoScreen{
+    [Flurry logEvent:kFlurryEventInfoScreenView timed:YES];
+    
     CGSize winSize = [CCDirector sharedDirector].winSize;
     UIImageView *backgroundImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_menu_frame.png"]];
     backgroundUIView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winSize.width, winSize.height)];
@@ -458,6 +462,9 @@
     // Art
     UILabel * cArt=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 500, credits.frame.size.width, 40.0)];
     [cArt setFont:[UIFont fontWithName:font size:fontSizeL]];
+    [cArt setTextColor:[UIColor whiteColor]];
+    [cArt setShadowColor:[UIColor blackColor]];
+    [cArt setShadowOffset:CGSizeMake(1, 1)];
     [cArt setTextAlignment:NSTextAlignmentCenter];
     [cArt setBackgroundColor:[UIColor clearColor]];
     [cArt setText:NSLocalizedString(@"ART", nil)];
@@ -549,6 +556,8 @@
 
 -(void)closeInfoScreen{
     [backgroundUIView removeFromSuperview];
+    
+    [Flurry endTimedEvent:kFlurryEventInfoScreenView withParameters:nil];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
