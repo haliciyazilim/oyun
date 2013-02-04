@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "TypeDefs.h"
-@interface RMStopWatch : NSObject
 
+@interface StopWatch : NSObject
 
 - (void) pauseTimer;
 - (void) resumeTimer;

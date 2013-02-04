@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Yunus Eren Guzel. All rights reserved.
 //
 
-#import "RMStopWatch.h"
+#import "StopWatch.h"
 
-@implementation RMStopWatch
+@implementation StopWatch
 {
     NSTimer *timer;
     int seconds;
@@ -31,18 +31,16 @@
 
 - (void) startTimerWithRepeatBlock:(IteratorBlock)block
 {
-//    NSLog(@"startTimerWithRepaetBlock");
     isPaused = NO;
     updateBlock = block;
     timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
-    
 }
 
 - (void) updateTimer:(NSTimer*)timer
 {
-    if(isPaused)
+    if(isPaused){
         return;
-//    NSLog(@"%@",[self toString]);
+    }
     miliseconds++;
     if(miliseconds == 100){
         miliseconds = 0;
@@ -84,8 +82,6 @@
     NSString* minutesString = minutes < 10 ? [NSString stringWithFormat:@"0%d",minutes] : [NSString stringWithFormat:@"%d",minutes];
     
     NSString* secondsString = seconds < 10 ? [NSString stringWithFormat:@"0%d",seconds] : [NSString stringWithFormat:@"%d",seconds];
-    
-//    NSString* milisecondsString = miliseconds < 10 ? [NSString stringWithFormat:@"0%d",miliseconds] : [NSString stringWithFormat:@"%d",miliseconds];
     
     NSString* milisecondsString = [NSString stringWithFormat:@"%d",miliseconds/10];
     
