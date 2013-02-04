@@ -25,9 +25,9 @@
 "NO_PURCHASED" = "This was the last level in the free level pack. You can unlock the full game to access all the levels.";
 
 // Credits
-"PROGRAMMING"="Programming";
-"ART"="Art";
-"MUSIC"="Music";
+"PROGRAMMING"="PROGRAMMING";
+"ART"="ART";
+"MUSIC"="MUSIC";
 
 // Social
 "FACEBOOK_SESSION_NOT_OPEN_TITLE" = "Error";
