@@ -203,6 +203,15 @@ static ArrowGameLayer* __lastInstance;
     _fileName = fileName;
     __lastInstance = self;
 //    [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"environment"];
+    
+    _difficulty = [[DatabaseManager sharedInstance] getMapWithID:_fileName].difficulty;
+    _mapOrder = [[DatabaseManager sharedInstance] getMapWithID:_fileName].order;
+    
+    [Flurry logEvent:kFlurryEventMapStarted
+      withParameters:@{
+            @"Map Order" : [NSNumber numberWithInt:_mapOrder],
+            @"Difficulty" : [NSNumber numberWithInt:_difficulty]
+     }];
 }
 
 - (void) restartGame {
@@ -351,8 +360,14 @@ static ArrowGameLayer* __lastInstance;
 //    starCount = 1;
     _starCount = starCount;
     _elapsedSeconds = elapsedSeconds;
-    _difficulty = [[DatabaseManager sharedInstance] getMapWithID:_fileName].difficulty;
-    _mapOrder = [[DatabaseManager sharedInstance] getMapWithID:_fileName].order;
+    
+    [Flurry logEvent:kFlurryEventMapSolved
+      withParameters:@{
+            @"Map Order" : [NSNumber numberWithInt:_mapOrder],
+            @"Difficulty" : [NSNumber numberWithInt:_difficulty],
+            @"Star Count" : [NSNumber numberWithInt:_starCount],
+            @"Elapsed Seconds" : [NSNumber numberWithInt:_elapsedSeconds]
+     }];
     
     NSLog(@"entered gameEnded");
     _isGameEnded = YES;

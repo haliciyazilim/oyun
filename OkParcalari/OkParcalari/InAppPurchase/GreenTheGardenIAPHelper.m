@@ -5,6 +5,11 @@
 //  Created by Alperen Kavun on 10.01.2013.
 //
 
+
+#import "Flurry.h"
+#import "DatabaseManager.h"
+#import "Map.h"
+
 #import "GreenTheGardenIAPHelper.h"
 #import "MapSelectionLayer.h"
 #import "GreenTheGardenIAPSpecificValues.h"
@@ -43,8 +48,18 @@
         [productPurchased show];
         isAlertShown = YES;
         
+        int count = 0;
+        for (Map *map in [[DatabaseManager sharedInstance] getAllMaps]) {
+            
+            if ([map isFinished]) {
+                count++;
+            }
+        }
+        
         [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementBeAPro percentComplete:100.00];
         
+        [Flurry logEvent:kFlurryEventUnlockFullGame
+          withParameters:@{@"Solved Map Count" : [NSNumber numberWithInt:count]}];
     }
 }
 - (void) createStore {
@@ -170,15 +185,18 @@
         [couldNotMakePurchasesAlert show];
     }
 }
+
 - (void)restorePurchases {
     [[GreenTheGardenIAPHelper sharedInstance] restoreCompletedTransactions];
 }
+
 - (void)closeStore {
     [super removeActivity];
     isClosed = YES;
     [storeView removeFromSuperview];
     storeView = nil;
 }
+
 - (BOOL) isPro {
     return [self productPurchased:iProUpgradeKey];
 }

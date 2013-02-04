@@ -14,6 +14,8 @@
 {
     if([[DatabaseManager sharedInstance] isEmpty]){
     
+        
+        
         NSMutableArray* maps = [[NSMutableArray alloc] init];
         
         NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"packageinfo"]

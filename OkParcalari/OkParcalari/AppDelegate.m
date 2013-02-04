@@ -37,6 +37,14 @@
     [Flurry startSession:@"PW345B45PR4W3D6Z2V8H"];
     [FlurryAds initialize:[CCDirector sharedDirector]];
     
+    if ([[DatabaseManager sharedInstance] isEmpty]) {
+        [Flurry logEvent:kFlurryEventFirstSession timed:YES];
+    }
+    
+    [Flurry logEvent:kFlurryEventUnlockFullGame
+      withParameters:@{@"Solved Map Count" : [NSNumber numberWithInt:9]}];
+    
+    
     [GreenTheGardenIAPHelper sharedInstance];
     [GreenTheGardenSoundManager sharedSoundManager];
     
