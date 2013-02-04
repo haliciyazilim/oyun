@@ -6,6 +6,7 @@
 //
 //
 
+#import "Flurry.h"
 #import "AchievementManager.h"
 #import "GameCenterManager.h"
 #import "DatabaseManager.h"
@@ -182,6 +183,14 @@ static AchievementManager * sharedAchievementManager=nil;
 //    Free Maps
     [self submitAchievement:kAchievementFreeMapCompletionist percentComplete:solvedFreeMapPercentComplete];
     [self submitAchievement:kAchievementFreeMapsPerfectionist percentComplete:freeStar3PercentComplete];
+    
+    if ([self achievementsDictionary] != nil) {
+        if ([[self achievementsDictionary] objectForKey:kAchievementFreeMapCompletionist] == nil) {
+            if (solvedFreeMapPercentComplete == 100.0) {
+                [Flurry logEvent:kFlurryEventAllFreeMapsPlayed];
+            }
+        }
+    }
     
 //    pathtuStardom
     if(playedMap.getStarCount==3)
