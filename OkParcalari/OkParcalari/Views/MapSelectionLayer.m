@@ -384,13 +384,13 @@
     CGFloat bgHeight=background.frame.size.height;
     
     UIButton * btnClose=[UIButton buttonWithType:UIButtonTypeCustom];
-    [btnClose setFrame:CGRectMake(bgWidth-45.0,0.0, 45.0, 45.0)];
+    [btnClose setFrame:CGRectMake(bgWidth-60.0,0.0, 45.0, 45.0)];
     [btnClose setBackgroundImage:[UIImage imageNamed:@"inapp_btn_close.png"] forState:UIControlStateNormal];
     [btnClose setBackgroundImage:[UIImage imageNamed:@"inapp_btn_close_hover.png"] forState:UIControlStateHighlighted];
     [btnClose addTarget:self action:@selector(closeInfoScreen) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    UIView * mask=[[UIView alloc]initWithFrame:CGRectMake(20, 20, bgWidth-40, bgHeight-40)];
+       
+    UIView * mask=[[UIView alloc]initWithFrame:CGRectMake(20, 40, bgWidth-40, bgHeight-80)];
     [mask setBackgroundColor:[UIColor clearColor]];
     mask.clipsToBounds=YES;
 
@@ -400,42 +400,53 @@
     
     float fontSizeL=28.0;
     float fontSizeM=24.0;
-    
+    NSString *font=@"Rabbit On The Moon";
+    UIColor * color=[UIColor whiteColor];
     // Company Name
     UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0, credits.frame.size.width, 40.0)];
-    [cName setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:fontSizeL]];
+    [cName setFont:[UIFont fontWithName:font size:fontSizeL]];
+    [cName setTextColor:[UIColor whiteColor]];
+    [cName setShadowColor:[UIColor blackColor]];
+    [cName setShadowOffset:CGSizeMake(1, 1)];
     [cName setTextAlignment:NSTextAlignmentCenter];
     [cName setBackgroundColor:[UIColor clearColor]];
     [cName setText:@"HALICI BİLGİ İŞLEM A.Ş."];
     
     // Adress
-    UILabel * cAdress=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 40, credits.frame.size.width, 40.0)];
-    [cAdress setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:fontSizeM]];
+    UILabel * cAdress=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 40, credits.frame.size.width, 120)];
+    [cAdress setFont:[UIFont fontWithName:font size:fontSizeM]];
+    [cAdress setTextColor:color];
     [cAdress setTextAlignment:NSTextAlignmentCenter];
     [cAdress setBackgroundColor:[UIColor clearColor]];
-    [cAdress setNumberOfLines:2];
-    [cAdress setText:@"ODTÜ-Halıcı Yazılımevi, İnönü Bulvarı 06531, \nODTÜ-Teknokent/ANKARA"];
+    [cAdress setNumberOfLines:3];
+    [cAdress setText:@"ODTÜ-Halıcı Yazılımevi \nİnönü Bulvarı 06531 \nODTÜ-Teknokent/ANKARA"];
     
     // Mail
-    UILabel * cMail=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 80, credits.frame.size.width, 40.0)];
-    [cMail setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:fontSizeM]];
+    UILabel * cMail=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 160, credits.frame.size.width, 40.0)];
+    [cMail setFont:[UIFont fontWithName:font size:fontSizeM]];
+    [cMail setTextColor:color];
     [cMail setTextAlignment:NSTextAlignmentCenter];
     [cMail setBackgroundColor:[UIColor clearColor]];
     [cMail setText:@"iletisim@halici.com.tr"];
     
     
     // Programming
-    UILabel * cProgramming=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 160, credits.frame.size.width, 40.0)];
-    [cProgramming setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:fontSizeL]];
+    UILabel * cProgramming=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 240, credits.frame.size.width, 40.0)];
+    [cProgramming setFont:[UIFont fontWithName:font size:fontSizeL]];
+    [cProgramming setTextColor:[UIColor whiteColor]];
+    [cProgramming setShadowColor:[UIColor blackColor]];
+    [cProgramming setShadowOffset:CGSizeMake(1, 1)];
     [cProgramming setTextAlignment:NSTextAlignmentCenter];
     [cProgramming setBackgroundColor:[UIColor clearColor]];
     [cProgramming setText:NSLocalizedString(@"PROGRAMMING",nil)];
     
+    
     // Names
     NSArray * names=[[NSArray alloc] initWithObjects:@"Eren HALICI",@"Yunus Eren GÜZEL", @"Abdullah KARACABEY",@"Alperen KAVUN", nil];
     for(int i=0; i<names.count;i++){
-        UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 200+i*40, credits.frame.size.width, 40.0)];
-        [cName setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:fontSizeM]];
+        UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 300+i*40, credits.frame.size.width, 40.0)];
+        [cName setFont:[UIFont fontWithName:font size:fontSizeM]];
+        [cName setTextColor:color];
         [cName setTextAlignment:NSTextAlignmentCenter];
         [cName setBackgroundColor:[UIColor clearColor]];
         [cName setNumberOfLines:2];
@@ -445,14 +456,15 @@
     
 
     // Art
-    UILabel * cArt=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 400, credits.frame.size.width, 40.0)];
-    [cArt setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:fontSizeL]];
+    UILabel * cArt=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 500, credits.frame.size.width, 40.0)];
+    [cArt setFont:[UIFont fontWithName:font size:fontSizeL]];
     [cArt setTextAlignment:NSTextAlignmentCenter];
     [cArt setBackgroundColor:[UIColor clearColor]];
     [cArt setText:NSLocalizedString(@"ART", nil)];
     
-    UILabel * cArtName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 440, credits.frame.size.width, 40.0)];
+    UILabel * cArtName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 540, credits.frame.size.width, 40.0)];
     [cArtName setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:fontSizeM]];
+    [cArtName setTextColor:color];
     [cArtName setTextAlignment:NSTextAlignmentCenter];
     [cArtName setBackgroundColor:[UIColor clearColor]];
     [cArtName setNumberOfLines:2];
@@ -460,16 +472,20 @@
     
     
     // Music
-    UILabel * cMusic=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 520, credits.frame.size.width, 40.0)];
-    [cMusic setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:fontSizeL]];
+    UILabel * cMusic=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 620, credits.frame.size.width, 40.0)];
+    [cMusic setFont:[UIFont fontWithName:font size:fontSizeL]];
+    [cMusic setTextColor:[UIColor whiteColor]];
+    [cMusic setShadowColor:[UIColor blackColor]];
+    [cMusic setShadowOffset:CGSizeMake(1, 1)];
     [cMusic setTextAlignment:NSTextAlignmentCenter];
     [cMusic setBackgroundColor:[UIColor clearColor]];
     [cMusic setText:NSLocalizedString(@"MUSIC", nil)];
     
     NSArray * namesMusic=[[NSArray alloc] initWithObjects:@"Onur IŞIKLI",@"Eren HALICI", nil];
     for(int i=0; i<namesMusic.count;i++){
-        UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 560+i*40, credits.frame.size.width, 40.0)];
-        [cName setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:fontSizeM]];
+        UILabel * cName=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 660+i*40, credits.frame.size.width, 40.0)];
+        [cName setFont:[UIFont fontWithName:font size:fontSizeM]];
+        [cName setTextColor:color];
         [cName setTextAlignment:NSTextAlignmentCenter];
         [cName setBackgroundColor:[UIColor clearColor]];
         [cName setNumberOfLines:2];
@@ -479,8 +495,11 @@
     
 
     // Copyright
-    UILabel * cCRight=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 680, credits.frame.size.width, 40.0)];
-    [cCRight setFont:[UIFont fontWithName:@"Helvetica-Bold" size:fontSizeL]];
+    UILabel * cCRight=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 780, credits.frame.size.width, 40.0)];
+    [cCRight setFont:[UIFont fontWithName:font size:fontSizeL]];
+    [cCRight setTextColor:[UIColor whiteColor]];
+    [cCRight setShadowColor:[UIColor blackColor]];
+    [cCRight setShadowOffset:CGSizeMake(1, 1)];
     [cCRight setTextAlignment:NSTextAlignmentCenter];
     [cCRight setBackgroundColor:[UIColor clearColor]];
     [cCRight setText:NSLocalizedString(@"Copyright © 2013", nil)];
