@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05A1DB0116C003AD00022267 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05A1DB0316C003AD00022267 /* Localizable.strings */; };
+		05A1DB0616C0041100022267 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0516C0041100022267 /* StoreKit.framework */; };
+		05A1DB0816C0041A00022267 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0716C0041A00022267 /* QuartzCore.framework */; };
 		05E3874516BFF8EF00CE3E2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874416BFF8EF00CE3E2C /* UIKit.framework */; };
 		05E3874716BFF8EF00CE3E2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874616BFF8EF00CE3E2C /* Foundation.framework */; };
 		05E3874916BFF8EF00CE3E2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874816BFF8EF00CE3E2C /* CoreGraphics.framework */; };
@@ -22,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05A1DB0216C003AD00022267 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05A1DB0416C003D000022267 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05A1DB0516C0041100022267 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		05A1DB0716C0041A00022267 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		05E3874116BFF8EF00CE3E2C /* DeleteTheBoxes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeleteTheBoxes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E3874416BFF8EF00CE3E2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		05E3874616BFF8EF00CE3E2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -46,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A1DB0816C0041A00022267 /* QuartzCore.framework in Frameworks */,
+				05A1DB0616C0041100022267 /* StoreKit.framework in Frameworks */,
 				05E3874516BFF8EF00CE3E2C /* UIKit.framework in Frameworks */,
 				05E3874716BFF8EF00CE3E2C /* Foundation.framework in Frameworks */,
 				05E3874916BFF8EF00CE3E2C /* CoreGraphics.framework in Frameworks */,
@@ -75,6 +84,8 @@
 		05E3874316BFF8EF00CE3E2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05A1DB0716C0041A00022267 /* QuartzCore.framework */,
+				05A1DB0516C0041100022267 /* StoreKit.framework */,
 				05E3874416BFF8EF00CE3E2C /* UIKit.framework */,
 				05E3874616BFF8EF00CE3E2C /* Foundation.framework */,
 				05E3874816BFF8EF00CE3E2C /* CoreGraphics.framework */,
@@ -106,6 +117,7 @@
 				05E3875616BFF8EF00CE3E2C /* Default.png */,
 				05E3875816BFF8EF00CE3E2C /* Default@2x.png */,
 				05E3875A16BFF8EF00CE3E2C /* Default-568h@2x.png */,
+				05A1DB0316C003AD00022267 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -146,6 +158,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				tr,
 			);
 			mainGroup = 05E3873816BFF8EF00CE3E2C;
 			productRefGroup = 05E3874216BFF8EF00CE3E2C /* Products */;
@@ -168,6 +181,7 @@
 				05E3875B16BFF8EF00CE3E2C /* Default-568h@2x.png in Resources */,
 				05E3875E16BFF8EF00CE3E2C /* MainStoryboard_iPhone.storyboard in Resources */,
 				05E3876116BFF8EF00CE3E2C /* MainStoryboard_iPad.storyboard in Resources */,
+				05A1DB0116C003AD00022267 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +201,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		05A1DB0316C003AD00022267 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05A1DB0216C003AD00022267 /* en */,
+				05A1DB0416C003D000022267 /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		05E3874D16BFF8EF00CE3E2C /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -313,6 +336,7 @@
 				05E3876916BFF8EF00CE3E2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
