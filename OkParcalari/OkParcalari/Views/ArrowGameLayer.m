@@ -348,6 +348,7 @@ static ArrowGameLayer* __lastInstance;
 }
 -(void) gameEnded:(int)starCount andElapsedSeconds:(int)elapsedSeconds
 {
+//    starCount = 1;
     _starCount = starCount;
     _elapsedSeconds = elapsedSeconds;
     _difficulty = [[DatabaseManager sharedInstance] getMapWithID:_fileName].difficulty;
@@ -490,7 +491,7 @@ static ArrowGameLayer* __lastInstance;
         }
         UIImageView *activeStar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_active.png"]];
         activeStar.frame = CGRectMake(40.0+i*86, 26.0+yOffset, 80.0, 77.0);
-        activeStar.transform = CGAffineTransformMakeScale(0.0, 0.0);
+        activeStar.transform = CGAffineTransformScale(activeStar.transform,0.01, 0.01);
         activeStar.alpha = 0.0;
         [activeStars addObject:activeStar];
     }
@@ -535,7 +536,7 @@ static ArrowGameLayer* __lastInstance;
             CGAffineTransform myTransform = CGAffineTransformConcat(CGAffineTransformMakeRotation(1.0), CGAffineTransformMakeScale(1.5, 1.5));
             ((UIView *)[activeStars objectAtIndex:i]).transform = myTransform;
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             CGAffineTransform myTransform = CGAffineTransformConcat(CGAffineTransformMakeRotation(0.0), CGAffineTransformMakeScale(1.0, 1.0));
             ((UIView *)[activeStars objectAtIndex:i]).transform = myTransform;
             } completion:^(BOOL finished) {
