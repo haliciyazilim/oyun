@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 - (IBAction)difficultyChanged:(id)sender;
 + (BOOL) isEasy;
-
++ (RMPhotoSelectionViewController*) lastInstance;
 
 @property NSMutableArray* photos;
 

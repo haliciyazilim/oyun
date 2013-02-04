@@ -14,6 +14,11 @@
 		AE72DBC616BBB5BE00C12D6C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE72DBC516BBB5BE00C12D6C /* QuartzCore.framework */; };
 		AE72DBCD16BBE4CC00C12D6C /* photo_double_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = AE72DBCB16BBE4CC00C12D6C /* photo_double_grid.png */; };
 		AE72DBCE16BBE4CC00C12D6C /* photo_double_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE72DBCC16BBE4CC00C12D6C /* photo_double_grid@2x.png */; };
+		AE7CBED316BFE3DE001BAF3D /* RMBundleInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CBED216BFE3DE001BAF3D /* RMBundleInitializer.m */; };
+		AE7CBED916BFF833001BAF3D /* RMDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CBED816BFF833001BAF3D /* RMDatabaseManager.m */; };
+		AE7CBEDC16C003E7001BAF3D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE7CBEDE16C003E7001BAF3D /* Localizable.strings */; };
+		AE7CBEE216C00742001BAF3D /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CBEE116C00742001BAF3D /* Score.m */; };
+		AE7CBEE416C00AF3001BAF3D /* TypeDefs.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CBEE316C00AF3001BAF3D /* TypeDefs.m */; };
 		AED218C116BA934000271930 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED218C016BA934000271930 /* UIKit.framework */; };
 		AED218C316BA934000271930 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED218C216BA934000271930 /* Foundation.framework */; };
 		AED218C516BA934000271930 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED218C416BA934000271930 /* CoreGraphics.framework */; };
@@ -44,9 +49,7 @@
 		AED2190B16BAA63200271930 /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AED2190A16BAA63200271930 /* test1.jpg */; };
 		AED2190E16BAAC9F00271930 /* photo_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = AED2190C16BAAC9F00271930 /* photo_grid.png */; };
 		AED2190F16BAAC9F00271930 /* photo_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AED2190D16BAAC9F00271930 /* photo_grid@2x.png */; };
-		AED2191116BAB61900271930 /* test1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AED2191016BAB61900271930 /* test1@2x.jpg */; };
 		AED2191416BABEA700271930 /* test2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AED2191216BABEA700271930 /* test2.jpg */; };
-		AED2191516BABEA700271930 /* test2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AED2191316BABEA700271930 /* test2@2x.jpg */; };
 		AED932BC16BF9DAD00DD9D30 /* RMStopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = AED932BB16BF9DAD00DD9D30 /* RMStopWatch.m */; };
 		AED932BF16BFAD0400DD9D30 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED932BE16BFAD0400DD9D30 /* CoreData.framework */; };
 		AED932C216BFAD3400DD9D30 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AED932C016BFAD3400DD9D30 /* Model.xcdatamodeld */; };
@@ -73,6 +76,16 @@
 		AE72DBC516BBB5BE00C12D6C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AE72DBCB16BBE4CC00C12D6C /* photo_double_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_double_grid.png; sourceTree = "<group>"; };
 		AE72DBCC16BBE4CC00C12D6C /* photo_double_grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_double_grid@2x.png"; sourceTree = "<group>"; };
+		AE7CBED116BFE3DE001BAF3D /* RMBundleInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMBundleInitializer.h; path = common/RMBundleInitializer.h; sourceTree = "<group>"; };
+		AE7CBED216BFE3DE001BAF3D /* RMBundleInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMBundleInitializer.m; path = common/RMBundleInitializer.m; sourceTree = "<group>"; };
+		AE7CBED516BFE779001BAF3D /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Config.h; path = common/Config.h; sourceTree = "<group>"; };
+		AE7CBED716BFF833001BAF3D /* RMDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMDatabaseManager.h; path = manager/RMDatabaseManager.h; sourceTree = "<group>"; };
+		AE7CBED816BFF833001BAF3D /* RMDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMDatabaseManager.m; path = manager/RMDatabaseManager.m; sourceTree = "<group>"; };
+		AE7CBEDD16C003E7001BAF3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AE7CBEDF16C00400001BAF3D /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AE7CBEE016C00742001BAF3D /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Score.h; path = model/Score.h; sourceTree = "<group>"; };
+		AE7CBEE116C00742001BAF3D /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Score.m; path = model/Score.m; sourceTree = "<group>"; };
+		AE7CBEE316C00AF3001BAF3D /* TypeDefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeDefs.m; path = common/TypeDefs.m; sourceTree = "<group>"; };
 		AED218BC16BA934000271930 /* RotateMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RotateMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AED218C016BA934000271930 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AED218C216BA934000271930 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,9 +121,7 @@
 		AED2190A16BAA63200271930 /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test1.jpg; path = images/test1.jpg; sourceTree = "<group>"; };
 		AED2190C16BAAC9F00271930 /* photo_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_grid.png; sourceTree = "<group>"; };
 		AED2190D16BAAC9F00271930 /* photo_grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_grid@2x.png"; sourceTree = "<group>"; };
-		AED2191016BAB61900271930 /* test1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "test1@2x.jpg"; path = "images/test1@2x.jpg"; sourceTree = "<group>"; };
 		AED2191216BABEA700271930 /* test2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test2.jpg; path = images/test2.jpg; sourceTree = "<group>"; };
-		AED2191316BABEA700271930 /* test2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "test2@2x.jpg"; path = "images/test2@2x.jpg"; sourceTree = "<group>"; };
 		AED932BA16BF9DAD00DD9D30 /* RMStopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMStopWatch.h; path = common/RMStopWatch.h; sourceTree = "<group>"; };
 		AED932BB16BF9DAD00DD9D30 /* RMStopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMStopWatch.m; path = common/RMStopWatch.m; sourceTree = "<group>"; };
 		AED932BD16BFA82D00DD9D30 /* TypeDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TypeDefs.h; path = common/TypeDefs.h; sourceTree = "<group>"; };
@@ -159,6 +170,15 @@
 			name = SpecialViews;
 			sourceTree = "<group>";
 		};
+		AE7CBED616BFF80E001BAF3D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				AE7CBED716BFF833001BAF3D /* RMDatabaseManager.h */,
+				AE7CBED816BFF833001BAF3D /* RMDatabaseManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
 		AED218B116BA934000271930 = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +212,7 @@
 		AED218C616BA934000271930 /* RotateMe */ = {
 			isa = PBXGroup;
 			children = (
+				AE7CBED616BFF80E001BAF3D /* Manager */,
 				AED932C316BFAD4B00DD9D30 /* Model */,
 				AED932B916BF9D8700DD9D30 /* Common */,
 				AED218EA16BA9DFD00271930 /* Images */,
@@ -215,6 +236,7 @@
 				AED218D216BA934000271930 /* Default.png */,
 				AED218D416BA934000271930 /* Default@2x.png */,
 				AED218D616BA934000271930 /* Default-568h@2x.png */,
+				AE7CBEDE16C003E7001BAF3D /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -245,9 +267,7 @@
 				AE72DBC116BBB51900C12D6C /* test3.jpg */,
 				AE72DBC216BBB51900C12D6C /* test4.jpg */,
 				AED2191216BABEA700271930 /* test2.jpg */,
-				AED2191316BABEA700271930 /* test2@2x.jpg */,
 				AED2190A16BAA63200271930 /* test1.jpg */,
-				AED2191016BAB61900271930 /* test1@2x.jpg */,
 				AED218EB16BA9E0900271930 /* gamescreen */,
 			);
 			name = Images;
@@ -286,6 +306,10 @@
 				AED932BA16BF9DAD00DD9D30 /* RMStopWatch.h */,
 				AED932BB16BF9DAD00DD9D30 /* RMStopWatch.m */,
 				AED932BD16BFA82D00DD9D30 /* TypeDefs.h */,
+				AE7CBEE316C00AF3001BAF3D /* TypeDefs.m */,
+				AE7CBED116BFE3DE001BAF3D /* RMBundleInitializer.h */,
+				AE7CBED216BFE3DE001BAF3D /* RMBundleInitializer.m */,
+				AE7CBED516BFE779001BAF3D /* Config.h */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -297,6 +321,8 @@
 				AED932CE16BFAE1300DD9D30 /* Photo.m */,
 				AED932D016BFAFD000DD9D30 /* Gallery.h */,
 				AED932D116BFAFD000DD9D30 /* Gallery.m */,
+				AE7CBEE016C00742001BAF3D /* Score.h */,
+				AE7CBEE116C00742001BAF3D /* Score.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -337,6 +363,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				tr,
 			);
 			mainGroup = AED218B116BA934000271930;
 			productRefGroup = AED218BD16BA934000271930 /* Products */;
@@ -377,9 +404,7 @@
 				AED2190B16BAA63200271930 /* test1.jpg in Resources */,
 				AED2190E16BAAC9F00271930 /* photo_grid.png in Resources */,
 				AED2190F16BAAC9F00271930 /* photo_grid@2x.png in Resources */,
-				AED2191116BAB61900271930 /* test1@2x.jpg in Resources */,
 				AED2191416BABEA700271930 /* test2.jpg in Resources */,
-				AED2191516BABEA700271930 /* test2@2x.jpg in Resources */,
 				AE72DBC316BBB51900C12D6C /* test3.jpg in Resources */,
 				AE72DBC416BBB51900C12D6C /* test4.jpg in Resources */,
 				AE72DBCD16BBE4CC00C12D6C /* photo_double_grid.png in Resources */,
@@ -392,6 +417,7 @@
 				AEEA87F116BC55BE0063C4D0 /* test12.jpg in Resources */,
 				AEEA87F216BC55BE0063C4D0 /* test13.jpg in Resources */,
 				AEEA87F316BC55BE0063C4D0 /* test14.jpg in Resources */,
+				AE7CBEDC16C003E7001BAF3D /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,12 +438,25 @@
 				AED932CF16BFAE1300DD9D30 /* Photo.m in Sources */,
 				AED932D216BFAFD000DD9D30 /* Gallery.m in Sources */,
 				AED932D516BFB3B800DD9D30 /* RMCroppedImageView.m in Sources */,
+				AE7CBED316BFE3DE001BAF3D /* RMBundleInitializer.m in Sources */,
+				AE7CBED916BFF833001BAF3D /* RMDatabaseManager.m in Sources */,
+				AE7CBEE216C00742001BAF3D /* Score.m in Sources */,
+				AE7CBEE416C00AF3001BAF3D /* TypeDefs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		AE7CBEDE16C003E7001BAF3D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE7CBEDD16C003E7001BAF3D /* en */,
+				AE7CBEDF16C00400001BAF3D /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		AED218C916BA934000271930 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

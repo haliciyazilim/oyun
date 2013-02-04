@@ -10,4 +10,12 @@
 
 @implementation Photo
 @dynamic filename;
+@dynamic gallery;
+@dynamic score;
+
++ (Photo*)createPhotoWithFileName:(NSString*)fileName andGallery:(Gallery*)gallery
+{
+    
+}
+
 @end

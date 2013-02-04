@@ -27,6 +27,12 @@
     return self;
 }
 
+static RMPhotoSelectionViewController* lastInstance = nil;
++ (RMPhotoSelectionViewController*) lastInstance
+{
+    return lastInstance;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -38,6 +44,7 @@
 
 - (void)viewDidLoad
 {
+    lastInstance = self;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     touchedPhoto = nil;
@@ -63,7 +70,10 @@
         
     
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
 - (void) printPhotos
 {
     int leftMargin = 20;

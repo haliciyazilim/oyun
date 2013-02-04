@@ -7,12 +7,38 @@
 //
 
 #import "RMAppDelegate.h"
+#import "RMPhotoSelectionViewController.h"
+#import "RMBundleInitializer.h"
+#import "Gallery.h"
+
 
 @implementation RMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+//    self.window.rootViewController = [RMPhotoSelectionViewController lastInstance];
+//    [RMBundleInitializer initializeBundle];
+    
+    [Gallery createGalleryWithName:@"test1"];
+    [Gallery createGalleryWithName:@"test1"];
+    [Gallery createGalleryWithName:@"test1"];
+    [Gallery createGalleryWithName:@"test1"];
+    [Gallery createGalleryWithName:@"test1"];
+    [Gallery createGalleryWithName:@"test1"];
+    NSMutableArray* galleries = [Gallery allGalleries];
+//    NSLog(@"%@",galleries);
+    return YES;
+}
+
+-(BOOL)shouldAutorotate{
+    
+    return YES;
+    
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
     return YES;
 }
 							

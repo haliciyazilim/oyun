@@ -7,7 +7,15 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "RMDatabaseManager.h"
 
 @interface Gallery : NSManagedObject
+
+@property NSString* name;
+@property NSSet* photos;
+
++ (NSMutableArray*) allGalleries;
+
++ (Gallery*) createGalleryWithName:(NSString*)name;
 
 @end
