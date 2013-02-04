@@ -13,7 +13,8 @@
 #import "GameCenterManager.h"
 #import "DatabaseManager.h"
 
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
+#import "Facebook.h"
 #import "Flurry.h"
 #import "FlurryAds.h"
 
@@ -32,6 +33,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     [Flurry startSession:@"PW345B45PR4W3D6Z2V8H"];
     [FlurryAds initialize:[CCDirector sharedDirector]];
     
@@ -110,6 +112,10 @@
 	return YES;
 }
 
+void uncaughtExceptionHandler(NSException *exception) {
+    [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
 // Supported orientations: Landscape. Customize it for your own needs
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -147,6 +153,11 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:[AchievementManager sharedAchievementManager] selector:@selector(loadAchievements) name:kAuthenticationChangedNotification object:nil];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [FBSession.activeSession handleOpenURL:url];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application

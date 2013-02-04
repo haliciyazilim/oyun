@@ -117,6 +117,7 @@
     point = [[CCDirector sharedDirector] convertToGL:point];
     return point;
 }
+
 -(void) makeTransition
 {
     self.isTouchEnabled = NO;

@@ -11,6 +11,7 @@
 
 #import "GreenTheGardenGCSpecificValues.h"
 #import "GreenTheGardenIAPHelper.h"
+#import "Flurry.h"
 #import "FlurryAds.h"
 
 @implementation TransitionManager
@@ -38,9 +39,9 @@ static TransitionManager* currentInstance = nil;
 {
     self = [super init];
     if (self) {
-        adCountDown = arc4random_uniform(kAdRepeatMax - kAdRepeatMin) + kAdRepeatMin;
+        adCountDown = arc4random_uniform(kAdRepeatMax - kAdRepeatMin) + kAdRepeatMin - 1;
         
-        [FlurryAds fetchAdForSpace:@"GreenTheGardenTransition"
+        [FlurryAds fetchAdForSpace:@"GreenTheGardenTransition2"
                              frame:[CCDirector sharedDirector].view.frame
                               size:FULLSCREEN];
     }
@@ -48,7 +49,7 @@ static TransitionManager* currentInstance = nil;
 }
 
 - (void) makeTransitionWithBlock:(TransitionBlock)transitionBlock {
-
+    [Flurry logPageView];
     transition = transitionBlock;
     
     NSLog(@"making closing");
@@ -76,19 +77,20 @@ static TransitionManager* currentInstance = nil;
         transitionImage2.frame = CGRectMake(0.0, 0.0, 1024.0, 768.0);
         transitionImage3.alpha = 1.0;
     } completion:^(BOOL finished) {
+        NSLog(@"%d", adCountDown);
         if ([[GreenTheGardenIAPHelper sharedInstance] isPro]){
             [self performRealTransition];
         } else {
             if (adCountDown == 0) {
-                if ([FlurryAds adReadyForSpace:@"GreenTheGardenTransition"]) {
-                    adCountDown = arc4random_uniform(kAdRepeatMax - kAdRepeatMin) + kAdRepeatMin;
-                    [FlurryAds displayAdForSpace:@"GreenTheGardenTransition"
+                if ([FlurryAds adReadyForSpace:@"GreenTheGardenTransition2"]) {
+                    adCountDown = arc4random_uniform(kAdRepeatMax - kAdRepeatMin) + kAdRepeatMin - 1;
+                    [FlurryAds displayAdForSpace:@"GreenTheGardenTransition2"
                                           onView:[CCDirector sharedDirector].view];
                     [FlurryAds setAdDelegate:self];
                     
                 } else {
                     adCountDown = 0;
-                    [FlurryAds fetchAdForSpace:@"GreenTheGardenTransition"
+                    [FlurryAds fetchAdForSpace:@"GreenTheGardenTransition2"
                                          frame:[CCDirector sharedDirector].view.frame
                                           size:FULLSCREEN];
                     [self performRealTransition];
@@ -118,7 +120,7 @@ interstitial {
     if (interstitial) {
         // Resume app state here
         
-        [FlurryAds fetchAdForSpace:@"GreenTheGardenTransition"
+        [FlurryAds fetchAdForSpace:@"GreenTheGardenTransition2"
                              frame:[CCDirector sharedDirector].view.frame
                               size:FULLSCREEN];
 
