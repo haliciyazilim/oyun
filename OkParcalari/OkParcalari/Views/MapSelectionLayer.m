@@ -462,6 +462,9 @@
     // Art
     UILabel * cArt=[[UILabel alloc] initWithFrame:CGRectMake(0.0, 500, credits.frame.size.width, 40.0)];
     [cArt setFont:[UIFont fontWithName:font size:fontSizeL]];
+    [cArt setTextColor:[UIColor whiteColor]];
+    [cArt setShadowColor:[UIColor blackColor]];
+    [cArt setShadowOffset:CGSizeMake(1, 1)];
     [cArt setTextAlignment:NSTextAlignmentCenter];
     [cArt setBackgroundColor:[UIColor clearColor]];
     [cArt setText:NSLocalizedString(@"ART", nil)];
