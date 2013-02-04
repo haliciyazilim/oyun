@@ -44,8 +44,8 @@
 		05E3875A16BFF8EF00CE3E2C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		05E3875D16BFF8EF00CE3E2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		05E3876016BFF8EF00CE3E2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		05E3876216BFF8EF00CE3E2C /* DTBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTBViewController.h; sourceTree = "<group>"; };
-		05E3876316BFF8EF00CE3E2C /* DTBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTBViewController.m; sourceTree = "<group>"; };
+		05E3876216BFF8EF00CE3E2C /* DTBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DTBViewController.h; path = ../DTBViewController.h; sourceTree = "<group>"; };
+		05E3876316BFF8EF00CE3E2C /* DTBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DTBViewController.m; path = ../DTBViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +64,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05A1DB0916C0064800022267 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				05E3876216BFF8EF00CE3E2C /* DTBViewController.h */,
+				05E3876316BFF8EF00CE3E2C /* DTBViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		05A1DB0A16C0064800022267 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		05A1DB0B16C0064800022267 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		05A1DB0C16C0067100022267 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			path = DeleteTheBoxes/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
 		05E3873816BFF8EF00CE3E2C = {
 			isa = PBXGroup;
 			children = (
@@ -98,10 +129,12 @@
 			children = (
 				05E3875316BFF8EF00CE3E2C /* DTBAppDelegate.h */,
 				05E3875416BFF8EF00CE3E2C /* DTBAppDelegate.m */,
+				05A1DB0B16C0064800022267 /* Models */,
+				05A1DB0A16C0064800022267 /* Managers */,
+				05A1DB0916C0064800022267 /* Controllers */,
+				05A1DB0C16C0067100022267 /* Resources */,
 				05E3875C16BFF8EF00CE3E2C /* MainStoryboard_iPhone.storyboard */,
 				05E3875F16BFF8EF00CE3E2C /* MainStoryboard_iPad.storyboard */,
-				05E3876216BFF8EF00CE3E2C /* DTBViewController.h */,
-				05E3876316BFF8EF00CE3E2C /* DTBViewController.m */,
 				05E3874B16BFF8EF00CE3E2C /* Supporting Files */,
 			);
 			path = DeleteTheBoxes;
