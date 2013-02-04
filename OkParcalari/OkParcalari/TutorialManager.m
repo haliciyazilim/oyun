@@ -436,26 +436,27 @@ static TutorialManager* currentInstance = nil;
 -(void)showDialogMessage:(NSString*)message andCallback:(IteratorBlock)block
 {
     UIView* dialog = [[UIView alloc] init];
+    UIImage* backgroundImage = [UIImage imageNamed:@"inapp_back.png"];
     [dialog setFrame:CGRectMake(512, 384, 0, 0)];
     [dialog setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"inapp_back.png"]]];
     [dialog setUserInteractionEnabled:NO];
     [dialog setClipsToBounds:YES];
     dialog.alpha = 0;
     [UIView animateWithDuration:0.2 animations:^{
-        [dialog setFrame:CGRectMake(512-189, 384 - 152, 379, 305)];
+        [dialog setFrame:CGRectMake(512-backgroundImage.size.width*0.5, 384 - backgroundImage.size.height*0.5, backgroundImage.size.width, backgroundImage.size.height)];
     }];
     [UIView animateWithDuration:0.5 animations:^{
         dialog.alpha = 1;
     }];
     
-    UIFont* font = [UIFont fontWithName:@"Helvetica" size:18.0];
+    UIFont* font = [UIFont fontWithName:@"Rabbit On The Moon" size:24.0];
     
     UILabel* tapToCloseLabel = [[UILabel alloc] init];
     [tapToCloseLabel setText:[NSString stringWithFormat:@" %@ ",NSLocalizedString(@"TAP_TO_CLOSE", nil)]];
-    [tapToCloseLabel setFrame:CGRectMake(0.0, dialog.frame.size.height-50, dialog.frame.size.width, 30.0)];
+    [tapToCloseLabel setFrame:CGRectMake(0.0, dialog.frame.size.height-80, dialog.frame.size.width, 30.0)];
     [tapToCloseLabel setTextAlignment:NSTextAlignmentCenter];
     [tapToCloseLabel setBackgroundColor:[UIColor clearColor]];
-    [tapToCloseLabel setTextColor:[UIColor blackColor]];
+    [tapToCloseLabel setTextColor:[UIColor whiteColor]];
     [tapToCloseLabel setFont:font];
     [dialog addSubview:tapToCloseLabel];
     
@@ -464,7 +465,7 @@ static TutorialManager* currentInstance = nil;
     [messageTextView setText:message];
     [messageTextView setFont:font];
     [messageTextView setTextAlignment:NSTextAlignmentCenter];
-    [messageTextView setTextColor:[UIColor blackColor]];
+    [messageTextView setTextColor:[UIColor whiteColor]];
     [messageTextView setBackgroundColor:[UIColor clearColor]];
     [dialog addSubview:messageTextView];
     
