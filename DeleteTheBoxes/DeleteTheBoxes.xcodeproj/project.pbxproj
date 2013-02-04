@@ -10,6 +10,7 @@
 		05A1DB0116C003AD00022267 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05A1DB0316C003AD00022267 /* Localizable.strings */; };
 		05A1DB0616C0041100022267 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0516C0041100022267 /* StoreKit.framework */; };
 		05A1DB0816C0041A00022267 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0716C0041A00022267 /* QuartzCore.framework */; };
+		05A1DB1416C0074000022267 /* StopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A1DB1316C0074000022267 /* StopWatch.m */; };
 		05E3874516BFF8EF00CE3E2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874416BFF8EF00CE3E2C /* UIKit.framework */; };
 		05E3874716BFF8EF00CE3E2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874616BFF8EF00CE3E2C /* Foundation.framework */; };
 		05E3874916BFF8EF00CE3E2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874816BFF8EF00CE3E2C /* CoreGraphics.framework */; };
@@ -29,6 +30,8 @@
 		05A1DB0416C003D000022267 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05A1DB0516C0041100022267 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		05A1DB0716C0041A00022267 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		05A1DB1216C0074000022267 /* StopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatch.h; sourceTree = "<group>"; };
+		05A1DB1316C0074000022267 /* StopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatch.m; sourceTree = "<group>"; };
 		05E3874116BFF8EF00CE3E2C /* DeleteTheBoxes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeleteTheBoxes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E3874416BFF8EF00CE3E2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		05E3874616BFF8EF00CE3E2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,6 +98,15 @@
 			path = DeleteTheBoxes/Resources;
 			sourceTree = SOURCE_ROOT;
 		};
+		05A1DB1116C006FA00022267 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				05A1DB1216C0074000022267 /* StopWatch.h */,
+				05A1DB1316C0074000022267 /* StopWatch.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		05E3873816BFF8EF00CE3E2C = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +144,7 @@
 				05A1DB0B16C0064800022267 /* Models */,
 				05A1DB0A16C0064800022267 /* Managers */,
 				05A1DB0916C0064800022267 /* Controllers */,
+				05A1DB1116C006FA00022267 /* Common */,
 				05A1DB0C16C0067100022267 /* Resources */,
 				05E3875C16BFF8EF00CE3E2C /* MainStoryboard_iPhone.storyboard */,
 				05E3875F16BFF8EF00CE3E2C /* MainStoryboard_iPad.storyboard */,
@@ -228,6 +241,7 @@
 				05E3875116BFF8EF00CE3E2C /* main.m in Sources */,
 				05E3875516BFF8EF00CE3E2C /* DTBAppDelegate.m in Sources */,
 				05E3876416BFF8EF00CE3E2C /* DTBViewController.m in Sources */,
+				05A1DB1416C0074000022267 /* StopWatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
