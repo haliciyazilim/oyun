@@ -6,11 +6,10 @@
 //
 //
 
-NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurchasedNotification";
-NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProductPurchaseDidFailedNotification";
-
 #import "IAPHelper.h"
 #import <CommonCrypto/CommonDigest.h>
+
+#define PAYMENT_ACTIVITY_TAG 145
 
 @interface IAPHelper () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 @end
@@ -24,6 +23,7 @@ NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProdu
     NSArray * _productKeys;
     NSMutableSet * _purchasedProductIdentifiers;
     NSString *_deviceName;
+    UIActivityIndicatorView *activity;
 }
 - (id) initWithProductsDictionary:(NSDictionary *)products {
     if ( self = [super init] ) {
@@ -50,6 +50,12 @@ NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProdu
     return self;
 }
 - (void)restoreCompletedTransactions {
+    activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [activity setHidesWhenStopped:YES];
+    activity.frame = CGRectMake(500.0, 470.0, 60.0, 60.0);
+    activity.tag = PAYMENT_ACTIVITY_TAG;
+    [activity startAnimating];
+    [[[CCDirector sharedDirector] view] addSubview:activity];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 - (void)requestProductsWithCompletionHandler:(RequestProductsCompletionHandler)completionHandler {
@@ -80,11 +86,24 @@ NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProdu
         }
     };
 }
+-(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
+    [activity stopAnimating];
+    [activity removeFromSuperview];
+}
+-(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
+    [activity stopAnimating];
+    [activity removeFromSuperview];
+}
 - (void)completeTransaction:(SKPaymentTransaction *)transaction {
+
+    [activity stopAnimating];
+    [activity removeFromSuperview];
     [self provideContentForProductIdentifier:transaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 - (void)restoreTransaction:(SKPaymentTransaction *)transaction {
+    [activity stopAnimating];
+    [activity removeFromSuperview];
     [self provideContentForProductIdentifier:transaction.originalTransaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
@@ -99,6 +118,12 @@ NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProdu
                                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                          otherButtonTitles:nil,nil];
         [productPurchased show];
+        [activity stopAnimating];
+        [activity removeFromSuperview];
+    }
+    else{
+        [activity stopAnimating];
+        [activity removeFromSuperview];
     }
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
@@ -128,9 +153,21 @@ NSString *const IAPHelperProductPurchaseDidFailedNotification = @"IAPHelperProdu
 - (BOOL)productPurchased:(NSString *)productIdentifier {
     return [_purchasedProductIdentifiers containsObject:productIdentifier];
 }
+-(void)removeActivity {
+    if(activity){
+        [activity stopAnimating];
+        [activity removeFromSuperview];
+    }
+}
 - (void)buyProduct:(SKProduct *)product {
     
     if([self canMakePurchases]){
+        activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [activity setHidesWhenStopped:YES];
+        activity.frame = CGRectMake(500.0, 470.0, 60.0, 60.0);
+        activity.tag = PAYMENT_ACTIVITY_TAG;
+        [activity startAnimating];
+        [[[CCDirector sharedDirector] view] addSubview:activity];
         SKPayment * payment = [SKPayment paymentWithProduct:product];
         [[SKPaymentQueue defaultQueue] addPayment:payment];
     }
