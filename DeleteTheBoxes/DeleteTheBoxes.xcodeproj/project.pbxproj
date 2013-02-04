@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05A1DB0116C003AD00022267 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05A1DB0316C003AD00022267 /* Localizable.strings */; };
+		05A1DB0616C0041100022267 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0516C0041100022267 /* StoreKit.framework */; };
+		05A1DB0816C0041A00022267 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0716C0041A00022267 /* QuartzCore.framework */; };
+		05A1DB1416C0074000022267 /* StopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A1DB1316C0074000022267 /* StopWatch.m */; };
 		05E3874516BFF8EF00CE3E2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874416BFF8EF00CE3E2C /* UIKit.framework */; };
 		05E3874716BFF8EF00CE3E2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874616BFF8EF00CE3E2C /* Foundation.framework */; };
 		05E3874916BFF8EF00CE3E2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874816BFF8EF00CE3E2C /* CoreGraphics.framework */; };
@@ -22,6 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05A1DB0216C003AD00022267 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05A1DB0416C003D000022267 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05A1DB0516C0041100022267 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		05A1DB0716C0041A00022267 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		05A1DB1216C0074000022267 /* StopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatch.h; sourceTree = "<group>"; };
+		05A1DB1316C0074000022267 /* StopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatch.m; sourceTree = "<group>"; };
+		05A1DB1516C007EE00022267 /* TypeDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefs.h; sourceTree = "<group>"; };
 		05E3874116BFF8EF00CE3E2C /* DeleteTheBoxes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeleteTheBoxes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E3874416BFF8EF00CE3E2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		05E3874616BFF8EF00CE3E2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,8 +48,8 @@
 		05E3875A16BFF8EF00CE3E2C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		05E3875D16BFF8EF00CE3E2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		05E3876016BFF8EF00CE3E2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		05E3876216BFF8EF00CE3E2C /* DTBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTBViewController.h; sourceTree = "<group>"; };
-		05E3876316BFF8EF00CE3E2C /* DTBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTBViewController.m; sourceTree = "<group>"; };
+		05E3876216BFF8EF00CE3E2C /* DTBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DTBViewController.h; path = ../DTBViewController.h; sourceTree = "<group>"; };
+		05E3876316BFF8EF00CE3E2C /* DTBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DTBViewController.m; path = ../DTBViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A1DB0816C0041A00022267 /* QuartzCore.framework in Frameworks */,
+				05A1DB0616C0041100022267 /* StoreKit.framework in Frameworks */,
 				05E3874516BFF8EF00CE3E2C /* UIKit.framework in Frameworks */,
 				05E3874716BFF8EF00CE3E2C /* Foundation.framework in Frameworks */,
 				05E3874916BFF8EF00CE3E2C /* CoreGraphics.framework in Frameworks */,
@@ -55,6 +68,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05A1DB0916C0064800022267 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				05E3876216BFF8EF00CE3E2C /* DTBViewController.h */,
+				05E3876316BFF8EF00CE3E2C /* DTBViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		05A1DB0A16C0064800022267 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		05A1DB0B16C0064800022267 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		05A1DB0C16C0067100022267 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			path = DeleteTheBoxes/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		05A1DB1116C006FA00022267 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				05A1DB1216C0074000022267 /* StopWatch.h */,
+				05A1DB1316C0074000022267 /* StopWatch.m */,
+				05A1DB1516C007EE00022267 /* TypeDefs.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		05E3873816BFF8EF00CE3E2C = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +129,8 @@
 		05E3874316BFF8EF00CE3E2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05A1DB0716C0041A00022267 /* QuartzCore.framework */,
+				05A1DB0516C0041100022267 /* StoreKit.framework */,
 				05E3874416BFF8EF00CE3E2C /* UIKit.framework */,
 				05E3874616BFF8EF00CE3E2C /* Foundation.framework */,
 				05E3874816BFF8EF00CE3E2C /* CoreGraphics.framework */,
@@ -87,10 +143,13 @@
 			children = (
 				05E3875316BFF8EF00CE3E2C /* DTBAppDelegate.h */,
 				05E3875416BFF8EF00CE3E2C /* DTBAppDelegate.m */,
+				05A1DB0B16C0064800022267 /* Models */,
+				05A1DB0A16C0064800022267 /* Managers */,
+				05A1DB0916C0064800022267 /* Controllers */,
+				05A1DB1116C006FA00022267 /* Common */,
+				05A1DB0C16C0067100022267 /* Resources */,
 				05E3875C16BFF8EF00CE3E2C /* MainStoryboard_iPhone.storyboard */,
 				05E3875F16BFF8EF00CE3E2C /* MainStoryboard_iPad.storyboard */,
-				05E3876216BFF8EF00CE3E2C /* DTBViewController.h */,
-				05E3876316BFF8EF00CE3E2C /* DTBViewController.m */,
 				05E3874B16BFF8EF00CE3E2C /* Supporting Files */,
 			);
 			path = DeleteTheBoxes;
@@ -106,6 +165,7 @@
 				05E3875616BFF8EF00CE3E2C /* Default.png */,
 				05E3875816BFF8EF00CE3E2C /* Default@2x.png */,
 				05E3875A16BFF8EF00CE3E2C /* Default-568h@2x.png */,
+				05A1DB0316C003AD00022267 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -146,6 +206,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				tr,
 			);
 			mainGroup = 05E3873816BFF8EF00CE3E2C;
 			productRefGroup = 05E3874216BFF8EF00CE3E2C /* Products */;
@@ -168,6 +229,7 @@
 				05E3875B16BFF8EF00CE3E2C /* Default-568h@2x.png in Resources */,
 				05E3875E16BFF8EF00CE3E2C /* MainStoryboard_iPhone.storyboard in Resources */,
 				05E3876116BFF8EF00CE3E2C /* MainStoryboard_iPad.storyboard in Resources */,
+				05A1DB0116C003AD00022267 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,12 +243,22 @@
 				05E3875116BFF8EF00CE3E2C /* main.m in Sources */,
 				05E3875516BFF8EF00CE3E2C /* DTBAppDelegate.m in Sources */,
 				05E3876416BFF8EF00CE3E2C /* DTBViewController.m in Sources */,
+				05A1DB1416C0074000022267 /* StopWatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		05A1DB0316C003AD00022267 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05A1DB0216C003AD00022267 /* en */,
+				05A1DB0416C003D000022267 /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		05E3874D16BFF8EF00CE3E2C /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -239,7 +311,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -264,7 +336,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -278,6 +350,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DeleteTheBoxes/DeleteTheBoxes-Prefix.pch";
 				INFOPLIST_FILE = "DeleteTheBoxes/DeleteTheBoxes-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -289,6 +362,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DeleteTheBoxes/DeleteTheBoxes-Prefix.pch";
 				INFOPLIST_FILE = "DeleteTheBoxes/DeleteTheBoxes-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -313,6 +387,7 @@
 				05E3876916BFF8EF00CE3E2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
