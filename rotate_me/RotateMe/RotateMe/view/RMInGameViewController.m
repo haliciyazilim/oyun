@@ -9,14 +9,8 @@
 #import "RMInGameViewController.h"
 #import "RMPhotoSelectionViewController.h"
 
-typedef void (^ IteratorBlock)();
 
-@interface CroppedImageView : UIImageView
-@property RMInGameViewController* parent;
-- (void) rotateToAngle:(float)angle;
-- (void) setRotationStateTo:(int)state;
-- (int) getCurrentRotationState;
-@end
+
 
 @interface RMInGameViewController ()
 
@@ -42,26 +36,15 @@ static RMInGameViewController* lastInstance = nil;
 -(id) init
 {
     if(self = [super init]){
-        lastInstance = self;
     }
     return self;
 }
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-
 
 - (void)viewDidLoad
 {
     lastInstance = self;
     isGameFinished = NO;
+    self.stopWatch = [[RMStopWatch alloc] init];
     
     if([RMPhotoSelectionViewController isEasy]){
         rows = 3;
@@ -95,6 +78,15 @@ static RMInGameViewController* lastInstance = nil;
     self.grids = grids;
     
     [self configureView];
+    [self.stopWatchLabel setText:@"00:00.0"];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.stopWatch startTimerWithRepeatBlock:^{
+        [self.stopWatchLabel setText:[self.stopWatch toString]];
+    }];
 }
 
 - (void) setImage:(UIImage*)image
@@ -105,12 +97,6 @@ static RMInGameViewController* lastInstance = nil;
     }
 }
 
-- (IBAction)returnToPhotoSelection:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
 - (BOOL) isGameFinished
 {
     return isGameFinished;
@@ -119,8 +105,7 @@ static RMInGameViewController* lastInstance = nil;
 - (BOOL) canGameFinish
 {
     BOOL isFinished = YES;
-    for(CroppedImageView* croppedImage in self.croppedImages){
-        NSLog(@"state: %d",[croppedImage getCurrentRotationState]);
+    for(RMCroppedImageView* croppedImage in self.croppedImages){
         if([croppedImage getCurrentRotationState] != 0)
             isFinished = NO;
     }
@@ -130,7 +115,8 @@ static RMInGameViewController* lastInstance = nil;
 - (void) endGame
 {
     isGameFinished = YES;
-    for(CroppedImageView* croppedImage in self.croppedImages){
+    [self.stopWatch stopTimer];
+    for(RMCroppedImageView* croppedImage in self.croppedImages){
         [croppedImage removeFromSuperview];
     }
     [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationCurveEaseIn animations:^{
@@ -174,7 +160,7 @@ static RMInGameViewController* lastInstance = nil;
             
             CGImageRef imageRef = CGImageCreateWithImageInRect([resizedImage CGImage], rect);
             UIImage *img = [UIImage imageWithCGImage:imageRef];
-            CroppedImageView* imgView = [[CroppedImageView alloc] initWithImage:img];
+            RMCroppedImageView* imgView = [[RMCroppedImageView alloc] initWithImage:img];
             imgView.frame = CGRectMake(7+x*tileSize, 5+y*tileSize, tileSize, tileSize);
             
             if(arc4random()%100 < 10)
@@ -194,8 +180,8 @@ static RMInGameViewController* lastInstance = nil;
         }
     }
     self.croppedImages = croppedImages;
-    
 }
+
 - (UIImage*)imageByScalingAndCropping:(UIImage*)sourceImage forSize:(CGSize)targetSize
 {
     UIImage *newImage = nil;
@@ -209,17 +195,14 @@ static RMInGameViewController* lastInstance = nil;
     CGFloat scaledHeight = targetHeight;
     CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
     
-    if (CGSizeEqualToSize(imageSize, targetSize) == NO)
-    {
+    if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
         CGFloat widthFactor = targetWidth / width;
         CGFloat heightFactor = targetHeight / height;
         
-        if (widthFactor > heightFactor)
-        {
+        if (widthFactor > heightFactor) {
             scaleFactor = widthFactor; // scale to fit height
         }
-        else
-        {
+        else {
             scaleFactor = heightFactor; // scale to fit width
         }
         
@@ -227,14 +210,11 @@ static RMInGameViewController* lastInstance = nil;
         scaledHeight = height * scaleFactor;
         
         // center the image
-        if (widthFactor > heightFactor)
-        {
+        if (widthFactor > heightFactor) {
             thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
         }
-        else
-        {
-            if (widthFactor < heightFactor)
-            {
+        else {
+            if (widthFactor < heightFactor) {
                 thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
             }
         }
@@ -268,98 +248,20 @@ static RMInGameViewController* lastInstance = nil;
     // Dispose of any resources that can be recreated.
 }
 
-@end
-
-
-@implementation CroppedImageView
+- (void)viewDidUnload
 {
-    BOOL isAnimating;
-    float currentAngle;
+    [self setStopWatchLabel:nil];
+    [super viewDidUnload];
 }
 
-
--(id)initWithImage:(UIImage *)image
-{
-    if(self = [super initWithImage:image]){
-        [self setUserInteractionEnabled:YES];
-        currentAngle = 0;
-    }
-    return self;
-}
-
--(void) rotateToAngle:(float)angle
-{
-    self.transform = CGAffineTransformMakeRotation(angle);
-    currentAngle = angle;
-}
-
--(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    if(isAnimating)
-        return;
-    isAnimating = YES;
-    if([self.parent isGameFinished])
-        return;
-    [self.superview bringSubviewToFront:self];
-    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        CGAffineTransform t1 = CGAffineTransformMakeScale(1.3, 1.3);
-        currentAngle -= M_PI * 0.25;
-        CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
-        self.transform = CGAffineTransformConcat(t1, t2);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            CGAffineTransform t1 = CGAffineTransformMakeScale(1.0, 1.0);
-            currentAngle -= M_PI * 0.25;
-            CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
-            self.transform = CGAffineTransformConcat(t1, t2);
-        } completion:^(BOOL finished){
-            isAnimating = NO;
-            [self.superview insertSubview:self belowSubview:[[RMInGameViewController lastInstance] grids]];
-            if([self.parent canGameFinish]){
-                NSLog(@"Game is finished");
-                [self.parent endGame];
-            }
-        }];
+- (IBAction)displayMenu:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
     }];
 }
 
--(void)setRotationStateTo:(int)state
-{
-    if(state < 0 || state > 3)
-        return;
-    currentAngle = M_PI * ((float)state / 2.0) ;
-    [self rotateToAngle:currentAngle];
+- (IBAction)displayHelp:(id)sender {
 }
-
--(int)getCurrentRotationState
-{
-    if(isAnimating)
-        return -2;
-    
-    float angle = currentAngle;
-    
-    while (angle < 0) {
-        angle += M_PI * 2;
-    }
-    while(angle > M_PI * 2){
-        angle -= M_PI * 2;
-    }
-    
-    float error = 0.0001;
-    int state = -1;
-    
-    if(angle >= 0-error && angle <= 0+error )
-        state = 0;
-    else if(angle >= M_PI*0.5-error && angle <= M_PI*0.5+error)
-        state = 1;
-    else if(angle >= M_PI*1.0-error && angle <= M_PI*1.0+error)
-        state = 2;
-    else if(angle >= M_PI*1.5-error && angle <= M_PI*1.5+error)
-        state = 3;
-    else if(angle >= M_PI*2.0-error && angle <= M_PI*2.0+error)
-        state = 0;
-    
-    return state;
-}
-
 @end
+
+

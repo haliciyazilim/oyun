@@ -71,47 +71,53 @@
     [activity setColor:[UIColor blackColor]];
     [activity setHidesWhenStopped:YES];
     [activity startAnimating];
-    activity.frame = CGRectMake(221.0, 95.0, 60.0, 60.0);
+    activity.frame = CGRectMake(241.0, 115.0, 60.0, 60.0);
     
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_menu_frame.png"]];
     UIImageView *backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_back.png"]];
-    [backView setFrame:CGRectMake(322.0, 231.0, 380.0, 306.0)];
+    [backView setFrame:CGRectMake(322.0, 231.0, 425.0, 350.0)];
     
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [closeButton setFrame:CGRectMake(667.0, 220.0, 45.0, 45.0)];
+    [closeButton setFrame:CGRectMake(690.0, 240.0, 45.0, 45.0)];
     [closeButton setBackgroundImage:[UIImage imageNamed:@"inapp_btn_close.png"] forState:UIControlStateNormal];
     [closeButton setBackgroundImage:[UIImage imageNamed:@"inapp_btn_close_hover.png"] forState:UIControlStateHighlighted];
     [closeButton addTarget:self action:@selector(closeStore) forControlEvents:UIControlEventTouchUpInside];
     
     buyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [buyButton setFrame:CGRectMake(520.0, 443.0, 148.0, 69.0)];
+    [buyButton setFrame:CGRectMake(550.0, 470.0, 148.0, 69.0)];
     [buyButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_buynow", @"png")] forState:UIControlStateNormal];
     [buyButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_buynow_hover", @"png")] forState:UIControlStateHighlighted];
     
     restoreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [restoreButton setFrame:CGRectMake(357.0, 443.0, 148.0, 69.0)];
+    [restoreButton setFrame:CGRectMake(370.0, 470.0, 148.0, 69.0)];
     [restoreButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_purchase", @"png")] forState:UIControlStateNormal];
     [restoreButton setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"inapp_btn_purchase_hover", @"png")] forState:UIControlStateHighlighted];
 
     UIImageView *unlockImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_image.png"]];
-    [unlockImage setFrame:CGRectMake(355.0, 260.0, 153.0, 178.0)];
+    [unlockImage setFrame:CGRectMake(380.0, 285.0, 118.0, 137.0)];
 
-    headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 260.0, 160.0, 40.0)];
-    [headerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20.0]];
+    headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(510.0, 280.0, 180.0, 40.0)];
+    [headerLabel setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:28.0]];
+    [headerLabel setTextColor:[UIColor whiteColor]];
+    [headerLabel setShadowColor:[UIColor blackColor]];
+    [headerLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
     [headerLabel setBackgroundColor:[UIColor clearColor]];
     [headerLabel setTextAlignment:NSTextAlignmentLeft];
     [headerLabel setText:@""];
     
-    descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 290.0, 160.0, 130.0)];
-    [descriptionLabel setFont:[UIFont fontWithName:@"Helvetica" size:15.0]];
+    descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(510.0, 320.0, 180.0, 130.0)];
+    [descriptionLabel setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:18.0]];
     [descriptionLabel setBackgroundColor:[UIColor clearColor]];
     [descriptionLabel setTextAlignment:NSTextAlignmentLeft];
     [descriptionLabel setNumberOfLines:6];
     [descriptionLabel setText:@""];
     
-    priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(522.0, 410.0, 160.0, 40.0)];
-    [priceLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16.0]];
+    priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(400.0, 430.0, 120.0, 40.0)];
+    [priceLabel setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:24.0]];
     [priceLabel setBackgroundColor:[UIColor clearColor]];
+    [priceLabel setTextColor:[UIColor whiteColor]];
+    [priceLabel setShadowColor:[UIColor blackColor]];
+    [priceLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
     [priceLabel setTextAlignment:NSTextAlignmentLeft];
     [priceLabel setText:@""];
 
@@ -185,6 +191,7 @@
 }
 
 - (void)closeStore {
+    [super removeActivity];
     isClosed = YES;
     [storeView removeFromSuperview];
     storeView = nil;

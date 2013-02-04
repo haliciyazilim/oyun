@@ -47,6 +47,16 @@
         [self.photos addObject:[UIImage imageNamed:@"test2.jpg"]];
         [self.photos addObject:[UIImage imageNamed:@"test3.jpg"]];
         [self.photos addObject:[UIImage imageNamed:@"test4.jpg"]];
+    
+        [self.photos addObject:[UIImage imageNamed:@"test6.jpg"]];
+        [self.photos addObject:[UIImage imageNamed:@"test7.jpg"]];
+        [self.photos addObject:[UIImage imageNamed:@"test8.jpg"]];
+    
+        [self.photos addObject:[UIImage imageNamed:@"test10.jpg"]];
+        [self.photos addObject:[UIImage imageNamed:@"test11.jpg"]];
+        [self.photos addObject:[UIImage imageNamed:@"test12.jpg"]];
+        [self.photos addObject:[UIImage imageNamed:@"test13.jpg"]];
+        [self.photos addObject:[UIImage imageNamed:@"test14.jpg"]];
     /*TEST]]>*/
     
     [self printPhotos];

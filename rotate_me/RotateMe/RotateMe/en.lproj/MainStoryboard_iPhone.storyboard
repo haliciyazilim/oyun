@@ -57,10 +57,24 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="timer_holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="5aB-fE-kpk"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKP-VW-usV">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="1KA-du-U8r"/>
+                                    <constraint firstAttribute="height" constant="32" id="ccA-8Z-I6I"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView contentMode="scaleToFill" image="photo_holder.png" translatesAutoresizingMaskIntoConstraints="NO" id="7LS-dE-HRg"/>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IwG-jV-hOp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SJ-UX-8lN">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" type="user" id="4Ej-5R-jiC"/>
+                                    <constraint firstAttribute="height" constant="26" type="user" id="l7f-fi-bFi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Back">
+                                <state key="normal" image="menu_btn.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -68,17 +82,38 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="returnToPhotoSelection:" destination="2" eventType="touchUpInside" id="KiB-mp-BUb"/>
+                                    <action selector="displayMenu:" destination="2" eventType="touchUpInside" id="boz-5I-4s1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcw-sC-1e2">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" type="user" id="g6Z-UU-Cyz"/>
+                                    <constraint firstAttribute="height" constant="26" type="user" id="gHC-Ko-xcp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="help_btn.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="displayHelp:" destination="2" eventType="touchUpInside" id="E1U-gc-2QL"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="SKP-VW-usV" firstAttribute="top" secondItem="5aB-fE-kpk" secondAttribute="top" type="default" id="5GA-YL-16z"/>
+                            <constraint firstItem="0SJ-UX-8lN" firstAttribute="leading" secondItem="zcw-sC-1e2" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="5cn-m6-fFk"/>
                             <constraint firstItem="5aB-fE-kpk" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="383" type="user" id="9CP-C7-dgA"/>
-                            <constraint firstItem="IwG-jV-hOp" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Boh-QI-DjK"/>
+                            <constraint firstItem="zcw-sC-1e2" firstAttribute="top" secondItem="7LS-dE-HRg" secondAttribute="top" type="default" id="CTB-bI-nUf"/>
                             <constraint firstAttribute="bottom" secondItem="5aB-fE-kpk" secondAttribute="bottom" constant="60" id="KZl-OV-2Wu"/>
+                            <constraint firstItem="zcw-sC-1e2" firstAttribute="top" secondItem="0SJ-UX-8lN" secondAttribute="top" type="default" id="O2Y-Hh-b1p"/>
+                            <constraint firstAttribute="trailing" secondItem="0SJ-UX-8lN" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="So2-bp-Epj"/>
                             <constraint firstItem="7LS-dE-HRg" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" type="default" id="TEQ-Ud-FBX"/>
-                            <constraint firstItem="IwG-jV-hOp" firstAttribute="leading" secondItem="7LS-dE-HRg" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Uwv-cz-ZLJ"/>
+                            <constraint firstItem="SKP-VW-usV" firstAttribute="trailing" secondItem="5aB-fE-kpk" secondAttribute="trailing" type="default" id="TgM-ED-DkI"/>
                             <constraint firstItem="7LS-dE-HRg" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="sxL-35-HRI"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -88,6 +123,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="photoHolder" destination="7LS-dE-HRg" id="FbO-n8-Xad"/>
+                        <outlet property="stopWatchLabel" destination="SKP-VW-usV" id="e0r-wA-8Aw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -96,9 +132,32 @@
         </scene>
     </scenes>
     <resources>
+        <image name="help_btn.png" width="23" height="26"/>
+        <image name="menu_btn.png" width="22" height="26"/>
         <image name="photo_holder.png" width="374" height="284"/>
         <image name="timer_holder.png" width="85" height="37"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RMInGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMInGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="displayHelp:"/>
+                <relationship kind="action" name="displayMenu:"/>
+                <relationship kind="outlet" name="photoHolder" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RMPhotoSelectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMPhotoSelectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="difficultyChanged:"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
