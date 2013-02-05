@@ -357,6 +357,8 @@ static ArrowGameLayer* __lastInstance;
             @"Star Count" : [NSNumber numberWithInt:_starCount],
             @"Elapsed Seconds" : [NSNumber numberWithInt:_elapsedSeconds]
      }];
+    
+    [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"success"];
     _isGameEnded = YES;
     self.isTouchEnabled = NO;
     
@@ -533,18 +535,25 @@ static ArrowGameLayer* __lastInstance;
 
     // opacities
     for ( int i = 0; i < starCount; i++){
-        [UIView animateWithDuration:0.7 delay:1.2+i*0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [[GreenTheGardenSoundManager sharedSoundManager] performSelector:@selector(playEffect:)
+                                                              withObject:@"star"
+                                                              afterDelay:1.7+i*0.5];
+    }
+
+    
+    for ( int i = 0; i < starCount; i++){
+        [UIView animateWithDuration:0.3 delay:1.2+i*0.5 options:UIViewAnimationOptionCurveEaseOut animations:^{
             [[activeStars objectAtIndex:i] setAlpha:1.0];
         } completion:^(BOOL finished) {
-            ;
+
         }];
     }
     for ( int i = 0; i < starCount; i++){
-        [UIView animateWithDuration:1.0 delay:1.2+i*0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [UIView animateWithDuration:0.5 delay:1.2+i*0.5 options:UIViewAnimationOptionCurveEaseOut animations:^{
             CGAffineTransform myTransform = CGAffineTransformConcat(CGAffineTransformMakeRotation(1.0), CGAffineTransformMakeScale(1.5, 1.5));
             ((UIView *)[activeStars objectAtIndex:i]).transform = myTransform;
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             CGAffineTransform myTransform = CGAffineTransformConcat(CGAffineTransformMakeRotation(0.0), CGAffineTransformMakeScale(1.0, 1.0));
             ((UIView *)[activeStars objectAtIndex:i]).transform = myTransform;
             } completion:^(BOOL finished) {

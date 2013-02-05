@@ -33,3 +33,11 @@ NSString* stringOfDifficulty(DIFFICULTY difficulty){
             return nil;
     }
 }
+
+static DIFFICULTY CURRENT_DIFFICULTY = EASY;
+void setCurrentDifficulty(DIFFICULTY difficulty){
+    CURRENT_DIFFICULTY = difficulty;
+}
+DIFFICULTY getCurrentDifficulty(){
+    return CURRENT_DIFFICULTY;
+}

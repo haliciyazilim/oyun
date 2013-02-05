@@ -55,7 +55,7 @@
     [self addChild:colorLayer];
     [self addChild:backLayer];
     [self scheduleOnce:@selector(addLogo:) delay:2.0];
-    [self scheduleOnce:@selector(addTapToStart) delay:0.25];
+    [self scheduleOnce:@selector(addTapToStart) delay:2.25];
     
 }
 - (void) addTapToStart {

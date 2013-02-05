@@ -8,12 +8,17 @@
 
 #import <CoreData/CoreData.h>
 #import "Gallery.h"
+#import "TypeDefs.h"
+#import "Score.h"
 
-@class Score;
+@class RMImage;
 
 @interface Photo : NSManagedObject
 @property NSString* filename;
 @property Gallery* gallery;
-@property Score* score;
+@property NSSet* score;
 + (Photo*)createPhotoWithFileName:(NSString*)fileName andGallery:(Gallery*)gallery;
+- (void) setScore:(int)elapsedTime forDifficulty:(DIFFICULTY)difficulty;
+- (Score*) getScoreForDifficulty:(DIFFICULTY)difficulty;
+- (RMImage*) getImage;
 @end

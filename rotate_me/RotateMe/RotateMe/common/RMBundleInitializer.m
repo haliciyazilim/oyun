@@ -7,46 +7,49 @@
 //
 
 #import "RMBundleInitializer.h"
+#import "Photo.h"
 
 @implementation RMBundleInitializer
 
 + (void)initializeBundle
 {
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *docDir = [paths objectAtIndex: 0];
+    NSArray* imageNames = [NSArray arrayWithObjects:@"test1.jpg",@"test2.jpg",@"test3.jpg",@"test4.jpg",@"test6.jpg",@"test7.jpg",@"test8.jpg",@"test10.jpg",@"test11.jpg",@"test12.jpg",@"test13.jpg",@"test14.jpg",nil] ;
     
-//    NSString *docFile = [[docDir stringByAppendingPathComponent: @"test"] stringByAppendingPathExtension:@"xxx"];
-//    [jsonString writeToFile:docFile atomically:NO encoding:NSUTF8StringEncoding error:nil];
-    NSArray* imageNames = [NSArray arrayWithObjects:
-                      @"test1.png",
-                      @"test2.png",
-                      @"test3.png",
-                      @"test4.png",
-                      @"test6.png",
-                      @"test7.png",
-                      @"test8.png",
-                      @"test10.png",
-                      @"test11.png",
-                      @"test12.png",
-                      @"test13.png",
-                      @"test14.png",
-                       nil] ;
+    [RMBundleInitializer copyImages:imageNames];
+    Gallery* gallery = [Gallery createGalleryWithName:DEFAULT_GALLERY_NAME];
+    [RMBundleInitializer insertImages:imageNames forGallery:gallery];
+
+}
+
++ (void) copyImages:(NSArray*)imageNames
+{
     for(NSString* imageName in imageNames){
-        NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *sourcePath = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:DEFAULT_GALLERY_NAME] stringByAppendingPathComponent:imageName];
-        NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:imageName];
-        NSLog(@"Source Path: %@\n Documents Path: %@ \n Folder Path: %@", sourcePath, documentsDirectory, folderPath);
-        
         NSError *error;
+        NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *sourcePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:imageName];
+
+        NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:DEFAULT_GALLERY_NAME];
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:folderPath
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error:&error];
+        
+        folderPath = [folderPath stringByAppendingPathComponent:imageName];
+        
         
         [[NSFileManager defaultManager] copyItemAtPath:sourcePath
                                                 toPath:folderPath
                                                  error:&error];
         
-        NSLog(@"Error description-%@ \n", [error localizedDescription]);
-        NSLog(@"Error reason-%@", [error localizedFailureReason]);
     }
+}
 
++ (void) insertImages:(NSArray*)imageNames forGallery:(Gallery*)gallery
+{
+    for(NSString* imageName in imageNames){
+        [Photo createPhotoWithFileName:imageName andGallery:gallery];
+    }
 }
 
 @end

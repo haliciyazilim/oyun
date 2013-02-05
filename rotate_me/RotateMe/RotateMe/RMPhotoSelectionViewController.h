@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "Config.h"
 
 @interface RMPhotoSelectionViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 - (IBAction)difficultyChanged:(id)sender;
-+ (BOOL) isEasy;
+
 + (RMPhotoSelectionViewController*) lastInstance;
 
-@property NSMutableArray* photos;
 
 @end

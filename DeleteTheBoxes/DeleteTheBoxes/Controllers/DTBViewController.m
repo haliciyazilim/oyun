@@ -58,9 +58,6 @@
 //        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(60*i+10, screenBounds.size.width/2-24, 48, 48) andTitle:[question questionArray][i]];
 //                
 //        [_scrollView addSubview:box];
-    
-        
-//    }
 }
 
 @end

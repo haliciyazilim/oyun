@@ -18,5 +18,6 @@ typedef enum DIFFICULTY {
 } DIFFICULTY;
 DIFFICULTY difficultyFromString(NSString* string);
 NSString* stringOfDifficulty(DIFFICULTY difficulty);
-
+void setCurrentDifficulty(DIFFICULTY difficulty);
+DIFFICULTY getCurrentDifficulty();
 #endif
