@@ -132,7 +132,7 @@ static ArrowGame* __lastInstance;
         if(map.isFinished)
             finishedMaps++;
     }
-    NSLog(@"StarCount: %i",starCount);
+//    NSLog(@"StarCount: %i",starCount);
     
     [[GameCenterManager sharedInstance] submitScore:starCount category:kLeaderBoardStar];
     [[GameCenterManager sharedInstance] submitScore:finishedMaps category:kLeaderBoardFinishedMap];

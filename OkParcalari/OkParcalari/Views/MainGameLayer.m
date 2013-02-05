@@ -55,7 +55,7 @@
     [self addChild:colorLayer];
     [self addChild:backLayer];
     [self scheduleOnce:@selector(addLogo:) delay:2.0];
-    [self scheduleOnce:@selector(addTapToStart) delay:5.25];
+    [self scheduleOnce:@selector(addTapToStart) delay:2.25];
     
 }
 - (void) addTapToStart {
@@ -101,7 +101,7 @@
 - (void) buyButtonTapped {
     SKProduct *product = [_products objectAtIndex:0];
     
-    NSLog(@"Buying %@...", product.productIdentifier);
+//    NSLog(@"Buying %@...", product.productIdentifier);
     [[GreenTheGardenIAPHelper sharedInstance] buyProduct:product];
 }
 

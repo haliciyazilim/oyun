@@ -107,6 +107,7 @@
     
     descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(510.0, 320.0, 180.0, 130.0)];
     [descriptionLabel setFont:[UIFont fontWithName:@"Rabbit On The Moon" size:18.0]];
+    [descriptionLabel setTextColor:[UIColor colorWithRed:0.702 green:1.0 blue:0.502 alpha:1.0]];
     [descriptionLabel setBackgroundColor:[UIColor clearColor]];
     [descriptionLabel setTextAlignment:NSTextAlignmentLeft];
     [descriptionLabel setNumberOfLines:6];

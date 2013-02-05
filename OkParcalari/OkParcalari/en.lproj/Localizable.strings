@@ -21,12 +21,11 @@
 "RESTART_APPROVE" = "Are you sure want to restart the game? Your unsaved progress will be lost!";
 "MAIN_MENU_APPROVE" = "Are you sure want to return to main menu? Your unsaved progress will be lost!";
 "CANCEL" = "Cancel";
-"NO_MAP" = "no map";
 "NO_PURCHASED" = "This was the last level in the free level pack. You can unlock the full game to access all the levels.";
 
 // Credits
 "PROGRAMMING"="PROGRAMMING";
-"ART"="ART";
+"ART"="GUI DESIGN";
 "MUSIC"="MUSIC";
 
 // Social

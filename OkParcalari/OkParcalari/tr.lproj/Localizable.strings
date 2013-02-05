@@ -10,25 +10,23 @@
 "IMAGE_FILENAME_SUFFIX" = "tr";
 "NEW_GAME" = "Yeni Oyun";
 "CURRENCY" = "TL";
-"TAP_TO_START" = "Başlamak için dokununuz";
+"TAP_TO_START" = "Başlamak için dokunun";
 "COULD_NOT_MAKE_PURCHASES" = "Tam sürümü edinebilmek için Ayarlar uygulamasından Uygulama İçi Alım seçeneğini etkinleştirmeniz gerekmektedir.";
 "IN_APP_PURCHASES" = "Uygulama İçi Alım";
 "OK" = "Tamam";
-"CONNECTION_ERROR" = "Bağlantı hatası oluştu. Lütfen daha sonra tekrar deneyiniz.";
-"SERVER_ERROR" = "iTunes Store ile ilgili bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.";
-"PRODUCT_PURCHASED" = "You have successfully unlocked the full game. Enjoy!";
+"CONNECTION_ERROR" = "Bağlantı hatası oluştu. Lütfen daha sonra tekrar deneyin.";
+"SERVER_ERROR" = "iTunes Store ile ilgili bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
 "PRODUCT_PURCHASED" = "Tam sürüme başarıyla geçildi. İyi oyunlar!";
 "PRODUCT_PURCHASE_FAILED" = "Hata: ";
-"TAP_TO_CLOSE" = "Kapatmak için dokununuz";
+"TAP_TO_CLOSE" = "Kapatmak için dokunun";
 "RESTART_APPROVE" = "Yeniden başlamak istediğinize emin misiniz? Kaydedilmemiş ilerlemeniz kaybolacaktır!";
 "MAIN_MENU_APPROVE" = "Ana menüye dönmek istediğinize emin misiniz? Kaydedilmemiş ilerlemeniz kaybolacaktır!";
 "CANCEL" = "İptal";
-"NO_MAP" = "harita yok";
 "NO_PURCHASED" = "Ücretiz haritaların sonuncusunu oynadınız. Tam sürüme geçerek bütün haritalara ulaşabilirsiniz.";
 
 // Credits
 "PROGRAMMING"="PROGRAMLAMA";
-"ART"="GÖRSEL TASARIM";
+"ART"="GÖRSEL ARAYÜZ TASARIM";
 "MUSIC"="MÜZİK";
 
 // Social
@@ -52,26 +50,24 @@
 
 //Tutorial
 
-"TUTORIAL_WELCOME" = "Hoş geldiniz. Oyundaki göreviniz her bir bahçeyi yeşillendirmektir. Bunun için pompalardan çıkan boruları kullanacaksınız.";
-"TUTORIAL_COMPLETED" = "Bundan sonra bahçeyi tek başına yeşillendireceksin. \nİyi Eğlenceler.";
+"TUTORIAL_WELCOME" = "Hoş geldiniz. Oyundaki göreviniz bahçedeki her kareyi yeşillendirmektir. Bunun için pompalardan çıkan boruları kullanacaksınız.";
+"TUTORIAL_COMPLETED" = "Bundan sonra bahçeyi tek başınıza yeşillendireceksiniz. \nİyi Eğlenceler.";
 
 "TUTORIAL_1_0" = "Bu bir su pompası; her su pompasının farklı bir basınç değeri bulunmaktadır.";
 "TUTORIAL_1_1" = "Bu su pompası 9 kareyi sulayacak basınca sahiptir.";
-"TUTORIAL_1_2" = "Boruları sadece bir doğru şeklinde çıkartabilirsiniz.";
-"TUTORIAL_1_3" = "Şimdi, bu pompadan boruyu yukarı doğru 9 kare çıkart.";
+"TUTORIAL_1_2" = "Boruları pompalardan sadece düz doğrular şeklinde çıkartabilirsiniz.";
+"TUTORIAL_1_3" = "Şimdi, bu pompadan boruyu yukarı doğru 9 kare çıkartın.";
 
 "TUTORIAL_2_0" = "Buraya erşilebilen sadece bir pompa bulunmaktadır.";
 "TUTORIAL_2_1" = "Haydi, o pompayı kullanalım.";
-"TUTORIAL_2_2" = "Şimdi boruyu buradan aşağı doğru çıkart.";
+"TUTORIAL_2_2" = "Şimdi boruyu buradan aşağı doğru çıkartın.";
 
 "TUTORIAL_3_0" = "Aynısı bu kare için de geçerli.";
 
 "TUTORIAL_4_0" = "";
 
 "TUTORIAL_5_0" = "Bu pompa 6 kare sulayabilir.";
-"TUTORIAL_5_1" = "It has 2 empty tiles to its right and 7 empty tiles below itself.";
 "TUTORIAL_5_1" = "Pompanın sağına doğru 2, altına doğru ise 7 karelik boşluk bulunmaktadır.";
-"TUTORIAL_5_2" = "Even if it is used to water both of the tiles to its right it will still have power to water 4 tiles below.";
-"TUTORIAL_5_2" = "Eğer bu pompa sağındaki iki kareyi sulamak zorunda olsaydı aşağı doğru 4 kare daha sulayabilirdi.";
+"TUTORIAL_5_2" = "Eğer bu pompa sağındaki iki kareyi sulasa bile hala aşağı doğru sulayacak 4 karelik gücü kalır.";
 "TUTORIAL_5_3" = "Demek ki, bu pompa aşağı doğru 4 kareyi kesinlikle sulayacaktır.";
-"TUTORIAL_5_4" = "Şimdi 4 karelik alanı sula.";
+"TUTORIAL_5_4" = "Şimdi 4 karelik alanı sulayın.";
