@@ -383,6 +383,8 @@
 		410AA2B31670D9B800F6DCCA /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2B21670D9B800F6DCCA /* vec4.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		410AA2B81670D9B800F6DCCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2B71670D9B800F6DCCA /* main.m */; };
 		410AA2BB1670D9B800F6DCCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2BA1670D9B800F6DCCA /* AppDelegate.m */; };
+		41289B6B16C12E2700AB39A0 /* star.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41289B6A16C12E2700AB39A0 /* star.mp3 */; };
+		41289B6D16C135C200AB39A0 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41289B6C16C135C200AB39A0 /* success.mp3 */; };
 		41ABD07616A5961B00E9C4EB /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ABD07516A5961B00E9C4EB /* libFlurry.a */; };
 		41ABD07816A5962F00E9C4EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ABD07716A5962F00E9C4EB /* SystemConfiguration.framework */; };
 		41B78B9616A044DE00C327E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B78B9516A044DE00C327E3 /* CoreData.framework */; };
@@ -1828,6 +1830,8 @@
 		410AA2B71670D9B800F6DCCA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		410AA2B91670D9B800F6DCCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		410AA2BA1670D9B800F6DCCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		41289B6A16C12E2700AB39A0 /* star.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = star.mp3; sourceTree = "<group>"; };
+		41289B6C16C135C200AB39A0 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 		41ABD07416A5961B00E9C4EB /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		41ABD07516A5961B00E9C4EB /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		41ABD07716A5962F00E9C4EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -2827,6 +2831,8 @@
 				41D3AC7116BB7C4700C74610 /* splash1.mp3 */,
 				41D3AC7216BB7C4700C74610 /* splash2.mp3 */,
 				41D3AC7316BB7C4700C74610 /* splash3.mp3 */,
+				41289B6A16C12E2700AB39A0 /* star.mp3 */,
+				41289B6C16C135C200AB39A0 /* success.mp3 */,
 				41CC93FA16B7F19000569BDC /* GreenTheGardenMenu.mp3 */,
 				051F135716A6A9AE002E1FA4 /* jungle_01.caff */,
 			);
@@ -5852,6 +5858,8 @@
 				0543B22416BBB7CF0014970B /* Default-Landscape.png in Resources */,
 				0543B22516BBB7CF0014970B /* Default-Landscape@2x.png in Resources */,
 				0543B22716BC14F90014970B /* Rabbit On The Moon.ttf in Resources */,
+				41289B6B16C12E2700AB39A0 /* star.mp3 in Resources */,
+				41289B6D16C135C200AB39A0 /* success.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
