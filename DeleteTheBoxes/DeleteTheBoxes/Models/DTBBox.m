@@ -22,19 +22,13 @@ static int classOrder = 0;
 }
 
 - (id) initWithFrame:(CGRect)frame andTitle:(NSString *)title {
-    if (self = [self initWithFrame:frame]) {
+    if (self = [super init]) {
         self.title = title;
         self.isDeleted = NO;
         self.order = classOrder;
+        self.boxButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.boxButton.frame = frame;
         classOrder++;
-    }
-    return self;
-}
-- (id) initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
     }
     return self;
 }
