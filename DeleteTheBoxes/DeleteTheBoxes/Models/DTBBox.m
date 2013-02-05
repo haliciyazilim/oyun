@@ -48,6 +48,12 @@ static int classOrder = 0;
 }
 - (void) animateBoxToOutside {
     [self drawLineToOriginalPosition];
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [self setCenter:CGPointMake(24, 24)];
+        self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, 48, 48);
+    } completion:^(BOOL finished) {
+        ;
+    }];
 }
 - (void) animateBoxToInside {
     [self removeLine];
