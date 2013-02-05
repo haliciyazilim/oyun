@@ -33,6 +33,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Flurry setDebugLogEnabled:NO];
+    [Flurry setShowErrorInLogEnabled:NO];
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     [Flurry startSession:@"PW345B45PR4W3D6Z2V8H"];
     [FlurryAds initialize:[CCDirector sharedDirector]];
