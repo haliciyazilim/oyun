@@ -135,6 +135,11 @@ static RMInGameViewController* lastInstance = nil;
     
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
 - (void) configureView
 {
     CGSize canvasSize;

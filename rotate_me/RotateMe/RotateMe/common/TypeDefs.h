@@ -11,5 +11,12 @@
 
 typedef void (^ IteratorBlock)();
 
+typedef enum DIFFICULTY {
+    EASY = 1,
+    NORMAL = 2,
+    HARD = 3
+} DIFFICULTY;
+DIFFICULTY difficultyFromString(NSString* string);
+NSString* stringOfDifficulty(DIFFICULTY difficulty);
 
 #endif
