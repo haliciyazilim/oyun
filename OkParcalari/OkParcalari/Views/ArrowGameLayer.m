@@ -219,28 +219,20 @@ static ArrowGameLayer* __lastInstance;
     
     [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
         NSString *newFile = [NSString stringWithString:_fileName];
+        if(gameWinView != nil){
+            [gameWinView removeFromSuperview];
+            gameWinView = nil;
+        }
         [self.arrowGame cleanMap];
         [self.arrowGame removeFromParentAndCleanup:YES];
-//        self.isTouchEnabled = YES;
         _isRestaurantOpened = NO;
         _isMenuOpened = NO;
         _isGameEnded = NO;
         [ArrowGame cleanLastInstance];
         [ArrowGameLayer cleanLastInstance];
-//        [self initializeGameWithFile:_fileName];
         [self removeFromParentAndCleanup:YES];
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:newFile] withColor:ccWHITE]];
     }];
-    
-//    TransitionManager *myManager = [[TransitionManager alloc] initWithTransitionBlock:^{
-//        [self.arrowGame cleanMap];
-//        [self.arrowGame removeFromParentAndCleanup:YES];
-//        [ArrowGame cleanLastInstance];
-//        [ArrowGameLayer cleanLastInstance];
-//        self.isTouchEnabled = YES;
-//        [self initializeGameWithFile:_fileName];
-//    }];
-//    [myManager startTransition];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -343,7 +335,6 @@ static ArrowGameLayer* __lastInstance;
             }
             [self.arrowGame cleanMap];
             [self.arrowGame removeFromParentAndCleanup:YES];
-//            self.isTouchEnabled = YES;
             _isRestaurantOpened = NO;
             _isMenuOpened = NO;
             _isGameEnded = NO;
@@ -353,11 +344,9 @@ static ArrowGameLayer* __lastInstance;
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[ArrowGameLayer sceneWithFile:newMap.mapId] withColor:ccWHITE]];
         }];
     }
-    
 }
 -(void) gameEnded:(int)starCount andElapsedSeconds:(int)elapsedSeconds
 {
-//    starCount = 1;
     _starCount = starCount;
     _elapsedSeconds = elapsedSeconds;
     
@@ -370,8 +359,6 @@ static ArrowGameLayer* __lastInstance;
      }];
     
     [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"success"];
-    
-    NSLog(@"entered gameEnded");
     _isGameEnded = YES;
     self.isTouchEnabled = NO;
     
@@ -405,12 +392,11 @@ static ArrowGameLayer* __lastInstance;
         fileName4 = [NSString stringWithFormat:@"youwin_num_%d.png",seconds%10];
     }
     
-//    [gameWinView removeFromSuperview];
     gameWinView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
     
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inapp_menu_frame.png"]];
     
-    UIView *holderFrame = [[UIView alloc] initWithFrame:CGRectMake(350.0, 200.0, 327.0, 395.0)];
+    UIView *holderFrame = [[UIView alloc] initWithFrame:CGRectMake(350.0, 145.0, 327.0, 440.0)];
     
     UIImageView *star1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_star_passive.png"]];
     star1.frame = CGRectMake(40.0, 26.0, 80.0, 77.0);
@@ -481,17 +467,23 @@ static ArrowGameLayer* __lastInstance;
         [nextGame setEnabled:NO];
     }
     
+    UIButton *restartGame = [UIButton buttonWithType:UIButtonTypeCustom];
+    [restartGame setFrame:CGRectMake(94.0, 308.0, 139.0, 55.0)];
+    [restartGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_restart", @"png")] forState:UIControlStateNormal];
+    [restartGame setBackgroundImage:[UIImage imageNamed:LocalizedImageName(@"youwin_restart_hover", @"png")] forState:UIControlStateHighlighted];
+    [restartGame addTarget:self action:@selector(restartGame) forControlEvents:UIControlEventTouchUpInside];
+    
     UIImageView *rope3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_ayrac.png"]];
-    rope3.frame = CGRectMake(0.0, 318.0, 327.0, 13.0);
+    rope3.frame = CGRectMake(0.0, 363.0, 327.0, 13.0);
     
     UIButton *faceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [faceButton setFrame:CGRectMake(100.0, 345.0, 50.0, 50.0)];
+    [faceButton setFrame:CGRectMake(100.0, 390.0, 50.0, 50.0)];
     [faceButton setBackgroundImage:[UIImage imageNamed:@"youwin_social_face.png"] forState:UIControlStateNormal];
     [faceButton setBackgroundImage:[UIImage imageNamed:@"youwin_social_face_hover.png"] forState:UIControlStateHighlighted];
     [faceButton addTarget:self action:@selector(shareOnFacebook) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *tweetButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [tweetButton setFrame:CGRectMake(179.0, 345.0, 50.0, 50.0)];
+    [tweetButton setFrame:CGRectMake(179.0, 390.0, 50.0, 50.0)];
     [tweetButton setBackgroundImage:[UIImage imageNamed:@"youwin_social_tweet.png"] forState:UIControlStateNormal];
     [tweetButton setBackgroundImage:[UIImage imageNamed:@"youwin_social_tweet_hover.png"] forState:UIControlStateHighlighted];
     [tweetButton addTarget:self action:@selector(shareOnTwitter) forControlEvents:UIControlEventTouchUpInside];
@@ -533,6 +525,7 @@ static ArrowGameLayer* __lastInstance;
     [holderFrame addSubview:mainMenu];
     [holderFrame addSubview:buttonsDot];
     [holderFrame addSubview:nextGame];
+    [holderFrame addSubview:restartGame];
     [holderFrame addSubview:rope3];
     [holderFrame addSubview:faceButton];
     [holderFrame addSubview:tweetButton];

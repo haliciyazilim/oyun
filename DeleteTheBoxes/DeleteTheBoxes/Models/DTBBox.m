@@ -44,14 +44,15 @@ static int classOrder = 0;
     [self animateBoxToInside];
 }
 - (void) animateBoxToOutside {
-    NSLog(@"Yukarı ÇIk")
-    ;    [self drawLineToOriginalPosition];
-    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-        [self.boxButton setCenter:CGPointMake(24, 24)];
-        self.boxButton.frame=CGRectMake(self.boxButton.frame.origin.x, self.boxButton.frame.origin.y-30, self.boxButton.frame.size.width/2,self.boxButton.frame.size.height/2);
-    } completion:^(BOOL finished) {
-        ;
-    }];
+
+//    NSLog(@"Yukarı ÇIk")
+//    ;    [self drawLineToOriginalPosition];
+//    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+//        [self.boxButton setCenter:CGPointMake(24, 24)];
+//        self.boxButton.frame=CGRectMake(self.boxButton.frame.origin.x, self.boxButton.frame.origin.y-30, self.boxButton.frame.size.width/2,self.boxButton.frame.size.height/2);
+//    } completion:^(BOOL finished) {
+//        ;
+//    }];
 }
 - (void) animateBoxToInside {
     [self removeLine];
