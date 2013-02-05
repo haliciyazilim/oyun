@@ -26,8 +26,11 @@ static int classOrder = 0;
         self.title = title;
         self.isDeleted = NO;
         self.order = classOrder;
-        self.boxButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.boxButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.boxButton.frame = frame;
+        [self.boxButton setTitle:title forState:UIControlStateNormal];
+        // Aşağıdaki satırda sıkıntı var. Animasyon çalışmıyor.
+//        [self.boxButton addTarget:self action:@selector(animateBoxToOutside:) forControlEvents:UIControlEventTouchUpInside];
         classOrder++;
     }
     return self;
@@ -41,10 +44,11 @@ static int classOrder = 0;
     [self animateBoxToInside];
 }
 - (void) animateBoxToOutside {
-    [self drawLineToOriginalPosition];
+    NSLog(@"Yukarı ÇIk")
+    ;    [self drawLineToOriginalPosition];
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-        [self setCenter:CGPointMake(24, 24)];
-        self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, 48, 48);
+        [self.boxButton setCenter:CGPointMake(24, 24)];
+        self.boxButton.frame=CGRectMake(self.boxButton.frame.origin.x, self.boxButton.frame.origin.y-30, self.boxButton.frame.size.width/2,self.boxButton.frame.size.height/2);
     } completion:^(BOOL finished) {
         ;
     }];

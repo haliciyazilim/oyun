@@ -49,10 +49,17 @@
     for (int i=0; i<[question questionArray].count; i++) {
         
         DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(60*i+10, screenBounds.size.width/2-24, 48, 48) andTitle:[question questionArray][i]];
+        
                 
-        [_scrollView addSubview:box];
+        [_scrollView addSubview:box.boxButton];
         
         
+        
+//        UIButton * box1=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+//        box1.frame=CGRectMake(60*i+10, screenBounds.size.width/2-24, 48, 48);
+//        [box1 setTitle:@"1" forState:UIControlStateNormal];
+//        
+//        [_scrollView addSubview:box1];
     }
 }
 
