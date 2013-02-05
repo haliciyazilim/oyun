@@ -173,7 +173,7 @@ static TutorialManager* currentInstance = nil;
 
 -(void) nextStep
 {
-    NSLog(@"next step");
+//    NSLog(@"next step");
     currentStepIndex++;
     if(currentStepIndex >= [tutorialSteps count]){
         [self showDialogMessage:NSLocalizedString(@"TUTORIAL_COMPLETED", nil) andCallback:^{

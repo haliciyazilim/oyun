@@ -198,8 +198,8 @@
         [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
         
         if(map.isFinished){
-            int score = [map.score intValue];
-            NSLog(@"score: %d",score);
+//            int score = [map.score intValue];
+//            NSLog(@"score: %d",score);
             for(int i=0;i<3;i++){
                 UIImageView* view;
                 if(i < [map getStarCount])
@@ -358,7 +358,7 @@
         [noConnection show];
     }
     else{
-        NSLog(@"show GameCenter");
+//        NSLog(@"show GameCenter");
         tempVC = [[UIViewController alloc] init];
         GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
         if (gameCenterController != nil){
@@ -573,7 +573,7 @@
 
 -(void) makeTransition
 {
-    NSLog(@"entered makeTransition");
+//    NSLog(@"entered makeTransition");
 }
 
 //static MAP_DIFFICULTY difficulty = EASY;

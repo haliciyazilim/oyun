@@ -113,11 +113,11 @@ static GameCenterManager *sharedManager = nil;
                     ;
                 }
                 
-                if (scores != nil) {
-                    for (GKScore *score in scores) {
-                        NSLog(@"My Score: %lld", score.value);
-                    }
-                }
+//                if (scores != nil) {
+//                    for (GKScore *score in scores) {
+//                        NSLog(@"My Score: %lld", score.value);
+//                    }
+//                }
             }];
         }
         else{
