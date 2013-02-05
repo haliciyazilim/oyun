@@ -22,19 +22,13 @@ static int classOrder = 0;
 }
 
 - (id) initWithFrame:(CGRect)frame andTitle:(NSString *)title {
-    if (self = [self initWithFrame:frame]) {
+    if (self = [super init]) {
         self.title = title;
         self.isDeleted = NO;
         self.order = classOrder;
+        self.boxButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.boxButton.frame = frame;
         classOrder++;
-    }
-    return self;
-}
-- (id) initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
     }
     return self;
 }
@@ -48,6 +42,12 @@ static int classOrder = 0;
 }
 - (void) animateBoxToOutside {
     [self drawLineToOriginalPosition];
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [self setCenter:CGPointMake(24, 24)];
+        self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, 48, 48);
+    } completion:^(BOOL finished) {
+        ;
+    }];
 }
 - (void) animateBoxToInside {
     [self removeLine];

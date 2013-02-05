@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DTBBox : UIButton
+@interface DTBBox : NSObject
 
+@property UIButton *boxButton;
 @property NSString *title;
 @property BOOL isDeleted;
 @property int order;
