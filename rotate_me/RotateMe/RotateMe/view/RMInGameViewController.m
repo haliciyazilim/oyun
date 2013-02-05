@@ -46,12 +46,17 @@ static RMInGameViewController* lastInstance = nil;
     isGameFinished = NO;
     self.stopWatch = [[RMStopWatch alloc] init];
     
-    if([RMPhotoSelectionViewController isEasy]){
+    if(getCurrentDifficulty() == EASY){
         rows = 3;
         cols = 4;
         tileSize = 90;
     }
-    else{
+    else if(getCurrentDifficulty() == NORMAL){
+        rows = 5;
+        cols = 7;
+        tileSize = 60;
+    }
+    else if(getCurrentDifficulty() == HARD){
         rows = 6;
         cols = 8;
         tileSize = 45;
@@ -67,7 +72,7 @@ static RMInGameViewController* lastInstance = nil;
     [hiddenImage setContentMode:UIViewContentModeScaleAspectFill];
     
     UIImageView* grids;
-    if([RMPhotoSelectionViewController isEasy]){
+    if(getCurrentDifficulty() == EASY){
         grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_double_grid.png"]];
     }else{
         grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];

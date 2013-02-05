@@ -139,19 +139,19 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     
 }
 
-static BOOL isEasy = YES;
-+ (BOOL) isEasy
-{
-    return  isEasy;
-}
+
 - (IBAction)difficultyChanged:(id)sender {
     UISegmentedControl* control = (UISegmentedControl*)sender;
     if([control selectedSegmentIndex] == 0){
-        isEasy = YES;
+        setCurrentDifficulty(EASY);
     }
-    else{
-        isEasy = NO;
+    else if ([control selectedSegmentIndex] == 1){
+        setCurrentDifficulty(NORMAL);
     }
+    else if([control selectedSegmentIndex] == 2){
+        setCurrentDifficulty(HARD);
+    }
+
 }
 
 
