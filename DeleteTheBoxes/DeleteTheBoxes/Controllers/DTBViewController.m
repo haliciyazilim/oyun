@@ -7,6 +7,7 @@
 //
 
 #import "DTBViewController.h"
+#import "DTBQuestion.h"
 
 @interface DTBViewController ()
 
@@ -18,6 +19,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    DTBQuestion *deneme = [DTBQuestion QuestionWithQuestion:@"3x5=3+0:2" andAnswer:@"3x5=30"];
+    NSLog(@"%@",[deneme questionArray]);
 }
 
 - (void)didReceiveMemoryWarning
