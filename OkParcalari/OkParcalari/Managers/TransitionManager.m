@@ -52,7 +52,6 @@ static TransitionManager* currentInstance = nil;
     [Flurry logPageView];
     transition = transitionBlock;
     
-    NSLog(@"making closing");
     [[[CCDirector sharedDirector] view] setUserInteractionEnabled:NO];
     
     transitionImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 768.0, 1024.0, 768.0)];
@@ -77,7 +76,6 @@ static TransitionManager* currentInstance = nil;
         transitionImage2.frame = CGRectMake(0.0, 0.0, 1024.0, 768.0);
         transitionImage3.alpha = 1.0;
     } completion:^(BOOL finished) {
-        NSLog(@"%d", adCountDown);
         if ([[GreenTheGardenIAPHelper sharedInstance] isPro]){
             [self performRealTransition];
         } else {

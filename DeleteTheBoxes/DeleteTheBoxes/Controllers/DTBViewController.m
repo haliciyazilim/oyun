@@ -27,9 +27,14 @@
     
     [self placingBoxes:deneme];
     
+    [self.view setUserInteractionEnabled:YES];
+    [self.scrollView setUserInteractionEnabled:NO];
     
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -40,20 +45,22 @@
     [self setScrollView:nil];
     [super viewDidUnload];
 }
-
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 -(void)placingBoxes: (DTBQuestion *) question{
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    NSLog(@"SV h: %f",screenBounds.size.width);
+//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+//    NSLog(@"SV h: %f",screenBounds.size.width);
+//    
+//    for (int i=0; i<[question questionArray].count; i++) {
+//        
+//        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(60*i+10, screenBounds.size.width/2-24, 48, 48) andTitle:[question questionArray][i]];
+//                
+//        [_scrollView addSubview:box];
     
-    for (int i=0; i<[question questionArray].count; i++) {
         
-        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(60*i+10, screenBounds.size.width/2-24, 48, 48) andTitle:[question questionArray][i]];
-                
-        [_scrollView addSubview:box];
-        
-        
-    }
+//    }
 }
 
 @end

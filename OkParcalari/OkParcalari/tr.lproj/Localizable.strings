@@ -23,12 +23,11 @@
 "RESTART_APPROVE" = "Yeniden başlamak istediğinize emin misiniz? Kaydedilmemiş ilerlemeniz kaybolacaktır!";
 "MAIN_MENU_APPROVE" = "Ana menüye dönmek istediğinize emin misiniz? Kaydedilmemiş ilerlemeniz kaybolacaktır!";
 "CANCEL" = "İptal";
-"NO_MAP" = "harita yok";
 "NO_PURCHASED" = "Ücretiz haritaların sonuncusunu oynadınız. Tam sürüme geçerek bütün haritalara ulaşabilirsiniz.";
 
 // Credits
 "PROGRAMMING"="PROGRAMLAMA";
-"ART"="GÖRSEL TASARIM";
+"ART"="GÖRSEL ARAYÜZ TASARIM";
 "MUSIC"="MÜZİK";
 
 // Social
