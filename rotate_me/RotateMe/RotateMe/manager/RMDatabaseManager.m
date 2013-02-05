@@ -89,6 +89,8 @@ static RMDatabaseManager *sharedInstance = nil;
 -(NSManagedObject *)entityWithRequest:(NSFetchRequest *)request forName:(NSString*)entitiyName
 {
     NSMutableArray *mutableFetchResults = [self entitiesWithRequest:request forName:entitiyName];
+    if(mutableFetchResults == nil || [mutableFetchResults count] == 0)
+        return nil;
     return [mutableFetchResults objectAtIndex:0];
 }
 

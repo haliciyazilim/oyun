@@ -8,7 +8,8 @@
 
 #import <CoreData/CoreData.h>
 #import "TypeDefs.h"
-#import "Photo.h"
+
+@class Photo;
 
 @interface Score : NSManagedObject
 @property int elapsedSeconds;

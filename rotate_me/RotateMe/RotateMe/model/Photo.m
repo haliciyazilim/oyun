@@ -7,6 +7,7 @@
 //
 
 #import "Photo.h"
+#import "RMDatabaseManager.h"
 
 @implementation Photo
 @dynamic filename;
@@ -15,7 +16,39 @@
 
 + (Photo*)createPhotoWithFileName:(NSString*)fileName andGallery:(Gallery*)gallery
 {
-    
+    Photo* photo = (Photo*)[[RMDatabaseManager sharedInstance] createEntity:@"Photo"];
+    photo.filename = fileName;
+    photo.gallery = gallery;
+    [[RMDatabaseManager sharedInstance] saveContext];
+    return photo;
 }
+- (void) setScore:(int)elapsedTime forDifficulty:(DIFFICULTY)difficulty
+{
+    Score* score = [self getScoreForDifficulty:difficulty];
+    if(score == nil){
+        score = (Score*)[[RMDatabaseManager sharedInstance] createEntity:@"Score"];
+        score.photo = self;
+        score.difficulty = difficulty;
+        score.elapsedSeconds = elapsedTime;
+    }
+    else if(score.elapsedSeconds > elapsedTime){
+        score.elapsedSeconds = elapsedTime;
+    }
+
+    [[RMDatabaseManager sharedInstance] saveContext];
+
+}
+- (Score*) getScoreForDifficulty:(DIFFICULTY)difficulty
+{
+    
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"photo == %@ && difficulty == %d", self, difficulty];
+    [request setPredicate:predicate];
+    return (Score*)[[RMDatabaseManager sharedInstance] entityWithRequest:request forName:@"Score"];
+}
+
+
 
 @end

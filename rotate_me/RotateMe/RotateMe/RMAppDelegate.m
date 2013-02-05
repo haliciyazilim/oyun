@@ -10,7 +10,7 @@
 #import "RMPhotoSelectionViewController.h"
 #import "RMBundleInitializer.h"
 #import "Gallery.h"
-
+#import "Photo.h"
 
 @implementation RMAppDelegate
 
@@ -20,27 +20,16 @@
 //    self.window.rootViewController = [RMPhotoSelectionViewController lastInstance];
 //    [RMBundleInitializer initializeBundle];
     
-    [Gallery createGalleryWithName:@"test1"];
-    [Gallery createGalleryWithName:@"test1"];
-    [Gallery createGalleryWithName:@"test1"];
-    [Gallery createGalleryWithName:@"test1"];
-    [Gallery createGalleryWithName:@"test1"];
-    [Gallery createGalleryWithName:@"test1"];
-    NSMutableArray* galleries = [Gallery allGalleries];
-//    NSLog(@"%@",galleries);
+//    Gallery * gallery = [Gallery createGalleryWithName:@"test1"];
+//    
+//    Photo* photo = [Photo createPhotoWithFileName:@"ilk foto" andGallery:gallery];
+//    
+//    [photo setScore:1 forDifficulty:HARD];
+//    Score* score = [photo getScoreForDifficulty:HARD];
+//    NSLog(@"score: %d",score.elapsedSeconds);
     return YES;
 }
 
--(BOOL)shouldAutorotate{
-    
-    return YES;
-    
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
-}
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
