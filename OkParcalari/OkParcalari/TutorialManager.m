@@ -41,7 +41,8 @@ typedef void (^ IteratorBlock)();
     UIImageView* currentTutorialArrow;
     Location lastMovedArrowEndLocation;
     UIImageView* balloonImageView;
-    UIImageView* highlight;
+    UIImageView* baseHighlight;
+    UIImageView* tileHighlight;
     UIView* lastDialog;
 }
 
@@ -93,7 +94,7 @@ static TutorialManager* currentInstance = nil;
         thirdStep.startTile = LocationMake(8,8);
         thirdStep.targetTile = LocationMake(1, 8);
         descriptions  = [[NSMutableArray alloc] init];
-        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_3_0", nil) andTile:LocationMake(8, 8)]];
+        [descriptions addObject:[TutorialDescription descriptionWithText:NSLocalizedString(@"TUTORIAL_3_0", nil) andTile:LocationMake(1, 8)]];
         thirdStep.descriptions = descriptions;
         [tutorialSteps addObject:thirdStep];
         
@@ -159,8 +160,11 @@ static TutorialManager* currentInstance = nil;
     currentStepIndex = -1;
     [tutorialSteps removeAllObjects];
     
-    [highlight removeFromSuperview];
-    highlight = nil;
+    [baseHighlight removeFromSuperview];
+    baseHighlight = nil;
+    
+    [tileHighlight removeFromSuperview];
+    tileHighlight = nil;
     
     currentInstance = nil;
 
@@ -178,11 +182,14 @@ static TutorialManager* currentInstance = nil;
         }];
         return;
     }
-    highlight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_highlight.png"]];
     TutorialStep* step = [tutorialSteps objectAtIndex:currentStepIndex];
+    
+    baseHighlight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_highlight.png"]];
     CGPoint basePoint = [self pointFromLocation:step.startTile];
-    highlight.frame = CGRectMake(basePoint.x, basePoint.y, highlight.image.size.width, highlight.image.size.height);
-    [[[CCDirector sharedDirector] view] addSubview:highlight];
+    baseHighlight.frame = CGRectMake(basePoint.x, basePoint.y, baseHighlight.image.size.width, baseHighlight.image.size.height);
+    [[[CCDirector sharedDirector] view] addSubview:baseHighlight];
+    
+    
     [self nextDescription];
     
 }
@@ -341,13 +348,15 @@ static TutorialManager* currentInstance = nil;
 {
     [currentTutorialArrow setAlpha:0.0];
     [balloonImageView setAlpha:0.0];
-    [highlight setAlpha:0.0];
+    [baseHighlight setAlpha:0.0];
+    [tileHighlight setAlpha:0.0];
     [lastDialog setAlpha:0.0];
 }
 
 -(void)resumeTutorial
 {
-    [highlight setAlpha:1.0];
+    [baseHighlight setAlpha:1.0];
+    [tileHighlight setAlpha:1.0];
     [currentTutorialArrow setAlpha:1.0];
     [currentTutorialArrow setAlpha:1.0];
     [lastDialog setAlpha:1.0];
@@ -393,8 +402,9 @@ static TutorialManager* currentInstance = nil;
         result = YES;
     if(result == YES){
 //        NSLog(@"result = YES arrow.endlocation.x:%d to.x:%d arrow.endLocation.y:%d to.y:%d",arrow.endLocation.x, to.x, arrow.endLocation.y, to.y);
-        [highlight removeFromSuperview];
-        highlight = nil;
+        [baseHighlight removeFromSuperview];
+        baseHighlight = nil;
+        
 //        [self showDialogMessage:@"Congratulations!" andCallback:^{
 //            [self nextStep];
 //        }];
@@ -420,6 +430,8 @@ static TutorialManager* currentInstance = nil;
     
     if(currentStep.currentDescription == [currentStep.descriptions count]-1){
         
+        [tileHighlight removeFromSuperview];
+        tileHighlight = nil;
         [self showHelperSignsFrom:currentStep.startTile to:currentStep.targetTile onCompletion:^{}];
         
         [self showInstruction:description.text forTile:description.tile];
@@ -429,6 +441,17 @@ static TutorialManager* currentInstance = nil;
         [self showInstruction:description.text forTile:description.tile withCompletionBlock:^{
             [self nextDescription];
         }];
+        
+        [tileHighlight removeFromSuperview];
+        tileHighlight = nil;
+        if(currentStep.startTile.x != description.tile.x || currentStep.startTile.y != description.tile.y){
+            tileHighlight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tut_highlight.png"]];
+            CGPoint tilePoint = [self pointFromLocation:description.tile];
+            tileHighlight.frame = CGRectMake(tilePoint.x, tilePoint.y, tileHighlight.image.size.width, tileHighlight.image.size.height);
+            [[[CCDirector sharedDirector] view] addSubview:tileHighlight];
+            [[[CCDirector sharedDirector] view] insertSubview:tileHighlight belowSubview:balloonImageView];
+        }
+        
     }
     
 }
