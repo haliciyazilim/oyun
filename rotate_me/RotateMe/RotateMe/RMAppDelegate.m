@@ -16,17 +16,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-//    self.window.rootViewController = [RMPhotoSelectionViewController lastInstance];
-//    [RMBundleInitializer initializeBundle];
-    
-//    Gallery * gallery = [Gallery createGalleryWithName:@"test1"];
-//    
-//    Photo* photo = [Photo createPhotoWithFileName:@"ilk foto" andGallery:gallery];
-//    
-//    [photo setScore:1 forDifficulty:HARD];
-//    Score* score = [photo getScoreForDifficulty:HARD];
-//    NSLog(@"score: %d",score.elapsedSeconds);
+    if([[RMDatabaseManager sharedInstance] isEmpty]){
+        [RMBundleInitializer initializeBundle];
+    }
     return YES;
 }
 

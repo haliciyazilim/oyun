@@ -8,6 +8,7 @@
 
 #import "Photo.h"
 #import "RMDatabaseManager.h"
+#import "RMImage.h"
 
 @implementation Photo
 @dynamic filename;
@@ -49,6 +50,15 @@
     return (Score*)[[RMDatabaseManager sharedInstance] entityWithRequest:request forName:@"Score"];
 }
 
-
+- (RMImage*) getImage
+{
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:self.gallery.name];
+    NSString* imagePath = [folderPath stringByAppendingPathComponent:self.filename];
+    
+    RMImage* image = [[RMImage alloc] initWithContentsOfFile:imagePath];
+    image.owner = self;
+    return image;
+}
 
 @end

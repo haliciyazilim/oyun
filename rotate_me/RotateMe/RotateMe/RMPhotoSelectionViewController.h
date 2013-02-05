@@ -15,6 +15,5 @@
 + (BOOL) isEasy;
 + (RMPhotoSelectionViewController*) lastInstance;
 
-@property NSMutableArray* photos;
 
 @end

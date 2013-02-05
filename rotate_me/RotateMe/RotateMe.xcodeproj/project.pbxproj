@@ -56,6 +56,7 @@
 		AED932CF16BFAE1300DD9D30 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = AED932CE16BFAE1300DD9D30 /* Photo.m */; };
 		AED932D216BFAFD000DD9D30 /* Gallery.m in Sources */ = {isa = PBXBuildFile; fileRef = AED932D116BFAFD000DD9D30 /* Gallery.m */; };
 		AED932D516BFB3B800DD9D30 /* RMCroppedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AED932D416BFB3B800DD9D30 /* RMCroppedImageView.m */; };
+		AEDFA2C116C0F9D800BB440C /* RMImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDFA2C016C0F9D800BB440C /* RMImage.m */; };
 		AEEA87EB16BC55BE0063C4D0 /* test6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEEA87E116BC55BE0063C4D0 /* test6.jpg */; };
 		AEEA87EC16BC55BE0063C4D0 /* test7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEEA87E216BC55BE0063C4D0 /* test7.jpg */; };
 		AEEA87ED16BC55BE0063C4D0 /* test8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEEA87E316BC55BE0063C4D0 /* test8.jpg */; };
@@ -133,6 +134,8 @@
 		AED932D116BFAFD000DD9D30 /* Gallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gallery.m; path = model/Gallery.m; sourceTree = "<group>"; };
 		AED932D316BFB3B700DD9D30 /* RMCroppedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMCroppedImageView.h; path = view/RMCroppedImageView.h; sourceTree = "<group>"; };
 		AED932D416BFB3B800DD9D30 /* RMCroppedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMCroppedImageView.m; path = view/RMCroppedImageView.m; sourceTree = "<group>"; };
+		AEDFA2BF16C0F9D800BB440C /* RMImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMImage.h; path = view/RMImage.h; sourceTree = "<group>"; };
+		AEDFA2C016C0F9D800BB440C /* RMImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMImage.m; path = view/RMImage.m; sourceTree = "<group>"; };
 		AEEA87E116BC55BE0063C4D0 /* test6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test6.jpg; path = images/test6.jpg; sourceTree = "<group>"; };
 		AEEA87E216BC55BE0063C4D0 /* test7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test7.jpg; path = images/test7.jpg; sourceTree = "<group>"; };
 		AEEA87E316BC55BE0063C4D0 /* test8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test8.jpg; path = images/test8.jpg; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 				AE72DBBF16BBB13D00C12D6C /* RMCustomImageView.m */,
 				AED932D316BFB3B700DD9D30 /* RMCroppedImageView.h */,
 				AED932D416BFB3B800DD9D30 /* RMCroppedImageView.m */,
+				AEDFA2BF16C0F9D800BB440C /* RMImage.h */,
+				AEDFA2C016C0F9D800BB440C /* RMImage.m */,
 			);
 			name = SpecialViews;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 				AE7CBED916BFF833001BAF3D /* RMDatabaseManager.m in Sources */,
 				AE7CBEE216C00742001BAF3D /* Score.m in Sources */,
 				AE7CBEE416C00AF3001BAF3D /* TypeDefs.m in Sources */,
+				AEDFA2C116C0F9D800BB440C /* RMImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

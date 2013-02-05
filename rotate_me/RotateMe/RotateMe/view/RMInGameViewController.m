@@ -8,7 +8,7 @@
 
 #import "RMInGameViewController.h"
 #import "RMPhotoSelectionViewController.h"
-
+#import "RMImage.h"
 
 
 
@@ -21,7 +21,7 @@
     int rows;
     int cols;
     int tileSize;
-    UIImage* currentImage;
+    RMImage* currentImage;
     BOOL isGameFinished;
     UIImageView* hiddenImage;
 }
@@ -89,7 +89,7 @@ static RMInGameViewController* lastInstance = nil;
     }];
 }
 
-- (void) setImage:(UIImage*)image
+- (void) setImage:(RMImage*)image
 {
     if(currentImage != image){
         currentImage = image;
