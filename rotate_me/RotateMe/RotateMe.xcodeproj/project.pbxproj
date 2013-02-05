@@ -57,6 +57,7 @@
 		AED932D216BFAFD000DD9D30 /* Gallery.m in Sources */ = {isa = PBXBuildFile; fileRef = AED932D116BFAFD000DD9D30 /* Gallery.m */; };
 		AED932D516BFB3B800DD9D30 /* RMCroppedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AED932D416BFB3B800DD9D30 /* RMCroppedImageView.m */; };
 		AEDFA2C116C0F9D800BB440C /* RMImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDFA2C016C0F9D800BB440C /* RMImage.m */; };
+		AEDFA2C616C133FA00BB440C /* UIView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDFA2C516C133FA00BB440C /* UIView+Util.m */; };
 		AEEA87EB16BC55BE0063C4D0 /* test6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEEA87E116BC55BE0063C4D0 /* test6.jpg */; };
 		AEEA87EC16BC55BE0063C4D0 /* test7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEEA87E216BC55BE0063C4D0 /* test7.jpg */; };
 		AEEA87ED16BC55BE0063C4D0 /* test8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEEA87E316BC55BE0063C4D0 /* test8.jpg */; };
@@ -136,6 +137,8 @@
 		AED932D416BFB3B800DD9D30 /* RMCroppedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMCroppedImageView.m; path = view/RMCroppedImageView.m; sourceTree = "<group>"; };
 		AEDFA2BF16C0F9D800BB440C /* RMImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMImage.h; path = view/RMImage.h; sourceTree = "<group>"; };
 		AEDFA2C016C0F9D800BB440C /* RMImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMImage.m; path = view/RMImage.m; sourceTree = "<group>"; };
+		AEDFA2C416C133FA00BB440C /* UIView+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Util.h"; path = "view/UIView+Util.h"; sourceTree = "<group>"; };
+		AEDFA2C516C133FA00BB440C /* UIView+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Util.m"; path = "view/UIView+Util.m"; sourceTree = "<group>"; };
 		AEEA87E116BC55BE0063C4D0 /* test6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test6.jpg; path = images/test6.jpg; sourceTree = "<group>"; };
 		AEEA87E216BC55BE0063C4D0 /* test7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test7.jpg; path = images/test7.jpg; sourceTree = "<group>"; };
 		AEEA87E316BC55BE0063C4D0 /* test8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test8.jpg; path = images/test8.jpg; sourceTree = "<group>"; };
@@ -249,6 +252,7 @@
 		AED218E616BA9CDB00271930 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AEDFA2C316C133DD00BB440C /* View Extensions */,
 				AE72DBBD16BBB0FA00C12D6C /* SpecialViews */,
 				AED218E716BA9D8500271930 /* RMInGameViewController.h */,
 				AED218E816BA9D8500271930 /* RMInGameViewController.m */,
@@ -330,6 +334,15 @@
 				AE7CBEE116C00742001BAF3D /* Score.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		AEDFA2C316C133DD00BB440C /* View Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AEDFA2C416C133FA00BB440C /* UIView+Util.h */,
+				AEDFA2C516C133FA00BB440C /* UIView+Util.m */,
+			);
+			name = "View Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,6 +461,7 @@
 				AE7CBEE216C00742001BAF3D /* Score.m in Sources */,
 				AE7CBEE416C00AF3001BAF3D /* TypeDefs.m in Sources */,
 				AEDFA2C116C0F9D800BB440C /* RMImage.m in Sources */,
+				AEDFA2C616C133FA00BB440C /* UIView+Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,8 @@
 #define RotateMe_Config_h
 
 #define DEFAULT_GALLERY_NAME @"default"
-
+#define PHOTO_SELECTION_IMAGEVIEW_TAG 123
+#define PHOTO_SELECTION_IMAGEVIEW_LABEL_TAG 101
 
 
 #endif

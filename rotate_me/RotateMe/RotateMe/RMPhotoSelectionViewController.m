@@ -9,7 +9,9 @@
 #import "RMPhotoSelectionViewController.h"
 #import "RMCustomImageView.h"
 #import "RMInGameViewController.h"
+#import "RMImage.h"
 #import "Photo.h"
+#import "UIView+Util.h"
 
 @interface RMPhotoSelectionViewController ()
 
@@ -87,6 +89,15 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     return YES;
 }
 
+- (void) refreshPhotos
+{
+    [RMPhotoSelectionViewController setLastScroll:self.scrollView.contentOffset.x];
+    NSArray* imageViews = [self.scrollView viewsByTag:PHOTO_SELECTION_IMAGEVIEW_TAG];
+    for(UIImageView* imageView in imageViews ){
+        [imageView removeFromSuperview];
+    }
+    [self printPhotos];
+}
 
 - (void) printPhotos
 {
@@ -101,8 +112,14 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [self.scrollView setContentSize:CGSizeMake(leftMargin*2 + photos.count * size.width,
                                                topMargin*2  + size.height)];
     
+    [self.scrollView setContentOffset:CGPointMake([RMPhotoSelectionViewController getLastScroll], 0.0)];
     for(int i=0; i < [photos count]; i++){
-        RMCustomImageView* photo = [[RMCustomImageView alloc] initWithImage:[(Photo*)[photos objectAtIndex:i] getImage]];
+        
+        RMImage* image = [(Photo*)[photos objectAtIndex:i] getImage];
+        image = [image imageWithGaussianBlur9];
+        RMCustomImageView* photo = [[RMCustomImageView alloc] initWithImage:image];
+        
+        photo.tag = PHOTO_SELECTION_IMAGEVIEW_TAG;
         photo.frame = CGRectMake(leftMargin+i*size.width, topMargin, photoSize.width, photoSize.height);
         [photo setContentMode:UIViewContentModeScaleAspectFill];
         [photo setClipsToBounds:YES];
@@ -116,7 +133,10 @@ static RMPhotoSelectionViewController* lastInstance = nil;
                 touchedPhoto = blockPhoto;
                 [self performSegueWithIdentifier:@"StartGame" sender:self];
             }
-        }];        
+        }];
+//        CALayer *layer = [photo layer];
+//        [layer setRasterizationScale:0.5];
+//        [layer setShouldRasterize:YES];
     }
 
 }
@@ -131,8 +151,6 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    NSLog(@"segue started");
-//    RMCustomImageView* photo = (RMCustomImageView*)segue;
     RMInGameViewController* inGameView = [segue destinationViewController];
     [inGameView setImage:touchedPhoto.image];
     touchedPhoto = nil;
@@ -151,7 +169,20 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     else if([control selectedSegmentIndex] == 2){
         setCurrentDifficulty(HARD);
     }
+    
+    [self refreshPhotos];
 
+}
+
+static int __lastScroll = 0;
+
++(int)getLastScroll
+{
+    return __lastScroll;
+}
+
++(void)setLastScroll:(int)scroll{
+    __lastScroll = scroll;
 }
 
 

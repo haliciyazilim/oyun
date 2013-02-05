@@ -11,6 +11,9 @@
 #import "RMImage.h"
 
 @implementation Photo
+{
+    RMImage* image;
+}
 @dynamic filename;
 @dynamic gallery;
 @dynamic score;
@@ -52,12 +55,14 @@
 
 - (RMImage*) getImage
 {
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:self.gallery.name];
-    NSString* imagePath = [folderPath stringByAppendingPathComponent:self.filename];
-    
-    RMImage* image = [[RMImage alloc] initWithContentsOfFile:imagePath];
-    image.owner = self;
+    if(image == nil){
+        NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:self.gallery.name];
+        NSString* imagePath = [folderPath stringByAppendingPathComponent:self.filename];
+        
+        image = [[RMImage alloc] initWithContentsOfFile:imagePath];
+        image.owner = self;
+    }
     return image;
 }
 

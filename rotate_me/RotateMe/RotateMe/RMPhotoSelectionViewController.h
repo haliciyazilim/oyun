@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "Config.h"
 
 @interface RMPhotoSelectionViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

@@ -1,5 +1,5 @@
 //
-//  RMImage.h
+//  UIView+Util.h
 //  RotateMe
 //
 //  Created by Yunus Eren Guzel on 2/5/13.
@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Photo.h"
 
-@interface RMImage : UIImage
-@property Photo* owner;
-- (RMImage *)imageWithGaussianBlur9;
+@interface UIView (Util)
+
+- (NSArray*) viewsByTag:(int)tag;
+
 @end
