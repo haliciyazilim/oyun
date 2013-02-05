@@ -97,4 +97,9 @@
     return minutes * 60 * 100 + seconds * 100 + miliseconds;
 }
 
+- (int) getElapsedSeconds
+{
+    return minutes * 60 + seconds;
+}
+
 @end

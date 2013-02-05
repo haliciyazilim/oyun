@@ -89,6 +89,11 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     return YES;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self refreshPhotos];
+}
+
 - (void) refreshPhotos
 {
     [RMPhotoSelectionViewController setLastScroll:self.scrollView.contentOffset.x];
@@ -105,26 +110,62 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     int topMargin = 10;
     CGSize size = CGSizeMake(180, 120);
     CGSize photoSize = CGSizeMake(160, 120);
-    
+    CGSize scoreLabelSize = CGSizeMake(50, 25);
+    CGSize imageScaleSize;
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+        ([UIScreen mainScreen].scale == 2.0)) {
+        imageScaleSize = CGSizeMake(photoSize.width*2, photoSize.height*2.0);
+        
+    } else {
+        imageScaleSize = photoSize;
+    }
     
     NSArray* photos = [currentGallery.photos allObjects];
     
-    [self.scrollView setContentSize:CGSizeMake(leftMargin*2 + photos.count * size.width,
+    [self.scrollView setContentSize:CGSizeMake(leftMargin + photos.count * size.width,
                                                topMargin*2  + size.height)];
     
     [self.scrollView setContentOffset:CGPointMake([RMPhotoSelectionViewController getLastScroll], 0.0)];
     for(int i=0; i < [photos count]; i++){
         
-        RMImage* image = [(Photo*)[photos objectAtIndex:i] getImage];
-        image = [image imageWithGaussianBlur9];
-        RMCustomImageView* photo = [[RMCustomImageView alloc] initWithImage:image];
+        RMImage* originalImage = [(Photo*)[photos objectAtIndex:i] getImage];
+        RMImage* tempImageForThumbnail;
+        
+        tempImageForThumbnail = [originalImage imageByScalingAndCroppingForSize:imageScaleSize];
+        RMThumbnailImage* thumbnailImage;
+        
+        Score* score = [originalImage.owner getScoreForDifficulty:getCurrentDifficulty()];
+        
+        RMCustomImageView* photo;
+        if(score == nil){
+            thumbnailImage = [RMThumbnailImage thumbnailWithUIImage:[[tempImageForThumbnail imageWithGaussianBlur9] imageWithGaussianBlur9]];
+            photo = [[RMCustomImageView alloc] initWithImage:thumbnailImage];
+        }
+        else{
+            thumbnailImage = [RMThumbnailImage thumbnailWithUIImage:tempImageForThumbnail];
+            photo = [[RMCustomImageView alloc] initWithImage:thumbnailImage];
+            
+            UILabel* scoreLabel = [[UILabel alloc] init];
+            scoreLabel.frame = CGRectMake(photoSize.width - scoreLabelSize.width, photoSize.height - scoreLabelSize.height*1.5, scoreLabelSize.width, scoreLabelSize.height);
+            scoreLabel.text = [score toText];
+            scoreLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+            [scoreLabel setTextColor:[UIColor whiteColor]];
+            [scoreLabel setShadowColor:[UIColor blackColor]];
+            [scoreLabel setShadowOffset:CGSizeMake(0,1)];
+            [scoreLabel setTextAlignment:NSTextAlignmentCenter];
+            [scoreLabel.layer setCornerRadius:5.0];
+            [photo addSubview:scoreLabel];
+        }
+        
+        thumbnailImage.originalImage = originalImage;
         
         photo.tag = PHOTO_SELECTION_IMAGEVIEW_TAG;
         photo.frame = CGRectMake(leftMargin+i*size.width, topMargin, photoSize.width, photoSize.height);
         [photo setContentMode:UIViewContentModeScaleAspectFill];
         [photo setClipsToBounds:YES];
         [photo setUserInteractionEnabled:YES];
-        photo.layer.borderColor = [UIColor colorWithPatternImage:photo.image].CGColor;
+//        photo.layer.borderColor = [UIColor colorWithPatternImage:photo.image].CGColor;
+        photo.layer.borderColor = [UIColor grayColor].CGColor;
         photo.layer.borderWidth = 3.0f;
         [self.scrollView addSubview:photo];
         __block RMCustomImageView* blockPhoto = photo;
@@ -134,14 +175,10 @@ static RMPhotoSelectionViewController* lastInstance = nil;
                 [self performSegueWithIdentifier:@"StartGame" sender:self];
             }
         }];
-//        CALayer *layer = [photo layer];
-//        [layer setRasterizationScale:0.5];
-//        [layer setShouldRasterize:YES];
+        
     }
 
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -152,7 +189,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     RMInGameViewController* inGameView = [segue destinationViewController];
-    [inGameView setImage:touchedPhoto.image];
+    [inGameView setImage:[(RMThumbnailImage*)touchedPhoto.image originalImage]];
     touchedPhoto = nil;
     
 }
