@@ -9,6 +9,7 @@
 #import "RMPhotoSelectionViewController.h"
 #import "RMCustomImageView.h"
 #import "RMInGameViewController.h"
+#import "Photo.h"
 
 @interface RMPhotoSelectionViewController ()
 
@@ -17,6 +18,7 @@
 @implementation RMPhotoSelectionViewController
 {
     RMCustomImageView* touchedPhoto;
+    Gallery* currentGallery;
 }
 
 -(id) init
@@ -25,6 +27,12 @@
         
     }
     return self;
+}
+
+static RMPhotoSelectionViewController* lastInstance = nil;
++ (RMPhotoSelectionViewController*) lastInstance
+{
+    return lastInstance;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,31 +46,47 @@
 
 - (void)viewDidLoad
 {
+    lastInstance = self;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     touchedPhoto = nil;
     /*<[[TEST*/
-        self.photos = [[NSMutableArray alloc] init];
-        [self.photos addObject:[UIImage imageNamed:@"test1.jpg"]];
-        [self.photos addObject:[UIImage imageNamed:@"test2.jpg"]];
-        [self.photos addObject:[UIImage imageNamed:@"test3.jpg"]];
-        [self.photos addObject:[UIImage imageNamed:@"test4.jpg"]];
+//        self.photos = [[NSMutableArray alloc] init];
     
-        [self.photos addObject:[UIImage imageNamed:@"test6.jpg"]];
-        [self.photos addObject:[UIImage imageNamed:@"test7.jpg"]];
-        [self.photos addObject:[UIImage imageNamed:@"test8.jpg"]];
-    
-        [self.photos addObject:[UIImage imageNamed:@"test10.jpg"]];
-        [self.photos addObject:[UIImage imageNamed:@"test11.jpg"]];
-        [self.photos addObject:[UIImage imageNamed:@"test12.jpg"]];
-        [self.photos addObject:[UIImage imageNamed:@"test13.jpg"]];
-        [self.photos addObject:[UIImage imageNamed:@"test14.jpg"]];
+//        [self.photos addObject:[UIImage imageNamed:@"test1.jpg"]];
+//        [self.photos addObject:[UIImage imageNamed:@"test2.jpg"]];
+//        [self.photos addObject:[UIImage imageNamed:@"test3.jpg"]];
+//        [self.photos addObject:[UIImage imageNamed:@"test4.jpg"]];
+//    
+//        [self.photos addObject:[UIImage imageNamed:@"test6.jpg"]];
+//        [self.photos addObject:[UIImage imageNamed:@"test7.jpg"]];
+//        [self.photos addObject:[UIImage imageNamed:@"test8.jpg"]];
+//    
+//        [self.photos addObject:[UIImage imageNamed:@"test10.jpg"]];
+//        [self.photos addObject:[UIImage imageNamed:@"test11.jpg"]];
+//        [self.photos addObject:[UIImage imageNamed:@"test12.jpg"]];
+//        [self.photos addObject:[UIImage imageNamed:@"test13.jpg"]];
+//        [self.photos addObject:[UIImage imageNamed:@"test14.jpg"]];
     /*TEST]]>*/
-    
-    [self printPhotos];
-        
+    [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
+
     
 }
+
+- (void) setGallery:(Gallery*)gallery
+{
+    if(currentGallery != gallery){
+        currentGallery = gallery;
+        [self printPhotos];
+    }
+}
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
 
 - (void) printPhotos
 {
@@ -71,11 +95,14 @@
     CGSize size = CGSizeMake(180, 120);
     CGSize photoSize = CGSizeMake(160, 120);
     
-    [self.scrollView setContentSize:CGSizeMake(leftMargin*2 + self.photos.count * size.width,
+    
+    NSArray* photos = [currentGallery.photos allObjects];
+    
+    [self.scrollView setContentSize:CGSizeMake(leftMargin*2 + photos.count * size.width,
                                                topMargin*2  + size.height)];
     
-    for(int i=0; i < [self.photos count]; i++){
-        RMCustomImageView* photo = [[RMCustomImageView alloc] initWithImage:[self.photos objectAtIndex:i]];
+    for(int i=0; i < [photos count]; i++){
+        RMCustomImageView* photo = [[RMCustomImageView alloc] initWithImage:[(Photo*)[photos objectAtIndex:i] getImage]];
         photo.frame = CGRectMake(leftMargin+i*size.width, topMargin, photoSize.width, photoSize.height);
         [photo setContentMode:UIViewContentModeScaleAspectFill];
         [photo setClipsToBounds:YES];
@@ -89,8 +116,7 @@
                 touchedPhoto = blockPhoto;
                 [self performSegueWithIdentifier:@"StartGame" sender:self];
             }
-        }];
-        
+        }];        
     }
 
 }
@@ -113,19 +139,19 @@
     
 }
 
-static BOOL isEasy = YES;
-+ (BOOL) isEasy
-{
-    return  isEasy;
-}
+
 - (IBAction)difficultyChanged:(id)sender {
     UISegmentedControl* control = (UISegmentedControl*)sender;
     if([control selectedSegmentIndex] == 0){
-        isEasy = YES;
+        setCurrentDifficulty(EASY);
     }
-    else{
-        isEasy = NO;
+    else if ([control selectedSegmentIndex] == 1){
+        setCurrentDifficulty(NORMAL);
     }
+    else if([control selectedSegmentIndex] == 2){
+        setCurrentDifficulty(HARD);
+    }
+
 }
 
 

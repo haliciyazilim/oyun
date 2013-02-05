@@ -7,14 +7,21 @@
 //
 
 #import "RMAppDelegate.h"
+#import "RMPhotoSelectionViewController.h"
+#import "RMBundleInitializer.h"
+#import "Gallery.h"
+#import "Photo.h"
 
 @implementation RMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    if([[RMDatabaseManager sharedInstance] isEmpty]){
+        [RMBundleInitializer initializeBundle];
+    }
     return YES;
 }
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

@@ -8,7 +8,7 @@
 
 #import "RMInGameViewController.h"
 #import "RMPhotoSelectionViewController.h"
-
+#import "RMImage.h"
 
 
 
@@ -21,7 +21,7 @@
     int rows;
     int cols;
     int tileSize;
-    UIImage* currentImage;
+    RMImage* currentImage;
     BOOL isGameFinished;
     UIImageView* hiddenImage;
 }
@@ -46,12 +46,17 @@ static RMInGameViewController* lastInstance = nil;
     isGameFinished = NO;
     self.stopWatch = [[RMStopWatch alloc] init];
     
-    if([RMPhotoSelectionViewController isEasy]){
+    if(getCurrentDifficulty() == EASY){
         rows = 3;
         cols = 4;
         tileSize = 90;
     }
-    else{
+    else if(getCurrentDifficulty() == NORMAL){
+        rows = 5;
+        cols = 7;
+        tileSize = 60;
+    }
+    else if(getCurrentDifficulty() == HARD){
         rows = 6;
         cols = 8;
         tileSize = 45;
@@ -67,7 +72,7 @@ static RMInGameViewController* lastInstance = nil;
     [hiddenImage setContentMode:UIViewContentModeScaleAspectFill];
     
     UIImageView* grids;
-    if([RMPhotoSelectionViewController isEasy]){
+    if(getCurrentDifficulty() == EASY){
         grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_double_grid.png"]];
     }else{
         grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
@@ -89,7 +94,7 @@ static RMInGameViewController* lastInstance = nil;
     }];
 }
 
-- (void) setImage:(UIImage*)image
+- (void) setImage:(RMImage*)image
 {
     if(currentImage != image){
         currentImage = image;
@@ -133,6 +138,11 @@ static RMInGameViewController* lastInstance = nil;
         }];
     }];
     
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
 }
 
 - (void) configureView

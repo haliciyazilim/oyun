@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051E5D2416C0F07400DE838F /* DTBQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 051E5D2316C0F07400DE838F /* DTBQuestion.m */; };
+		051E5D2B16C0F9B900DE838F /* DTBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051E5D2A16C0F9B900DE838F /* DTBViewController.m */; };
+		051E5D2E16C0F9D000DE838F /* DTBMapSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051E5D2D16C0F9D000DE838F /* DTBMapSelectionController.m */; };
 		05A1DB0116C003AD00022267 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05A1DB0316C003AD00022267 /* Localizable.strings */; };
 		05A1DB0616C0041100022267 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0516C0041100022267 /* StoreKit.framework */; };
 		05A1DB0816C0041A00022267 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0716C0041A00022267 /* QuartzCore.framework */; };
 		05A1DB1416C0074000022267 /* StopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A1DB1316C0074000022267 /* StopWatch.m */; };
+		05A1DB1816C009D700022267 /* DTBBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A1DB1716C009D700022267 /* DTBBox.m */; };
 		05E3874516BFF8EF00CE3E2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874416BFF8EF00CE3E2C /* UIKit.framework */; };
 		05E3874716BFF8EF00CE3E2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874616BFF8EF00CE3E2C /* Foundation.framework */; };
 		05E3874916BFF8EF00CE3E2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E3874816BFF8EF00CE3E2C /* CoreGraphics.framework */; };
@@ -22,17 +26,24 @@
 		05E3875B16BFF8EF00CE3E2C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E3875A16BFF8EF00CE3E2C /* Default-568h@2x.png */; };
 		05E3875E16BFF8EF00CE3E2C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05E3875C16BFF8EF00CE3E2C /* MainStoryboard_iPhone.storyboard */; };
 		05E3876116BFF8EF00CE3E2C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05E3875F16BFF8EF00CE3E2C /* MainStoryboard_iPad.storyboard */; };
-		05E3876416BFF8EF00CE3E2C /* DTBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E3876316BFF8EF00CE3E2C /* DTBViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		05A1DB0216C003AD00022267 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		05A1DB0416C003D000022267 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		051E5D2216C0F07400DE838F /* DTBQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBQuestion.h; sourceTree = "<group>"; };
+		051E5D2316C0F07400DE838F /* DTBQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBQuestion.m; sourceTree = "<group>"; };
+		051E5D2916C0F9B900DE838F /* DTBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBViewController.h; sourceTree = "<group>"; };
+		051E5D2A16C0F9B900DE838F /* DTBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBViewController.m; sourceTree = "<group>"; };
+		051E5D2C16C0F9D000DE838F /* DTBMapSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBMapSelectionController.h; sourceTree = "<group>"; };
+		051E5D2D16C0F9D000DE838F /* DTBMapSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBMapSelectionController.m; sourceTree = "<group>"; };
+		05A1DB0216C003AD00022267 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05A1DB0416C003D000022267 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05A1DB0516C0041100022267 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		05A1DB0716C0041A00022267 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		05A1DB1216C0074000022267 /* StopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatch.h; sourceTree = "<group>"; };
 		05A1DB1316C0074000022267 /* StopWatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopWatch.m; sourceTree = "<group>"; };
 		05A1DB1516C007EE00022267 /* TypeDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefs.h; sourceTree = "<group>"; };
+		05A1DB1616C009D700022267 /* DTBBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBBox.h; sourceTree = "<group>"; };
+		05A1DB1716C009D700022267 /* DTBBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBBox.m; sourceTree = "<group>"; };
 		05E3874116BFF8EF00CE3E2C /* DeleteTheBoxes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeleteTheBoxes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E3874416BFF8EF00CE3E2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		05E3874616BFF8EF00CE3E2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,8 +59,6 @@
 		05E3875A16BFF8EF00CE3E2C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		05E3875D16BFF8EF00CE3E2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		05E3876016BFF8EF00CE3E2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		05E3876216BFF8EF00CE3E2C /* DTBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DTBViewController.h; path = ../DTBViewController.h; sourceTree = "<group>"; };
-		05E3876316BFF8EF00CE3E2C /* DTBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DTBViewController.m; path = ../DTBViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,11 +77,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05A1DB0916C0064800022267 /* Controllers */ = {
+		051E5D2816C0F9B900DE838F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				05E3876216BFF8EF00CE3E2C /* DTBViewController.h */,
-				05E3876316BFF8EF00CE3E2C /* DTBViewController.m */,
+				051E5D2916C0F9B900DE838F /* DTBViewController.h */,
+				051E5D2A16C0F9B900DE838F /* DTBViewController.m */,
+				051E5D2C16C0F9D000DE838F /* DTBMapSelectionController.h */,
+				051E5D2D16C0F9D000DE838F /* DTBMapSelectionController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -87,6 +98,10 @@
 		05A1DB0B16C0064800022267 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				05A1DB1616C009D700022267 /* DTBBox.h */,
+				05A1DB1716C009D700022267 /* DTBBox.m */,
+				051E5D2216C0F07400DE838F /* DTBQuestion.h */,
+				051E5D2316C0F07400DE838F /* DTBQuestion.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -141,11 +156,11 @@
 		05E3874A16BFF8EF00CE3E2C /* DeleteTheBoxes */ = {
 			isa = PBXGroup;
 			children = (
+				051E5D2816C0F9B900DE838F /* Controllers */,
 				05E3875316BFF8EF00CE3E2C /* DTBAppDelegate.h */,
 				05E3875416BFF8EF00CE3E2C /* DTBAppDelegate.m */,
 				05A1DB0B16C0064800022267 /* Models */,
 				05A1DB0A16C0064800022267 /* Managers */,
-				05A1DB0916C0064800022267 /* Controllers */,
 				05A1DB1116C006FA00022267 /* Common */,
 				05A1DB0C16C0067100022267 /* Resources */,
 				05E3875C16BFF8EF00CE3E2C /* MainStoryboard_iPhone.storyboard */,
@@ -242,8 +257,11 @@
 			files = (
 				05E3875116BFF8EF00CE3E2C /* main.m in Sources */,
 				05E3875516BFF8EF00CE3E2C /* DTBAppDelegate.m in Sources */,
-				05E3876416BFF8EF00CE3E2C /* DTBViewController.m in Sources */,
 				05A1DB1416C0074000022267 /* StopWatch.m in Sources */,
+				05A1DB1816C009D700022267 /* DTBBox.m in Sources */,
+				051E5D2416C0F07400DE838F /* DTBQuestion.m in Sources */,
+				051E5D2B16C0F9B900DE838F /* DTBViewController.m in Sources */,
+				051E5D2E16C0F9D000DE838F /* DTBMapSelectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

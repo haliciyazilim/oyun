@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class DTBQuestion;
 
 @interface DTBViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+-(void)placingBoxes: (DTBQuestion *) question;
 @end
