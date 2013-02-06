@@ -50,8 +50,8 @@
 
 //Tutorial
 
-"TUTORIAL_WELCOME" = "Hoş geldiniz. Oyundaki göreviniz bahçedeki her kareyi yeşillendirmektir. Bunun için pompalardan çıkan boruları kullanacaksınız.";
-"TUTORIAL_COMPLETED" = "Bundan sonra bahçeyi tek başınıza yeşillendireceksiniz. \nİyi Eğlenceler.";
+"TUTORIAL_WELCOME" = "Hoş geldiniz. Oyundaki göreviniz bahçedeki karelerin tümünü yeşillendirmektir. Bunun için pompalardan çıkan boruları kullanacaksınız.";
+"TUTORIAL_COMPLETED" = "Bundan sonra bahçeyi tek başınıza yeşillendireceksiniz. Unutmayın, oyunu kazanmak için her bir kareyi yeşillendirmeniz lazım.\nİyi Eğlenceler.";
 
 "TUTORIAL_1_0" = "Bu bir su pompası; her su pompasının farklı bir basınç değeri bulunmaktadır.";
 "TUTORIAL_1_1" = "Bu su pompası 9 kareyi sulayacak basınca sahiptir.";

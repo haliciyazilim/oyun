@@ -49,8 +49,8 @@
 
 //Tutorial
 
-"TUTORIAL_WELCOME" = "Welcome to Green The Garden. Your objective is to green the garden! You will use water pumps and pipes in your quest.";
-"TUTORIAL_COMPLETED" = "Now you're on your own. Go and Green The Garden!";
+"TUTORIAL_WELCOME" = "Welcome to Green The Garden. Your objective is to green the whole garden! You will use water pumps and pipes in your quest.";
+"TUTORIAL_COMPLETED" = "Now you're on your own. Go and Green The Garden! Remember, you have to green each and every tile in order to win the game!";
 
 "TUTORIAL_1_0" = "This is a water pump. Water pumps have varying water pressures";
 "TUTORIAL_1_1" = "This pump can water 9 tiles";
