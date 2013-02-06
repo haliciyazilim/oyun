@@ -68,10 +68,40 @@
     DTBBox* box = [DTBBox boxByOrder:button.tag];
     NSLog(@"%@",box);
     
-    if(!box.isDeleted)
-        [box deleteBox];
+    if(!box.isDeleted){
+        [box deleteBox:self.scrollView];
+        
+//        [box drawLineToOriginalPosition:self.view];
+
+    }
     else
         [box resetBox];
+
 }
 
+- (void) drawRect
+{
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(120.0,0.0)];
+    [path addLineToPoint:CGPointMake(120.0, 200.0)];
+    
+    
+    
+    
+    CAShapeLayer *pathLayer = [CAShapeLayer layer];
+    pathLayer.frame = self.view.bounds;
+    pathLayer.path = path.CGPath;
+    pathLayer.strokeColor = [[UIColor redColor] CGColor];
+    pathLayer.fillColor = nil;
+    pathLayer.lineWidth = 1.0f;
+    pathLayer.lineJoin = kCGLineJoinMiter;
+    
+    [self.view.layer addSublayer:pathLayer];
+    
+    CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    pathAnimation.duration = 2.0;
+    pathAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
+    pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
+    [pathLayer addAnimation:pathAnimation forKey:@"strokeEnd"];
+}
 @end
