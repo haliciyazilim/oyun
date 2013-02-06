@@ -19,6 +19,8 @@
 - (void) updateTimer:(NSTimer*)timer;
 - (int)  getElapsedMiliseconds;
 
+- (int) getElapsedSeconds;
+
 - (NSString*) toString;
 
 @end

@@ -65,15 +65,27 @@ static ArrowGame* __lastInstance;
         _isGamePaused = NO;
         _isGameRunning = YES;
         
-        if([[TutorialManager sharedInstance] isTutorialEnabled] && [[TutorialManager sharedInstance] isTutoringMap:fileName]){
-            [[TutorialManager sharedInstance] startTutorial];
-//            [[TutorialManager sharedInstance] performSelector:@selector(startTutorial) withObject:nil afterDelay:0.01];
-        }
+        [self pauseTimer];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"TUTORIAL_ALERT_TITLE", nil)
+                        message:NSLocalizedString(@"TUTORIAL_ALERT_MESSAGE", nil)
+                        delegate:self
+                        cancelButtonTitle:NSLocalizedString(@"TUTORIAL_ALERT_CANCEL_BUTTON", nil)
+                        otherButtonTitles:NSLocalizedString(@"TUTORIAL_ALERT_OK_BUTTON", nil),nil]
+         show];
         
     }
     return self;
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != [alertView cancelButtonIndex]){
+        if([[TutorialManager sharedInstance] isTutorialEnabled] && [[TutorialManager sharedInstance] isTutoringMap:currentGameMapFileName]){
+            [[TutorialManager sharedInstance] startTutorial];
+        }
+    }
+    [self resumeTimer];
+    
+}
 
 - (BOOL) isGameFinished
 {

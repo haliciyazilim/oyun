@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Photo.h"
 
+
 @interface RMImage : UIImage
+
 @property Photo* owner;
 - (RMImage *)imageWithGaussianBlur9;
+- (RMImage*)imageByScalingAndCroppingForSize:(CGSize)targetSize;
 @end

@@ -52,6 +52,12 @@
 "TUTORIAL_WELCOME" = "Welcome to Green The Garden. Your objective is to green the whole garden! You will use water pumps and pipes in your quest.";
 "TUTORIAL_COMPLETED" = "Now you're on your own. Go and Green The Garden! Remember, you have to green each and every tile in order to win the game!";
 
+"TUTORIAL_ALERT_TITLE" = "Tutorial";
+"TUTORIAL_ALERT_MESSAGE" = "Do you want to see the tutorial on how to play Green the Garden?";
+"TUTORIAL_ALERT_OK_BUTTON" = "Yes";
+"TUTORIAL_ALERT_CANCEL_BUTTON" = "Skip Tutorial";
+
+
 "TUTORIAL_1_0" = "This is a water pump. Water pumps have varying water pressures";
 "TUTORIAL_1_1" = "This pump can water 9 tiles";
 "TUTORIAL_1_2" = "You can only have straight pipes emanating from the water pumps.";
