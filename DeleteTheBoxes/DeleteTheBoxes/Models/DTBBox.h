@@ -22,11 +22,12 @@
 // instance method
 - (id) initWithFrame:(CGRect)frame andTitle:(NSString *)title;
 
-- (void) deleteBox;
+- (void) deleteBox: (UIView *) view;
 - (void) resetBox;
 
 +(DTBBox*)boxByOrder:(int)order;
 
 +(void) cleanInstances;
+
 
 @end
