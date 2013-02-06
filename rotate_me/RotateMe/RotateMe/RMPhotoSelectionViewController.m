@@ -56,6 +56,23 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
     
+    DIFFICULTY difficulty = getCurrentDifficulty();
+    switch (difficulty) {
+        case EASY:
+            [self.difficultySegmentedButtons setSelectedSegmentIndex:0];
+            break;
+        case NORMAL:
+            [self.difficultySegmentedButtons setSelectedSegmentIndex:1];
+            break;
+        case HARD:
+            [self.difficultySegmentedButtons setSelectedSegmentIndex:2];
+            break;
+            
+        default:
+            break;
+    }
+    
+    
     [self.galleryNameLabel setText:currentGallery.name];
     [self.galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:20.0] ];
     
@@ -156,6 +173,8 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [photoView setUserInteractionEnabled:YES];
         photoView.layer.borderColor = [UIColor whiteColor].CGColor;
         photoView.layer.borderWidth = 2.0f;
+        [photoView.layer setShadowColor:[UIColor blackColor].CGColor];
+        [photoView.layer setShadowOffset:CGSizeMake(0.0, 5.0)];
         [self.scrollView addSubview:photoView];
         __block RMCustomImageView* blockPhotoView = photoView;
         [photoView setTouchesBegan:^{
@@ -185,6 +204,13 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 
 
 - (IBAction)difficultyChanged:(id)sender {
+    
+//    [[NSUserDefaults standardUserDefaults] setObject:[self sha1:productDeviceStr] forKey:productIdentifier];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+//[[NSUserDefaults standardUserDefaults] stringForKey:productIdentifier]    
+    
     UISegmentedControl* control = (UISegmentedControl*)sender;
     if([control selectedSegmentIndex] == 0){
         setCurrentDifficulty(EASY);

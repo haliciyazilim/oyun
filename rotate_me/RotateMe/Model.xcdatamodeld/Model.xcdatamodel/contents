@@ -5,7 +5,7 @@
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="gallery" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
-        <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filename" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="gallery" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Gallery" inverseName="photos" inverseEntity="Gallery" syncable="YES"/>
         <relationship name="score" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Score" inverseName="photo" inverseEntity="Score" syncable="YES"/>
     </entity>
