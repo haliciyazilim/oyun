@@ -14,6 +14,7 @@
 @property NSString *title;
 @property BOOL isDeleted;
 @property int order;
+@property UIViewController * caller;
 
 // class methods
 + (id) BoxWithFrame:(CGRect)frame andTitle:(NSString *)title;
@@ -23,5 +24,9 @@
 
 - (void) deleteBox;
 - (void) resetBox;
+
++(DTBBox*)boxByOrder:(int)order;
+
++(void) cleanInstances;
 
 @end
