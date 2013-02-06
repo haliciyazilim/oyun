@@ -101,11 +101,3 @@
 
 @end
 
-@implementation RMThumbnailImage
-
-+(RMThumbnailImage*)thumbnailWithUIImage:(UIImage*)image
-{
-    return [[RMThumbnailImage alloc] initWithCGImage:image.CGImage];
-}
-
-@end

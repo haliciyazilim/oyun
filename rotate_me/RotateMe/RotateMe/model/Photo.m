@@ -13,10 +13,24 @@
 @implementation Photo
 {
     RMImage* image;
+    RMImage* thumbnailImage;
 }
 @dynamic filename;
 @dynamic gallery;
 @dynamic score;
+
+- (void)setThumbnailImage:(RMImage *)_thumbnailImage
+{
+    thumbnailImage = _thumbnailImage;
+    thumbnailImage.owner = self;
+    
+}
+
+- (RMImage*) getThumbnailImage
+{
+    return thumbnailImage;
+}
+
 
 + (Photo*)createPhotoWithFileName:(NSString*)fileName andGallery:(Gallery*)gallery
 {
@@ -59,7 +73,6 @@
         NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:self.gallery.name];
         NSString* imagePath = [folderPath stringByAppendingPathComponent:self.filename];
-        
         image = [[RMImage alloc] initWithContentsOfFile:imagePath];
         image.owner = self;
     }
