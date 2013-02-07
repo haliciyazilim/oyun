@@ -10,6 +10,11 @@
 		051E5D2416C0F07400DE838F /* DTBQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 051E5D2316C0F07400DE838F /* DTBQuestion.m */; };
 		051E5D2B16C0F9B900DE838F /* DTBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051E5D2A16C0F9B900DE838F /* DTBViewController.m */; };
 		051E5D2E16C0F9D000DE838F /* DTBMapSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051E5D2D16C0F9D000DE838F /* DTBMapSelectionController.m */; };
+		05341E1316C3C6AE00D6ECBE /* played_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 05341E1116C3C6AE00D6ECBE /* played_btn_bg.png */; };
+		05341E1416C3C6AE00D6ECBE /* played_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05341E1216C3C6AE00D6ECBE /* played_btn_bg@2x.png */; };
+		05341E1816C3CCBC00D6ECBE /* 10003.question in Resources */ = {isa = PBXBuildFile; fileRef = 05341E1516C3CCBC00D6ECBE /* 10003.question */; };
+		05341E1916C3CCBC00D6ECBE /* 10004.question in Resources */ = {isa = PBXBuildFile; fileRef = 05341E1616C3CCBC00D6ECBE /* 10004.question */; };
+		05341E1A16C3CCBC00D6ECBE /* 10005.question in Resources */ = {isa = PBXBuildFile; fileRef = 05341E1716C3CCBC00D6ECBE /* 10005.question */; };
 		05A1DB0116C003AD00022267 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05A1DB0316C003AD00022267 /* Localizable.strings */; };
 		05A1DB0616C0041100022267 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0516C0041100022267 /* StoreKit.framework */; };
 		05A1DB0816C0041A00022267 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0716C0041A00022267 /* QuartzCore.framework */; };
@@ -58,6 +63,11 @@
 		051E5D2A16C0F9B900DE838F /* DTBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBViewController.m; sourceTree = "<group>"; };
 		051E5D2C16C0F9D000DE838F /* DTBMapSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBMapSelectionController.h; sourceTree = "<group>"; };
 		051E5D2D16C0F9D000DE838F /* DTBMapSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBMapSelectionController.m; sourceTree = "<group>"; };
+		05341E1116C3C6AE00D6ECBE /* played_btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = played_btn_bg.png; sourceTree = "<group>"; };
+		05341E1216C3C6AE00D6ECBE /* played_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "played_btn_bg@2x.png"; sourceTree = "<group>"; };
+		05341E1516C3CCBC00D6ECBE /* 10003.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10003.question; sourceTree = "<group>"; };
+		05341E1616C3CCBC00D6ECBE /* 10004.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10004.question; sourceTree = "<group>"; };
+		05341E1716C3CCBC00D6ECBE /* 10005.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10005.question; sourceTree = "<group>"; };
 		05A1DB0216C003AD00022267 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05A1DB0416C003D000022267 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05A1DB0516C0041100022267 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -152,6 +162,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		05341E1016C3C6AE00D6ECBE /* map_selection */ = {
+			isa = PBXGroup;
+			children = (
+				05341E1116C3C6AE00D6ECBE /* played_btn_bg.png */,
+				05341E1216C3C6AE00D6ECBE /* played_btn_bg@2x.png */,
+			);
+			path = map_selection;
+			sourceTree = "<group>";
+		};
 		05A1DB0A16C0064800022267 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +196,7 @@
 		05A1DB0C16C0067100022267 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				05341E1016C3C6AE00D6ECBE /* map_selection */,
 				05DD128916C2910400072ED2 /* questions */,
 				05F6FCA816C1303600496890 /* backgrounds */,
 			);
@@ -209,6 +229,9 @@
 				05DD128B16C2910400072ED2 /* 10000.question */,
 				05DD128C16C2910400072ED2 /* 10001.question */,
 				05DD128D16C2910400072ED2 /* 10002.question */,
+				05341E1516C3CCBC00D6ECBE /* 10003.question */,
+				05341E1616C3CCBC00D6ECBE /* 10004.question */,
+				05341E1716C3CCBC00D6ECBE /* 10005.question */,
 			);
 			path = standart;
 			sourceTree = "<group>";
@@ -394,6 +417,11 @@
 				05DD129016C2910400072ED2 /* 10001.question in Resources */,
 				05DD129116C2910400072ED2 /* 10002.question in Resources */,
 				05DD129216C2910400072ED2 /* standart.packageinfo in Resources */,
+				05341E1316C3C6AE00D6ECBE /* played_btn_bg.png in Resources */,
+				05341E1416C3C6AE00D6ECBE /* played_btn_bg@2x.png in Resources */,
+				05341E1816C3CCBC00D6ECBE /* 10003.question in Resources */,
+				05341E1916C3CCBC00D6ECBE /* 10004.question in Resources */,
+				05341E1A16C3CCBC00D6ECBE /* 10005.question in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
