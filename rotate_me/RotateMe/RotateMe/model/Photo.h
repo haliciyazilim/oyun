@@ -10,7 +10,7 @@
 #import "Gallery.h"
 #import "TypeDefs.h"
 #import "Score.h"
-
+#import "PhotoManagedObject.h"
 @class RMThumbnailImage;
 @class RMImage;
 
@@ -18,6 +18,8 @@
 @property NSString* filename;
 @property Gallery* gallery;
 @property NSSet* score;
+
+@property PhotoManagedObject* photoManagedObject;
 
 + (Photo*)createPhotoWithFileName:(NSString*)fileName andGallery:(Gallery*)gallery;
 - (void) setScore:(int)elapsedTime forDifficulty:(DIFFICULTY)difficulty;

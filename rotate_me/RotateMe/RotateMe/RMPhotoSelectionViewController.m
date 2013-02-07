@@ -22,6 +22,7 @@
     RMCustomImageView* touchedPhoto;
     Gallery* currentGallery;
     NSArray* photos;
+    CGSize imageScaleSize;
 }
 
 -(id) init
@@ -30,6 +31,10 @@
         
     }
     return self;
+}
+
+- (IBAction)backButtonClicked:(id)sender {
+    [self dismissModalViewControllerAnimated:YES ];
 }
 
 static RMPhotoSelectionViewController* lastInstance = nil;
@@ -116,7 +121,6 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     CGSize size = CGSizeMake(146, 112);
     CGSize photoSize = CGSizeMake(136, 102);
     CGSize scoreLabelSize = CGSizeMake(50, 25);
-    CGSize imageScaleSize;
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
         ([UIScreen mainScreen].scale == 2.0)) {
         imageScaleSize = CGSizeMake(photoSize.width*2, photoSize.height*2.0);
@@ -135,20 +139,31 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [self.scrollView setContentOffset:CGPointMake([RMPhotoSelectionViewController getLastScroll], 0.0)];
     for(int i=0; i < [photos count]; i++){
         Photo* photo = (Photo*)[photos objectAtIndex:i];
-        RMImage* originalImage = [photo getImage];
-        if([photo getThumbnailImage] == nil){
-            [photo setThumbnailImage:[originalImage imageByScalingAndCroppingForSize:imageScaleSize]];
-            
-        }
-        Score* score = [originalImage.owner getScoreForDifficulty:getCurrentDifficulty()];
         
-        RMCustomImageView* photoView = [[RMCustomImageView alloc] initWithImage:[photo getThumbnailImage]];
+        CGRect photoViewRect = CGRectMake(leftMargin+(i/2)*size.width, topMargin + (i%2) * size.height, photoSize.width, photoSize.height);
         
-        if(score == nil){
-//            photo.thumbnailImage = [[[photo getThumbnailImage] imageWithGaussianBlur9] imageWithGaussianBlur9];
-        }
-        else
-        {
+        RMCustomImageView* photoView = [[RMCustomImageView alloc] init];
+        
+        photoView.tag = PHOTO_SELECTION_IMAGEVIEW_TAG;
+        photoView.frame = photoViewRect;
+        [photoView setContentMode:UIViewContentModeScaleAspectFill];
+        [photoView setClipsToBounds:YES];
+        [photoView setUserInteractionEnabled:YES];
+        photoView.layer.borderColor = [UIColor whiteColor].CGColor;
+        photoView.layer.borderWidth = 2.0f;
+        [photoView.layer setShadowColor:[UIColor blackColor].CGColor];
+        [photoView.layer setShadowOffset:CGSizeMake(0.0, 5.0)];
+        [self.scrollView addSubview:photoView];
+                
+        UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] init];
+        activityIndicator.frame = CGRectMake(0, 0, photoSize.width, photoSize.height);
+        [activityIndicator startAnimating];
+        [photoView addSubview:activityIndicator];
+        
+        NSThread* thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadImageForView:) object:[NSArray arrayWithObjects:photo,photoView,activityIndicator, nil]];
+        [thread setThreadPriority:(double)i];
+        Score* score = [photo getScoreForDifficulty:getCurrentDifficulty()];
+        if(score != nil){
             UIImageView* gradient = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_gradient.png"]];
             gradient.frame = CGRectMake(0, photoSize.height - gradient.image.size.height, photoSize.width, gradient.image.size.height);
             [photoView addSubview:gradient];
@@ -166,25 +181,37 @@ static RMPhotoSelectionViewController* lastInstance = nil;
             [photoView addSubview:scoreLabel];
         }
         
-        photoView.tag = PHOTO_SELECTION_IMAGEVIEW_TAG;
-        photoView.frame = CGRectMake(leftMargin+(i/2)*size.width, topMargin + (i%2) * size.height, photoSize.width, photoSize.height);
-        [photoView setContentMode:UIViewContentModeScaleAspectFill];
-        [photoView setClipsToBounds:YES];
-        [photoView setUserInteractionEnabled:YES];
-        photoView.layer.borderColor = [UIColor whiteColor].CGColor;
-        photoView.layer.borderWidth = 2.0f;
-        [photoView.layer setShadowColor:[UIColor blackColor].CGColor];
-        [photoView.layer setShadowOffset:CGSizeMake(0.0, 5.0)];
-        [self.scrollView addSubview:photoView];
-        __block RMCustomImageView* blockPhotoView = photoView;
-        [photoView setTouchesBegan:^{
-            if(touchedPhoto == nil){
-                touchedPhoto = blockPhotoView;
-                [self performSegueWithIdentifier:@"StartGame" sender:self];
-            }
-        }];
-        
+        [thread start];
     }
+    
+    NSLog(@"I'm here");
+    
+    
+}
+
+- (void) loadImageForView:(NSArray*)params
+{
+    Photo* photo = [params objectAtIndex:0];
+    RMCustomImageView* photoView = [params objectAtIndex:1];
+    UIActivityIndicatorView* activityIndicator = [params objectAtIndex:2];
+    
+    NSLog(@"loadImageForView photo filename: %@",photo.filename);
+    RMImage* originalImage = [photo getImage];
+    if([photo getThumbnailImage] == nil){
+        [photo setThumbnailImage:[originalImage imageByScalingAndCroppingForSize:imageScaleSize]];
+    }
+    photoView.image = [photo getThumbnailImage];
+    __block RMCustomImageView* blockPhotoView = photoView;
+    [photoView setTouchesBegan:^{
+        if(touchedPhoto == nil){
+            touchedPhoto = blockPhotoView;
+            [self performSegueWithIdentifier:@"StartGame" sender:self];
+        }
+    }];
+    
+    [activityIndicator removeFromSuperview];
+    activityIndicator = nil;
+
 
 }
 
@@ -203,13 +230,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 }
 
 
-- (IBAction)difficultyChanged:(id)sender {
-    
-//    [[NSUserDefaults standardUserDefaults] setObject:[self sha1:productDeviceStr] forKey:productIdentifier];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    
-//[[NSUserDefaults standardUserDefaults] stringForKey:productIdentifier]    
+- (IBAction)difficultyChanged:(id)sender {  
     
     UISegmentedControl* control = (UISegmentedControl*)sender;
     if([control selectedSegmentIndex] == 0){
