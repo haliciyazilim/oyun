@@ -14,14 +14,15 @@
 @class RMThumbnailImage;
 @class RMImage;
 
-@interface Photo : NSManagedObject
+@interface Photo : NSObject
 @property NSString* filename;
 @property Gallery* gallery;
 @property NSSet* score;
 
 @property PhotoManagedObject* photoManagedObject;
 
-+ (Photo*)createPhotoWithFileName:(NSString*)fileName andGallery:(Gallery*)gallery;
++ (Photo*) photoWithManagedObject:(PhotoManagedObject*)managedObject;
++ (Photo*) createPhotoWithFileName:(NSString*)fileName andGallery:(Gallery*)gallery;
 - (void) setScore:(int)elapsedTime forDifficulty:(DIFFICULTY)difficulty;
 - (Score*) getScoreForDifficulty:(DIFFICULTY)difficulty;
 - (RMImage*) getImage;

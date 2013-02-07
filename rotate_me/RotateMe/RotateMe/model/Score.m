@@ -7,7 +7,7 @@
 //
 
 #import "Score.h"
-
+#import "PhotoManagedObject.h"
 @implementation Score
 @dynamic elapsedSeconds;
 @dynamic difficulty;

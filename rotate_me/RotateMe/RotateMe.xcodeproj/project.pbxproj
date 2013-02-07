@@ -30,8 +30,6 @@
 		AE09C33416C284A400F634CB /* TR McLean  Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE09C33216C284A400F634CB /* TR McLean  Bold.ttf */; };
 		AE09C33516C284A400F634CB /* TR McLean.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE09C33316C284A400F634CB /* TR McLean.ttf */; };
 		AE2BE2AD16C3A07200A0335D /* PhotoManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2BE2AC16C3A07200A0335D /* PhotoManagedObject.m */; };
-		AE2BE2B016C3A08700A0335D /* GalleryManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2BE2AF16C3A08700A0335D /* GalleryManagedObject.m */; };
-		AE2BE2B316C3A09B00A0335D /* ScoreManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2BE2B216C3A09B00A0335D /* ScoreManagedObject.m */; };
 		AE72DBBB16BBAABA00C12D6C /* RMPhotoSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE72DBBA16BBAABA00C12D6C /* RMPhotoSelectionViewController.m */; };
 		AE72DBC016BBB13D00C12D6C /* RMCustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE72DBBF16BBB13D00C12D6C /* RMCustomImageView.m */; };
 		AE72DBC616BBB5BE00C12D6C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE72DBC516BBB5BE00C12D6C /* QuartzCore.framework */; };
@@ -107,10 +105,6 @@
 		AE09C33316C284A400F634CB /* TR McLean.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TR McLean.ttf"; path = "resources/TR McLean.ttf"; sourceTree = "<group>"; };
 		AE2BE2AB16C3A07200A0335D /* PhotoManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoManagedObject.h; path = model/PhotoManagedObject.h; sourceTree = "<group>"; };
 		AE2BE2AC16C3A07200A0335D /* PhotoManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoManagedObject.m; path = model/PhotoManagedObject.m; sourceTree = "<group>"; };
-		AE2BE2AE16C3A08700A0335D /* GalleryManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryManagedObject.h; path = model/GalleryManagedObject.h; sourceTree = "<group>"; };
-		AE2BE2AF16C3A08700A0335D /* GalleryManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryManagedObject.m; path = model/GalleryManagedObject.m; sourceTree = "<group>"; };
-		AE2BE2B116C3A09B00A0335D /* ScoreManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreManagedObject.h; path = model/ScoreManagedObject.h; sourceTree = "<group>"; };
-		AE2BE2B216C3A09B00A0335D /* ScoreManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScoreManagedObject.m; path = model/ScoreManagedObject.m; sourceTree = "<group>"; };
 		AE72DBB916BBAABA00C12D6C /* RMPhotoSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPhotoSelectionViewController.h; sourceTree = "<group>"; };
 		AE72DBBA16BBAABA00C12D6C /* RMPhotoSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPhotoSelectionViewController.m; sourceTree = "<group>"; };
 		AE72DBBE16BBB13D00C12D6C /* RMCustomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMCustomImageView.h; path = view/RMCustomImageView.h; sourceTree = "<group>"; };
@@ -235,10 +229,6 @@
 			children = (
 				AE2BE2AB16C3A07200A0335D /* PhotoManagedObject.h */,
 				AE2BE2AC16C3A07200A0335D /* PhotoManagedObject.m */,
-				AE2BE2AE16C3A08700A0335D /* GalleryManagedObject.h */,
-				AE2BE2AF16C3A08700A0335D /* GalleryManagedObject.m */,
-				AE2BE2B116C3A09B00A0335D /* ScoreManagedObject.h */,
-				AE2BE2B216C3A09B00A0335D /* ScoreManagedObject.m */,
 			);
 			name = "Database Model Objects";
 			sourceTree = "<group>";
@@ -546,8 +536,6 @@
 				AEDFA2C616C133FA00BB440C /* UIView+Util.m in Sources */,
 				AE09C30616C23FBC00F634CB /* RMGallerySelectionViewController.m in Sources */,
 				AE2BE2AD16C3A07200A0335D /* PhotoManagedObject.m in Sources */,
-				AE2BE2B016C3A08700A0335D /* GalleryManagedObject.m in Sources */,
-				AE2BE2B316C3A09B00A0335D /* ScoreManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

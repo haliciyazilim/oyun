@@ -7,11 +7,10 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "GalleryManagedObject.h"
-
+#import "Gallery.h"
 @interface PhotoManagedObject : NSManagedObject
 
 @property NSString* filename;
-@property GalleryManagedObject* gallery;
+@property Gallery* gallery;
 @property NSSet* score;
 @end

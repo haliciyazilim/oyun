@@ -7,6 +7,8 @@
 //
 
 #import "Gallery.h"
+#import "PhotoManagedObject.h"
+#import "Photo.h"
 
 @implementation Gallery
 @dynamic name;
@@ -23,6 +25,19 @@
 {
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     return [[RMDatabaseManager sharedInstance] entitiesWithRequest:request forName:@"Gallery"];
+}
+
+- (NSArray*) allPhotos
+{
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    [self.photos enumerateObjectsUsingBlock:^(PhotoManagedObject* obj, BOOL *stop) {
+        [array addObject:[Photo photoWithManagedObject:obj]];
+    }];
+    
+    [array sortUsingComparator:^NSComparisonResult(Photo* obj1, Photo* obj2) {
+        return [obj1.filename compare:obj2.filename];
+    }];
+    return array;
 }
 
 @end

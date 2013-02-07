@@ -131,7 +131,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     
     
     if(photos == nil){
-        photos = [currentGallery.photos allObjects];
+        photos = [currentGallery allPhotos];
     }
     [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(photos.count / 2.0) * size.width,
                                                topMargin  + size.height*2.0)];
@@ -184,7 +184,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [thread start];
     }
     
-    NSLog(@"I'm here");
+//    NSLog(@"I'm here");
     
     
 }
@@ -195,7 +195,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     RMCustomImageView* photoView = [params objectAtIndex:1];
     UIActivityIndicatorView* activityIndicator = [params objectAtIndex:2];
     
-    NSLog(@"loadImageForView photo filename: %@",photo.filename);
+//    NSLog(@"loadImageForView photo filename: %@",photo.filename);
     RMImage* originalImage = [photo getImage];
     if([photo getThumbnailImage] == nil){
         [photo setThumbnailImage:[originalImage imageByScalingAndCroppingForSize:imageScaleSize]];

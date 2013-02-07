@@ -18,4 +18,6 @@
 
 + (Gallery*) createGalleryWithName:(NSString*)name;
 
+- (NSArray*) allPhotos;
+
 @end
