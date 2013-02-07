@@ -124,7 +124,6 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     int topMargin = 10;
     CGSize size = CGSizeMake(146, 112);
     CGSize photoSize = CGSizeMake(136, 102);
-    CGSize scoreLabelSize = CGSizeMake(50, 25);
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
         ([UIScreen mainScreen].scale == 2.0)) {
         imageScaleSize = CGSizeMake(photoSize.width*2, photoSize.height*2.0);
@@ -132,7 +131,6 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     } else {
         imageScaleSize = photoSize;
     }
-    
     
     if(photos == nil){
         photos = [currentGallery allPhotos];
