@@ -12,7 +12,10 @@
 @class DTBQuestion;
 
 @interface DTBViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic) DTBQuestion *currentQuestion;
+
 
 -(void)placingBoxes: (DTBQuestion *) question;
 @end
