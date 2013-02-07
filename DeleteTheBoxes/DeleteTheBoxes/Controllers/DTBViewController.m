@@ -12,6 +12,7 @@
 
 @interface DTBViewController ()
 @property int scrollViewWitdh;
+@property DTBQuestion *question;
 @end
 
 @implementation DTBViewController
@@ -22,20 +23,33 @@
 	
     
     NSArray *wholeQuestions = [DTBQuestion getAllQuestions];
-    DTBQuestion *deneme = [wholeQuestions objectAtIndex:0];
-    [deneme createQuestionArray];
-    NSLog(@"%@",deneme);
-    NSLog(@"%@",[deneme questionArray]);
-    _scrollViewWitdh=deneme.questionArray.count*65+30;
+    self.question = [wholeQuestions objectAtIndex:0];
+    [self.question createQuestionArray];
+    
+    NSLog(@"%@",[self.question questionArray]);
+    _scrollViewWitdh=self.question.questionArray.count*65+30;
     [self.scrollView setContentSize:CGSizeMake(_scrollViewWitdh, 48)];
     self.scrollView.backgroundColor=[UIColor clearColor];
     
-    [self placingBoxes:deneme];
+    [self placingBoxes:self.question];
     
     
     [self.view setUserInteractionEnabled:NO];
 //    [self.scrollView setUserInteractionEnabled:NO];
     
+    [self.stopWatchLabel setText:@"00:00.0"];
+    self.stopWatch = [[StopWatch alloc] init];
+    
+    [self.btnControl addTarget:self action:@selector(control:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.btnControl setEnabled:NO];
+}
+- (void) setCurrentQuestion:(DTBQuestion *)currentQuestion {
+    _currentQuestion = currentQuestion;
+    [self configureViews];
+}
+- (void) configureViews {
+    // soru geldi, abdullah doldurabilirsin..
 }
 -(void) viewDidAppear:(BOOL)animated{
     // ScrollView animated
@@ -48,6 +62,12 @@
         } completion:^(BOOL finished) {
             NSLog(@"scrollView animate Completion");
             [self.view setUserInteractionEnabled:YES];
+            [self.btnControl setEnabled:NO];
+            
+            [self.stopWatch startTimerWithRepeatBlock:^{
+                [self.stopWatchLabel setText:[self.stopWatch toString]];
+            }];
+            
             
         }];
     }];
@@ -66,11 +86,14 @@
 
 - (void)viewDidUnload {
     [self setScrollView:nil];
+    
+    [self setStopWatchLabel:nil];
+    [self setBtnControl:nil];
     [super viewDidUnload];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(void)placingBoxes: (DTBQuestion *) question{
@@ -79,7 +102,7 @@
     
     for (int i=0; i<[question questionArray].count; i++) {
         
-        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(58*i+30, screenBounds.size.width/2-24, 48, 48) andTitle:[question questionArray][i]];
+        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(58*i+30, _scrollView.frame.size.height /2-24, 48, 48) andTitle:[question questionArray][i]];
         box.caller=self;
         [_scrollView addSubview:box.boxButton];
     }
@@ -102,7 +125,13 @@
 
 
 
-
+-(void)control{
+//    for (int i=0; i>; <#increment#>) {
+//        <#statements#>
+//    }
+//    DTBBox *box=[DTBBox boxByOrder:<#(int)#>]
+//    [self.question isCorrect:<#(NSString *)#>]
+}
 
 - (void) drawRect
 {
