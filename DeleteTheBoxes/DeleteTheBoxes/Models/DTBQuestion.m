@@ -35,6 +35,12 @@
         NSLog(@"it is not purchased");
         quest.isPurchased = NO;
     }
+    
+    quest.questionArray = [NSMutableArray arrayWithCapacity:[quest.wholeQuestion length]];
+    for (int i = 0; i < [quest.wholeQuestion length]; i++) {
+        [quest.questionArray addObject:[NSString stringWithFormat:@"%c",[quest.wholeQuestion characterAtIndex:i]]];
+    }
+    
     [[DTBDatabaseManager sharedInstance] saveContext];
     return quest;
 }
