@@ -22,7 +22,8 @@
 	
     [self.scrollView setContentSize:CGSizeMake(672, 48)];
     self.scrollView.backgroundColor=[UIColor clearColor];
-    DTBQuestion *deneme = [DTBQuestion QuestionWithQuestion:@"3x5=3+0:2" andAnswer:@"3x5=30"];
+    NSArray *wholeQuestions = [DTBQuestion getAllQuestions];
+    DTBQuestion *deneme = [wholeQuestions objectAtIndex:0];
     NSLog(@"%@",[deneme questionArray]);
     
     [self placingBoxes:deneme];
