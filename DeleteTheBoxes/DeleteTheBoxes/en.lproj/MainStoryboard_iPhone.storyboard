@@ -64,6 +64,13 @@
                                 <rect key="frame" x="0.0" y="49" width="568" height="215"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nEC-Nd-Ik2">
+                                <rect key="frame" x="396" y="282" width="101" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -73,6 +80,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="btnControl" destination="M6i-ND-zPF" id="UuN-DH-Wk5"/>
+                        <outlet property="btnWarning" destination="nEC-Nd-Ik2" id="wUZ-ht-i6b"/>
                         <outlet property="scrollView" destination="SSC-XO-oWD" id="TZa-tM-vMe"/>
                         <outlet property="stopWatchLabel" destination="Nud-jL-ivf" id="2T8-tw-UDF"/>
                     </connections>
@@ -82,22 +90,6 @@
             <point key="canvasLocation" x="216" y="132"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="DTBMapSelectionController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DTBMapSelectionController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="DTBViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DTBViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="btnControl" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

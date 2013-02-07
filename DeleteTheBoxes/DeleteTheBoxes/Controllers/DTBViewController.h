@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *stopWatchLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btnControl;
+@property (weak, nonatomic) IBOutlet UILabel *btnWarning;
 
 @property StopWatch * stopWatch;
 

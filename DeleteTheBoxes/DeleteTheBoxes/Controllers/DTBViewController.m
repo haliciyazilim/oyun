@@ -13,6 +13,7 @@
 @interface DTBViewController ()
 @property int scrollViewWitdh;
 @property DTBQuestion *question;
+
 @end
 
 @implementation DTBViewController
@@ -27,9 +28,11 @@
     [self.stopWatchLabel setText:@"00:00.0"];
     self.stopWatch = [[StopWatch alloc] init];
     
-    [self.btnControl addTarget:self action:@selector(control:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
     
     [self.btnControl setEnabled:NO];
+    [self.view setClipsToBounds:YES];
+    [self.scrollView setShowsHorizontalScrollIndicator:NO];
     [self configureViews];
 }
 - (void) setCurrentQuestion:(DTBQuestion *)currentQuestion {
@@ -59,7 +62,7 @@
         } completion:^(BOOL finished) {
             NSLog(@"scrollView animate Completion");
             [self.view setUserInteractionEnabled:YES];
-            [self.btnControl setEnabled:NO];
+            [self.btnControl setEnabled:YES];
             
             [self.stopWatch startTimerWithRepeatBlock:^{
                 [self.stopWatchLabel setText:[self.stopWatch toString]];
@@ -86,11 +89,12 @@
     
     [self setStopWatchLabel:nil];
     [self setBtnControl:nil];
+    [self setBtnWarning:nil];
     [super viewDidUnload];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(void)placingBoxes{
@@ -123,13 +127,48 @@
 
 
 
-//-(void)control{
-//    for (int i=0; i>; <#increment#>) {
-//        <#statements#>
-//    }
-//    DTBBox *box=[DTBBox boxByOrder:<#(int)#>]
-//    [self.question isCorrect:<#(NSString *)#>]
-//}
+-(void)control{
+    NSMutableString * answer=[[NSMutableString alloc] initWithString:@""];
+    for (int i=0; i<self.currentQuestion.questionArray.count; i++) {
+        DTBBox *box=[DTBBox boxByOrder:i];
+        if(!box.isDeleted)
+            [answer appendString:box.title];
+    }
+    
+    
+    if([self.question isCorrect:answer]){
+        [_btnWarning setText:@"Doğru"];
+    }
+    else{
+                
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+//            CGAffineTransform transform = CGAffineTransformMakeTranslation(-5, -5);
+            self.view.transform = CGAffineTransformTranslate(self.view.transform, -25, 0);
+//            self.view.transform = transform;
+            
+            
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+                self.view.transform = CGAffineTransformTranslate(self.view.transform, 50, 0);
+//                CGAffineTransform transform = CGAffineTransformMakeTranslation(0, 0);
+//                self.view.transform = transform;
+                
+                
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+                     self.view.transform = CGAffineTransformTranslate(self.view.transform, -50, 0);
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+                        self.view.transform = CGAffineTransformTranslate(self.view.transform, 25, 0);
+                    } completion:^(BOOL finished) {
+                        ;
+                    }];
+                }];
+            }];
+        }];
+
+    }
+}
 
 - (void) drawRect
 {
