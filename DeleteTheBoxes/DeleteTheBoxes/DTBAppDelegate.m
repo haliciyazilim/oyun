@@ -7,14 +7,16 @@
 //
 
 #import "DTBAppDelegate.h"
+#import "DTBDatabaseManager.h"
+#import "DTBBundleInitializer.h"
 
 @implementation DTBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    
-
+    if([[DTBDatabaseManager sharedInstance] isEmpty]){
+        [DTBBundleInitializer initializeBundle];
+    }
     // Override point for customization after application launch.
     return YES;
 }
