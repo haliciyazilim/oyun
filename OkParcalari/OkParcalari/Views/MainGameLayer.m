@@ -101,7 +101,7 @@
 - (void) buyButtonTapped {
     SKProduct *product = [_products objectAtIndex:0];
     
-    NSLog(@"Buying %@...", product.productIdentifier);
+//    NSLog(@"Buying %@...", product.productIdentifier);
     [[GreenTheGardenIAPHelper sharedInstance] buyProduct:product];
 }
 

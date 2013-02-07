@@ -173,7 +173,7 @@ static TutorialManager* currentInstance = nil;
 
 -(void) nextStep
 {
-    NSLog(@"next step");
+//    NSLog(@"next step");
     currentStepIndex++;
     if(currentStepIndex >= [tutorialSteps count]){
         [self showDialogMessage:NSLocalizedString(@"TUTORIAL_COMPLETED", nil) andCallback:^{
@@ -364,13 +364,7 @@ static TutorialManager* currentInstance = nil;
 
 -(BOOL)isCorrectEntitity:(ArrowBase*)entity
 {
-    [UIView animateWithDuration:0.5 animations:^{
-        balloonImageView.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [balloonImageView removeFromSuperview];
-        balloonImageView = nil;
-    }];
-    
+        
     Location startLocation = ((TutorialStep*)[tutorialSteps objectAtIndex:currentStepIndex]).startTile;
     return entity.location.x == startLocation.x && entity.location.y == startLocation.y;
     
@@ -401,13 +395,13 @@ static TutorialManager* currentInstance = nil;
     if(arrow.endLocation.x == to.x && arrow.endLocation.y == to.y)
         result = YES;
     if(result == YES){
-//        NSLog(@"result = YES arrow.endlocation.x:%d to.x:%d arrow.endLocation.y:%d to.y:%d",arrow.endLocation.x, to.x, arrow.endLocation.y, to.y);
+        
         [baseHighlight removeFromSuperview];
         baseHighlight = nil;
         
-//        [self showDialogMessage:@"Congratulations!" andCallback:^{
-//            [self nextStep];
-//        }];
+        [balloonImageView removeFromSuperview];
+        balloonImageView = nil;
+
         __block UIImageView* previousTutorialArrow = currentTutorialArrow;
         currentTutorialArrow = nil;
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{

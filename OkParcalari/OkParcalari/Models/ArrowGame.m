@@ -65,15 +65,27 @@ static ArrowGame* __lastInstance;
         _isGamePaused = NO;
         _isGameRunning = YES;
         
-        if([[TutorialManager sharedInstance] isTutorialEnabled] && [[TutorialManager sharedInstance] isTutoringMap:fileName]){
-            [[TutorialManager sharedInstance] startTutorial];
-//            [[TutorialManager sharedInstance] performSelector:@selector(startTutorial) withObject:nil afterDelay:0.01];
+        
+        if([[TutorialManager sharedInstance] isTutorialEnabled] && [[TutorialManager sharedInstance] isTutoringMap:currentGameMapFileName]){
+            [self pauseTimer];
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"TUTORIAL_ALERT_TITLE", nil)
+                            message:NSLocalizedString(@"TUTORIAL_ALERT_MESSAGE", nil)
+                            delegate:self
+                            cancelButtonTitle:NSLocalizedString(@"TUTORIAL_ALERT_CANCEL_BUTTON", nil)
+                            otherButtonTitles:NSLocalizedString(@"TUTORIAL_ALERT_OK_BUTTON", nil),nil]
+             show];
         }
         
     }
     return self;
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != [alertView cancelButtonIndex]){
+            [[TutorialManager sharedInstance] startTutorial];
+    }
+    [self resumeTimer];
+}
 
 - (BOOL) isGameFinished
 {
@@ -132,7 +144,7 @@ static ArrowGame* __lastInstance;
         if(map.isFinished)
             finishedMaps++;
     }
-    NSLog(@"StarCount: %i",starCount);
+//    NSLog(@"StarCount: %i",starCount);
     
     [[GameCenterManager sharedInstance] submitScore:starCount category:kLeaderBoardStar];
     [[GameCenterManager sharedInstance] submitScore:finishedMaps category:kLeaderBoardFinishedMap];

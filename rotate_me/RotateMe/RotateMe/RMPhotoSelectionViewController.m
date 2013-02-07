@@ -21,6 +21,8 @@
 {
     RMCustomImageView* touchedPhoto;
     Gallery* currentGallery;
+    NSArray* photos;
+    CGSize imageScaleSize;
 }
 
 -(id) init
@@ -29,6 +31,10 @@
         
     }
     return self;
+}
+
+- (IBAction)backButtonClicked:(id)sender {
+    [self dismissModalViewControllerAnimated:YES ];
 }
 
 static RMPhotoSelectionViewController* lastInstance = nil;
@@ -52,26 +58,29 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     touchedPhoto = nil;
-    /*<[[TEST*/
-//        self.photos = [[NSMutableArray alloc] init];
-    
-//        [self.photos addObject:[UIImage imageNamed:@"test1.jpg"]];
-//        [self.photos addObject:[UIImage imageNamed:@"test2.jpg"]];
-//        [self.photos addObject:[UIImage imageNamed:@"test3.jpg"]];
-//        [self.photos addObject:[UIImage imageNamed:@"test4.jpg"]];
-//    
-//        [self.photos addObject:[UIImage imageNamed:@"test6.jpg"]];
-//        [self.photos addObject:[UIImage imageNamed:@"test7.jpg"]];
-//        [self.photos addObject:[UIImage imageNamed:@"test8.jpg"]];
-//    
-//        [self.photos addObject:[UIImage imageNamed:@"test10.jpg"]];
-//        [self.photos addObject:[UIImage imageNamed:@"test11.jpg"]];
-//        [self.photos addObject:[UIImage imageNamed:@"test12.jpg"]];
-//        [self.photos addObject:[UIImage imageNamed:@"test13.jpg"]];
-//        [self.photos addObject:[UIImage imageNamed:@"test14.jpg"]];
-    /*TEST]]>*/
     [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
-
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
+    
+    DIFFICULTY difficulty = getCurrentDifficulty();
+    switch (difficulty) {
+        case EASY:
+            [self.difficultySegmentedButtons setSelectedSegmentIndex:0];
+            break;
+        case NORMAL:
+            [self.difficultySegmentedButtons setSelectedSegmentIndex:1];
+            break;
+        case HARD:
+            [self.difficultySegmentedButtons setSelectedSegmentIndex:2];
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    [self.galleryNameLabel setText:currentGallery.name];
+    [self.galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:20.0] ];
+    
     
 }
 
@@ -79,6 +88,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 {
     if(currentGallery != gallery){
         currentGallery = gallery;
+        photos = nil;
         [self printPhotos];
     }
 }
@@ -87,6 +97,11 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self refreshPhotos];
 }
 
 - (void) refreshPhotos
@@ -103,45 +118,102 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 {
     int leftMargin = 20;
     int topMargin = 10;
-    CGSize size = CGSizeMake(180, 120);
-    CGSize photoSize = CGSizeMake(160, 120);
+    CGSize size = CGSizeMake(146, 112);
+    CGSize photoSize = CGSizeMake(136, 102);
+    CGSize scoreLabelSize = CGSizeMake(50, 25);
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+        ([UIScreen mainScreen].scale == 2.0)) {
+        imageScaleSize = CGSizeMake(photoSize.width*2, photoSize.height*2.0);
+        
+    } else {
+        imageScaleSize = photoSize;
+    }
     
     
-    NSArray* photos = [currentGallery.photos allObjects];
-    
-    [self.scrollView setContentSize:CGSizeMake(leftMargin*2 + photos.count * size.width,
-                                               topMargin*2  + size.height)];
+    if(photos == nil){
+        photos = [currentGallery allPhotos];
+    }
+    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(photos.count / 2.0) * size.width,
+                                               topMargin  + size.height*2.0)];
     
     [self.scrollView setContentOffset:CGPointMake([RMPhotoSelectionViewController getLastScroll], 0.0)];
     for(int i=0; i < [photos count]; i++){
+        Photo* photo = (Photo*)[photos objectAtIndex:i];
         
-        RMImage* image = [(Photo*)[photos objectAtIndex:i] getImage];
-        image = [image imageWithGaussianBlur9];
-        RMCustomImageView* photo = [[RMCustomImageView alloc] initWithImage:image];
+        CGRect photoViewRect = CGRectMake(leftMargin+(i/2)*size.width, topMargin + (i%2) * size.height, photoSize.width, photoSize.height);
         
-        photo.tag = PHOTO_SELECTION_IMAGEVIEW_TAG;
-        photo.frame = CGRectMake(leftMargin+i*size.width, topMargin, photoSize.width, photoSize.height);
-        [photo setContentMode:UIViewContentModeScaleAspectFill];
-        [photo setClipsToBounds:YES];
-        [photo setUserInteractionEnabled:YES];
-        photo.layer.borderColor = [UIColor colorWithPatternImage:photo.image].CGColor;
-        photo.layer.borderWidth = 3.0f;
-        [self.scrollView addSubview:photo];
-        __block RMCustomImageView* blockPhoto = photo;
-        [photo setTouchesBegan:^{
-            if(touchedPhoto == nil){
-                touchedPhoto = blockPhoto;
-                [self performSegueWithIdentifier:@"StartGame" sender:self];
-            }
-        }];
-//        CALayer *layer = [photo layer];
-//        [layer setRasterizationScale:0.5];
-//        [layer setShouldRasterize:YES];
+        RMCustomImageView* photoView = [[RMCustomImageView alloc] init];
+        
+        photoView.tag = PHOTO_SELECTION_IMAGEVIEW_TAG;
+        photoView.frame = photoViewRect;
+        [photoView setContentMode:UIViewContentModeScaleAspectFill];
+        [photoView setClipsToBounds:YES];
+        [photoView setUserInteractionEnabled:YES];
+        photoView.layer.borderColor = [UIColor whiteColor].CGColor;
+        photoView.layer.borderWidth = 2.0f;
+        [photoView.layer setShadowColor:[UIColor blackColor].CGColor];
+        [photoView.layer setShadowOffset:CGSizeMake(0.0, 5.0)];
+        [self.scrollView addSubview:photoView];
+                
+        UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] init];
+        activityIndicator.frame = CGRectMake(0, 0, photoSize.width, photoSize.height);
+        [activityIndicator startAnimating];
+        [photoView addSubview:activityIndicator];
+        
+        NSThread* thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadImageForView:) object:[NSArray arrayWithObjects:photo,photoView,activityIndicator, nil]];
+        [thread setThreadPriority:(double)i];
+        Score* score = [photo getScoreForDifficulty:getCurrentDifficulty()];
+        if(score != nil){
+            UIImageView* gradient = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_gradient.png"]];
+            gradient.frame = CGRectMake(0, photoSize.height - gradient.image.size.height, photoSize.width, gradient.image.size.height);
+            [photoView addSubview:gradient];
+            
+            UILabel* scoreLabel = [[UILabel alloc] init];
+            scoreLabel.frame = CGRectMake(10, photoSize.height - scoreLabelSize.height*1.0, scoreLabelSize.width, scoreLabelSize.height);
+            scoreLabel.text = [score toText];
+            scoreLabel.backgroundColor = [UIColor clearColor];
+            [scoreLabel setTextColor:[UIColor whiteColor]];
+            [scoreLabel setShadowColor:[UIColor blackColor]];
+            [scoreLabel setShadowOffset:CGSizeMake(0,1)];
+            [scoreLabel setFont:[UIFont fontWithName:@"TR McLean" size:14.0]];
+            
+            [scoreLabel setTextAlignment:NSTextAlignmentLeft];
+            [photoView addSubview:scoreLabel];
+        }
+        
+        [thread start];
     }
-
+    
+//    NSLog(@"I'm here");
+    
+    
 }
 
+- (void) loadImageForView:(NSArray*)params
+{
+    Photo* photo = [params objectAtIndex:0];
+    RMCustomImageView* photoView = [params objectAtIndex:1];
+    UIActivityIndicatorView* activityIndicator = [params objectAtIndex:2];
+    
+//    NSLog(@"loadImageForView photo filename: %@",photo.filename);
+    RMImage* originalImage = [photo getImage];
+    if([photo getThumbnailImage] == nil){
+        [photo setThumbnailImage:[originalImage imageByScalingAndCroppingForSize:imageScaleSize]];
+    }
+    photoView.image = [photo getThumbnailImage];
+    __block RMCustomImageView* blockPhotoView = photoView;
+    [photoView setTouchesBegan:^{
+        if(touchedPhoto == nil){
+            touchedPhoto = blockPhotoView;
+            [self performSegueWithIdentifier:@"StartGame" sender:self];
+        }
+    }];
+    
+    [activityIndicator removeFromSuperview];
+    activityIndicator = nil;
 
+
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -152,13 +224,14 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     RMInGameViewController* inGameView = [segue destinationViewController];
-    [inGameView setImage:touchedPhoto.image];
+    [inGameView setImage:[[(RMImage*)touchedPhoto.image owner] getImage]];
     touchedPhoto = nil;
     
 }
 
 
-- (IBAction)difficultyChanged:(id)sender {
+- (IBAction)difficultyChanged:(id)sender {  
+    
     UISegmentedControl* control = (UISegmentedControl*)sender;
     if([control selectedSegmentIndex] == 0){
         setCurrentDifficulty(EASY);
@@ -186,6 +259,11 @@ static int __lastScroll = 0;
 }
 
 
+- (void)viewDidUnload {
+    [self setDifficultySegmentedButtons:nil];
+    [self setGalleryNameLabel:nil];
+    [super viewDidUnload];
+}
 @end
 
 

@@ -23,7 +23,7 @@
 @class GameMap;
 @class Stopwatch;
 
-@interface ArrowGame : CCNode
+@interface ArrowGame : CCNode <UIAlertViewDelegate>
 
 @property NSMutableArray *arrowBases;
 

@@ -56,7 +56,7 @@
 	// 'layer' is an autorelease object.
 	ArrowGameLayer *layer = [ArrowGameLayer node];
 	[layer initializeGameWithFile:fileName];
-    NSLog(@"%@",fileName);
+//    NSLog(@"%@",fileName);
 	// add layer as a child to scene
 //    InGameMenuLayer *menuLayer = [InGameMenuLayer node];
 	[scene addChild: layer];
@@ -328,8 +328,8 @@ static ArrowGameLayer* __lastInstance;
         self.isTouchEnabled = NO;
         [[TransitionManager sharedInstance] makeTransitionWithBlock:^{
             if(gameWinView != nil){
-                NSLog(@"removed gameWinView");
-                NSLog(@"%@",gameWinView);
+//                NSLog(@"removed gameWinView");
+//                NSLog(@"%@",gameWinView);
                 [gameWinView removeFromSuperview];
                 gameWinView = nil;
             }
@@ -593,8 +593,6 @@ static ArrowGameLayer* __lastInstance;
                                            defaultAudience:FBSessionDefaultAudienceEveryone
                                               allowLoginUI:YES
                                          completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-                                             NSLog(@"Success!");
-                                     
                                              if (status != FBSessionStateOpen) {
                                                  // Show alert
                                                  UIAlertView *alertView = [[UIAlertView alloc]

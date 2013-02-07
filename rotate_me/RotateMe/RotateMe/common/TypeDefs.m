@@ -7,7 +7,7 @@
 //
 
 #import "TypeDefs.h"
-
+#import "Config.h"
 
 DIFFICULTY difficultyFromString(NSString* string){
     if([string compare:@"easy"] == 0){
@@ -37,7 +37,17 @@ NSString* stringOfDifficulty(DIFFICULTY difficulty){
 static DIFFICULTY CURRENT_DIFFICULTY = EASY;
 void setCurrentDifficulty(DIFFICULTY difficulty){
     CURRENT_DIFFICULTY = difficulty;
+    [[NSUserDefaults standardUserDefaults] setObject:stringOfDifficulty(difficulty) forKey:NSUSER_DIFFICULTY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
 }
 DIFFICULTY getCurrentDifficulty(){
-    return CURRENT_DIFFICULTY;
+    DIFFICULTY difficulty;
+    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:NSUSER_DIFFICULTY];
+    if(result == nil){
+        setCurrentDifficulty(CURRENT_DIFFICULTY);
+        result = [[NSUserDefaults standardUserDefaults] stringForKey:NSUSER_DIFFICULTY];
+    }
+    difficulty = difficultyFromString(result);
+    return difficulty;
 }

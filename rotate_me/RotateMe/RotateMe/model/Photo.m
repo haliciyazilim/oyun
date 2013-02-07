@@ -13,25 +13,50 @@
 @implementation Photo
 {
     RMImage* image;
+    RMImage* thumbnailImage;
+    PhotoManagedObject* managedObject;
 }
-@dynamic filename;
-@dynamic gallery;
-@dynamic score;
+
++ (Photo*) photoWithManagedObject:(PhotoManagedObject*)managedObject
+{
+    return [[Photo alloc] initWithManagedObject:managedObject];
+}
+
+- (id) initWithManagedObject:(PhotoManagedObject*)_managedObject
+{
+    managedObject = _managedObject;
+    self.filename = managedObject.filename;
+    self.gallery = managedObject.gallery;
+    return self;
+}
+
+- (void)setThumbnailImage:(RMImage *)_thumbnailImage
+{
+    thumbnailImage = _thumbnailImage;
+    thumbnailImage.owner = self;
+    
+}
+
+- (RMImage*) getThumbnailImage
+{
+    return thumbnailImage;
+}
+
 
 + (Photo*)createPhotoWithFileName:(NSString*)fileName andGallery:(Gallery*)gallery
 {
-    Photo* photo = (Photo*)[[RMDatabaseManager sharedInstance] createEntity:@"Photo"];
+    PhotoManagedObject* photo = (PhotoManagedObject*)[[RMDatabaseManager sharedInstance] createEntity:@"Photo"];
     photo.filename = fileName;
     photo.gallery = gallery;
     [[RMDatabaseManager sharedInstance] saveContext];
-    return photo;
+    return [Photo photoWithManagedObject:photo];
 }
 - (void) setScore:(int)elapsedTime forDifficulty:(DIFFICULTY)difficulty
 {
     Score* score = [self getScoreForDifficulty:difficulty];
     if(score == nil){
         score = (Score*)[[RMDatabaseManager sharedInstance] createEntity:@"Score"];
-        score.photo = self;
+        score.photo = managedObject;
         score.difficulty = difficulty;
         score.elapsedSeconds = elapsedTime;
     }
@@ -48,7 +73,7 @@
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"photo == %@ && difficulty == %d", self, difficulty];
+                              @"photo == %@ && difficulty == %d", managedObject, difficulty];
     [request setPredicate:predicate];
     return (Score*)[[RMDatabaseManager sharedInstance] entityWithRequest:request forName:@"Score"];
 }
@@ -59,7 +84,6 @@
         NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:self.gallery.name];
         NSString* imagePath = [folderPath stringByAppendingPathComponent:self.filename];
-        
         image = [[RMImage alloc] initWithContentsOfFile:imagePath];
         image.owner = self;
     }

@@ -13,6 +13,9 @@
 @interface RMPhotoSelectionViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 - (IBAction)difficultyChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentedButtons;
+@property (weak, nonatomic) IBOutlet UILabel *galleryNameLabel;
+- (IBAction)backButtonClicked:(id)sender;
 
 + (RMPhotoSelectionViewController*) lastInstance;
 
