@@ -131,6 +131,8 @@
         [buttonLabel setShadowOffset:CGSizeMake(0.0, 2.0)];
         [buttonLabel setBackgroundColor:[UIColor clearColor]];
         [buttonLabel setTextAlignment:NSTextAlignmentCenter];
+        
+        
         [question addSubview:buttonLabel];
 
         [self.scrollView addSubview:question];

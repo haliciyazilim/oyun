@@ -84,9 +84,9 @@
 
 + (NSString*) textWithMiliseconds:(int)totalMiliseconds
 {
-    int minutes = totalMiliseconds / 6000;
-    int seconds = (totalMiliseconds % 6000) / 100;
-    int miliseconds = totalMiliseconds % 100;
+    int minutes = totalMiliseconds / 60000;
+    int seconds = (totalMiliseconds % 60000) / 1000;
+    int miliseconds = totalMiliseconds % 1000;
     NSString* minutesString = minutes < 10 ? [NSString stringWithFormat:@"0%d",minutes] : [NSString stringWithFormat:@"%d",minutes];
     
     NSString* secondsString = seconds < 10 ? [NSString stringWithFormat:@"0%d",seconds] : [NSString stringWithFormat:@"%d",seconds];
