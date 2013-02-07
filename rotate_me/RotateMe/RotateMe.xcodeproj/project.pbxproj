@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		415149DF16C3EFCF003BE22A /* RMInGameIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 415149DE16C3EFCF003BE22A /* RMInGameIPadViewController.m */; };
+		415149E216C3F18F003BE22A /* photo_holder_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 415149E016C3F18F003BE22A /* photo_holder_ipad.png */; };
+		415149E316C3F18F003BE22A /* photo_holder_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 415149E116C3F18F003BE22A /* photo_holder_ipad@2x.png */; };
+		415149E616C3F23B003BE22A /* game_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 415149E416C3F23B003BE22A /* game_bg_ipad.jpg */; };
+		415149E716C3F23B003BE22A /* game_bg_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 415149E516C3F23B003BE22A /* game_bg_ipad@2x.jpg */; };
+		415149EA16C3F257003BE22A /* timer_holder_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 415149E816C3F257003BE22A /* timer_holder_ipad.png */; };
+		415149EB16C3F257003BE22A /* timer_holder_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 415149E916C3F257003BE22A /* timer_holder_ipad@2x.png */; };
 		41B94CC616C2E59500B7C70A /* RMGallerySelectionIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B94CC516C2E59500B7C70A /* RMGallerySelectionIPadViewController.m */; };
 		41B94CC916C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B94CC816C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m */; };
 		AE09C30616C23FBC00F634CB /* RMGallerySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09C30516C23FBC00F634CB /* RMGallerySelectionViewController.m */; };
@@ -82,6 +89,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		415149DD16C3EFCF003BE22A /* RMInGameIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMInGameIPadViewController.h; path = view/RMInGameIPadViewController.h; sourceTree = "<group>"; };
+		415149DE16C3EFCF003BE22A /* RMInGameIPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMInGameIPadViewController.m; path = view/RMInGameIPadViewController.m; sourceTree = "<group>"; };
+		415149E016C3F18F003BE22A /* photo_holder_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_holder_ipad.png; sourceTree = "<group>"; };
+		415149E116C3F18F003BE22A /* photo_holder_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_holder_ipad@2x.png"; sourceTree = "<group>"; };
+		415149E416C3F23B003BE22A /* game_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = game_bg_ipad.jpg; sourceTree = "<group>"; };
+		415149E516C3F23B003BE22A /* game_bg_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "game_bg_ipad@2x.jpg"; sourceTree = "<group>"; };
+		415149E816C3F257003BE22A /* timer_holder_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timer_holder_ipad.png; sourceTree = "<group>"; };
+		415149E916C3F257003BE22A /* timer_holder_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timer_holder_ipad@2x.png"; sourceTree = "<group>"; };
 		41B94CC416C2E59500B7C70A /* RMGallerySelectionIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMGallerySelectionIPadViewController.h; path = view/RMGallerySelectionIPadViewController.h; sourceTree = "<group>"; };
 		41B94CC516C2E59500B7C70A /* RMGallerySelectionIPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMGallerySelectionIPadViewController.m; path = view/RMGallerySelectionIPadViewController.m; sourceTree = "<group>"; };
 		41B94CC716C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMPhotoSelectionIPadViewController.h; path = view/RMPhotoSelectionIPadViewController.h; sourceTree = "<group>"; };
@@ -202,6 +217,8 @@
 				41B94CC516C2E59500B7C70A /* RMGallerySelectionIPadViewController.m */,
 				41B94CC716C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.h */,
 				41B94CC816C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m */,
+				415149DD16C3EFCF003BE22A /* RMInGameIPadViewController.h */,
+				415149DE16C3EFCF003BE22A /* RMInGameIPadViewController.m */,
 			);
 			name = "iPad View Controllers";
 			sourceTree = "<group>";
@@ -372,6 +389,8 @@
 				AED218EC16BA9E0900271930 /* game_bg-568h@2x.jpg */,
 				AED218ED16BA9E0900271930 /* game_bg.jpg */,
 				AED218EE16BA9E0900271930 /* game_bg@2x.jpg */,
+				415149E416C3F23B003BE22A /* game_bg_ipad.jpg */,
+				415149E516C3F23B003BE22A /* game_bg_ipad@2x.jpg */,
 				AED218EF16BA9E0900271930 /* help_btn.png */,
 				AED218F016BA9E0900271930 /* help_btn@2x.png */,
 				AED218F116BA9E0900271930 /* help_btn_hover.png */,
@@ -382,8 +401,12 @@
 				AED218F616BA9E0900271930 /* menu_btn_hover@2x.png */,
 				AED218F716BA9E0900271930 /* photo_holder.png */,
 				AED218F816BA9E0900271930 /* photo_holder@2x.png */,
+				415149E016C3F18F003BE22A /* photo_holder_ipad.png */,
+				415149E116C3F18F003BE22A /* photo_holder_ipad@2x.png */,
 				AED218F916BA9E0900271930 /* timer_holder.png */,
 				AED218FA16BA9E0900271930 /* timer_holder@2x.png */,
+				415149E816C3F257003BE22A /* timer_holder_ipad.png */,
+				415149E916C3F257003BE22A /* timer_holder_ipad@2x.png */,
 			);
 			name = gamescreen;
 			path = images/gamescreen;
@@ -526,6 +549,12 @@
 				AE09C32F16C261B100F634CB /* back_button@2x.png in Resources */,
 				AE09C33416C284A400F634CB /* TR McLean  Bold.ttf in Resources */,
 				AE09C33516C284A400F634CB /* TR McLean.ttf in Resources */,
+				415149E216C3F18F003BE22A /* photo_holder_ipad.png in Resources */,
+				415149E316C3F18F003BE22A /* photo_holder_ipad@2x.png in Resources */,
+				415149E616C3F23B003BE22A /* game_bg_ipad.jpg in Resources */,
+				415149E716C3F23B003BE22A /* game_bg_ipad@2x.jpg in Resources */,
+				415149EA16C3F257003BE22A /* timer_holder_ipad.png in Resources */,
+				415149EB16C3F257003BE22A /* timer_holder_ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +585,7 @@
 				41B94CC616C2E59500B7C70A /* RMGallerySelectionIPadViewController.m in Sources */,
 				41B94CC916C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m in Sources */,
 				AE2BE2AD16C3A07200A0335D /* PhotoManagedObject.m in Sources */,
+				415149DF16C3EFCF003BE22A /* RMInGameIPadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
