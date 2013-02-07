@@ -7,19 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface DTBQuestion : NSObject
+@interface DTBQuestion : NSManagedObject
 
 @property NSString *wholeQuestion;
 @property NSString *answer;
-@property NSString *leftHandside; // delete if unneccessary
-@property NSString *rightHandside; // delete if unneccessary
+@property int score;
+@property int questionOrder;
+@property BOOL isPurchased;
 @property NSMutableArray *questionArray;
 
-+ (id) QuestionWithQuestion:(NSString *)question andAnswer:(NSString *)answer;
++ (DTBQuestion*)createQuestionWithWholeQuestion:(NSString *)question andAnswer:(NSString *)answer andOrder:(int)order;
 
-- (id) initWithQuestion:(NSString *)question andAnswer:(NSString *)answer;
++ (NSArray *)getAllQuestions;
 
+- (void) updateScore:(int)elapsedTime;
+
+//+ (id) QuestionWithQuestion:(NSString *)question andAnswer:(NSString *)answer;
+//
+//- (id) initWithQuestion:(NSString *)question andAnswer:(NSString *)answer;
 - (BOOL) isCorrect:(NSString *)checkedAnswer;
 
 @end
