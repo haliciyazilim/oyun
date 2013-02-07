@@ -21,17 +21,33 @@
     [super viewDidLoad];
 	
     [self.scrollView setContentSize:CGSizeMake(672, 48)];
-
+    self.scrollView.backgroundColor=[UIColor clearColor];
     DTBQuestion *deneme = [DTBQuestion QuestionWithQuestion:@"3x5=3+0:2" andAnswer:@"3x5=30"];
     NSLog(@"%@",[deneme questionArray]);
     
     [self placingBoxes:deneme];
     
-//    [self.view setUserInteractionEnabled:YES];
+    
+    [self.view setUserInteractionEnabled:NO];
 //    [self.scrollView setUserInteractionEnabled:NO];
     
 }
+-(void) viewDidAppear:(BOOL)animated{
+    // ScrollView animated
+    [self.scrollView setContentOffset:CGPointMake(0, 0)];
+    [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.scrollView setContentOffset:CGPointMake(100, 0)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [self.scrollView setContentOffset:CGPointMake(0, 0)];
+        } completion:^(BOOL finished) {
+            NSLog(@"scrollView animate Completion");
+            [self.view setUserInteractionEnabled:YES];
+            
+        }];
+    }];
 
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
@@ -79,6 +95,10 @@
 
 }
 
+
+
+
+
 - (void) drawRect
 {
     UIBezierPath *path = [UIBezierPath bezierPath];
@@ -104,4 +124,6 @@
     pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
     [pathLayer addAnimation:pathAnimation forKey:@"strokeEnd"];
 }
+
+
 @end
