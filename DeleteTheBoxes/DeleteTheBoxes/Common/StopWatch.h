@@ -21,4 +21,6 @@
 
 - (NSString*) toString;
 
++ (NSString*) textWithMiliseconds:(int)miliseconds;
+
 @end

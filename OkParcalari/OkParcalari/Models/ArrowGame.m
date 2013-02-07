@@ -128,9 +128,10 @@ static ArrowGame* __lastInstance;
     
     if([map.mapId isEqual:@"10000"])
         [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementWarmingUp percentComplete:100.0];
-    
-    if(![self isAnyBaseDeformed])
+
+    if(![self isAnyBaseDeformed]) {
         [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementTrustMeINowWhatImDoing percentComplete:100.0];
+    }
     
     // submit Score
     NSArray *allMaps=[[DatabaseManager sharedInstance] getAllMaps];

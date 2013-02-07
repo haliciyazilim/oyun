@@ -248,9 +248,10 @@
 {
     return isDeformed;
 };
+
 - (void) animateBackgrounds{
     
-    if(lastSize < [self getSize]){
+    if(lastSize > [self getSize]){
         isDeformed = YES;
     }
     

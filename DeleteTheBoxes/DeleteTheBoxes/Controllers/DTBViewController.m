@@ -11,6 +11,8 @@
 #import "DTBBox.h"
 
 @interface DTBViewController ()
+@property int scrollViewWitdh;
+@property DTBQuestion *question;
 
 @end
 
@@ -19,30 +21,53 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    [self.scrollView setContentSize:CGSizeMake(672, 48)];
-    self.scrollView.backgroundColor=[UIColor clearColor];
-    DTBQuestion *deneme = [DTBQuestion QuestionWithQuestion:@"3x5=3+0:2" andAnswer:@"3x5=30"];
-    NSLog(@"%@",[deneme questionArray]);
-    
-    [self placingBoxes:deneme];
-    
-    
+
     [self.view setUserInteractionEnabled:NO];
 //    [self.scrollView setUserInteractionEnabled:NO];
     
+    [self.stopWatchLabel setText:@"00:00.0"];
+    self.stopWatch = [[StopWatch alloc] init];
+    
+    [self.btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.btnControl setEnabled:NO];
+    [self.view setClipsToBounds:YES];
+    [self.scrollView setShowsHorizontalScrollIndicator:NO];
+    [self configureViews];
+}
+- (void) setCurrentQuestion:(DTBQuestion *)currentQuestion {
+    _currentQuestion = currentQuestion;
+    [_currentQuestion createQuestionArray];
+    
+    [self configureViews];
+}
+- (void) configureViews {
+        
+    NSLog(@" Soru %@",[self.currentQuestion questionArray]);
+    _scrollViewWitdh=self.currentQuestion.questionArray.count*65+30;
+    NSLog(@"ScrolWitdh: %d",_scrollViewWitdh);
+    [self.scrollView setContentSize:CGSizeMake(_scrollViewWitdh, 48)];
+    
+    [self placingBoxes];
+
 }
 -(void) viewDidAppear:(BOOL)animated{
     // ScrollView animated
     [self.scrollView setContentOffset:CGPointMake(0, 0)];
     [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.scrollView setContentOffset:CGPointMake(100, 0)];
+        [self.scrollView setContentOffset:CGPointMake(_scrollViewWitdh/2.5, 0)];
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self.scrollView setContentOffset:CGPointMake(0, 0)];
         } completion:^(BOOL finished) {
             NSLog(@"scrollView animate Completion");
             [self.view setUserInteractionEnabled:YES];
+            [self.btnControl setEnabled:YES];
+            
+            [self.stopWatch startTimerWithRepeatBlock:^{
+                [self.stopWatchLabel setText:[self.stopWatch toString]];
+            }];
+            
             
         }];
     }];
@@ -61,21 +86,26 @@
 
 - (void)viewDidUnload {
     [self setScrollView:nil];
+    
+    [self setStopWatchLabel:nil];
+    [self setBtnControl:nil];
+    [self setBtnWarning:nil];
     [super viewDidUnload];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
 }
 
--(void)placingBoxes: (DTBQuestion *) question{
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    NSLog(@"SV h: %f",screenBounds.size.width);
-    
-    for (int i=0; i<[question questionArray].count; i++) {
+-(void)placingBoxes{
+    NSLog(@"Placing %d",_currentQuestion.questionArray.count);
+    for (int i=0; i<_currentQuestion.questionArray.count; i++) {
         
-        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(60*i+10, screenBounds.size.width/2-24, 48, 48) andTitle:[question questionArray][i]];
+
+        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(58*i+30, _scrollView.frame.size.height/2, 48, 48) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
         box.caller=self;
+        
+        NSLog(@"for içi %@",box.boxButton);
         [_scrollView addSubview:box.boxButton];
     }
 }
@@ -97,7 +127,48 @@
 
 
 
+-(void)control{
+    NSMutableString * answer=[[NSMutableString alloc] initWithString:@""];
+    for (int i=0; i<self.currentQuestion.questionArray.count; i++) {
+        DTBBox *box=[DTBBox boxByOrder:i];
+        if(!box.isDeleted)
+            [answer appendString:box.title];
+    }
+    
+    
+    if([self.question isCorrect:answer]){
+        [_btnWarning setText:@"Doğru"];
+    }
+    else{
+                
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+//            CGAffineTransform transform = CGAffineTransformMakeTranslation(-5, -5);
+            self.view.transform = CGAffineTransformTranslate(self.view.transform, -25, 0);
+//            self.view.transform = transform;
+            
+            
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+                self.view.transform = CGAffineTransformTranslate(self.view.transform, 50, 0);
+//                CGAffineTransform transform = CGAffineTransformMakeTranslation(0, 0);
+//                self.view.transform = transform;
+                
+                
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+                     self.view.transform = CGAffineTransformTranslate(self.view.transform, -50, 0);
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+                        self.view.transform = CGAffineTransformTranslate(self.view.transform, 25, 0);
+                    } completion:^(BOOL finished) {
+                        ;
+                    }];
+                }];
+            }];
+        }];
 
+    }
+}
 
 - (void) drawRect
 {
