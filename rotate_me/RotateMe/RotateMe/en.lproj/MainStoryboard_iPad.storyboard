@@ -169,36 +169,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back_button.png" width="26" height="26"/>
-        <image name="help_btn.png" width="23" height="26"/>
-        <image name="menu_btn.png" width="22" height="26"/>
-        <image name="photo_holder_ipad.png" width="824" height="626"/>
-        <image name="timer_holder_ipad.png" width="160" height="67"/>
+        <image name="back_button.png" width="16" height="16"/>
+        <image name="help_btn.png" width="16" height="16"/>
+        <image name="menu_btn.png" width="16" height="16"/>
+        <image name="photo_holder_ipad.png" width="16" height="16"/>
+        <image name="timer_holder_ipad.png" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="RMGallerySelectionIPadViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMGallerySelectionIPadViewController.h"/>
-        </class>
-        <class className="RMInGameIPadViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMInGameIPadViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="displayHelp:"/>
-                <relationship kind="action" name="displayMenu:"/>
-                <relationship kind="outlet" name="photoHolder" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="RMPhotoSelectionIPadViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMPhotoSelectionIPadViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonClicked:"/>
-                <relationship kind="action" name="difficultyChanged:"/>
-                <relationship kind="outlet" name="difficultySegmentedButtons" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="galleryNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
