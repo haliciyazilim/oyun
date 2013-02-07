@@ -48,7 +48,6 @@
     else{
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
     }
-    
 }
 - (void)viewWillAppear:(BOOL)animated {
     if (selectedButton) {
@@ -97,23 +96,21 @@
         UILabel *timerLabel;
         
         if (![currentProccessingQuestion isPurchased]) {
-            NSLog(@"proccessing the button which is not purchased");
             question.layer.shadowColor = [[UIColor colorWithWhite:0.0 alpha:0.10] CGColor];
             question.layer.borderColor = [[UIColor colorWithRed:0.557 green:0.557 blue:0.557 alpha:1.0] CGColor];
             [question setBackgroundColor:[UIColor colorWithRed:0.773 green:0.773 blue:0.773 alpha:1.0]];
             buttonLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 70.0, 70.0)];
             [buttonLabel setTextColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0]];
+            [question addTarget:self action:@selector(buyPro) forControlEvents:UIControlEventTouchUpInside];
 
         }
         else{
-            NSLog(@"proccessing the button which is purchased");
             question.layer.shadowColor = [[UIColor colorWithWhite:1.0 alpha:0.35] CGColor];
             question.layer.borderColor = [[UIColor colorWithRed:0.8 green:0.741 blue:0.659 alpha:1.0] CGColor];
             [question setBackgroundColor:[UIColor colorWithRed:0.894 green:0.855 blue:0.8 alpha:1.0]];
             
             if ([currentProccessingQuestion score] < INT32_MAX) {
                 // bitirildi, score var
-                NSLog(@"score");
                 buttonLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 70.0, 46.0)];
                 timerLabel = [[UILabel alloc] initWithFrame:CGRectMake(1.0, 40.0, 68.0, 30.0)];
                 [timerLabel setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"played_btn_bg.png"]]];
@@ -124,7 +121,6 @@
             }
             else{
                 // bitirilmedi, score yok
-                NSLog(@"no score");
                 buttonLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 70.0, 70.0)];
             }
             [buttonLabel setTextColor:[UIColor colorWithRed:0.463 green:0.365 blue:0.227 alpha:1.0]];
@@ -132,7 +128,6 @@
             [question addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpOutside];
             [question addTarget:self action:@selector(openQuestion:) forControlEvents:UIControlEventTouchUpInside];
         }
-        
         
         [buttonLabel setFont:[UIFont fontWithName:@"Helvetica" size:24.0]];
         [buttonLabel setText:[NSString stringWithFormat:@"%d",[currentProccessingQuestion questionOrder]]];
@@ -148,6 +143,9 @@
 
         [self.scrollView addSubview:question];
     }
+}
+- (void) buyPro {
+    NSLog(@"********buyPro here ************");
 }
 - (void) makeUnhighlighted:(UIButton *)button {
     [self unhighlight:button];
