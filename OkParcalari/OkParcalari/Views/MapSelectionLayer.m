@@ -344,8 +344,7 @@
 }
 
 - (void) showGameCenter
-{
-    if(!self.reachability){
+{    if(!self.reachability){
         self.reachability = [Reachability reachabilityForInternetConnection];
     }
     NetworkStatus netStatus = [self.reachability currentReachabilityStatus];
@@ -362,6 +361,7 @@
         tempVC = [[UIViewController alloc] init];
         GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
         if (gameCenterController != nil){
+            [Flurry logEvent:kFlurryEventInfoScreenView timed:YES];
             gameCenterController.gameCenterDelegate = self;
             [[[CCDirector sharedDirector] view] addSubview:tempVC.view];
             [tempVC presentModalViewController:gameCenterController animated:YES];
@@ -373,6 +373,7 @@
 {
     [tempVC dismissModalViewControllerAnimated:YES];
     [tempVC.view removeFromSuperview];
+    [Flurry endTimedEvent:kFlurryEventInfoScreenView withParameters:nil];
 }
 
 -(void) infoScreen{
