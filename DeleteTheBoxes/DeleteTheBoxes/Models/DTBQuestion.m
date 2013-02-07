@@ -25,7 +25,15 @@
     DTBQuestion* quest = (DTBQuestion*)[[DTBDatabaseManager sharedInstance] createEntity:@"Question"];
     quest.wholeQuestion = question;
     quest.answer = answer;
-    quest.score = INT32_MAX;
+    if (order == 1) {
+        quest.score = 90000;
+    }
+    else if(order == 2){
+        quest.score = 80454;
+    }
+    else{
+        quest.score = INT32_MAX;
+    }
     quest.questionOrder = order;
     if (order <= kFreeQuestionCount) {
         NSLog(@"is purchased");

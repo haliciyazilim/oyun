@@ -44,6 +44,13 @@
     
     [self.btnControl setEnabled:NO];
 }
+- (void) setCurrentQuestion:(DTBQuestion *)currentQuestion {
+    _currentQuestion = currentQuestion;
+    [self configureViews];
+}
+- (void) configureViews {
+    // soru geldi, abdullah doldurabilirsin..
+}
 -(void) viewDidAppear:(BOOL)animated{
     // ScrollView animated
     [self.scrollView setContentOffset:CGPointMake(0, 0)];
