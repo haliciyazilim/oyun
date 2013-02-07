@@ -87,6 +87,7 @@
 //}
 
 - (BOOL) isCorrect:(NSString *)checkedAnswer {
+    NSLog(@"isCorrect: %@==%@ ",self.answer,checkedAnswer);
     return [self.answer isEqualToString:checkedAnswer];
 }
 

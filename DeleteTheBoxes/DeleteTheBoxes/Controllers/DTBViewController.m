@@ -98,14 +98,15 @@
 }
 
 -(void)placingBoxes{
-    NSLog(@"Placing %d",_currentQuestion.questionArray.count);
+//    NSLog(@"Placing %d",_currentQuestion.questionArray.count);
+    [DTBBox cleanInstances];
     for (int i=0; i<_currentQuestion.questionArray.count; i++) {
         
 
         DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(58*i+30, _scrollView.frame.size.height/2, 48, 48) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
         box.caller=self;
         
-        NSLog(@"for içi %@",box.boxButton);
+        NSLog(@"PLacing %@",box);
         [_scrollView addSubview:box.boxButton];
     }
 }
@@ -116,7 +117,7 @@
     
     if(!box.isDeleted){
         [box deleteBox:self.scrollView];
-        
+                
 //        [box drawLineToOriginalPosition:self.view];
 
     }
@@ -130,13 +131,14 @@
 -(void)control{
     NSMutableString * answer=[[NSMutableString alloc] initWithString:@""];
     for (int i=0; i<self.currentQuestion.questionArray.count; i++) {
-        DTBBox *box=[DTBBox boxByOrder:i];
+        DTBBox * box=[DTBBox boxByOrder:i];
+        
         if(!box.isDeleted)
             [answer appendString:box.title];
     }
     
-    
-    if([self.question isCorrect:answer]){
+    BOOL arastirma=[self.currentQuestion isCorrect:answer];
+    if(arastirma){
         [_btnWarning setText:@"Doğru"];
     }
     else{
