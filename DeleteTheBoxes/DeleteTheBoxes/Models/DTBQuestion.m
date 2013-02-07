@@ -36,11 +36,6 @@
         quest.isPurchased = NO;
     }
     
-    quest.questionArray = [NSMutableArray arrayWithCapacity:[quest.wholeQuestion length]];
-    for (int i = 0; i < [quest.wholeQuestion length]; i++) {
-        [quest.questionArray addObject:[NSString stringWithFormat:@"%c",[quest.wholeQuestion characterAtIndex:i]]];
-    }
-    
     [[DTBDatabaseManager sharedInstance] saveContext];
     return quest;
 }
@@ -53,6 +48,12 @@
         return obj1.questionOrder - obj2.questionOrder;
     }];
     return result;
+}
+- (void) createQuestionArray {
+    self.questionArray = [NSMutableArray arrayWithCapacity:[self.wholeQuestion length]];
+    for (int i = 0; i < [self.wholeQuestion length]; i++) {
+        [self.questionArray addObject:[NSString stringWithFormat:@"%c",[self.wholeQuestion characterAtIndex:i]]];
+    }
 }
 - (void) updateScore:(int)elapsedTime {
     if (self.score > elapsedTime) {

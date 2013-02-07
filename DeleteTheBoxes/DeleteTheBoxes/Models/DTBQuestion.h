@@ -24,9 +24,7 @@
 
 - (void) updateScore:(int)elapsedTime;
 
-//+ (id) QuestionWithQuestion:(NSString *)question andAnswer:(NSString *)answer;
-//
-//- (id) initWithQuestion:(NSString *)question andAnswer:(NSString *)answer;
+- (void) createQuestionArray;
 - (BOOL) isCorrect:(NSString *)checkedAnswer;
 
 @end

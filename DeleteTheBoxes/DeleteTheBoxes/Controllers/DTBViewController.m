@@ -24,6 +24,8 @@
     self.scrollView.backgroundColor=[UIColor clearColor];
     NSArray *wholeQuestions = [DTBQuestion getAllQuestions];
     DTBQuestion *deneme = [wholeQuestions objectAtIndex:0];
+    [deneme createQuestionArray];
+    NSLog(@"%@",deneme);
     NSLog(@"%@",[deneme questionArray]);
     
     [self placingBoxes:deneme];
