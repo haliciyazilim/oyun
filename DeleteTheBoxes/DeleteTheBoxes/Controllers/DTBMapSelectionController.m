@@ -141,7 +141,7 @@
         [buttonLabel setBackgroundColor:[UIColor clearColor]];
         [buttonLabel setTextAlignment:NSTextAlignmentCenter];
         
-        question.tag = [currentProccessingQuestion questionOrder];
+        question.tag = i;
         
         [question addSubview:buttonLabel];
         [question addSubview:timerLabel];
