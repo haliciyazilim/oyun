@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41B94CC616C2E59500B7C70A /* RMGallerySelectionIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B94CC516C2E59500B7C70A /* RMGallerySelectionIPadViewController.m */; };
+		41B94CC916C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B94CC816C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m */; };
 		AE09C30616C23FBC00F634CB /* RMGallerySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09C30516C23FBC00F634CB /* RMGallerySelectionViewController.m */; };
 		AE09C31B16C24AA100F634CB /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE09C30916C24AA100F634CB /* test1.jpg */; };
 		AE09C31C16C24AA100F634CB /* test10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE09C30A16C24AA100F634CB /* test10.jpg */; };
@@ -79,6 +81,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41B94CC416C2E59500B7C70A /* RMGallerySelectionIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMGallerySelectionIPadViewController.h; path = view/RMGallerySelectionIPadViewController.h; sourceTree = "<group>"; };
+		41B94CC516C2E59500B7C70A /* RMGallerySelectionIPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMGallerySelectionIPadViewController.m; path = view/RMGallerySelectionIPadViewController.m; sourceTree = "<group>"; };
+		41B94CC716C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMPhotoSelectionIPadViewController.h; path = view/RMPhotoSelectionIPadViewController.h; sourceTree = "<group>"; };
+		41B94CC816C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMPhotoSelectionIPadViewController.m; path = view/RMPhotoSelectionIPadViewController.m; sourceTree = "<group>"; };
 		AE09C30416C23FBC00F634CB /* RMGallerySelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMGallerySelectionViewController.h; path = view/RMGallerySelectionViewController.h; sourceTree = "<group>"; };
 		AE09C30516C23FBC00F634CB /* RMGallerySelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMGallerySelectionViewController.m; path = view/RMGallerySelectionViewController.m; sourceTree = "<group>"; };
 		AE09C30916C24AA100F634CB /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
@@ -186,6 +192,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41B94CC316C2E55A00B7C70A /* iPad View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				41B94CC416C2E59500B7C70A /* RMGallerySelectionIPadViewController.h */,
+				41B94CC516C2E59500B7C70A /* RMGallerySelectionIPadViewController.m */,
+				41B94CC716C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.h */,
+				41B94CC816C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m */,
+			);
+			name = "iPad View Controllers";
+			sourceTree = "<group>";
+		};
 		AE09C30816C24AA100F634CB /* gallery */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +302,7 @@
 				AED218CF16BA934000271930 /* RMAppDelegate.h */,
 				AED218D016BA934000271930 /* RMAppDelegate.m */,
 				AED218E616BA9CDB00271930 /* View */,
+				41B94CC316C2E55A00B7C70A /* iPad View Controllers */,
 				AED218C716BA934000271930 /* Supporting Files */,
 			);
 			path = RotateMe;
@@ -522,6 +540,8 @@
 				AEDFA2C116C0F9D800BB440C /* RMImage.m in Sources */,
 				AEDFA2C616C133FA00BB440C /* UIView+Util.m in Sources */,
 				AE09C30616C23FBC00F634CB /* RMGallerySelectionViewController.m in Sources */,
+				41B94CC616C2E59500B7C70A /* RMGallerySelectionIPadViewController.m in Sources */,
+				41B94CC916C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
