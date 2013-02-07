@@ -26,7 +26,7 @@
     [deneme createQuestionArray];
     NSLog(@"%@",deneme);
     NSLog(@"%@",[deneme questionArray]);
-    _scrollViewWitdh=deneme.questionArray.count*68;
+    _scrollViewWitdh=deneme.questionArray.count*65+30;
     [self.scrollView setContentSize:CGSizeMake(_scrollViewWitdh, 48)];
     self.scrollView.backgroundColor=[UIColor clearColor];
     
@@ -86,7 +86,7 @@
     
     for (int i=0; i<[question questionArray].count; i++) {
         
-        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(58*i+10, screenBounds.size.width/2-24, 48, 48) andTitle:[question questionArray][i]];
+        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(58*i+30, screenBounds.size.width/2-24, 48, 48) andTitle:[question questionArray][i]];
         box.caller=self;
         [_scrollView addSubview:box.boxButton];
     }

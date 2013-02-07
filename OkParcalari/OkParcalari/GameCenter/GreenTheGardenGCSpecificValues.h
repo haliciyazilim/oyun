@@ -61,3 +61,4 @@
 #define kFlurryEventTweetSent @"Tweet Sent"
 #define kFlurryEventFirstSession @"First Session"
 #define kFlurryEventInfoScreenView @"Info Screen View"
+#define kFlurryEventGameCenterView @"Game Center View"
