@@ -44,9 +44,9 @@ static NSMutableArray* paths=nil;
 
 +(DTBBox*)boxByOrder:(int)order
 {
-    NSLog(@"%d",order);
+//    NSLog(@"%d",order);
     for (DTBBox* box in boxes) {
-        NSLog(@"%d",box.order);
+//        NSLog(@"%d",box.order);
         if(box.order == order){
             return box;
         }

@@ -250,7 +250,7 @@
 - (void)onEnter{
     [self refreshScrollView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
-    
+    shouldCancel = NO;
     double delayInSeconds = 120.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -361,7 +361,7 @@
         tempVC = [[UIViewController alloc] init];
         GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
         if (gameCenterController != nil){
-            [Flurry logEvent:kFlurryEventInfoScreenView timed:YES];
+            [Flurry logEvent:kFlurryEventGameCenterView timed:YES];
             gameCenterController.gameCenterDelegate = self;
             [[[CCDirector sharedDirector] view] addSubview:tempVC.view];
             [tempVC presentModalViewController:gameCenterController animated:YES];
@@ -373,7 +373,7 @@
 {
     [tempVC dismissModalViewControllerAnimated:YES];
     [tempVC.view removeFromSuperview];
-    [Flurry endTimedEvent:kFlurryEventInfoScreenView withParameters:nil];
+    [Flurry endTimedEvent:kFlurryEventGameCenterView withParameters:nil];
 }
 
 -(void) infoScreen{
