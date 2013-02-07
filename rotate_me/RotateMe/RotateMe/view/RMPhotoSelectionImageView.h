@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMCustomImageView.h"
+#import "Photo.h"
 
-@interface RMPhotoSelectionImageView : UIImageView
-
+@interface RMPhotoSelectionImageView : RMCustomImageView
+@property Photo* photo;
++(RMPhotoSelectionImageView*) viewWithPhoto:(Photo*)photo andFrame:(CGRect)frame andScaleSize:(CGSize)imageScaleSize;
 @end

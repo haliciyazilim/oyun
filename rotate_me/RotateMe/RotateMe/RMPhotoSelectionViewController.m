@@ -12,6 +12,7 @@
 #import "RMImage.h"
 #import "Photo.h"
 #import "UIView+Util.h"
+#import "RMPhotoSelectionImageView.h"
 
 @interface RMPhotoSelectionViewController ()
 
@@ -23,6 +24,8 @@
     Gallery* currentGallery;
     NSArray* photos;
     CGSize imageScaleSize;
+    NSMutableArray* imageThreads;
+    
 }
 
 -(id) init
@@ -76,11 +79,10 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         default:
             break;
     }
-    
+    imageThreads = [[NSMutableArray alloc] init];
     
     [self.galleryNameLabel setText:currentGallery.name];
     [self.galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:20.0] ];
-    
     
 }
 
@@ -90,6 +92,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         currentGallery = gallery;
         photos = nil;
         [self printPhotos];
+        [self processImageThreads];
     }
 }
 
@@ -112,6 +115,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [imageView removeFromSuperview];
     }
     [self printPhotos];
+    [self processImageThreads];
 }
 
 - (void) printPhotos
@@ -142,83 +146,40 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         
         CGRect photoViewRect = CGRectMake(leftMargin+(i/2)*size.width, topMargin + (i%2) * size.height, photoSize.width, photoSize.height);
         
-        RMCustomImageView* photoView = [[RMCustomImageView alloc] init];
+        RMPhotoSelectionImageView* photoView = [RMPhotoSelectionImageView viewWithPhoto:photo andFrame:photoViewRect andScaleSize:imageScaleSize];
+        __block RMCustomImageView* blockPhotoView = photoView;
+        [photoView setTouchesBegan:^{
+            if(touchedPhoto == nil){
+                touchedPhoto = blockPhotoView;
+                [self performSegueWithIdentifier:@"StartGame" sender:self];
+            }
+        }];
         
-        photoView.tag = PHOTO_SELECTION_IMAGEVIEW_TAG;
-        photoView.frame = photoViewRect;
-        [photoView setContentMode:UIViewContentModeScaleAspectFill];
-        [photoView setClipsToBounds:YES];
-        [photoView setUserInteractionEnabled:YES];
-        photoView.layer.borderColor = [UIColor whiteColor].CGColor;
-        photoView.layer.borderWidth = 2.0f;
-        [photoView.layer setShadowColor:[UIColor blackColor].CGColor];
-        [photoView.layer setShadowOffset:CGSizeMake(0.0, 5.0)];
         [self.scrollView addSubview:photoView];
                 
-        UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] init];
-        activityIndicator.frame = CGRectMake(0, 0, photoSize.width, photoSize.height);
-        [activityIndicator startAnimating];
-        [photoView addSubview:activityIndicator];
-        
-        NSThread* thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadImageForView:) object:[NSArray arrayWithObjects:photo,photoView,activityIndicator, nil]];
-        [thread setThreadPriority:(double)i];
-        Score* score = [photo getScoreForDifficulty:getCurrentDifficulty()];
-        if(score != nil){
-            UIImageView* gradient = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_gradient.png"]];
-            gradient.frame = CGRectMake(0, photoSize.height - gradient.image.size.height, photoSize.width, gradient.image.size.height);
-            [photoView addSubview:gradient];
-            
-            UILabel* scoreLabel = [[UILabel alloc] init];
-            scoreLabel.frame = CGRectMake(10, photoSize.height - scoreLabelSize.height*1.0, scoreLabelSize.width, scoreLabelSize.height);
-            scoreLabel.text = [score toText];
-            scoreLabel.backgroundColor = [UIColor clearColor];
-            [scoreLabel setTextColor:[UIColor whiteColor]];
-            [scoreLabel setShadowColor:[UIColor blackColor]];
-            [scoreLabel setShadowOffset:CGSizeMake(0,1)];
-            [scoreLabel setFont:[UIFont fontWithName:@"TR McLean" size:14.0]];
-            
-            [scoreLabel setTextAlignment:NSTextAlignmentLeft];
-            [photoView addSubview:scoreLabel];
-        }
-        
+    }
+    
+}
+
+
+- (void) processImageThreads
+{
+    for(NSThread* thread in imageThreads){
         [thread start];
     }
-    
-//    NSLog(@"I'm here");
-    
-    
+    imageThreads = [[NSMutableArray alloc] init];
+
 }
 
-- (void) loadImageForView:(NSArray*)params
+- (void)viewDidAppear:(BOOL)animated
 {
-    Photo* photo = [params objectAtIndex:0];
-    RMCustomImageView* photoView = [params objectAtIndex:1];
-    UIActivityIndicatorView* activityIndicator = [params objectAtIndex:2];
-    
-//    NSLog(@"loadImageForView photo filename: %@",photo.filename);
-    RMImage* originalImage = [photo getImage];
-    if([photo getThumbnailImage] == nil){
-        [photo setThumbnailImage:[originalImage imageByScalingAndCroppingForSize:imageScaleSize]];
-    }
-    photoView.image = [photo getThumbnailImage];
-    __block RMCustomImageView* blockPhotoView = photoView;
-    [photoView setTouchesBegan:^{
-        if(touchedPhoto == nil){
-            touchedPhoto = blockPhotoView;
-            [self performSegueWithIdentifier:@"StartGame" sender:self];
-        }
-    }];
-    
-    [activityIndicator removeFromSuperview];
-    activityIndicator = nil;
-
-
+    [self processImageThreads];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
