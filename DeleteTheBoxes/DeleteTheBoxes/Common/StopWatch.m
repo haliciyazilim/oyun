@@ -79,6 +79,14 @@
 
 - (NSString *)toString
 {
+    return [StopWatch textWithMiliseconds:[self getElapsedMiliseconds]];
+}
+
++ (NSString*) textWithMiliseconds:(int)totalMiliseconds
+{
+    int minutes = totalMiliseconds / 6000;
+    int seconds = (totalMiliseconds % 6000) / 100;
+    int miliseconds = totalMiliseconds % 100;
     NSString* minutesString = minutes < 10 ? [NSString stringWithFormat:@"0%d",minutes] : [NSString stringWithFormat:@"%d",minutes];
     
     NSString* secondsString = seconds < 10 ? [NSString stringWithFormat:@"0%d",seconds] : [NSString stringWithFormat:@"%d",seconds];

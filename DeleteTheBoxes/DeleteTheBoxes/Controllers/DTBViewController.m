@@ -11,7 +11,7 @@
 #import "DTBBox.h"
 
 @interface DTBViewController ()
-
+@property int scrollViewWitdh;
 @end
 
 @implementation DTBViewController
@@ -20,18 +20,39 @@
 {
     [super viewDidLoad];
 	
-    [self.scrollView setContentSize:CGSizeMake(672, 48)];
-
-    DTBQuestion *deneme = [DTBQuestion QuestionWithQuestion:@"3x5=3+0:2" andAnswer:@"3x5=30"];
+    
+    NSArray *wholeQuestions = [DTBQuestion getAllQuestions];
+    DTBQuestion *deneme = [wholeQuestions objectAtIndex:0];
+    [deneme createQuestionArray];
+    NSLog(@"%@",deneme);
     NSLog(@"%@",[deneme questionArray]);
+    _scrollViewWitdh=deneme.questionArray.count*68;
+    [self.scrollView setContentSize:CGSizeMake(_scrollViewWitdh, 48)];
+    self.scrollView.backgroundColor=[UIColor clearColor];
     
     [self placingBoxes:deneme];
     
-//    [self.view setUserInteractionEnabled:YES];
+    
+    [self.view setUserInteractionEnabled:NO];
 //    [self.scrollView setUserInteractionEnabled:NO];
     
 }
+-(void) viewDidAppear:(BOOL)animated{
+    // ScrollView animated
+    [self.scrollView setContentOffset:CGPointMake(0, 0)];
+    [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.scrollView setContentOffset:CGPointMake(_scrollViewWitdh/2.5, 0)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [self.scrollView setContentOffset:CGPointMake(0, 0)];
+        } completion:^(BOOL finished) {
+            NSLog(@"scrollView animate Completion");
+            [self.view setUserInteractionEnabled:YES];
+            
+        }];
+    }];
 
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
@@ -58,7 +79,7 @@
     
     for (int i=0; i<[question questionArray].count; i++) {
         
-        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(60*i+10, screenBounds.size.width/2-24, 48, 48) andTitle:[question questionArray][i]];
+        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(58*i+10, screenBounds.size.width/2-24, 48, 48) andTitle:[question questionArray][i]];
         box.caller=self;
         [_scrollView addSubview:box.boxButton];
     }
@@ -78,6 +99,10 @@
         [box resetBox];
 
 }
+
+
+
+
 
 - (void) drawRect
 {
@@ -104,4 +129,6 @@
     pathAnimation.toValue = [NSNumber numberWithFloat:1.0f];
     [pathLayer addAnimation:pathAnimation forKey:@"strokeEnd"];
 }
+
+
 @end

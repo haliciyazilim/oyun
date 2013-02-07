@@ -77,6 +77,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="backButtonClicked:" destination="Iza-KE-ZIO" eventType="touchUpInside" id="z5a-Jo-IbP"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RVB-80-f8A">
                                 <rect key="frame" x="48" y="14" width="413" height="29"/>

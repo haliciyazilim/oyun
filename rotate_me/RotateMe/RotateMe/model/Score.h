@@ -9,11 +9,11 @@
 #import <CoreData/CoreData.h>
 #import "TypeDefs.h"
 
-@class Photo;
+@class PhotoManagedObject;
 
 @interface Score : NSManagedObject
 @property int elapsedSeconds;
-@property Photo* photo;
+@property PhotoManagedObject* photo;
 @property DIFFICULTY difficulty;
 - (NSString*) toText;
 @end

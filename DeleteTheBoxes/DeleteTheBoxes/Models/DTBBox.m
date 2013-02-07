@@ -65,16 +65,14 @@ static NSMutableArray* paths=nil;
         self.order = classOrder;
         self.boxButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.boxButton.frame = frame;
-        [self.boxButton setTitle:title forState:UIControlStateNormal];
-        
-        // Aşağıdaki satırda sıkıntı var. Animasyon çalışmıyor.
         self.boxButton.tag = classOrder;
-
+        [self.boxButton setTitle:title forState:UIControlStateNormal];
         [self.boxButton addTarget:self.caller action:@selector(animateBox:) forControlEvents:UIControlEventTouchUpInside];
-
 
         [DTBBox addToArrayBoxes:self];
         classOrder++;
+        
+        
     }
     return self;
 }
@@ -82,12 +80,17 @@ static NSMutableArray* paths=nil;
     NSLog(@"Delete BOX");
 
     self.isDeleted = YES;
-    [self animateBoxToOutside:view];
+    
+    [self.boxButton setAlpha:0.5];
+//    [self animateBoxToOutside:view];
 }
 - (void) resetBox {
     NSLog(@"Reset BOX");
     self.isDeleted = NO;
-    [self animateBoxToInside];
+    
+    [self.boxButton setAlpha:1];
+    
+//    [self animateBoxToInside];
 }
 - (void) animateBoxToOutside: (UIView *) view {
     [self drawLineToOriginalPosition: view];
