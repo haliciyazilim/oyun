@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "StopWatch.h"
 
 @class DTBQuestion;
 
 @interface DTBViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *stopWatchLabel;
+@property (weak, nonatomic) IBOutlet UIButton *btnControl;
+
+@property StopWatch * stopWatch;
 
 -(void)placingBoxes: (DTBQuestion *) question;
 @end
