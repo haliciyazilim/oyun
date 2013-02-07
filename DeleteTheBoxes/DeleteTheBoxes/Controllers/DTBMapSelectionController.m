@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Halıcı. All rights reserved.
 //
 
-#import "DTBMapSelectionController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "DTBMapSelectionController.h"
 #import "DTBQuestion.h"
 #import "DTBAppSpecificValues.h"
+#import "DTBViewController.h"
+#import "StopWatch.h"
 
 @interface DTBMapSelectionController ()
 
@@ -92,6 +94,7 @@
         
         
         UILabel *buttonLabel;
+        UILabel *timerLabel;
         
         if (![currentProccessingQuestion isPurchased]) {
             NSLog(@"proccessing the button which is not purchased");
@@ -112,6 +115,12 @@
                 // bitirildi, score var
                 NSLog(@"score");
                 buttonLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 70.0, 46.0)];
+                timerLabel = [[UILabel alloc] initWithFrame:CGRectMake(1.0, 40.0, 68.0, 30.0)];
+                [timerLabel setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"played_btn_bg.png"]]];
+                [timerLabel setText:[StopWatch textWithMiliseconds:[currentProccessingQuestion score]]];
+                [timerLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:11.0]];
+                [timerLabel setTextColor:[UIColor colorWithRed:0.463 green:0.365 blue:0.227 alpha:1.0]];
+                [timerLabel setTextAlignment:NSTextAlignmentCenter];
             }
             else{
                 // bitirilmedi, score yok
@@ -126,14 +135,16 @@
         
         
         [buttonLabel setFont:[UIFont fontWithName:@"Helvetica" size:24.0]];
-        [buttonLabel setText:[NSString stringWithFormat:@"%d",i]];
+        [buttonLabel setText:[NSString stringWithFormat:@"%d",[currentProccessingQuestion questionOrder]]];
         [buttonLabel setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.5]];
         [buttonLabel setShadowOffset:CGSizeMake(0.0, 2.0)];
         [buttonLabel setBackgroundColor:[UIColor clearColor]];
         [buttonLabel setTextAlignment:NSTextAlignmentCenter];
         
+        question.tag = [currentProccessingQuestion questionOrder];
         
         [question addSubview:buttonLabel];
+        [question addSubview:timerLabel];
 
         [self.scrollView addSubview:question];
     }
@@ -158,6 +169,10 @@
     [self performSegueWithIdentifier:@"openQuestion" sender:self];
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"openQuestion"]) {
+        DTBViewController *destination = [segue destinationViewController];
+        [destination setCurrentQuestion:[wholeQuestionsArray objectAtIndex:[selectedButton tag]]];
+    }
 }
 - (void)didReceiveMemoryWarning
 {
