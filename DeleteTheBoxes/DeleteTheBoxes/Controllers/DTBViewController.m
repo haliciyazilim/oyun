@@ -20,20 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    
-    NSArray *wholeQuestions = [DTBQuestion getAllQuestions];
-    self.question = [wholeQuestions objectAtIndex:0];
-    [self.question createQuestionArray];
-    
-    NSLog(@"%@",[self.question questionArray]);
-    _scrollViewWitdh=self.question.questionArray.count*65+30;
-    [self.scrollView setContentSize:CGSizeMake(_scrollViewWitdh, 48)];
-    self.scrollView.backgroundColor=[UIColor clearColor];
-    
-    [self placingBoxes:self.question];
-    
-    
+
     [self.view setUserInteractionEnabled:NO];
 //    [self.scrollView setUserInteractionEnabled:NO];
     
@@ -43,13 +30,23 @@
     [self.btnControl addTarget:self action:@selector(control:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.btnControl setEnabled:NO];
+    [self configureViews];
 }
 - (void) setCurrentQuestion:(DTBQuestion *)currentQuestion {
     _currentQuestion = currentQuestion;
+    [_currentQuestion createQuestionArray];
+    
     [self configureViews];
 }
 - (void) configureViews {
-    // soru geldi, abdullah doldurabilirsin..
+        
+    NSLog(@" Soru %@",[self.currentQuestion questionArray]);
+    _scrollViewWitdh=self.currentQuestion.questionArray.count*65+30;
+    NSLog(@"ScrolWitdh: %d",_scrollViewWitdh);
+    [self.scrollView setContentSize:CGSizeMake(_scrollViewWitdh, 48)];
+    
+    [self placingBoxes];
+
 }
 -(void) viewDidAppear:(BOOL)animated{
     // ScrollView animated
@@ -93,17 +90,18 @@
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
--(void)placingBoxes: (DTBQuestion *) question{
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    NSLog(@"SV h: %f",screenBounds.size.width);
-    
-    for (int i=0; i<[question questionArray].count; i++) {
+-(void)placingBoxes{
+    NSLog(@"Placing %d",_currentQuestion.questionArray.count);
+    for (int i=0; i<_currentQuestion.questionArray.count; i++) {
         
-        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(58*i+30, _scrollView.frame.size.height /2-24, 48, 48) andTitle:[question questionArray][i]];
+
+        DTBBox * box=[DTBBox BoxWithFrame:CGRectMake(58*i+30, _scrollView.frame.size.height/2, 48, 48) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
         box.caller=self;
+        
+        NSLog(@"for içi %@",box.boxButton);
         [_scrollView addSubview:box.boxButton];
     }
 }
@@ -125,13 +123,13 @@
 
 
 
--(void)control{
+//-(void)control{
 //    for (int i=0; i>; <#increment#>) {
 //        <#statements#>
 //    }
 //    DTBBox *box=[DTBBox boxByOrder:<#(int)#>]
 //    [self.question isCorrect:<#(NSString *)#>]
-}
+//}
 
 - (void) drawRect
 {
