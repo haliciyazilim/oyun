@@ -20,7 +20,6 @@
 
 - (IBAction)displayMenu:(id)sender;
 
-- (IBAction)displayHelp:(id)sender;
 
 @property NSArray* croppedImages;
 

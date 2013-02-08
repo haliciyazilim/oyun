@@ -9,8 +9,9 @@
 #import "RMAppDelegate.h"
 #import "RMPhotoSelectionViewController.h"
 #import "RMBundleInitializer.h"
-#import "Gallery.h"
 #import "Photo.h"
+#import "GameCenterManager.h"
+
 
 @implementation RMAppDelegate
 
@@ -19,6 +20,10 @@
     if([[RMDatabaseManager sharedInstance] isEmpty]){
         [RMBundleInitializer initializeBundle];
     }
+    
+    //GameCenter
+    [[GameCenterManager sharedInstance] authenticateLocalUser];
+    
     return YES;
 }
 

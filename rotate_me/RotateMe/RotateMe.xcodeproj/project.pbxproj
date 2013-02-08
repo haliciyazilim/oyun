@@ -90,6 +90,8 @@
 		AED932D516BFB3B800DD9D30 /* RMCroppedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AED932D416BFB3B800DD9D30 /* RMCroppedImageView.m */; };
 		AEDFA2C116C0F9D800BB440C /* RMImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDFA2C016C0F9D800BB440C /* RMImage.m */; };
 		AEDFA2C616C133FA00BB440C /* UIView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDFA2C516C133FA00BB440C /* UIView+Util.m */; };
+		AEFF1B8216C4E6E400922A25 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFF1B8116C4E6E400922A25 /* GameCenterManager.m */; };
+		AEFF1B8516C4E7FC00922A25 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFF1B8416C4E7FC00922A25 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -200,6 +202,9 @@
 		AEDFA2C016C0F9D800BB440C /* RMImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMImage.m; path = view/RMImage.m; sourceTree = "<group>"; };
 		AEDFA2C416C133FA00BB440C /* UIView+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Util.h"; path = "view/UIView+Util.h"; sourceTree = "<group>"; };
 		AEDFA2C516C133FA00BB440C /* UIView+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Util.m"; path = "view/UIView+Util.m"; sourceTree = "<group>"; };
+		AEFF1B8016C4E6E400922A25 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterManager.h; path = manager/GameCenterManager.h; sourceTree = "<group>"; };
+		AEFF1B8116C4E6E400922A25 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameCenterManager.m; path = manager/GameCenterManager.m; sourceTree = "<group>"; };
+		AEFF1B8416C4E7FC00922A25 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEFF1B8516C4E7FC00922A25 /* GameKit.framework in Frameworks */,
 				AED932BF16BFAD0400DD9D30 /* CoreData.framework in Frameworks */,
 				AE72DBC616BBB5BE00C12D6C /* QuartzCore.framework in Frameworks */,
 				AED218C116BA934000271930 /* UIKit.framework in Frameworks */,
@@ -293,6 +299,8 @@
 			children = (
 				AE7CBED716BFF833001BAF3D /* RMDatabaseManager.h */,
 				AE7CBED816BFF833001BAF3D /* RMDatabaseManager.m */,
+				AEFF1B8016C4E6E400922A25 /* GameCenterManager.h */,
+				AEFF1B8116C4E6E400922A25 /* GameCenterManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -324,6 +332,7 @@
 		AED218BF16BA934000271930 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AEFF1B8416C4E7FC00922A25 /* GameKit.framework */,
 				AED932BE16BFAD0400DD9D30 /* CoreData.framework */,
 				AE72DBC516BBB5BE00C12D6C /* QuartzCore.framework */,
 				AED218C016BA934000271930 /* UIKit.framework */,
@@ -602,6 +611,7 @@
 				41B94CC916C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m in Sources */,
 				AE2BE2AD16C3A07200A0335D /* PhotoManagedObject.m in Sources */,
 				AE2BE2CA16C3ED4600A0335D /* RMPhotoSelectionImageView.m in Sources */,
+				AEFF1B8216C4E6E400922A25 /* GameCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

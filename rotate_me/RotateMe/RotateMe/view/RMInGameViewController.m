@@ -231,8 +231,6 @@ static RMInGameViewController* lastInstance = nil;
     }];
 }
 
-- (IBAction)displayHelp:(id)sender {
-}
 @end
 
 
