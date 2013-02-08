@@ -67,8 +67,6 @@
             [self.stopWatch startTimerWithRepeatBlock:^{
                 [self.stopWatchLabel setText:[self.stopWatch toString]];
             }];
-            
-            
         }];
     }];
 
@@ -93,9 +91,9 @@
     [super viewDidUnload];
 }
 
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [self dismissModalViewControllerAnimated:YES];
-}
+//- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+////    [self dismissModalViewControllerAnimated:YES];
+//}
 
 -(void)placingBoxes{
 //    NSLog(@"Placing %d",_currentQuestion.questionArray.count);
@@ -137,9 +135,11 @@
             [answer appendString:box.title];
     }
     
-    BOOL arastirma=[self.currentQuestion isCorrect:answer];
-    if(arastirma){
+    if([self.currentQuestion isCorrect:answer]){
         [_btnWarning setText:@"Doğru"];
+        [self.stopWatch stopTimer];
+        [self.currentQuestion updateScore:[self.stopWatch getElapsedMiliseconds]];
+        [self dismissModalViewControllerAnimated:YES];
     }
     else{
                 
