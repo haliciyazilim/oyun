@@ -50,6 +50,11 @@ static RMInGameIPadViewController* lastInstance = nil;
     }
 }
 
+- (CGFloat) timerFontSize
+{
+    return 34.0;
+}
+
 - (int) photoHolderLeftPadding {
     if(getCurrentDifficulty() == NORMAL) {
         return 6;

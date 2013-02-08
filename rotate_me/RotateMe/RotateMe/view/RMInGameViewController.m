@@ -27,6 +27,7 @@
     int photoHolderTopPadding;
     int photoHolderLeftPadding;
     int scaleFactor;
+    
 }
 
 +(RMInGameViewController *)lastInstance
@@ -136,7 +137,7 @@ static RMInGameViewController* lastInstance = nil;
     self.grids = grids;
     
     [self configureGame];
-    [self.stopWatchLabel setFont:[UIFont fontWithName:@"TRMcLean" size:20]];
+    [self.stopWatchLabel setFont:[UIFont fontWithName:@"TRMcLean" size:[self timerFontSize]]];
     [self.stopWatchLabel setText:@"00:00"];
     
 }
@@ -154,6 +155,11 @@ static RMInGameViewController* lastInstance = nil;
         currentImage = image;
         [self configureGame];
     }
+}
+
+- (CGFloat) timerFontSize
+{
+    return 20.0;
 }
 
 - (BOOL) isGameFinished
