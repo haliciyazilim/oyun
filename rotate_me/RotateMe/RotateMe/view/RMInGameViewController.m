@@ -27,7 +27,7 @@
     int photoHolderTopPadding;
     int photoHolderLeftPadding;
     int scaleFactor;
-    
+    UIActivityIndicatorView* indicator;
 }
 
 +(RMInGameViewController *)lastInstance
@@ -124,22 +124,29 @@ static RMInGameViewController* lastInstance = nil;
         self.photoHolder.frame = CGRectMake(self.photoHolder.frame.origin.x-6, self.photoHolder.frame.origin.y+10, self.photoHolder.image.size.width, self.photoHolder.image.size.height);
     }
     
-    hiddenImage = [[UIImageView alloc] initWithImage:currentImage];
-    hiddenImage.frame = CGRectMake(photoHolderLeftPadding, photoHolderTopPadding, cols * tileSize, rows * tileSize);
-    [self.photoHolder addSubview:hiddenImage];
-    [hiddenImage setClipsToBounds:YES];
-    [hiddenImage setContentMode:UIViewContentModeScaleAspectFill];
     
-    UIImageView* grids = [self createGridView];
-    grids.frame = CGRectMake(photoHolderLeftPadding, photoHolderTopPadding, grids.image.size.width, grids.image.size.height);
-    grids.alpha = 0.5;
-    [self.photoHolder addSubview:grids];
-    self.grids = grids;
     
-    [self configureGame];
+//    UIImageView* grids = [self createGridView];
+//    grids.frame = CGRectMake(photoHolderLeftPadding, photoHolderTopPadding, grids.image.size.width, grids.image.size.height);
+//    grids.alpha = 0.5;
+//    [self.photoHolder addSubview:grids];
+//    self.grids = grids;
+    
+//    [self configureGame];
+    
     [self.stopWatchLabel setFont:[UIFont fontWithName:@"TRMcLean" size:[self timerFontSize]]];
     [self.stopWatchLabel setText:@"00:00"];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    indicator = [[UIActivityIndicatorView alloc] initWithFrame:self.photoHolder.frame];
+    [indicator startAnimating];
+    [indicator setColor:[UIColor blackColor]];
+    [self.view addSubview:indicator];
+    NSThread* thread = [[NSThread alloc] initWithTarget:self selector:@selector(configureGame) object:nil];
+    [thread start];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -147,13 +154,14 @@ static RMInGameViewController* lastInstance = nil;
     [self.stopWatch startTimerWithRepeatBlock:^{
         [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
     }];
+//    [self.stopWatch pauseTimer];
 }
 
 - (void) setImage:(RMImage*)image
 {
     if(currentImage != image){
         currentImage = image;
-        [self configureGame];
+//        [self configureGame];
     }
 }
 
@@ -214,6 +222,11 @@ static RMInGameViewController* lastInstance = nil;
     NSMutableArray* croppedImages = [[NSMutableArray alloc] init];
     
     UIImage* resizedImage = [currentImage imageByScalingAndCroppingForSize:canvasSize];
+    hiddenImage = [[UIImageView alloc] initWithImage:resizedImage];
+    hiddenImage.frame = CGRectMake(photoHolderLeftPadding, photoHolderTopPadding, cols * tileSize, rows * tileSize);
+    [self.photoHolder addSubview:hiddenImage];
+    [hiddenImage setClipsToBounds:YES];
+    [hiddenImage setContentMode:UIViewContentModeScaleAspectFill];
     for(int x=0; x<cols; x++){
         for(int y=0; y<rows; y++){
             CGRect rect;
@@ -246,6 +259,9 @@ static RMInGameViewController* lastInstance = nil;
         }
     }
     self.croppedImages = croppedImages;
+//    
+//    [self.stopWatch resumeTimer];
+    [indicator removeFromSuperview];
 }
 
 

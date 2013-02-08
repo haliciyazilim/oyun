@@ -97,7 +97,7 @@
                         <outlet property="difficultySegmentedButtons" destination="uxf-Fi-pDv" id="fnR-iz-mmB"/>
                         <outlet property="galleryNameLabel" destination="Fd5-gI-n44" id="KVT-eY-SHE"/>
                         <outlet property="scrollView" destination="IfK-5Z-6FY" id="dsB-yO-nd5"/>
-                        <segue destination="hSx-TE-fMs" kind="modal" identifier="StartGame" id="A2I-GZ-Ns9"/>
+                        <segue destination="hSx-TE-fMs" kind="modal" identifier="StartGame" modalTransitionStyle="flipHorizontal" id="A2I-GZ-Ns9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIe-u5-Vac" userLabel="First Responder" sceneMemberID="firstResponder"/>
