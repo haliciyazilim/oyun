@@ -24,6 +24,9 @@
     RMImage* currentImage;
     BOOL isGameFinished;
     UIImageView* hiddenImage;
+    int photoHolderTopPadding;
+    int photoHolderLeftPadding;
+    int scaleFactor;
 }
 
 +(RMInGameViewController *)lastInstance
@@ -42,6 +45,15 @@ static RMInGameViewController* lastInstance = nil;
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]];
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+        ([UIScreen mainScreen].scale == 2.0)) {
+        scaleFactor = 2;
+        
+    } else {
+        scaleFactor = 1;
+    }
     lastInstance = self;
     isGameFinished = NO;
     self.stopWatch = [[RMStopWatch alloc] init];
@@ -52,21 +64,29 @@ static RMInGameViewController* lastInstance = nil;
         tileSize = 90;
     }
     else if(getCurrentDifficulty() == NORMAL){
-        rows = 5;
-        cols = 7;
-        tileSize = 60;
+        rows = 4;
+        cols = 6;
+        tileSize = 61;
     }
     else if(getCurrentDifficulty() == HARD){
         rows = 6;
         cols = 8;
         tileSize = 45;
     }
-    [super viewDidLoad];
     
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]];
+    if(getCurrentDifficulty() == NORMAL){
+        photoHolderTopPadding = 4;
+        photoHolderLeftPadding = 6;
+        [self.photoHolder setImage:[UIImage imageNamed:@"photo_holder_normal.png"]];
+        self.photoHolder.frame = CGRectMake(self.photoHolder.frame.origin.x-6, self.photoHolder.frame.origin.y+10, self.photoHolder.image.size.width, self.photoHolder.image.size.height);
+    }
+    else{
+        photoHolderTopPadding = 5;
+        photoHolderLeftPadding = 7;
+    }
     
     hiddenImage = [[UIImageView alloc] initWithImage:currentImage];
-    hiddenImage.frame = CGRectMake(7, 5, 374-5-9, 284-7-7);
+    hiddenImage.frame = CGRectMake(photoHolderLeftPadding, photoHolderTopPadding, cols * tileSize, rows * tileSize);
     [self.photoHolder addSubview:hiddenImage];
     [hiddenImage setClipsToBounds:YES];
     [hiddenImage setContentMode:UIViewContentModeScaleAspectFill];
@@ -74,16 +94,19 @@ static RMInGameViewController* lastInstance = nil;
     UIImageView* grids;
     if(getCurrentDifficulty() == EASY){
         grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_double_grid.png"]];
-    }else{
+    }else if(getCurrentDifficulty() == HARD){
         grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
+    } else if(getCurrentDifficulty() == NORMAL){
+        grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid_normal.png"]];
+        
     }
-    grids.frame = CGRectMake(7, 5, grids.image.size.width, grids.image.size.height);
+    grids.frame = CGRectMake(photoHolderLeftPadding, photoHolderTopPadding, grids.image.size.width, grids.image.size.height);
     grids.alpha = 0.5;
     [self.photoHolder addSubview:grids];
     self.grids = grids;
     
     [self configureView];
-    [self.stopWatchLabel setText:@"00:00.0"];
+    [self.stopWatchLabel setText:@"00:00"];
     
 }
 
@@ -149,16 +172,10 @@ static RMInGameViewController* lastInstance = nil;
 
 - (void) configureView
 {
-    CGSize canvasSize;
+    CGSize canvasSize = CGSizeMake(cols * tileSize * scaleFactor, rows * tileSize * scaleFactor);
     
     NSMutableArray* croppedImages = [[NSMutableArray alloc] init];
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
-        ([UIScreen mainScreen].scale == 2.0)) {
-        canvasSize = CGSizeMake(720, 540);
-        
-    } else {
-        canvasSize = CGSizeMake(360, 270);
-    }
+    
     UIImage* resizedImage = [currentImage imageByScalingAndCroppingForSize:canvasSize];
     for(int x=0; x<cols; x++){
         for(int y=0; y<rows; y++){
@@ -173,7 +190,7 @@ static RMInGameViewController* lastInstance = nil;
             CGImageRef imageRef = CGImageCreateWithImageInRect([resizedImage CGImage], rect);
             UIImage *img = [UIImage imageWithCGImage:imageRef];
             RMCroppedImageView* imgView = [[RMCroppedImageView alloc] initWithImage:img];
-            imgView.frame = CGRectMake(7+x*tileSize, 5+y*tileSize, tileSize, tileSize);
+            imgView.frame = CGRectMake(photoHolderLeftPadding+x*tileSize, photoHolderTopPadding+y*tileSize, tileSize, tileSize);
             
             if(arc4random()%100 < 10)
                 [imgView setRotationStateTo: M_PI * 0.0];

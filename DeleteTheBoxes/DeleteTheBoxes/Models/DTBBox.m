@@ -9,9 +9,6 @@
 #import "DTBBox.h"
 #import "DTBViewController.h"
 
-static int classOrder = 0;
-static NSMutableArray* boxes = nil;
-static NSMutableArray* paths=nil;
 
 @implementation DTBBox
 {
@@ -19,6 +16,10 @@ static NSMutableArray* paths=nil;
     // for adding and removing line easily
     
 }
+
+static int classOrder = 0;
+static NSMutableArray* boxes = nil;
+static NSMutableArray* paths=nil;
 
 + (void) addToArrayBoxes:(DTBBox*)box
 {
@@ -38,6 +39,7 @@ static NSMutableArray* paths=nil;
 
 +(void) cleanInstances
 {
+    classOrder = 0;
     boxes = nil;
     paths=nil;
 }
@@ -45,8 +47,9 @@ static NSMutableArray* paths=nil;
 +(DTBBox*)boxByOrder:(int)order
 {
 //    NSLog(@"%d",order);
-    for (DTBBox* box in boxes) {
+    for (int i=0; i<[boxes count];i++) {
 //        NSLog(@"%d",box.order);
+        DTBBox* box = [boxes objectAtIndex:i];
         if(box.order == order){
             return box;
         }
@@ -80,7 +83,7 @@ static NSMutableArray* paths=nil;
     NSLog(@"Delete BOX");
 
     self.isDeleted = YES;
-    
+    [boxes replaceObjectAtIndex:self.order withObject:self];
     [self.boxButton setAlpha:0.5];
 //    [self animateBoxToOutside:view];
 }
