@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMGallerySelectionViewController.h"
 
-@interface RMGallerySelectionIPadViewController : UIViewController
+@interface RMGallerySelectionIPadViewController : RMGallerySelectionViewController
 
 @end

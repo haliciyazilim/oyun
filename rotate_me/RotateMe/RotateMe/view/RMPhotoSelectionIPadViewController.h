@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMPhotoSelectionViewController.h"
 
-@interface RMPhotoSelectionIPadViewController : UIViewController
+@interface RMPhotoSelectionIPadViewController : RMPhotoSelectionViewController
+
++ (RMPhotoSelectionIPadViewController*) lastInstance;
 
 @end

@@ -39,18 +39,61 @@ static RMInGameViewController* lastInstance = nil;
 -(id) init
 {
     if(self = [super init]){
+    
     }
     return self;
+}
+
+
+- (void) setupViews {
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]];
+}
+
+- (int)tileSize {
+    if(getCurrentDifficulty() == EASY){
+        return 90;
+    }
+    else if(getCurrentDifficulty() == NORMAL){
+        return 61;
+    }
+    else {
+        return 45;
+    }
+}
+
+- (int) photoHolderTopPadding {
+    if(getCurrentDifficulty() == NORMAL) {
+        return 4;
+    } else {
+        return 5;
+    }
+}
+
+- (int) photoHolderLeftPadding {
+    if(getCurrentDifficulty() == NORMAL) {
+        return 6;
+    } else {
+        return 7;
+    }
+}
+
+- (UIImageView *) createGridView {
+    if(getCurrentDifficulty() == EASY){
+        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_double_grid.png"]];
+    }else if(getCurrentDifficulty() == HARD){
+        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
+    } else {
+        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid_normal.png"]];
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]];
+    [self setupViews];
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
         ([UIScreen mainScreen].scale == 2.0)) {
         scaleFactor = 2;
-        
     } else {
         scaleFactor = 1;
     }
@@ -61,28 +104,23 @@ static RMInGameViewController* lastInstance = nil;
     if(getCurrentDifficulty() == EASY){
         rows = 3;
         cols = 4;
-        tileSize = 90;
     }
     else if(getCurrentDifficulty() == NORMAL){
         rows = 4;
         cols = 6;
-        tileSize = 61;
     }
     else if(getCurrentDifficulty() == HARD){
         rows = 6;
         cols = 8;
-        tileSize = 45;
     }
     
+    tileSize = [self tileSize];
+    photoHolderTopPadding = [self photoHolderTopPadding];
+    photoHolderLeftPadding = [self photoHolderLeftPadding];
+    
     if(getCurrentDifficulty() == NORMAL){
-        photoHolderTopPadding = 4;
-        photoHolderLeftPadding = 6;
         [self.photoHolder setImage:[UIImage imageNamed:@"photo_holder_normal.png"]];
         self.photoHolder.frame = CGRectMake(self.photoHolder.frame.origin.x-6, self.photoHolder.frame.origin.y+10, self.photoHolder.image.size.width, self.photoHolder.image.size.height);
-    }
-    else{
-        photoHolderTopPadding = 5;
-        photoHolderLeftPadding = 7;
     }
     
     hiddenImage = [[UIImageView alloc] initWithImage:currentImage];
@@ -91,21 +129,13 @@ static RMInGameViewController* lastInstance = nil;
     [hiddenImage setClipsToBounds:YES];
     [hiddenImage setContentMode:UIViewContentModeScaleAspectFill];
     
-    UIImageView* grids;
-    if(getCurrentDifficulty() == EASY){
-        grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_double_grid.png"]];
-    }else if(getCurrentDifficulty() == HARD){
-        grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
-    } else if(getCurrentDifficulty() == NORMAL){
-        grids = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid_normal.png"]];
-        
-    }
+    UIImageView* grids = [self createGridView];
     grids.frame = CGRectMake(photoHolderLeftPadding, photoHolderTopPadding, grids.image.size.width, grids.image.size.height);
     grids.alpha = 0.5;
     [self.photoHolder addSubview:grids];
     self.grids = grids;
     
-    [self configureView];
+    [self configureGame];
     [self.stopWatchLabel setFont:[UIFont fontWithName:@"TRMcLean" size:20]];
     [self.stopWatchLabel setText:@"00:00"];
     
@@ -122,7 +152,7 @@ static RMInGameViewController* lastInstance = nil;
 {
     if(currentImage != image){
         currentImage = image;
-        [self configureView];
+        [self configureGame];
     }
 }
 
@@ -171,7 +201,7 @@ static RMInGameViewController* lastInstance = nil;
     return YES;
 }
 
-- (void) configureView
+- (void) configureGame
 {
     CGSize canvasSize = CGSizeMake(cols * tileSize * scaleFactor, rows * tileSize * scaleFactor);
     
