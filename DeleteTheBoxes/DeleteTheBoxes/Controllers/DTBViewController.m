@@ -25,7 +25,7 @@
     [self.view setUserInteractionEnabled:NO];
 //    [self.scrollView setUserInteractionEnabled:NO];
     
-    [self.stopWatchLabel setText:@"00:00.0"];
+    [self.stopWatchLabel setText:@"00:00"];
     self.stopWatch = [[StopWatch alloc] init];
     
     [self.stopWatchLabelMS setText:@".0"];
