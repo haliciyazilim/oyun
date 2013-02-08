@@ -94,7 +94,7 @@
                         <outlet property="btnWarning" destination="nEC-Nd-Ik2" id="wUZ-ht-i6b"/>
                         <outlet property="scrollView" destination="SSC-XO-oWD" id="TZa-tM-vMe"/>
                         <outlet property="stopWatchLabel" destination="Nud-jL-ivf" id="2T8-tw-UDF"/>
-                        <outlet property="stopWatchLabelMS" destination="yb7-d3-jBA" id="3Jb-xa-3yQ"/>
+                        <outlet property="stopWatchLabelMS" destination="yb7-d3-jBA" id="exY-IX-ayV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cP-2P-10A" userLabel="First Responder" sceneMemberID="firstResponder"/>

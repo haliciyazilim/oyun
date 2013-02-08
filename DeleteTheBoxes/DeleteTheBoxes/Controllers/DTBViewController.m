@@ -22,10 +22,23 @@
 {
     [super viewDidLoad];
 
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
+    }
+    else{
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+    }
+
+    
     [self.view setUserInteractionEnabled:NO];
 //    [self.scrollView setUserInteractionEnabled:NO];
     
-    [self.stopWatchLabel setText:@"00:00.0"];
+    [self.stopWatchLabel setText:@"00:00"];
+    [self.stopWatchLabel setTextColor:[UIColor colorWithRed:0.403 green:0.403 blue:0.403 alpha:1.0]];
+    
+    [self.stopWatchLabelMS setText:@".0"];
+    [self.stopWatchLabelMS setTextColor:[UIColor colorWithRed:0.403 green:0.403 blue:0.403 alpha:1.0]];
+    
     self.stopWatch = [[StopWatch alloc] init];
     
     [self.btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
@@ -65,7 +78,8 @@
             [self.btnControl setEnabled:YES];
             
             [self.stopWatch startTimerWithRepeatBlock:^{
-                [self.stopWatchLabel setText:[self.stopWatch toString]];
+                [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
+                [self.stopWatchLabelMS setText:[self.stopWatch toStringMiliseconds]];
             }];
         }];
     }];
@@ -88,6 +102,7 @@
     [self setStopWatchLabel:nil];
     [self setBtnControl:nil];
     [self setBtnWarning:nil];
+    [self setStopWatchLabelMS:nil];
     [super viewDidUnload];
 }
 

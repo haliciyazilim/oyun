@@ -69,7 +69,7 @@ static NSMutableArray* paths=nil;
         self.boxButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.boxButton.frame = frame;
         self.boxButton.tag = classOrder;
-        [self.boxButton setTitle:title forState:UIControlStateNormal];
+//        [self.boxButton setTitle:title forState:UIControlStateNormal];
         
         [self.boxButton addTarget:self.caller action:@selector(animateBox:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -84,7 +84,16 @@ static NSMutableArray* paths=nil;
         self.boxButton.layer.borderColor = [[UIColor colorWithRed:0.596 green:0.596 blue:0.596 alpha:1.0] CGColor];
         [self.boxButton setBackgroundColor:[UIColor colorWithRed:0.701 green:0.701 blue:0.701 alpha:1.0]];
         
-//        UILabel * title=[UILabel ]
+        UILabel * title=[[UILabel alloc]initWithFrame:CGRectMake(4, 4, 40, 40)];
+        [title setTextColor:[UIColor colorWithRed:0.333 green:0.333 blue:0.333 alpha:1.0 ]];
+        [title setFont:[UIFont fontWithName:@"Helvetica-Bold" size:33.0 ]];
+        [title setShadowColor:[UIColor whiteColor]];
+        [title setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [title setTextAlignment:NSTextAlignmentCenter];
+        [title setText:self.title];
+        [title setBackgroundColor:[UIColor clearColor]];
+        
+        [self.boxButton addSubview:title];
         
         
         [DTBBox addToArrayBoxes:self];
