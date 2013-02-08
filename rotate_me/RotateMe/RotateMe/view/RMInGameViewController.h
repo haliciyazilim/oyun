@@ -20,7 +20,6 @@
 
 - (IBAction)displayMenu:(id)sender;
 
-
 @property NSArray* croppedImages;
 
 @property RMStopWatch* stopWatch;
