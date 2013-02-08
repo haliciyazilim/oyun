@@ -717,15 +717,15 @@
 		AED218E416BA934000271930 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yunus Eren Guzel (QX74KZPN6D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yunus Eren Guzel (QX74KZPN6D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RotateMe/RotateMe-Prefix.pch";
 				INFOPLIST_FILE = "RotateMe/RotateMe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CE29CF08-3D34-4209-BCC0-23FC04DE300A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CE29CF08-3D34-4209-BCC0-23FC04DE300A";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -733,15 +733,15 @@
 		AED218E516BA934000271930 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yunus Eren Guzel (QX74KZPN6D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yunus Eren Guzel (QX74KZPN6D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RotateMe/RotateMe-Prefix.pch";
 				INFOPLIST_FILE = "RotateMe/RotateMe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CE29CF08-3D34-4209-BCC0-23FC04DE300A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CE29CF08-3D34-4209-BCC0-23FC04DE300A";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
