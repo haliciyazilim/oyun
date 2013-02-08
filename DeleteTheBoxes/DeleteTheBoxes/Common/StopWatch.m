@@ -96,11 +96,12 @@
 }
 - (NSString*) toStringWithoutMiliseconds {
     NSString *wholeString = [self toString];
-    return [wholeString substringToIndex:[wholeString indexOfAccessibilityElement:@"."]];
+    return [wholeString substringToIndex:5]
+    ;
 }
 - (NSString*) toStringMiliseconds {
     NSString *wholeString = [self toString];
-    return [wholeString substringFromIndex:[wholeString indexOfAccessibilityElement:@"."]];
+    return [wholeString substringFromIndex:5];
 }
 + (NSString*) textWithMiliseconds:(int)totalMiliseconds
 {
