@@ -28,6 +28,9 @@
     [self.stopWatchLabel setText:@"00:00.0"];
     self.stopWatch = [[StopWatch alloc] init];
     
+    [self.stopWatchLabelMS setText:@".0"];
+    
+    
     [self.btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
     
     [self.btnControl setEnabled:NO];
@@ -65,7 +68,8 @@
             [self.btnControl setEnabled:YES];
             
             [self.stopWatch startTimerWithRepeatBlock:^{
-                [self.stopWatchLabel setText:[self.stopWatch toString]];
+//                [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliSecond]];
+//                [self.stopWatchLabel setText:[self.stopWatch toStringMiliSecond]];
             }];
         }];
     }];
@@ -88,6 +92,7 @@
     [self setStopWatchLabel:nil];
     [self setBtnControl:nil];
     [self setBtnWarning:nil];
+    [self setStopWatchLabelMS:nil];
     [super viewDidUnload];
 }
 
