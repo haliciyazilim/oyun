@@ -25,8 +25,11 @@
     [self.view setUserInteractionEnabled:NO];
 //    [self.scrollView setUserInteractionEnabled:NO];
     
-    [self.stopWatchLabel setText:@"00:00.0"];
+    [self.stopWatchLabel setText:@"00:00"];
     self.stopWatch = [[StopWatch alloc] init];
+    
+    [self.stopWatchLabelMS setText:@".0"];
+    
     
     [self.btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
     
@@ -65,10 +68,9 @@
             [self.btnControl setEnabled:YES];
             
             [self.stopWatch startTimerWithRepeatBlock:^{
-                [self.stopWatchLabel setText:[self.stopWatch toString]];
+                [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
+                [self.stopWatchLabelMS setText:[self.stopWatch toStringMiliseconds]];
             }];
-            
-            
         }];
     }];
 
@@ -90,12 +92,13 @@
     [self setStopWatchLabel:nil];
     [self setBtnControl:nil];
     [self setBtnWarning:nil];
+    [self setStopWatchLabelMS:nil];
     [super viewDidUnload];
 }
 
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [self dismissModalViewControllerAnimated:YES];
-}
+//- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+////    [self dismissModalViewControllerAnimated:YES];
+//}
 
 -(void)placingBoxes{
 //    NSLog(@"Placing %d",_currentQuestion.questionArray.count);
@@ -137,9 +140,11 @@
             [answer appendString:box.title];
     }
     
-    BOOL arastirma=[self.currentQuestion isCorrect:answer];
-    if(arastirma){
+    if([self.currentQuestion isCorrect:answer]){
         [_btnWarning setText:@"Doğru"];
+        [self.stopWatch stopTimer];
+        [self.currentQuestion updateScore:[self.stopWatch getElapsedMiliseconds]];
+        [self dismissModalViewControllerAnimated:YES];
     }
     else{
                 

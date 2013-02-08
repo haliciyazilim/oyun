@@ -16,6 +16,9 @@
     int miliseconds;
     BOOL isPaused;
     IteratorBlock updateBlock;
+    double totalPausedTimeInterval;
+    NSDate *startTime;
+    NSDate *lastPausedTime;
     
 }
 
@@ -23,6 +26,7 @@
     if(self = [super init]){
         seconds = 0;
         minutes = 0;
+        miliseconds = 0;
         isPaused = NO;
         return self;
     }
@@ -33,34 +37,40 @@
 {
     isPaused = NO;
     updateBlock = block;
+    startTime = [NSDate date];
+    totalPausedTimeInterval = 0;
+    NSRunLoop *runloop = [NSRunLoop currentRunLoop];
     timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+    [runloop addTimer:timer forMode:NSRunLoopCommonModes];
+    [runloop addTimer:timer forMode:UITrackingRunLoopMode];
 }
 
 - (void) updateTimer:(NSTimer*)timer
 {
-    if(isPaused){
-        return;
+    if (!isPaused) {
+    
+        double interval = (double)[[NSDate date] timeIntervalSinceDate:startTime];
+        miliseconds = (int)((interval - (int)interval) * 1000);
+        seconds = (int)floor(interval) % 60;
+        minutes = (int)floor(interval) / 60;
+        
+        updateBlock();
     }
-    miliseconds++;
-    if(miliseconds == 100){
-        miliseconds = 0;
-        seconds++;
-    }
-    if(seconds == 60){
-        seconds = 0;
-        minutes++;
-    }
-    updateBlock();
 }
 
 -(void)resumeTimer
 {
+    totalPausedTimeInterval += (double)[[NSDate date] timeIntervalSinceDate:lastPausedTime];
+    lastPausedTime = nil;
     isPaused = NO;
 }
 
 -(void) pauseTimer
 {
     isPaused = YES;
+    if (!lastPausedTime) {
+        lastPausedTime = [NSDate date];
+    }
 }
 
 -(void)resetTimer
@@ -68,6 +78,9 @@
     minutes = 0;
     seconds = 0;
     miliseconds = 0;
+    totalPausedTimeInterval = 0;
+    startTime = [NSDate date];
+    lastPausedTime = nil;
     [self startTimerWithRepeatBlock:updateBlock];
 }
 
@@ -81,7 +94,15 @@
 {
     return [StopWatch textWithMiliseconds:[self getElapsedMiliseconds]];
 }
-
+- (NSString*) toStringWithoutMiliseconds {
+    NSString *wholeString = [self toString];
+    return [wholeString substringToIndex:5]
+    ;
+}
+- (NSString*) toStringMiliseconds {
+    NSString *wholeString = [self toString];
+    return [wholeString substringFromIndex:5];
+}
 + (NSString*) textWithMiliseconds:(int)totalMiliseconds
 {
     int minutes = totalMiliseconds / 60000;
@@ -91,14 +112,14 @@
     
     NSString* secondsString = seconds < 10 ? [NSString stringWithFormat:@"0%d",seconds] : [NSString stringWithFormat:@"%d",seconds];
     
-    NSString* milisecondsString = [NSString stringWithFormat:@"%d",miliseconds/10];
+    NSString* milisecondsString = [NSString stringWithFormat:@"%d",miliseconds/100];
     
     return [NSString stringWithFormat:@"%@:%@.%@",minutesString,secondsString,milisecondsString];
 }
 
 - (int) getElapsedMiliseconds
 {
-    return minutes * 60 * 100 + seconds * 100 + miliseconds;
+    return minutes * 60 * 1000 + seconds * 1000 + miliseconds;
 }
 
 @end

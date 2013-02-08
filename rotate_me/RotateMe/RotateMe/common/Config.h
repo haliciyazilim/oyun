@@ -17,4 +17,7 @@
 
 #define NSUSER_DIFFICULTY @"game_difficulty"
 
+//GameCenter
+#define kAuthenticationChangedNotification @"AuthenticedChanged"
+
 #endif
