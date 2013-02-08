@@ -106,6 +106,7 @@ static RMInGameViewController* lastInstance = nil;
     self.grids = grids;
     
     [self configureView];
+    [self.stopWatchLabel setFont:[UIFont fontWithName:@"TRMcLean" size:20]];
     [self.stopWatchLabel setText:@"00:00"];
     
 }
@@ -113,7 +114,7 @@ static RMInGameViewController* lastInstance = nil;
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.stopWatch startTimerWithRepeatBlock:^{
-        [self.stopWatchLabel setText:[self.stopWatch toString]];
+        [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
     }];
 }
 

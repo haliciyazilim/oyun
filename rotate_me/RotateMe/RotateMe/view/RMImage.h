@@ -13,6 +13,6 @@
 @interface RMImage : UIImage
 
 @property Photo* owner;
-- (RMImage *)imageWithGaussianBlur9;
-- (RMImage*)imageByScalingAndCroppingForSize:(CGSize)targetSize;
+- (RMImage*) imageWithGaussianBlur9;
+- (RMImage*) imageByScalingAndCroppingForSize:(CGSize)targetSize;
 @end

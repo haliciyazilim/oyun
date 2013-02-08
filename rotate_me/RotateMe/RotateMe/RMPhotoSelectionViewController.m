@@ -121,8 +121,8 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 - (void) printPhotos
 {
     int leftMargin = 20;
-    int topMargin = 10;
-    CGSize size = CGSizeMake(146, 112);
+    int topMargin = 5;
+    CGSize size = CGSizeMake(156, 116);
     CGSize photoSize = CGSizeMake(136, 102);
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
         ([UIScreen mainScreen].scale == 2.0)) {

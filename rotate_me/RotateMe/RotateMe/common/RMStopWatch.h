@@ -22,5 +22,6 @@
 - (int) getElapsedSeconds;
 
 - (NSString*) toString;
+- (NSString*) toStringWithoutMiliseconds;
 
 @end

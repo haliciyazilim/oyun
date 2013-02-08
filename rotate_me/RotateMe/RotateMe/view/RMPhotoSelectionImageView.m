@@ -48,6 +48,16 @@
         [activityIndicator startAnimating];
         [self addSubview:activityIndicator];
         
+        self.layer.masksToBounds = NO;
+//        self.layer.cornerRadius = 8; // if you like rounded corners
+        self.layer.shadowOffset = CGSizeMake(3, 3);
+        self.layer.shadowRadius = 6;
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowOpacity = 0.5;
+        
+        [self.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(5, 5, frame.size.width, frame.size.height)] CGPath]];
+        
+        
 
         Score* score = [photo getScoreForDifficulty:getCurrentDifficulty()];
         if(score != nil){
