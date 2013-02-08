@@ -66,12 +66,27 @@ static NSMutableArray* paths=nil;
         self.title = title;
         self.isDeleted = NO;
         self.order = classOrder;
-        self.boxButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        self.boxButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.boxButton.frame = frame;
         self.boxButton.tag = classOrder;
         [self.boxButton setTitle:title forState:UIControlStateNormal];
+        
         [self.boxButton addTarget:self.caller action:@selector(animateBox:) forControlEvents:UIControlEventTouchUpInside];
 
+        self.boxButton.layer.cornerRadius = 8.0;
+        self.boxButton.layer.borderWidth = 1.0;
+        self.boxButton.layer.shadowRadius = 3.0;
+        self.boxButton.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+        self.boxButton.layer.shadowOpacity = 0.3;
+        [self.boxButton.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, 2, 48.0, 48.0)] CGPath]];
+        
+        self.boxButton.layer.shadowColor = [[UIColor blackColor] CGColor];
+        self.boxButton.layer.borderColor = [[UIColor colorWithRed:0.596 green:0.596 blue:0.596 alpha:1.0] CGColor];
+        [self.boxButton setBackgroundColor:[UIColor colorWithRed:0.701 green:0.701 blue:0.701 alpha:1.0]];
+        
+//        UILabel * title=[UILabel ]
+        
+        
         [DTBBox addToArrayBoxes:self];
         classOrder++;
         
