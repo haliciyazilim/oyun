@@ -68,8 +68,8 @@
             [self.btnControl setEnabled:YES];
             
             [self.stopWatch startTimerWithRepeatBlock:^{
-//                [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliSecond]];
-//                [self.stopWatchLabel setText:[self.stopWatch toStringMiliSecond]];
+                [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
+                [self.stopWatchLabelMS setText:[self.stopWatch toStringMiliseconds]];
             }];
         }];
     }];
