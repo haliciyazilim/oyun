@@ -7,16 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "Config.h"
+#import "RMPhotoSelectionViewController.h"
 
-@interface RMPhotoSelectionIPadViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-- (IBAction)difficultyChanged:(id)sender;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentedButtons;
-@property (weak, nonatomic) IBOutlet UILabel *galleryNameLabel;
-- (IBAction)backButtonClicked:(id)sender;
+@interface RMPhotoSelectionIPadViewController : RMPhotoSelectionViewController
 
 + (RMPhotoSelectionIPadViewController*) lastInstance;
 

@@ -7,34 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RMStopWatch.h"
-#import "RMCroppedImageView.h"
+#import "RMInGameViewController.h"
 
-@interface RMInGameIPadViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet UIImageView *photoHolder;
-
-@property UIImageView* grids;
-
-@property (weak, nonatomic) IBOutlet UILabel *stopWatchLabel;
-
-- (IBAction)displayMenu:(id)sender;
-
-- (IBAction)displayHelp:(id)sender;
-
-@property NSArray* croppedImages;
-
-@property RMStopWatch* stopWatch;
-
-+(RMInGameIPadViewController*)lastInstance;
-
-- (void) setImage:(UIImage*)image;
-
-- (BOOL) isGameFinished;
-
-- (void) endGame;
-
-- (BOOL) canGameFinish;
+@interface RMInGameIPadViewController : RMInGameViewController
 
 @end
 

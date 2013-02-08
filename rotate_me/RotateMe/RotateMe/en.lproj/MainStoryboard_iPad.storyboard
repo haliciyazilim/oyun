@@ -97,7 +97,7 @@
                         <outlet property="difficultySegmentedButtons" destination="uxf-Fi-pDv" id="fnR-iz-mmB"/>
                         <outlet property="galleryNameLabel" destination="Fd5-gI-n44" id="KVT-eY-SHE"/>
                         <outlet property="scrollView" destination="IfK-5Z-6FY" id="dsB-yO-nd5"/>
-                        <segue destination="hSx-TE-fMs" kind="modal" id="A2I-GZ-Ns9"/>
+                        <segue destination="hSx-TE-fMs" kind="modal" identifier="StartGame" id="A2I-GZ-Ns9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIe-u5-Vac" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -169,11 +169,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back_button.png" width="16" height="16"/>
-        <image name="help_btn.png" width="16" height="16"/>
-        <image name="menu_btn.png" width="16" height="16"/>
-        <image name="photo_holder_ipad.png" width="16" height="16"/>
-        <image name="timer_holder_ipad.png" width="16" height="16"/>
+        <image name="back_button.png" width="26" height="26"/>
+        <image name="help_btn.png" width="23" height="26"/>
+        <image name="menu_btn.png" width="22" height="26"/>
+        <image name="photo_holder_ipad.png" width="824" height="626"/>
+        <image name="timer_holder_ipad.png" width="160" height="67"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
