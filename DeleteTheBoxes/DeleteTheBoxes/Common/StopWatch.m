@@ -39,7 +39,10 @@
     updateBlock = block;
     startTime = [NSDate date];
     totalPausedTimeInterval = 0;
+    NSRunLoop *runloop = [NSRunLoop currentRunLoop];
     timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+    [runloop addTimer:timer forMode:NSRunLoopCommonModes];
+    [runloop addTimer:timer forMode:UITrackingRunLoopMode];
 }
 
 - (void) updateTimer:(NSTimer*)timer
