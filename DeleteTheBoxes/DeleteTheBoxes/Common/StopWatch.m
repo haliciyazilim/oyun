@@ -94,7 +94,14 @@
 {
     return [StopWatch textWithMiliseconds:[self getElapsedMiliseconds]];
 }
-
+- (NSString*) toStringWithoutMiliseconds {
+    NSString *wholeString = [self toString];
+    return [wholeString substringToIndex:[wholeString indexOfAccessibilityElement:@"."]];
+}
+- (NSString*) toStringMiliseconds {
+    NSString *wholeString = [self toString];
+    return [wholeString substringFromIndex:[wholeString indexOfAccessibilityElement:@"."]];
+}
 + (NSString*) textWithMiliseconds:(int)totalMiliseconds
 {
     int minutes = totalMiliseconds / 60000;

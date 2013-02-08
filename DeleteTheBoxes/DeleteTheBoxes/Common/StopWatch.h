@@ -20,7 +20,8 @@
 - (int)  getElapsedMiliseconds;
 
 - (NSString*) toString;
-
+- (NSString*) toStringWithoutMiliseconds;
+- (NSString*) toStringMiliseconds;
 + (NSString*) textWithMiliseconds:(int)miliseconds;
 
 @end
