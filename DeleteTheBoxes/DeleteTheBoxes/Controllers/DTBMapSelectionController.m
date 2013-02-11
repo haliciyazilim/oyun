@@ -170,6 +170,8 @@
     if ([segue.identifier isEqualToString:@"openQuestion"]) {
         DTBViewController *destination = [segue destinationViewController];
         [destination setCurrentQuestion:[wholeQuestionsArray objectAtIndex:[selectedButton tag]]];
+        NSLog(@"%d from map selection",[wholeQuestionsArray count]);
+        [destination setWholeQuestionCount:[wholeQuestionsArray count]];
     }
 }
 - (void)didReceiveMemoryWarning
