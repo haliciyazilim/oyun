@@ -7,32 +7,28 @@
 //
 
 #import "RMPhotoSelectionIPadViewController.h"
+#import "RMCustomImageView.h"
+#import "RMInGameIPadViewController.h"
+#import "RMImage.h"
+#import "Photo.h"
+#import "UIView+Util.h"
 
 @interface RMPhotoSelectionIPadViewController ()
 
 @end
 
 @implementation RMPhotoSelectionIPadViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
+static RMPhotoSelectionIPadViewController* lastInstance = nil;
 
-- (void)didReceiveMemoryWarning
++ (RMPhotoSelectionIPadViewController*) lastInstance
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return lastInstance;
 }
 
 @end
+
+

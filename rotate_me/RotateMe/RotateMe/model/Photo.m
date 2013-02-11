@@ -9,6 +9,7 @@
 #import "Photo.h"
 #import "RMDatabaseManager.h"
 #import "RMImage.h"
+#import "GameCenterManager.h"
 
 @implementation Photo
 {
@@ -63,6 +64,10 @@
     else if(score.elapsedSeconds > elapsedTime){
         score.elapsedSeconds = elapsedTime;
     }
+    [[GameCenterManager sharedInstance] submitScore:elapsedTime category:[NSString stringWithFormat:@"%@_mode",stringOfDifficulty(difficulty)]];
+    
+    //TEST
+    [[GameCenterManager sharedInstance] getScores];
 
     [[RMDatabaseManager sharedInstance] saveContext];
 

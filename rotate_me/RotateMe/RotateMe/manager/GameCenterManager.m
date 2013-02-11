@@ -107,17 +107,17 @@ static GameCenterManager *sharedManager = nil;
         if(board != nil) {
             board.timeScope = GKLeaderboardTimeScopeAllTime;
             board.range = NSMakeRange(1, 1);
-            board.category = @"high_score";
+            board.category = @"easy_mode";
             [board loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
                 if (error != nil) {
                     ;
                 }
-                
-                //                if (scores != nil) {
-                //                    for (GKScore *score in scores) {
-                //                        NSLog(@"My Score: %lld", score.value);
-                //                    }
-                //                }
+
+//                if (scores != nil) {
+//                    for (GKScore *score in scores) {
+//                        NSLog(@"My Score: %lld", score.value);
+//                    }
+//                }
             }];
         }
         else{
