@@ -73,26 +73,29 @@ static NSMutableArray* paths=nil;
         
         [self.boxButton addTarget:self.caller action:@selector(animateBox:) forControlEvents:UIControlEventTouchUpInside];
 
-        self.boxButton.layer.cornerRadius = 8.0;
+        self.boxButton.layer.cornerRadius = 6.0;
         self.boxButton.layer.borderWidth = 1.0;
-        self.boxButton.layer.shadowRadius = 3.0;
+        self.boxButton.layer.shadowRadius = 2.0;
         self.boxButton.layer.shadowOffset = CGSizeMake(0.0, 0.0);
         self.boxButton.layer.shadowOpacity = 0.3;
-        [self.boxButton.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, 2, 48.0, 48.0)] CGPath]];
+        [self.boxButton.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, 1, 48.0, 48.0)] CGPath]];
         
         self.boxButton.layer.shadowColor = [[UIColor blackColor] CGColor];
         self.boxButton.layer.borderColor = [[UIColor colorWithRed:0.596 green:0.596 blue:0.596 alpha:1.0] CGColor];
         [self.boxButton setBackgroundColor:[UIColor colorWithRed:0.701 green:0.701 blue:0.701 alpha:1.0]];
         
         UILabel * title=[[UILabel alloc]initWithFrame:CGRectMake(4, 4, 40, 40)];
-        [title setTextColor:[UIColor colorWithRed:0.333 green:0.333 blue:0.333 alpha:1.0 ]];
+        [title setTextColor:[UIColor colorWithRed:0.333 green:0.333 blue:0.333 alpha:1.0]];
         [title setFont:[UIFont fontWithName:@"Helvetica-Bold" size:33.0 ]];
-        [title setShadowColor:[UIColor whiteColor]];
+        [title setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
         [title setShadowOffset:CGSizeMake(0.0, 1.0)];
         [title setTextAlignment:NSTextAlignmentCenter];
         [title setText:self.title];
         [title setBackgroundColor:[UIColor clearColor]];
         
+        UIImageView *innerShadow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"box_bg.png"]];
+        
+        [self.boxButton addSubview:innerShadow];
         [self.boxButton addSubview:title];
         
         
@@ -104,15 +107,12 @@ static NSMutableArray* paths=nil;
     return self;
 }
 - (void) deleteBox: (UIView *) view{
-    NSLog(@"Delete BOX");
-
     self.isDeleted = YES;
     [boxes replaceObjectAtIndex:self.order withObject:self];
-    [self.boxButton setAlpha:0.5];
+    [self.boxButton setAlpha:0.3];
 //    [self animateBoxToOutside:view];
 }
 - (void) resetBox {
-    NSLog(@"Reset BOX");
     self.isDeleted = NO;
     
     [self.boxButton setAlpha:1];
@@ -120,88 +120,88 @@ static NSMutableArray* paths=nil;
 //    [self animateBoxToInside];
 }
 - (void) animateBoxToOutside: (UIView *) view {
-    [self drawLineToOriginalPosition: view];
-    NSLog(@"Yukarı ÇIk");    
-    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-        
-        self.boxButton.frame=CGRectMake(self.boxButton.frame.origin.x+self.boxButton.frame.size.width/4, self.boxButton.frame.origin.y-60, self.boxButton.frame.size.width/2,self.boxButton.frame.size.height/2);
-        NSLog(@"self.order: %d, classOrder: %d, pathsCount: %d",self.order,classOrder,paths.count);
-        for(int i=self.order+1;i<classOrder;i++){
-            DTBBox * box=[boxes objectAtIndex:i];
-            box.boxButton.frame=CGRectMake(box.boxButton.frame.origin.x-30, box.boxButton.frame.origin.y, box.boxButton.frame.size.width,box.boxButton.frame.size.height);
-
-        }
-        
-        for(int i=0;i<self.order;i++){
-            DTBBox * box=[boxes objectAtIndex:i];
-            box.boxButton.frame=CGRectMake(box.boxButton.frame.origin.x+30, box.boxButton.frame.origin.y, box.boxButton.frame.size.width,box.boxButton.frame.size.height);
-            
-        }
-
-        NSLog(@"PathsCount: %d",paths.count);
-        for(int i=0; i<paths.count;i++){
-            UIBezierPath *path=[paths[i] valueForKey:@"path"];
-//            UIBezierPath *pathLayer=[paths[i] valueForKey:@"pathLayer"];
-            
-            CGRect line=CGPathGetBoundingBox(path.CGPath);
-            CGAffineTransform transFORM=CGAffineTransformMakeScale(20, 100);
-            CGPathRef pathref=CGPathCreateCopyByTransformingPath(path.CGPath, &transFORM);
-            path.CGPath=pathref;
-            
-            // BUraya bak
-            //http://stackoverflow.com/questions/8143750/ios-core-animation-incorrect-anchor-point-for-rotation
-            
-           // [path applyTransform:CGAffineTransformMakeTranslation(20, 20)];
-            //            if(self.order<order){
-            //                path
-            //            }
-        }
-
-        
-        
-    } completion:^(BOOL finished) {
-        ;
-    }];
-//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-//    [self drawLineToOriginalPosition:screenBounds];
+//    [self drawLineToOriginalPosition: view];
+//    NSLog(@"Yukarı ÇIk");    
+//    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+//        
+//        self.boxButton.frame=CGRectMake(self.boxButton.frame.origin.x+self.boxButton.frame.size.width/4, self.boxButton.frame.origin.y-60, self.boxButton.frame.size.width/2,self.boxButton.frame.size.height/2);
+//        NSLog(@"self.order: %d, classOrder: %d, pathsCount: %d",self.order,classOrder,paths.count);
+//        for(int i=self.order+1;i<classOrder;i++){
+//            DTBBox * box=[boxes objectAtIndex:i];
+//            box.boxButton.frame=CGRectMake(box.boxButton.frame.origin.x-30, box.boxButton.frame.origin.y, box.boxButton.frame.size.width,box.boxButton.frame.size.height);
+//
+//        }
+//        
+//        for(int i=0;i<self.order;i++){
+//            DTBBox * box=[boxes objectAtIndex:i];
+//            box.boxButton.frame=CGRectMake(box.boxButton.frame.origin.x+30, box.boxButton.frame.origin.y, box.boxButton.frame.size.width,box.boxButton.frame.size.height);
+//            
+//        }
+//
+//        NSLog(@"PathsCount: %d",paths.count);
+//        for(int i=0; i<paths.count;i++){
+//            UIBezierPath *path=[paths[i] valueForKey:@"path"];
+////            UIBezierPath *pathLayer=[paths[i] valueForKey:@"pathLayer"];
+//            
+//            CGRect line=CGPathGetBoundingBox(path.CGPath);
+//            CGAffineTransform transFORM=CGAffineTransformMakeScale(20, 100);
+//            CGPathRef pathref=CGPathCreateCopyByTransformingPath(path.CGPath, &transFORM);
+//            path.CGPath=pathref;
+//            
+//            // BUraya bak
+//            //http://stackoverflow.com/questions/8143750/ios-core-animation-incorrect-anchor-point-for-rotation
+//            
+//           // [path applyTransform:CGAffineTransformMakeTranslation(20, 20)];
+//            //            if(self.order<order){
+//            //                path
+//            //            }
+//        }
+//
+//        
+//        
+//    } completion:^(BOOL finished) {
+//        ;
+//    }];
+////    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+////    [self drawLineToOriginalPosition:screenBounds];
 }
 - (void) animateBoxToInside {
-    
-    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-        
-        self.boxButton.frame=CGRectMake(self.boxButton.frame.origin.x-self.boxButton.frame.size.width*2/4, self.boxButton.frame.origin.y+60, self.boxButton.frame.size.width*2,self.boxButton.frame.size.height*2);
-        
-        NSLog(@"self.order: %d, classOrder: %d, pathsCount: %d",self.order,classOrder,paths.count);
-        for(int i=self.order+1;i<classOrder;i++){
-            DTBBox * box=[boxes objectAtIndex:i];
-            box.boxButton.frame=CGRectMake(box.boxButton.frame.origin.x+30, box.boxButton.frame.origin.y, box.boxButton.frame.size.width,box.boxButton.frame.size.height);
-            
-        }
-        
-        for(int i=0;i<self.order;i++){
-            DTBBox * box=[boxes objectAtIndex:i];
-            box.boxButton.frame=CGRectMake(box.boxButton.frame.origin.x-30, box.boxButton.frame.origin.y, box.boxButton.frame.size.width,box.boxButton.frame.size.height);
-            
-        }
-        NSLog(@"PathsCount: %d",paths.count);
-        for(int i=0; paths.count;i++){
-            UIBezierPath *path=[paths[i] valueForKey:@"path"];
-            UIBezierPath *pathLayer=[paths[i] valueForKey:@"pathLayer"];
-            
-            [pathLayer applyTransform:CGAffineTransformMakeTranslation(20, 20)];
-//            if(self.order<order){
-//                path
-//            }
-        }
-         
-        
-    } completion:^(BOOL finished) {
-        ;
-    }];
-
-    
-    [self removeLine];
-    
+//    
+//    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+//        
+//        self.boxButton.frame=CGRectMake(self.boxButton.frame.origin.x-self.boxButton.frame.size.width*2/4, self.boxButton.frame.origin.y+60, self.boxButton.frame.size.width*2,self.boxButton.frame.size.height*2);
+//        
+//        NSLog(@"self.order: %d, classOrder: %d, pathsCount: %d",self.order,classOrder,paths.count);
+//        for(int i=self.order+1;i<classOrder;i++){
+//            DTBBox * box=[boxes objectAtIndex:i];
+//            box.boxButton.frame=CGRectMake(box.boxButton.frame.origin.x+30, box.boxButton.frame.origin.y, box.boxButton.frame.size.width,box.boxButton.frame.size.height);
+//            
+//        }
+//        
+//        for(int i=0;i<self.order;i++){
+//            DTBBox * box=[boxes objectAtIndex:i];
+//            box.boxButton.frame=CGRectMake(box.boxButton.frame.origin.x-30, box.boxButton.frame.origin.y, box.boxButton.frame.size.width,box.boxButton.frame.size.height);
+//            
+//        }
+//        NSLog(@"PathsCount: %d",paths.count);
+//        for(int i=0; paths.count;i++){
+//            UIBezierPath *path=[paths[i] valueForKey:@"path"];
+//            UIBezierPath *pathLayer=[paths[i] valueForKey:@"pathLayer"];
+//            
+//            [pathLayer applyTransform:CGAffineTransformMakeTranslation(20, 20)];
+////            if(self.order<order){
+////                path
+////            }
+//        }
+//         
+//        
+//    } completion:^(BOOL finished) {
+//        ;
+//    }];
+//
+//    
+//    [self removeLine];
+//    
     
 }
 - (void) drawLineToOriginalPosition: (UIView *) view {
