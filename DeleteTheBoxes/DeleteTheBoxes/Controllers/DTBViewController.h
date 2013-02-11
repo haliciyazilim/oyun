@@ -15,14 +15,13 @@
 @interface DTBViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-
 @property (weak, nonatomic) IBOutlet UILabel *stopWatchLabel;
-@property (weak, nonatomic) IBOutlet UIButton *btnControl;
-@property (weak, nonatomic) IBOutlet UILabel *btnWarning;
 @property (weak, nonatomic) IBOutlet UILabel *stopWatchLabelMS;
+@property (weak, nonatomic) IBOutlet UILabel *orderLabel;
 
 @property StopWatch * stopWatch;
 
 @property (nonatomic) DTBQuestion *currentQuestion;
+@property int wholeQuestionCount;
 
 @end
