@@ -33,6 +33,7 @@
 		05A1DB0816C0041A00022267 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A1DB0716C0041A00022267 /* QuartzCore.framework */; };
 		05A1DB1416C0074000022267 /* StopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A1DB1316C0074000022267 /* StopWatch.m */; };
 		05A1DB1816C009D700022267 /* DTBBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A1DB1716C009D700022267 /* DTBBox.m */; };
+		05BB954716C93470007C2A41 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BB954616C93470007C2A41 /* GameKit.framework */; };
 		05DD128816C2832900072ED2 /* DTBDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD128716C2832900072ED2 /* DTBDatabaseManager.m */; };
 		05DD128F16C2910400072ED2 /* 10000.question in Resources */ = {isa = PBXBuildFile; fileRef = 05DD128B16C2910400072ED2 /* 10000.question */; };
 		05DD129016C2910400072ED2 /* 10001.question in Resources */ = {isa = PBXBuildFile; fileRef = 05DD128C16C2910400072ED2 /* 10001.question */; };
@@ -107,6 +108,7 @@
 		05A1DB1516C007EE00022267 /* TypeDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefs.h; sourceTree = "<group>"; };
 		05A1DB1616C009D700022267 /* DTBBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBBox.h; sourceTree = "<group>"; };
 		05A1DB1716C009D700022267 /* DTBBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBBox.m; sourceTree = "<group>"; };
+		05BB954616C93470007C2A41 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		05D35F0216C3940F00104610 /* DTBAppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBAppSpecificValues.h; sourceTree = "<group>"; };
 		05DD128616C2832900072ED2 /* DTBDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBDatabaseManager.h; sourceTree = "<group>"; };
 		05DD128716C2832900072ED2 /* DTBDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBDatabaseManager.m; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05BB954716C93470007C2A41 /* GameKit.framework in Frameworks */,
 				05FBA81916C2557C001660ED /* CoreData.framework in Frameworks */,
 				05A1DB0816C0041A00022267 /* QuartzCore.framework in Frameworks */,
 				05A1DB0616C0041100022267 /* StoreKit.framework in Frameworks */,
@@ -341,6 +344,7 @@
 		05E3874316BFF8EF00CE3E2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05BB954616C93470007C2A41 /* GameKit.framework */,
 				05FBA81816C2557C001660ED /* CoreData.framework */,
 				05A1DB0716C0041A00022267 /* QuartzCore.framework */,
 				05A1DB0516C0041100022267 /* StoreKit.framework */,
