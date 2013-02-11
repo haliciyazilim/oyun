@@ -9,7 +9,9 @@
 #ifndef RotateMe_Config_h
 #define RotateMe_Config_h
 
+//Bundle initialization
 #define DEFAULT_GALLERY_NAME @"default"
+#define USER_GALLERY_NAME @"Your Gallery"
 
 #define PHOTO_SELECTION_IMAGEVIEW_TAG 123
 #define PHOTO_SELECTION_IMAGEVIEW_LABEL_TAG 101
