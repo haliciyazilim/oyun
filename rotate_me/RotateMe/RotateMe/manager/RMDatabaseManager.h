@@ -25,4 +25,6 @@
 - (NSMutableArray *)entitiesWithRequest:(NSFetchRequest *)request forName:(NSString*)entitiyName;
 - (NSManagedObject *)entityWithRequest:(NSFetchRequest *)request forName:(NSString*)entitiyName;
 
+-(void)deleteObject:(NSManagedObject*)managedObject;
+
 @end

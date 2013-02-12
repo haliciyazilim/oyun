@@ -101,24 +101,11 @@ static RMDatabaseManager *sharedInstance = nil;
     return entity;
 }
 
-//
-//- (void)insertMaps:(NSArray *)maps forPackage:(NSString *)packageId {
-//    for (NSString *mapId in maps) {
-//        Map *aMap = [NSEntityDescription insertNewObjectForEntityForName:@"Map"
-//                                                  inManagedObjectContext:self.managedObjectContext];
-//        [aMap setIsFinished:NO];
-//        [aMap setPackageId:packageId];
-//        [aMap setMapId:mapId];
-//        [aMap setScore:[NSNumber numberWithInt:INT32_MAX]];
-//        [aMap setDifficulty:-1];
-//        [aMap setStepCount:-1];
-//        [aMap setTileCount:0];
-//        [aMap setIsPurchased:NO];
-//        [aMap setIsLocked:YES];
-//        [aMap setIsNotPlayedActiveGame:NO];
-//    }
-//    [self saveContext];
-//}
+-(void)deleteObject:(NSManagedObject*)managedObject
+{
+    [self.managedObjectContext deleteObject:managedObject];
+    [self saveContext];
+}
 
 
 /**
