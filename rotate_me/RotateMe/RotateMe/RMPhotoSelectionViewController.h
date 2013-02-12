@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "Config.h"
+@class Gallery;
 
-@interface RMPhotoSelectionViewController : UIViewController
+@interface RMPhotoSelectionViewController : UIViewController <UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 - (IBAction)difficultyChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentedButtons;
@@ -18,6 +19,7 @@
 - (IBAction)backButtonClicked:(id)sender;
 
 + (RMPhotoSelectionViewController*) lastInstance;
+- (void) setGallery:(Gallery*)gallery;
 
 
 @end

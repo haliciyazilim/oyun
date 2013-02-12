@@ -9,12 +9,16 @@
 #import "RMGallerySelectionViewController.h"
 #import "Gallery.h"
 #import "RMGallerySelectionItemView.h"
+#import "RMPhotoSelectionViewController.h"
+
 @interface RMGallerySelectionViewController ()
 
 @end
 
 @implementation RMGallerySelectionViewController
-
+{
+    Gallery* touchedGallery;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    touchedGallery = nil;
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
 	// Do any additional setup after loading the view.
     [self.view setUserInteractionEnabled:YES];
@@ -41,6 +46,7 @@
     for(Gallery* gallery in allGaleries){
         RMGallerySelectionItemView* galleryItem = [[RMGallerySelectionItemView alloc] initWithGallery:gallery];
         [self.scrollView addSubview:galleryItem];
+        
         galleryItem.frame = CGRectMake(
                                        [self scrollViewItemSize].width * index,
                                        topMargin,
@@ -49,7 +55,11 @@
         [galleryItem setUserInteractionEnabled:YES];
         
         [galleryItem setTouchesBegan:^{
+            if(touchedGallery != nil)
+                return;
+            touchedGallery = gallery;
             [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
+            
         }];
         index++;
     }
@@ -65,6 +75,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    RMPhotoSelectionViewController* photoSelectionViewController = [segue destinationViewController];
+    [photoSelectionViewController setGallery:touchedGallery];
+    touchedGallery = nil;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    touchedGallery = nil;
+    
+}
 
 
 - (void)viewDidUnload {
