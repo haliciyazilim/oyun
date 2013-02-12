@@ -9,6 +9,7 @@
 #import "DTBAppDelegate.h"
 #import "DTBDatabaseManager.h"
 #import "DTBBundleInitializer.h"
+#import "GameCenterManager.h"
 
 @implementation DTBAppDelegate
 
@@ -17,6 +18,7 @@
     if([[DTBDatabaseManager sharedInstance] isEmpty]){
         [DTBBundleInitializer initializeBundle];
     }
+    [[GameCenterManager sharedInstance] authenticateLocalUser];
     // Override point for customization after application launch.
     return YES;
 }

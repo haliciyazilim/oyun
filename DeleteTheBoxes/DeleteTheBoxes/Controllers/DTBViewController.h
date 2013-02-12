@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "StopWatch.h"
+#import <GameKit/GameKit.h>
 
 @class DTBQuestion;
 
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *stopWatchLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stopWatchLabelMS;
 @property (weak, nonatomic) IBOutlet UILabel *orderLabel;
+
+@property GKTurnBasedMatch *currentMatch;
 
 @property StopWatch * stopWatch;
 
