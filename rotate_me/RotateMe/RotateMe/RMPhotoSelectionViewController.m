@@ -25,6 +25,8 @@
     NSArray* photos;
     CGSize imageScaleSize;
     NSMutableArray* imageThreads;
+    UIImagePickerController* imagePicker;
+    RMCustomImageView* testImageView;
     
 }
 
@@ -61,7 +63,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     touchedPhoto = nil;
-    [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
+//    [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
     
     DIFFICULTY difficulty = getCurrentDifficulty();
@@ -80,9 +82,9 @@ static RMPhotoSelectionViewController* lastInstance = nil;
             break;
     }
     imageThreads = [[NSMutableArray alloc] init];
-    
-    [self.galleryNameLabel setText:currentGallery.name];
-    [self.galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:20.0] ];
+    [self configureView];
+//    [self.galleryNameLabel setText:currentGallery.name];
+//    [self.galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:20.0] ];
     
 }
 
@@ -91,11 +93,17 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     if(currentGallery != gallery){
         currentGallery = gallery;
         photos = nil;
-        [self printPhotos];
-        [self processImageThreads];
+        [self configureView];
     }
 }
 
+-(void)configureView
+{
+    [self.galleryNameLabel setText:currentGallery.name];
+    [self.galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:20.0] ];
+    [self printPhotos];
+    [self processImageThreads];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -157,8 +165,57 @@ static RMPhotoSelectionViewController* lastInstance = nil;
                 
     }
     
+    if([currentGallery.name compare:USER_GALLERY_NAME] == 0){
+        RMCustomImageView* addFromGallery = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"Plus_sign.png"]];
+        CGRect photoViewRect = CGRectMake(leftMargin+([photos count]/2)*size.width, topMargin + ([photos count]%2) * size.height, photoSize.width, photoSize.height);
+        [addFromGallery setFrame:photoViewRect];
+        [self.scrollView addSubview:addFromGallery];
+        imagePicker = [[UIImagePickerController alloc] init];
+//        imagePicker set
+        [imagePicker setDelegate:self];
+        testImageView  = [[RMCustomImageView alloc] init];
+        testImageView.frame = CGRectMake(leftMargin+(([photos count]+1)/2)*size.width, topMargin + (([photos count]+1)%2) * size.height, photoSize.width, photoSize.height);
+        [self.scrollView addSubview:testImageView];
+        [addFromGallery setUserInteractionEnabled:YES];
+        [addFromGallery setTouchesBegan:^{
+            
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+                imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            }
+            else{
+                imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            }
+            
+            NSLog(@"I'm here");
+            
+            [self presentModalViewController:imagePicker animated:YES];
+        }];
+        
+    }
+    
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
+    
+    
+    NSLog(@"didCancel");
+    [Picker dismissModalViewControllerAnimated:YES];
+    [[Picker parentViewController] dismissModalViewControllerAnimated:YES];
+    
+    
 }
 
+- (void)imagePickerController:(UIImagePickerController *) Picker
+
+didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    testImageView.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSLog(@"didFinishPicking");
+    
+    [Picker dismissModalViewControllerAnimated:YES];
+    [[Picker parentViewController] dismissModalViewControllerAnimated:YES];
+    
+    
+}
 
 - (void) processImageThreads
 {

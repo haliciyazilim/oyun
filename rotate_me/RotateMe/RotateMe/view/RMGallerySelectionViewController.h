@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RMGallerySelectionViewController : UIViewController
-- (IBAction)defaultyGalleryTouched:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
