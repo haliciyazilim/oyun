@@ -10,6 +10,7 @@
 #import "Gallery.h"
 #import "RMGallerySelectionItemView.h"
 #import "RMPhotoSelectionViewController.h"
+#import "Config.h"
 
 @interface RMGallerySelectionViewController ()
 
@@ -18,6 +19,7 @@
 @implementation RMGallerySelectionViewController
 {
     Gallery* touchedGallery;
+    BOOL isFirstLoad;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,35 +36,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    isFirstLoad = YES;
     touchedGallery = nil;
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
 	// Do any additional setup after loading the view.
     [self.view setUserInteractionEnabled:YES];
-    NSArray* allGaleries = [Gallery allGalleries];
     [self.scrollView setUserInteractionEnabled:YES];
     
-    int index = 0;
-    int topMargin = 30;
-    for(Gallery* gallery in allGaleries){
-        RMGallerySelectionItemView* galleryItem = [[RMGallerySelectionItemView alloc] initWithGallery:gallery];
-        [self.scrollView addSubview:galleryItem];
-        
-        galleryItem.frame = CGRectMake(
-                                       [self scrollViewItemSize].width * index,
-                                       topMargin,
-                                       galleryItem.frame.size.width,
-                                       galleryItem.frame.size.height);
-        [galleryItem setUserInteractionEnabled:YES];
-        
-        [galleryItem setTouchesBegan:^{
-            if(touchedGallery != nil)
-                return;
-            touchedGallery = gallery;
-            [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
-            
-        }];
-        index++;
-    }
+    
 }
 
 - (CGSize) scrollViewItemSize{
@@ -82,9 +63,43 @@
     touchedGallery = nil;
 }
 
--(void)viewDidAppear:(BOOL)animated
+
+-(void)viewWillAppear:(BOOL)animated
 {
+    NSArray* allGaleries = [Gallery allGalleries];
+    int index = 0;
+    int topMargin = 30;
+    
+    
+    for(UIView* view in [self.scrollView subviews]){
+        if(view.tag == GALLERY_SELECTION_GALLERY_ITEM_TAG){
+            [view removeFromSuperview];
+        }
+    }
+    
+    for(Gallery* gallery in allGaleries){
+        RMGallerySelectionItemView* galleryItem = [[RMGallerySelectionItemView alloc] initWithGallery:gallery animate:isFirstLoad];
+        [self.scrollView addSubview:galleryItem];
+        galleryItem.tag = GALLERY_SELECTION_GALLERY_ITEM_TAG;
+        galleryItem.frame = CGRectMake(
+                                       [self scrollViewItemSize].width * index,
+                                       topMargin,
+                                       galleryItem.frame.size.width,
+                                       galleryItem.frame.size.height);
+        [galleryItem setUserInteractionEnabled:YES];
+        
+        [galleryItem setTouchesBegan:^{
+            if(touchedGallery != nil)
+                return;
+            touchedGallery = gallery;
+            [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
+            
+        }];
+        index++;
+    }
+
     touchedGallery = nil;
+    isFirstLoad = NO;
     
 }
 
