@@ -95,6 +95,14 @@
     [self configureViews];
     
     [self.orderLabel setText:[NSString stringWithFormat:@"%d/%d",self.currentQuestion.questionOrder,self.wholeQuestionCount]];
+    
+//    [self.currentMatch acceptInviteWithCompletionHandler:^(GKTurnBasedMatch *match, NSError *error) {
+//        NSLog(@"match invitation is accepted");
+//    }];
+//    
+//    [self.currentMatch declineInviteWithCompletionHandler:^(NSError *error) {
+//        NSLog(@"match invitation is declined");
+//    }];
 }
 - (void) makeUnhighlighted:(UIButton *)button {
     [self unhighlight:button];

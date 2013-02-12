@@ -48,6 +48,7 @@
     else{
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
     }
+//    wholeQuestionsArray = [DTBQuestion getAllQuestions];
 }
 - (void)viewWillAppear:(BOOL)animated {
     if (selectedButton) {
@@ -167,11 +168,16 @@
     [self performSegueWithIdentifier:@"openQuestion" sender:self];
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"entered prepareForSegue and identifier is: %@",segue.identifier);
     if ([segue.identifier isEqualToString:@"openQuestion"]) {
         DTBViewController *destination = [segue destinationViewController];
-        [destination setCurrentQuestion:[wholeQuestionsArray objectAtIndex:[selectedButton tag]]];
-        NSLog(@"%d from map selection",[wholeQuestionsArray count]);
-        [destination setWholeQuestionCount:[wholeQuestionsArray count]];
+        [destination setCurrentQuestion:[wholeQuestionsArray objectAtIndex:3]];
+        [destination setWholeQuestionCount:15];
+        [destination setCurrentMatch:(GKTurnBasedMatch *)sender];
+        NSLog(@"%@",[destination currentQuestion]);
+//        [destination setCurrentQuestion:[wholeQuestionsArray objectAtIndex:[selectedButton tag]]];
+//        NSLog(@"%d from map selection",[wholeQuestionsArray count]);
+//        [destination setWholeQuestionCount:[wholeQuestionsArray count]];
     }
 }
 - (void)didReceiveMemoryWarning
@@ -183,5 +189,34 @@
 - (void)viewDidUnload {
     [self setScrollView:nil];
     [super viewDidUnload];
+}
+- (IBAction)createMatch:(id)sender {
+    GKMatchRequest *request = [[GKMatchRequest alloc] init];
+    request.minPlayers = 2;
+    request.maxPlayers = 2;
+    
+    GKTurnBasedMatchmakerViewController *mmvc = [[GKTurnBasedMatchmakerViewController alloc] initWithMatchRequest:request];
+    mmvc.turnBasedMatchmakerDelegate = self;
+    
+    [self presentViewController:mmvc animated:YES completion:nil];
+}
+- (void)turnBasedMatchmakerViewControllerWasCancelled:(GKTurnBasedMatchmakerViewController *)viewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController didFailWithError:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController didFindMatch:(GKTurnBasedMatch *)match
+{
+    NSLog(@"entered didFindMatch");
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self performSegueWithIdentifier:@"openQuestion" sender:match];
+    }];
+
+}
+-(void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController playerQuitForMatch:(GKTurnBasedMatch *)match {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
