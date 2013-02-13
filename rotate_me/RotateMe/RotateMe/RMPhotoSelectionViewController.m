@@ -22,11 +22,12 @@
 {
     RMCustomImageView* touchedPhoto;
     Gallery* currentGallery;
-    NSArray* photos;
+    NSMutableArray* photos;
     CGSize imageScaleSize;
     NSMutableArray* imageThreads;
     UIImagePickerController* imagePicker;
     RMCustomImageView* testImageView;
+    BOOL needsRefresh;
     
 }
 
@@ -141,32 +142,15 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     }
     
     if(photos == nil){
-        photos = [currentGallery allPhotos];
+        photos = [NSMutableArray arrayWithArray:[currentGallery allPhotos]];
     }
 //    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(photos.count / 2.0) * size.width,
 //                                               topMargin  + size.height*2.0)];
     NSMutableArray* subViews = [[NSMutableArray alloc] init];
     [self.scrollView setContentOffset:CGPointMake([RMPhotoSelectionViewController getLastScroll], 0.0)];
-    for(int i=0; i < [photos count]; i++){
-        Photo* photo = (Photo*)[photos objectAtIndex:i];
-        
-        CGRect photoViewRect = CGRectMake(leftMargin+(i/2)*size.width, topMargin + (i%2) * size.height, photoSize.width, photoSize.height);
-        
-        RMPhotoSelectionImageView* photoView = [RMPhotoSelectionImageView viewWithPhoto:photo andFrame:photoViewRect andScaleSize:imageScaleSize];
-        __block RMCustomImageView* blockPhotoView = photoView;
-        [photoView setTouchesBegan:^{
-            if(touchedPhoto == nil){
-                touchedPhoto = blockPhotoView;
-                [self performSegueWithIdentifier:@"StartGame" sender:self];
-            }
-        }];
-        [subViews addObject:photoView];
-        
-    }
-    
     if([currentGallery.name compare:USER_GALLERY_NAME] == 0){
         RMCustomImageView* addFromGallery = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_photo_btn.png"]];
-//        [self.scrollView addSubview:addFromGallery];
+        //        [self.scrollView addSubview:addFromGallery];
         imagePicker = [[UIImagePickerController alloc] init];
         [imagePicker setDelegate:self];
         [addFromGallery setUserInteractionEnabled:YES];
@@ -187,6 +171,37 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [subViews addObject:addFromCamera];
     }
     
+    for(int i=0; i < [photos count]; i++){
+        Photo* photo = (Photo*)[photos objectAtIndex:i];
+        
+        CGRect photoViewRect = CGRectMake(leftMargin+(i/2)*size.width, topMargin + (i%2) * size.height, photoSize.width, photoSize.height);
+        
+        RMPhotoSelectionImageView* photoView = [RMPhotoSelectionImageView viewWithPhoto:photo andFrame:photoViewRect andScaleSize:imageScaleSize];
+        __block RMCustomImageView* blockPhotoView = photoView;
+        [photoView setTouchesBegan:^{
+            if(touchedPhoto == nil){
+                touchedPhoto = blockPhotoView;
+                [self performSegueWithIdentifier:@"StartGame" sender:self];
+            }
+        }];
+        photoView.layer.zPosition = 1;
+        if([currentGallery.name compare:USER_GALLERY_NAME] == 0){
+            RMCustomImageView* deleteView = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"delete_photo_btn.png"]];
+            int padding = 10;
+            deleteView.frame = CGRectMake(photoSize.width - deleteView.image.size.width-1-padding*0.5, 3-padding*0.5, deleteView.image.size.width+padding, deleteView.image.size.height+padding);
+            [deleteView setContentMode:UIViewContentModeCenter];
+            [photoView addSubview:deleteView];
+            deleteView.layer.zPosition = 2;
+            [deleteView setUserInteractionEnabled:YES];
+            [deleteView setTouchesBegan:^{
+                [photos removeObject:photo];
+                [photo removeFromDatabase];
+                [self refreshPhotos];
+            }];
+        }
+        [subViews addObject:photoView];
+    }
+    
     
     [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(subViews.count / 2.0) * size.width,
                                                topMargin  + size.height*2.0)];
@@ -197,6 +212,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [view setFrame:frame];
         [self applyBorderAndShadow:view];
         view.tag = PHOTO_SELECTION_IMAGEVIEW_TAG;
+        view.layer.zPosition = 1;
         [self.scrollView addSubview:view];
     }
     
@@ -208,9 +224,9 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     NSLog(@"didCancel");
     [Picker dismissModalViewControllerAnimated:YES];
     [[Picker parentViewController] dismissModalViewControllerAnimated:YES];
-    
-    
 }
+
+
 - (void) applyBorderAndShadow:(UIView*) view
 {
     view.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -218,7 +234,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [view.layer setShadowColor:[UIColor blackColor].CGColor];
     [view.layer setShadowOffset:CGSizeMake(0.0, 5.0)];
     view.layer.masksToBounds = NO;
-    //        self.layer.cornerRadius = 8; // if you like rounded corners
+    
     view.layer.shadowOffset = CGSizeMake(1, 2);
     view.layer.shadowRadius = 3;
     view.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -227,6 +243,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [view.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(5, 5, view.frame.size.width, view.frame.size.height)] CGPath]];
     
 }
+
 
 - (void)imagePickerController:(UIImagePickerController *) Picker
 
@@ -261,8 +278,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     [UIImageJPEGRepresentation(image, 1.0) writeToFile:imagePath atomically:YES];
     
-    [Photo createPhotoWithFileName:imageName andGallery:currentGallery];
-    photos = [currentGallery allPhotos];
+    Photo* photo = [Photo createPhotoWithFileName:imageName andGallery:currentGallery];
+    [photos addObject:photo];
     [self refreshPhotos];
 }
 
@@ -279,7 +296,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 {
     [self processImageThreads];
 }
-
 
 - (void)didReceiveMemoryWarning
 {
