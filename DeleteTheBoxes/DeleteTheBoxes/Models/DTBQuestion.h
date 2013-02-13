@@ -15,7 +15,6 @@
 @property NSString *answer;
 @property int score;
 @property int questionOrder;
-@property BOOL isPurchased;
 @property NSMutableArray *questionArray;
 
 + (DTBQuestion*)createQuestionWithWholeQuestion:(NSString *)question andAnswer:(NSString *)answer andOrder:(int)order;

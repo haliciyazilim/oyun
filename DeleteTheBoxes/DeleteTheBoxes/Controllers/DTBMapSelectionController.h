@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
 
-@interface DTBMapSelectionController : UIViewController <GKTurnBasedMatchmakerViewControllerDelegate>
+@interface DTBMapSelectionController : UIViewController <GKTurnBasedMatchmakerViewControllerDelegate, GKTurnBasedEventHandlerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 - (IBAction)createMatch:(id)sender;

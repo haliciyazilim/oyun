@@ -6,4 +6,4 @@
 //  Copyright (c) 2013 Halıcı. All rights reserved.
 //
 
-#define kAuthenticationChangedNotification @"AuthenticedChangedNotification"
+#define kAuthenticationChangedNotification @"AuthenticationChangedNotification"

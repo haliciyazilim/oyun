@@ -12,6 +12,6 @@
 
 @interface RMGallerySelectionItemView : RMCustomImageView
 
-- (id) initWithGallery:(Gallery*) _gallery;
+- (id) initWithGallery:(Gallery*) _gallery animate:(BOOL)animate;
 
 @end

@@ -98,7 +98,7 @@
 		05599F0516C52DF000B1AFD2 /* delete_counter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "delete_counter@2x.png"; path = "box/delete_counter@2x.png"; sourceTree = "<group>"; };
 		0587396816C8DF7000434026 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
 		0587396916C8DF7000434026 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
-		0587396B16C8DFB100434026 /* DTBAppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBAppSpecificValues.h; sourceTree = "<group>"; };
+		0587396B16C8DFB100434026 /* DTBGameCenterAppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBGameCenterAppSpecificValues.h; sourceTree = "<group>"; };
 		05A1DB0216C003AD00022267 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05A1DB0416C003D000022267 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05A1DB0516C0041100022267 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -215,7 +215,7 @@
 				05DD129416C2941100072ED2 /* DTBBundleInitializer.m */,
 				0587396816C8DF7000434026 /* GameCenterManager.h */,
 				0587396916C8DF7000434026 /* GameCenterManager.m */,
-				0587396B16C8DFB100434026 /* DTBAppSpecificValues.h */,
+				0587396B16C8DFB100434026 /* DTBGameCenterAppSpecificValues.h */,
 			);
 			path = Managers;
 			sourceTree = "<group>";

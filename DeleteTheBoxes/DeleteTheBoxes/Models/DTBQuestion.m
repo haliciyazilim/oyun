@@ -18,31 +18,14 @@
 @dynamic answer;
 @dynamic score;
 @dynamic questionOrder;
-@dynamic isPurchased;
 @synthesize questionArray;
 
 + (DTBQuestion *)createQuestionWithWholeQuestion:(NSString *)question andAnswer:(NSString *)answer andOrder:(int) order {
     DTBQuestion* quest = (DTBQuestion*)[[DTBDatabaseManager sharedInstance] createEntity:@"Question"];
     quest.wholeQuestion = question;
     quest.answer = answer;
-//    if (order == 1) {
-//        quest.score = 90000;
-//    }
-//    else if(order == 2){
-//        quest.score = 80454;
-//    }
-//    else{
-        quest.score = INT32_MAX;
-//    }
+    quest.score = INT32_MAX;
     quest.questionOrder = order;
-    if (order <= kFreeQuestionCount) {
-        NSLog(@"is purchased");
-        quest.isPurchased = YES;
-    }
-    else{
-        NSLog(@"it is not purchased");
-        quest.isPurchased = NO;
-    }
     
     [[DTBDatabaseManager sharedInstance] saveContext];
     return quest;

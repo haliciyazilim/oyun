@@ -47,7 +47,13 @@ static RMInGameViewController* lastInstance = nil;
 
 
 - (void) setupViews {
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]];
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]]];
+    }
+    else{
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]];
+        
+    }
 }
 
 - (int)tileSize {

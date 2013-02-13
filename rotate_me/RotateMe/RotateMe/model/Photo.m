@@ -97,7 +97,8 @@
 
 - (void) removeFromDatabase
 {
-    [[RMDatabaseManager sharedInstance] deleteObject:self.photoManagedObject];
+    
+    [[RMDatabaseManager sharedInstance] deleteObject:managedObject];
 }
 
 @end

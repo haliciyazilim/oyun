@@ -22,11 +22,12 @@
 {
     RMCustomImageView* touchedPhoto;
     Gallery* currentGallery;
-    NSArray* photos;
+    NSMutableArray* photos;
     CGSize imageScaleSize;
     NSMutableArray* imageThreads;
     UIImagePickerController* imagePicker;
     RMCustomImageView* testImageView;
+    BOOL needsRefresh;
     
 }
 
@@ -63,8 +64,14 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     touchedPhoto = nil;
-//    [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
+    //    [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg-568h.png"]]];
+    }
+    else{
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
+        
+    }
     
     DIFFICULTY difficulty = getCurrentDifficulty();
     switch (difficulty) {
@@ -141,12 +148,37 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     }
     
     if(photos == nil){
-        photos = [currentGallery allPhotos];
+        photos = [NSMutableArray arrayWithArray:[currentGallery allPhotos]];
     }
-    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(photos.count / 2.0) * size.width,
-                                               topMargin  + size.height*2.0)];
-    
+//    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(photos.count / 2.0) * size.width,
+//                                               topMargin  + size.height*2.0)];
+    NSMutableArray* subViews = [[NSMutableArray alloc] init];
     [self.scrollView setContentOffset:CGPointMake([RMPhotoSelectionViewController getLastScroll], 0.0)];
+    if([currentGallery.name compare:USER_GALLERY_NAME] == 0){
+        RMCustomImageView* addFromGallery = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_photo_btn.png"]];
+        //        [self.scrollView addSubview:addFromGallery];
+        imagePicker = [[UIImagePickerController alloc] init];
+        [imagePicker setDelegate:self];
+        [addFromGallery setUserInteractionEnabled:YES];
+        [addFromGallery setContentMode:UIViewContentModeCenter];
+        [addFromGallery setTouchesBegan:^{
+            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentModalViewController:imagePicker animated:YES];
+        }];
+        
+        RMCustomImageView* addFromCamera = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"take_photo_btn.png"]];
+        [addFromCamera setUserInteractionEnabled:YES];
+        [addFromCamera setTouchesBegan:^{
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+                imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentModalViewController:imagePicker animated:YES];
+            }
+        }];
+        [addFromCamera setContentMode:UIViewContentModeCenter];
+        [subViews addObject:addFromGallery];
+        [subViews addObject:addFromCamera];
+    }
+    
     for(int i=0; i < [photos count]; i++){
         Photo* photo = (Photo*)[photos objectAtIndex:i];
         
@@ -160,38 +192,38 @@ static RMPhotoSelectionViewController* lastInstance = nil;
                 [self performSegueWithIdentifier:@"StartGame" sender:self];
             }
         }];
-        
-        [self.scrollView addSubview:photoView];
-                
+        photoView.layer.zPosition = 1;
+        if([currentGallery.name compare:USER_GALLERY_NAME] == 0){
+            RMCustomImageView* deleteView = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"delete_photo_btn.png"]];
+            int padding = 10;
+            deleteView.frame = CGRectMake(photoSize.width - deleteView.image.size.width-1-padding*0.5, 3-padding*0.5, deleteView.image.size.width+padding, deleteView.image.size.height+padding);
+            [deleteView setContentMode:UIViewContentModeCenter];
+            [photoView addSubview:deleteView];
+            deleteView.layer.zPosition = 2;
+            [deleteView setUserInteractionEnabled:YES];
+            [deleteView setTouchesBegan:^{
+                [photos removeObject:photo];
+                [photo removeFromDatabase];
+                [self refreshPhotos];
+            }];
+        }
+        [subViews addObject:photoView];
     }
     
-    if([currentGallery.name compare:USER_GALLERY_NAME] == 0){
-        RMCustomImageView* addFromGallery = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"Plus_sign.png"]];
-        CGRect photoViewRect = CGRectMake(leftMargin+([photos count]/2)*size.width, topMargin + ([photos count]%2) * size.height, photoSize.width, photoSize.height);
-        [addFromGallery setFrame:photoViewRect];
-        [self.scrollView addSubview:addFromGallery];
-        imagePicker = [[UIImagePickerController alloc] init];
-//        imagePicker set
-        [imagePicker setDelegate:self];
-//        testImageView  = [[RMCustomImageView alloc] init];
-//        testImageView.frame = CGRectMake(leftMargin+(([photos count]+1)/2)*size.width, topMargin + (([photos count]+1)%2) * size.height, photoSize.width, photoSize.height);
-//        [self.scrollView addSubview:testImageView];
-        [addFromGallery setUserInteractionEnabled:YES];
-        [addFromGallery setTouchesBegan:^{
-            
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-                imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            }
-            else{
-                imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            }
-            
-            NSLog(@"I'm here");
-            
-            [self presentModalViewController:imagePicker animated:YES];
-        }];
-        
+    
+    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(subViews.count / 2.0) * size.width,
+                                               topMargin  + size.height*2.0)];
+    
+    for(int i=0;i< [subViews count];i++){
+        CGRect frame = CGRectMake(leftMargin+(i/2)*size.width, topMargin + (i%2) * size.height, photoSize.width, photoSize.height);
+        UIView* view = [subViews objectAtIndex:i];
+        [view setFrame:frame];
+        [self applyBorderAndShadow:view];
+        view.tag = PHOTO_SELECTION_IMAGEVIEW_TAG;
+        view.layer.zPosition = 1;
+        [self.scrollView addSubview:view];
     }
+    
     
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
@@ -200,9 +232,26 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     NSLog(@"didCancel");
     [Picker dismissModalViewControllerAnimated:YES];
     [[Picker parentViewController] dismissModalViewControllerAnimated:YES];
+}
+
+
+- (void) applyBorderAndShadow:(UIView*) view
+{
+    view.layer.borderColor = [UIColor whiteColor].CGColor;
+    view.layer.borderWidth = 2.0f;
+    [view.layer setShadowColor:[UIColor blackColor].CGColor];
+    [view.layer setShadowOffset:CGSizeMake(0.0, 5.0)];
+    view.layer.masksToBounds = NO;
     
+    view.layer.shadowOffset = CGSizeMake(1, 2);
+    view.layer.shadowRadius = 1;
+    view.layer.shadowColor = [UIColor blackColor].CGColor;
+    view.layer.shadowOpacity = 0.6;
+    
+    [view.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)] CGPath]];
     
 }
+
 
 - (void)imagePickerController:(UIImagePickerController *) Picker
 
@@ -237,8 +286,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     [UIImageJPEGRepresentation(image, 1.0) writeToFile:imagePath atomically:YES];
     
-    [Photo createPhotoWithFileName:imageName andGallery:currentGallery];
-    photos = [currentGallery allPhotos];
+    Photo* photo = [Photo createPhotoWithFileName:imageName andGallery:currentGallery];
+    [photos addObject:photo];
     [self refreshPhotos];
 }
 
@@ -255,7 +304,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 {
     [self processImageThreads];
 }
-
 
 - (void)didReceiveMemoryWarning
 {
