@@ -9,5 +9,7 @@ rotate_me/RotateMe/RotateMe.xcodeproj/xcuserdata
 DeleteTheBoxes/DeleteTheBoxes.xcodeproj/project.xcworkspace
 DeleteTheBoxes/DeleteTheBoxes.xcodeproj/xcuserdata
 
-Equify/Equify.xcodeproj/project.xcworkspace/xcuserdata/Alperen/xcuserdatad/UserInterfaceState.xcuserstate
-Equify/Equify.xcodeproj/xcuserdata/
+Equify/Equify.xcodeproj/project.xcworkspace
+Equify/Equify.xcodeproj/xcuserdata
+
+*.xcuserstate
