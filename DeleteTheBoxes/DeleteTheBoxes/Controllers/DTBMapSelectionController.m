@@ -12,15 +12,14 @@
 #import "DTBAppSpecificValues.h"
 #import "DTBViewController.h"
 #import "StopWatch.h"
-
-@interface DTBMapSelectionController ()
-
-@end
+#import "DTBGameCenterAppSpecificValues.h"
+#import "DTBSegue.h"
 
 @implementation DTBMapSelectionController
 {
     UIButton *selectedButton;
     NSArray *wholeQuestionsArray;
+    NSArray *myMatches;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -39,6 +38,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"entered didLoad");
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -49,13 +49,66 @@
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
     }
 //    wholeQuestionsArray = [DTBQuestion getAllQuestions];
+    
+    [GKTurnBasedMatch loadMatchesWithCompletionHandler:^(NSArray *matches, NSError *error) {
+        myMatches = [[NSArray alloc] initWithArray:matches];
+        [self leaveMatches];
+    }];
+    
+    
+}
+- (void) leaveMatches {
+    for (int i = 0; i < [myMatches count]; i++) {
+        [[myMatches objectAtIndex:i]  participantQuitOutOfTurnWithOutcome:GKTurnBasedMatchOutcomeQuit withCompletionHandler:^(NSError *error) {
+            if (error) {
+                NSLog(@"quit is not successfull");
+            } else {
+                NSLog(@"quited match");
+                [[myMatches objectAtIndex:i] removeWithCompletionHandler:^(NSError *error) {
+                    NSLog(@"REMOVED");
+                }];
+            }
+        }];
+//        [(GKTurnBasedMatch *)[myMatches objectAtIndex:i] endMatchInTurnWithMatchData:nil completionHandler:^(NSError *error) {
+//            if (error) {
+//                NSLog(@"error occured : %@",error.localizedDescription);
+//            }
+//            else{
+//                NSLog(@"end operation is successfull");
+//            }
+//        }];
+    }
+}
+- (void) deleteMatches {
+    NSLog(@"entered deleteMatches");
+    NSLog(@"%d",[myMatches count]);
+    for (int i = 0; i < [myMatches count]; i++) {
+        [(GKTurnBasedMatch *)[myMatches objectAtIndex:i] removeWithCompletionHandler:^(NSError *error) {
+            if (error) {
+                NSLog(@"%@",error.localizedDescription);
+            } else {
+                NSLog(@"remove operation is completed succesfully");
+            }
+        }];
+    }
+
+}
+- (void) viewDidAppear:(BOOL)animated {
+
 }
 - (void)viewWillAppear:(BOOL)animated {
     if (selectedButton) {
         [self unhighlight:selectedButton];
         selectedButton = nil;
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(localPlayerAuthenticationChanged:) name:kAuthenticationChangedNotification object:nil];
     [self updateScrollView];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAuthenticationChangedNotification object:nil];
+}
+-(void)localPlayerAuthenticationChanged:(NSNotification *)notif {
+    [self installTurnBasedEventHandler];
 }
 - (void) cleanScrollView {
     for (UIView *subview in [self.scrollView subviews]) {
@@ -96,16 +149,16 @@
         UILabel *buttonLabel;
         UILabel *timerLabel;
         
-        if (![currentProccessingQuestion isPurchased]) {
-            question.layer.shadowColor = [[UIColor colorWithWhite:0.0 alpha:0.10] CGColor];
-            question.layer.borderColor = [[UIColor colorWithRed:0.557 green:0.557 blue:0.557 alpha:1.0] CGColor];
-            [question setBackgroundColor:[UIColor colorWithRed:0.773 green:0.773 blue:0.773 alpha:1.0]];
-            buttonLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 70.0, 70.0)];
-            [buttonLabel setTextColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0]];
-            [question addTarget:self action:@selector(buyPro) forControlEvents:UIControlEventTouchUpInside];
-
-        }
-        else{
+//        if (![currentProccessingQuestion isPurchased]) {
+//            question.layer.shadowColor = [[UIColor colorWithWhite:0.0 alpha:0.10] CGColor];
+//            question.layer.borderColor = [[UIColor colorWithRed:0.557 green:0.557 blue:0.557 alpha:1.0] CGColor];
+//            [question setBackgroundColor:[UIColor colorWithRed:0.773 green:0.773 blue:0.773 alpha:1.0]];
+//            buttonLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 70.0, 70.0)];
+//            [buttonLabel setTextColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0]];
+//            [question addTarget:self action:@selector(buyPro) forControlEvents:UIControlEventTouchUpInside];
+//
+//        }
+//        else{
             question.layer.shadowColor = [[UIColor colorWithWhite:1.0 alpha:0.35] CGColor];
             question.layer.borderColor = [[UIColor colorWithRed:0.8 green:0.741 blue:0.659 alpha:1.0] CGColor];
             [question setBackgroundColor:[UIColor colorWithRed:0.894 green:0.855 blue:0.8 alpha:1.0]];
@@ -128,7 +181,7 @@
             [question addTarget:self action:@selector(makeHighlighted:) forControlEvents:UIControlEventTouchDown];
             [question addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpOutside];
             [question addTarget:self action:@selector(openQuestion:) forControlEvents:UIControlEventTouchUpInside];
-        }
+//        }
         
         [buttonLabel setFont:[UIFont fontWithName:@"Helvetica" size:24.0]];
         [buttonLabel setText:[NSString stringWithFormat:@"%d",[currentProccessingQuestion questionOrder]]];
@@ -166,15 +219,21 @@
     selectedButton = button;
     [self highlight:selectedButton];
     [self performSegueWithIdentifier:@"openQuestion" sender:self];
+
+//    [UIView animateWithDuration:0.5 animations:^{
+//        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-320, self.view.frame.size.width, self.view.frame.size.height)];
+//    } completion:^(BOOL finished) {
+//    }];
 }
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void) prepareForSegue:(DTBSegue *)segue sender:(id)sender {
     NSLog(@"entered prepareForSegue and identifier is: %@",segue.identifier);
+    NSLog(@"source: %@, and destination: %@",segue.sourceViewController,segue.destinationViewController);
     if ([segue.identifier isEqualToString:@"openQuestion"]) {
         DTBViewController *destination = [segue destinationViewController];
         [destination setCurrentQuestion:[wholeQuestionsArray objectAtIndex:3]];
         [destination setWholeQuestionCount:15];
         [destination setCurrentMatch:(GKTurnBasedMatch *)sender];
-        NSLog(@"%@",[destination currentQuestion]);
+//        NSLog(@"%@",[destination currentQuestion]);
 //        [destination setCurrentQuestion:[wholeQuestionsArray objectAtIndex:[selectedButton tag]]];
 //        NSLog(@"%d from map selection",[wholeQuestionsArray count]);
 //        [destination setWholeQuestionCount:[wholeQuestionsArray count]];
@@ -190,6 +249,10 @@
     [self setScrollView:nil];
     [super viewDidUnload];
 }
+- (void) installTurnBasedEventHandler
+{
+    [GKTurnBasedEventHandler sharedTurnBasedEventHandler].delegate = self;
+}
 - (IBAction)createMatch:(id)sender {
     GKMatchRequest *request = [[GKMatchRequest alloc] init];
     request.minPlayers = 2;
@@ -200,6 +263,7 @@
     
     [self presentViewController:mmvc animated:YES completion:nil];
 }
+#pragma mark GKTurnBasedMatchmakerViewControllerDelegate Protocol methods
 - (void)turnBasedMatchmakerViewControllerWasCancelled:(GKTurnBasedMatchmakerViewController *)viewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -212,11 +276,17 @@
 {
     NSLog(@"entered didFindMatch");
     [self dismissViewControllerAnimated:YES completion:^{
-        [self performSegueWithIdentifier:@"openQuestion" sender:match];
+//        [self performSegueWithIdentifier:@"openQuestion" sender:match];
     }];
 
 }
 -(void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController playerQuitForMatch:(GKTurnBasedMatch *)match {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [match removeWithCompletionHandler:^(NSError *error) {
+//        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+}
+#pragma mark GKTurnBasedEventHandlerDelegate Protocol methods
+- (void)handleInviteFromGameCenter:(NSArray *)playersToInvite {
+    
 }
 @end
