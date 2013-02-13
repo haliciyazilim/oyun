@@ -18,6 +18,7 @@
 @implementation RMGallerySelectionViewController
 {
     Gallery* touchedGallery;
+    RMGallerySelectionItemView *touchedGalleryView;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,10 +55,13 @@
                                        galleryItem.frame.size.height);
         [galleryItem setUserInteractionEnabled:YES];
         
+        __weak RMGallerySelectionItemView *unretainedGalleryItem = galleryItem;
+        
         [galleryItem setTouchesBegan:^{
             if(touchedGallery != nil)
                 return;
             touchedGallery = gallery;
+            touchedGalleryView = unretainedGalleryItem;
             [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
             
         }];
@@ -80,6 +84,10 @@
     RMPhotoSelectionViewController* photoSelectionViewController = [segue destinationViewController];
     [photoSelectionViewController setGallery:touchedGallery];
     touchedGallery = nil;
+}
+
+- (RMGallerySelectionItemView *) getTouchedGallerySelectionItemView {
+    return touchedGalleryView;
 }
 
 -(void)viewDidAppear:(BOOL)animated

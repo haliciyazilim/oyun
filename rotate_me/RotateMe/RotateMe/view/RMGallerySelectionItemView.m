@@ -15,7 +15,6 @@
 {
     Gallery* gallery;
     NSMutableArray* galleryPhotos;
-    NSMutableArray* imageViews;
     int scaleFactor;
     NSString* galleryName;
 }
@@ -47,13 +46,13 @@
 
 - (void) loadImages
 {
-    imageViews = [[NSMutableArray alloc] init];
+    self.imageViews = [[NSMutableArray alloc] init];
     UIImage* maskImage = [UIImage imageNamed:@"gallery_selection_mask.png"];
     for(Photo* photo in galleryPhotos){
         UIImageView* borderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_selection_bg.png"]];
         borderImageView.frame = [self getBorderImageViewFrame];
         borderImageView.alpha = 0.0;
-        [imageViews addObject:borderImageView];
+        [self.imageViews addObject:borderImageView];
         UIImage* image = [[photo getImage] imageByScalingAndCroppingForSize:CGSizeMake([self getPhotoImageSize].width * 2, [self getPhotoImageSize].height * 2)];
         UIImageView* photoImageView = [[UIImageView alloc] initWithImage:image];
         
@@ -64,11 +63,11 @@
         [self addSubview:borderImageView];
     }
     
-    if([imageViews count] == 0){
+    if([self.imageViews count] == 0){
         UIImageView* borderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_selection_bg.png"]];
         borderImageView.frame = [self getBorderImageViewFrame];
         borderImageView.alpha = 0.0;
-        [imageViews addObject:borderImageView];
+        [self.imageViews addObject:borderImageView];
         [self addSubview:borderImageView];
      }
     
@@ -82,8 +81,8 @@
     [galleryNameLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.20]];
     [galleryNameLabel setShadowOffset:CGSizeMake(0, 1)];
     
-    for(int i=0;i<[imageViews count];i++){
-        UIImageView* view = [imageViews objectAtIndex:i];
+    for(int i=0;i<[self.imageViews count];i++){
+        UIImageView* view = [self.imageViews objectAtIndex:i];
         int rand = arc4random();
         CGFloat angle = ((abs(rand) % 128)/128.0) * (M_PI/36) + M_PI/36;
         
@@ -96,13 +95,13 @@
             [maskImageView setAlpha:0.0];
         }
         if(i == 1){
-            [view.superview insertSubview:view belowSubview:[imageViews objectAtIndex:0]];
+            [view.superview insertSubview:view belowSubview:[self.imageViews objectAtIndex:0]];
             view.transform = CGAffineTransformTranslate(view.transform, 0, 0);
             view.transform = CGAffineTransformRotate(view.transform, -angle);
             [maskImageView setAlpha:0.13];
         }
         if(i == 2){
-            [view.superview insertSubview:view belowSubview:[imageViews objectAtIndex:1]];
+            [view.superview insertSubview:view belowSubview:[self.imageViews objectAtIndex:1]];
             view.transform = CGAffineTransformTranslate(view.transform, 30, 10);
             view.transform = CGAffineTransformRotate(view.transform, angle);
             [maskImageView setAlpha:0.20];
@@ -115,8 +114,8 @@
 
 -(void)showViews
 {
-    for(int i=0;i<[imageViews count];i++){
-        UIImageView* view = [imageViews objectAtIndex:i];
+    for(int i=0;i<[self.imageViews count];i++){
+        UIImageView* view = [self.imageViews objectAtIndex:i];
         [UIView animateWithDuration:0.3 delay:0.9 - 0.3*i options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [view setAlpha:1.0];
         } completion:^(BOOL finished) {}];
