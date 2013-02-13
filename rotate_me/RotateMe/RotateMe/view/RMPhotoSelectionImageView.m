@@ -38,24 +38,13 @@
         [self setContentMode:UIViewContentModeScaleAspectFill];
         [self setClipsToBounds:YES];
         [self setUserInteractionEnabled:YES];
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
-        self.layer.borderWidth = 2.0f;
-        [self.layer setShadowColor:[UIColor blackColor].CGColor];
-        [self.layer setShadowOffset:CGSizeMake(0.0, 5.0)];
         
         UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] init];
         activityIndicator.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         [activityIndicator startAnimating];
         [self addSubview:activityIndicator];
         
-        self.layer.masksToBounds = NO;
-//        self.layer.cornerRadius = 8; // if you like rounded corners
-        self.layer.shadowOffset = CGSizeMake(3, 3);
-        self.layer.shadowRadius = 6;
-        self.layer.shadowColor = [UIColor blackColor].CGColor;
-        self.layer.shadowOpacity = 0.5;
-        
-        [self.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(5, 5, frame.size.width, frame.size.height)] CGPath]];
+//        [RMPhotoSelectionImageView applyBorderAndShadow:self];
         
         
 
@@ -83,6 +72,8 @@
     }
     return self;
 }
+
+
 
 - (void) loadImageForView:(NSArray*)params
 {
