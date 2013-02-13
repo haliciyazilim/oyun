@@ -7,7 +7,7 @@
 //
 
 #import "GameCenterManager.h"
-#import "DTBAppSpecificValues.h"
+#import "DTBGameCenterAppSpecificValues.h"
 
 @implementation GameCenterManager
 
