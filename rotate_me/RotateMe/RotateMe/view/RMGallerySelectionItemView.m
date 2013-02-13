@@ -18,13 +18,15 @@
     NSMutableArray* imageViews;
     int scaleFactor;
     NSString* galleryName;
+    BOOL shouldAnimate;
 }
 
 
-- (id) initWithGallery:(Gallery*) _gallery
+- (id) initWithGallery:(Gallery*) _gallery animate:(BOOL)animate
 {
     if(self = [super init]){
         gallery = _gallery;
+        shouldAnimate = animate;
         galleryName = gallery.name;
         galleryPhotos = [[NSMutableArray alloc] init];
         NSArray* photos = [gallery allPhotos];
@@ -52,7 +54,9 @@
     for(Photo* photo in galleryPhotos){
         UIImageView* borderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_selection_bg.png"]];
         borderImageView.frame = [self getBorderImageViewFrame];
-        borderImageView.alpha = 0.0;
+        if(shouldAnimate)
+            borderImageView.alpha = 0.0;
+        
         [imageViews addObject:borderImageView];
         UIImage* image = [[photo getImage] imageByScalingAndCroppingForSize:CGSizeMake([self getPhotoImageSize].width * 2, [self getPhotoImageSize].height * 2)];
         UIImageView* photoImageView = [[UIImageView alloc] initWithImage:image];
@@ -67,7 +71,8 @@
     if([imageViews count] == 0){
         UIImageView* borderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_selection_bg.png"]];
         borderImageView.frame = [self getBorderImageViewFrame];
-        borderImageView.alpha = 0.0;
+        if(shouldAnimate)
+            borderImageView.alpha = 0.0;
         [imageViews addObject:borderImageView];
         [self addSubview:borderImageView];
      }
@@ -110,7 +115,8 @@
         }
         [view.layer setShouldRasterize:YES];
     }
-    [self performSelectorOnMainThread:@selector(showViews) withObject:nil waitUntilDone:NO];
+    if(shouldAnimate)
+        [self performSelectorOnMainThread:@selector(showViews) withObject:nil waitUntilDone:NO];
 }
 
 -(void)showViews

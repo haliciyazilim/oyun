@@ -173,9 +173,9 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         imagePicker = [[UIImagePickerController alloc] init];
 //        imagePicker set
         [imagePicker setDelegate:self];
-        testImageView  = [[RMCustomImageView alloc] init];
-        testImageView.frame = CGRectMake(leftMargin+(([photos count]+1)/2)*size.width, topMargin + (([photos count]+1)%2) * size.height, photoSize.width, photoSize.height);
-        [self.scrollView addSubview:testImageView];
+//        testImageView  = [[RMCustomImageView alloc] init];
+//        testImageView.frame = CGRectMake(leftMargin+(([photos count]+1)/2)*size.width, topMargin + (([photos count]+1)%2) * size.height, photoSize.width, photoSize.height);
+//        [self.scrollView addSubview:testImageView];
         [addFromGallery setUserInteractionEnabled:YES];
         [addFromGallery setTouchesBegan:^{
             
@@ -208,13 +208,38 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    testImageView.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
+//    testImageView.image = image ;
+    [self createAndSavePhotoFromImage:image];
     NSLog(@"didFinishPicking");
     
     [Picker dismissModalViewControllerAnimated:YES];
     [[Picker parentViewController] dismissModalViewControllerAnimated:YES];
     
     
+}
+
+- (void) createAndSavePhotoFromImage:(UIImage*)image
+{
+    NSError *error;
+//    NSLog(@"%f",[NSDate timeIntervalSinceReferenceDate]);
+    NSString* imageName = [NSString stringWithFormat:@"%.0f.jpg",([NSDate timeIntervalSinceReferenceDate]*1000)];
+    NSLog(@"imageName: %@",imageName);
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:USER_GALLERY_NAME];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:folderPath
+                              withIntermediateDirectories:NO
+                                               attributes:nil
+                                                    error:&error];
+      
+    NSString* imagePath = [folderPath stringByAppendingPathComponent:imageName];
+    
+    [UIImageJPEGRepresentation(image, 1.0) writeToFile:imagePath atomically:YES];
+    
+    [Photo createPhotoWithFileName:imageName andGallery:currentGallery];
+    photos = [currentGallery allPhotos];
+    [self refreshPhotos];
 }
 
 - (void) processImageThreads

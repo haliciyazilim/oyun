@@ -95,4 +95,9 @@
     return image;
 }
 
+- (void) removeFromDatabase
+{
+    [[RMDatabaseManager sharedInstance] deleteObject:self.photoManagedObject];
+}
+
 @end

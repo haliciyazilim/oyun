@@ -11,7 +11,7 @@
 #import "Config.h"
 @class Gallery;
 
-@interface RMPhotoSelectionViewController : UIViewController <UIImagePickerControllerDelegate>
+@interface RMPhotoSelectionViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 - (IBAction)difficultyChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentedButtons;
