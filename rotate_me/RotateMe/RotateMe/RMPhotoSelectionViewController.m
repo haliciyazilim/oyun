@@ -28,7 +28,7 @@
     UIImagePickerController* imagePicker;
     RMCustomImageView* testImageView;
     BOOL needsRefresh;
-    
+    UIPopoverController *popoverController;
 }
 
 -(id) init
@@ -157,13 +157,46 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     if([currentGallery.name compare:USER_GALLERY_NAME] == 0){
         RMCustomImageView* addFromGallery = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_photo_btn.png"]];
         //        [self.scrollView addSubview:addFromGallery];
-        imagePicker = [[UIImagePickerController alloc] init];
-        [imagePicker setDelegate:self];
+        
+        if (!imagePicker) {
+            imagePicker = [[UIImagePickerController alloc] init];
+            [imagePicker setDelegate:self];
+        }
+        
         [addFromGallery setUserInteractionEnabled:YES];
         [addFromGallery setContentMode:UIViewContentModeCenter];
+        
+        CGRect scrollViewFrame = self.scrollView.frame;
+        CGRect addFromGalleryFrame = addFromGallery.frame;
+        
+        if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
+            if (!popoverController) {
+                popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+            }
+        }
+        
+        
         [addFromGallery setTouchesBegan:^{
             imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [self presentModalViewController:imagePicker animated:YES];
+            
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+                [self presentModalViewController:imagePicker animated:YES];
+            } else {
+                if (![popoverController isPopoverVisible]) {
+                    [popoverController presentPopoverFromRect:CGRectMake(scrollViewFrame.origin.x + addFromGalleryFrame.origin.x,
+                                                                         scrollViewFrame.origin.y + addFromGalleryFrame.origin.y,
+                                                                         addFromGalleryFrame.size.width,
+                                                                         addFromGalleryFrame.size.height)
+                                                       inView:self.view
+                                     permittedArrowDirections:UIPopoverArrowDirectionDown
+                                                     animated:YES];
+                } else {
+                    [popoverController dismissPopoverAnimated:YES];
+                }
+            }
+            
+            
+            
         }];
         
         RMCustomImageView* addFromCamera = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"take_photo_btn.png"]];
@@ -263,9 +296,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSLog(@"didFinishPicking");
     
     [Picker dismissModalViewControllerAnimated:YES];
-    [[Picker parentViewController] dismissModalViewControllerAnimated:YES];
     
-    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [[Picker parentViewController] dismissModalViewControllerAnimated:YES];
+    } else {
+        [popoverController dismissPopoverAnimated:YES];
+    }
 }
 
 - (void) createAndSavePhotoFromImage:(UIImage*)image
