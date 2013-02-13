@@ -64,8 +64,14 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     touchedPhoto = nil;
-//    [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
+    //    [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg-568h.png"]]];
+    }
+    else{
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
+        
+    }
     
     DIFFICULTY difficulty = getCurrentDifficulty();
     switch (difficulty) {
@@ -154,6 +160,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         imagePicker = [[UIImagePickerController alloc] init];
         [imagePicker setDelegate:self];
         [addFromGallery setUserInteractionEnabled:YES];
+        [addFromGallery setContentMode:UIViewContentModeCenter];
         [addFromGallery setTouchesBegan:^{
             imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             [self presentModalViewController:imagePicker animated:YES];
@@ -167,6 +174,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
                 [self presentModalViewController:imagePicker animated:YES];
             }
         }];
+        [addFromCamera setContentMode:UIViewContentModeCenter];
         [subViews addObject:addFromGallery];
         [subViews addObject:addFromCamera];
     }
@@ -236,11 +244,11 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     view.layer.masksToBounds = NO;
     
     view.layer.shadowOffset = CGSizeMake(1, 2);
-    view.layer.shadowRadius = 3;
+    view.layer.shadowRadius = 1;
     view.layer.shadowColor = [UIColor blackColor].CGColor;
-    view.layer.shadowOpacity = 0.8;
+    view.layer.shadowOpacity = 0.6;
     
-    [view.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(5, 5, view.frame.size.width, view.frame.size.height)] CGPath]];
+    [view.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)] CGPath]];
     
 }
 

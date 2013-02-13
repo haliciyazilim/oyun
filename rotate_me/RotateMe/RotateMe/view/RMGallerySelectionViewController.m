@@ -38,7 +38,13 @@
     [super viewDidLoad];
     isFirstLoad = YES;
     touchedGallery = nil;
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg-568h.png"]]];
+    }
+    else{
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
+        
+    }
 	// Do any additional setup after loading the view.
     [self.view setUserInteractionEnabled:YES];
     [self.scrollView setUserInteractionEnabled:YES];

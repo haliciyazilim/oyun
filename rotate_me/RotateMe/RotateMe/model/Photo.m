@@ -97,6 +97,7 @@
 
 - (void) removeFromDatabase
 {
+    
     [[RMDatabaseManager sharedInstance] deleteObject:managedObject];
 }
 
