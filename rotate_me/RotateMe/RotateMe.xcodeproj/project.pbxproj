@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		41396EBB16CB10240062F908 /* RMGallerySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 41396EBA16CB10240062F908 /* RMGallerySegue.m */; };
 		415149DF16C3EFCF003BE22A /* RMInGameIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 415149DE16C3EFCF003BE22A /* RMInGameIPadViewController.m */; };
 		415149E216C3F18F003BE22A /* photo_holder_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 415149E016C3F18F003BE22A /* photo_holder_ipad.png */; };
 		415149E316C3F18F003BE22A /* photo_holder_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 415149E116C3F18F003BE22A /* photo_holder_ipad@2x.png */; };
@@ -105,8 +104,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		41396EB916CB10240062F908 /* RMGallerySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMGallerySegue.h; path = view/RMGallerySegue.h; sourceTree = "<group>"; };
-		41396EBA16CB10240062F908 /* RMGallerySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMGallerySegue.m; path = view/RMGallerySegue.m; sourceTree = "<group>"; };
 		415149DD16C3EFCF003BE22A /* RMInGameIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMInGameIPadViewController.h; path = view/RMInGameIPadViewController.h; sourceTree = "<group>"; };
 		415149DE16C3EFCF003BE22A /* RMInGameIPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMInGameIPadViewController.m; path = view/RMInGameIPadViewController.m; sourceTree = "<group>"; };
 		415149E016C3F18F003BE22A /* photo_holder_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_holder_ipad.png; sourceTree = "<group>"; };
@@ -247,15 +244,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		41396EB816CA9A180062F908 /* Segues */ = {
-			isa = PBXGroup;
-			children = (
-				41396EB916CB10240062F908 /* RMGallerySegue.h */,
-				41396EBA16CB10240062F908 /* RMGallerySegue.m */,
-			);
-			name = Segues;
-			sourceTree = "<group>";
-		};
 		41B94CC316C2E55A00B7C70A /* iPad View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,7 +399,6 @@
 		AED218E616BA9CDB00271930 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				41396EB816CA9A180062F908 /* Segues */,
 				AEDFA2C316C133DD00BB440C /* View Extensions */,
 				AE72DBBD16BBB0FA00C12D6C /* SpecialViews */,
 				AED218E716BA9D8500271930 /* RMInGameViewController.h */,
@@ -673,7 +660,6 @@
 				AE2BE2CA16C3ED4600A0335D /* RMPhotoSelectionImageView.m in Sources */,
 				AEFF1B8216C4E6E400922A25 /* GameCenterManager.m in Sources */,
 				AEED531D16C8E2DF003F4CCD /* RMGallerySelectionItemView.m in Sources */,
-				41396EBB16CB10240062F908 /* RMGallerySegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

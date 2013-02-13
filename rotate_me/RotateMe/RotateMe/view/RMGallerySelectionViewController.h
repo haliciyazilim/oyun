@@ -8,12 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "RMGallerySelectionItemView.h"
-
 @interface RMGallerySelectionViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
-- (RMGallerySelectionItemView *) getTouchedGallerySelectionItemView;
 
 @end

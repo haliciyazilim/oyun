@@ -12,8 +12,6 @@
 
 @interface RMGallerySelectionItemView : RMCustomImageView
 
-@property NSMutableArray* imageViews;
-
 - (id) initWithGallery:(Gallery*) _gallery;
 
 @end
