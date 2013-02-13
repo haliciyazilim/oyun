@@ -14,9 +14,6 @@
 		415149E716C3F23B003BE22A /* game_bg_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 415149E516C3F23B003BE22A /* game_bg_ipad@2x.jpg */; };
 		415149EA16C3F257003BE22A /* timer_holder_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 415149E816C3F257003BE22A /* timer_holder_ipad.png */; };
 		415149EB16C3F257003BE22A /* timer_holder_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 415149E916C3F257003BE22A /* timer_holder_ipad@2x.png */; };
-		41B3C1CA16CBCA12007CCF5B /* test005.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41B3C1C716CBCA12007CCF5B /* test005.jpg */; };
-		41B3C1CB16CBCA12007CCF5B /* test006.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41B3C1C816CBCA12007CCF5B /* test006.jpg */; };
-		41B3C1CC16CBCA12007CCF5B /* test007.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41B3C1C916CBCA12007CCF5B /* test007.jpg */; };
 		41B94CC616C2E59500B7C70A /* RMGallerySelectionIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B94CC516C2E59500B7C70A /* RMGallerySelectionIPadViewController.m */; };
 		41B94CC916C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B94CC816C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m */; };
 		AE09C30616C23FBC00F634CB /* RMGallerySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09C30516C23FBC00F634CB /* RMGallerySelectionViewController.m */; };
@@ -120,9 +117,6 @@
 		415149E516C3F23B003BE22A /* game_bg_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "game_bg_ipad@2x.jpg"; sourceTree = "<group>"; };
 		415149E816C3F257003BE22A /* timer_holder_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timer_holder_ipad.png; sourceTree = "<group>"; };
 		415149E916C3F257003BE22A /* timer_holder_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timer_holder_ipad@2x.png"; sourceTree = "<group>"; };
-		41B3C1C716CBCA12007CCF5B /* test005.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test005.jpg; sourceTree = "<group>"; };
-		41B3C1C816CBCA12007CCF5B /* test006.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test006.jpg; sourceTree = "<group>"; };
-		41B3C1C916CBCA12007CCF5B /* test007.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test007.jpg; sourceTree = "<group>"; };
 		41B94CC416C2E59500B7C70A /* RMGallerySelectionIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMGallerySelectionIPadViewController.h; path = view/RMGallerySelectionIPadViewController.h; sourceTree = "<group>"; };
 		41B94CC516C2E59500B7C70A /* RMGallerySelectionIPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMGallerySelectionIPadViewController.m; path = view/RMGallerySelectionIPadViewController.m; sourceTree = "<group>"; };
 		41B94CC716C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMPhotoSelectionIPadViewController.h; path = view/RMPhotoSelectionIPadViewController.h; sourceTree = "<group>"; };
@@ -276,9 +270,6 @@
 		AE09C30816C24AA100F634CB /* gallery */ = {
 			isa = PBXGroup;
 			children = (
-				41B3C1C716CBCA12007CCF5B /* test005.jpg */,
-				41B3C1C816CBCA12007CCF5B /* test006.jpg */,
-				41B3C1C916CBCA12007CCF5B /* test007.jpg */,
 				AE09C30916C24AA100F634CB /* test1.jpg */,
 				AE09C30A16C24AA100F634CB /* test10.jpg */,
 				AE09C30B16C24AA100F634CB /* test11.jpg */,
@@ -655,9 +646,6 @@
 				AEDB958716CB81C400F902BC /* gallery_photo_btn@2x.png in Resources */,
 				AEDB958816CB81C400F902BC /* take_photo_btn.png in Resources */,
 				AEDB958916CB81C400F902BC /* take_photo_btn@2x.png in Resources */,
-				41B3C1CA16CBCA12007CCF5B /* test005.jpg in Resources */,
-				41B3C1CB16CBCA12007CCF5B /* test006.jpg in Resources */,
-				41B3C1CC16CBCA12007CCF5B /* test007.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
