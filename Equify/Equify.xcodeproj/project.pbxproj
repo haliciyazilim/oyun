@@ -138,10 +138,10 @@
 				05F0CA3616CB93AF0063E0A8 /* EQFirstView.m */,
 				05F0CA3816CB93D70063E0A8 /* EQSecondView.h */,
 				05F0CA3916CB93D70063E0A8 /* EQSecondView.m */,
-				05F0CA3B16CB969C0063E0A8 /* EQThirdView.h */,
-				05F0CA3C16CB969C0063E0A8 /* EQThirdView.m */,
 				05F0CA3E16CB96CC0063E0A8 /* EQFourthView.h */,
 				05F0CA3F16CB96CC0063E0A8 /* EQFourthView.m */,
+				05F0CA3B16CB969C0063E0A8 /* EQThirdView.h */,
+				05F0CA3C16CB969C0063E0A8 /* EQThirdView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
