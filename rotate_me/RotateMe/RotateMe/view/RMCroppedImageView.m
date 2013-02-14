@@ -16,6 +16,8 @@
     UITapGestureRecognizer *tapGesture;
     UISwipeGestureRecognizer *swipeLeftGesture;
     UISwipeGestureRecognizer *swipeRightGesture;
+    UISwipeGestureRecognizer *swipeUpGesture;
+    UISwipeGestureRecognizer *swipeDownGesture;
 }
 
 
@@ -36,6 +38,19 @@
                                                                       action:@selector(handleSwipeGesture:)];
         swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
         [self addGestureRecognizer:swipeLeftGesture];
+        
+        swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                      action:@selector(handleSwipeGesture:)];
+        swipeUpGesture.direction = UISwipeGestureRecognizerDirectionUp;
+        [self addGestureRecognizer:swipeUpGesture];
+        
+        swipeDownGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                     action:@selector(handleSwipeGesture:)];
+        swipeDownGesture.direction = UISwipeGestureRecognizerDirectionDown;
+        [self addGestureRecognizer:swipeDownGesture];
+        
+        
+        
         
         tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                              action:@selector(handleTapGesture:)];
@@ -137,15 +152,15 @@
 }
 
 - (void)handleSwipeGesture:(UISwipeGestureRecognizer *)sender {
-    if (sender == swipeRightGesture) {
+    if (sender == swipeRightGesture || sender == swipeUpGesture) {
         [self rotate:NO];
-    } else if (sender == swipeLeftGesture) {
+    } else if (sender == swipeLeftGesture || sender == swipeDownGesture) {
         [self rotate:YES];
     }
 }
 
 - (void)handleTapGesture:(UISwipeGestureRecognizer *)sender {
-    [self rotate:YES];
+    [self rotate:NO];
 }
 
 @end
