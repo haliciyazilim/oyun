@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05F6E0CA16CBD3DB00543444 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F6E0C916CBD3DB00543444 /* IAPHelper.m */; };
+		05F6E0CD16CBD4DB00543444 /* RotateMeIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F6E0CC16CBD4DB00543444 /* RotateMeIAPHelper.m */; };
+		05F6E0D216CBDC4300543444 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05F6E0D116CBDC4300543444 /* StoreKit.framework */; };
 		415149DF16C3EFCF003BE22A /* RMInGameIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 415149DE16C3EFCF003BE22A /* RMInGameIPadViewController.m */; };
 		415149E216C3F18F003BE22A /* photo_holder_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 415149E016C3F18F003BE22A /* photo_holder_ipad.png */; };
 		415149E316C3F18F003BE22A /* photo_holder_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 415149E116C3F18F003BE22A /* photo_holder_ipad@2x.png */; };
@@ -109,6 +112,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05F6E0C816CBD3DB00543444 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		05F6E0C916CBD3DB00543444 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		05F6E0CB16CBD4DB00543444 /* RotateMeIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateMeIAPHelper.h; sourceTree = "<group>"; };
+		05F6E0CC16CBD4DB00543444 /* RotateMeIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateMeIAPHelper.m; sourceTree = "<group>"; };
+		05F6E0CE16CBD54800543444 /* RotateMeIAPSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateMeIAPSpecificValues.h; sourceTree = "<group>"; };
+		05F6E0D116CBDC4300543444 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		415149DD16C3EFCF003BE22A /* RMInGameIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMInGameIPadViewController.h; path = view/RMInGameIPadViewController.h; sourceTree = "<group>"; };
 		415149DE16C3EFCF003BE22A /* RMInGameIPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMInGameIPadViewController.m; path = view/RMInGameIPadViewController.m; sourceTree = "<group>"; };
 		415149E016C3F18F003BE22A /* photo_holder_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_holder_ipad.png; sourceTree = "<group>"; };
@@ -242,6 +251,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F6E0D216CBDC4300543444 /* StoreKit.framework in Frameworks */,
 				AEFF1B8516C4E7FC00922A25 /* GameKit.framework in Frameworks */,
 				AED932BF16BFAD0400DD9D30 /* CoreData.framework in Frameworks */,
 				AE72DBC616BBB5BE00C12D6C /* QuartzCore.framework in Frameworks */,
@@ -254,6 +264,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05F6E0C716CBD3BF00543444 /* in_app_purchase */ = {
+			isa = PBXGroup;
+			children = (
+				05F6E0C816CBD3DB00543444 /* IAPHelper.h */,
+				05F6E0C916CBD3DB00543444 /* IAPHelper.m */,
+				05F6E0CB16CBD4DB00543444 /* RotateMeIAPHelper.h */,
+				05F6E0CC16CBD4DB00543444 /* RotateMeIAPHelper.m */,
+				05F6E0CE16CBD54800543444 /* RotateMeIAPSpecificValues.h */,
+			);
+			path = in_app_purchase;
+			sourceTree = "<group>";
+		};
 		41B94CC316C2E55A00B7C70A /* iPad View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +370,7 @@
 		AED218B116BA934000271930 = {
 			isa = PBXGroup;
 			children = (
+				05F6E0D116CBDC4300543444 /* StoreKit.framework */,
 				AED932C016BFAD3400DD9D30 /* Model.xcdatamodeld */,
 				AED218C616BA934000271930 /* RotateMe */,
 				AED218BF16BA934000271930 /* Frameworks */,
@@ -379,6 +402,7 @@
 		AED218C616BA934000271930 /* RotateMe */ = {
 			isa = PBXGroup;
 			children = (
+				05F6E0C716CBD3BF00543444 /* in_app_purchase */,
 				AE7CBED616BFF80E001BAF3D /* Manager */,
 				AED932C316BFAD4B00DD9D30 /* Model */,
 				AED932B916BF9D8700DD9D30 /* Common */,
@@ -680,6 +704,8 @@
 				AE2BE2CA16C3ED4600A0335D /* RMPhotoSelectionImageView.m in Sources */,
 				AEFF1B8216C4E6E400922A25 /* GameCenterManager.m in Sources */,
 				AEED531D16C8E2DF003F4CCD /* RMGallerySelectionItemView.m in Sources */,
+				05F6E0CA16CBD3DB00543444 /* IAPHelper.m in Sources */,
+				05F6E0CD16CBD4DB00543444 /* RotateMeIAPHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

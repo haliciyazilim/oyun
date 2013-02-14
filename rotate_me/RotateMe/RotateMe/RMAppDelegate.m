@@ -11,6 +11,7 @@
 #import "RMBundleInitializer.h"
 #import "Photo.h"
 #import "GameCenterManager.h"
+#import "RotateMeIAPHelper.h"
 
 
 @implementation RMAppDelegate
@@ -24,9 +25,22 @@
     //GameCenter
     [[GameCenterManager sharedInstance] authenticateLocalUser];
     
+//    [[RotateMeIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+//        if (!success) {
+//            NSLog(@"problem when getting products");
+//        }
+//        for (SKProduct* product in products) {
+//            [[RotateMeIAPHelper sharedInstance] setProducts:products];
+//            NSLog(@"found product, \ntitle: %@, \nid: %@, \nlocalized description: %@", product.localizedTitle ,product.productIdentifier,product.localizedDescription);
+//            [self buyYourGallery];
+//        }
+//    }];
+    
     return YES;
 }
-
+- (void) buyYourGallery {
+    [[RotateMeIAPHelper sharedInstance] buySelectedProduct:0];
+}
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
