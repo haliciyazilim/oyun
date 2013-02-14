@@ -13,43 +13,79 @@
 {
     BOOL isAnimating;
     float currentAngle;
+    UITapGestureRecognizer *tapGesture;
+    UISwipeGestureRecognizer *swipeLeftGesture;
+    UISwipeGestureRecognizer *swipeRightGesture;
 }
 
 
 -(id)initWithImage:(UIImage *)image
 {
-    if(self = [super initWithImage:image]){
+    if(self = [super init]){
+        self.imageView = [[UIImageView alloc] initWithImage:image];
+        [self addSubview:self.imageView];
         [self setUserInteractionEnabled:YES];
         currentAngle = 0;
+        
+        swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                 action:@selector(handleSwipeGesture:)];
+        swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+        [self addGestureRecognizer:swipeRightGesture];
+        
+        swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                      action:@selector(handleSwipeGesture:)];
+        swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+        [self addGestureRecognizer:swipeLeftGesture];
+        
+        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                             action:@selector(handleTapGesture:)];
+        [self addGestureRecognizer:tapGesture];
     }
     return self;
 }
 
+-(void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    self.imageView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+}
+
 -(void) rotateToAngle:(float)angle
 {
-    self.transform = CGAffineTransformMakeRotation(angle);
+    self.imageView.transform = CGAffineTransformMakeRotation(angle);
     currentAngle = angle;
 }
 
--(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+//-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [self rotate:YES];
+//}
+
+-(void) rotate:(BOOL)left {
     if(isAnimating)
         return;
     isAnimating = YES;
     if([self.parent isGameFinished])
         return;
     [self.superview bringSubviewToFront:self];
-    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        CGAffineTransform t1 = CGAffineTransformMakeScale(1.3, 1.3);
-        currentAngle -= M_PI * 0.25;
-        CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
-        self.transform = CGAffineTransformConcat(t1, t2);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            CGAffineTransform t1 = CGAffineTransformMakeScale(1.0, 1.0);
+    [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        CGAffineTransform t1 = CGAffineTransformMakeScale(1.2, 1.2);
+        if (left) {
             currentAngle -= M_PI * 0.25;
+        } else {
+            currentAngle += M_PI * 0.25;
+        }
+        CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
+        self.imageView.transform = CGAffineTransformConcat(t1, t2);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            CGAffineTransform t1 = CGAffineTransformMakeScale(1.0, 1.0);
+            if (left) {
+                currentAngle -= M_PI * 0.25;
+            } else {
+                currentAngle += M_PI * 0.25;
+            }
             CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
-            self.transform = CGAffineTransformConcat(t1, t2);
+            self.imageView.transform = CGAffineTransformConcat(t1, t2);
         } completion:^(BOOL finished){
             isAnimating = NO;
             [self.superview insertSubview:self belowSubview:[[RMInGameViewController lastInstance] grids]];
@@ -100,5 +136,16 @@
     return state;
 }
 
+- (void)handleSwipeGesture:(UISwipeGestureRecognizer *)sender {
+    if (sender == swipeRightGesture) {
+        [self rotate:NO];
+    } else if (sender == swipeLeftGesture) {
+        [self rotate:YES];
+    }
+}
+
+- (void)handleTapGesture:(UISwipeGestureRecognizer *)sender {
+    [self rotate:YES];
+}
 
 @end

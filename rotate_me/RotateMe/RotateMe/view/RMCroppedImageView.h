@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 @class RMInGameViewController;
 
-@interface RMCroppedImageView : UIImageView
+@interface RMCroppedImageView : UIView
 
 @property RMInGameViewController* parent;
+@property UIImageView *imageView;
+
+-(id)initWithImage:(UIImage *)image;
+
 - (void) rotateToAngle:(float)angle;
 - (void) setRotationStateTo:(int)state;
 - (int) getCurrentRotationState;
