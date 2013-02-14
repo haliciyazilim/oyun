@@ -11,6 +11,10 @@
 #import "TypeDefs.h"
 #import "Score.h"
 #import "PhotoManagedObject.h"
+
+#define kPhotoNotificationPhotoCreated @"PHOTO__PHOTO_CREATED"
+#define kPhotoNotificationPhotoDeleted @"PHOTO__PHOTO_DELETED"
+
 @class RMThumbnailImage;
 @class RMImage;
 

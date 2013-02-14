@@ -50,8 +50,10 @@
     photo.filename = fileName;
     photo.gallery = gallery;
     [[RMDatabaseManager sharedInstance] saveContext];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPhotoNotificationPhotoCreated object:photo];
     return [Photo photoWithManagedObject:photo];
 }
+
 - (void) setScore:(int)elapsedTime forDifficulty:(DIFFICULTY)difficulty
 {
     Score* score = [self getScoreForDifficulty:difficulty];
@@ -97,8 +99,8 @@
 
 - (void) removeFromDatabase
 {
-    
     [[RMDatabaseManager sharedInstance] deleteObject:managedObject];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPhotoNotificationPhotoDeleted object:self];
 }
 
 @end
