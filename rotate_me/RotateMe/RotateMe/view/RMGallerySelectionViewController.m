@@ -11,6 +11,7 @@
 #import "RMGallerySelectionItemView.h"
 #import "RMPhotoSelectionViewController.h"
 #import "Config.h"
+#import "RotateMeIAPHelper.h"
 
 @interface RMGallerySelectionViewController ()
 
@@ -97,8 +98,9 @@
         [galleryItem setTouchesBegan:^{
             if(touchedGallery != nil)
                 return;
-            touchedGallery = gallery;
-            [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
+//            touchedGallery = gallery;
+//            [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
+            [[RotateMeIAPHelper sharedInstance] showProduct:gallery onViewController:self];
             
         }];
         index++;

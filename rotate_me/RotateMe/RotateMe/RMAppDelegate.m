@@ -31,17 +31,18 @@
 //        }
 //        for (SKProduct* product in products) {
 //            [[RotateMeIAPHelper sharedInstance] setProducts:products];
-//            NSLog(@"found product, \ntitle: %@, \nid: %@, \nlocalized description: %@", product.localizedTitle ,product.productIdentifier,product.localizedDescription);
-//            [self buyYourGallery];
+//            NSLog(@"found product, \ntitle: %@, \nid: %@, \nlocalized description: %@\n----------------------\n", product.localizedTitle ,product.productIdentifier,product.localizedDescription);
+//            NSLog(@"%@",[[RotateMeIAPHelper sharedInstance] getProductWithProductIdentifier:product.productIdentifier]);
+////            [self buyYourGallery];
 //        }
 //    }];
     
     return YES;
 }
-- (void) buyYourGallery {
-    [[RotateMeIAPHelper sharedInstance] buySelectedProduct:0];
-}
-							
+//- (void) buyYourGallery {
+//    [[RotateMeIAPHelper sharedInstance] buySelectedProduct:0];
+//}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

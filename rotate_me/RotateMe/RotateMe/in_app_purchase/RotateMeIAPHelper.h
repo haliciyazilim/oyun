@@ -7,13 +7,14 @@
 //
 
 #import "IAPHelper.h"
+@class Gallery;
 
 @interface RotateMeIAPHelper : IAPHelper
 
 + (RotateMeIAPHelper *) sharedInstance;
 
 - (BOOL) isProductPurchased:(NSString *)productKey;
-- (void) createStore;
-- (void)buySelectedProduct:(int)productIndex;
+- (void) showProduct:(Gallery*)gallery onViewController:(UIViewController*) viewController;
+- (SKProduct *)getProductWithProductIdentifier:(NSString *)productIdentifier;
 
 @end

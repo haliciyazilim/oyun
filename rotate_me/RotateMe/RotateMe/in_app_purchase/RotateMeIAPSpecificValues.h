@@ -8,6 +8,8 @@
 
 // product identifiers
 #define iYourGalleryKey @"com.halici.RotateMe.yourGallery"
+#define iSportsGalleryKey @"com.halici.RotateMe.sportsGallery"
 
 // product keys
 #define iYourGallerySecret @"p39m>Ht}wwL"
+#define iSportsGallerySecret @"<0F93{-Be]Q"

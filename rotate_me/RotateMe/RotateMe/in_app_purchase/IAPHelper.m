@@ -86,6 +86,7 @@
         }
     };
 }
+
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
 //    [activity stopAnimating];
 //    [activity removeFromSuperview];
