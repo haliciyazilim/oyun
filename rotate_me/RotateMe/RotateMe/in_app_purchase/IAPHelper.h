@@ -16,6 +16,8 @@ typedef void (^RequestProductsCompletionHandler)(BOOL success, NSArray * product
 
 @property NSDictionary *iProducts;
 @property NSArray* products;
+@property UIView* currentStore;
+@property UIView* storeContainer;
 
 - (id)initWithProductsDictionary:(NSDictionary *)products;
 - (void)requestProductsWithCompletionHandler:(RequestProductsCompletionHandler)completionHandler;
@@ -24,6 +26,8 @@ typedef void (^RequestProductsCompletionHandler)(BOOL success, NSArray * product
 - (BOOL)productPurchased:(NSString *)productIdentifier;
 - (void)buyProduct:(SKProduct *)product;
 - (void)restoreCompletedTransactions;
+- (void)addActivityToView:(UIView *)view withFrame:(CGRect)frame;
 - (void)removeActivity;
+-(NSString*) sha1:(NSString*)input;
 
 @end
