@@ -17,4 +17,5 @@
 - (void) showProduct:(Gallery*)gallery onViewController:(UIViewController*) viewController;
 - (SKProduct *)getProductWithProductIdentifier:(NSString *)productIdentifier;
 
+- (BOOL)isPro;
 @end
