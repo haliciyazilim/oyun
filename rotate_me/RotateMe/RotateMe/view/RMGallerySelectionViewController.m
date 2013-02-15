@@ -12,6 +12,7 @@
 #import "RMPhotoSelectionViewController.h"
 #import "Config.h"
 #import "RotateMeIAPHelper.h"
+#import "Photo.h"
 
 @interface RMGallerySelectionViewController ()
 
@@ -37,6 +38,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(configureViews)
+                                                 name:kPhotoNotificationPhotoCreated
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(configureViews)
+                                                 name:kPhotoNotificationPhotoDeleted
+                                               object:nil];
+    
+    [self configureViews];
+    
     isFirstLoad = YES;
     touchedGallery = nil;
     if([[UIScreen mainScreen] bounds].size.height == 568){
@@ -49,8 +63,6 @@
 	// Do any additional setup after loading the view.
     [self.view setUserInteractionEnabled:YES];
     [self.scrollView setUserInteractionEnabled:YES];
-    
-    
 }
 
 - (CGSize) scrollViewItemSize{
@@ -70,9 +82,7 @@
     touchedGallery = nil;
 }
 
-
--(void)viewWillAppear:(BOOL)animated
-{
+- (void) configureViews {
     NSArray* allGaleries = [Gallery allGalleries];
     int index = 0;
     int topMargin = 30;
@@ -105,15 +115,19 @@
         }];
         index++;
     }
-
+    
     touchedGallery = nil;
     isFirstLoad = NO;
-    
+
 }
 
 
 - (void)viewDidUnload {
     [self setScrollView:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [super viewDidUnload];
 }
+
 @end

@@ -50,8 +50,10 @@
     photo.filename = fileName;
     photo.gallery = gallery;
     [[RMDatabaseManager sharedInstance] saveContext];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPhotoNotificationPhotoCreated object:photo];
     return [Photo photoWithManagedObject:photo];
 }
+
 - (void) setScore:(int)elapsedTime forDifficulty:(DIFFICULTY)difficulty
 {
     Score* score = [self getScoreForDifficulty:difficulty];
@@ -83,13 +85,16 @@
     return (Score*)[[RMDatabaseManager sharedInstance] entityWithRequest:request forName:@"Score"];
 }
 
+- (NSString *)getImagePath {
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:self.gallery.name];
+    return [folderPath stringByAppendingPathComponent:self.filename];
+}
+
 - (RMImage*) getImage
 {
     if(image == nil){
-        NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:self.gallery.name];
-        NSString* imagePath = [folderPath stringByAppendingPathComponent:self.filename];
-        image = [[RMImage alloc] initWithContentsOfFile:imagePath];
+        image = [[RMImage alloc] initWithContentsOfFile:[self getImagePath]];
         image.owner = self;
     }
     return image;
@@ -97,8 +102,14 @@
 
 - (void) removeFromDatabase
 {
-    
     [[RMDatabaseManager sharedInstance] deleteObject:managedObject];
+
+    NSError *error;
+    if ([[NSFileManager defaultManager] removeItemAtPath:[self getImagePath] error:&error] != YES) {
+        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+    }
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPhotoNotificationPhotoDeleted object:self];
 }
 
 @end
