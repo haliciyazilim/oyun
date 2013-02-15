@@ -11,6 +11,8 @@
 
 @implementation EQFourthView
 
+// game screen
+
 + (id) CreateView {
     return [[EQFourthView alloc] initWithFrame:CGRectMake(SINGLE_VIEW_WIDTH, 0.0, SINGLE_VIEW_WIDTH, SINGLE_VIEW_HEIGHT)];
 }

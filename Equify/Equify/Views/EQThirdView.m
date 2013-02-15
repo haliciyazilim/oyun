@@ -11,6 +11,8 @@
 
 @implementation EQThirdView
 
+// matchs or last 10 single game screen
+
 + (id) CreateView {
     return [[EQThirdView alloc] initWithFrame:CGRectMake(SINGLE_VIEW_WIDTH, SINGLE_VIEW_HEIGHT, SINGLE_VIEW_WIDTH, SINGLE_VIEW_HEIGHT)];
 }

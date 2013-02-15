@@ -11,6 +11,8 @@
 
 @implementation EQSecondView
 
+// difficulty selection screen
+
 + (id) CreateView {
     return [[EQSecondView alloc] initWithFrame:CGRectMake(0.0, SINGLE_VIEW_HEIGHT, SINGLE_VIEW_WIDTH, SINGLE_VIEW_HEIGHT)];
 }

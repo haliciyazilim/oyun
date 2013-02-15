@@ -11,6 +11,8 @@
 
 @implementation EQFirstView
 
+// game mode selection screen
+
 + (id) CreateView {
     return [[EQFirstView alloc] initWithFrame:CGRectMake(0.0, 0.0, SINGLE_VIEW_WIDTH, SINGLE_VIEW_HEIGHT)];
 }

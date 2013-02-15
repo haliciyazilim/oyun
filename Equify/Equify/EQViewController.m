@@ -19,21 +19,13 @@
 
 @implementation EQViewController
 {
-    // mainView sizes
-//    CGFloat mainViewWidth;
-//    CGFloat mainViewHeight;
-//
-//    // singleView sizes
-//    CGFloat singleViewWidth;
-//    CGFloat singleViewHeight;
-    
     // neccessary UIViews
     UIView *mainView;
     
-    UIView *firstView;
-    UIView *secondView;
-    UIView *thirdView;
-    UIView *fourthView;
+    EQFirstView *firstView;
+    EQSecondView *secondView;
+    EQThirdView *thirdView;
+    EQFourthView *fourthView;
 }
 
 - (void)viewDidLoad
