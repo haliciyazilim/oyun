@@ -108,9 +108,9 @@
         [galleryItem setTouchesBegan:^{
             if(touchedGallery != nil)
                 return;
-//            touchedGallery = gallery;
-//            [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
-            [[RotateMeIAPHelper sharedInstance] showProduct:gallery onViewController:self];
+            touchedGallery = gallery;
+            [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
+//            [[RotateMeIAPHelper sharedInstance] showProduct:gallery onViewController:self];
             
         }];
         index++;
