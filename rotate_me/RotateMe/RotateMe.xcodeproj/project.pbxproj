@@ -72,6 +72,10 @@
 		AE7CBEDC16C003E7001BAF3D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE7CBEDE16C003E7001BAF3D /* Localizable.strings */; };
 		AE7CBEE216C00742001BAF3D /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CBEE116C00742001BAF3D /* Score.m */; };
 		AE7CBEE416C00AF3001BAF3D /* TypeDefs.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CBEE316C00AF3001BAF3D /* TypeDefs.m */; };
+		AE841D5616D4FD1600C6F946 /* ingame_btn_bg_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = AE841D5216D4FD1600C6F946 /* ingame_btn_bg_hover.png */; };
+		AE841D5716D4FD1600C6F946 /* ingame_btn_bg_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE841D5316D4FD1600C6F946 /* ingame_btn_bg_hover@2x.png */; };
+		AE841D5816D4FD1600C6F946 /* ingame_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AE841D5416D4FD1600C6F946 /* ingame_btn_bg.png */; };
+		AE841D5916D4FD1600C6F946 /* ingame_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE841D5516D4FD1600C6F946 /* ingame_btn_bg@2x.png */; };
 		AED218C116BA934000271930 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED218C016BA934000271930 /* UIKit.framework */; };
 		AED218C316BA934000271930 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED218C216BA934000271930 /* Foundation.framework */; };
 		AED218C516BA934000271930 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED218C416BA934000271930 /* CoreGraphics.framework */; };
@@ -210,6 +214,10 @@
 		AE7CBEE016C00742001BAF3D /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Score.h; path = model/Score.h; sourceTree = "<group>"; };
 		AE7CBEE116C00742001BAF3D /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Score.m; path = model/Score.m; sourceTree = "<group>"; };
 		AE7CBEE316C00AF3001BAF3D /* TypeDefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeDefs.m; path = common/TypeDefs.m; sourceTree = "<group>"; };
+		AE841D5216D4FD1600C6F946 /* ingame_btn_bg_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_btn_bg_hover.png; sourceTree = "<group>"; };
+		AE841D5316D4FD1600C6F946 /* ingame_btn_bg_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_btn_bg_hover@2x.png"; sourceTree = "<group>"; };
+		AE841D5416D4FD1600C6F946 /* ingame_btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_btn_bg.png; sourceTree = "<group>"; };
+		AE841D5516D4FD1600C6F946 /* ingame_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_btn_bg@2x.png"; sourceTree = "<group>"; };
 		AED218BC16BA934000271930 /* RotateMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RotateMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AED218C016BA934000271930 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AED218C216BA934000271930 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -518,6 +526,10 @@
 		AED218EB16BA9E0900271930 /* gamescreen */ = {
 			isa = PBXGroup;
 			children = (
+				AE841D5216D4FD1600C6F946 /* ingame_btn_bg_hover.png */,
+				AE841D5316D4FD1600C6F946 /* ingame_btn_bg_hover@2x.png */,
+				AE841D5416D4FD1600C6F946 /* ingame_btn_bg.png */,
+				AE841D5516D4FD1600C6F946 /* ingame_btn_bg@2x.png */,
 				AE0F91A516D3B8ED007F0ED6 /* youwin_btn_bg_hover.png */,
 				AE0F91A616D3B8ED007F0ED6 /* youwin_btn_bg_hover@2x.png */,
 				AE0F91A716D3B8ED007F0ED6 /* youwin_btn_bg.png */,
@@ -741,6 +753,10 @@
 				AE0F91AE16D3B8ED007F0ED6 /* youwin_btn_bg@2x.png in Resources */,
 				AE0F91AF16D3B8ED007F0ED6 /* youwin_photo_bg.png in Resources */,
 				AE0F91B016D3B8ED007F0ED6 /* youwin_photo_bg@2x.png in Resources */,
+				AE841D5616D4FD1600C6F946 /* ingame_btn_bg_hover.png in Resources */,
+				AE841D5716D4FD1600C6F946 /* ingame_btn_bg_hover@2x.png in Resources */,
+				AE841D5816D4FD1600C6F946 /* ingame_btn_bg.png in Resources */,
+				AE841D5916D4FD1600C6F946 /* ingame_btn_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

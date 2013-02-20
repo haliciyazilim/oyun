@@ -37,7 +37,7 @@
 
 -(void) showButtons
 {
-    CGSize buttonSize = CGSizeMake(150, 30);
+    CGSize buttonSize = CGSizeMake(166, 53);
     UIButton* mainMenu = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton* restart = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton* resume = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -47,11 +47,11 @@
     [resume setTitle:@"Resume" forState:UIControlStateNormal];
     
     mainMenu.frame = CGRectMake([[UIScreen mainScreen] bounds].size.height*0.5 - buttonSize.width*0.5,
-                                [[UIScreen mainScreen] bounds].size.width*0.70, buttonSize.width, buttonSize.height);
+                                [[UIScreen mainScreen] bounds].size.width*0.65, buttonSize.width, buttonSize.height);
     restart.frame = CGRectMake([[UIScreen mainScreen] bounds].size.height*0.5 - buttonSize.width*0.5,
-                                [[UIScreen mainScreen] bounds].size.width*0.50, buttonSize.width, buttonSize.height);
+                                [[UIScreen mainScreen] bounds].size.width*0.45, buttonSize.width, buttonSize.height);
     resume.frame = CGRectMake([[UIScreen mainScreen] bounds].size.height*0.5 - buttonSize.width*0.5,
-                                [[UIScreen mainScreen] bounds].size.width*0.30, buttonSize.width, buttonSize.height);
+                                [[UIScreen mainScreen] bounds].size.width*0.25, buttonSize.width, buttonSize.height);
     
     [mainMenu addTarget:[RMInGameViewController lastInstance] action:@selector(returnToMainMenu:) forControlEvents:UIControlEventTouchUpInside];
     [restart addTarget:[RMInGameViewController lastInstance] action:@selector(restartGame:) forControlEvents:UIControlEventTouchUpInside];
