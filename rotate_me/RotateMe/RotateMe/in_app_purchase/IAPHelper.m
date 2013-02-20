@@ -8,6 +8,7 @@
 
 #import "IAPHelper.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "RotateMeIAPSpecificValues.h"
 
 #define PAYMENT_ACTIVITY_TAG 145
 
@@ -49,13 +50,17 @@
     }
     return self;
 }
+- (void)addActivityToView:(UIView *)view withFrame:(CGRect)frame {
+    activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [activity setHidesWhenStopped:YES];
+    activity.frame = frame;
+    activity.tag = PAYMENT_ACTIVITY_TAG;
+    [activity startAnimating];
+    [view addSubview:activity];
+    
+}
 - (void)restoreCompletedTransactions {
-//    activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//    [activity setHidesWhenStopped:YES];
-//    activity.frame = CGRectMake(500.0, 470.0, 60.0, 60.0);
-//    activity.tag = PAYMENT_ACTIVITY_TAG;
-//    [activity startAnimating];
-//    [[[CCDirector sharedDirector] view] addSubview:activity];
+//    [self addActivityToView:self.storeContainer withFrame:CGRectMake(320.0, 220.0, 30.0, 30.0)];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 - (void)requestProductsWithCompletionHandler:(RequestProductsCompletionHandler)completionHandler {
@@ -88,23 +93,18 @@
 }
 
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
-//    [activity stopAnimating];
-//    [activity removeFromSuperview];
+    [self removeActivity];
 }
 -(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
-//    [activity stopAnimating];
-//    [activity removeFromSuperview];
+    [self removeActivity];
 }
 - (void)completeTransaction:(SKPaymentTransaction *)transaction {
-    
-//    [activity stopAnimating];
-//    [activity removeFromSuperview];
+    [self removeActivity];
     [self provideContentForProductIdentifier:transaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 - (void)restoreTransaction:(SKPaymentTransaction *)transaction {
-//    [activity stopAnimating];
-//    [activity removeFromSuperview];
+    [self removeActivity];
     [self provideContentForProductIdentifier:transaction.originalTransaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
@@ -119,21 +119,18 @@
                                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                          otherButtonTitles:nil,nil];
         [productPurchased show];
-//        [activity stopAnimating];
-//        [activity removeFromSuperview];
     }
-    else{
-//        [activity stopAnimating];
-//        [activity removeFromSuperview];
-    }
+    [self removeActivity];
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier {
     [_purchasedProductIdentifiers addObject:productIdentifier];
-    NSLog(@"your gallery is purchased");
     NSString *productDeviceStr = [NSString stringWithFormat:@"%@%@",[_iProducts objectForKey:productIdentifier],_deviceName];
     
+    NSString *proString = [NSString stringWithFormat:@"%@%@",iProSecret,_deviceName];
+    
     [[NSUserDefaults standardUserDefaults] setObject:[self sha1:productDeviceStr] forKey:productIdentifier];
+    [[NSUserDefaults standardUserDefaults] setObject:[self sha1:proString] forKey:iProKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductPurchasedNotification object:productIdentifier userInfo:nil];
 }
@@ -161,20 +158,13 @@
     }
 }
 - (void)buyProduct:(SKProduct *)product {
-    
     if([self canMakePurchases]){
-//        activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//        [activity setHidesWhenStopped:YES];
-//        activity.frame = CGRectMake(500.0, 470.0, 60.0, 60.0);
-//        activity.tag = PAYMENT_ACTIVITY_TAG;
-//        [activity startAnimating];
-//        [[[CCDirector sharedDirector] view] addSubview:activity];
+        [self addActivityToView:self.storeContainer withFrame:CGRectMake(320.0, 220.0, 30.0, 30.0)];
         SKPayment * payment = [SKPayment paymentWithProduct:product];
         [[SKPaymentQueue defaultQueue] addPayment:payment];
     }
     else{
     }
-    
 }
 -(NSString*) sha1:(NSString*)input
 {

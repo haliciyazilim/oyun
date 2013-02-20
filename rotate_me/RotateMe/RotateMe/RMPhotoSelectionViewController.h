@@ -22,5 +22,9 @@
 + (RMPhotoSelectionViewController*) lastInstance;
 - (void) setGallery:(Gallery*)gallery;
 
+- (void) restart;
+
+- (void) darken;
+- (void) lighten;
 
 @end

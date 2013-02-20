@@ -13,12 +13,14 @@
 @interface RMInGameViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *photoHolder;
-
-@property UIImageView* grids;
+@property (weak, nonatomic) IBOutlet UIImageView *timerHolder;
 
 @property (weak, nonatomic) IBOutlet UILabel *stopWatchLabel;
 
+@property UIImageView* hiddenImage;
+
 - (IBAction)displayMenu:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *menuButton;
 
 @property NSArray* croppedImages;
 
@@ -34,4 +36,9 @@
 
 - (BOOL) canGameFinish;
 
+-(void) restartGame:(UIButton*)button;
+
+-(void)resumeGame:(UIButton*)button;
+
+-(void) returnToMainMenu:(UIButton*)button;
 @end

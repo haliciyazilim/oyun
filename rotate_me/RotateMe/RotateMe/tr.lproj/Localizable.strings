@@ -5,3 +5,9 @@
   Created by Yunus Eren Guzel on 2/4/13.
   Copyright (c) 2013 Yunus Eren Guzel. All rights reserved.
 */
+
+// in app purchases strings
+"BUY_NOW" = "Satın Al";
+"COULD_NOT_MAKE_PURCHASES" = "Tam sürümü edinebilmek için Ayarlar uygulamasından Uygulama İçi Alım seçeneğini etkinleştirmeniz gerekmektedir.";
+"IN_APP_PURCHASES" = "Uygulama İçi Alım";
+"OK" = "Tamam";
