@@ -21,6 +21,7 @@
 @implementation RMPhotoSelectionViewController
 {
     RMCustomImageView* touchedPhoto;
+    RMCustomImageView* lastTouchedPhoto;
     Gallery* currentGallery;
     NSMutableArray* photos;
     CGSize imageScaleSize;
@@ -222,6 +223,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [photoView setTouchesBegan:^{
             if(touchedPhoto == nil){
                 touchedPhoto = blockPhotoView;
+                lastTouchedPhoto = touchedPhoto;
                 [self performSegueWithIdentifier:@"StartGame" sender:self];
             }
         }];
@@ -285,6 +287,20 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     
 }
 
+- (void) restart
+{
+    touchedPhoto = lastTouchedPhoto;
+//    RMInGameViewController* inGameViewController = [[RMInGameViewController alloc] init];
+//    UIStoryboard* storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+//    RMInGameViewController* inGameViewController = [storyBoard instantiateViewControllerWithIdentifier:@"InGameViewController"];
+//    [inGameViewController setImage:[[(RMImage*)touchedPhoto.image owner] getImage]];
+//
+//    [self presentViewController:inGameViewController animated:YES completion:^{
+//        
+//    }];
+    [self performSegueWithIdentifier:@"StartGame" sender:self];
+    touchedPhoto = nil;
+}
 
 - (void)imagePickerController:(UIImagePickerController *) Picker
 
@@ -389,6 +405,21 @@ static int __lastScroll = 0;
     [self setGalleryNameLabel:nil];
     [super viewDidUnload];
 }
+
+- (void) darken
+{
+    UIView* view = [[UIView alloc] init];
+    view.frame = self.view.frame;
+    [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]];
+    view.tag = 1001;
+    [self.view addSubview:view];
+}
+- (void) lighten
+{
+    UIView* view = [self.view viewWithTag:1001];
+    [view removeFromSuperview];
+}
+
 @end
 
 

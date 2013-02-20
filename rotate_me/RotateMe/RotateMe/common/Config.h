@@ -24,4 +24,7 @@
 //GameCenter
 #define kAuthenticationChangedNotification @"AuthenticedChanged"
 
+//color
+#define BROWN_TEXT_COLOR [UIColor colorWithRed:121.0/255.0 green:71.0/255.0 blue:34.0/255.0 alpha:1.0]
+
 #endif

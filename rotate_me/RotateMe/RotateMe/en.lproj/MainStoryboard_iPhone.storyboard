@@ -105,7 +105,7 @@
         <!--In Game View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController id="2" customClass="RMInGameViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InGameViewController" id="2" customClass="RMInGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -146,8 +146,10 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="menuButton" destination="0SJ-UX-8lN" id="XMP-cM-ytC"/>
                         <outlet property="photoHolder" destination="7LS-dE-HRg" id="FbO-n8-Xad"/>
                         <outlet property="stopWatchLabel" destination="SKP-VW-usV" id="e0r-wA-8Aw"/>
+                        <outlet property="timerHolder" destination="5aB-fE-kpk" id="ay2-oH-FG6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -162,32 +164,6 @@
         <image name="rotate_me_logo.png" width="201" height="35"/>
         <image name="timer_holder.png" width="85" height="37"/>
     </resources>
-    <classes>
-        <class className="RMGallerySelectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMGallerySelectionViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="RMInGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMInGameViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="displayMenu:"/>
-                <relationship kind="outlet" name="photoHolder" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="RMPhotoSelectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMPhotoSelectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonClicked:"/>
-                <relationship kind="action" name="difficultyChanged:"/>
-                <relationship kind="outlet" name="difficultySegmentedButtons" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="galleryNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

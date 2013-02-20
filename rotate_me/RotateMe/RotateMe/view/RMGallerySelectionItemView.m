@@ -10,6 +10,7 @@
 #import "Photo.h"
 #import "RMImage.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Config.h"
 
 @implementation RMGallerySelectionItemView
 {
@@ -83,7 +84,7 @@
     [galleryNameLabel setBackgroundColor:[UIColor clearColor]];
     [galleryNameLabel setTextAlignment:NSTextAlignmentCenter];
     [galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:13.0]];
-    [galleryNameLabel setTextColor:[UIColor colorWithRed:121.0/255.0 green:71.0/255.0 blue:34.0/255.0 alpha:1.0]];
+    [galleryNameLabel setTextColor:BROWN_TEXT_COLOR];
     [galleryNameLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.20]];
     [galleryNameLabel setShadowOffset:CGSizeMake(0, 1)];
     
