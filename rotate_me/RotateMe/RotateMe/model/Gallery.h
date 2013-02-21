@@ -13,6 +13,7 @@
 
 @property NSString* name;
 @property NSSet* photos;
+@property BOOL isPurchased;
 
 + (NSMutableArray*) allGalleries;
 

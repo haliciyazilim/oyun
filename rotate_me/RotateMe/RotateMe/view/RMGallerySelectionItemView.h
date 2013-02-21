@@ -14,4 +14,5 @@
 
 - (id) initWithGallery:(Gallery*) _gallery animate:(BOOL)animate;
 
+-(void)setLocked;
 @end

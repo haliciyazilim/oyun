@@ -13,11 +13,13 @@
 @implementation Gallery
 @dynamic name;
 @dynamic photos;
+@dynamic isPurchased;
 
 + (Gallery*) createGalleryWithName:(NSString*)name
 {
     Gallery* gallery = (Gallery*)[[RMDatabaseManager sharedInstance] createEntity:@"Gallery"];
     gallery.name = name;
+    gallery.isPurchased = NO;
     [[RMDatabaseManager sharedInstance] saveContext];
     return gallery;
 }
