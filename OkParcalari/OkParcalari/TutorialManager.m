@@ -9,6 +9,7 @@
 #import "TutorialManager.h"
 #import "AchievementManager.h"
 #import "GreenTheGardenGCSpecificValues.h"
+#import "ArrowGameLayer.h"
 typedef void (^ IteratorBlock)();
 @interface UISetTouchBeganView : UIView
 -(void)setTouchesBegan:(IteratorBlock)block;
@@ -358,7 +359,7 @@ static TutorialManager* currentInstance = nil;
     [baseHighlight setAlpha:1.0];
     [tileHighlight setAlpha:1.0];
     [currentTutorialArrow setAlpha:1.0];
-    [currentTutorialArrow setAlpha:1.0];
+    [balloonImageView setAlpha:1.0];
     [lastDialog setAlpha:1.0];
 }
 
@@ -452,6 +453,7 @@ static TutorialManager* currentInstance = nil;
 
 -(void)showDialogMessage:(NSString*)message andCallback:(IteratorBlock)block
 {
+//    [[ArrowGameLayer lastInstance] setIsAnyAlertShown:YES];
     UIView* dialog = [[UIView alloc] init];
     UIImage* backgroundImage = [UIImage imageNamed:@"inapp_back.png"];
     [dialog setFrame:CGRectMake(512, 384, 0, 0)];
@@ -504,6 +506,7 @@ static TutorialManager* currentInstance = nil;
         [weakBackground removeFromSuperview];
         lastDialog = nil;
         [[ArrowGame lastInstance] resumeTimer];
+//        [[ArrowGameLayer lastInstance] setIsAnyAlertShown:NO];
         block();
     }];
     [background.superview bringSubviewToFront:background];

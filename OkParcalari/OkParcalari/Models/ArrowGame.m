@@ -68,6 +68,7 @@ static ArrowGame* __lastInstance;
         
         if([[TutorialManager sharedInstance] isTutorialEnabled] && [[TutorialManager sharedInstance] isTutoringMap:currentGameMapFileName]){
             [self pauseTimer];
+            [[ArrowGameLayer lastInstance] setIsAnyAlertShown:YES];
             [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"TUTORIAL_ALERT_TITLE", nil)
                             message:NSLocalizedString(@"TUTORIAL_ALERT_MESSAGE", nil)
                             delegate:self
@@ -85,6 +86,7 @@ static ArrowGame* __lastInstance;
             [[TutorialManager sharedInstance] startTutorial];
     }
     [self resumeTimer];
+    [[ArrowGameLayer lastInstance] setIsAnyAlertShown:NO];
 }
 
 - (BOOL) isGameFinished

@@ -134,7 +134,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
-    if([[ArrowGame lastInstance] isGameRunning]){
+    if([[ArrowGame lastInstance] isGameRunning] && ![[ArrowGameLayer lastInstance] isAnyAlertShown]){
         [[[ArrowGameLayer lastInstance] arrowGame] pauseGame];
     }
 	if( [navController_ visibleViewController] == director_ )
@@ -150,7 +150,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
     [FBSettings publishInstall:[FBSession defaultAppID]];
     if([ArrowGameLayer lastInstance]){
-        if(![[ArrowGameLayer lastInstance] isRestaurantOpened] && ![[ArrowGameLayer lastInstance] isMenuOpened] && ![[ArrowGameLayer lastInstance] isGameEnded])
+        if(![[ArrowGameLayer lastInstance] isRestaurantOpened] && ![[ArrowGameLayer lastInstance] isMenuOpened] && ![[ArrowGameLayer lastInstance] isGameEnded] && ![[ArrowGameLayer lastInstance] isAnyAlertShown])
             [[ArrowGameLayer lastInstance] showInGameMenu:NO];
     }
 	if( [navController_ visibleViewController] == director_ )
