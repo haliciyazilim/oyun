@@ -146,7 +146,7 @@ static ArrowGameLayer* __lastInstance;
         
         CGSize size = [[CCDirector sharedDirector] winSize];
         
-        CCSprite *background = [CCSprite spriteWithFile:@"mainbg.png"];
+        CCSprite *background = [CCSprite spriteWithFile:@"mainbg.jpg"];
         background.position = ccp(size.width * 0.5, size.height * 0.5);
         
         CCSprite *frameView = [CCSprite spriteWithFile:@"main_frame.png"];
