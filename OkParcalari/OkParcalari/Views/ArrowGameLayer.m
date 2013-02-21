@@ -202,7 +202,6 @@ static ArrowGameLayer* __lastInstance;
 {
     _fileName = fileName;
     __lastInstance = self;
-//    [[GreenTheGardenSoundManager sharedSoundManager] playEffect:@"environment"];
     
     _difficulty = [[DatabaseManager sharedInstance] getMapWithID:_fileName].difficulty;
     _mapOrder = [[DatabaseManager sharedInstance] getMapWithID:_fileName].order;

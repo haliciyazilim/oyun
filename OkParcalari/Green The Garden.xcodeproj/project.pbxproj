@@ -44,7 +44,6 @@
 		0516437716B173FB000EBBE7 /* map_barbtn_gc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0516437316B173FB000EBBE7 /* map_barbtn_gc@2x.png */; };
 		0516437816B173FB000EBBE7 /* map_barbtn_gc_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 0516437416B173FB000EBBE7 /* map_barbtn_gc_hover.png */; };
 		0516437916B173FB000EBBE7 /* map_barbtn_gc_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0516437516B173FB000EBBE7 /* map_barbtn_gc_hover@2x.png */; };
-		051F135816A6A9AE002E1FA4 /* jungle_01.caff in Resources */ = {isa = PBXBuildFile; fileRef = 051F135716A6A9AE002E1FA4 /* jungle_01.caff */; };
 		0543B22416BBB7CF0014970B /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 0543B22216BBB7CF0014970B /* Default-Landscape.png */; };
 		0543B22516BBB7CF0014970B /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0543B22316BBB7CF0014970B /* Default-Landscape@2x.png */; };
 		0543B22716BC14F90014970B /* Rabbit On The Moon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0543B22616BC14F90014970B /* Rabbit On The Moon.ttf */; };
@@ -402,9 +401,6 @@
 		41CC93FB16B7F19000569BDC /* GreenTheGardenMenu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41CC93FA16B7F19000569BDC /* GreenTheGardenMenu.mp3 */; };
 		41D3AC6616BAA73D00C74610 /* libFlurryAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D3AC6516BAA73D00C74610 /* libFlurryAds.a */; };
 		41D3AC6816BB045B00C74610 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D3AC6716BB045B00C74610 /* Twitter.framework */; };
-		41D3AC7416BB7C4700C74610 /* splash1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41D3AC7116BB7C4700C74610 /* splash1.mp3 */; };
-		41D3AC7516BB7C4700C74610 /* splash2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41D3AC7216BB7C4700C74610 /* splash2.mp3 */; };
-		41D3AC7616BB7C4700C74610 /* splash3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41D3AC7316BB7C4700C74610 /* splash3.mp3 */; };
 		41D8DDCD169C51C40041B503 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D8DDCC169C51C40041B503 /* FacebookSDK.framework */; };
 		41D8DDD8169C55CC0041B503 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */; };
 		41D8DDDE169C562B0041B503 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D8DDDB169C562B0041B503 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -1314,7 +1310,6 @@
 		0516437316B173FB000EBBE7 /* map_barbtn_gc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_barbtn_gc@2x.png"; sourceTree = "<group>"; };
 		0516437416B173FB000EBBE7 /* map_barbtn_gc_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_barbtn_gc_hover.png; sourceTree = "<group>"; };
 		0516437516B173FB000EBBE7 /* map_barbtn_gc_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_barbtn_gc_hover@2x.png"; sourceTree = "<group>"; };
-		051F135716A6A9AE002E1FA4 /* jungle_01.caff */ = {isa = PBXFileReference; lastKnownFileType = file; path = jungle_01.caff; sourceTree = "<group>"; };
 		0543B22216BBB7CF0014970B /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		0543B22316BBB7CF0014970B /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = "<group>"; };
 		0543B22616BC14F90014970B /* Rabbit On The Moon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rabbit On The Moon.ttf"; path = "Resources/Rabbit On The Moon.ttf"; sourceTree = "<group>"; };
@@ -1892,9 +1887,6 @@
 		41D3AC6416BAA73D00C74610 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
 		41D3AC6516BAA73D00C74610 /* libFlurryAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds.a; sourceTree = "<group>"; };
 		41D3AC6716BB045B00C74610 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		41D3AC7116BB7C4700C74610 /* splash1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash1.mp3; sourceTree = "<group>"; };
-		41D3AC7216BB7C4700C74610 /* splash2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash2.mp3; sourceTree = "<group>"; };
-		41D3AC7316BB7C4700C74610 /* splash3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash3.mp3; sourceTree = "<group>"; };
 		41D8DDCC169C51C40041B503 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		41D8DDD7169C55CC0041B503 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		41D8DDDB169C562B0041B503 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -2844,13 +2836,9 @@
 			isa = PBXGroup;
 			children = (
 				AE4D84D116AEEB8800F3C097 /* move.mp3 */,
-				41D3AC7116BB7C4700C74610 /* splash1.mp3 */,
-				41D3AC7216BB7C4700C74610 /* splash2.mp3 */,
-				41D3AC7316BB7C4700C74610 /* splash3.mp3 */,
 				41289B6A16C12E2700AB39A0 /* star.mp3 */,
 				41289B6C16C135C200AB39A0 /* success.mp3 */,
 				41CC93FA16B7F19000569BDC /* GreenTheGardenMenu.mp3 */,
-				051F135716A6A9AE002E1FA4 /* jungle_01.caff */,
 			);
 			name = music;
 			path = Resources/music;
@@ -5607,7 +5595,6 @@
 				05A1417916A5963700026343 /* map_selection_masklayer.png in Resources */,
 				05A1417C16A5966600026343 /* map_selection_leaflayer@2x.png in Resources */,
 				05A1417D16A5966600026343 /* map_selection_masklayer@2x.png in Resources */,
-				051F135816A6A9AE002E1FA4 /* jungle_01.caff in Resources */,
 				050139B616A6C5D30078DC35 /* map_barbtn_fx_off.png in Resources */,
 				050139B716A6C5D30078DC35 /* map_barbtn_fx_off@2x.png in Resources */,
 				050139B816A6C5D30078DC35 /* map_barbtn_fx_on.png in Resources */,
@@ -5872,9 +5859,6 @@
 				05C950F216BA9D1D008D5C4A /* congratulation-tr.png in Resources */,
 				05C950F616BA9DB6008D5C4A /* congratulation-en-ipadhd.png in Resources */,
 				05C950F716BA9DB6008D5C4A /* congratulation-tr-ipadhd.png in Resources */,
-				41D3AC7416BB7C4700C74610 /* splash1.mp3 in Resources */,
-				41D3AC7516BB7C4700C74610 /* splash2.mp3 in Resources */,
-				41D3AC7616BB7C4700C74610 /* splash3.mp3 in Resources */,
 				0543B22416BBB7CF0014970B /* Default-Landscape.png in Resources */,
 				0543B22516BBB7CF0014970B /* Default-Landscape@2x.png in Resources */,
 				0543B22716BC14F90014970B /* Rabbit On The Moon.ttf in Resources */,
