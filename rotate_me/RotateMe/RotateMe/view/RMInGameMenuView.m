@@ -17,20 +17,28 @@
 -(id) initWithFrame:(CGRect)frame
 {
     if(self = [super initWithFrame:frame]){
-//        [self setFrame:frame];
         [self setBackground];
         [self showButtons];
         self.alpha = 0.0;
         
+        CGRect buttonFrame = [RMInGameViewController lastInstance].menuButton.frame;
+
+        int x = buttonFrame.origin.x - frame.size.width/2 + buttonFrame.size.width/2;
+        int y = buttonFrame.origin.y - frame.size.height/2 + buttonFrame.size.height/2;
         
-        self.transform = CGAffineTransformMakeScale(0.1, 0.1);
+        CATransform3D transform = CATransform3DMakeTranslation(x, y, 1000);
+        transform = CATransform3DScale(transform, 0.1, 0.1, 1);
+        transform.m34 = 1.0 / -500;
+        transform = CATransform3DRotate(transform, 10.0f * M_PI / 180.0f, 0.0f, 1.0f, 0.0f);
+        
+        self.layer.transform = transform;
+        
         [UIView animateWithDuration:0.5 animations:^{
             self.transform = CGAffineTransformMakeScale(1.0, 1.0);
         }];
         [UIView animateWithDuration:0.3 animations:^{
             self.alpha = 1.0;
         }];
-        
     }
     return self;
 }
@@ -99,7 +107,17 @@
         self.alpha = 0.0;
     } completion:nil];
     [UIView animateWithDuration:0.5 delay:0.0 options:0 animations:^{
-        self.transform = CGAffineTransformMakeScale(0.1, 0.1);
+        CGRect buttonFrame = [RMInGameViewController lastInstance].menuButton.frame;
+        
+        int x = buttonFrame.origin.x - self.frame.size.width/2 + buttonFrame.size.width/2;
+        int y = buttonFrame.origin.y - self.frame.size.height/2 + buttonFrame.size.height/2;
+        
+        CATransform3D transform = CATransform3DMakeTranslation(x, y, 1000);
+        transform = CATransform3DScale(transform, 0.1, 0.1, 1);
+        transform.m34 = 1.0 / -500;
+        transform = CATransform3DRotate(transform, 3.0f * M_PI / 180.0f, 0.0f, 1.0f, 0.0f);
+        
+        self.layer.transform = transform;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
         block();

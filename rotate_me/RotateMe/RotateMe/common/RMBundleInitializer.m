@@ -13,7 +13,7 @@
 
 + (void)initializeBundle
 {
-    NSArray* imageNames = [NSArray arrayWithObjects:@"test1.jpg",@"test2.jpg",@"test3.jpg",@"test4.jpg",@"test6.jpg",@"test7.jpg",@"test8.jpg",@"test10.jpg",@"test11.jpg",@"test12.jpg",@"test13.jpg",@"test14.jpg",nil] ;
+    NSArray* imageNames = [NSArray arrayWithObjects:@"test1.jpg",@"test2.jpg",@"test3.jpg",@"test4.jpg",@"test001.jpg",@"test002.jpg",@"test003.jpg",@"test004.jpg",@"test005.jpg",@"test006.jpg",nil] ;
     
     [RMBundleInitializer copyImages:imageNames];
     

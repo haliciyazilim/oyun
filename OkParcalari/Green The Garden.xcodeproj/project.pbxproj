@@ -1597,7 +1597,7 @@
 		05FE671616AEBD8600CCCD0C /* AchievementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementManager.m; sourceTree = "<group>"; };
 		05FE671D16AED07D00CCCD0C /* inapp_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inapp_image.png; sourceTree = "<group>"; };
 		05FE671E16AED07D00CCCD0C /* inapp_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inapp_image@2x.png"; sourceTree = "<group>"; };
-		410AA12B1670D9B500F6DCCA /* GreenTheGarden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenTheGarden.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		410AA12B1670D9B500F6DCCA /* Green The Garden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Green The Garden.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		410AA12F1670D9B500F6DCCA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		410AA1311670D9B500F6DCCA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		410AA1331670D9B500F6DCCA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -3225,7 +3225,7 @@
 		410AA12C1670D9B500F6DCCA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				410AA12B1670D9B500F6DCCA /* GreenTheGarden.app */,
+				410AA12B1670D9B500F6DCCA /* Green The Garden.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4746,9 +4746,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		410AA12A1670D9B500F6DCCA /* GreenTheGarden */ = {
+		410AA12A1670D9B500F6DCCA /* Green The Garden */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 410AA2C41670D9B800F6DCCA /* Build configuration list for PBXNativeTarget "GreenTheGarden" */;
+			buildConfigurationList = 410AA2C41670D9B800F6DCCA /* Build configuration list for PBXNativeTarget "Green The Garden" */;
 			buildPhases = (
 				410AA1271670D9B500F6DCCA /* Sources */,
 				410AA1281670D9B500F6DCCA /* Frameworks */,
@@ -4758,9 +4758,9 @@
 			);
 			dependencies = (
 			);
-			name = GreenTheGarden;
+			name = "Green The Garden";
 			productName = OkParcalari;
-			productReference = 410AA12B1670D9B500F6DCCA /* GreenTheGarden.app */;
+			productReference = 410AA12B1670D9B500F6DCCA /* Green The Garden.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4771,7 +4771,7 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 			};
-			buildConfigurationList = 410AA1251670D9B500F6DCCA /* Build configuration list for PBXProject "GreenTheGarden" */;
+			buildConfigurationList = 410AA1251670D9B500F6DCCA /* Build configuration list for PBXProject "Green The Garden" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -4784,7 +4784,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				410AA12A1670D9B500F6DCCA /* GreenTheGarden */,
+				410AA12A1670D9B500F6DCCA /* Green The Garden */,
 			);
 		};
 /* End PBXProject section */
@@ -6151,7 +6151,7 @@
 					"-ObjC",
 					"-lsqlite3.0",
 				);
-				PRODUCT_NAME = GreenTheGarden;
+				PRODUCT_NAME = "Green The Garden";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -6186,7 +6186,7 @@
 					"-ObjC",
 					"-lsqlite3.0",
 				);
-				PRODUCT_NAME = GreenTheGarden;
+				PRODUCT_NAME = "Green The Garden";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -6198,7 +6198,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		410AA1251670D9B500F6DCCA /* Build configuration list for PBXProject "GreenTheGarden" */ = {
+		410AA1251670D9B500F6DCCA /* Build configuration list for PBXProject "Green The Garden" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				410AA2C21670D9B800F6DCCA /* Debug */,
@@ -6207,7 +6207,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		410AA2C41670D9B800F6DCCA /* Build configuration list for PBXNativeTarget "GreenTheGarden" */ = {
+		410AA2C41670D9B800F6DCCA /* Build configuration list for PBXNativeTarget "Green The Garden" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				410AA2C51670D9B800F6DCCA /* Debug */,

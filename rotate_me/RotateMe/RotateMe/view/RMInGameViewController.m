@@ -211,7 +211,6 @@ static RMInGameViewController* lastInstance = nil;
 - (void) configureGame
 {
     CGSize canvasSize = CGSizeMake(cols * tileSize * scaleFactor, rows * tileSize * scaleFactor);
-    
     NSMutableArray* croppedImages = [[NSMutableArray alloc] init];
     
     UIImage* resizedImage = [currentImage imageByScalingAndCroppingForSize:canvasSize];

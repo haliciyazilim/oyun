@@ -23,6 +23,7 @@
 @property BOOL isRestaurantOpened;
 @property BOOL isMenuOpened;
 @property BOOL isGameEnded;
+@property BOOL isAnyAlertShown;
 //@property Stopwatch *gameTimer;
 
 @property (strong, nonatomic) Facebook *facebook;
