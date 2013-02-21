@@ -19,6 +19,9 @@
 
 #define GALLERY_SELECTION_GALLERY_ITEM_TAG 144
 
+#define GALLERY_ITEM_PHOTO_IMAGE_TAG 14411
+#define GALLERY_SELECTION_MASK_IMAGE_VIEW_TAG 5402009
+
 #define NSUSER_DIFFICULTY @"game_difficulty"
 
 //GameCenter
@@ -26,5 +29,7 @@
 
 //color
 #define BROWN_TEXT_COLOR [UIColor colorWithRed:121.0/255.0 green:71.0/255.0 blue:34.0/255.0 alpha:1.0]
+
+
 
 #endif

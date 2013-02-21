@@ -114,6 +114,9 @@
             
         }];
         index++;
+//        if(gallery.isPurchased == NO){
+//            [galleryItem setLocked];
+//        }
     }
     
     touchedGallery = nil;

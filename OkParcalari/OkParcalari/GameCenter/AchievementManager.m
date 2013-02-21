@@ -77,11 +77,13 @@ static AchievementManager * sharedAchievementManager=nil;
     GKAchievement * loadedAchievement=[[GKAchievement alloc] initWithIdentifier:[_achievementsDictionary objectForKey:achievement.identifier]];
     
     if(loadedAchievement.identifier!=nil){
+        NSLog(@" Var: %@", loadedAchievement.identifier);
         isExist=YES;
     }
     
     if (achievement && isExist==NO)
     {
+        NSLog(@" Yok: %@", identifier);
 
         achievement.percentComplete = percent;
         achievement.showsCompletionBanner = YES; 
@@ -90,10 +92,17 @@ static AchievementManager * sharedAchievementManager=nil;
              if (achievement.percentComplete==100.0) {
                  GKAchievementDescription *achievementDescription=[[GKAchievementDescription alloc] init];
                  achievementDescription=[_achievementDescriptions objectForKey:achievement.identifier];
+                 [_achievementsDictionary setObject: achievement forKey: achievement.identifier];
+                 
+                 NSLog(@"Achievement OK: %@",identifier);
              }
              dispatch_async(dispatch_get_main_queue(), ^(void)
                             {
                                 if (error == nil) {
+                                    
+                                    
+                                    NSLog(@"dict: %@",_achievementsDictionary.description);
+                                    
                                     [[AchievementManager sharedAchievementManager] loadAchievements];
                                 } else {
                                     ;

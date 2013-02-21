@@ -110,12 +110,12 @@
     
     
     if([[UIScreen mainScreen] bounds].size.height == 568){
-        [restartButton setFrame:CGRectMake(360, 160, 150, 30)];
-        [menuButton setFrame:CGRectMake(360, 120, 150, 30)];
+        [restartButton setFrame:CGRectMake(360, 170, 154, 36)];
+        [menuButton setFrame:CGRectMake(360, 120, 154, 36)];
     }
     else{
-        [restartButton setFrame:CGRectMake(320, 160, 150, 30)];
-        [menuButton setFrame:CGRectMake(320, 120, 150, 30)];
+        [restartButton setFrame:CGRectMake(320, 170, 154, 36)];
+        [menuButton setFrame:CGRectMake(320, 120, 154, 36)];
     }
     
     [inGameViewController.view addSubview:restartButton];
