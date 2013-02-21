@@ -24,7 +24,7 @@ static GreenTheGardenSoundManager *sharedSoundManager = nil;
     if(self = [super init]) {
         self.backgroundMusic = @"GreenTheGardenMenu.mp3";
         
-        self.effects = @{@"move" : @"move.mp3", @"splash1" : @"splash1.mp3", @"splash2" : @"splash2.mp3", @"splash3" : @"splash3.mp3", @"environment" : @"jungle_01.caff", @"star" : @"star.mp3", @"success" : @"success.mp3"};
+        self.effects = @{@"move" : @"move.mp3", @"star" : @"star.mp3", @"success" : @"success.mp3"};
         
         [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:self.backgroundMusic];
         for (NSString *effect in self.effects) {
