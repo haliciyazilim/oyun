@@ -103,9 +103,8 @@
             self.imageView.transform = CGAffineTransformConcat(t1, t2);
         } completion:^(BOOL finished){
             isAnimating = NO;
-            [self.superview insertSubview:self belowSubview:[[RMInGameViewController lastInstance] grids]];
             if([self.parent canGameFinish]){
-                NSLog(@"Game is finished");
+//                NSLog(@"Game is finished");
                 [self.parent endGame];
             }
         }];

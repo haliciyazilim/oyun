@@ -9,7 +9,8 @@
 #import "RMInGameViewController.h"
 #import "RMPhotoSelectionViewController.h"
 #import "RMImage.h"
-
+#import "RMInGameWinScreenView.h"
+#import "RMInGameMenuView.h"
 
 
 @interface RMInGameViewController ()
@@ -23,12 +24,12 @@
     int tileSize;
     RMImage* currentImage;
     BOOL isGameFinished;
-    UIImageView* hiddenImage;
     int photoHolderTopPadding;
     int photoHolderLeftPadding;
     int scaleFactor;
     UIActivityIndicatorView* indicator;
 }
+
 
 +(RMInGameViewController *)lastInstance
 {
@@ -96,6 +97,7 @@ static RMInGameViewController* lastInstance = nil;
 
 - (void)viewDidLoad
 {
+//    NSLog(@"Entered viewDidLoad");
     [super viewDidLoad];
     [self setupViews];
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
@@ -131,15 +133,6 @@ static RMInGameViewController* lastInstance = nil;
     }
     
     
-    
-//    UIImageView* grids = [self createGridView];
-//    grids.frame = CGRectMake(photoHolderLeftPadding, photoHolderTopPadding, grids.image.size.width, grids.image.size.height);
-//    grids.alpha = 0.5;
-//    [self.photoHolder addSubview:grids];
-//    self.grids = grids;
-    
-//    [self configureGame];
-    
     [self.stopWatchLabel setFont:[UIFont fontWithName:@"TRMcLean" size:[self timerFontSize]]];
     [self.stopWatchLabel setText:@"00:00"];
     
@@ -157,6 +150,7 @@ static RMInGameViewController* lastInstance = nil;
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [[RMPhotoSelectionViewController lastInstance] lighten];
     [self.stopWatch startTimerWithRepeatBlock:^{
         [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
     }];
@@ -193,6 +187,7 @@ static RMInGameViewController* lastInstance = nil;
 
 - (void) endGame
 {
+    
     isGameFinished = YES;
     [self.stopWatch stopTimer];
     [currentImage.owner setScore:[self.stopWatch getElapsedSeconds] forDifficulty:getCurrentDifficulty()];
@@ -200,19 +195,11 @@ static RMInGameViewController* lastInstance = nil;
     for(RMCroppedImageView* croppedImage in self.croppedImages){
         [croppedImage removeFromSuperview];
     }
-    [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationCurveEaseIn animations:^{
-        self.grids.alpha = 0.0;
-        
-    } completion:^(BOOL finished) {
-        CGRect initialFrame = hiddenImage.frame;
-        [UIView animateWithDuration:0.5 animations:^{
-            hiddenImage.frame = CGRectMake(initialFrame.origin.x - initialFrame.size.width*0.035, initialFrame.origin.y - initialFrame.size.height*0.035, initialFrame.size.width*1.07, initialFrame.size.height*1.07);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.5 animations:^{
-                hiddenImage.frame = initialFrame;
-            }];
-        }];
-    }];
+    
+    [RMInGameWinScreenView showWinScreenWithScore:[self.stopWatch toStringWithoutMiliseconds] forInGameViewController:self];
+    
+    
+    
     
 }
 
@@ -224,15 +211,14 @@ static RMInGameViewController* lastInstance = nil;
 - (void) configureGame
 {
     CGSize canvasSize = CGSizeMake(cols * tileSize * scaleFactor, rows * tileSize * scaleFactor);
-    
     NSMutableArray* croppedImages = [[NSMutableArray alloc] init];
     
     UIImage* resizedImage = [currentImage imageByScalingAndCroppingForSize:canvasSize];
-    hiddenImage = [[UIImageView alloc] initWithImage:resizedImage];
-    hiddenImage.frame = CGRectMake(photoHolderLeftPadding, photoHolderTopPadding, cols * tileSize, rows * tileSize);
-    [self.photoHolder addSubview:hiddenImage];
-    [hiddenImage setClipsToBounds:YES];
-    [hiddenImage setContentMode:UIViewContentModeScaleAspectFill];
+    self.hiddenImage = [[UIImageView alloc] initWithImage:resizedImage];
+    self.hiddenImage.frame = CGRectMake(photoHolderLeftPadding, photoHolderTopPadding, cols * tileSize, rows * tileSize);
+    [self.photoHolder addSubview:self.hiddenImage];
+    [self.hiddenImage setClipsToBounds:YES];
+    [self.hiddenImage setContentMode:UIViewContentModeScaleAspectFill];
     for(int x=0; x<cols; x++){
         for(int y=0; y<rows; y++){
             CGRect rect;
@@ -248,17 +234,16 @@ static RMInGameViewController* lastInstance = nil;
             RMCroppedImageView* imgView = [[RMCroppedImageView alloc] initWithImage:img];
             imgView.frame = CGRectMake(photoHolderLeftPadding+x*tileSize, photoHolderTopPadding+y*tileSize, tileSize, tileSize);
             
-            if(arc4random()%100 < 10)
-                [imgView setRotationStateTo: M_PI * 0.0];
-            else if(arc4random()%100 < 40)
-                [imgView setRotationStateTo: M_PI * 0.5];
-            else if(arc4random()%100 < 70)
-                [imgView setRotationStateTo: M_PI * 1.0];
-            else if(arc4random()%100 < 100)
-                [imgView setRotationStateTo: M_PI * 1.5];
+//            if(arc4random()%100 < 10)
+//                [imgView setRotationStateTo: M_PI * 0.0];
+//            else if(arc4random()%100 < 40)
+//                [imgView setRotationStateTo: M_PI * 0.5];
+//            else if(arc4random()%100 < 70)
+//                [imgView setRotationStateTo: M_PI * 1.0];
+//            else if(arc4random()%100 < 100)
+//                [imgView setRotationStateTo: M_PI * 1.5];
 
             [self.photoHolder addSubview:imgView];
-            [self.photoHolder insertSubview:imgView belowSubview:self.grids];
             imgView.parent = self;
             [croppedImages addObject:imgView];
                         
@@ -281,13 +266,45 @@ static RMInGameViewController* lastInstance = nil;
 - (void)viewDidUnload
 {
     [self setStopWatchLabel:nil];
+    [self setTimerHolder:nil];
+    [self setMenuButton:nil];
     [super viewDidUnload];
 }
 
-- (IBAction)displayMenu:(id)sender {
+- (IBAction)displayMenu:(id)sender
+{
+    [self.menuButton setEnabled:NO];
+    
+    UIView* view = [[RMInGameMenuView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width)];
+    view.tag = 1234;
+    [self.view addSubview:view];
+
+}
+
+-(void) returnToMainMenu:(UIButton*)button
+{
     [self dismissViewControllerAnimated:YES completion:^{
-        
+
     }];
+}
+
+-(void)resumeGame:(UIButton*)button
+{
+    [(RMInGameMenuView*)[self.view viewWithTag:1234] removeFromSuperviewOnCompletion:^{
+        [self.menuButton setEnabled:YES];
+    }];
+}
+
+
+
+-(void) restartGame:(UIButton*)button
+{
+//    NSLog(@"I'm here");
+    [[RMPhotoSelectionViewController lastInstance] darken];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[RMPhotoSelectionViewController lastInstance] restart];
+    }];
+    
 }
 
 @end
