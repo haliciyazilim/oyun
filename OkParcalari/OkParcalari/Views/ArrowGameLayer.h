@@ -14,7 +14,7 @@
 
 //@class Stopwatch;
 
-@interface ArrowGameLayer : CCLayer <FBDialogDelegate>
+@interface ArrowGameLayer : CCLayer <FBDialogDelegate, UIAlertViewDelegate>
 
 +(CCScene *) sceneWithFile:(NSString*)fileName;
 - (void) initializeGameWithFile:(NSString*)fileName;

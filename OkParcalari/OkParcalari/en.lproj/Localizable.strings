@@ -76,3 +76,10 @@
 "TUTORIAL_5_2" = "Even if it is used to water both of the tiles to its right it will still have power to water 4 tiles below.";
 "TUTORIAL_5_3" = "So, it is certain that this pump will be watering at least 4 tiles below itself.";
 "TUTORIAL_5_4" = "Use it to water 4 tiles.";
+
+// Rate Us
+"RATE_US_TITLE" = "Rate Us!";
+"RATE_US_MESSAGE" = "If you enjoy playing Green the Garden, you can rate us on the App Store.";
+"RATE_US_RATE" = "Rate now";
+"RATE_US_LATER" = "Remind later";
+"RATE_US_DONT_SHOW_AGAIN" = "Don't show again";
