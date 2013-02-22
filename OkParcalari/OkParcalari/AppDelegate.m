@@ -43,10 +43,6 @@
         [Flurry logEvent:kFlurryEventFirstSession timed:YES];
     }
     
-    [Flurry logEvent:kFlurryEventUnlockFullGame
-      withParameters:@{@"Solved Map Count" : [NSNumber numberWithInt:9]}];
-    
-    
     [GreenTheGardenIAPHelper sharedInstance];
     [GreenTheGardenSoundManager sharedSoundManager];
     
