@@ -555,6 +555,10 @@ static ArrowGameLayer* __lastInstance;
     }
 
     
+    if (starCount == 0) {
+        [self showRateUsAlert];
+    }
+    
     for ( int i = 0; i < starCount; i++){
         [UIView animateWithDuration:0.3 delay:1.2+i*0.5 options:UIViewAnimationOptionCurveEaseOut animations:^{
             [[activeStars objectAtIndex:i] setAlpha:1.0];

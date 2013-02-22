@@ -33,10 +33,10 @@
         
         self.layer.transform = transform;
         
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             self.transform = CGAffineTransformMakeScale(1.0, 1.0);
         }];
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.15 animations:^{
             self.alpha = 1.0;
         }];
     }
@@ -85,9 +85,9 @@
     [button setTitleColor:BROWN_TEXT_COLOR forState:UIControlStateNormal];
     [button setTitleColor:BROWN_TEXT_COLOR forState:UIControlStateHighlighted];
     [button setTitleColor:BROWN_TEXT_COLOR forState:UIControlStateSelected];
-    [button setBackgroundImage:[UIImage imageNamed:@"youwin_btn_bg.png"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"youwin_btn_bg_hover.png"] forState:UIControlStateHighlighted];
-    [button setBackgroundImage:[UIImage imageNamed:@"youwin_btn_bg_hover.png"] forState:UIControlStateSelected];
+    [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg.png"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg_hover.png"] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg_hover.png"] forState:UIControlStateSelected];
 }
 
 -(void) setBackground
@@ -103,10 +103,10 @@
 }
 -(void )removeFromSuperviewOnCompletion:(IteratorBlock)block
 {
-    [UIView animateWithDuration:0.3 delay:0.2 options:0 animations:^{
+    [UIView animateWithDuration:0.15 delay:0.10 options:0 animations:^{
         self.alpha = 0.0;
     } completion:nil];
-    [UIView animateWithDuration:0.5 delay:0.0 options:0 animations:^{
+    [UIView animateWithDuration:0.25 delay:0.0 options:0 animations:^{
         CGRect buttonFrame = [RMInGameViewController lastInstance].menuButton.frame;
         
         int x = buttonFrame.origin.x - self.frame.size.width/2 + buttonFrame.size.width/2;

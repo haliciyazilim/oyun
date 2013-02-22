@@ -95,8 +95,8 @@
 }
 
 -(void) showButtons{
-    UIButton* menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
+    UIButton* menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [menuButton setTitle:@"Main Menu" forState:UIControlStateNormal];
     [self stylizeButton:menuButton];
     [menuButton addTarget:inGameViewController action:@selector(returnToMainMenu:) forControlEvents:UIControlEventTouchUpInside];
@@ -105,9 +105,8 @@
     UIButton* restartButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [restartButton setTitle:@"Restart" forState:UIControlStateNormal];
     [self stylizeButton:restartButton];
-    
     [restartButton addTarget:inGameViewController action:@selector(restartGame:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [inGameViewController.view addSubview:restartButton];
     
     if([[UIScreen mainScreen] bounds].size.height == 568){
         [restartButton setFrame:CGRectMake(360, 170, 154, 36)];
@@ -117,8 +116,16 @@
         [restartButton setFrame:CGRectMake(320, 170, 154, 36)];
         [menuButton setFrame:CGRectMake(320, 120, 154, 36)];
     }
+
+    restartButton.transform = CGAffineTransformMakeScale(1.0, 0.5);
+    menuButton.transform = CGAffineTransformMakeScale(1.0, 0.5);
+    [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        restartButton.transform = CGAffineTransformMakeScale(1, 1);
+        menuButton.transform = CGAffineTransformMakeScale(1, 1);
+    } completion:^(BOOL finished) {
+        
+    }];
     
-    [inGameViewController.view addSubview:restartButton];
 }
 
 -(void) stylizeButton:(UIButton*)button
