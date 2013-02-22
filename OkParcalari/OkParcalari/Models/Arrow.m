@@ -80,6 +80,7 @@
         return;
     }
     
+    [base showSize];
     
     [self createSprites];
 }

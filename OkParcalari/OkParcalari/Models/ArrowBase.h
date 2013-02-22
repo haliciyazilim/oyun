@@ -38,4 +38,7 @@
 - (Arrow *) arrowAtDirection:(Direction) direction;
 
 - (BOOL) isDeformed;
+
+- (void) showSize;
+
 @end

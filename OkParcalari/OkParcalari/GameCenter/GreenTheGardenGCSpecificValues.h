@@ -11,8 +11,8 @@
 #define kAdRepeatMax 5
 
 //Free MapsCount
-#define kNonPlayedActiveGameCount 6
-#define kFreeMapsCount 9
+#define kNonPlayedActiveGameCount 9
+#define kFreeMapsCount 12
 
 // Leaderboard IDs (if any)
 #define kLeaderBoardStar @"high_score"

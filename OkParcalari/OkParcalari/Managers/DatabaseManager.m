@@ -124,6 +124,10 @@ static DatabaseManager *sharedInstance = nil;
     
     NSError *error = nil;
     NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if(mutableFetchResults == nil)
+        return nil;
+    if([mutableFetchResults count] == 0)
+        return nil;
     return [mutableFetchResults objectAtIndex:0];
 }
 
@@ -204,21 +208,29 @@ static DatabaseManager *sharedInstance = nil;
     return result;
 }
 
+- (Map*) createAndInsertMap
+{
+    
+    Map *map = [NSEntityDescription insertNewObjectForEntityForName:@"Map"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [map setIsFinished:NO];
+    [map setScore:[NSNumber numberWithInt:INT32_MAX]];
+    [map setDifficulty:-1];
+    [map setStepCount:-1];
+    [map setTileCount:0];
+    [map setIsPurchased:NO];
+    [map setIsLocked:YES];
+    [map setIsNotPlayedActiveGame:NO];
+
+    [self saveContext];
+    return map;
+}
 
 - (void)insertMaps:(NSArray *)maps forPackage:(NSString *)packageId {
     for (NSString *mapId in maps) {
-        Map *aMap = [NSEntityDescription insertNewObjectForEntityForName:@"Map"
-                                                  inManagedObjectContext:self.managedObjectContext];
-        [aMap setIsFinished:NO];
+        Map* aMap = [self createAndInsertMap];
         [aMap setPackageId:packageId];
         [aMap setMapId:mapId];
-        [aMap setScore:[NSNumber numberWithInt:INT32_MAX]];
-        [aMap setDifficulty:-1];
-        [aMap setStepCount:-1];
-        [aMap setTileCount:0];
-        [aMap setIsPurchased:NO];
-        [aMap setIsLocked:YES];
-        [aMap setIsNotPlayedActiveGame:NO];
     }
     [self saveContext];
 }
