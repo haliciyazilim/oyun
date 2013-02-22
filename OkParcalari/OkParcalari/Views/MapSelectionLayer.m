@@ -147,7 +147,7 @@
 {
     
     UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(
-                                                           (index/rowCount)*unitSize.width + (unitSize.width*0.5*(index%rowCount))+contentPadding,
+                                                                  (index/rowCount)*unitSize.width + (unitSize.width*0.5*(index%rowCount))+contentPadding+(index>=12?unitSize.width*0.5:0),
                                                            (index%rowCount)*unitSize.height,
                                                            buttonSize.width,
                                                            buttonSize.height)];

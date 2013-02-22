@@ -80,6 +80,7 @@
         return;
     }
     
+    [base showSize];
     
     [self createSprites];
 }
@@ -260,7 +261,7 @@
     
     if(max != min){
         moveCount++;
-        if(moveCount >=10){
+        if(moveCount ==10){
             [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementBipolar percentComplete:100.0];
         }
     }

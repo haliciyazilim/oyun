@@ -188,10 +188,18 @@ static ArrowGame* __lastInstance;
         return;
     }
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
+    
     startLocation = location;
     if([[TutorialManager sharedInstance] isTutorialActive]){
         ArrowBase* base = ([currentEntity class] == [ArrowBase class]) ? (ArrowBase*)currentEntity : ((Arrow*)currentEntity).base;
         if(![[TutorialManager sharedInstance] isCorrectEntitity:(ArrowBase*)base]){
+            currentEntity = nil;
+        }
+    }
+    if([currentEntity class] == [Arrow class]){
+        Arrow* arrow = (Arrow*) currentEntity;
+        Location lastLocation = [arrow locationAtOrder:[arrow getSize]];
+        if(location.x != lastLocation.x || location.y != lastLocation.y){
             currentEntity = nil;
         }
     }
@@ -213,9 +221,8 @@ static ArrowGame* __lastInstance;
     }else{
         isInTheSameLocation = YES;
     }
-    if(lastDirection != NONE && currentDirection != lastDirection)
+    if(lastDirection != NONE && currentDirection != lastDirection && currentDirection != NONE)
         return;
-    lastDirection = currentDirection;
     
     if(currentEntity.class == [Arrow class]){
         Arrow* arrow = (Arrow*)currentEntity;
@@ -234,24 +241,18 @@ static ArrowGame* __lastInstance;
         }
         if(lastDirection != NONE && (lastDirection == currentDirection || currentDirection == NONE)){
             Arrow* arrow = [base arrowAtDirection:currentDirection];
-//            arrow.endLocation = location;
-            if(isInTheSameLocation){
+            if(isInTheSameLocation || currentDirection == NONE){
                 [base compressArrowAtDirection:lastDirection];
             }
             else{
                 [base extendArrowWithEndLocation:location];
             }
-            
             [arrow removeSquirts];
             
         }
-//        else if(lastDirection != NONE && (lastDirection != currentDirection) && currentDirection != NONE){
-////            [base compressArrowAtDirection:lastDirection];
-////            [base extendArrowWithEndLocation:location];
-//            lastDirection = currentDirection;
-//        }
         
     }
+    lastDirection = currentDirection;
 }
 
 
