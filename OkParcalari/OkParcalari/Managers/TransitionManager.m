@@ -64,7 +64,7 @@ static TransitionManager* currentInstance = nil;
     transitionImage2.layer.zPosition = 998.0;
     
     transitionImage3 = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0)];
-    [transitionImage3 setImage:[UIImage imageNamed:@"transition_grass.png"]];
+    [transitionImage3 setImage:[UIImage imageNamed:@"transition_grass.jpg"]];
     transitionImage3.alpha = 0.0;
     transitionImage3.layer.zPosition = 997.0;
     
