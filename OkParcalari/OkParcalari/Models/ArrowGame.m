@@ -188,10 +188,18 @@ static ArrowGame* __lastInstance;
         return;
     }
     currentEntity = [GameMap.sharedInstance entityAtLocation:location];
+    
     startLocation = location;
     if([[TutorialManager sharedInstance] isTutorialActive]){
         ArrowBase* base = ([currentEntity class] == [ArrowBase class]) ? (ArrowBase*)currentEntity : ((Arrow*)currentEntity).base;
         if(![[TutorialManager sharedInstance] isCorrectEntitity:(ArrowBase*)base]){
+            currentEntity = nil;
+        }
+    }
+    if([currentEntity class] == [Arrow class]){
+        Arrow* arrow = (Arrow*) currentEntity;
+        Location lastLocation = [arrow locationAtOrder:[arrow getSize]];
+        if(location.x != lastLocation.x || location.y != lastLocation.y){
             currentEntity = nil;
         }
     }
