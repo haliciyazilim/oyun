@@ -46,6 +46,8 @@
     int _starCount;
     int _mapOrder;
     MAP_DIFFICULTY _difficulty;
+    
+    BOOL canShowRateUsAlert;
 }
 
 +(CCScene *) sceneWithFile:(NSString *)fileName
@@ -168,6 +170,19 @@ static ArrowGameLayer* __lastInstance;
         _isGameEnded = NO;
         
 		self.isTouchEnabled = YES;
+        
+        
+        NSString *userDef = [[NSUserDefaults standardUserDefaults] objectForKey:@"canShowRateUsAlert"];
+        
+        if (userDef == nil) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"canShowRateUsAlert"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            canShowRateUsAlert = YES;
+        } else if ([userDef  isEqualToString:@"YES"]) {
+            canShowRateUsAlert = YES;
+        } else if ([userDef isEqualToString:@"NO"]) {
+            canShowRateUsAlert = NO;
+        }
 	}
     __lastInstance = self;
 	return self;
@@ -556,7 +571,9 @@ static ArrowGameLayer* __lastInstance;
             CGAffineTransform myTransform = CGAffineTransformConcat(CGAffineTransformMakeRotation(0.0), CGAffineTransformMakeScale(1.0, 1.0));
             ((UIView *)[activeStars objectAtIndex:i]).transform = myTransform;
             } completion:^(BOOL finished) {
-                ;
+                if (i == starCount-1) {
+                    [self showRateUsAlert];
+                }
             }];
         }];
     }
@@ -574,7 +591,57 @@ static ArrowGameLayer* __lastInstance;
     }];
 
 }
-
+- (void) showRateUsAlert {
+    
+    NSArray *allMaps=[[DatabaseManager sharedInstance] getAllMaps];
+    int finishedMaps=0;
+    
+    for (Map * map in allMaps){
+        if(map.isFinished)
+            finishedMaps++;
+    }
+    int lastAlert = [[NSUserDefaults standardUserDefaults] integerForKey:@"lastRateUsAlertCount"];
+    NSLog(@"last alert is at:%d, and finishedMaps is:%d",lastAlert,finishedMaps);
+    if (finishedMaps >= lastAlert+10) {
+        if (canShowRateUsAlert) {
+            UIAlertView *alertView = [[UIAlertView alloc]
+                                      initWithTitle:NSLocalizedString(@"RATE_US_TITLE", nil)
+                                      message:NSLocalizedString(@"RATE_US_MESSAGE", nil)
+                                      delegate:self
+                                      cancelButtonTitle:nil
+                                      otherButtonTitles:NSLocalizedString(@"RATE_US_RATE", nil),
+                                                        NSLocalizedString(@"RATE_US_LATER", nil),
+                                                        NSLocalizedString(@"RATE_US_DONT_SHOW_AGAIN", nil),nil];
+            
+            [alertView show];
+            [[NSUserDefaults standardUserDefaults] setInteger:finishedMaps forKey:@"lastRateUsAlertCount"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == [alertView firstOtherButtonIndex]) {
+        
+        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"canShowRateUsAlert"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        canShowRateUsAlert = NO;
+        
+        NSString *str = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa";
+        str = [NSString stringWithFormat:@"%@/wa/viewContentsUserReviews?", str];
+        str = [NSString stringWithFormat:@"%@type=Purple+Software&id=", str];
+        
+        // Here is the app id from itunesconnect
+        str = [NSString stringWithFormat:@"%@592099228", str];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    } else if (buttonIndex == [alertView firstOtherButtonIndex]+1) {
+        canShowRateUsAlert = YES;
+    } else if (buttonIndex == [alertView firstOtherButtonIndex]+2) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"canShowRateUsAlert"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        canShowRateUsAlert = NO;
+    }
+}
 - (void) shareOnFacebook {
     [Flurry logEvent:kFlurryEventFacebookPostPressed
       withParameters:@{

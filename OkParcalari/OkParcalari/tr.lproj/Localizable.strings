@@ -76,3 +76,10 @@
 "TUTORIAL_5_2" = "Eğer bu pompa sağındaki iki kareyi sulasa bile hala aşağı doğru sulayacak 4 karelik gücü kalır.";
 "TUTORIAL_5_3" = "Demek ki, bu pompa aşağı doğru 4 kareyi kesinlikle sulayacaktır.";
 "TUTORIAL_5_4" = "Şimdi 4 karelik alanı sulayın.";
+
+// Rate Us
+"RATE_US_TITLE" = "Bizi Oylayın!";
+"RATE_US_MESSAGE" = "Green the Garden'ı beğendiyseniz bizi App Store'da oylayabilirsiniz.";
+"RATE_US_RATE" = "Şimdi oyla";
+"RATE_US_LATER" = "Daha sonra";
+"RATE_US_DONT_SHOW_AGAIN" = "Bir daha gösterme";
