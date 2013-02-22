@@ -213,9 +213,8 @@ static ArrowGame* __lastInstance;
     }else{
         isInTheSameLocation = YES;
     }
-    if(lastDirection != NONE && currentDirection != lastDirection)
+    if(lastDirection != NONE && currentDirection != lastDirection && currentDirection != NONE)
         return;
-    lastDirection = currentDirection;
     
     if(currentEntity.class == [Arrow class]){
         Arrow* arrow = (Arrow*)currentEntity;
@@ -234,24 +233,18 @@ static ArrowGame* __lastInstance;
         }
         if(lastDirection != NONE && (lastDirection == currentDirection || currentDirection == NONE)){
             Arrow* arrow = [base arrowAtDirection:currentDirection];
-//            arrow.endLocation = location;
-            if(isInTheSameLocation){
+            if(isInTheSameLocation || currentDirection == NONE){
                 [base compressArrowAtDirection:lastDirection];
             }
             else{
                 [base extendArrowWithEndLocation:location];
             }
-            
             [arrow removeSquirts];
             
         }
-//        else if(lastDirection != NONE && (lastDirection != currentDirection) && currentDirection != NONE){
-////            [base compressArrowAtDirection:lastDirection];
-////            [base extendArrowWithEndLocation:location];
-//            lastDirection = currentDirection;
-//        }
         
     }
+    lastDirection = currentDirection;
 }
 
 
