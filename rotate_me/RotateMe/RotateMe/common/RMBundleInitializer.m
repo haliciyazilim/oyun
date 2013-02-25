@@ -18,6 +18,8 @@
     [RMBundleInitializer copyImages:imageNames];
     
     Gallery* gallery = [Gallery createGalleryWithName:DEFAULT_GALLERY_NAME];
+    gallery.isPurchased = YES;
+    [[RMDatabaseManager sharedInstance] saveContext];
     [RMBundleInitializer insertImages:imageNames forGallery:gallery];
 
     [Gallery createGalleryWithName:USER_GALLERY_NAME];

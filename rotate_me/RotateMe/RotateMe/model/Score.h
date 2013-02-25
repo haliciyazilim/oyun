@@ -16,4 +16,5 @@
 @property PhotoManagedObject* photo;
 @property DIFFICULTY difficulty;
 - (NSString*) toText;
++ (void) cleanAllScores;
 @end

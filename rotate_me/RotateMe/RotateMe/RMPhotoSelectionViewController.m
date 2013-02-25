@@ -107,7 +107,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 
 -(void)configureView
 {
-    [self.galleryNameLabel setText:currentGallery.name];
+    [self.galleryNameLabel setText:NSLocalizedString(currentGallery.name,nil)];
     [self.galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:20.0] ];
     [self printPhotos];
     [self processImageThreads];
