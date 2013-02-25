@@ -21,4 +21,6 @@
 
 - (NSArray*) allPhotos;
 
+- (void) purchaseGallery;
+
 @end

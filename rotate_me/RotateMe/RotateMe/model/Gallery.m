@@ -42,4 +42,10 @@
     return array;
 }
 
+- (void) purchaseGallery
+{
+    self.isPurchased = YES;
+    [[RMDatabaseManager sharedInstance] saveContext];
+}
+
 @end
