@@ -94,9 +94,11 @@
 
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
     [self removeActivity];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
 }
 -(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
     [self removeActivity];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
 }
 - (void)completeTransaction:(SKPaymentTransaction *)transaction {
     [self removeActivity];
@@ -121,6 +123,7 @@
         [productPurchased show];
     }
     [self removeActivity];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier {
@@ -133,6 +136,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:[self sha1:proString] forKey:iProKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductPurchasedNotification object:productIdentifier userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
 }
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     _productsRequest = nil;

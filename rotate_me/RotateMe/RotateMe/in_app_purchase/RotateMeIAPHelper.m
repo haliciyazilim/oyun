@@ -10,6 +10,7 @@
 #import "RotateMeIAPSpecificValues.h"
 #import "Gallery.h"
 #import <QuartzCore/QuartzCore.h>
+#import "RMGallerySelectionViewController.h"
 
 
 @implementation RotateMeIAPHelper
@@ -19,6 +20,8 @@
     UILabel *priceLabel;
     UIButton *buyButton;
     UIActivityIndicatorView *activity;
+    Gallery *currentGallery;
+    UIViewController *currentController;
 }
 
 + (RotateMeIAPHelper *)sharedInstance {
@@ -29,6 +32,7 @@
                                    iSportsGalleryKey : iSportsGallerySecret};
         sharedInstance = [[self alloc] initWithProductsDictionary:products];
         [[NSNotificationCenter defaultCenter] addObserver:sharedInstance selector:@selector(productPurchaseCompleted:) name:IAPHelperProductPurchasedNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:sharedInstance selector:@selector(enableBuyButton) name:IAPHelperEnableBuyButtonNotification object:nil];
     });
     return sharedInstance;
 }
@@ -57,9 +61,18 @@
 //        [Flurry logEvent:kFlurryEventUnlockFullGame
 //          withParameters:@{@"Solved Map Count" : [NSNumber numberWithInt:count]}];
 //    }
+    [currentGallery purchaseGallery];
+    [(RMGallerySelectionViewController *)currentController configureViews];
+    currentGallery = nil;
+    currentController = nil;
+    [self closeStore];
+    
+    [self enableBuyButton];
 }
 - (void) showProduct:(Gallery*)gallery onViewController:(UIViewController*) viewController
 {
+    currentGallery = gallery;
+    currentController = viewController;
     CGFloat currentScreenWidth = [[UIScreen mainScreen] bounds].size.height;
     CGFloat currentScreenHeight = [[UIScreen mainScreen] bounds].size.width;
     
@@ -188,6 +201,7 @@
     currentProductIdentifier = nil;
 }
 - (void) buyCurrentProduct {
+    [self disableBuyButton];
     if([[RotateMeIAPHelper sharedInstance] canMakePurchases]){
         [[RotateMeIAPHelper sharedInstance] buyProduct:[[RotateMeIAPHelper sharedInstance] getProductWithProductIdentifier:currentProductIdentifier]];
     }
@@ -217,5 +231,11 @@
     } else {
         return NO;
     }
+}
+- (void) disableBuyButton {
+    [buyButton setEnabled:NO];
+}
+- (void) enableBuyButton {
+    [buyButton setEnabled:YES];
 }
 @end

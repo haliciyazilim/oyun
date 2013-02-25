@@ -9,6 +9,7 @@
 #import <StoreKit/StoreKit.h>
 
 #define IAPHelperProductPurchasedNotification @"IAPHelperProductPurchasedNotification"
+#define IAPHelperEnableBuyButtonNotification @"IAPHelperEnableBuyButtonNotification"
 
 typedef void (^RequestProductsCompletionHandler)(BOOL success, NSArray * products);
 
