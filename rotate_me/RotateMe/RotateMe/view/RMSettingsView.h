@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RMSettingsView : UIView
+@interface RMSettingsView : UIView <UIAlertViewDelegate>
 
 @end

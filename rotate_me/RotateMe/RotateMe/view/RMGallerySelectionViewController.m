@@ -109,10 +109,13 @@
         [galleryItem setTouchesBegan:^{
             if(touchedGallery != nil)
                 return;
-//            touchedGallery = gallery;
-//            [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
-            [[RotateMeIAPHelper sharedInstance] showProduct:gallery onViewController:self];
-            
+            if(gallery.isPurchased){
+                touchedGallery = gallery;
+                [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
+            }else{
+                [[RotateMeIAPHelper sharedInstance] showProduct:gallery onViewController:self];    
+            }
+         
         }];
         index++;
         if(gallery.isPurchased == NO){

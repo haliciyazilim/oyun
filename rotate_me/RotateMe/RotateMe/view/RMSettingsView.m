@@ -8,6 +8,7 @@
 
 #import "RMSettingsView.h"
 #import "Config.h"
+#import "Score.h"
 
 @implementation RMSettingsView
 
@@ -53,6 +54,7 @@
     
     button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"Reset Scores" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(resetScores) forControlEvents:UIControlEventTouchUpInside];
     [buttons addObject:button];
     button = nil;
         
@@ -103,4 +105,17 @@
     [self removeFromSuperview];
 }
 
+- (void) resetScores
+{
+    [[[UIAlertView alloc] initWithTitle:@"Reset Scores" message:@"Are you sure you want to reset scores?"  delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Sure",nil] show];
+//    [Score cleanAllScores];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1){
+        [Score cleanAllScores];
+        [[[UIAlertView alloc] initWithTitle:@"Scores cleaned" message:@"Your all scores were cleaned"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    }
+    
+}
 @end

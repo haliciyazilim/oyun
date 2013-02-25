@@ -22,4 +22,13 @@
     
     return [NSString stringWithFormat:@"%@:%@",minutesString,secondsString];
 }
+
++ (void) cleanAllScores
+{
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    NSMutableArray* scores = [[RMDatabaseManager sharedInstance] entitiesWithRequest:request forName:@"Score"];
+    for(Score* score in scores){
+        [[RMDatabaseManager sharedInstance] deleteObject:score];
+    }
+}
 @end
