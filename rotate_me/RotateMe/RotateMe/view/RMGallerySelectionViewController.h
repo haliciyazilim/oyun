@@ -12,5 +12,5 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 - (IBAction)openSettings:(id)sender;
-
+- (void) configureViews;
 @end
