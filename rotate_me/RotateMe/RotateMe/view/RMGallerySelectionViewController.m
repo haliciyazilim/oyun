@@ -96,7 +96,7 @@
     }
     
     for(Gallery* gallery in allGaleries){
-        RMGallerySelectionItemView* galleryItem = [[RMGallerySelectionItemView alloc] initWithGallery:gallery animate:isFirstLoad];
+        RMGallerySelectionItemView* galleryItem = [[RMGallerySelectionItemView alloc] initWithGallery:gallery animate:YES];
         [self.scrollView addSubview:galleryItem];
         galleryItem.tag = GALLERY_SELECTION_GALLERY_ITEM_TAG;
         galleryItem.frame = CGRectMake(
@@ -109,19 +109,18 @@
         [galleryItem setTouchesBegan:^{
             if(touchedGallery != nil)
                 return;
-            touchedGallery = gallery;
-            [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
-//            [[RotateMeIAPHelper sharedInstance] showProduct:gallery onViewController:self];
+//            touchedGallery = gallery;
+//            [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
+            [[RotateMeIAPHelper sharedInstance] showProduct:gallery onViewController:self];
             
         }];
         index++;
-//        if(gallery.isPurchased == NO){
-//            [galleryItem setLocked];
-//        }
+        if(gallery.isPurchased == NO){
+            [galleryItem setLocked];
+        }
     }
     
     touchedGallery = nil;
-    isFirstLoad = NO;
 
 }
 
@@ -132,6 +131,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super viewDidUnload];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    isFirstLoad = NO;
 }
 
 - (IBAction)openSettings:(id)sender {

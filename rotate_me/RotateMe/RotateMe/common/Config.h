@@ -21,6 +21,7 @@
 
 #define GALLERY_ITEM_PHOTO_IMAGE_TAG 14411
 #define GALLERY_SELECTION_MASK_IMAGE_VIEW_TAG 5402009
+#define GALLERY_NAME_LABEL_TAG 875684
 
 #define NSUSER_DIFFICULTY @"game_difficulty"
 
@@ -29,7 +30,7 @@
 
 //color
 #define BROWN_TEXT_COLOR [UIColor colorWithRed:121.0/255.0 green:71.0/255.0 blue:34.0/255.0 alpha:1.0]
-
+#define LIGHT_BROWN_TEXT_COLOR [UIColor colorWithRed:121.0*2.0/255.0 green:71.0*2.0/255.0 blue:34.0*2.0/255.0 alpha:1.0]
 
 
 #endif

@@ -63,15 +63,14 @@
             UIImageView* photoImageView = [self createPhotoImageViewWithImage:image];
             [borderImageView addSubview:photoImageView];
             photoImageView.tag = GALLERY_ITEM_PHOTO_IMAGE_TAG;
-            
         }
         if(shouldAnimate)
             borderImageView.alpha = 0.0;
         [imageViews addObject:borderImageView];
         if(i == 0)
             frontView = borderImageView;
-        [self addSubview:borderImageView];
-    }    
+        [self insertSubview:borderImageView atIndex:3-i];
+    }
     for(int i=0;i<[imageViews count];i++){
         UIImageView* view = [imageViews objectAtIndex:i];
         int rand = arc4random();
@@ -79,35 +78,41 @@
         
         UIImageView* maskImageView = [[UIImageView alloc] initWithImage:maskImage];
         maskImageView.tag = GALLERY_SELECTION_MASK_IMAGE_VIEW_TAG;
-        [view addSubview:maskImageView];
+        [view insertSubview:maskImageView atIndex:1];
         
         if(i == 0){
-            [view addSubview:[self createGalleryNameLabel]];
             view.transform = CGAffineTransformTranslate(view.transform, 15, 0);
             if(isPurchased)
                 [maskImageView setAlpha:0.0];
             else
                 [maskImageView setAlpha:0.6];
-        }
+            UIView* nameLabel =[self createGalleryNameLabel];
+            [view insertSubview:nameLabel aboveSubview:maskImageView];
+        }else
         if(i == 1){
-            [view.superview insertSubview:view belowSubview:[imageViews objectAtIndex:0]];
+            [view.superview sendSubviewToBack:view];
             view.transform = CGAffineTransformTranslate(view.transform, 0, 0);
             view.transform = CGAffineTransformRotate(view.transform, -angle);
-            [maskImageView setAlpha:0.13];
-        }
+            if(isPurchased)
+                [maskImageView setAlpha:0.13];
+            else
+                [maskImageView setAlpha:0.7];
+        }else
         if(i == 2){
-            [view.superview insertSubview:view belowSubview:[imageViews objectAtIndex:1]];
+            [view.superview sendSubviewToBack:view];
             view.transform = CGAffineTransformTranslate(view.transform, 30, 10);
             view.transform = CGAffineTransformRotate(view.transform, angle);
-            [maskImageView setAlpha:0.20];
-            
+            if(isPurchased)
+                [maskImageView setAlpha:0.20];
+            else
+                [maskImageView setAlpha:0.8];
         }
         [view.layer setShouldRasterize:YES];
     }
-    if(shouldAnimate)
-        [self performSelectorOnMainThread:@selector(showViews) withObject:nil waitUntilDone:NO];
     if(isPurchased == NO)
-       [self setLocked];
+        [self setLocked];
+    if(shouldAnimate)
+        [self performSelectorOnMainThread:@selector(showViews) withObject:nil waitUntilDone:NO];   
 }
 
 -(UIImageView*) createBorderImageView
@@ -120,12 +125,21 @@
 -(UILabel*) createGalleryNameLabel
 {
     UILabel* galleryNameLabel = [[UILabel alloc] initWithFrame:[self getGalleryNameLabelFrame]];
+    [galleryNameLabel setTag:GALLERY_NAME_LABEL_TAG];
     [galleryNameLabel setText:galleryName];
     [galleryNameLabel setBackgroundColor:[UIColor clearColor]];
     [galleryNameLabel setTextAlignment:NSTextAlignmentCenter];
     [galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:13.0]];
-    [galleryNameLabel setTextColor:BROWN_TEXT_COLOR];
-    [galleryNameLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.20]];
+    if(isPurchased){
+        [galleryNameLabel setTextColor:BROWN_TEXT_COLOR];
+        [galleryNameLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.20]];
+        
+    }
+    else{
+        [galleryNameLabel setTextColor:LIGHT_BROWN_TEXT_COLOR];
+        [galleryNameLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.60]];
+        
+    }
     [galleryNameLabel setShadowOffset:CGSizeMake(0, 1)];
     return galleryNameLabel;
 }
@@ -178,11 +192,7 @@
 {
     UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_locked.png"]];
     [lock setFrame:CGRectMake(frontView.frame.size.width*0.5 - lock.image.size.width*0.5, frontView.frame.size.height*0.5 - lock.image.size.height*0.5-10, lock.image.size.width, lock.image.size.height)];
-    
     [frontView addSubview:lock];
-    [frontView insertSubview:lock aboveSubview:[frontView viewWithTag:GALLERY_SELECTION_MASK_IMAGE_VIEW_TAG]];
-//    [frontView insertSubview:lock atIndex:[[frontView subviews] count]];
-    NSLog(@"%f,%f,%f,%f",lock.frame.origin.x,lock.frame.origin.y,lock.frame.size.width,lock.frame.size.height);
 }
 
 @end
