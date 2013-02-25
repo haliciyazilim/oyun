@@ -59,6 +59,8 @@
 		AE2BE2C716C3D18700A0335D /* photo_holder_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2BE2C316C3D18700A0335D /* photo_holder_normal@2x.png */; };
 		AE2BE2CA16C3ED4600A0335D /* RMPhotoSelectionImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2BE2C916C3ED4600A0335D /* RMPhotoSelectionImageView.m */; };
 		AE34E6BC16D4C11A006836B8 /* RMInGameMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE34E6BB16D4C11A006836B8 /* RMInGameMenuView.m */; };
+		AE4F7CD216DB549600035FD0 /* banana.png in Resources */ = {isa = PBXBuildFile; fileRef = AE4F7CD116DB549600035FD0 /* banana.png */; };
+		AE4F7CD616DB557D00035FD0 /* RMSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE4F7CD516DB557D00035FD0 /* RMSettingsView.m */; };
 		AE72DBBB16BBAABA00C12D6C /* RMPhotoSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE72DBBA16BBAABA00C12D6C /* RMPhotoSelectionViewController.m */; };
 		AE72DBC016BBB13D00C12D6C /* RMCustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE72DBBF16BBB13D00C12D6C /* RMCustomImageView.m */; };
 		AE72DBC616BBB5BE00C12D6C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE72DBC516BBB5BE00C12D6C /* QuartzCore.framework */; };
@@ -193,6 +195,9 @@
 		AE2BE2C916C3ED4600A0335D /* RMPhotoSelectionImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMPhotoSelectionImageView.m; path = view/RMPhotoSelectionImageView.m; sourceTree = "<group>"; };
 		AE34E6BA16D4C11A006836B8 /* RMInGameMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMInGameMenuView.h; path = view/RMInGameMenuView.h; sourceTree = "<group>"; };
 		AE34E6BB16D4C11A006836B8 /* RMInGameMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMInGameMenuView.m; path = view/RMInGameMenuView.m; sourceTree = "<group>"; };
+		AE4F7CD116DB549600035FD0 /* banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana.png; path = images/gallery_selection/banana.png; sourceTree = "<group>"; };
+		AE4F7CD416DB557D00035FD0 /* RMSettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMSettingsView.h; path = view/RMSettingsView.h; sourceTree = "<group>"; };
+		AE4F7CD516DB557D00035FD0 /* RMSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMSettingsView.m; path = view/RMSettingsView.m; sourceTree = "<group>"; };
 		AE72DBB916BBAABA00C12D6C /* RMPhotoSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPhotoSelectionViewController.h; sourceTree = "<group>"; };
 		AE72DBBA16BBAABA00C12D6C /* RMPhotoSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPhotoSelectionViewController.m; sourceTree = "<group>"; };
 		AE72DBBE16BBB13D00C12D6C /* RMCustomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMCustomImageView.h; path = view/RMCustomImageView.h; sourceTree = "<group>"; };
@@ -500,6 +505,8 @@
 				AE72DBBA16BBAABA00C12D6C /* RMPhotoSelectionViewController.m */,
 				AE09C30416C23FBC00F634CB /* RMGallerySelectionViewController.h */,
 				AE09C30516C23FBC00F634CB /* RMGallerySelectionViewController.m */,
+				AE4F7CD416DB557D00035FD0 /* RMSettingsView.h */,
+				AE4F7CD516DB557D00035FD0 /* RMSettingsView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -605,6 +612,7 @@
 		AEED531616C8E0D8003F4CCD /* galleryselection */ = {
 			isa = PBXGroup;
 			children = (
+				AE4F7CD116DB549600035FD0 /* banana.png */,
 				AE841D5B16D5027200C6F946 /* icon_locked.png */,
 				AE841D5C16D5027200C6F946 /* icon_locked@2x.png */,
 				AEED531E16C9135B003F4CCD /* gallery_selection_mask.png */,
@@ -753,6 +761,7 @@
 				AE841D5916D4FD1600C6F946 /* ingame_btn_bg@2x.png in Resources */,
 				AE841D5D16D5027200C6F946 /* icon_locked.png in Resources */,
 				AE841D5E16D5027200C6F946 /* icon_locked@2x.png in Resources */,
+				AE4F7CD216DB549600035FD0 /* banana.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -791,6 +800,7 @@
 				05F6E0CD16CBD4DB00543444 /* RotateMeIAPHelper.m in Sources */,
 				AE0F91A316D3A0EA007F0ED6 /* RMInGameWinScreenView.m in Sources */,
 				AE34E6BC16D4C11A006836B8 /* RMInGameMenuView.m in Sources */,
+				AE4F7CD616DB557D00035FD0 /* RMSettingsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

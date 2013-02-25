@@ -11,3 +11,7 @@
 "COULD_NOT_MAKE_PURCHASES" = "You need to enable In-App Purchases in the Settings application in order to unlock the full game.";
 "IN_APP_PURCHASES" = "In-App Purchases";
 "OK" = "OK";
+
+//Gallery Names
+"DEFAULT_GALLERY" = "Default Gallery";
+"com.halici.RotateMe.yourGallery" = "Your Gallery";

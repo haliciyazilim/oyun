@@ -13,6 +13,7 @@
 #import "Config.h"
 #import "RotateMeIAPHelper.h"
 #import "Photo.h"
+#import "RMSettingsView.h"
 
 @interface RMGallerySelectionViewController ()
 
@@ -133,4 +134,8 @@
     [super viewDidUnload];
 }
 
+- (IBAction)openSettings:(id)sender {
+    RMSettingsView* settings = [[RMSettingsView alloc] init];
+    [self.view addSubview:settings];
+}
 @end

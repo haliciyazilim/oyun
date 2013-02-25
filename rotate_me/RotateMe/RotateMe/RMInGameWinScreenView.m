@@ -20,6 +20,7 @@
     CGRect hiddenImageTargetFrame;
     CGFloat rotationAmount;
 }
+
 + (RMInGameWinScreenView*) showWinScreenWithScore:(NSString*)score forInGameViewController:(RMInGameViewController*) inGameViewController
 {
     return [[RMInGameWinScreenView alloc] initWithScore:score andInGameViewController:inGameViewController];
@@ -38,7 +39,6 @@
 
 - (void) cleanViewControllerImagesWithAnimation
 {
-    
     hiddenImageTargetFrame = CGRectMake(0, 0, 248, 200);
     [inGameViewController.hiddenImage setClipsToBounds:NO];
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -76,9 +76,7 @@
     }
     else{
         [inGameViewController.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"inapp_bg.png"]]];
-        
     }
-   
 }
 
 -(void) appendNewPhotoHolderImage

@@ -10,8 +10,8 @@
 #define RotateMe_Config_h
 
 //Bundle initialization
-#define DEFAULT_GALLERY_NAME @"com.halici.RotateMe.yourGallery"
-#define USER_GALLERY_NAME @"Your Gallery"
+#define DEFAULT_GALLERY_NAME @"DEFAULT_GALLERY"
+#define USER_GALLERY_NAME @"com.halici.RotateMe.yourGallery"
 
 #define PHOTO_SELECTION_IMAGEVIEW_TAG 123
 #define PHOTO_SELECTION_IMAGEVIEW_LABEL_TAG 101

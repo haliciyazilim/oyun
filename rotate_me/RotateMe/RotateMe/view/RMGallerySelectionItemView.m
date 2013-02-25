@@ -29,7 +29,7 @@
     if(self = [super init]){
         gallery = _gallery;
         shouldAnimate = animate;
-        galleryName = gallery.name;
+        galleryName = NSLocalizedString(gallery.name,nil);
         isPurchased = gallery.isPurchased;
         galleryPhotos = [[NSMutableArray alloc] init];
         NSArray* photos = [gallery allPhotos];

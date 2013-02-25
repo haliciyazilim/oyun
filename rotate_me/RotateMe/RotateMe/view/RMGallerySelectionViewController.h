@@ -11,5 +11,6 @@
 @interface RMGallerySelectionViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+- (IBAction)openSettings:(id)sender;
 
 @end

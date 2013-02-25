@@ -11,3 +11,8 @@
 "COULD_NOT_MAKE_PURCHASES" = "Tam sürümü edinebilmek için Ayarlar uygulamasından Uygulama İçi Alım seçeneğini etkinleştirmeniz gerekmektedir.";
 "IN_APP_PURCHASES" = "Uygulama İçi Alım";
 "OK" = "Tamam";
+
+
+//Gallery Names
+"DEFAULT_GALLERY" = "Default Gallery";
+"com.halici.RotateMe.yourGallery" = "Senin Galerin";
