@@ -822,7 +822,6 @@
 		05A38C41169451D3005ADBED /* Squirt.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38946169451D2005ADBED /* Squirt.m */; };
 		05A38F0F169451D4005ADBED /* ArrowGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38C2F169451D3005ADBED /* ArrowGameLayer.m */; };
 		05A38F11169451D4005ADBED /* MainGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A38C33169451D3005ADBED /* MainGameLayer.m */; };
-		05C4B5B616B7C64500A078F1 /* transition_grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C4B5B216B7C64500A078F1 /* transition_grass.png */; };
 		05C4B5B816B7C64500A078F1 /* transition_leafs.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C4B5B416B7C64500A078F1 /* transition_leafs.png */; };
 		05C950F016BA9D1D008D5C4A /* congratulation-en.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C950EC16BA9D1D008D5C4A /* congratulation-en.png */; };
 		05C950F216BA9D1D008D5C4A /* congratulation-tr.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C950EE16BA9D1D008D5C4A /* congratulation-tr.png */; };
@@ -988,6 +987,8 @@
 		410AA2BB1670D9B800F6DCCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 410AA2BA1670D9B800F6DCCA /* AppDelegate.m */; };
 		41289B6B16C12E2700AB39A0 /* star.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41289B6A16C12E2700AB39A0 /* star.mp3 */; };
 		41289B6D16C135C200AB39A0 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 41289B6C16C135C200AB39A0 /* success.mp3 */; };
+		418ABD2C16D7BD8B00772F39 /* transition_grass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 418ABD2A16D7BD8B00772F39 /* transition_grass.jpg */; };
+		418ABD2D16D7BD8B00772F39 /* transition_grass@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 418ABD2B16D7BD8B00772F39 /* transition_grass@2x.jpg */; };
 		41ABD07616A5961B00E9C4EB /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ABD07516A5961B00E9C4EB /* libFlurry.a */; };
 		41ABD07816A5962F00E9C4EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ABD07716A5962F00E9C4EB /* SystemConfiguration.framework */; };
 		41B78B9616A044DE00C327E3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B78B9516A044DE00C327E3 /* CoreData.framework */; };
@@ -2135,7 +2136,6 @@
 		05A38C2F169451D3005ADBED /* ArrowGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowGameLayer.m; sourceTree = "<group>"; };
 		05A38C32169451D3005ADBED /* MainGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameLayer.h; sourceTree = "<group>"; };
 		05A38C33169451D3005ADBED /* MainGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGameLayer.m; sourceTree = "<group>"; };
-		05C4B5B216B7C64500A078F1 /* transition_grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition_grass.png; sourceTree = "<group>"; };
 		05C4B5B416B7C64500A078F1 /* transition_leafs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transition_leafs.png; sourceTree = "<group>"; };
 		05C950EC16BA9D1D008D5C4A /* congratulation-en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "congratulation-en.png"; sourceTree = "<group>"; };
 		05C950EE16BA9D1D008D5C4A /* congratulation-tr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "congratulation-tr.png"; sourceTree = "<group>"; };
@@ -2435,6 +2435,8 @@
 		410AA2BA1670D9B800F6DCCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		41289B6A16C12E2700AB39A0 /* star.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = star.mp3; sourceTree = "<group>"; };
 		41289B6C16C135C200AB39A0 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
+		418ABD2A16D7BD8B00772F39 /* transition_grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = transition_grass.jpg; sourceTree = "<group>"; };
+		418ABD2B16D7BD8B00772F39 /* transition_grass@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "transition_grass@2x.jpg"; sourceTree = "<group>"; };
 		41ABD07416A5961B00E9C4EB /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		41ABD07516A5961B00E9C4EB /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		41ABD07716A5962F00E9C4EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -3143,7 +3145,8 @@
 		05C4B5B116B7C64500A078F1 /* transition */ = {
 			isa = PBXGroup;
 			children = (
-				05C4B5B216B7C64500A078F1 /* transition_grass.png */,
+				418ABD2A16D7BD8B00772F39 /* transition_grass.jpg */,
+				418ABD2B16D7BD8B00772F39 /* transition_grass@2x.jpg */,
 				05C4B5B416B7C64500A078F1 /* transition_leafs.png */,
 			);
 			name = transition;
@@ -5131,7 +5134,6 @@
 				0558395C16B2CC6B00B33B1C /* youwin_star_active@2x.png in Resources */,
 				0558395D16B2CC6B00B33B1C /* youwin_star_passive.png in Resources */,
 				0558395E16B2CC6B00B33B1C /* youwin_star_passive@2x.png in Resources */,
-				05C4B5B616B7C64500A078F1 /* transition_grass.png in Resources */,
 				05C4B5B816B7C64500A078F1 /* transition_leafs.png in Resources */,
 				AE0FC16216B81ED700079E85 /* tut_arrow.png in Resources */,
 				AE0FC16316B81ED700079E85 /* tut_arrow@2x.png in Resources */,
@@ -5761,6 +5763,8 @@
 				05841BB216D664C6005DD3A5 /* 9x9b.png in Resources */,
 				05841BB316D664C6005DD3A5 /* 9x9c-ipadhd.png in Resources */,
 				05841BB416D664C6005DD3A5 /* 9x9c.png in Resources */,
+				418ABD2C16D7BD8B00772F39 /* transition_grass.jpg in Resources */,
+				418ABD2D16D7BD8B00772F39 /* transition_grass@2x.jpg in Resources */,
 				AEDCE5C016D7D19F00C758F1 /* 10000.gamemap in Resources */,
 				AEDCE5C116D7D19F00C758F1 /* 10001.gamemap in Resources */,
 				AEDCE5C216D7D19F00C758F1 /* 10002.gamemap in Resources */,
@@ -6043,8 +6047,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -6057,8 +6060,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PROVISIONING_PROFILE = "5CE2C686-9103-4A8E-9454-E9705116427B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CE2C686-9103-4A8E-9454-E9705116427B";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -6072,8 +6074,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alperen Kavun (6767EL2WC3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -6084,8 +6085,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PROVISIONING_PROFILE = "5CE2C686-9103-4A8E-9454-E9705116427B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CE2C686-9103-4A8E-9454-E9705116427B";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -6096,8 +6096,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yunus Eren Guzel (QX74KZPN6D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yunus Eren Guzel (QX74KZPN6D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6120,8 +6119,7 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "Green The Garden";
-				PROVISIONING_PROFILE = "5CE2C686-9103-4A8E-9454-E9705116427B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CE2C686-9103-4A8E-9454-E9705116427B";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -6132,8 +6130,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yunus Eren Guzel (QX74KZPN6D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yunus Eren Guzel (QX74KZPN6D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6155,8 +6152,7 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "Green The Garden";
-				PROVISIONING_PROFILE = "5CE2C686-9103-4A8E-9454-E9705116427B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5CE2C686-9103-4A8E-9454-E9705116427B";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
