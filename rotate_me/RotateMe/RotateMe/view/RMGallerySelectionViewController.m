@@ -14,6 +14,7 @@
 #import "RotateMeIAPHelper.h"
 #import "Photo.h"
 #import "RMSettingsView.h"
+#import "RotateMeIAPHelper.h"
 
 @interface RMGallerySelectionViewController ()
 
@@ -48,6 +49,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(configureViews)
                                                  name:kPhotoNotificationPhotoDeleted
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(configureViews)
+                                                 name:IAPHelperProductPurchasedNotification
                                                object:nil];
     
     [self configureViews];
