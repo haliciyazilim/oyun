@@ -30,5 +30,6 @@ typedef void (^RequestProductsCompletionHandler)(BOOL success, NSArray * product
 - (void)addActivityToView:(UIView *)view withFrame:(CGRect)frame;
 - (void)removeActivity;
 -(NSString*) sha1:(NSString*)input;
+- (void)provideContentForProductIdentifier:(NSString *)productIdentifier;
 
 @end
