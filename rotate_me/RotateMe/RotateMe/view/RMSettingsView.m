@@ -9,14 +9,18 @@
 #import "RMSettingsView.h"
 #import "Config.h"
 #import "Score.h"
+#import "RotateMeIAPHelper.h"
 
 @implementation RMSettingsView
-
+{
+    UIButton *restoreButton;
+}
 - (id) init{
     if(self = [super init]){
         [self setBackground];
         [self setFrame];
         [self setButtons];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableRestore) name:IAPHelperEnableBuyButtonNotification object:nil];
     }
     return self;
 }
@@ -57,10 +61,12 @@
     [button addTarget:self action:@selector(resetScores) forControlEvents:UIControlEventTouchUpInside];
     [buttons addObject:button];
     button = nil;
-        
+    
     button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"Restore Purchases" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(restorePurchases) forControlEvents:UIControlEventTouchUpInside];
     [buttons addObject:button];
+    restoreButton = button;
     button = nil;
     
     int index = 0;
@@ -77,7 +83,17 @@
         index++;
     }
 }
-
+- (void) disableRestore {
+    [restoreButton setEnabled:NO];
+}
+- (void) enableRestore {
+    [restoreButton setEnabled:YES];
+}
+- (void) restorePurchases {
+    [self disableRestore];
+    [[RotateMeIAPHelper sharedInstance] addActivityToView:restoreButton withFrame:CGRectMake(0.0, 0.0, restoreButton.frame.size.width, restoreButton.frame.size.height)];
+    [[RotateMeIAPHelper sharedInstance] restoreCompletedTransactions];
+}
 -(void) stylizeButton:(UIButton*) button
 {
     [button.titleLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:16.0]];
