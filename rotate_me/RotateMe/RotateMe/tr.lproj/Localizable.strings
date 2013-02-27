@@ -11,7 +11,7 @@
 "COULD_NOT_MAKE_PURCHASES" = "Tam sürümü edinebilmek için Ayarlar uygulamasından Uygulama İçi Alım seçeneğini etkinleştirmeniz gerekmektedir.";
 "IN_APP_PURCHASES" = "Uygulama İçi Alım";
 "OK" = "Tamam";
-
+"PRODUCT_PURCHASE_FAILED" = "Hata: ";
 
 //Gallery Names
 "DEFAULT_GALLERY" = "Default Gallery";
