@@ -22,6 +22,7 @@
     UIActivityIndicatorView *activity;
     Gallery *currentGallery;
     UIViewController *currentController;
+    BOOL canShowCompletedAlert;
 }
 
 + (RotateMeIAPHelper *)sharedInstance {
@@ -38,46 +39,35 @@
 }
 
 - (void)productPurchaseCompleted:(NSNotification *)notif {
-//    [self closeStore];
-//    if(!isAlertShown){
-//        UIAlertView *productPurchased = [[UIAlertView alloc] initWithTitle:@""
-//                                                                   message:NSLocalizedString(@"PRODUCT_PURCHASED", nil)
-//                                                                  delegate:self
-//                                                         cancelButtonTitle:NSLocalizedString(@"OK", nil)
-//                                                         otherButtonTitles:nil,nil];
-//        [productPurchased show];
-//        isAlertShown = YES;
-//        
-//        int count = 0;
-//        for (Map *map in [[DatabaseManager sharedInstance] getAllMaps]) {
-//            
-//            if ([map isFinished]) {
-//                count++;
-//            }
-//        }
-//        
-//        [[AchievementManager sharedAchievementManager] submitAchievement:kAchievementBeAPro percentComplete:100.00];
-//        
-//        [Flurry logEvent:kFlurryEventUnlockFullGame
-//          withParameters:@{@"Solved Map Count" : [NSNumber numberWithInt:count]}];
-//    }
-    [currentGallery purchaseGallery];
-    [(RMGallerySelectionViewController *)currentController configureViews];
     currentGallery = nil;
     currentController = nil;
     [self closeStore];
     
     [self enableBuyButton];
+    if (canShowCompletedAlert) {
+        UIAlertView *productPurchased = [[UIAlertView alloc] initWithTitle:@""
+                                                                   message:NSLocalizedString(@"PRODUCT_PURCHASE_COMPLETED", nil)
+                                                                  delegate:self
+                                                         cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                         otherButtonTitles:nil,nil];
+        [productPurchased show];
+        canShowCompletedAlert = NO;
+    }
+}
+- (void) provideContentForProductIdentifier:(NSString *)productIdentifier {
+    Gallery* gallery = [Gallery getGalleryWithName:productIdentifier];
+    [gallery purchaseGallery];
+    [super provideContentForProductIdentifier:productIdentifier];
 }
 - (void) showProduct:(Gallery*)gallery onViewController:(UIViewController*) viewController
 {
+    canShowCompletedAlert = YES;
     currentGallery = gallery;
     currentController = viewController;
     CGFloat currentScreenWidth = [[UIScreen mainScreen] bounds].size.height;
     CGFloat currentScreenHeight = [[UIScreen mainScreen] bounds].size.width;
     
     activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//    [activity setColor:[UIColor blackColor]];
     [activity setHidesWhenStopped:YES];
     [activity startAnimating];
     activity.frame = CGRectMake(241.0, 115.0, 60.0, 60.0);
@@ -169,8 +159,6 @@
     [priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     SKProduct *myProduct = [self getProductWithProductIdentifier:currentProductIdentifier];
     
-    NSLog(@"%@",self.products);
-    
     [priceFormatter setLocale:myProduct.priceLocale];
     
     NSString *priceStr = [priceFormatter stringFromNumber:[myProduct price]];
@@ -216,6 +204,7 @@
 }
 
 - (void)restorePurchases {
+    canShowCompletedAlert = YES; 
     [[RotateMeIAPHelper sharedInstance] restoreCompletedTransactions];
 }
 
