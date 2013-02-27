@@ -94,10 +94,12 @@
 
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
     [self removeActivity];
+    // do not delete, this notification also handles to enable restore button
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
 }
 -(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
     [self removeActivity];
+    // do not delete, this notification also handles to enable restore button
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
 }
 - (void)completeTransaction:(SKPaymentTransaction *)transaction {
