@@ -15,3 +15,6 @@
 //Gallery Names
 "DEFAULT_GALLERY" = "Default Gallery";
 "com.halici.RotateMe.yourGallery" = "Your Gallery";
+
+// in app
+"PRODUCT_PURCHASE_COMPLETED" = "Operation is successfully completed";

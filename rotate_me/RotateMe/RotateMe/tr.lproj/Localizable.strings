@@ -16,3 +16,6 @@
 //Gallery Names
 "DEFAULT_GALLERY" = "Default Gallery";
 "com.halici.RotateMe.yourGallery" = "Senin Galerin";
+
+// in app
+"PRODUCT_PURCHASE_COMPLETED" = "İşlem başarı ile gerçekleştirildi";
