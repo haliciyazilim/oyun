@@ -19,6 +19,8 @@
 
 + (Gallery*) createGalleryWithName:(NSString*)name;
 
++ (Gallery*) getGalleryWithName:(NSString *)name;
+
 - (NSArray*) allPhotos;
 
 - (void) purchaseGallery;

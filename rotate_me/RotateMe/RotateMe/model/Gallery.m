@@ -23,12 +23,22 @@
     [[RMDatabaseManager sharedInstance] saveContext];
     return gallery;
 }
+
 + (NSMutableArray*) allGalleries
 {
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     return [[RMDatabaseManager sharedInstance] entitiesWithRequest:request forName:@"Gallery"];
 }
 
++ (Gallery*) getGalleryWithName:(NSString *)name
+{
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"name == %@ ", name];
+    [request setPredicate:predicate];
+    return (Gallery *)[[RMDatabaseManager sharedInstance] entityWithRequest:request forName:@"Gallery"];
+
+}
 - (NSArray*) allPhotos
 {
     NSMutableArray* array = [[NSMutableArray alloc] init];
