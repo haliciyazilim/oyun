@@ -7,11 +7,26 @@
 //
 
 #import "RMGallerySelectionIPadViewController.h"
-
+#import "RMIpadGallerySelectionItemView.h"
 @interface RMGallerySelectionIPadViewController ()
 
 @end
 
 @implementation RMGallerySelectionIPadViewController
+
+- (CGSize) scrollViewItemSize{
+    return CGSizeMake(350,200);
+}
+
+-(void) setBackground
+{
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg_ipad.jpg"]]];	
+}
+
+- (RMGallerySelectionItemView*) generateGallerySelectionItemViewWithGallery:(Gallery*)gallery animate:(BOOL)animate
+{
+    return [[RMIpadGallerySelectionItemView alloc] initWithGallery:gallery animate:YES];
+}
+
 
 @end

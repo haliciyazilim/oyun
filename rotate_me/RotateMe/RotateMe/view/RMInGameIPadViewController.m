@@ -26,9 +26,6 @@
 
 static RMInGameIPadViewController* lastInstance = nil;
 
-- (void) setupViews {
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg_ipad.jpg"]]];
-}
 
 - (int) tileSize {
     if(getCurrentDifficulty() == EASY){
@@ -75,7 +72,9 @@ static RMInGameIPadViewController* lastInstance = nil;
         return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid_normal.png"]];
     }
 }
-
+- (void) setBackground {
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]]]; 
+}
 
 @end
 

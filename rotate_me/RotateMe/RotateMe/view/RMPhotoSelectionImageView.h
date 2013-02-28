@@ -13,5 +13,5 @@
 @interface RMPhotoSelectionImageView : RMCustomImageView
 @property Photo* photo;
 +(RMPhotoSelectionImageView*) viewWithPhoto:(Photo*)photo andFrame:(CGRect)frame andScaleSize:(CGSize)imageScaleSize;
-//+ (void) applyBorderAndShadow:(UIView*) view;
+- (void) setScoreLabelFontSize:(CGFloat) size;
 @end

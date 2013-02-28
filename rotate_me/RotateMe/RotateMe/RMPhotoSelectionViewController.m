@@ -58,6 +58,16 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     }
     return self;
 }
+-(void) setBackground
+{
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg-568h.png"]]];
+    }
+    else{
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
+        
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -66,13 +76,8 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 	// Do any additional setup after loading the view.
     touchedPhoto = nil;
     //    [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
-    if([[UIScreen mainScreen] bounds].size.height == 568){
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg-568h.png"]]];
-    }
-    else{
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
-        
-    }
+    
+    [self setBackground];
     
     DIFFICULTY difficulty = getCurrentDifficulty();
     switch (difficulty) {
@@ -104,11 +109,14 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [self configureView];
     }
 }
-
+-(CGFloat) galleryNameLabelFontSize
+{
+    return 20.0;
+}
 -(void)configureView
 {
     [self.galleryNameLabel setText:NSLocalizedString(currentGallery.name,nil)];
-    [self.galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:20.0] ];
+    [self.galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:[self galleryNameLabelFontSize]] ];
     [self printPhotos];
     [self processImageThreads];
 }
@@ -134,12 +142,38 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [self processImageThreads];
 }
 
+- (int) leftMargin
+{
+    return 20;
+}
+
+- (int) topMargin
+{
+    return 5;
+}
+
+- (CGSize) size
+{
+    return CGSizeMake(156, 116);
+}
+
+- (CGSize) photoSize
+{
+    return CGSizeMake(136, 102);
+}
+
+- (int) rowCount
+{
+    return 2;
+}
+
 - (void) printPhotos
 {
-    int leftMargin = 20;
-    int topMargin = 5;
-    CGSize size = CGSizeMake(156, 116);
-    CGSize photoSize = CGSizeMake(136, 102);
+    int leftMargin = [self leftMargin];
+    int topMargin = [self topMargin];
+    int rowCount = [self rowCount];
+    CGSize size = [self size];
+    CGSize photoSize = [self photoSize];
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
         ([UIScreen mainScreen].scale == 2.0)) {
         imageScaleSize = CGSizeMake(photoSize.width*2, photoSize.height*2.0);
@@ -151,74 +185,20 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     if(photos == nil){
         photos = [NSMutableArray arrayWithArray:[currentGallery allPhotos]];
     }
-//    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(photos.count / 2.0) * size.width,
-//                                               topMargin  + size.height*2.0)];
     NSMutableArray* subViews = [[NSMutableArray alloc] init];
     [self.scrollView setContentOffset:CGPointMake([RMPhotoSelectionViewController getLastScroll], 0.0)];
     if([currentGallery.name compare:USER_GALLERY_NAME] == 0){
-        RMCustomImageView* addFromGallery = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_photo_btn.png"]];
-        //        [self.scrollView addSubview:addFromGallery];
-        
-        if (!imagePicker) {
-            imagePicker = [[UIImagePickerController alloc] init];
-            [imagePicker setDelegate:self];
-        }
-        
-        [addFromGallery setUserInteractionEnabled:YES];
-        [addFromGallery setContentMode:UIViewContentModeCenter];
-        
-        CGRect scrollViewFrame = self.scrollView.frame;
-        CGRect addFromGalleryFrame = addFromGallery.frame;
-        
-        if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
-            if (!popoverController) {
-                popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-            }
-        }
-        
-        
-        [addFromGallery setTouchesBegan:^{
-            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-                [self presentModalViewController:imagePicker animated:YES];
-            } else {
-                if (![popoverController isPopoverVisible]) {
-                    [popoverController presentPopoverFromRect:CGRectMake(scrollViewFrame.origin.x + addFromGalleryFrame.origin.x,
-                                                                         scrollViewFrame.origin.y + addFromGalleryFrame.origin.y,
-                                                                         addFromGalleryFrame.size.width,
-                                                                         addFromGalleryFrame.size.height)
-                                                       inView:self.view
-                                     permittedArrowDirections:UIPopoverArrowDirectionDown
-                                                     animated:YES];
-                } else {
-                    [popoverController dismissPopoverAnimated:YES];
-                }
-            }
-            
-            
-            
-        }];
-        
-        RMCustomImageView* addFromCamera = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"take_photo_btn.png"]];
-        [addFromCamera setUserInteractionEnabled:YES];
-        [addFromCamera setTouchesBegan:^{
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-                imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                [self presentModalViewController:imagePicker animated:YES];
-            }
-        }];
-        [addFromCamera setContentMode:UIViewContentModeCenter];
+        RMCustomImageView* addFromGallery = [self addFromGalleryView];
+        RMCustomImageView* addFromCamera = [self addFromCameraView];
         [subViews addObject:addFromGallery];
         [subViews addObject:addFromCamera];
     }
     
     for(int i=0; i < [photos count]; i++){
         Photo* photo = (Photo*)[photos objectAtIndex:i];
-        
-        CGRect photoViewRect = CGRectMake(leftMargin+(i/2)*size.width, topMargin + (i%2) * size.height, photoSize.width, photoSize.height);
-        
+        CGRect photoViewRect = CGRectMake(leftMargin+(i/rowCount)*size.width, topMargin + (i%rowCount) * size.height, photoSize.width, photoSize.height);
         RMPhotoSelectionImageView* photoView = [RMPhotoSelectionImageView viewWithPhoto:photo andFrame:photoViewRect andScaleSize:imageScaleSize];
+        [photoView setScoreLabelFontSize:[self photoSelectionScoreFontSize]];
         __block RMCustomImageView* blockPhotoView = photoView;
         [photoView setTouchesBegan:^{
             if(touchedPhoto == nil){
@@ -245,12 +225,11 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [subViews addObject:photoView];
     }
     
-    
     [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(subViews.count / 2.0) * size.width,
                                                topMargin  + size.height*2.0)];
     
     for(int i=0;i< [subViews count];i++){
-        CGRect frame = CGRectMake(leftMargin+(i/2)*size.width, topMargin + (i%2) * size.height, photoSize.width, photoSize.height);
+        CGRect frame = CGRectMake(leftMargin+(i/rowCount)*size.width, topMargin + (i%rowCount) * size.height, photoSize.width, photoSize.height);
         UIView* view = [subViews objectAtIndex:i];
         [view setFrame:frame];
         [self applyBorderAndShadow:view];
@@ -258,17 +237,85 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         view.layer.zPosition = 1;
         [self.scrollView addSubview:view];
     }
-    
-    
 }
+
+- (RMCustomImageView*) addFromCameraView
+{
+    RMCustomImageView* addFromCamera = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"take_photo_btn.png"]];
+    [addFromCamera setUserInteractionEnabled:YES];
+    [addFromCamera setTouchesBegan:^{
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentModalViewController:imagePicker animated:YES];
+        }
+    }];
+    [addFromCamera setContentMode:UIViewContentModeCenter];
+    return addFromCamera;
+}
+
+- (RMCustomImageView*) addFromGalleryView
+{
+    RMCustomImageView* addFromGallery = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_photo_btn.png"]];
+    
+    if (!imagePicker) {
+        imagePicker = [[UIImagePickerController alloc] init];
+        [imagePicker setDelegate:self];
+    }
+    
+    [addFromGallery setUserInteractionEnabled:YES];
+    [addFromGallery setContentMode:UIViewContentModeCenter];
+    
+    CGRect scrollViewFrame = self.scrollView.frame;
+    CGRect addFromGalleryFrame = addFromGallery.frame;
+    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
+        if (!popoverController) {
+            popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        }
+    }
+    [addFromGallery setTouchesBegan:^{
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            [self presentModalViewController:imagePicker animated:YES];
+        } else {
+            if (![popoverController isPopoverVisible]) {
+                [popoverController presentPopoverFromRect:CGRectMake(scrollViewFrame.origin.x + addFromGalleryFrame.origin.x,
+                                                                     scrollViewFrame.origin.y + addFromGalleryFrame.origin.y,
+                                                                     addFromGalleryFrame.size.width,
+                                                                     addFromGalleryFrame.size.height)
+                                                   inView:self.view
+                                 permittedArrowDirections:UIPopoverArrowDirectionDown
+                                                 animated:YES];
+            } else {
+                [popoverController dismissPopoverAnimated:YES];
+            }
+        }
+    }];
+    return addFromGallery;
+}
+
+- (CGFloat) photoSelectionScoreFontSize
+{
+    return 14.0;
+}
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
     
-    
-    NSLog(@"didCancel");
     [Picker dismissModalViewControllerAnimated:YES];
     [[Picker parentViewController] dismissModalViewControllerAnimated:YES];
 }
 
+
+- (int) shadowRadius
+{
+    return 1;
+}
+
+- (CGSize) shadowOffset
+{
+    return CGSizeMake(1, 2);
+}
 
 - (void) applyBorderAndShadow:(UIView*) view
 {
@@ -278,8 +325,8 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     [view.layer setShadowOffset:CGSizeMake(0.0, 5.0)];
     view.layer.masksToBounds = NO;
     
-    view.layer.shadowOffset = CGSizeMake(1, 2);
-    view.layer.shadowRadius = 1;
+    view.layer.shadowOffset = [self shadowOffset];
+    view.layer.shadowRadius = [self shadowRadius];
     view.layer.shadowColor = [UIColor blackColor].CGColor;
     view.layer.shadowOpacity = 0.6;
     
@@ -290,24 +337,13 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 - (void) restart
 {
     touchedPhoto = lastTouchedPhoto;
-//    RMInGameViewController* inGameViewController = [[RMInGameViewController alloc] init];
-//    UIStoryboard* storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-//    RMInGameViewController* inGameViewController = [storyBoard instantiateViewControllerWithIdentifier:@"InGameViewController"];
-//    [inGameViewController setImage:[[(RMImage*)touchedPhoto.image owner] getImage]];
-//
-//    [self presentViewController:inGameViewController animated:YES completion:^{
-//        
-//    }];
     [self performSegueWithIdentifier:@"StartGame" sender:self];
     touchedPhoto = nil;
 }
 
-- (void)imagePickerController:(UIImagePickerController *) Picker
-
-didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
-//    testImageView.image = image ;
     [self createAndSavePhotoFromImage:image];
     NSLog(@"didFinishPicking");
     
@@ -323,7 +359,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 - (void) createAndSavePhotoFromImage:(UIImage*)image
 {
     NSError *error;
-//    NSLog(@"%f",[NSDate timeIntervalSinceReferenceDate]);
     NSString* imageName = [NSString stringWithFormat:@"%.0f.jpg",([NSDate timeIntervalSinceReferenceDate]*1000)];
     NSLog(@"imageName: %@",imageName);
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -349,7 +384,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         [thread start];
     }
     imageThreads = [[NSMutableArray alloc] init];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -369,7 +403,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     touchedPhoto = nil;
     
 }
-
 
 - (IBAction)difficultyChanged:(id)sender {  
     

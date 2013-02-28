@@ -28,7 +28,52 @@ static RMPhotoSelectionIPadViewController* lastInstance = nil;
 {
     return lastInstance;
 }
+- (int) leftMargin
+{
+    return 40;
+}
 
+- (int) topMargin
+{
+    return 15;
+}
+
+- (CGSize) size
+{
+    return CGSizeMake(204+30, 158+30);
+}
+
+- (CGSize) photoSize
+{
+    return CGSizeMake(204, 158);
+}
+
+-(void) setBackground
+{
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg_ipad.jpg"]]];
+}
+- (int) shadowRadius
+{
+    return 3;
+}
+
+- (CGSize) shadowOffset
+{
+    return CGSizeMake(2, 5);
+}
+
+-(CGFloat) galleryNameLabelFontSize
+{
+    return 30.0;
+}
+- (CGFloat) photoSelectionScoreFontSize
+{
+    return 21.0;
+}
+- (int) rowCount
+{
+    return 3;
+}
 @end
 
 

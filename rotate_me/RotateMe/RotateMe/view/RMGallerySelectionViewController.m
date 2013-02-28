@@ -57,9 +57,16 @@
                                                object:nil];
     
     [self configureViews];
-    
+    [self setBackground];
     isFirstLoad = YES;
     touchedGallery = nil;
+    // Do any additional setup after loading the view.
+    [self.view setUserInteractionEnabled:YES];
+    [self.scrollView setUserInteractionEnabled:YES];
+}
+
+-(void) setBackground
+{
     if([[UIScreen mainScreen] bounds].size.height == 568){
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg-568h.png"]]];
     }
@@ -67,9 +74,7 @@
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
         
     }
-	// Do any additional setup after loading the view.
-    [self.view setUserInteractionEnabled:YES];
-    [self.scrollView setUserInteractionEnabled:YES];
+	
 }
 
 - (CGSize) scrollViewItemSize{
@@ -102,7 +107,7 @@
     }
     
     for(Gallery* gallery in allGaleries){
-        RMGallerySelectionItemView* galleryItem = [[RMGallerySelectionItemView alloc] initWithGallery:gallery animate:YES];
+        RMGallerySelectionItemView* galleryItem = [self generateGallerySelectionItemViewWithGallery:gallery animate:YES];
         [self.scrollView addSubview:galleryItem];
         galleryItem.tag = GALLERY_SELECTION_GALLERY_ITEM_TAG;
         galleryItem.frame = CGRectMake(
@@ -133,6 +138,11 @@
 
 }
 
+
+- (RMGallerySelectionItemView*) generateGallerySelectionItemViewWithGallery:(Gallery*)gallery animate:(BOOL)animate
+{
+    return [[RMGallerySelectionItemView alloc] initWithGallery:gallery animate:YES];
+}
 
 - (void)viewDidUnload {
     [self setScrollView:nil];

@@ -50,10 +50,16 @@
     return self;
 }
 
+- (UIImage*) maskImage
+{
+    return [UIImage imageNamed:@"gallery_selection_mask.png"];
+}
+
+
 - (void) loadImages
 {
     imageViews = [[NSMutableArray alloc] init];
-    UIImage* maskImage = [UIImage imageNamed:@"gallery_selection_mask.png"];
+    UIImage* maskImage = [self maskImage];
 
     for(int i=0; i<3 ;i++){
         UIImageView* borderImageView = [self createBorderImageView];
@@ -115,9 +121,13 @@
         [self performSelectorOnMainThread:@selector(showViews) withObject:nil waitUntilDone:NO];   
 }
 
+- (UIImage*) borderImage
+{
+    return [UIImage imageNamed:@"gallery_selection_bg.png"];
+}
 -(UIImageView*) createBorderImageView
 {
-    UIImageView* borderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_selection_bg.png"]];
+    UIImageView* borderImageView = [[UIImageView alloc] initWithImage:[self borderImage]];
     borderImageView.frame = [self getBorderImageViewFrame];
     return borderImageView;
 }

@@ -14,6 +14,7 @@
 @implementation RMPhotoSelectionImageView
 {
     CGSize imageScaleSize;
+    UILabel* scoreLabel;
 }
 - (id)initWithFrame:(CGRect)frame
 {
@@ -44,25 +45,21 @@
         [activityIndicator startAnimating];
         [self addSubview:activityIndicator];
         
-//        [RMPhotoSelectionImageView applyBorderAndShadow:self];
-        
-        
-
         Score* score = [photo getScoreForDifficulty:getCurrentDifficulty()];
         if(score != nil){
             UIImageView* gradient = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_gradient.png"]];
             gradient.frame = CGRectMake(0, frame.size.height - gradient.image.size.height, frame.size.width, gradient.image.size.height);
             [self addSubview:gradient];
-            CGSize scoreLabelSize = CGSizeMake(50, 25);
+            CGSize scoreLabelSize = CGSizeMake(70, 25);
             
-            UILabel* scoreLabel = [[UILabel alloc] init];
+            scoreLabel = [[UILabel alloc] init];
             scoreLabel.frame = CGRectMake(10, frame.size.height - scoreLabelSize.height*1.0, scoreLabelSize.width, scoreLabelSize.height);
             scoreLabel.text = [score toText];
             scoreLabel.backgroundColor = [UIColor clearColor];
             [scoreLabel setTextColor:[UIColor whiteColor]];
             [scoreLabel setShadowColor:[UIColor blackColor]];
             [scoreLabel setShadowOffset:CGSizeMake(0,1)];
-            [scoreLabel setFont:[UIFont fontWithName:@"TR McLean" size:14.0]];
+            [self setScoreLabelFontSize:14.0];
             
             [scoreLabel setTextAlignment:NSTextAlignmentLeft];
             [self addSubview:scoreLabel];
@@ -73,6 +70,10 @@
     return self;
 }
 
+- (void) setScoreLabelFontSize:(CGFloat) size
+{
+    [scoreLabel setFont:[UIFont fontWithName:@"TR McLean" size:size]];
+}
 
 
 - (void) loadImageForView:(NSArray*)params

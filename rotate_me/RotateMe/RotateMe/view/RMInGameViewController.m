@@ -46,8 +46,7 @@ static RMInGameViewController* lastInstance = nil;
     return self;
 }
 
-
-- (void) setupViews {
+- (void) setBackground {
     if([[UIScreen mainScreen] bounds].size.height == 568){
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]]];
     }
@@ -97,9 +96,8 @@ static RMInGameViewController* lastInstance = nil;
 
 - (void)viewDidLoad
 {
-//    NSLog(@"Entered viewDidLoad");
     [super viewDidLoad];
-    [self setupViews];
+    [self setBackground];
     if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
         ([UIScreen mainScreen].scale == 2.0)) {
         scaleFactor = 2;
@@ -131,8 +129,6 @@ static RMInGameViewController* lastInstance = nil;
         [self.photoHolder setImage:[UIImage imageNamed:@"photo_holder_normal.png"]];
         self.photoHolder.frame = CGRectMake(self.photoHolder.frame.origin.x-6, self.photoHolder.frame.origin.y+10, self.photoHolder.image.size.width, self.photoHolder.image.size.height);
     }
-    
-    
     [self.stopWatchLabel setFont:[UIFont fontWithName:@"TRMcLean" size:[self timerFontSize]]];
     [self.stopWatchLabel setText:@"00:00"];
     
@@ -154,14 +150,12 @@ static RMInGameViewController* lastInstance = nil;
     [self.stopWatch startTimerWithRepeatBlock:^{
         [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
     }];
-//    [self.stopWatch pauseTimer];
 }
 
 - (void) setImage:(RMImage*)image
 {
     if(currentImage != image){
         currentImage = image;
-//        [self configureGame];
     }
 }
 
@@ -198,9 +192,6 @@ static RMInGameViewController* lastInstance = nil;
     
     [RMInGameWinScreenView showWinScreenWithScore:[self.stopWatch toStringWithoutMiliseconds] forInGameViewController:self];
     
-    
-    
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -234,14 +225,14 @@ static RMInGameViewController* lastInstance = nil;
             RMCroppedImageView* imgView = [[RMCroppedImageView alloc] initWithImage:img];
             imgView.frame = CGRectMake(photoHolderLeftPadding+x*tileSize, photoHolderTopPadding+y*tileSize, tileSize, tileSize);
             
-//            if(arc4random()%100 < 10)
-//                [imgView setRotationStateTo: M_PI * 0.0];
-//            else if(arc4random()%100 < 40)
-//                [imgView setRotationStateTo: M_PI * 0.5];
-//            else if(arc4random()%100 < 70)
-//                [imgView setRotationStateTo: M_PI * 1.0];
-//            else if(arc4random()%100 < 100)
-//                [imgView setRotationStateTo: M_PI * 1.5];
+            if(arc4random()%100 < 10)
+                [imgView setRotationStateTo: M_PI * 0.0];
+            else if(arc4random()%100 < 40)
+                [imgView setRotationStateTo: M_PI * 0.5];
+            else if(arc4random()%100 < 70)
+                [imgView setRotationStateTo: M_PI * 1.0];
+            else if(arc4random()%100 < 100)
+                [imgView setRotationStateTo: M_PI * 1.5];
 
             [self.photoHolder addSubview:imgView];
             imgView.parent = self;
