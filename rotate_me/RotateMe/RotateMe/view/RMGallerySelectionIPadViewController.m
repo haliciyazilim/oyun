@@ -8,6 +8,8 @@
 
 #import "RMGallerySelectionIPadViewController.h"
 #import "RMIpadGallerySelectionItemView.h"
+#import "RMIpadSettingsView.h"
+
 @interface RMGallerySelectionIPadViewController ()
 
 @end
@@ -27,6 +29,9 @@
 {
     return [[RMIpadGallerySelectionItemView alloc] initWithGallery:gallery animate:YES];
 }
-
+- (IBAction)openSettings:(id)sender {
+    RMSettingsView* settings = [[RMIpadSettingsView alloc] init];
+    [self.view addSubview:settings];
+}
 
 @end

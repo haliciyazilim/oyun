@@ -20,23 +20,8 @@
         [self setBackground];
         [self showButtons];
         self.alpha = 0.0;
-        
-        CGRect buttonFrame = [RMInGameViewController lastInstance].menuButton.frame;
 
-        int x = buttonFrame.origin.x - frame.size.width/2 + buttonFrame.size.width/2;
-        int y = buttonFrame.origin.y - frame.size.height/2 + buttonFrame.size.height/2;
-        
-        CATransform3D transform = CATransform3DMakeTranslation(x, y, 1000);
-        transform = CATransform3DScale(transform, 0.1, 0.1, 1);
-        transform.m34 = 1.0 / -500;
-        transform = CATransform3DRotate(transform, 10.0f * M_PI / 180.0f, 0.0f, 1.0f, 0.0f);
-        
-        self.layer.transform = transform;
-        
-        [UIView animateWithDuration:0.25 animations:^{
-            self.transform = CGAffineTransformMakeScale(1.0, 1.0);
-        }];
-        [UIView animateWithDuration:0.15 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             self.alpha = 1.0;
         }];
     }
@@ -53,27 +38,25 @@
     [mainMenu setTitle:@"Main Menu" forState:UIControlStateNormal];
     [restart setTitle:@"Restart" forState:UIControlStateNormal];
     [resume setTitle:@"Resume" forState:UIControlStateNormal];
+    	
+    NSArray* buttons = [NSArray arrayWithObjects:resume,restart,mainMenu,nil];
     
-    mainMenu.frame = CGRectMake([[UIScreen mainScreen] bounds].size.height*0.5 - buttonSize.width*0.5,
-                                [[UIScreen mainScreen] bounds].size.width*0.65, buttonSize.width, buttonSize.height);
-    restart.frame = CGRectMake([[UIScreen mainScreen] bounds].size.height*0.5 - buttonSize.width*0.5,
-                                [[UIScreen mainScreen] bounds].size.width*0.45, buttonSize.width, buttonSize.height);
-    resume.frame = CGRectMake([[UIScreen mainScreen] bounds].size.height*0.5 - buttonSize.width*0.5,
-                                [[UIScreen mainScreen] bounds].size.width*0.25, buttonSize.width, buttonSize.height);
+    int index = 0;
+    CGFloat margin = 20;
+    for(UIButton* button in buttons){
+        button.frame = CGRectMake(
+                                  self.frame.size.width*0.5 - buttonSize.width*0.5,
+                                  self.frame.size.height*0.5 - [buttons count]*(margin+buttonSize.height)*0.5 + margin*0.5 + index * (buttonSize.height+margin),
+                                  buttonSize.width,
+                                  buttonSize.height);
+        [self addSubview:button];
+        [self stylizeButton:button];
+        index++;
+    }
     
     [mainMenu addTarget:[RMInGameViewController lastInstance] action:@selector(returnToMainMenu:) forControlEvents:UIControlEventTouchUpInside];
     [restart addTarget:[RMInGameViewController lastInstance] action:@selector(restartGame:) forControlEvents:UIControlEventTouchUpInside];
     [resume addTarget:[RMInGameViewController lastInstance] action:@selector(resumeGame:) forControlEvents:UIControlEventTouchUpInside];
-
-    
-    
-    [self stylizeButton:mainMenu];
-    [self stylizeButton:restart];
-    [self stylizeButton:resume];
-    
-    [self addSubview:mainMenu];
-    [self addSubview:restart];
-    [self addSubview:resume];
     
 }
 
@@ -103,25 +86,13 @@
 }
 -(void )removeFromSuperviewOnCompletion:(IteratorBlock)block
 {
-    [UIView animateWithDuration:0.15 delay:0.10 options:0 animations:^{
+    [UIView animateWithDuration:0.5 delay:0.0 options:0 animations:^{
         self.alpha = 0.0;
-    } completion:nil];
-    [UIView animateWithDuration:0.25 delay:0.0 options:0 animations:^{
-        CGRect buttonFrame = [RMInGameViewController lastInstance].menuButton.frame;
-        
-        int x = buttonFrame.origin.x - self.frame.size.width/2 + buttonFrame.size.width/2;
-        int y = buttonFrame.origin.y - self.frame.size.height/2 + buttonFrame.size.height/2;
-        
-        CATransform3D transform = CATransform3DMakeTranslation(x, y, 1000);
-        transform = CATransform3DScale(transform, 0.1, 0.1, 1);
-        transform.m34 = 1.0 / -500;
-        transform = CATransform3DRotate(transform, 3.0f * M_PI / 180.0f, 0.0f, 1.0f, 0.0f);
-        
-        self.layer.transform = transform;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
         block();
     }];
+
     
 }
 

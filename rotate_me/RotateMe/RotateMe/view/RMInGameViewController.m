@@ -181,7 +181,6 @@ static RMInGameViewController* lastInstance = nil;
 
 - (void) endGame
 {
-    
     isGameFinished = YES;
     [self.stopWatch stopTimer];
     [currentImage.owner setScore:[self.stopWatch getElapsedSeconds] forDifficulty:getCurrentDifficulty()];
@@ -189,9 +188,12 @@ static RMInGameViewController* lastInstance = nil;
     for(RMCroppedImageView* croppedImage in self.croppedImages){
         [croppedImage removeFromSuperview];
     }
-    
+    [self showWinScreen];
+}
+
+- (void) showWinScreen
+{
     [RMInGameWinScreenView showWinScreenWithScore:[self.stopWatch toStringWithoutMiliseconds] forInGameViewController:self];
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -241,13 +243,8 @@ static RMInGameViewController* lastInstance = nil;
         }
     }
     self.croppedImages = croppedImages;
-//    
-//    [self.stopWatch resumeTimer];
     [indicator removeFromSuperview];
 }
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -261,7 +258,6 @@ static RMInGameViewController* lastInstance = nil;
     [self setMenuButton:nil];
     [super viewDidUnload];
 }
-
 - (IBAction)displayMenu:(id)sender
 {
     [self.menuButton setEnabled:NO];
@@ -269,7 +265,6 @@ static RMInGameViewController* lastInstance = nil;
     UIView* view = [[RMInGameMenuView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width)];
     view.tag = 1234;
     [self.view addSubview:view];
-
 }
 
 -(void) returnToMainMenu:(UIButton*)button
@@ -285,8 +280,6 @@ static RMInGameViewController* lastInstance = nil;
         [self.menuButton setEnabled:YES];
     }];
 }
-
-
 
 -(void) restartGame:(UIButton*)button
 {

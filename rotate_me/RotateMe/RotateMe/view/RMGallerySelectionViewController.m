@@ -74,7 +74,6 @@
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"selection_bg.png"]]];
         
     }
-	
 }
 
 - (CGSize) scrollViewItemSize{
@@ -126,7 +125,6 @@
             }else{
                 [[RotateMeIAPHelper sharedInstance] showProduct:gallery onViewController:self];    
             }
-         
         }];
         index++;
         if(gallery.isPurchased == NO){

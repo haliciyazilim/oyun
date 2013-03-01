@@ -15,14 +15,7 @@
 {
     CGSize imageScaleSize;
     UILabel* scoreLabel;
-}
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    BOOL isLoaded;
 }
 
 + (RMPhotoSelectionImageView *)viewWithPhoto:(Photo *)photo andFrame:(CGRect)frame andScaleSize:(CGSize)imageScaleSize
@@ -33,6 +26,7 @@
 - (id) initWithPhoto:(Photo *)photo andFrame:(CGRect)frame andScaleSize:(CGSize)_imageScaleSize
 {
     imageScaleSize = _imageScaleSize;
+    isLoaded = NO;
     if(self = [super init]){
         self.tag = PHOTO_SELECTION_IMAGEVIEW_TAG;
         self.frame = frame;
@@ -89,6 +83,15 @@
     
     [activityIndicator removeFromSuperview];
     activityIndicator = nil;
+    isLoaded = YES;
+}
+
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if(isLoaded){
+        [super touchesBegan:touches withEvent:event];
+    }
 }
 
 

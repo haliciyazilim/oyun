@@ -12,4 +12,7 @@
 @interface RMInGameWinScreenView : UIView
 + (RMInGameWinScreenView*) showWinScreenWithScore:(NSString*)score forInGameViewController:(RMInGameViewController*) inGameViewController;
 
+- (id) initWithScore:(NSString*) _score andInGameViewController:(RMInGameViewController*) _inGameViewController;
+
+- (void) setControllerBackground:(UIImage*)image;
 @end

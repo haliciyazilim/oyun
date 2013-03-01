@@ -52,6 +52,11 @@
 		AE0F91AE16D3B8ED007F0ED6 /* youwin_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F91A816D3B8ED007F0ED6 /* youwin_btn_bg@2x.png */; };
 		AE0F91AF16D3B8ED007F0ED6 /* youwin_photo_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F91A916D3B8ED007F0ED6 /* youwin_photo_bg.png */; };
 		AE0F91B016D3B8ED007F0ED6 /* youwin_photo_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F91AA16D3B8ED007F0ED6 /* youwin_photo_bg@2x.png */; };
+		AE2AA7F216E096D900D3148C /* RMIpadInGameMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2AA7F116E096D900D3148C /* RMIpadInGameMenuView.m */; };
+		AE2AA7F516E0974C00D3148C /* inapp_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE2AA7F316E0974C00D3148C /* inapp_bg_ipad.jpg */; };
+		AE2AA7F616E0974C00D3148C /* inapp_bg_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE2AA7F416E0974C00D3148C /* inapp_bg_ipad@2x.jpg */; };
+		AE2AA7F916E0998A00D3148C /* RMIpadSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2AA7F816E0998A00D3148C /* RMIpadSettingsView.m */; };
+		AE2AA7FC16E09F1800D3148C /* RMIpadInGameWinScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2AA7FB16E09F1800D3148C /* RMIpadInGameWinScreenView.m */; };
 		AE2BE2AD16C3A07200A0335D /* PhotoManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2BE2AC16C3A07200A0335D /* PhotoManagedObject.m */; };
 		AE2BE2C416C3D18700A0335D /* photo_grid_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2BE2C016C3D18700A0335D /* photo_grid_normal.png */; };
 		AE2BE2C516C3D18700A0335D /* photo_grid_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2BE2C116C3D18700A0335D /* photo_grid_normal@2x.png */; };
@@ -197,6 +202,14 @@
 		AE0F91A816D3B8ED007F0ED6 /* youwin_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youwin_btn_bg@2x.png"; sourceTree = "<group>"; };
 		AE0F91A916D3B8ED007F0ED6 /* youwin_photo_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youwin_photo_bg.png; sourceTree = "<group>"; };
 		AE0F91AA16D3B8ED007F0ED6 /* youwin_photo_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youwin_photo_bg@2x.png"; sourceTree = "<group>"; };
+		AE2AA7F016E096D900D3148C /* RMIpadInGameMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMIpadInGameMenuView.h; path = view/RMIpadInGameMenuView.h; sourceTree = "<group>"; };
+		AE2AA7F116E096D900D3148C /* RMIpadInGameMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMIpadInGameMenuView.m; path = view/RMIpadInGameMenuView.m; sourceTree = "<group>"; };
+		AE2AA7F316E0974C00D3148C /* inapp_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inapp_bg_ipad.jpg; sourceTree = "<group>"; };
+		AE2AA7F416E0974C00D3148C /* inapp_bg_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "inapp_bg_ipad@2x.jpg"; sourceTree = "<group>"; };
+		AE2AA7F716E0998A00D3148C /* RMIpadSettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMIpadSettingsView.h; path = view/RMIpadSettingsView.h; sourceTree = "<group>"; };
+		AE2AA7F816E0998A00D3148C /* RMIpadSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMIpadSettingsView.m; path = view/RMIpadSettingsView.m; sourceTree = "<group>"; };
+		AE2AA7FA16E09F1800D3148C /* RMIpadInGameWinScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMIpadInGameWinScreenView.h; path = view/RMIpadInGameWinScreenView.h; sourceTree = "<group>"; };
+		AE2AA7FB16E09F1800D3148C /* RMIpadInGameWinScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMIpadInGameWinScreenView.m; path = view/RMIpadInGameWinScreenView.m; sourceTree = "<group>"; };
 		AE2BE2AB16C3A07200A0335D /* PhotoManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoManagedObject.h; path = model/PhotoManagedObject.h; sourceTree = "<group>"; };
 		AE2BE2AC16C3A07200A0335D /* PhotoManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoManagedObject.m; path = model/PhotoManagedObject.m; sourceTree = "<group>"; };
 		AE2BE2C016C3D18700A0335D /* photo_grid_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_grid_normal.png; sourceTree = "<group>"; };
@@ -335,6 +348,8 @@
 		0550E39E16CD2791001EB746 /* in_app_purchases */ = {
 			isa = PBXGroup;
 			children = (
+				AE2AA7F316E0974C00D3148C /* inapp_bg_ipad.jpg */,
+				AE2AA7F416E0974C00D3148C /* inapp_bg_ipad@2x.jpg */,
 				0550E39F16CD2791001EB746 /* inapp_bg-568h@2x.png */,
 				0550E3A016CD2791001EB746 /* inapp_bg.png */,
 				0550E3A116CD2791001EB746 /* inapp_bg@2x.png */,
@@ -359,7 +374,7 @@
 			path = in_app_purchase;
 			sourceTree = "<group>";
 		};
-		41B94CC316C2E55A00B7C70A /* iPad View Controllers */ = {
+		41B94CC316C2E55A00B7C70A /* iPad Views */ = {
 			isa = PBXGroup;
 			children = (
 				41B94CC416C2E59500B7C70A /* RMGallerySelectionIPadViewController.h */,
@@ -368,8 +383,14 @@
 				41B94CC816C2E6A000B7C70A /* RMPhotoSelectionIPadViewController.m */,
 				415149DD16C3EFCF003BE22A /* RMInGameIPadViewController.h */,
 				415149DE16C3EFCF003BE22A /* RMInGameIPadViewController.m */,
+				AE2AA7F016E096D900D3148C /* RMIpadInGameMenuView.h */,
+				AE2AA7F116E096D900D3148C /* RMIpadInGameMenuView.m */,
+				AE2AA7F716E0998A00D3148C /* RMIpadSettingsView.h */,
+				AE2AA7F816E0998A00D3148C /* RMIpadSettingsView.m */,
+				AE2AA7FA16E09F1800D3148C /* RMIpadInGameWinScreenView.h */,
+				AE2AA7FB16E09F1800D3148C /* RMIpadInGameWinScreenView.m */,
 			);
-			name = "iPad View Controllers";
+			name = "iPad Views";
 			sourceTree = "<group>";
 		};
 		AE09C30816C24AA100F634CB /* gallery */ = {
@@ -502,7 +523,7 @@
 				AED218CF16BA934000271930 /* RMAppDelegate.h */,
 				AED218D016BA934000271930 /* RMAppDelegate.m */,
 				AED218E616BA9CDB00271930 /* View */,
-				41B94CC316C2E55A00B7C70A /* iPad View Controllers */,
+				41B94CC316C2E55A00B7C70A /* iPad Views */,
 				AED218C716BA934000271930 /* Supporting Files */,
 			);
 			path = RotateMe;
@@ -819,6 +840,8 @@
 				AE99D36616DFAEEB00E1BD69 /* settings_btn_ipad@2x.png in Resources */,
 				AE99D36716DFAEEB00E1BD69 /* settings_btn.png in Resources */,
 				AE99D36816DFAEEB00E1BD69 /* settings_btn@2x.png in Resources */,
+				AE2AA7F516E0974C00D3148C /* inapp_bg_ipad.jpg in Resources */,
+				AE2AA7F616E0974C00D3148C /* inapp_bg_ipad@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +882,9 @@
 				AE34E6BC16D4C11A006836B8 /* RMInGameMenuView.m in Sources */,
 				AE4F7CD616DB557D00035FD0 /* RMSettingsView.m in Sources */,
 				AE99D35716DF982800E1BD69 /* RMIpadGallerySelectionItemView.m in Sources */,
+				AE2AA7F216E096D900D3148C /* RMIpadInGameMenuView.m in Sources */,
+				AE2AA7F916E0998A00D3148C /* RMIpadSettingsView.m in Sources */,
+				AE2AA7FC16E09F1800D3148C /* RMIpadInGameWinScreenView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

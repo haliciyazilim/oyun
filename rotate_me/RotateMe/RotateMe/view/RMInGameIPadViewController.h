@@ -10,6 +10,8 @@
 #import "RMInGameViewController.h"
 
 @interface RMInGameIPadViewController : RMInGameViewController
+@property (weak, nonatomic) IBOutlet UIImageView *timerHolder;
+@property (weak, nonatomic) IBOutlet UIButton *menuButton;
 
 @end
 

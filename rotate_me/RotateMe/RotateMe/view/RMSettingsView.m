@@ -20,7 +20,11 @@
         [self setBackground];
         [self setFrame];
         [self setButtons];
+        [self setAlpha:0.0];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableRestore) name:IAPHelperEnableBuyButtonNotification object:nil];
+        [UIView animateWithDuration:0.5 delay:0.0 options:0 animations:^{
+            [self setAlpha:1.0];
+        } completion:nil];
     }
     return self;
 }
@@ -118,13 +122,16 @@
 
 - (void) closeSettings
 {
-    [self removeFromSuperview];
+    [UIView animateWithDuration:0.5 delay:0.0 options:0 animations:^{
+        [self setAlpha:0.0];
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
 }
 
 - (void) resetScores
 {
     [[[UIAlertView alloc] initWithTitle:@"Reset Scores" message:@"Are you sure you want to reset scores?"  delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Sure",nil] show];
-//    [Score cleanAllScores];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
