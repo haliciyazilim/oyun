@@ -15,4 +15,7 @@
 - (id) initWithScore:(NSString*) _score andInGameViewController:(RMInGameViewController*) _inGameViewController;
 
 - (void) setControllerBackground:(UIImage*)image;
+
+-(void) stylizeButton:(UIButton*)button;
+
 @end

@@ -14,5 +14,8 @@
 
 - (id) initWithGallery:(Gallery*) _gallery animate:(BOOL)animate;
 
+- (id) initForInAppPurchaseWithGallery:(Gallery *)_gallery;
+
 -(void)setLocked;
+
 @end

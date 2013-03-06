@@ -225,8 +225,8 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [subViews addObject:photoView];
     }
     
-    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(subViews.count / 2.0) * size.width,
-                                               topMargin  + size.height*2.0)];
+    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(subViews.count / rowCount) * size.width,
+                                               topMargin  + size.height*rowCount)];
     
     for(int i=0;i< [subViews count];i++){
         CGRect frame = CGRectMake(leftMargin+(i/rowCount)*size.width, topMargin + (i%rowCount) * size.height, photoSize.width, photoSize.height);
@@ -241,7 +241,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 
 - (RMCustomImageView*) addFromCameraView
 {
-    RMCustomImageView* addFromCamera = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"take_photo_btn.png"]];
+    RMCustomImageView* addFromCamera = [[RMCustomImageView alloc] initWithImage:[self takePhotoImage]];
     [addFromCamera setUserInteractionEnabled:YES];
     [addFromCamera setTouchesBegan:^{
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
@@ -253,9 +253,18 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     return addFromCamera;
 }
 
+- (UIImage*) takePhotoImage
+{
+    return [UIImage imageNamed:@"take_photo_btn.png"];
+}
+- (UIImage*) galleryPhotoImage
+{
+    return [UIImage imageNamed:@"gallery_photo_btn.png"];
+}
+
 - (RMCustomImageView*) addFromGalleryView
 {
-    RMCustomImageView* addFromGallery = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_photo_btn.png"]];
+    RMCustomImageView* addFromGallery = [[RMCustomImageView alloc] initWithImage:[self galleryPhotoImage]];
     
     if (!imagePicker) {
         imagePicker = [[UIImagePickerController alloc] init];

@@ -11,7 +11,7 @@
 #import "Gallery.h"
 #import <QuartzCore/QuartzCore.h>
 #import "RMGallerySelectionViewController.h"
-
+#import "RMGallerySelectionItemView.h"
 
 @implementation RotateMeIAPHelper
 {
@@ -59,6 +59,27 @@
     [gallery purchaseGallery];
     [super provideContentForProductIdentifier:productIdentifier];
 }
+
+-(void) setBackground
+{
+    CGFloat currentScreenWidth = [[UIScreen mainScreen] bounds].size.height;
+    if(currentScreenWidth == 568){
+        [self.currentStore setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"inapp_bg-568h.png"]]];
+    }
+    else{
+        [self.currentStore setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"inapp_bg.png"]]];
+    }
+}
+
+- (void) appendGalleryItemForGallery:(Gallery*)gallery
+{
+    
+    UIView* view = [[RMGallerySelectionItemView alloc] initForInAppPurchaseWithGallery:gallery];
+    view.transform = CGAffineTransformRotate(view.transform, -M_PI*0.06);
+    [self.storeContainer addSubview:view];
+    
+}
+
 - (void) showProduct:(Gallery*)gallery onViewController:(UIViewController*) viewController
 {
     canShowCompletedAlert = YES;
@@ -76,15 +97,14 @@
     currentProductIdentifier = [NSString stringWithString:gallery.name];
     
     self.currentStore = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x,frame.origin.y,frame.size.height,frame.size.width)];
-    if(currentScreenWidth == 568){
-        [self.currentStore setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"inapp_bg-568h.png"]]];
-    }
-    else{
-        [self.currentStore setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"inapp_bg.png"]]];
-    }
+    
     
     self.storeContainer = [[UIView alloc] initWithFrame:CGRectMake((currentScreenWidth-438.0)*0.5, (currentScreenHeight-278.0)*0.5, 438.0, 278.0)];
     [self.storeContainer setBackgroundColor:[UIColor clearColor]];
+    
+    [self setBackground];
+    
+    [self appendGalleryItemForGallery:gallery];
     
     // alloc, init and customize description label here
     descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(219.0, 65.0, 219.0, 106.0)];
@@ -170,7 +190,7 @@
 }
 - (SKProduct *) getProductWithProductIdentifier:(NSString *)productIdentifier {
     for (SKProduct* product in self.products) {
-        NSLog(@"%@, and %@",productIdentifier, product.productIdentifier);
+//        NSLog(@"%@, and %@",productIdentifier, product.productIdentifier);
         if ([product.productIdentifier isEqualToString:productIdentifier]) {
             return product;
         }

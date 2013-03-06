@@ -13,4 +13,6 @@
 
 -(id) initWithFrame:(CGRect)frame;
 - (void) removeFromSuperviewOnCompletion:(IteratorBlock)block;
+
+-(void) stylizeButton:(UIButton*)button;
 @end

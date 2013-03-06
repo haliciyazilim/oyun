@@ -74,6 +74,15 @@ static RMPhotoSelectionIPadViewController* lastInstance = nil;
 {
     return 3;
 }
+
+- (UIImage*) takePhotoImage
+{
+    return [UIImage imageNamed:@"take_photo_btn_ipad.jpg"];
+}
+- (UIImage*) galleryPhotoImage
+{
+    return [UIImage imageNamed:@"gallery_photo_btn_ipad.jpg"];
+}
 @end
 
 

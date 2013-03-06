@@ -7,6 +7,7 @@
 //
 
 #import "RMIpadGallerySelectionItemView.h"
+#import "RotateMeIpadIAPHelper.h"
 
 @implementation RMIpadGallerySelectionItemView
 
@@ -32,7 +33,7 @@
 
 -(CGRect) getGalleryNameLabelFrame
 {
-    return CGRectMake(0, [self getBorderImageViewFrame].size.height - 28, [self getBorderImageViewFrame].size.width, 27);
+    return CGRectMake(0, [self getBorderImageViewFrame].size.height - 35, [self getBorderImageViewFrame].size.width, 27);
 }
 
 - (UIImage*) maskImage
@@ -43,5 +44,14 @@
 - (UIImage*) borderImage
 {
     return [UIImage imageNamed:@"gallery_selection_bg_ipad.png"];
+}
+-(CGFloat) galleryNameFontSize
+{
+    return 20.0;
+}
+
+-(UIImage*) lockImage
+{
+    return [UIImage imageNamed:@"icon_locked_ipad.png"];
 }
 @end

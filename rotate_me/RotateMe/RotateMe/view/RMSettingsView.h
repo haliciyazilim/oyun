@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RMSettingsView : UIView <UIAlertViewDelegate>
-
+-(void) stylizeButton:(UIButton*) button;
 @end

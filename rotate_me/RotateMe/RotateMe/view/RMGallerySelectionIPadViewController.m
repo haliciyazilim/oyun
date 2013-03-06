@@ -9,6 +9,7 @@
 #import "RMGallerySelectionIPadViewController.h"
 #import "RMIpadGallerySelectionItemView.h"
 #import "RMIpadSettingsView.h"
+#import "RotateMeIpadIAPHelper.h"
 
 @interface RMGallerySelectionIPadViewController ()
 
@@ -17,7 +18,7 @@
 @implementation RMGallerySelectionIPadViewController
 
 - (CGSize) scrollViewItemSize{
-    return CGSizeMake(350,200);
+    return CGSizeMake(350,300);
 }
 
 -(void) setBackground
@@ -33,5 +34,22 @@
     RMSettingsView* settings = [[RMIpadSettingsView alloc] init];
     [self.view addSubview:settings];
 }
+- (void) openInAppPurchaseForGallery:(Gallery*)gallery
+{
+    [[RotateMeIpadIAPHelper sharedInstance] showProduct:gallery onViewController:self];
+    
+}
+- (int) rowCount
+{
+    return 2;
+}
+- (CGFloat) leftMargin
+{
+    return 40.0;
+}
 
+-(CGFloat) topMargin
+{
+    return 40.0;
+}
 @end

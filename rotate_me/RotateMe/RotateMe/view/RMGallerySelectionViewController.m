@@ -93,10 +93,23 @@
     touchedGallery = nil;
 }
 
+- (int) rowCount
+{
+    return 1;
+}
+
+- (CGFloat) leftMargin
+{
+    return 30.0;
+}
+
+-(CGFloat) topMargin
+{
+    return 30.0;
+}
 - (void) configureViews {
     NSArray* allGaleries = [Gallery allGalleries];
     int index = 0;
-    int topMargin = 30;
     
     
     for(UIView* view in [self.scrollView subviews]){
@@ -104,18 +117,18 @@
             [view removeFromSuperview];
         }
     }
-    
+    int scrollViewWidth = 0;
     for(Gallery* gallery in allGaleries){
         RMGallerySelectionItemView* galleryItem = [self generateGallerySelectionItemViewWithGallery:gallery animate:YES];
         [self.scrollView addSubview:galleryItem];
         galleryItem.tag = GALLERY_SELECTION_GALLERY_ITEM_TAG;
         galleryItem.frame = CGRectMake(
-                                       [self scrollViewItemSize].width * index,
-                                       topMargin,
-                                       galleryItem.frame.size.width,
-                                       galleryItem.frame.size.height);
+                                       [self leftMargin] + [self scrollViewItemSize].width * (index / [self rowCount]),
+                                       [self topMargin] + [self scrollViewItemSize].height * (index % [self rowCount]),
+                                       [self scrollViewItemSize].width,
+                                       [self scrollViewItemSize].height);
         [galleryItem setUserInteractionEnabled:YES];
-        
+        scrollViewWidth += [self scrollViewItemSize].width;
         [galleryItem setTouchesBegan:^{
             if(touchedGallery != nil)
                 return;
@@ -123,18 +136,24 @@
                 touchedGallery = gallery;
                 [self performSegueWithIdentifier:@"OpenPhotoSelection" sender:self];
             }else{
-                [[RotateMeIAPHelper sharedInstance] showProduct:gallery onViewController:self];    
+                [self openInAppPurchaseForGallery:gallery];
             }
         }];
         index++;
-        if(gallery.isPurchased == NO){
-            [galleryItem setLocked];
-        }
     }
+    
+    [self.scrollView setContentSize:CGSizeMake(scrollViewWidth / [self rowCount] + [self leftMargin], [self scrollViewItemSize].height * [self rowCount] + [self topMargin])];
     
     touchedGallery = nil;
 
 }
+
+- (void) openInAppPurchaseForGallery:(Gallery*)gallery
+{
+    [[RotateMeIAPHelper sharedInstance] showProduct:gallery onViewController:self];
+    
+}
+
 
 
 - (RMGallerySelectionItemView*) generateGallerySelectionItemViewWithGallery:(Gallery*)gallery animate:(BOOL)animate

@@ -23,7 +23,7 @@
     }
     
     //GameCenter
-    [[GameCenterManager sharedInstance] authenticateLocalUser];
+//    [[GameCenterManager sharedInstance] authenticateLocalUser];
     
 //    [[RotateMeIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
 //        if (!success) {

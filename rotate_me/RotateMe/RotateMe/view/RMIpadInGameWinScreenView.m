@@ -17,20 +17,20 @@
 
 - (CGRect) hiddenImageTargetFrame
 {
-    return  CGRectMake(0, 0, 740, 580);
+    return  CGRectMake(50, 100, 512, 400);
 }
 - (CGRect) newPhotoHolderImageFrame
 {
-    return CGRectMake(-11, -10, 771, 670);
+    return CGRectMake(44, 91, 534, 489);
 }
 
 - (CGRect) restartButtonFrame
 {
-    return CGRectMake(840, 300, 154, 36);
+    return CGRectMake(670, 370, 252, 83);
 }
 - (CGRect) menuButtonFrame
 {
-    return CGRectMake(840, 240, 154, 36);
+    return CGRectMake(670, 270, 252, 83);
 }
 -(void) appendNewViewControllerBackground
 {
@@ -38,16 +38,34 @@
 }
 - (CGRect)scoreFrame
 {
-    return CGRectMake(60, 630, 150, 40);
+    return CGRectMake(100, 530, 150, 60);
 }
 -(CGFloat) scoreFontSize
 {
-    return 40.0;
+    return 50.0;
 }
 
 -(CGFloat) imageRadius
 {
     return 10.0;
+}
+- (UIImage*) youwinPhotoHolderImage
+{
+    return [UIImage imageNamed:@"youwin_photo_bg_ipad.png"];
+}
+
+- (CGFloat) buttonFontSize
+{
+    return 32.0;
+}
+
+-(void) stylizeButton:(UIButton*)button
+{
+    [super stylizeButton:button];
+    
+    [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg_ipad.png"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg_hover_ipad.png"] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg_hover_ipad.png"] forState:UIControlStateSelected];
 }
 
 @end

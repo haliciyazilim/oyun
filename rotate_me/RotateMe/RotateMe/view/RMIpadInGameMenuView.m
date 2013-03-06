@@ -14,5 +14,11 @@
 {
     [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"inapp_bg_ipad.jpg"]]];
 }
-
+-(void) stylizeButton:(UIButton*)button
+{
+    [super stylizeButton:button];
+    [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg_ipad.png"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg_ipad_hover.png"] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg_ipad_hover.png"] forState:UIControlStateSelected];
+}
 @end

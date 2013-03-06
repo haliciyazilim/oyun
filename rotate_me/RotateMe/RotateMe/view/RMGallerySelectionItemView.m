@@ -22,32 +22,59 @@
     BOOL shouldAnimate;
     UIImageView* frontView;
     BOOL isPurchased;
+    BOOL forInAppPurchase;
 }
 
-- (id) initWithGallery:(Gallery*) _gallery animate:(BOOL)animate
+- (id) initForInAppPurchaseWithGallery:(Gallery *)_gallery
 {
-    if(self = [super init]){
+    if(self = [self init]){
         gallery = _gallery;
-        shouldAnimate = animate;
-        galleryName = NSLocalizedString(gallery.name,nil);
-        isPurchased = gallery.isPurchased;
-        galleryPhotos = [[NSMutableArray alloc] init];
-        NSArray* photos = [gallery allPhotos];
-        int length = [photos count] < 3 ? [photos count] : 3;
-        for(int i=0;i<length;i++){
-            [galleryPhotos addObject:[photos objectAtIndex:i]];
-        }
-        self.frame = [self getGallleryItemFrame];
-        if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
-            ([UIScreen mainScreen].scale == 2.0)) {
-            scaleFactor = 2;
-            
-        } else {
-            scaleFactor = 1;
-        }
-        [[[NSThread alloc] initWithTarget:self selector:@selector(loadImages) object:nil] start];
+        isPurchased = YES;
+        forInAppPurchase = YES;
+        shouldAnimate = NO;
+        
+        [self initialize];
     }
     return self;
+}
+
+- (id) init
+{
+    if(self = [super init]){
+        forInAppPurchase = NO;
+    }
+    return self;
+}
+- (id) initWithGallery:(Gallery*) _gallery animate:(BOOL)animate
+{
+    if(self = [self init]){
+        gallery = _gallery;
+        isPurchased = gallery.isPurchased;
+        shouldAnimate = animate;
+        forInAppPurchase = NO;
+        [self initialize];
+     }
+    return self;
+}
+
+- (void) initialize
+{
+    galleryName = NSLocalizedString(gallery.name,nil);
+    galleryPhotos = [[NSMutableArray alloc] init];
+    NSArray* photos = [gallery allPhotos];
+    int length = [photos count] < 3 ? [photos count] : 3;
+    for(int i=0;i<length;i++){
+        [galleryPhotos addObject:[photos objectAtIndex:i]];
+    }
+    self.frame = [self getGallleryItemFrame];
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+        ([UIScreen mainScreen].scale == 2.0)) {
+        scaleFactor = 2;
+        
+    } else {
+        scaleFactor = 1;
+    }
+    [[[NSThread alloc] initWithTarget:self selector:@selector(loadImages) object:nil] start];
 }
 
 - (UIImage*) maskImage
@@ -88,10 +115,10 @@
         
         if(i == 0){
             view.transform = CGAffineTransformTranslate(view.transform, 15, 0);
-            if(isPurchased)
+//            if(isPurchased)
                 [maskImageView setAlpha:0.0];
-            else
-                [maskImageView setAlpha:0.6];
+//            else
+//                [maskImageView setAlpha:0.6];
             UIView* nameLabel =[self createGalleryNameLabel];
             [view insertSubview:nameLabel aboveSubview:maskImageView];
         }else
@@ -99,19 +126,19 @@
             [view.superview sendSubviewToBack:view];
             view.transform = CGAffineTransformTranslate(view.transform, 0, 0);
             view.transform = CGAffineTransformRotate(view.transform, -angle);
-            if(isPurchased)
+//            if(isPurchased)
                 [maskImageView setAlpha:0.13];
-            else
-                [maskImageView setAlpha:0.7];
+//            else
+//                [maskImageView setAlpha:0.7];
         }else
         if(i == 2){
             [view.superview sendSubviewToBack:view];
             view.transform = CGAffineTransformTranslate(view.transform, 30, 10);
             view.transform = CGAffineTransformRotate(view.transform, angle);
-            if(isPurchased)
+//            if(isPurchased)
                 [maskImageView setAlpha:0.20];
-            else
-                [maskImageView setAlpha:0.8];
+//            else
+//                [maskImageView setAlpha:0.8];
         }
         [view.layer setShouldRasterize:YES];
     }
@@ -124,6 +151,10 @@
 - (UIImage*) borderImage
 {
     return [UIImage imageNamed:@"gallery_selection_bg.png"];
+}
+-(UIImage*) lockImage
+{
+    return [UIImage imageNamed:@"icon_locked.png"];
 }
 -(UIImageView*) createBorderImageView
 {
@@ -139,19 +170,24 @@
     [galleryNameLabel setText:galleryName];
     [galleryNameLabel setBackgroundColor:[UIColor clearColor]];
     [galleryNameLabel setTextAlignment:NSTextAlignmentCenter];
-    [galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:13.0]];
-    if(isPurchased){
+    [galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:[self galleryNameFontSize]]];
+//    if(isPurchased){
         [galleryNameLabel setTextColor:BROWN_TEXT_COLOR];
         [galleryNameLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.20]];
-        
-    }
-    else{
-        [galleryNameLabel setTextColor:LIGHT_BROWN_TEXT_COLOR];
-        [galleryNameLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.60]];
-        
-    }
+//    }
+//    else{
+//        [galleryNameLabel setTextColor:LIGHT_BROWN_TEXT_COLOR];
+//        [galleryNameLabel setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.60]];
+//        
+//    }
     [galleryNameLabel setShadowOffset:CGSizeMake(0, 1)];
+
     return galleryNameLabel;
+}
+
+-(CGFloat) galleryNameFontSize
+{
+    return 13.0;
 }
 
 -(UIImageView*)createPhotoImageViewWithImage:(UIImage*)image
@@ -200,9 +236,11 @@
 
 -(void)setLocked
 {
-    UIImageView* lock = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_locked.png"]];
-    [lock setFrame:CGRectMake(frontView.frame.size.width*0.5 - lock.image.size.width*0.5, frontView.frame.size.height*0.5 - lock.image.size.height*0.5-10, lock.image.size.width, lock.image.size.height)];
+    UIImageView* lock = [[UIImageView alloc] initWithImage:[self lockImage]];
+    [lock setFrame:[self getPhotoImageFrame]];
+    [lock setContentMode:UIViewContentModeCenter];
     [frontView addSubview:lock];
 }
+
 
 @end

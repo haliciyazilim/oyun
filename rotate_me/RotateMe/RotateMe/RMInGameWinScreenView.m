@@ -97,10 +97,15 @@
     return CGRectMake(-5, -5, 262, 240);
 }
 
+- (UIImage*) youwinPhotoHolderImage
+{
+    return [UIImage imageNamed:@"youwin_photo_bg.png"];
+}
+
 -(void) appendNewPhotoHolderImage
 {
     inGameViewController.photoHolder.image = nil;
-    UIImageView* newPhotoHolderImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"youwin_photo_bg.png"]];
+    UIImageView* newPhotoHolderImage = [[UIImageView alloc] initWithImage:[self youwinPhotoHolderImage]];
     CGRect frame = [self newPhotoHolderImageFrame];
     newPhotoHolderImage.frame = frame;
     [inGameViewController.photoHolder addSubview:newPhotoHolderImage];
@@ -157,9 +162,14 @@
     }
 }
 
+- (CGFloat) buttonFontSize
+{
+    return 16.0;
+}
+
 -(void) stylizeButton:(UIButton*)button
 {
-    [button.titleLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:16.0]];
+    [button.titleLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:[self buttonFontSize]]];
     [button.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [button setTitleColor:BROWN_TEXT_COLOR forState:UIControlStateNormal];
     [button setTitleColor:BROWN_TEXT_COLOR forState:UIControlStateHighlighted];
