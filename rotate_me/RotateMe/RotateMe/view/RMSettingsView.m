@@ -100,7 +100,7 @@
 }
 -(void) stylizeButton:(UIButton*) button
 {
-    [button.titleLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:16.0]];
+    [button.titleLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:[self fontSize]]];
     [button.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [button setTitleColor:BROWN_TEXT_COLOR forState:UIControlStateNormal];
     [button setTitleColor:BROWN_TEXT_COLOR forState:UIControlStateHighlighted];
@@ -108,6 +108,11 @@
     [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg.png"] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg_hover.png"] forState:UIControlStateHighlighted];
     [button setBackgroundImage:[UIImage imageNamed:@"ingame_btn_bg_hover.png"] forState:UIControlStateSelected];
+}
+
+- (CGFloat) fontSize
+{
+    return 16.0;
 }
 
 - (CGSize) getButtonSize

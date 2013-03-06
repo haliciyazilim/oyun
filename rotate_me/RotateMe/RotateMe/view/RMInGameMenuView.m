@@ -28,9 +28,19 @@
     return self;
 }
 
+- (CGSize) buttonSize
+{
+    return CGSizeMake(166, 53);
+}
+
+- (CGFloat) fontSize
+{
+    return 16.0;
+}
+
 -(void) showButtons
 {
-    CGSize buttonSize = CGSizeMake(166, 53);
+    CGSize buttonSize = [self buttonSize];
     UIButton* mainMenu = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton* restart = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton* resume = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -63,7 +73,7 @@
 
 -(void) stylizeButton:(UIButton*)button
 {
-    [button.titleLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:16.0]];
+    [button.titleLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:[self fontSize]]];
     [button.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [button setTitleColor:BROWN_TEXT_COLOR forState:UIControlStateNormal];
     [button setTitleColor:BROWN_TEXT_COLOR forState:UIControlStateHighlighted];
