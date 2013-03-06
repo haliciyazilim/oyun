@@ -81,10 +81,6 @@
 		AE4933CE16E62C7500D9A151 /* ingame_btn_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE4933CC16E62C7500D9A151 /* ingame_btn_bg_ipad@2x.png */; };
 		AE4933D116E62DE900D9A151 /* menu_btn_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AE4933CF16E62DE900D9A151 /* menu_btn_ipad.png */; };
 		AE4933D216E62DE900D9A151 /* menu_btn_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE4933D016E62DE900D9A151 /* menu_btn_ipad@2x.png */; };
-		AE4933D716E645AC00D9A151 /* gallery_photo_btn_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE4933D316E645AC00D9A151 /* gallery_photo_btn_ipad.jpg */; };
-		AE4933D816E645AC00D9A151 /* gallery_photo_btn_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE4933D416E645AC00D9A151 /* gallery_photo_btn_ipad@2x.jpg */; };
-		AE4933D916E645AC00D9A151 /* take_photo_btn_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE4933D516E645AC00D9A151 /* take_photo_btn_ipad.jpg */; };
-		AE4933DA16E645AC00D9A151 /* take_photo_btn_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE4933D616E645AC00D9A151 /* take_photo_btn_ipad@2x.jpg */; };
 		AE4F7CD616DB557D00035FD0 /* RMSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE4F7CD516DB557D00035FD0 /* RMSettingsView.m */; };
 		AE72DBBB16BBAABA00C12D6C /* RMPhotoSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE72DBBA16BBAABA00C12D6C /* RMPhotoSelectionViewController.m */; };
 		AE72DBC016BBB13D00C12D6C /* RMCustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE72DBBF16BBB13D00C12D6C /* RMCustomImageView.m */; };
@@ -117,6 +113,17 @@
 		AE99D36816DFAEEB00E1BD69 /* settings_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE99D36416DFAEEA00E1BD69 /* settings_btn@2x.png */; };
 		AE9F3FAA16E73FE5007794CD /* youwin_photo_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FA816E73FE5007794CD /* youwin_photo_bg_ipad.png */; };
 		AE9F3FAB16E73FE5007794CD /* youwin_photo_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FA916E73FE5007794CD /* youwin_photo_bg_ipad@2x.png */; };
+		AE9F3FAE16E771C3007794CD /* back_button_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FAC16E771C3007794CD /* back_button_ipad.png */; };
+		AE9F3FAF16E771C3007794CD /* back_button_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FAD16E771C3007794CD /* back_button_ipad@2x.png */; };
+		AE9F3FB416E773A2007794CD /* gallery_photo_btn_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FB016E773A2007794CD /* gallery_photo_btn_ipad.jpg */; };
+		AE9F3FB516E773A2007794CD /* gallery_photo_btn_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FB116E773A2007794CD /* gallery_photo_btn_ipad@2x.jpg */; };
+		AE9F3FB616E773A2007794CD /* take_photo_btn_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FB216E773A2007794CD /* take_photo_btn_ipad.jpg */; };
+		AE9F3FB716E773A2007794CD /* take_photo_btn_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FB316E773A2007794CD /* take_photo_btn_ipad@2x.jpg */; };
+		AE9F3FBA16E773B0007794CD /* delete_photo_btn_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FB816E773B0007794CD /* delete_photo_btn_ipad.png */; };
+		AE9F3FBB16E773B0007794CD /* delete_photo_btn_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FB916E773B0007794CD /* delete_photo_btn_ipad@2x.png */; };
+		AE9F3FBE16E773C1007794CD /* photo_degrede_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FBC16E773C1007794CD /* photo_degrede_ipad.png */; };
+		AE9F3FBF16E773C1007794CD /* photo_degrede_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9F3FBD16E773C1007794CD /* photo_degrede_ipad@2x.png */; };
+		AE9F3FC216E773F0007794CD /* RMPhotoSelectionIpadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9F3FC116E773F0007794CD /* RMPhotoSelectionIpadImageView.m */; };
 		AED218C116BA934000271930 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED218C016BA934000271930 /* UIKit.framework */; };
 		AED218C316BA934000271930 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED218C216BA934000271930 /* Foundation.framework */; };
 		AED218C516BA934000271930 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED218C416BA934000271930 /* CoreGraphics.framework */; };
@@ -259,10 +266,6 @@
 		AE4933CC16E62C7500D9A151 /* ingame_btn_bg_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_btn_bg_ipad@2x.png"; sourceTree = "<group>"; };
 		AE4933CF16E62DE900D9A151 /* menu_btn_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_btn_ipad.png; sourceTree = "<group>"; };
 		AE4933D016E62DE900D9A151 /* menu_btn_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_btn_ipad@2x.png"; sourceTree = "<group>"; };
-		AE4933D316E645AC00D9A151 /* gallery_photo_btn_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = gallery_photo_btn_ipad.jpg; path = ../../../../../../../Downloads/gallery_photo_btn_ipad.jpg; sourceTree = "<group>"; };
-		AE4933D416E645AC00D9A151 /* gallery_photo_btn_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "gallery_photo_btn_ipad@2x.jpg"; path = "../../../../../../../Downloads/gallery_photo_btn_ipad@2x.jpg"; sourceTree = "<group>"; };
-		AE4933D516E645AC00D9A151 /* take_photo_btn_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = take_photo_btn_ipad.jpg; path = ../../../../../../../Downloads/take_photo_btn_ipad.jpg; sourceTree = "<group>"; };
-		AE4933D616E645AC00D9A151 /* take_photo_btn_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "take_photo_btn_ipad@2x.jpg"; path = "../../../../../../../Downloads/take_photo_btn_ipad@2x.jpg"; sourceTree = "<group>"; };
 		AE4F7CD416DB557D00035FD0 /* RMSettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMSettingsView.h; path = view/RMSettingsView.h; sourceTree = "<group>"; };
 		AE4F7CD516DB557D00035FD0 /* RMSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMSettingsView.m; path = view/RMSettingsView.m; sourceTree = "<group>"; };
 		AE72DBB916BBAABA00C12D6C /* RMPhotoSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPhotoSelectionViewController.h; sourceTree = "<group>"; };
@@ -304,6 +307,18 @@
 		AE99D36416DFAEEA00E1BD69 /* settings_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_btn@2x.png"; path = "images/gallery_selection/settings_btn@2x.png"; sourceTree = "<group>"; };
 		AE9F3FA816E73FE5007794CD /* youwin_photo_bg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youwin_photo_bg_ipad.png; sourceTree = "<group>"; };
 		AE9F3FA916E73FE5007794CD /* youwin_photo_bg_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youwin_photo_bg_ipad@2x.png"; sourceTree = "<group>"; };
+		AE9F3FAC16E771C3007794CD /* back_button_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button_ipad.png; sourceTree = "<group>"; };
+		AE9F3FAD16E771C3007794CD /* back_button_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button_ipad@2x.png"; sourceTree = "<group>"; };
+		AE9F3FB016E773A2007794CD /* gallery_photo_btn_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gallery_photo_btn_ipad.jpg; sourceTree = "<group>"; };
+		AE9F3FB116E773A2007794CD /* gallery_photo_btn_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "gallery_photo_btn_ipad@2x.jpg"; sourceTree = "<group>"; };
+		AE9F3FB216E773A2007794CD /* take_photo_btn_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = take_photo_btn_ipad.jpg; sourceTree = "<group>"; };
+		AE9F3FB316E773A2007794CD /* take_photo_btn_ipad@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "take_photo_btn_ipad@2x.jpg"; sourceTree = "<group>"; };
+		AE9F3FB816E773B0007794CD /* delete_photo_btn_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_photo_btn_ipad.png; sourceTree = "<group>"; };
+		AE9F3FB916E773B0007794CD /* delete_photo_btn_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_photo_btn_ipad@2x.png"; sourceTree = "<group>"; };
+		AE9F3FBC16E773C1007794CD /* photo_degrede_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_degrede_ipad.png; sourceTree = "<group>"; };
+		AE9F3FBD16E773C1007794CD /* photo_degrede_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_degrede_ipad@2x.png"; sourceTree = "<group>"; };
+		AE9F3FC016E773F0007794CD /* RMPhotoSelectionIpadImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMPhotoSelectionIpadImageView.h; path = view/RMPhotoSelectionIpadImageView.h; sourceTree = "<group>"; };
+		AE9F3FC116E773F0007794CD /* RMPhotoSelectionIpadImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMPhotoSelectionIpadImageView.m; path = view/RMPhotoSelectionIpadImageView.m; sourceTree = "<group>"; };
 		AED218BC16BA934000271930 /* RotateMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RotateMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AED218C016BA934000271930 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AED218C216BA934000271930 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -453,10 +468,16 @@
 		AE09C31516C24AA100F634CB /* photoselection */ = {
 			isa = PBXGroup;
 			children = (
-				AE4933D316E645AC00D9A151 /* gallery_photo_btn_ipad.jpg */,
-				AE4933D416E645AC00D9A151 /* gallery_photo_btn_ipad@2x.jpg */,
-				AE4933D516E645AC00D9A151 /* take_photo_btn_ipad.jpg */,
-				AE4933D616E645AC00D9A151 /* take_photo_btn_ipad@2x.jpg */,
+				AE9F3FBC16E773C1007794CD /* photo_degrede_ipad.png */,
+				AE9F3FBD16E773C1007794CD /* photo_degrede_ipad@2x.png */,
+				AE9F3FB816E773B0007794CD /* delete_photo_btn_ipad.png */,
+				AE9F3FB916E773B0007794CD /* delete_photo_btn_ipad@2x.png */,
+				AE9F3FB016E773A2007794CD /* gallery_photo_btn_ipad.jpg */,
+				AE9F3FB116E773A2007794CD /* gallery_photo_btn_ipad@2x.jpg */,
+				AE9F3FB216E773A2007794CD /* take_photo_btn_ipad.jpg */,
+				AE9F3FB316E773A2007794CD /* take_photo_btn_ipad@2x.jpg */,
+				AE9F3FAC16E771C3007794CD /* back_button_ipad.png */,
+				AE9F3FAD16E771C3007794CD /* back_button_ipad@2x.png */,
 				AEDB957E16CB81C400F902BC /* delete_photo_btn.png */,
 				AEDB957F16CB81C400F902BC /* delete_photo_btn@2x.png */,
 				AEDB958016CB81C400F902BC /* gallery_photo_btn.png */,
@@ -552,6 +573,8 @@
 			children = (
 				AE99D35516DF982700E1BD69 /* RMIpadGallerySelectionItemView.h */,
 				AE99D35616DF982700E1BD69 /* RMIpadGallerySelectionItemView.m */,
+				AE9F3FC016E773F0007794CD /* RMPhotoSelectionIpadImageView.h */,
+				AE9F3FC116E773F0007794CD /* RMPhotoSelectionIpadImageView.m */,
 			);
 			name = "iPad extensions";
 			sourceTree = "<group>";
@@ -937,12 +960,18 @@
 				AE4933CE16E62C7500D9A151 /* ingame_btn_bg_ipad@2x.png in Resources */,
 				AE4933D116E62DE900D9A151 /* menu_btn_ipad.png in Resources */,
 				AE4933D216E62DE900D9A151 /* menu_btn_ipad@2x.png in Resources */,
-				AE4933D716E645AC00D9A151 /* gallery_photo_btn_ipad.jpg in Resources */,
-				AE4933D816E645AC00D9A151 /* gallery_photo_btn_ipad@2x.jpg in Resources */,
-				AE4933D916E645AC00D9A151 /* take_photo_btn_ipad.jpg in Resources */,
-				AE4933DA16E645AC00D9A151 /* take_photo_btn_ipad@2x.jpg in Resources */,
 				AE9F3FAA16E73FE5007794CD /* youwin_photo_bg_ipad.png in Resources */,
 				AE9F3FAB16E73FE5007794CD /* youwin_photo_bg_ipad@2x.png in Resources */,
+				AE9F3FAE16E771C3007794CD /* back_button_ipad.png in Resources */,
+				AE9F3FAF16E771C3007794CD /* back_button_ipad@2x.png in Resources */,
+				AE9F3FB416E773A2007794CD /* gallery_photo_btn_ipad.jpg in Resources */,
+				AE9F3FB516E773A2007794CD /* gallery_photo_btn_ipad@2x.jpg in Resources */,
+				AE9F3FB616E773A2007794CD /* take_photo_btn_ipad.jpg in Resources */,
+				AE9F3FB716E773A2007794CD /* take_photo_btn_ipad@2x.jpg in Resources */,
+				AE9F3FBA16E773B0007794CD /* delete_photo_btn_ipad.png in Resources */,
+				AE9F3FBB16E773B0007794CD /* delete_photo_btn_ipad@2x.png in Resources */,
+				AE9F3FBE16E773C1007794CD /* photo_degrede_ipad.png in Resources */,
+				AE9F3FBF16E773C1007794CD /* photo_degrede_ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,6 +1016,7 @@
 				AE2AA7F916E0998A00D3148C /* RMIpadSettingsView.m in Sources */,
 				AE2AA7FC16E09F1800D3148C /* RMIpadInGameWinScreenView.m in Sources */,
 				AE4933CA16E61D5B00D9A151 /* RotateMeIpadIAPHelper.m in Sources */,
+				AE9F3FC216E773F0007794CD /* RMPhotoSelectionIpadImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

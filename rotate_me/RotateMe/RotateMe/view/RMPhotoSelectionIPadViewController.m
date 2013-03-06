@@ -12,7 +12,7 @@
 #import "RMImage.h"
 #import "Photo.h"
 #import "UIView+Util.h"
-
+#import "RMPhotoSelectionIpadImageView.h"
 @interface RMPhotoSelectionIPadViewController ()
 
 @end
@@ -79,9 +79,19 @@ static RMPhotoSelectionIPadViewController* lastInstance = nil;
 {
     return [UIImage imageNamed:@"take_photo_btn_ipad.jpg"];
 }
+
 - (UIImage*) galleryPhotoImage
 {
     return [UIImage imageNamed:@"gallery_photo_btn_ipad.jpg"];
+}
+
+- (UIImage*) deletePhotoImage
+{
+    return [UIImage imageNamed:@"delete_photo_btn_ipad.png"];
+}
+- (RMPhotoSelectionImageView*) generateSelectionViewWithPhoto:(Photo*)photo andFrame:(CGRect)frame
+{
+    return [RMPhotoSelectionIpadImageView viewWithPhoto:photo andFrame:frame andScaleSize:[self imageScaleSize]];
 }
 @end
 

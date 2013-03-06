@@ -27,4 +27,5 @@
 - (void) darken;
 - (void) lighten;
 
+- (CGSize)imageScaleSize;
 @end

@@ -41,7 +41,7 @@
         
         Score* score = [photo getScoreForDifficulty:getCurrentDifficulty()];
         if(score != nil){
-            UIImageView* gradient = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_gradient.png"]];
+            UIImageView* gradient = [[UIImageView alloc] initWithImage:[self gradientImage]];
             gradient.frame = CGRectMake(0, frame.size.height - gradient.image.size.height, frame.size.width, gradient.image.size.height);
             [self addSubview:gradient];
             CGSize scoreLabelSize = CGSizeMake(70, 25);
@@ -62,6 +62,11 @@
         [[[NSThread alloc] initWithTarget:self selector:@selector(loadImageForView:) object:[NSArray arrayWithObjects:photo,activityIndicator, nil]] start];
     }
     return self;
+}
+
+- (UIImage*) gradientImage
+{
+    return [UIImage imageNamed:@"photo_gradient.png"];
 }
 
 - (void) setScoreLabelFontSize:(CGFloat) size

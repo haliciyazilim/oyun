@@ -197,7 +197,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     for(int i=0; i < [photos count]; i++){
         Photo* photo = (Photo*)[photos objectAtIndex:i];
         CGRect photoViewRect = CGRectMake(leftMargin+(i/rowCount)*size.width, topMargin + (i%rowCount) * size.height, photoSize.width, photoSize.height);
-        RMPhotoSelectionImageView* photoView = [RMPhotoSelectionImageView viewWithPhoto:photo andFrame:photoViewRect andScaleSize:imageScaleSize];
+        RMPhotoSelectionImageView* photoView = [self generateSelectionViewWithPhoto:photo andFrame:photoViewRect];
         [photoView setScoreLabelFontSize:[self photoSelectionScoreFontSize]];
         __block RMCustomImageView* blockPhotoView = photoView;
         [photoView setTouchesBegan:^{
@@ -209,7 +209,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         }];
         photoView.layer.zPosition = 1;
         if([currentGallery.name compare:USER_GALLERY_NAME] == 0){
-            RMCustomImageView* deleteView = [[RMCustomImageView alloc] initWithImage:[UIImage imageNamed:@"delete_photo_btn.png"]];
+            RMCustomImageView* deleteView = [[RMCustomImageView alloc] initWithImage:[self deletePhotoImage]];
             int padding = 10;
             deleteView.frame = CGRectMake(photoSize.width - deleteView.image.size.width-1-padding*0.5, 3-padding*0.5, deleteView.image.size.width+padding, deleteView.image.size.height+padding);
             [deleteView setContentMode:UIViewContentModeCenter];
@@ -239,6 +239,16 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     }
 }
 
+- (CGSize)imageScaleSize
+{
+    return imageScaleSize;
+}
+
+- (RMPhotoSelectionImageView*) generateSelectionViewWithPhoto:(Photo*)photo andFrame:(CGRect)frame
+{
+    return [RMPhotoSelectionImageView viewWithPhoto:photo andFrame:frame andScaleSize:[self imageScaleSize]];
+}
+
 - (RMCustomImageView*) addFromCameraView
 {
     RMCustomImageView* addFromCamera = [[RMCustomImageView alloc] initWithImage:[self takePhotoImage]];
@@ -251,6 +261,11 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     }];
     [addFromCamera setContentMode:UIViewContentModeCenter];
     return addFromCamera;
+}
+
+- (UIImage*) deletePhotoImage
+{
+    return [UIImage imageNamed:@"delete_photo_btn.png"];
 }
 
 - (UIImage*) takePhotoImage
@@ -367,7 +382,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 
 - (void) createAndSavePhotoFromImage:(UIImage*)image
 {
-    NSError *error;
+    NSError* error;
     NSString* imageName = [NSString stringWithFormat:@"%.0f.jpg",([NSDate timeIntervalSinceReferenceDate]*1000)];
     NSLog(@"imageName: %@",imageName);
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
