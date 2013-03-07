@@ -51,14 +51,17 @@
     [self.easyButton setImage:[UIImage imageNamed:@"level_01_ipad.png"] forState:UIControlStateNormal];
     [self.easyButton setImage:[UIImage imageNamed:@"level_01_selected_ipad.png"] forState:UIControlStateSelected];
     [self.easyButton setImage:[UIImage imageNamed:@"level_01_selected_ipad.png"] forState:UIControlStateHighlighted];
+    [self.easyButton setImage:[UIImage imageNamed:@"level_01_selected_ipad.png"] forState:UIControlStateHighlighted|UIControlStateSelected];
     
     [self.normalButton setImage:[UIImage imageNamed:@"level_02_ipad.png"] forState:UIControlStateNormal];
     [self.normalButton setImage:[UIImage imageNamed:@"level_02_selected_ipad.png"] forState:UIControlStateSelected];
     [self.normalButton setImage:[UIImage imageNamed:@"level_02_selected_ipad.png"] forState:UIControlStateHighlighted];
+    [self.normalButton setImage:[UIImage imageNamed:@"level_02_selected_ipad.png"] forState:UIControlStateHighlighted|UIControlStateSelected];
     
     [self.hardButton setImage:[UIImage imageNamed:@"level_03_ipad.png"] forState:UIControlStateNormal];
     [self.hardButton setImage:[UIImage imageNamed:@"level_03_selected_ipad.png"] forState:UIControlStateSelected];
     [self.hardButton setImage:[UIImage imageNamed:@"level_03_selected_ipad.png"] forState:UIControlStateHighlighted];
+    [self.hardButton setImage:[UIImage imageNamed:@"level_03_selected_ipad.png"] forState:UIControlStateHighlighted|UIControlStateSelected];
     
 }
 
