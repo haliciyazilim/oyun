@@ -115,7 +115,7 @@
 	// make main window visible
 	[window_ makeKeyAndVisible];
     
-	return YES;
+    return YES;
 }
 
 void uncaughtExceptionHandler(NSException *exception) {
@@ -171,6 +171,29 @@ void uncaughtExceptionHandler(NSException *exception) {
 	if( [navController_ visibleViewController] == director_ ){
 		[director_ stopAnimation];
     }
+    
+        
+    
+    UILocalNotification* localNotification= [[UILocalNotification alloc]init];
+    if(localNotification){
+        NSLog(@"***** LOcalNotification OK");
+        localNotification.fireDate=[NSDate dateWithTimeIntervalSinceNow:10];
+        localNotification.alertBody=@"Duydum ki, bizim uygulamaya 10 saniyedir bakmıyoruşsun. BAK!";
+        localNotification.timeZone=[NSTimeZone defaultTimeZone];
+        //        localNotification.repeatInterval=5;
+        localNotification.alertAction=@"Start App";
+        localNotification.hasAction=YES;
+        [[UIApplication  sharedApplication] scheduleLocalNotification:localNotification];
+        
+    }
+    else{
+        NSLog(@"***** LOcalNotification sorun var");
+    }
+
+    
+    
+    
+            
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
@@ -201,4 +224,32 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
     
 }
+
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    
+NSLog(@"*****didReceiveLocalNOtification****");
+    
+    if (application.applicationState == UIApplicationStateInactive ) {
+        NSLog(@"app not running");
+    }else if(application.applicationState == UIApplicationStateActive )  {
+        NSLog(@"app running");
+    }
+    
+    
+    UILocalNotification* localNotification= [[UILocalNotification alloc]init];
+    if(localNotification){
+        localNotification.fireDate=[NSDate dateWithTimeIntervalSinceNow:10];
+        localNotification.alertBody=@"Duydum ki, bizim uygulamaya 10 saniyedir bakmıyoruşsun. BAK!!";
+        localNotification.timeZone=[NSTimeZone defaultTimeZone];
+    
+        [localNotification setAlertAction:@"Start App"];
+        [localNotification setHasAction:YES];
+    
+
+    
+        [[UIApplication  sharedApplication] scheduleLocalNotification:localNotification];
+    }
+}
+
 @end
