@@ -62,17 +62,9 @@ static RMInGameIPadViewController* lastInstance = nil;
     }
 }
 
-- (UIImageView *) createGridView {
-    
-    return nil;
-    
-    if(getCurrentDifficulty() == EASY){
-        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_double_grid.png"]];
-    }else if(getCurrentDifficulty() == HARD){
-        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
-    } else {
-        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid_normal.png"]];
-    }
+- (UIImage*) photoHolderNormalImage
+{
+    return [UIImage imageNamed:@"photo_holder_normal.png"];
 }
 - (void) setBackground {
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg_ipad.jpg"]]]; 

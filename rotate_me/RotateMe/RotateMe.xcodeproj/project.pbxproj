@@ -172,6 +172,19 @@
 		AEED532116C9135B003F4CCD /* gallery_selection_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEED531F16C9135B003F4CCD /* gallery_selection_mask@2x.png */; };
 		AEED532416C93337003F4CCD /* rotate_me_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AEED532216C93337003F4CCD /* rotate_me_logo.png */; };
 		AEED532516C93337003F4CCD /* rotate_me_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEED532316C93337003F4CCD /* rotate_me_logo@2x.png */; };
+		AEF1765516E88A260027A8CB /* level_01_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1764916E88A260027A8CB /* level_01_ipad.png */; };
+		AEF1765616E88A260027A8CB /* level_01_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1764A16E88A260027A8CB /* level_01_ipad@2x.png */; };
+		AEF1765716E88A260027A8CB /* level_01_selected_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1764B16E88A260027A8CB /* level_01_selected_ipad.png */; };
+		AEF1765816E88A260027A8CB /* level_01_selected_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1764C16E88A260027A8CB /* level_01_selected_ipad@2x.png */; };
+		AEF1765916E88A260027A8CB /* level_02_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1764D16E88A260027A8CB /* level_02_ipad.png */; };
+		AEF1765A16E88A260027A8CB /* level_02_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1764E16E88A260027A8CB /* level_02_ipad@2x.png */; };
+		AEF1765B16E88A260027A8CB /* level_02_selected_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1764F16E88A260027A8CB /* level_02_selected_ipad.png */; };
+		AEF1765C16E88A260027A8CB /* level_02_selected_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1765016E88A260027A8CB /* level_02_selected_ipad@2x.png */; };
+		AEF1765D16E88A260027A8CB /* level_03_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1765116E88A260027A8CB /* level_03_ipad.png */; };
+		AEF1765E16E88A260027A8CB /* level_03_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1765216E88A260027A8CB /* level_03_ipad@2x.png */; };
+		AEF1765F16E88A260027A8CB /* level_03_selected_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1765316E88A260027A8CB /* level_03_selected_ipad.png */; };
+		AEF1766016E88A260027A8CB /* level_03_selected_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF1765416E88A260027A8CB /* level_03_selected_ipad@2x.png */; };
+		AEF1766416E890DC0027A8CB /* RMDifficultySelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF1766316E890DC0027A8CB /* RMDifficultySelectorView.m */; };
 		AEFF1B8216C4E6E400922A25 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFF1B8116C4E6E400922A25 /* GameCenterManager.m */; };
 		AEFF1B8516C4E7FC00922A25 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFF1B8416C4E7FC00922A25 /* GameKit.framework */; };
 /* End PBXBuildFile section */
@@ -380,6 +393,20 @@
 		AEED531F16C9135B003F4CCD /* gallery_selection_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gallery_selection_mask@2x.png"; path = "images/gallery_selection/gallery_selection_mask@2x.png"; sourceTree = "<group>"; };
 		AEED532216C93337003F4CCD /* rotate_me_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rotate_me_logo.png; path = images/rotate_me_logo.png; sourceTree = "<group>"; };
 		AEED532316C93337003F4CCD /* rotate_me_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rotate_me_logo@2x.png"; path = "images/rotate_me_logo@2x.png"; sourceTree = "<group>"; };
+		AEF1764916E88A260027A8CB /* level_01_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level_01_ipad.png; sourceTree = "<group>"; };
+		AEF1764A16E88A260027A8CB /* level_01_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level_01_ipad@2x.png"; sourceTree = "<group>"; };
+		AEF1764B16E88A260027A8CB /* level_01_selected_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level_01_selected_ipad.png; sourceTree = "<group>"; };
+		AEF1764C16E88A260027A8CB /* level_01_selected_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level_01_selected_ipad@2x.png"; sourceTree = "<group>"; };
+		AEF1764D16E88A260027A8CB /* level_02_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level_02_ipad.png; sourceTree = "<group>"; };
+		AEF1764E16E88A260027A8CB /* level_02_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level_02_ipad@2x.png"; sourceTree = "<group>"; };
+		AEF1764F16E88A260027A8CB /* level_02_selected_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level_02_selected_ipad.png; sourceTree = "<group>"; };
+		AEF1765016E88A260027A8CB /* level_02_selected_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level_02_selected_ipad@2x.png"; sourceTree = "<group>"; };
+		AEF1765116E88A260027A8CB /* level_03_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level_03_ipad.png; sourceTree = "<group>"; };
+		AEF1765216E88A260027A8CB /* level_03_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level_03_ipad@2x.png"; sourceTree = "<group>"; };
+		AEF1765316E88A260027A8CB /* level_03_selected_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level_03_selected_ipad.png; sourceTree = "<group>"; };
+		AEF1765416E88A260027A8CB /* level_03_selected_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level_03_selected_ipad@2x.png"; sourceTree = "<group>"; };
+		AEF1766216E890DC0027A8CB /* RMDifficultySelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMDifficultySelectorView.h; path = view/RMDifficultySelectorView.h; sourceTree = "<group>"; };
+		AEF1766316E890DC0027A8CB /* RMDifficultySelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMDifficultySelectorView.m; path = view/RMDifficultySelectorView.m; sourceTree = "<group>"; };
 		AEFF1B8016C4E6E400922A25 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterManager.h; path = manager/GameCenterManager.h; sourceTree = "<group>"; };
 		AEFF1B8116C4E6E400922A25 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameCenterManager.m; path = manager/GameCenterManager.m; sourceTree = "<group>"; };
 		AEFF1B8416C4E7FC00922A25 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -553,6 +580,8 @@
 				AE2BE2C916C3ED4600A0335D /* RMPhotoSelectionImageView.m */,
 				AEED531B16C8E2DF003F4CCD /* RMGallerySelectionItemView.h */,
 				AEED531C16C8E2DF003F4CCD /* RMGallerySelectionItemView.m */,
+				AEF1766216E890DC0027A8CB /* RMDifficultySelectorView.h */,
+				AEF1766316E890DC0027A8CB /* RMDifficultySelectorView.m */,
 			);
 			name = SpecialViews;
 			sourceTree = "<group>";
@@ -685,6 +714,7 @@
 		AED218EB16BA9E0900271930 /* gamescreen */ = {
 			isa = PBXGroup;
 			children = (
+				AEF1764816E88A260027A8CB /* difficulty icons */,
 				AE9F3FA816E73FE5007794CD /* youwin_photo_bg_ipad.png */,
 				AE9F3FA916E73FE5007794CD /* youwin_photo_bg_ipad@2x.png */,
 				AE4933CB16E62C7500D9A151 /* ingame_btn_bg_hover_ipad@2x.png */,
@@ -792,6 +822,25 @@
 				AEED531816C8E0E3003F4CCD /* gallery_selection_bg@2x.png */,
 			);
 			name = galleryselection;
+			sourceTree = "<group>";
+		};
+		AEF1764816E88A260027A8CB /* difficulty icons */ = {
+			isa = PBXGroup;
+			children = (
+				AEF1764916E88A260027A8CB /* level_01_ipad.png */,
+				AEF1764A16E88A260027A8CB /* level_01_ipad@2x.png */,
+				AEF1764B16E88A260027A8CB /* level_01_selected_ipad.png */,
+				AEF1764C16E88A260027A8CB /* level_01_selected_ipad@2x.png */,
+				AEF1764D16E88A260027A8CB /* level_02_ipad.png */,
+				AEF1764E16E88A260027A8CB /* level_02_ipad@2x.png */,
+				AEF1764F16E88A260027A8CB /* level_02_selected_ipad.png */,
+				AEF1765016E88A260027A8CB /* level_02_selected_ipad@2x.png */,
+				AEF1765116E88A260027A8CB /* level_03_ipad.png */,
+				AEF1765216E88A260027A8CB /* level_03_ipad@2x.png */,
+				AEF1765316E88A260027A8CB /* level_03_selected_ipad.png */,
+				AEF1765416E88A260027A8CB /* level_03_selected_ipad@2x.png */,
+			);
+			path = "difficulty icons";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -972,6 +1021,18 @@
 				AE9F3FBB16E773B0007794CD /* delete_photo_btn_ipad@2x.png in Resources */,
 				AE9F3FBE16E773C1007794CD /* photo_degrede_ipad.png in Resources */,
 				AE9F3FBF16E773C1007794CD /* photo_degrede_ipad@2x.png in Resources */,
+				AEF1765516E88A260027A8CB /* level_01_ipad.png in Resources */,
+				AEF1765616E88A260027A8CB /* level_01_ipad@2x.png in Resources */,
+				AEF1765716E88A260027A8CB /* level_01_selected_ipad.png in Resources */,
+				AEF1765816E88A260027A8CB /* level_01_selected_ipad@2x.png in Resources */,
+				AEF1765916E88A260027A8CB /* level_02_ipad.png in Resources */,
+				AEF1765A16E88A260027A8CB /* level_02_ipad@2x.png in Resources */,
+				AEF1765B16E88A260027A8CB /* level_02_selected_ipad.png in Resources */,
+				AEF1765C16E88A260027A8CB /* level_02_selected_ipad@2x.png in Resources */,
+				AEF1765D16E88A260027A8CB /* level_03_ipad.png in Resources */,
+				AEF1765E16E88A260027A8CB /* level_03_ipad@2x.png in Resources */,
+				AEF1765F16E88A260027A8CB /* level_03_selected_ipad.png in Resources */,
+				AEF1766016E88A260027A8CB /* level_03_selected_ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,6 +1078,7 @@
 				AE2AA7FC16E09F1800D3148C /* RMIpadInGameWinScreenView.m in Sources */,
 				AE4933CA16E61D5B00D9A151 /* RotateMeIpadIAPHelper.m in Sources */,
 				AE9F3FC216E773F0007794CD /* RMPhotoSelectionIpadImageView.m in Sources */,
+				AEF1766416E890DC0027A8CB /* RMDifficultySelectorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -84,15 +84,6 @@ static RMInGameViewController* lastInstance = nil;
     }
 }
 
-- (UIImageView *) createGridView {
-    if(getCurrentDifficulty() == EASY){
-        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_double_grid.png"]];
-    }else if(getCurrentDifficulty() == HARD){
-        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
-    } else {
-        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid_normal.png"]];
-    }
-}
 
 - (void)viewDidLoad
 {
@@ -126,12 +117,18 @@ static RMInGameViewController* lastInstance = nil;
     photoHolderLeftPadding = [self photoHolderLeftPadding];
     
     if(getCurrentDifficulty() == NORMAL){
-        [self.photoHolder setImage:[UIImage imageNamed:@"photo_holder_normal.png"]];
+        [self.photoHolder setImage:[self photoHolderNormalImage]];
         self.photoHolder.frame = CGRectMake(self.photoHolder.frame.origin.x-6, self.photoHolder.frame.origin.y+10, self.photoHolder.image.size.width, self.photoHolder.image.size.height);
     }
     [self.stopWatchLabel setFont:[UIFont fontWithName:@"TRMcLean" size:[self timerFontSize]]];
     [self.stopWatchLabel setText:@"00:00"];
     
+}
+
+
+- (UIImage*) photoHolderNormalImage
+{
+    return [UIImage imageNamed:@"photo_holder_normal.png"];
 }
 
 -(void)viewWillAppear:(BOOL)animated

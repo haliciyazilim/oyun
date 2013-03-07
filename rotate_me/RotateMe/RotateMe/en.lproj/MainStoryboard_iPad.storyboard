@@ -63,19 +63,6 @@
                                 <rect key="frame" x="0.0" y="86" width="1024" height="662"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </scrollView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="uxf-Fi-pDv">
-                                <rect key="frame" x="878" y="31" width="126" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="|"/>
-                                    <segment title="||"/>
-                                    <segment title="|||"/>
-                                </segments>
-                                <color key="tintColor" red="1" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="difficultyChanged:" destination="8Ht-dB-VwI" eventType="valueChanged" id="BkM-Ow-WI6"/>
-                                </connections>
-                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yZp-yA-WmZ">
                                 <rect key="frame" x="20" y="14" width="78" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -106,7 +93,6 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="difficultySegmentedButtons" destination="uxf-Fi-pDv" id="fnR-iz-mmB"/>
                         <outlet property="galleryNameLabel" destination="Fd5-gI-n44" id="KVT-eY-SHE"/>
                         <outlet property="scrollView" destination="IfK-5Z-6FY" id="dsB-yO-nd5"/>
                         <segue destination="hSx-TE-fMs" kind="modal" identifier="StartGame" modalTransitionStyle="flipHorizontal" id="A2I-GZ-Ns9"/>
