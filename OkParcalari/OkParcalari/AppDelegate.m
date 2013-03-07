@@ -159,6 +159,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:[AchievementManager sharedAchievementManager] selector:@selector(loadAchievements) name:kAuthenticationChangedNotification object:nil];
+    
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
@@ -172,28 +174,41 @@ void uncaughtExceptionHandler(NSException *exception) {
 		[director_ stopAnimation];
     }
     
-        
-    
-    UILocalNotification* localNotification= [[UILocalNotification alloc]init];
-    if(localNotification){
-        NSLog(@"***** LOcalNotification OK");
-        localNotification.fireDate=[NSDate dateWithTimeIntervalSinceNow:10];
-        localNotification.alertBody=@"Duydum ki, bizim uygulamaya 10 saniyedir bakmıyoruşsun. BAK!";
-        localNotification.timeZone=[NSTimeZone defaultTimeZone];
-        //        localNotification.repeatInterval=5;
-        localNotification.alertAction=@"Start App";
-        localNotification.hasAction=YES;
-        [[UIApplication  sharedApplication] scheduleLocalNotification:localNotification];
-        
-    }
-    else{
-        NSLog(@"***** LOcalNotification sorun var");
+    int week=3600*24*7;
+    UILocalNotification* localNotificationWeek= [[UILocalNotification alloc]init];
+    if(localNotificationWeek){
+        localNotificationWeek.fireDate=[NSDate dateWithTimeIntervalSinceNow:week];
+        localNotificationWeek.alertBody=@"Duydum ki, bizim uygulamaya 1 haftadır bakmıyoruşsun. BAK!";
+        localNotificationWeek.timeZone=[NSTimeZone defaultTimeZone];
+        localNotificationWeek.alertAction=@"Start App";
+        localNotificationWeek.hasAction=YES;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotificationWeek];
     }
 
+    UILocalNotification* localNotificationMonth= [[UILocalNotification alloc]init];
+    if(localNotificationMonth){
+        localNotificationMonth.fireDate=[NSDate dateWithTimeIntervalSinceNow:week*4];
+        localNotificationMonth.alertBody=@"Duydum ki, bizim uygulamaya 1 aydır bakmıyoruşsun. BAK!";
+        localNotificationMonth.timeZone=[NSTimeZone defaultTimeZone];
+        localNotificationMonth.alertAction=@"Start App";
+        localNotificationMonth.hasAction=YES;
+        [[UIApplication  sharedApplication] scheduleLocalNotification:localNotificationMonth];
+    }
     
-    
-    
-            
+    UILocalNotification* localNotification3Months= [[UILocalNotification alloc]init];
+    if(localNotification3Months){
+        localNotification3Months.fireDate=[NSDate dateWithTimeIntervalSinceNow:week*12];
+        localNotification3Months.alertBody=@"Duydum ki, bizim uygulamaya 3 aydır bakmıyoruşsun. BAK!";
+        localNotification3Months.timeZone=[NSTimeZone defaultTimeZone];
+        localNotification3Months.alertAction=@"Start App";
+        localNotification3Months.hasAction=YES;
+        [[UIApplication  sharedApplication] scheduleLocalNotification:localNotification3Months];
+    }
+
+
+
+
+
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
@@ -223,33 +238,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void) dealloc
 {
     
-}
-
-
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-    
-NSLog(@"*****didReceiveLocalNOtification****");
-    
-    if (application.applicationState == UIApplicationStateInactive ) {
-        NSLog(@"app not running");
-    }else if(application.applicationState == UIApplicationStateActive )  {
-        NSLog(@"app running");
-    }
-    
-    
-    UILocalNotification* localNotification= [[UILocalNotification alloc]init];
-    if(localNotification){
-        localNotification.fireDate=[NSDate dateWithTimeIntervalSinceNow:10];
-        localNotification.alertBody=@"Duydum ki, bizim uygulamaya 10 saniyedir bakmıyoruşsun. BAK!!";
-        localNotification.timeZone=[NSTimeZone defaultTimeZone];
-    
-        [localNotification setAlertAction:@"Start App"];
-        [localNotification setHasAction:YES];
-    
-
-    
-        [[UIApplication  sharedApplication] scheduleLocalNotification:localNotification];
-    }
 }
 
 @end
