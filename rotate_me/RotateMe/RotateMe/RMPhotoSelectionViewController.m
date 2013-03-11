@@ -71,7 +71,8 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 
 - (CGRect) difficultySelectorViewFrame
 {
-    return CGRectMake(860, 23, 120, 50);
+    CGFloat left = [self.view frame].size.height - 140;
+    return CGRectMake(left, 7, 120, 50);
 }
 
 - (void)viewDidLoad
@@ -234,7 +235,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [subViews addObject:photoView];
     }
     
-    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(subViews.count / rowCount) * size.width,
+    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(subViews.count / (float)rowCount) * size.width,
                                                topMargin  + size.height*rowCount)];
     
     for(int i=0;i< [subViews count];i++){

@@ -23,6 +23,7 @@
     
     float touchLocation;
     float initialAngle;
+    float moveSpeed;
 }
 
 
@@ -80,6 +81,21 @@
     touchLocation = [[touches anyObject] locationInView:self].x;
     initialAngle = currentAngle;
     
+    
+    switch (getCurrentDifficulty()) {
+        case EASY:
+            moveSpeed = 0.004;
+            break;
+        case NORMAL:
+            moveSpeed = 0.0055;
+            break;
+        case HARD:
+            moveSpeed = 0.007;
+            break;
+        default:
+            break;
+    }
+    
     [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         CGAffineTransform t1 = CGAffineTransformMakeScale(1.2, 1.2);
         CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
@@ -106,7 +122,7 @@
     
     CGAffineTransform t1 = CGAffineTransformMakeScale(1.2, 1.2);
 
-    currentAngle = initialAngle - difference * M_PI * 0.005;
+    currentAngle = initialAngle - difference * M_PI * moveSpeed;
 
     CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
     self.imageView.transform = CGAffineTransformConcat(t1, t2);
@@ -117,7 +133,7 @@
     
     float difference = touchLocation - [[touches anyObject] locationInView:self].x;
     
-    currentAngle = initialAngle - difference * M_PI * 0.005;
+    currentAngle = initialAngle - difference * M_PI * moveSpeed;
     
     while (currentAngle >= 2*M_PI) {
         currentAngle -= 2 * M_PI;

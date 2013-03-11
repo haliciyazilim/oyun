@@ -224,14 +224,14 @@ static RMInGameViewController* lastInstance = nil;
             RMCroppedImageView* imgView = [[RMCroppedImageView alloc] initWithImage:img];
             imgView.frame = CGRectMake(photoHolderLeftPadding+x*tileSize, photoHolderTopPadding+y*tileSize, tileSize, tileSize);
             
-//            if(arc4random()%100 < 10)
-//                [imgView setRotationStateTo: M_PI * 0.0];
-//            else if(arc4random()%100 < 40)
-//                [imgView setRotationStateTo: M_PI * 0.5];
-//            else if(arc4random()%100 < 70)
-//                [imgView setRotationStateTo: M_PI * 1.0];
-//            else if(arc4random()%100 < 100)
-//                [imgView setRotationStateTo: M_PI * 1.5];
+            if(arc4random()%100 < 10)
+                [imgView setRotationStateTo: M_PI * 0.0];
+            else if(arc4random()%100 < 40)
+                [imgView setRotationStateTo: M_PI * 0.5];
+            else if(arc4random()%100 < 70)
+                [imgView setRotationStateTo: M_PI * 1.0];
+            else if(arc4random()%100 < 100)
+                [imgView setRotationStateTo: M_PI * 1.5];
 
             [self.photoHolder addSubview:imgView];
             imgView.parent = self;

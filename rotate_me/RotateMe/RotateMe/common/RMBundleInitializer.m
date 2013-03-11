@@ -48,12 +48,12 @@
                   nil];
     [RMBundleInitializer copyImages:imageNames forGallery:BANANA_GALLERY_NAME];
     gallery = [Gallery createGalleryWithName:BANANA_GALLERY_NAME];
-    gallery.isPurchased = NO;
+    gallery.isPurchased = YES;
     [[RMDatabaseManager sharedInstance] saveContext];
     [RMBundleInitializer insertImages:imageNames forGallery:gallery];
     
     gallery = [Gallery createGalleryWithName:USER_GALLERY_NAME];
-    gallery.isPurchased = YES;
+    gallery.isPurchased = NO;
     [[RMDatabaseManager sharedInstance] saveContext];
 }
 

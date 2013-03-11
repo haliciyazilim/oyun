@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Zqc-DW-ibd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Zqc-DW-ibd">
     <dependencies>
         <deployment version="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Gallery Selection View Controller-->
@@ -63,19 +63,6 @@
                                 <rect key="frame" x="0.0" y="72" width="568" height="248"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </scrollView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gFr-sv-7nH">
-                                <rect key="frame" x="432" y="14" width="120" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="|"/>
-                                    <segment title="||"/>
-                                    <segment title="|||"/>
-                                </segments>
-                                <color key="tintColor" red="1" green="0.77647058823529413" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="difficultyChanged:" destination="Iza-KE-ZIO" eventType="valueChanged" id="9Un-7s-CkI"/>
-                                </connections>
-                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GiH-2H-skw">
                                 <rect key="frame" x="0.0" y="3" width="74" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -107,7 +94,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="difficultySegmentedButtons" destination="gFr-sv-7nH" id="KFW-Bh-OJ5"/>
                         <outlet property="galleryNameLabel" destination="RVB-80-f8A" id="s81-oQ-rxf"/>
                         <outlet property="scrollView" destination="fvp-Ba-yRh" id="fqi-HI-wM7"/>
                         <segue destination="2" kind="modal" identifier="StartGame" modalTransitionStyle="flipHorizontal" id="mwM-Zr-NC7"/>
@@ -174,7 +160,7 @@
     </scenes>
     <resources>
         <image name="back_button.png" width="26" height="26"/>
-        <image name="menu_btn.png" width="22" height="26"/>
+        <image name="menu_btn.png" width="39" height="42"/>
         <image name="photo_holder.png" width="374" height="284"/>
         <image name="rotate_me_logo.png" width="201" height="35"/>
         <image name="settings_btn.png" width="26" height="26"/>
