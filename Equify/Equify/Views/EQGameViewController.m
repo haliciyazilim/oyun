@@ -28,11 +28,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     NSLog(@"game screen");
-    
-    
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,4 +45,26 @@
     
 }
 
+-(void)placingBoxes{
+    //    NSLog(@"Placing %d",_currentQuestion.questionArray.count);
+    [EQBox cleanInstances];
+    for (int i=0; i<_currentQuestion.questionArray.count; i++) {
+        
+        
+        EQBox * box=[EQBox BoxWithFrame:CGRectMake(58*i+30, self.view.frame.size.height/2, 48, 48) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
+        box.caller=self;
+        
+        NSLog(@"PLacing %@",box);
+        [self.view addSubview:box.boxButton];
+    }
+}
+
+- (void)viewDidUnload {
+    [self setStopWatchLabel:nil];
+    [self setBtnControl:nil];
+    [self setQuestionView:nil];
+    [self setQuestionViewLeftSide:nil];
+    [self setQuestionViewRightSide:nil];
+    [super viewDidUnload];
+}
 @end
