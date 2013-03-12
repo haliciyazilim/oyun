@@ -9,6 +9,8 @@
 #import "RMCroppedImageView.h"
 #import "RMInGameViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation RMCroppedImageView
 {
     BOOL isAnimating;
@@ -18,6 +20,10 @@
     UISwipeGestureRecognizer *swipeRightGesture;
     UISwipeGestureRecognizer *swipeUpGesture;
     UISwipeGestureRecognizer *swipeDownGesture;
+    
+    float touchLocation;
+    float initialAngle;
+    float moveSpeed;
 }
 
 
@@ -29,32 +35,32 @@
         [self setUserInteractionEnabled:YES];
         currentAngle = 0;
         
-        swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                 action:@selector(handleSwipeGesture:)];
-        swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
-        [self addGestureRecognizer:swipeRightGesture];
-        
-        swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                      action:@selector(handleSwipeGesture:)];
-        swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-        [self addGestureRecognizer:swipeLeftGesture];
-        
-        swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                      action:@selector(handleSwipeGesture:)];
-        swipeUpGesture.direction = UISwipeGestureRecognizerDirectionUp;
-        [self addGestureRecognizer:swipeUpGesture];
-        
-        swipeDownGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                     action:@selector(handleSwipeGesture:)];
-        swipeDownGesture.direction = UISwipeGestureRecognizerDirectionDown;
-        [self addGestureRecognizer:swipeDownGesture];
-        
-        
-        
-        
-        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                             action:@selector(handleTapGesture:)];
-        [self addGestureRecognizer:tapGesture];
+//        swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+//                                                                 action:@selector(handleSwipeGesture:)];
+//        swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+//        [self addGestureRecognizer:swipeRightGesture];
+//        
+//        swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+//                                                                      action:@selector(handleSwipeGesture:)];
+//        swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+//        [self addGestureRecognizer:swipeLeftGesture];
+//        
+//        swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+//                                                                      action:@selector(handleSwipeGesture:)];
+//        swipeUpGesture.direction = UISwipeGestureRecognizerDirectionUp;
+//        [self addGestureRecognizer:swipeUpGesture];
+//        
+//        swipeDownGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+//                                                                     action:@selector(handleSwipeGesture:)];
+//        swipeDownGesture.direction = UISwipeGestureRecognizerDirectionDown;
+//        [self addGestureRecognizer:swipeDownGesture];
+//        
+//        
+//        
+//        
+//        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                             action:@selector(handleTapGesture:)];
+//        [self addGestureRecognizer:tapGesture];
     }
     return self;
 }
@@ -68,6 +74,98 @@
 {
     self.imageView.transform = CGAffineTransformMakeRotation(angle);
     currentAngle = angle;
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.superview bringSubviewToFront:self];
+    touchLocation = [[touches anyObject] locationInView:self].x;
+    initialAngle = currentAngle;
+    
+    
+    switch (getCurrentDifficulty()) {
+        case EASY:
+            moveSpeed = 0.004;
+            break;
+        case NORMAL:
+            moveSpeed = 0.0055;
+            break;
+        case HARD:
+            moveSpeed = 0.007;
+            break;
+        default:
+            break;
+    }
+    
+    [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        CGAffineTransform t1 = CGAffineTransformMakeScale(1.2, 1.2);
+        CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
+        self.imageView.transform = CGAffineTransformConcat(t1, t2);
+    } completion:^(BOOL finished) {
+
+    }];
+
+    
+    self.layer.rasterizationScale = 2;
+    [self.layer setShouldRasterize:YES];
+    self.layer.masksToBounds = NO;
+    
+    self.layer.shadowOffset = CGSizeMake(2, 2);
+    self.layer.shadowRadius = 4;
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOpacity = 0.6;
+}
+
+- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.superview bringSubviewToFront:self];
+    
+    float difference = touchLocation - [[touches anyObject] locationInView:self].x;
+    
+    CGAffineTransform t1 = CGAffineTransformMakeScale(1.2, 1.2);
+
+    currentAngle = initialAngle - difference * M_PI * moveSpeed;
+
+    CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
+    self.imageView.transform = CGAffineTransformConcat(t1, t2);
+}
+
+- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.superview bringSubviewToFront:self];
+    
+    float difference = touchLocation - [[touches anyObject] locationInView:self].x;
+    
+    currentAngle = initialAngle - difference * M_PI * moveSpeed;
+    
+    while (currentAngle >= 2*M_PI) {
+        currentAngle -= 2 * M_PI;
+    }
+    
+    while (currentAngle < 0) {
+        currentAngle += 2 * M_PI;
+    }
+    
+    currentAngle = ((int)(currentAngle * 2 / M_PI + 0.5)) * M_PI / 2.0;
+    
+    
+    [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
+        self.imageView.transform = t2;
+    } completion:^(BOOL finished) {
+        self.layer.rasterizationScale = 1;
+        [self.layer setShouldRasterize:NO];
+        
+        self.layer.shadowRadius = 0.0;
+        self.layer.shadowColor = nil;
+        self.layer.shadowOpacity = 0.0;
+
+        isAnimating = NO;
+        if([self.parent canGameFinish]){
+            [self.parent endGame];
+        }
+    }];
+}
+
+- (void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    
 }
 
 //-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

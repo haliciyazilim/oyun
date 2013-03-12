@@ -69,6 +69,12 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     }
 }
 
+- (CGRect) difficultySelectorViewFrame
+{
+    CGFloat left = [self.view frame].size.height - 140;
+    return CGRectMake(left, 7, 120, 50);
+}
+
 - (void)viewDidLoad
 {
     lastInstance = self;
@@ -79,21 +85,25 @@ static RMPhotoSelectionViewController* lastInstance = nil;
     
     [self setBackground];
     
-    DIFFICULTY difficulty = getCurrentDifficulty();
-    switch (difficulty) {
-        case EASY:
-            [self.difficultySegmentedButtons setSelectedSegmentIndex:0];
-            break;
-        case NORMAL:
-            [self.difficultySegmentedButtons setSelectedSegmentIndex:1];
-            break;
-        case HARD:
-            [self.difficultySegmentedButtons setSelectedSegmentIndex:2];
-            break;
-            
-        default:
-            break;
-    }
+    self.difficultySelectorView = [[RMDifficultySelectorView alloc] init];
+    self.difficultySelectorView.frame = [self difficultySelectorViewFrame];
+    [self.view addSubview:self.difficultySelectorView];
+    
+//    DIFFICULTY difficulty = getCurrentDifficulty();
+//    switch (difficulty) {
+//        case EASY:
+//            [self.difficultySegmentedButtons setSelectedSegmentIndex:0];
+//            break;
+//        case NORMAL:
+//            [self.difficultySegmentedButtons setSelectedSegmentIndex:1];
+//            break;
+//        case HARD:
+//            [self.difficultySegmentedButtons setSelectedSegmentIndex:2];
+//            break;
+//            
+//        default:
+//            break;
+//    }
     imageThreads = [[NSMutableArray alloc] init];
     [self configureView];
 //    [self.galleryNameLabel setText:currentGallery.name];
@@ -225,7 +235,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
         [subViews addObject:photoView];
     }
     
-    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(subViews.count / rowCount) * size.width,
+    [self.scrollView setContentSize:CGSizeMake(leftMargin + ceil(subViews.count / (float)rowCount) * size.width,
                                                topMargin  + size.height*rowCount)];
     
     for(int i=0;i< [subViews count];i++){

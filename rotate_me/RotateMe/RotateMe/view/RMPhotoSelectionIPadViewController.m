@@ -93,6 +93,12 @@ static RMPhotoSelectionIPadViewController* lastInstance = nil;
 {
     return [RMPhotoSelectionIpadImageView viewWithPhoto:photo andFrame:frame andScaleSize:[self imageScaleSize]];
 }
+
+- (CGRect) difficultySelectorViewFrame
+{
+    return CGRectMake(860, 23, 120, 50);
+}
+
 @end
 
 

@@ -34,7 +34,7 @@ static RMInGameIPadViewController* lastInstance = nil;
         return 198;
     }
     else if(getCurrentDifficulty() == NORMAL){
-        return 122;
+        return 132;
     }
     else {
         return 99;
@@ -43,7 +43,7 @@ static RMInGameIPadViewController* lastInstance = nil;
 
 - (int) photoHolderTopPadding {
     if(getCurrentDifficulty() == NORMAL) {
-        return 4;
+        return 11;
     } else {
         return 11;
     }
@@ -56,23 +56,15 @@ static RMInGameIPadViewController* lastInstance = nil;
 
 - (int) photoHolderLeftPadding {
     if(getCurrentDifficulty() == NORMAL) {
-        return 6;
+        return 17;
     } else {
         return 16;
     }
 }
 
-- (UIImageView *) createGridView {
-    
-    return nil;
-    
-    if(getCurrentDifficulty() == EASY){
-        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_double_grid.png"]];
-    }else if(getCurrentDifficulty() == HARD){
-        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid.png"]];
-    } else {
-        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo_grid_normal.png"]];
-    }
+- (UIImage*) photoHolderNormalImage
+{
+    return [UIImage imageNamed:@"photo_holder_normal_ipad.png"];
 }
 - (void) setBackground {
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg_ipad.jpg"]]]; 
