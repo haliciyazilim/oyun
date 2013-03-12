@@ -19,7 +19,8 @@
 + (EQQuestion*)createQuestionWithWholeQuestion:(NSString *)question andAnswer:(NSString *)answer andId:(int)questionId;
 
 + (NSArray *)getAllQuestions;
-
++ (EQQuestion*) getQuestionWithId:(int)questionId;
++ (EQQuestion *) getRandomQuestion;
 - (void) createQuestionArray;
 - (BOOL) isCorrect:(NSString *)checkedAnswer;
 
