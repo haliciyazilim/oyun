@@ -20,10 +20,42 @@
 		05192B8A16CB8410002F9529 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05192B8916CB8410002F9529 /* GameKit.framework */; };
 		05192B8C16CB8415002F9529 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05192B8B16CB8415002F9529 /* QuartzCore.framework */; };
 		05192B8E16CB8427002F9529 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05192B8D16CB8427002F9529 /* StoreKit.framework */; };
-		05F0CA3716CB93AF0063E0A8 /* EQFirstView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F0CA3616CB93AF0063E0A8 /* EQFirstView.m */; };
-		05F0CA3A16CB93D70063E0A8 /* EQSecondView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F0CA3916CB93D70063E0A8 /* EQSecondView.m */; };
-		05F0CA3D16CB969C0063E0A8 /* EQThirdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F0CA3C16CB969C0063E0A8 /* EQThirdView.m */; };
-		05F0CA4016CB96CC0063E0A8 /* EQFourthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F0CA3F16CB96CC0063E0A8 /* EQFourthView.m */; };
+		055C905C16EF1E8C002BD042 /* EQGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C905B16EF1E8C002BD042 /* EQGameViewController.m */; };
+		055C906B16EF2303002BD042 /* EQModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 055C906916EF2303002BD042 /* EQModel.xcdatamodeld */; };
+		055C907E16EF2B94002BD042 /* 10000.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C906F16EF2B94002BD042 /* 10000.question */; };
+		055C907F16EF2B94002BD042 /* 10001.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907016EF2B94002BD042 /* 10001.question */; };
+		055C908016EF2B94002BD042 /* 10002.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907116EF2B94002BD042 /* 10002.question */; };
+		055C908116EF2B94002BD042 /* 10003.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907216EF2B94002BD042 /* 10003.question */; };
+		055C908216EF2B94002BD042 /* 10004.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907316EF2B94002BD042 /* 10004.question */; };
+		055C908316EF2B94002BD042 /* 10005.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907416EF2B94002BD042 /* 10005.question */; };
+		055C908416EF2B94002BD042 /* 10006.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907516EF2B94002BD042 /* 10006.question */; };
+		055C908516EF2B94002BD042 /* 10007.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907616EF2B94002BD042 /* 10007.question */; };
+		055C908616EF2B94002BD042 /* 10008.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907716EF2B94002BD042 /* 10008.question */; };
+		055C908716EF2B94002BD042 /* 10009.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907816EF2B94002BD042 /* 10009.question */; };
+		055C908816EF2B94002BD042 /* 10010.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907916EF2B94002BD042 /* 10010.question */; };
+		055C908916EF2B94002BD042 /* 10011.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907A16EF2B94002BD042 /* 10011.question */; };
+		055C908A16EF2B94002BD042 /* 10012.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907B16EF2B94002BD042 /* 10012.question */; };
+		055C908B16EF2B94002BD042 /* 10013.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907C16EF2B94002BD042 /* 10013.question */; };
+		055C908C16EF2B94002BD042 /* standart.packageinfo in Resources */ = {isa = PBXBuildFile; fileRef = 055C907D16EF2B94002BD042 /* standart.packageinfo */; };
+		0591869716EE1CF600FF9881 /* EQBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 0591869616EE1CF600FF9881 /* EQBox.m */; };
+		0591869C16EE1F3A00FF9881 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0591869B16EE1F3A00FF9881 /* CoreData.framework */; };
+		0591869F16EE1F5800FF9881 /* EQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0591869E16EE1F5800FF9881 /* EQQuestion.m */; };
+		059186A316EE200D00FF9881 /* EQDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186A216EE200D00FF9881 /* EQDatabaseManager.m */; };
+		059186A616EE210800FF9881 /* EQBundleInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186A516EE210800FF9881 /* EQBundleInitializer.m */; };
+		059186C216EE215300FF9881 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186AA16EE215300FF9881 /* NSObject+SBJson.m */; };
+		059186C316EE215300FF9881 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186AD16EE215300FF9881 /* SBJsonParser.m */; };
+		059186C416EE215300FF9881 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186AF16EE215300FF9881 /* SBJsonStreamParser.m */; };
+		059186C516EE215300FF9881 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186B116EE215300FF9881 /* SBJsonStreamParserAccumulator.m */; };
+		059186C616EE215300FF9881 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186B316EE215300FF9881 /* SBJsonStreamParserAdapter.m */; };
+		059186C716EE215300FF9881 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186B516EE215300FF9881 /* SBJsonStreamParserState.m */; };
+		059186C816EE215300FF9881 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186B716EE215300FF9881 /* SBJsonStreamWriter.m */; };
+		059186C916EE215300FF9881 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186B916EE215300FF9881 /* SBJsonStreamWriterAccumulator.m */; };
+		059186CA16EE215300FF9881 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186BB16EE215300FF9881 /* SBJsonStreamWriterState.m */; };
+		059186CB16EE215300FF9881 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186BD16EE215300FF9881 /* SBJsonTokeniser.m */; };
+		059186CC16EE215300FF9881 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186BF16EE215300FF9881 /* SBJsonUTF8Stream.m */; };
+		059186CD16EE215300FF9881 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186C116EE215300FF9881 /* SBJsonWriter.m */; };
+		059186CF16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059186CE16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard */; };
+		059186D116EE290500FF9881 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059186D016EE290500FF9881 /* MainStoryboard_iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,19 +72,65 @@
 		05192B7516CB83F5002F9529 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		05192B7716CB83F5002F9529 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		05192B7916CB83F5002F9529 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		05192B7B16CB83F5002F9529 /* EQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EQViewController.h; sourceTree = "<group>"; };
-		05192B7C16CB83F5002F9529 /* EQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EQViewController.m; sourceTree = "<group>"; };
+		05192B7B16CB83F5002F9529 /* EQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EQViewController.h; path = ../EQViewController.h; sourceTree = "<group>"; };
+		05192B7C16CB83F5002F9529 /* EQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = EQViewController.m; path = ../EQViewController.m; sourceTree = "<group>"; };
 		05192B8916CB8410002F9529 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		05192B8B16CB8415002F9529 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		05192B8D16CB8427002F9529 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		05F0CA3516CB93AF0063E0A8 /* EQFirstView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQFirstView.h; sourceTree = "<group>"; };
-		05F0CA3616CB93AF0063E0A8 /* EQFirstView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQFirstView.m; sourceTree = "<group>"; };
-		05F0CA3816CB93D70063E0A8 /* EQSecondView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQSecondView.h; sourceTree = "<group>"; };
-		05F0CA3916CB93D70063E0A8 /* EQSecondView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQSecondView.m; sourceTree = "<group>"; };
-		05F0CA3B16CB969C0063E0A8 /* EQThirdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQThirdView.h; sourceTree = "<group>"; };
-		05F0CA3C16CB969C0063E0A8 /* EQThirdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQThirdView.m; sourceTree = "<group>"; };
-		05F0CA3E16CB96CC0063E0A8 /* EQFourthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQFourthView.h; sourceTree = "<group>"; };
-		05F0CA3F16CB96CC0063E0A8 /* EQFourthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQFourthView.m; sourceTree = "<group>"; };
+		055C905A16EF1E8C002BD042 /* EQGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQGameViewController.h; sourceTree = "<group>"; };
+		055C905B16EF1E8C002BD042 /* EQGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQGameViewController.m; sourceTree = "<group>"; };
+		055C906A16EF2303002BD042 /* EQModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EQModel.xcdatamodel; sourceTree = "<group>"; };
+		055C906F16EF2B94002BD042 /* 10000.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10000.question; sourceTree = "<group>"; };
+		055C907016EF2B94002BD042 /* 10001.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10001.question; sourceTree = "<group>"; };
+		055C907116EF2B94002BD042 /* 10002.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10002.question; sourceTree = "<group>"; };
+		055C907216EF2B94002BD042 /* 10003.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10003.question; sourceTree = "<group>"; };
+		055C907316EF2B94002BD042 /* 10004.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10004.question; sourceTree = "<group>"; };
+		055C907416EF2B94002BD042 /* 10005.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10005.question; sourceTree = "<group>"; };
+		055C907516EF2B94002BD042 /* 10006.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10006.question; sourceTree = "<group>"; };
+		055C907616EF2B94002BD042 /* 10007.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10007.question; sourceTree = "<group>"; };
+		055C907716EF2B94002BD042 /* 10008.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10008.question; sourceTree = "<group>"; };
+		055C907816EF2B94002BD042 /* 10009.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10009.question; sourceTree = "<group>"; };
+		055C907916EF2B94002BD042 /* 10010.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10010.question; sourceTree = "<group>"; };
+		055C907A16EF2B94002BD042 /* 10011.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10011.question; sourceTree = "<group>"; };
+		055C907B16EF2B94002BD042 /* 10012.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10012.question; sourceTree = "<group>"; };
+		055C907C16EF2B94002BD042 /* 10013.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10013.question; sourceTree = "<group>"; };
+		055C907D16EF2B94002BD042 /* standart.packageinfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = standart.packageinfo; sourceTree = "<group>"; };
+		0591869516EE1CF600FF9881 /* EQBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQBox.h; sourceTree = "<group>"; };
+		0591869616EE1CF600FF9881 /* EQBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQBox.m; sourceTree = "<group>"; };
+		0591869B16EE1F3A00FF9881 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		0591869D16EE1F5800FF9881 /* EQQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQQuestion.h; sourceTree = "<group>"; };
+		0591869E16EE1F5800FF9881 /* EQQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQQuestion.m; sourceTree = "<group>"; };
+		059186A116EE200D00FF9881 /* EQDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQDatabaseManager.h; sourceTree = "<group>"; };
+		059186A216EE200D00FF9881 /* EQDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQDatabaseManager.m; sourceTree = "<group>"; };
+		059186A416EE210800FF9881 /* EQBundleInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQBundleInitializer.h; sourceTree = "<group>"; };
+		059186A516EE210800FF9881 /* EQBundleInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQBundleInitializer.m; sourceTree = "<group>"; };
+		059186A916EE215300FF9881 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
+		059186AA16EE215300FF9881 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
+		059186AB16EE215300FF9881 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
+		059186AC16EE215300FF9881 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		059186AD16EE215300FF9881 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		059186AE16EE215300FF9881 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
+		059186AF16EE215300FF9881 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
+		059186B016EE215300FF9881 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
+		059186B116EE215300FF9881 /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
+		059186B216EE215300FF9881 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		059186B316EE215300FF9881 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		059186B416EE215300FF9881 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		059186B516EE215300FF9881 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		059186B616EE215300FF9881 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		059186B716EE215300FF9881 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		059186B816EE215300FF9881 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
+		059186B916EE215300FF9881 /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
+		059186BA16EE215300FF9881 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		059186BB16EE215300FF9881 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		059186BC16EE215300FF9881 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
+		059186BD16EE215300FF9881 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
+		059186BE16EE215300FF9881 /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonUTF8Stream.h; sourceTree = "<group>"; };
+		059186BF16EE215300FF9881 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
+		059186C016EE215300FF9881 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		059186C116EE215300FF9881 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		059186CE16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		059186D016EE290500FF9881 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPad.storyboard; path = ../MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		05F0CA4116CB98090063E0A8 /* EQAppSpecificViewSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQAppSpecificViewSizes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0591869C16EE1F3A00FF9881 /* CoreData.framework in Frameworks */,
 				05192B8E16CB8427002F9529 /* StoreKit.framework in Frameworks */,
 				05192B8C16CB8415002F9529 /* QuartzCore.framework in Frameworks */,
 				05192B8A16CB8410002F9529 /* GameKit.framework in Frameworks */,
@@ -76,6 +155,7 @@
 		05192B5716CB83F5002F9529 = {
 			isa = PBXGroup;
 			children = (
+				055C906916EF2303002BD042 /* EQModel.xcdatamodeld */,
 				05192B6916CB83F5002F9529 /* Equify */,
 				05192B6216CB83F5002F9529 /* Frameworks */,
 				05192B6116CB83F5002F9529 /* Products */,
@@ -93,6 +173,7 @@
 		05192B6216CB83F5002F9529 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0591869B16EE1F3A00FF9881 /* CoreData.framework */,
 				05192B8D16CB8427002F9529 /* StoreKit.framework */,
 				05192B8B16CB8415002F9529 /* QuartzCore.framework */,
 				05192B8916CB8410002F9529 /* GameKit.framework */,
@@ -106,13 +187,17 @@
 		05192B6916CB83F5002F9529 /* Equify */ = {
 			isa = PBXGroup;
 			children = (
+				059186A016EE1FF500FF9881 /* Managers */,
+				0591869416EE1CDB00FF9881 /* Models */,
 				05192B7216CB83F5002F9529 /* EQAppDelegate.h */,
 				05192B7316CB83F5002F9529 /* EQAppDelegate.m */,
 				05F0CA4116CB98090063E0A8 /* EQAppSpecificViewSizes.h */,
-				05192B7B16CB83F5002F9529 /* EQViewController.h */,
-				05192B7C16CB83F5002F9529 /* EQViewController.m */,
 				05F0CA3416CB93350063E0A8 /* Views */,
+				059186A716EE215300FF9881 /* libs */,
+				055C906C16EF2B64002BD042 /* Resources */,
 				05192B6A16CB83F5002F9529 /* Supporting Files */,
+				059186CE16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard */,
+				059186D016EE290500FF9881 /* MainStoryboard_iPad.storyboard */,
 			);
 			path = Equify;
 			sourceTree = "<group>";
@@ -131,17 +216,114 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		055C906C16EF2B64002BD042 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				055C906D16EF2B94002BD042 /* questions */,
+			);
+			name = Resources;
+			path = Equify/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		055C906D16EF2B94002BD042 /* questions */ = {
+			isa = PBXGroup;
+			children = (
+				055C906E16EF2B94002BD042 /* standart */,
+				055C907D16EF2B94002BD042 /* standart.packageinfo */,
+			);
+			path = questions;
+			sourceTree = "<group>";
+		};
+		055C906E16EF2B94002BD042 /* standart */ = {
+			isa = PBXGroup;
+			children = (
+				055C906F16EF2B94002BD042 /* 10000.question */,
+				055C907016EF2B94002BD042 /* 10001.question */,
+				055C907116EF2B94002BD042 /* 10002.question */,
+				055C907216EF2B94002BD042 /* 10003.question */,
+				055C907316EF2B94002BD042 /* 10004.question */,
+				055C907416EF2B94002BD042 /* 10005.question */,
+				055C907516EF2B94002BD042 /* 10006.question */,
+				055C907616EF2B94002BD042 /* 10007.question */,
+				055C907716EF2B94002BD042 /* 10008.question */,
+				055C907816EF2B94002BD042 /* 10009.question */,
+				055C907916EF2B94002BD042 /* 10010.question */,
+				055C907A16EF2B94002BD042 /* 10011.question */,
+				055C907B16EF2B94002BD042 /* 10012.question */,
+				055C907C16EF2B94002BD042 /* 10013.question */,
+			);
+			path = standart;
+			sourceTree = "<group>";
+		};
+		0591869416EE1CDB00FF9881 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0591869516EE1CF600FF9881 /* EQBox.h */,
+				0591869616EE1CF600FF9881 /* EQBox.m */,
+				0591869D16EE1F5800FF9881 /* EQQuestion.h */,
+				0591869E16EE1F5800FF9881 /* EQQuestion.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		059186A016EE1FF500FF9881 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				059186A116EE200D00FF9881 /* EQDatabaseManager.h */,
+				059186A216EE200D00FF9881 /* EQDatabaseManager.m */,
+				059186A416EE210800FF9881 /* EQBundleInitializer.h */,
+				059186A516EE210800FF9881 /* EQBundleInitializer.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		059186A716EE215300FF9881 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				059186A816EE215300FF9881 /* SBJson */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		059186A816EE215300FF9881 /* SBJson */ = {
+			isa = PBXGroup;
+			children = (
+				059186A916EE215300FF9881 /* NSObject+SBJson.h */,
+				059186AA16EE215300FF9881 /* NSObject+SBJson.m */,
+				059186AB16EE215300FF9881 /* SBJson.h */,
+				059186AC16EE215300FF9881 /* SBJsonParser.h */,
+				059186AD16EE215300FF9881 /* SBJsonParser.m */,
+				059186AE16EE215300FF9881 /* SBJsonStreamParser.h */,
+				059186AF16EE215300FF9881 /* SBJsonStreamParser.m */,
+				059186B016EE215300FF9881 /* SBJsonStreamParserAccumulator.h */,
+				059186B116EE215300FF9881 /* SBJsonStreamParserAccumulator.m */,
+				059186B216EE215300FF9881 /* SBJsonStreamParserAdapter.h */,
+				059186B316EE215300FF9881 /* SBJsonStreamParserAdapter.m */,
+				059186B416EE215300FF9881 /* SBJsonStreamParserState.h */,
+				059186B516EE215300FF9881 /* SBJsonStreamParserState.m */,
+				059186B616EE215300FF9881 /* SBJsonStreamWriter.h */,
+				059186B716EE215300FF9881 /* SBJsonStreamWriter.m */,
+				059186B816EE215300FF9881 /* SBJsonStreamWriterAccumulator.h */,
+				059186B916EE215300FF9881 /* SBJsonStreamWriterAccumulator.m */,
+				059186BA16EE215300FF9881 /* SBJsonStreamWriterState.h */,
+				059186BB16EE215300FF9881 /* SBJsonStreamWriterState.m */,
+				059186BC16EE215300FF9881 /* SBJsonTokeniser.h */,
+				059186BD16EE215300FF9881 /* SBJsonTokeniser.m */,
+				059186BE16EE215300FF9881 /* SBJsonUTF8Stream.h */,
+				059186BF16EE215300FF9881 /* SBJsonUTF8Stream.m */,
+				059186C016EE215300FF9881 /* SBJsonWriter.h */,
+				059186C116EE215300FF9881 /* SBJsonWriter.m */,
+			);
+			path = SBJson;
+			sourceTree = "<group>";
+		};
 		05F0CA3416CB93350063E0A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				05F0CA3516CB93AF0063E0A8 /* EQFirstView.h */,
-				05F0CA3616CB93AF0063E0A8 /* EQFirstView.m */,
-				05F0CA3816CB93D70063E0A8 /* EQSecondView.h */,
-				05F0CA3916CB93D70063E0A8 /* EQSecondView.m */,
-				05F0CA3B16CB969C0063E0A8 /* EQThirdView.h */,
-				05F0CA3C16CB969C0063E0A8 /* EQThirdView.m */,
-				05F0CA3E16CB96CC0063E0A8 /* EQFourthView.h */,
-				05F0CA3F16CB96CC0063E0A8 /* EQFourthView.m */,
+				05192B7B16CB83F5002F9529 /* EQViewController.h */,
+				05192B7C16CB83F5002F9529 /* EQViewController.m */,
+				055C905A16EF1E8C002BD042 /* EQGameViewController.h */,
+				055C905B16EF1E8C002BD042 /* EQGameViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +384,23 @@
 				05192B7616CB83F5002F9529 /* Default.png in Resources */,
 				05192B7816CB83F5002F9529 /* Default@2x.png in Resources */,
 				05192B7A16CB83F5002F9529 /* Default-568h@2x.png in Resources */,
+				059186CF16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard in Resources */,
+				059186D116EE290500FF9881 /* MainStoryboard_iPad.storyboard in Resources */,
+				055C907E16EF2B94002BD042 /* 10000.question in Resources */,
+				055C907F16EF2B94002BD042 /* 10001.question in Resources */,
+				055C908016EF2B94002BD042 /* 10002.question in Resources */,
+				055C908116EF2B94002BD042 /* 10003.question in Resources */,
+				055C908216EF2B94002BD042 /* 10004.question in Resources */,
+				055C908316EF2B94002BD042 /* 10005.question in Resources */,
+				055C908416EF2B94002BD042 /* 10006.question in Resources */,
+				055C908516EF2B94002BD042 /* 10007.question in Resources */,
+				055C908616EF2B94002BD042 /* 10008.question in Resources */,
+				055C908716EF2B94002BD042 /* 10009.question in Resources */,
+				055C908816EF2B94002BD042 /* 10010.question in Resources */,
+				055C908916EF2B94002BD042 /* 10011.question in Resources */,
+				055C908A16EF2B94002BD042 /* 10012.question in Resources */,
+				055C908B16EF2B94002BD042 /* 10013.question in Resources */,
+				055C908C16EF2B94002BD042 /* standart.packageinfo in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,10 +414,24 @@
 				05192B7016CB83F5002F9529 /* main.m in Sources */,
 				05192B7416CB83F5002F9529 /* EQAppDelegate.m in Sources */,
 				05192B7D16CB83F5002F9529 /* EQViewController.m in Sources */,
-				05F0CA3716CB93AF0063E0A8 /* EQFirstView.m in Sources */,
-				05F0CA3A16CB93D70063E0A8 /* EQSecondView.m in Sources */,
-				05F0CA3D16CB969C0063E0A8 /* EQThirdView.m in Sources */,
-				05F0CA4016CB96CC0063E0A8 /* EQFourthView.m in Sources */,
+				0591869716EE1CF600FF9881 /* EQBox.m in Sources */,
+				0591869F16EE1F5800FF9881 /* EQQuestion.m in Sources */,
+				059186A316EE200D00FF9881 /* EQDatabaseManager.m in Sources */,
+				059186A616EE210800FF9881 /* EQBundleInitializer.m in Sources */,
+				059186C216EE215300FF9881 /* NSObject+SBJson.m in Sources */,
+				059186C316EE215300FF9881 /* SBJsonParser.m in Sources */,
+				059186C416EE215300FF9881 /* SBJsonStreamParser.m in Sources */,
+				059186C516EE215300FF9881 /* SBJsonStreamParserAccumulator.m in Sources */,
+				059186C616EE215300FF9881 /* SBJsonStreamParserAdapter.m in Sources */,
+				059186C716EE215300FF9881 /* SBJsonStreamParserState.m in Sources */,
+				059186C816EE215300FF9881 /* SBJsonStreamWriter.m in Sources */,
+				059186C916EE215300FF9881 /* SBJsonStreamWriterAccumulator.m in Sources */,
+				059186CA16EE215300FF9881 /* SBJsonStreamWriterState.m in Sources */,
+				059186CB16EE215300FF9881 /* SBJsonTokeniser.m in Sources */,
+				059186CC16EE215300FF9881 /* SBJsonUTF8Stream.m in Sources */,
+				059186CD16EE215300FF9881 /* SBJsonWriter.m in Sources */,
+				055C905C16EF1E8C002BD042 /* EQGameViewController.m in Sources */,
+				055C906B16EF2303002BD042 /* EQModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +553,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		055C906916EF2303002BD042 /* EQModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				055C906A16EF2303002BD042 /* EQModel.xcdatamodel */,
+			);
+			currentVersion = 055C906A16EF2303002BD042 /* EQModel.xcdatamodel */;
+			path = EQModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 05192B5816CB83F5002F9529 /* Project object */;
 }

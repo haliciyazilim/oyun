@@ -6,8 +6,28 @@
 //  Copyright (c) 2013 Halıcı. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface EQBox : NSObject
+
+@property UIButton *boxButton;
+@property NSString *title;
+@property BOOL isDeleted;
+@property int order;
+@property UIViewController * caller;
+
+// class methods
++ (id) BoxWithFrame:(CGRect)frame andTitle:(NSString *)title;
+
+// instance method
+- (id) initWithFrame:(CGRect)frame andTitle:(NSString *)title;
+
+- (void) deleteBox: (UIView *) view;
+- (void) resetBox;
+
++(EQBox*)boxByOrder:(int)order;
+
++(void) cleanInstances;
+
 
 @end

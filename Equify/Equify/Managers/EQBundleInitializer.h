@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SBJson.h"
 
 @interface EQBundleInitializer : NSObject
+
++ (void) initializeBundle;
 
 @end

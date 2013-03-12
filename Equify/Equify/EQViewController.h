@@ -10,4 +10,7 @@
 
 @interface EQViewController : UIViewController
 
+- (IBAction)startNewGame:(id)sender;
+
+
 @end

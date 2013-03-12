@@ -6,8 +6,21 @@
 //  Copyright (c) 2013 Halıcı. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface EQQuestion : NSManagedObject
+
+@property NSString *wholeQuestion;
+@property NSString *answer;
+@property int questionId;
+@property NSMutableArray *questionArray;
+
++ (EQQuestion*)createQuestionWithWholeQuestion:(NSString *)question andAnswer:(NSString *)answer andId:(int)questionId;
+
++ (NSArray *)getAllQuestions;
+
+- (void) createQuestionArray;
+- (BOOL) isCorrect:(NSString *)checkedAnswer;
 
 @end
