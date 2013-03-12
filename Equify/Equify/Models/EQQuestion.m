@@ -44,6 +44,14 @@
     return (EQQuestion *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Question"];
     
 }
++ (EQQuestion *) getRandomQuestion {
+    int questionId = arc4random() % 11+1;
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"questionId == %d ", questionId];
+    [request setPredicate:predicate];
+    return (EQQuestion *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Question"];
+}
 - (void) createQuestionArray {
     self.questionArray = [NSMutableArray arrayWithCapacity:[self.wholeQuestion length]];
     for (int i = 0; i < [self.wholeQuestion length]; i++) {
