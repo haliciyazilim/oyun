@@ -17,6 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnControl;
 
 @property (weak, nonatomic) IBOutlet UIView *QuestionView;
-@property (weak, nonatomic) IBOutlet UIView *QuestionViewLeftSide;
-@property (weak, nonatomic) IBOutlet UIView *QuestionViewRightSide;
+
 @end

@@ -93,36 +93,18 @@
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxR-cX-TL5">
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asP-3U-OeD">
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LE-Td-dSI">
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="4LE-Td-dSI" firstAttribute="top" secondItem="FxR-cX-TL5" secondAttribute="top" constant="80" id="4Mr-jc-MmN"/>
-                                    <constraint firstItem="4LE-Td-dSI" firstAttribute="trailing" secondItem="FxR-cX-TL5" secondAttribute="trailing" type="default" id="PVt-fr-upN"/>
-                                    <constraint firstItem="4LE-Td-dSI" firstAttribute="bottom" secondItem="FxR-cX-TL5" secondAttribute="bottom" type="default" id="Vue-vh-OTl"/>
-                                    <constraint firstItem="4LE-Td-dSI" firstAttribute="leading" secondItem="FxR-cX-TL5" secondAttribute="leading" type="default" id="jU4-Xo-QWg"/>
-                                    <constraint firstItem="asP-3U-OeD" firstAttribute="top" secondItem="FxR-cX-TL5" secondAttribute="top" type="default" id="lvp-QV-27e"/>
-                                    <constraint firstAttribute="bottom" secondItem="asP-3U-OeD" secondAttribute="bottom" constant="80" id="oYU-Zb-fyy"/>
-                                    <constraint firstItem="asP-3U-OeD" firstAttribute="trailing" secondItem="FxR-cX-TL5" secondAttribute="trailing" type="default" id="uDv-Sq-wkJ"/>
-                                    <constraint firstItem="asP-3U-OeD" firstAttribute="leading" secondItem="FxR-cX-TL5" secondAttribute="leading" type="default" id="ujb-bg-Rro"/>
-                                </constraints>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="FxR-cX-TL5" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="41" id="7zq-7f-JRA"/>
+                            <constraint firstItem="FxR-cX-TL5" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" type="default" id="1yR-bK-gYj"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="80" id="NBH-4w-C0E"/>
                             <constraint firstItem="md3-8q-egU" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="31" id="Old-5k-QP1"/>
+                            <constraint firstItem="FxR-cX-TL5" firstAttribute="centerX" secondItem="gum-66-hp4" secondAttribute="centerX" type="default" id="RdY-Pf-C44"/>
                             <constraint firstItem="md3-8q-egU" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="37" id="W6r-HV-StQ"/>
-                            <constraint firstItem="gum-66-hp4" firstAttribute="centerX" secondItem="Huw-rq-Gxc" secondAttribute="centerX" type="default" id="Wdq-ze-22d"/>
-                            <constraint firstAttribute="trailing" secondItem="FxR-cX-TL5" secondAttribute="trailing" constant="27" id="oNW-gx-jy1"/>
                             <constraint firstAttribute="bottom" secondItem="gum-66-hp4" secondAttribute="bottom" constant="26" id="qYX-GX-Dbr"/>
+                            <constraint firstItem="FxR-cX-TL5" firstAttribute="trailing" secondItem="Huw-rq-Gxc" secondAttribute="trailing" type="default" id="tXK-8k-mzC"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="centerY" secondItem="Huw-rq-Gxc" secondAttribute="centerY" type="default" id="wl9-8M-Ln5"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -132,8 +114,6 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="QuestionView" destination="FxR-cX-TL5" id="2Tk-EA-Sr4"/>
-                        <outlet property="QuestionViewLeftSide" destination="asP-3U-OeD" id="DiY-ln-b1c"/>
-                        <outlet property="QuestionViewRightSide" destination="4LE-Td-dSI" id="5jC-D9-MuX"/>
                         <outlet property="btnControl" destination="gum-66-hp4" id="3oQ-Zi-Ig9"/>
                         <outlet property="stopWatchLabel" destination="md3-8q-egU" id="q1I-IE-3GR"/>
                     </connections>
@@ -148,8 +128,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EQGameViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="QuestionView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="QuestionViewLeftSide" candidateClass="UIView"/>
-                <relationship kind="outlet" name="QuestionViewRightSide" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnControl" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
             </relationships>
