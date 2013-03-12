@@ -12,7 +12,15 @@
 
 @end
 
-@implementation EQGameViewController
+@implementation EQGameViewController{
+    int boxSize;
+    int boxSpace;
+    int leftAndRightViewSpace;
+    
+    UIView * questionViewLeftSide;
+    UIView * questionViewRightSide;
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,14 +30,18 @@
     }
     return self;
 }
-
+/*
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     NSLog(@"game screen");
+    [self configureViews];
 }
-
+*/
+-(void) viewWillAppear:(BOOL)animated{
+    [self configureViews];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -38,24 +50,62 @@
 
 -(void) setCurrentQuestion:(EQQuestion *)currentQuestion{
     _currentQuestion=currentQuestion;
-    [self configureViews];
+    [_currentQuestion createQuestionArray];
+//    [self configureViews];
 }
 
 -(void) configureViews{
+    boxSize=48;
+    boxSpace=10;
+    leftAndRightViewSpace=50;
     
+    questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
+    questionViewLeftSide.backgroundColor=[UIColor greenColor];
+    
+    questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
+    questionViewRightSide.backgroundColor=[UIColor yellowColor];
+
+    [_QuestionView addSubview:questionViewLeftSide];
+    [_QuestionView addSubview:questionViewRightSide];
+
+    [self placingBoxes];
+//    NSLog(@"Question %i", [_currentQuestion questionId]);
 }
 
 -(void)placingBoxes{
-    //    NSLog(@"Placing %d",_currentQuestion.questionArray.count);
+       NSLog(@"Placing %@",_currentQuestion.wholeQuestion);
     [EQBox cleanInstances];
+    int leftSideCount=0;
+    BOOL isRightSide=NO;
+
+
     for (int i=0; i<_currentQuestion.questionArray.count; i++) {
         
         
-        EQBox * box=[EQBox BoxWithFrame:CGRectMake(58*i+30, self.view.frame.size.height/2, 48, 48) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
-        box.caller=self;
+        if([[_currentQuestion.questionArray objectAtIndex:i] isEqual:@"="]){
+            isRightSide=YES;
+            leftSideCount=i;
+            NSLog(@"View: %f, subview %i",_QuestionView.frame.size.width,(boxSize+boxSpace)*i);
+            questionViewLeftSide.frame=CGRectMake(((self.view.frame.size.width-(boxSize+boxSpace)*i)+boxSpace)/2, 0, (boxSize+boxSpace)*i-boxSpace, boxSize);
+            
+            continue;
+        }
+        if (!isRightSide) {
+            EQBox * box=[EQBox BoxWithFrame:CGRectMake((boxSize+boxSpace)*i, 0, boxSize, boxSize) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
+            box.caller=self;
+            [questionViewLeftSide addSubview:box.boxButton];
+        }
+        else if(isRightSide){
+            NSLog(@"LeftSideCount:  %i",leftSideCount);
+            EQBox * box=[EQBox BoxWithFrame:CGRectMake((boxSize+boxSpace)*(i-leftSideCount-1), 0, boxSize, boxSize) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
+            box.caller=self;
+            [questionViewRightSide addSubview:box.boxButton];
+            
+            if(_currentQuestion.questionArray.count-1==i){
+                questionViewRightSide.frame=CGRectMake(((self.view.frame.size.width-(boxSize+boxSpace)*(i-leftSideCount)+boxSpace))/2, questionViewLeftSide.frame.size.height+leftAndRightViewSpace, (boxSize+boxSpace)*(i-leftSideCount)-boxSpace, boxSize);
+            }
+        }
         
-        NSLog(@"PLacing %@",box);
-        [self.view addSubview:box.boxButton];
     }
 }
 
@@ -63,8 +113,6 @@
     [self setStopWatchLabel:nil];
     [self setBtnControl:nil];
     [self setQuestionView:nil];
-    [self setQuestionViewLeftSide:nil];
-    [self setQuestionViewRightSide:nil];
     [super viewDidUnload];
 }
 @end
