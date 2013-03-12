@@ -7,6 +7,8 @@
 //
 
 #import "EQViewController.h"
+#import "EQGameViewController.h"
+#import "EQQuestion.h"
 #import "EQAppSpecificViewSizes.h"
 
 @interface EQViewController ()
@@ -40,6 +42,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"GameStartSegue"]) {
         //
+        EQGameViewController *eqGameViewController = [segue destinationViewController];
+        [eqGameViewController setCurrentQuestion:[EQQuestion getRandomQuestion]];
     }
 }
 @end
