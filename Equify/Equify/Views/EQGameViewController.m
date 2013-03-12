@@ -28,12 +28,26 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     NSLog(@"game screen");
+    
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) setCurrentQuestion:(EQQuestion *)currentQuestion{
+    _currentQuestion=currentQuestion;
+    [self configureViews];
+}
+
+-(void) configureViews{
+    
 }
 
 @end

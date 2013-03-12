@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EQQuestion.h"
 
 @interface EQGameViewController : UIViewController
 
+@property (nonatomic) EQQuestion * currentQuestion;
 @end
