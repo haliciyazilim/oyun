@@ -40,6 +40,7 @@
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
     }
     
+    
     [self.stopWatchLabel setText:@"00:00"];
     [self.stopWatchLabel setTextColor:[UIColor colorWithRed:0.403 green:0.403 blue:0.403 alpha:1.0]];
     
@@ -95,10 +96,10 @@
         questionViewRightSide=nil;
         
         questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
-        questionViewLeftSide.backgroundColor=[UIColor greenColor];
+//        questionViewLeftSide.backgroundColor=[UIColor greenColor];
         
         questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
-        questionViewRightSide.backgroundColor=[UIColor yellowColor];
+//        questionViewRightSide.backgroundColor=[UIColor yellowColor];
         
         [_QuestionView addSubview:questionViewLeftSide];
         [_QuestionView addSubview:questionViewRightSide];
@@ -108,7 +109,8 @@
 }
 
 -(void)placingBoxes{
-       NSLog(@"Placing %@",_currentQuestion.wholeQuestion);
+    NSLog(@"*******CUrrent Question id: %i",_currentQuestion.questionId);
+
     [EQBox cleanInstances];
     int leftSideCount=0;
     BOOL isRightSide=NO;
@@ -120,7 +122,7 @@
         if([[_currentQuestion.questionArray objectAtIndex:i] isEqual:@"="]){
             isRightSide=YES;
             leftSideCount=i;
-            NSLog(@"View: %f, subview %i",_QuestionView.frame.size.width,(boxSize+boxSpace)*i);
+//            NSLog(@"View: %f, subview %i",_QuestionView.frame.size.width,(boxSize+boxSpace)*i);
             questionViewLeftSide.frame=CGRectMake(((self.view.frame.size.width-(boxSize+boxSpace)*i)+boxSpace)/2, 0, (boxSize+boxSpace)*i-boxSpace, boxSize);
             
             continue;
@@ -131,7 +133,7 @@
             [questionViewLeftSide addSubview:box.boxButton];
         }
         else if(isRightSide){
-            NSLog(@"LeftSideCount:  %i",leftSideCount);
+            //NSLog(@"LeftSideCount:  %i",leftSideCount);
             EQBox * box=[EQBox BoxWithFrame:CGRectMake((boxSize+boxSpace)*(i-leftSideCount-1), 0, boxSize, boxSize) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
             box.caller=self;
             [questionViewRightSide addSubview:box.boxButton];
@@ -223,8 +225,8 @@
 
 -(void)skipQuestion{
     [EQStatistic updateStatisticsWithSkippedGame];
-    [_stopWatch stopTimer];
-    [self setCurrentQuestion:[EQQuestion getRandomQuestion]];
+    [self setCurrentQuestion:[EQQuestion getNextQuestion]];
+    [self.stopWatch resetTimer];
     [self configureViews];
 }
 
