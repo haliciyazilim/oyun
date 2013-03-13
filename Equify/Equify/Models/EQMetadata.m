@@ -29,7 +29,7 @@
     
     EQMetadata* meta = [result objectAtIndex:0];
     
-    meta.currentQuestionId = (meta.currentQuestionId+1)%TOTAL_QUESTION_COUNT;
+    meta.currentQuestionId = (meta.currentQuestionId%TOTAL_QUESTION_COUNT)+1;
     
     [[EQDatabaseManager sharedInstance] saveContext];
     
