@@ -7,7 +7,7 @@
     </entity>
     <entity name="Score" representedClassName="EQScore" syncable="YES">
         <attribute name="elapsedSeconds" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
-        <attribute name="scoreDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="scoreDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Statistic" representedClassName="EQStatistic" syncable="YES">
         <attribute name="allTimeAverage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
