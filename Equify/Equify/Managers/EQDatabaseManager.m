@@ -100,6 +100,12 @@ static EQDatabaseManager *sharedInstance = nil;
     return entity;
 }
 
+-(void)deleteObject:(NSManagedObject*)managedObject
+{
+    [self.managedObjectContext deleteObject:managedObject];
+    [self saveContext];
+}
+
 /**
  Returns the URL to the application's Documents directory.
  */

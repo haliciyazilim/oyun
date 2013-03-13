@@ -37,6 +37,8 @@
 		055C908A16EF2B94002BD042 /* 10012.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907B16EF2B94002BD042 /* 10012.question */; };
 		055C908B16EF2B94002BD042 /* 10013.question in Resources */ = {isa = PBXBuildFile; fileRef = 055C907C16EF2B94002BD042 /* 10013.question */; };
 		055C908C16EF2B94002BD042 /* standart.packageinfo in Resources */ = {isa = PBXBuildFile; fileRef = 055C907D16EF2B94002BD042 /* standart.packageinfo */; };
+		055C908F16EF79B7002BD042 /* EQStatistic.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C908E16EF79B7002BD042 /* EQStatistic.m */; };
+		055C909216EF7A2D002BD042 /* EQScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C909116EF7A2D002BD042 /* EQScore.m */; };
 		0591869716EE1CF600FF9881 /* EQBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 0591869616EE1CF600FF9881 /* EQBox.m */; };
 		0591869C16EE1F3A00FF9881 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0591869B16EE1F3A00FF9881 /* CoreData.framework */; };
 		0591869F16EE1F5800FF9881 /* EQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0591869E16EE1F5800FF9881 /* EQQuestion.m */; };
@@ -101,6 +103,10 @@
 		055C907B16EF2B94002BD042 /* 10012.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10012.question; sourceTree = "<group>"; };
 		055C907C16EF2B94002BD042 /* 10013.question */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10013.question; sourceTree = "<group>"; };
 		055C907D16EF2B94002BD042 /* standart.packageinfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = standart.packageinfo; sourceTree = "<group>"; };
+		055C908D16EF79B6002BD042 /* EQStatistic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQStatistic.h; sourceTree = "<group>"; };
+		055C908E16EF79B7002BD042 /* EQStatistic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQStatistic.m; sourceTree = "<group>"; };
+		055C909016EF7A2D002BD042 /* EQScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQScore.h; sourceTree = "<group>"; };
+		055C909116EF7A2D002BD042 /* EQScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQScore.m; sourceTree = "<group>"; };
 		0591869516EE1CF600FF9881 /* EQBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQBox.h; sourceTree = "<group>"; };
 		0591869616EE1CF600FF9881 /* EQBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQBox.m; sourceTree = "<group>"; };
 		0591869B16EE1F3A00FF9881 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -278,6 +284,10 @@
 				0591869616EE1CF600FF9881 /* EQBox.m */,
 				0591869D16EE1F5800FF9881 /* EQQuestion.h */,
 				0591869E16EE1F5800FF9881 /* EQQuestion.m */,
+				055C908D16EF79B6002BD042 /* EQStatistic.h */,
+				055C908E16EF79B7002BD042 /* EQStatistic.m */,
+				055C909016EF7A2D002BD042 /* EQScore.h */,
+				055C909116EF7A2D002BD042 /* EQScore.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -476,6 +486,8 @@
 				055C905C16EF1E8C002BD042 /* EQGameViewController.m in Sources */,
 				055C906B16EF2303002BD042 /* EQModel.xcdatamodeld in Sources */,
 				AECBA45416F073D0008D36D0 /* StopWatch.m in Sources */,
+				055C908F16EF79B7002BD042 /* EQStatistic.m in Sources */,
+				055C909216EF7A2D002BD042 /* EQScore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

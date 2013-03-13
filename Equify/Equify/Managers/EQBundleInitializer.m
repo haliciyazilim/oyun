@@ -9,6 +9,7 @@
 #import "EQBundleInitializer.h"
 #import "EQDatabaseManager.h"
 #import "EQQuestion.h"
+#import "EQStatistic.h"
 
 @implementation EQBundleInitializer
 
@@ -33,6 +34,8 @@
                 
             }
         }
+        
+        [EQStatistic initializeStatistics];
     }
 }
 @end
