@@ -78,10 +78,10 @@
     leftAndRightViewSpace=50;
     
     questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
-    questionViewLeftSide.backgroundColor=[UIColor greenColor];
+    //questionViewLeftSide.backgroundColor=[UIColor greenColor];
     
     questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
-    questionViewRightSide.backgroundColor=[UIColor yellowColor];
+    //questionViewRightSide.backgroundColor=[UIColor yellowColor];
 
     [_QuestionView addSubview:questionViewLeftSide];
     [_QuestionView addSubview:questionViewRightSide];
@@ -168,9 +168,7 @@
     [answer appendString:answerRightSide];
     
     if([self.currentQuestion isCorrect:answer]){
-        NSLog(@"Answer is correct");
-        [self.stopWatch stopTimer];
-        [self dismissModalViewControllerAnimated:YES];
+        [self onCorrectAnswer];
         
     }
     else{
@@ -196,6 +194,18 @@
     }
 }
 
+-(void)onCorrectAnswer{
+    NSLog(@"Answer is correct");
+    [_stopWatch stopTimer];
+    [EQScore addScore:[_stopWatch getElapsedMiliseconds]];
+    NSLog(@"Answer is correct %i",[_stopWatch getElapsedMiliseconds]);
+    [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds]];
+    NSLog(@"Answer is correct");
+    
+}
+-(void)onSkip{
+    [EQStatistic updateStatisticsWithSkippedGame];
+}
 
 - (void)viewDidUnload {
     [self setStopWatchLabel:nil];
