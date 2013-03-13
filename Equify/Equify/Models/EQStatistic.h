@@ -16,7 +16,10 @@
 @property int totalSkippedQuestion;
 @property int allTimeAverage;
 
-+ (EQStatistic *)initializeStatistics;
-+ (
++ (void)initializeStatistics;
++ (void)resetStatistics;
++ (void)updateStatisticsWithTime:(int)elapsedTime;
++ (void)updateStatisticsWithSkippedGame;
++ (EQStatistic *)getStatistics;
 
 @end
