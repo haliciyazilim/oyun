@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05060C7416F0A4A800EBBD84 /* EQMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 05060C7316F0A4A800EBBD84 /* EQMetadata.m */; };
+		05060C7B16F0C63000EBBD84 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05060C7A16F0C63000EBBD84 /* GameCenterManager.m */; };
 		05192B6416CB83F5002F9529 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05192B6316CB83F5002F9529 /* UIKit.framework */; };
 		05192B6616CB83F5002F9529 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05192B6516CB83F5002F9529 /* Foundation.framework */; };
 		05192B6816CB83F5002F9529 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05192B6716CB83F5002F9529 /* CoreGraphics.framework */; };
@@ -71,6 +72,9 @@
 		05060C6F16F0A1DE00EBBD84 /* EQAppConfigValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQAppConfigValues.h; sourceTree = "<group>"; };
 		05060C7216F0A4A800EBBD84 /* EQMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQMetadata.h; sourceTree = "<group>"; };
 		05060C7316F0A4A800EBBD84 /* EQMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQMetadata.m; sourceTree = "<group>"; };
+		05060C7616F0BCD200EBBD84 /* EQGameCenterSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQGameCenterSpecificValues.h; sourceTree = "<group>"; };
+		05060C7916F0C63000EBBD84 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
+		05060C7A16F0C63000EBBD84 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
 		05192B6016CB83F5002F9529 /* Equify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05192B6316CB83F5002F9529 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		05192B6516CB83F5002F9529 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -176,6 +180,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05060C7516F0BC8A00EBBD84 /* GameCenter */ = {
+			isa = PBXGroup;
+			children = (
+				05060C7616F0BCD200EBBD84 /* EQGameCenterSpecificValues.h */,
+				05060C7916F0C63000EBBD84 /* GameCenterManager.h */,
+				05060C7A16F0C63000EBBD84 /* GameCenterManager.m */,
+			);
+			path = GameCenter;
+			sourceTree = "<group>";
+		};
 		05192B5716CB83F5002F9529 = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +225,7 @@
 		05192B6916CB83F5002F9529 /* Equify */ = {
 			isa = PBXGroup;
 			children = (
+				05060C7516F0BC8A00EBBD84 /* GameCenter */,
 				AECBA45116F07382008D36D0 /* Common */,
 				059186A016EE1FF500FF9881 /* Managers */,
 				0591869416EE1CDB00FF9881 /* Models */,
@@ -496,6 +511,7 @@
 				055C908F16EF79B7002BD042 /* EQStatistic.m in Sources */,
 				055C909216EF7A2D002BD042 /* EQScore.m in Sources */,
 				05060C7416F0A4A800EBBD84 /* EQMetadata.m in Sources */,
+				05060C7B16F0C63000EBBD84 /* GameCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
