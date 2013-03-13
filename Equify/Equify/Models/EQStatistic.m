@@ -18,7 +18,7 @@
 @dynamic allTimeAverage;
 
 + (void)initializeStatistics {
-    EQStatistic* statistic = (EQStatistic*)[[EQDatabaseManager sharedInstance] createEntity:@"Statistics"];
+    EQStatistic* statistic = (EQStatistic*)[[EQDatabaseManager sharedInstance] createEntity:@"Statistic"];
     statistic.minTime = INT32_MAX;
     statistic.maxTime = INT32_MIN;
     statistic.totalSkippedQuestion = 0;
