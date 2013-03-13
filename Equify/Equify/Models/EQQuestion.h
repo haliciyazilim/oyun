@@ -21,6 +21,7 @@
 + (NSArray *)getAllQuestions;
 + (EQQuestion*) getQuestionWithId:(int)questionId;
 + (EQQuestion *) getRandomQuestion;
++ (EQQuestion *) getNextQuestion;
 - (void) createQuestionArray;
 - (BOOL) isCorrect:(NSString *)checkedAnswer;
 
