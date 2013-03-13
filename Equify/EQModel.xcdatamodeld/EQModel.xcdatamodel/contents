@@ -5,7 +5,20 @@
         <attribute name="questionId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="wholeQuestion" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Score" syncable="YES">
+        <attribute name="elapsedSeconds" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="scoreDate" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="Statistics" syncable="YES">
+        <attribute name="allTimeAverage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="minTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="totalSkippedQuestion" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="totalSolvedQuestion" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Question" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Statistics" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Score" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>
