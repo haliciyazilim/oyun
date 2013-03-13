@@ -22,7 +22,7 @@
 // instance method
 - (id) initWithFrame:(CGRect)frame andTitle:(NSString *)title;
 
-- (void) deleteBox: (UIView *) view;
+- (void) deleteBox;
 - (void) resetBox;
 
 +(EQBox*)boxByOrder:(int)order;

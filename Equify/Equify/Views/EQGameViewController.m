@@ -109,6 +109,19 @@
     }
 }
 
+-(void)animateBox:(UIButton *)button {
+    NSLog(@"entered deletebox");
+    EQBox* box = [EQBox boxByOrder:button.tag];
+    NSLog(@"%@",box);
+    
+    if(!box.isDeleted){
+        [box deleteBox];    
+    }
+    else
+        [box resetBox];
+    
+}
+
 - (void)viewDidUnload {
     [self setStopWatchLabel:nil];
     [self setBtnControl:nil];
