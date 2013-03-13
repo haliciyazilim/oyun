@@ -10,6 +10,8 @@
 #import "EQQuestion.h"
 #import "EQBox.h"
 #import "StopWatch.h"
+#import "EQStatistic.h"
+#import "EQScore.h"
 
 @interface EQGameViewController : UIViewController
 
