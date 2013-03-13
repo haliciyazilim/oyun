@@ -10,4 +10,12 @@
 
 @interface EQScore : NSManagedObject
 
+@property int elapsedSeconds;
+@property NSDate* scoreDate;
+
++(void)addScore:(int)score;
++(void)cleanAllScores;
++(NSMutableArray *)getAllScores;
++(int)getAverage;
+
 @end
