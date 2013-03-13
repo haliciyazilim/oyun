@@ -8,6 +8,7 @@
 
 #import "EQStatistic.h"
 #import "EQDatabaseManager.h"
+#import "EQMetadata.h"
 
 @implementation EQStatistic
 
@@ -46,11 +47,15 @@
     currentStats.totalSolvedQuestion += 1;
     currentStats.allTimeAverage = currentTotalTime/currentStats.totalSolvedQuestion;
     [[EQDatabaseManager sharedInstance] saveContext];
+    
+    [EQMetadata incrementQuestionId];
 }
 + (void)updateStatisticsWithSkippedGame {
     EQStatistic* currentStats = [EQStatistic getStatistics];
     currentStats.totalSkippedQuestion += 1;
     [[EQDatabaseManager sharedInstance] saveContext];
+    
+    [EQMetadata incrementQuestionId];
 }
 + (EQStatistic *)getStatistics {
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
