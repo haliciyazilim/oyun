@@ -49,6 +49,8 @@
     self.stopWatch = [[StopWatch alloc] init];
     
     [self.btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnSkip addTarget:self action:@selector(skipQuestion) forControlEvents:UIControlEventTouchUpInside];
+    
     
     [self.view setClipsToBounds:YES];
 }
@@ -76,16 +78,31 @@
     boxSize=48;
     boxSpace=10;
     leftAndRightViewSpace=50;
+    if(questionViewLeftSide==nil){
+        questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
+        questionViewLeftSide.backgroundColor=[UIColor greenColor];
     
-    questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
-    //questionViewLeftSide.backgroundColor=[UIColor greenColor];
-    
-    questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
-    //questionViewRightSide.backgroundColor=[UIColor yellowColor];
+        questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
+        questionViewRightSide.backgroundColor=[UIColor yellowColor];
 
-    [_QuestionView addSubview:questionViewLeftSide];
-    [_QuestionView addSubview:questionViewRightSide];
-
+        [_QuestionView addSubview:questionViewLeftSide];
+        [_QuestionView addSubview:questionViewRightSide];
+    }
+    else{
+        [questionViewLeftSide removeFromSuperview];
+        [questionViewRightSide removeFromSuperview];
+        questionViewLeftSide=nil;
+        questionViewRightSide=nil;
+        
+        questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
+        questionViewLeftSide.backgroundColor=[UIColor greenColor];
+        
+        questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
+        questionViewRightSide.backgroundColor=[UIColor yellowColor];
+        
+        [_QuestionView addSubview:questionViewLeftSide];
+        [_QuestionView addSubview:questionViewRightSide];
+    }
     [self placingBoxes];
 //    NSLog(@"Question %i", [_currentQuestion questionId]);
 }
@@ -207,11 +224,18 @@
     [EQStatistic updateStatisticsWithSkippedGame];
 }
 
+-(void)skipQuestion{
+    [_stopWatch stopTimer];
+    [self setCurrentQuestion:[EQQuestion getRandomQuestion]];
+    [self configureViews];
+}
+
 - (void)viewDidUnload {
     [self setStopWatchLabel:nil];
     [self setBtnControl:nil];
     [self setQuestionView:nil];
     [self setStopWatchLabelMS:nil];
+    [self setBtnSkip:nil];
     [super viewDidUnload];
 }
 @end
