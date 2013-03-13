@@ -30,17 +30,35 @@
     }
     return self;
 }
-/*
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    NSLog(@"game screen");
-    [self configureViews];
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
+    }
+    else{
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+    }
+    
+    [self.stopWatchLabel setText:@"00:00"];
+    [self.stopWatchLabel setTextColor:[UIColor colorWithRed:0.403 green:0.403 blue:0.403 alpha:1.0]];
+    
+    [self.stopWatchLabelMS setText:@".0"];
+    [self.stopWatchLabelMS setTextColor:[UIColor colorWithRed:0.403 green:0.403 blue:0.403 alpha:1.0]];
+    
+    self.stopWatch = [[StopWatch alloc] init];
+    
+    [self.btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view setClipsToBounds:YES];
 }
-*/
+
 -(void) viewWillAppear:(BOOL)animated{
     [self configureViews];
+    [self.stopWatch startTimerWithRepeatBlock:^{
+        [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
+        [self.stopWatchLabelMS setText:[self.stopWatch toStringMiliseconds]];
+    }];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -109,10 +127,81 @@
     }
 }
 
+-(void)animateBox:(UIButton *)button {
+    NSLog(@"entered deletebox");
+    EQBox* box = [EQBox boxByOrder:button.tag];
+    NSLog(@"%@",box);
+    
+    if(!box.isDeleted){
+        [box deleteBox];    
+    }
+    else
+        [box resetBox];
+    
+}
+
+-(void)control{
+    NSLog(@"entered control");
+    NSMutableString * answer=[[NSMutableString alloc] initWithString:@""];
+    NSMutableString * answerLeftSide=[[NSMutableString alloc] initWithString:@""];
+    NSMutableString * answerRightSide=[[NSMutableString alloc] initWithString:@""];
+    BOOL isLeftSide=YES;
+    for (int i=0; i<self.currentQuestion.questionArray.count-1; i++) {
+        if ([[_currentQuestion.questionArray objectAtIndex:i] isEqual:@"="]) {
+            isLeftSide=NO;
+        }
+        
+        EQBox * box=[EQBox boxByOrder:i];
+
+        if (isLeftSide) {
+            if(!box.isDeleted)
+                [answerLeftSide appendString:box.title];
+        }
+        else if(!isLeftSide) {
+            if(!box.isDeleted)
+                [answerRightSide appendString:box.title];
+        }
+    }
+    
+    [answer appendString:answerLeftSide];
+    [answer appendString:@"="];
+    [answer appendString:answerRightSide];
+    
+    if([self.currentQuestion isCorrect:answer]){
+        NSLog(@"Answer is correct");
+        [self.stopWatch stopTimer];
+        [self dismissModalViewControllerAnimated:YES];
+        
+    }
+    else{
+        NSLog(@"Answer is false");
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+            self.view.transform = CGAffineTransformTranslate(self.view.transform, -25, 0);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+                self.view.transform = CGAffineTransformTranslate(self.view.transform, 50, 0);   
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+                    self.view.transform = CGAffineTransformTranslate(self.view.transform, -50, 0);
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+                        self.view.transform = CGAffineTransformTranslate(self.view.transform, 25, 0);
+                    } completion:^(BOOL finished) {
+                        ;
+                    }];
+                }];
+            }];
+        }];
+        
+    }
+}
+
+
 - (void)viewDidUnload {
     [self setStopWatchLabel:nil];
     [self setBtnControl:nil];
     [self setQuestionView:nil];
+    [self setStopWatchLabelMS:nil];
     [super viewDidUnload];
 }
 @end

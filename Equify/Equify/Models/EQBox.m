@@ -59,6 +59,8 @@ static NSMutableArray* boxes = nil;
         self.boxButton.frame = frame;
         self.boxButton.tag = classOrder;
         
+        [self.boxButton addTarget:self.caller action:@selector(animateBox:) forControlEvents:UIControlEventTouchUpInside];
+        
         self.boxButton.layer.cornerRadius = 6.0;
         self.boxButton.layer.borderWidth = 1.0;
         self.boxButton.layer.shadowRadius = 2.0;
@@ -89,7 +91,7 @@ static NSMutableArray* boxes = nil;
     }
     return self;
 }
-- (void) deleteBox: (UIView *) view{
+- (void) deleteBox{
     self.isDeleted = YES;
     [boxes replaceObjectAtIndex:self.order withObject:self];
     [self.boxButton setAlpha:0.3];

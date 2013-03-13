@@ -95,14 +95,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxR-cX-TL5">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJy-hb-a5q">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" type="default" id="1yR-bK-gYj"/>
+                            <constraint firstItem="tJy-hb-a5q" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="135" id="D14-Hy-EC2"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="80" id="NBH-4w-C0E"/>
                             <constraint firstItem="md3-8q-egU" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="31" id="Old-5k-QP1"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="centerX" secondItem="gum-66-hp4" secondAttribute="centerX" type="default" id="RdY-Pf-C44"/>
                             <constraint firstItem="md3-8q-egU" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="37" id="W6r-HV-StQ"/>
+                            <constraint firstItem="tJy-hb-a5q" firstAttribute="baseline" secondItem="md3-8q-egU" secondAttribute="baseline" type="default" id="fls-3j-ovX"/>
                             <constraint firstAttribute="bottom" secondItem="gum-66-hp4" secondAttribute="bottom" constant="26" id="qYX-GX-Dbr"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="trailing" secondItem="Huw-rq-Gxc" secondAttribute="trailing" type="default" id="tXK-8k-mzC"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="centerY" secondItem="Huw-rq-Gxc" secondAttribute="centerY" type="default" id="wl9-8M-Ln5"/>
@@ -116,6 +123,7 @@
                         <outlet property="QuestionView" destination="FxR-cX-TL5" id="2Tk-EA-Sr4"/>
                         <outlet property="btnControl" destination="gum-66-hp4" id="3oQ-Zi-Ig9"/>
                         <outlet property="stopWatchLabel" destination="md3-8q-egU" id="q1I-IE-3GR"/>
+                        <outlet property="stopWatchLabelMS" destination="tJy-hb-a5q" id="CyT-an-RoD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WKU-s3-CDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -123,25 +131,6 @@
             <point key="canvasLocation" x="776" y="270"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="EQGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQGameViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="QuestionView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="btnControl" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="EQViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="startNewGame:"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
