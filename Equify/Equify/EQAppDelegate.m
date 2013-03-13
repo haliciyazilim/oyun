@@ -9,6 +9,7 @@
 #import "EQAppDelegate.h"
 #import "EQBundleInitializer.h"
 #import "EQDatabaseManager.h"
+#import "GameCenterManager.h"
 
 @implementation EQAppDelegate
 
@@ -17,6 +18,8 @@
     if([[EQDatabaseManager sharedInstance] isEmpty]){
         [EQBundleInitializer initializeBundle];
     }
+    
+    [[GameCenterManager sharedInstance] authenticateLocalUser];
     
 //    [self.window makeKeyAndVisible];
     return YES;
