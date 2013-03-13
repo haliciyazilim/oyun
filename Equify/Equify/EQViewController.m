@@ -43,7 +43,7 @@
     if ([segue.identifier isEqualToString:@"GameStartSegue"]) {
         //
         EQGameViewController *eqGameViewController = [segue destinationViewController];
-        [eqGameViewController setCurrentQuestion:[EQQuestion getRandomQuestion]];
+        [eqGameViewController setCurrentQuestion:[EQQuestion getNextQuestion]];
     }
 }
 @end
