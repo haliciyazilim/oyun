@@ -23,7 +23,6 @@ static GameCenterManager *sharedManager = nil;
     if(!_isGameCenterAvailable){
         return;
     }
-    NSLog(@"Authenticating local user...");
     if ([GKLocalPlayer localPlayer].authenticated == NO) {
         [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:nil];
     } else {
@@ -84,16 +83,11 @@ static GameCenterManager *sharedManager = nil;
 
 - (void) submitScore:(int)score category:(NSString*)category
 {
-    GKScore* gkScore =
-    [[GKScore alloc]
-     initWithCategory:category];
+    GKScore* gkScore = [[GKScore alloc] initWithCategory:category];
     
-    //3: Set the score value
     gkScore.value = score;
     
-    //4: Send the score to Game Center
-    [gkScore reportScoreWithCompletionHandler:
-     ^(NSError* error) {
+    [gkScore reportScoreWithCompletionHandler: ^(NSError* error) {
          ;
      }];
 }
