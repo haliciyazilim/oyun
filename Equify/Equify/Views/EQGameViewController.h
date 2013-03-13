@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "EQQuestion.h"
+#import "EQBox.h"
 
 @interface EQGameViewController : UIViewController
 
 @property (nonatomic) EQQuestion * currentQuestion;
+@property (weak, nonatomic) IBOutlet UILabel *stopWatchLabel;
+@property (weak, nonatomic) IBOutlet UIButton *btnControl;
+
+@property (weak, nonatomic) IBOutlet UIView *QuestionView;
+
 @end

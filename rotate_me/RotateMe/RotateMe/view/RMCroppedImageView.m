@@ -21,7 +21,7 @@
     UISwipeGestureRecognizer *swipeUpGesture;
     UISwipeGestureRecognizer *swipeDownGesture;
     
-    float touchLocation;
+    CGPoint touchLocation;
     float initialAngle;
     float moveSpeed;
 }
@@ -76,25 +76,70 @@
     currentAngle = angle;
 }
 
+- (float)getAngleFromPoint:(CGPoint)fromPoint
+                   toPoint:(CGPoint)toPoint {
+    if (fromPoint.x == toPoint.x && fromPoint.y == toPoint.y) {
+        return 0;
+    }
+    
+    float angle = atan((-toPoint.y+fromPoint.y)/(toPoint.x-fromPoint.x));
+    
+    if (toPoint.x < fromPoint.x) {
+        angle += M_PI;
+    }
+    
+    if (angle > M_PI) {
+        angle -= 2 * M_PI;
+    }
+    
+    return angle;
+}
+
+- (float)getAngleFromPoint:(CGPoint)fromPoint
+              throughPoint:(CGPoint)throughPoint
+                   toPoint:(CGPoint)toPoint {
+    
+    
+    float angle1 = [self getAngleFromPoint:throughPoint
+                                   toPoint:fromPoint];
+    
+    float angle2 = [self getAngleFromPoint:throughPoint
+                                   toPoint:toPoint];
+    
+    float angle = angle2 - angle1;
+    
+    if (angle > M_PI) {
+        angle -= 2 * M_PI;
+    }
+    
+    if (angle < -M_PI) {
+        angle += 2 * M_PI;
+    }
+    
+    return  angle;
+}
+
+
+
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.superview bringSubviewToFront:self];
-    touchLocation = [[touches anyObject] locationInView:self].x;
+    touchLocation = [[touches anyObject] locationInView:self];
     initialAngle = currentAngle;
     
     
-    switch (getCurrentDifficulty()) {
-        case EASY:
-            moveSpeed = 0.004;
-            break;
-        case NORMAL:
-            moveSpeed = 0.0055;
-            break;
-        case HARD:
-            moveSpeed = 0.007;
-            break;
-        default:
-            break;
-    }
+//    switch (getCurrentDifficulty()) {
+//        case EASY:
+//            moveSpeed = 0.004;
+//            break;
+//        case NORMAL:
+//            moveSpeed = 0.0055;
+//            break;
+//        case HARD:
+//            moveSpeed = 0.007;
+//            break;
+//        default:
+//            break;
+//    }
     
     [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         CGAffineTransform t1 = CGAffineTransformMakeScale(1.2, 1.2);
@@ -118,11 +163,14 @@
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.superview bringSubviewToFront:self];
     
-    float difference = touchLocation - [[touches anyObject] locationInView:self].x;
+//    float difference = touchLocation - [[touches anyObject] locationInView:self].x;
     
     CGAffineTransform t1 = CGAffineTransformMakeScale(1.2, 1.2);
 
-    currentAngle = initialAngle - difference * M_PI * moveSpeed;
+//    currentAngle = initialAngle - difference * M_PI * moveSpeed;
+    currentAngle = initialAngle - [self getAngleFromPoint:touchLocation
+                                             throughPoint:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
+                                                  toPoint:[[touches anyObject] locationInView:self]];
 
     CGAffineTransform t2 = CGAffineTransformMakeRotation(currentAngle);
     self.imageView.transform = CGAffineTransformConcat(t1, t2);
@@ -131,9 +179,12 @@
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.superview bringSubviewToFront:self];
     
-    float difference = touchLocation - [[touches anyObject] locationInView:self].x;
+//    float difference = touchLocation - [[touches anyObject] locationInView:self].x;
     
-    currentAngle = initialAngle - difference * M_PI * moveSpeed;
+//    currentAngle = initialAngle - difference * M_PI * moveSpeed;
+    currentAngle = initialAngle - [self getAngleFromPoint:touchLocation
+                                             throughPoint:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
+                                                  toPoint:[[touches anyObject] locationInView:self]];
     
     while (currentAngle >= 2*M_PI) {
         currentAngle -= 2 * M_PI;
@@ -165,7 +216,7 @@
 }
 
 - (void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+    [self touchesEnded:touches withEvent:event];
 }
 
 //-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
