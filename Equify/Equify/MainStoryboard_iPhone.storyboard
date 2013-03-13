@@ -102,17 +102,30 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9I-m8-qYh">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" type="default" id="1yR-bK-gYj"/>
+                            <constraint firstAttribute="trailing" secondItem="R9I-m8-qYh" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="7Pr-9d-4YZ"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="80" id="NBH-4w-C0E"/>
                             <constraint firstItem="md3-8q-egU" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="31" id="Old-5k-QP1"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="centerX" secondItem="gum-66-hp4" secondAttribute="centerX" type="default" id="RdY-Pf-C44"/>
+                            <constraint firstAttribute="bottom" secondItem="R9I-m8-qYh" secondAttribute="bottom" constant="26" id="T73-yq-LWH"/>
                             <constraint firstItem="md3-8q-egU" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="37" id="W6r-HV-StQ"/>
+                            <constraint firstItem="R9I-m8-qYh" firstAttribute="top" secondItem="gum-66-hp4" secondAttribute="top" type="default" id="elF-y8-cRF"/>
                             <constraint firstItem="tJy-hb-a5q" firstAttribute="baseline" secondItem="md3-8q-egU" secondAttribute="baseline" type="default" id="fls-3j-ovX"/>
+                            <constraint firstItem="R9I-m8-qYh" firstAttribute="baseline" secondItem="gum-66-hp4" secondAttribute="baseline" type="default" id="lzd-2N-cWG"/>
                             <constraint firstItem="tJy-hb-a5q" firstAttribute="top" secondItem="md3-8q-egU" secondAttribute="top" type="default" id="mX8-nc-Yxf"/>
-                            <constraint firstAttribute="bottom" secondItem="gum-66-hp4" secondAttribute="bottom" constant="26" id="qYX-GX-Dbr"/>
                             <constraint firstItem="tJy-hb-a5q" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="68" id="sKP-a5-BLa"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="trailing" secondItem="Huw-rq-Gxc" secondAttribute="trailing" type="default" id="tXK-8k-mzC"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="centerY" secondItem="Huw-rq-Gxc" secondAttribute="centerY" type="default" id="wl9-8M-Ln5"/>
@@ -125,6 +138,7 @@
                     <connections>
                         <outlet property="QuestionView" destination="FxR-cX-TL5" id="2Tk-EA-Sr4"/>
                         <outlet property="btnControl" destination="gum-66-hp4" id="3oQ-Zi-Ig9"/>
+                        <outlet property="btnSkip" destination="R9I-m8-qYh" id="vma-E0-63L"/>
                         <outlet property="stopWatchLabel" destination="md3-8q-egU" id="q1I-IE-3GR"/>
                         <outlet property="stopWatchLabelMS" destination="tJy-hb-a5q" id="CyT-an-RoD"/>
                     </connections>
@@ -134,6 +148,27 @@
             <point key="canvasLocation" x="776" y="270"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="EQGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQGameViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="QuestionView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="btnControl" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnSkip" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stopWatchLabelMS" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EQViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="startNewGame:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
