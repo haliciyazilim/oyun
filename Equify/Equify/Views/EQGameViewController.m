@@ -220,11 +220,9 @@
     NSLog(@"Answer is correct");
     
 }
--(void)onSkip{
-    [EQStatistic updateStatisticsWithSkippedGame];
-}
 
 -(void)skipQuestion{
+    [EQStatistic updateStatisticsWithSkippedGame];
     [_stopWatch stopTimer];
     [self setCurrentQuestion:[EQQuestion getRandomQuestion]];
     [self configureViews];
