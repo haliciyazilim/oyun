@@ -10,6 +10,7 @@
 #import "Config.h"
 #import "Score.h"
 #import "RotateMeIAPHelper.h"
+#import "RMAboutUsView.h"
 
 @implementation RMSettingsView
 {
@@ -56,6 +57,7 @@
     button = nil;
     
     button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self action:@selector(openAboutUs) forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"About Us" forState:UIControlStateNormal];
     [buttons addObject:button];
     button = nil;
@@ -98,6 +100,13 @@
     [[RotateMeIAPHelper sharedInstance] addActivityToView:restoreButton withFrame:CGRectMake(0.0, 0.0, restoreButton.frame.size.width, restoreButton.frame.size.height)];
     [[RotateMeIAPHelper sharedInstance] restoreCompletedTransactions];
 }
+
+- (void) openAboutUs
+{
+    RMAboutUsView* aboutUs = [[RMAboutUsView alloc] init];
+    [self addSubview:aboutUs];
+}
+
 -(void) stylizeButton:(UIButton*) button
 {
     [button.titleLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:[self fontSize]]];
