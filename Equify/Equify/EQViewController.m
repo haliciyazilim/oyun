@@ -21,12 +21,7 @@
     // neccessary UIViews
     UIView *mainView;
     UIView * buttonsView;
-    
-    float btnSize;
-    float btnGCSize;
-    float btnShadowSize;
-    float buttonsViewHeight;
-    float buttonsViewWidth;
+
 }
 
 -(float) btnSize{
@@ -36,46 +31,60 @@
 -(float) btnGCSize{
     return [UIImage imageNamed:@"game_center_btn.png"].size.width;
 }
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    NSLog(@"first screen");
-    
-    
-    btnSize=[UIImage imageNamed:@"main_btn.png"].size.width;
-    btnGCSize=[UIImage imageNamed:@"game_center_btn.png"].size.width;
 
-    btnShadowSize=110.0;
-    buttonsViewHeight=204;
-    buttonsViewWidth=404;
-    
+-(float) btnShadowSize{
+    return 110.0;
+}
+
+-(float) buttonsViewHeight{
+    return 204.0;
+}
+
+-(float) buttonsViewWidth{
+    return 404.0;
+}
+
+-(float) screenWidth{
+    return [[UIScreen mainScreen] bounds].size.height;
+}
+
+
+-(void) setBackgrounds{
     if([[UIScreen mainScreen] bounds].size.height == 568){
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
     }
     else{
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
     }
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    NSLog(@"first screen");
     
-    float screenWidth=[[UIScreen mainScreen] bounds].size.height;
+    
+        
+    
+    [self setBackgrounds];
     UIImage * logo=[UIImage imageNamed:@"equify_logo.png"];
     UIImageView * logoView=[[UIImageView alloc] initWithImage:logo];
     logoView.frame=CGRectMake(20, 20, logo.size.width, logo.size.height);
     
     [self.view addSubview:logoView];
     
-    buttonsView=[[UIView alloc] initWithFrame:CGRectMake((screenWidth-buttonsViewWidth)/2, 100, buttonsViewWidth, buttonsViewHeight)];
+    buttonsView=[[UIView alloc] initWithFrame:CGRectMake(([self screenWidth]-[self buttonsViewWidth])/2, 100, [self buttonsViewWidth], [self buttonsViewHeight])];
 //    buttonsView.backgroundColor=[UIColor yellowColor];
     [self.view addSubview:buttonsView];
     
-     UIButton * btnGameSettings=[self makeButton:CGRectMake(0, 50, btnSize, btnSize) title:@"game\nsettings"];
+     UIButton * btnGameSettings=[self makeButton:CGRectMake(0, 50, [self btnSize], [self btnSize]) title:@"game\nsettings"];
     
-    UIButton * btnStartGame=[self makeButton:CGRectMake((buttonsViewWidth-btnSize)/2, 0, btnSize, btnSize) title:@"start\ngame"];
+    UIButton * btnStartGame=[self makeButton:CGRectMake(([self buttonsViewWidth]-[self btnSize])/2, 0, [self btnSize], [self btnSize]) title:@"start\ngame"];
     [btnStartGame addTarget:self action:@selector(startNewGame:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * btnUserStats=[self makeButton:CGRectMake(buttonsViewWidth-btnSize, 50, btnSize, btnSize) title:@"user\nstaats"];
+    UIButton * btnUserStats=[self makeButton:CGRectMake([self buttonsViewWidth]-[self btnSize], 50, [self btnSize], [self btnSize]) title:@"user\nstats"];
     [btnUserStats addTarget:self action:@selector(openStats) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * btnGameCenter=[self makeGameCenterButton:CGRectMake((buttonsViewWidth-btnGCSize)/2, buttonsViewHeight-btnGCSize, btnGCSize, btnGCSize)];
+    UIButton * btnGameCenter=[self makeGameCenterButton:CGRectMake(([self buttonsViewWidth]-[self btnGCSize])/2, [self buttonsViewHeight]-[self btnGCSize], [self btnGCSize], [self btnGCSize])];
     [btnGameCenter addTarget:self action:@selector(showGameCenter) forControlEvents:UIControlEventTouchUpInside];
     
     [buttonsView addSubview:btnStartGame];
