@@ -57,20 +57,22 @@
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
     }
 }
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    NSLog(@"first screen");
-    
-    
-        
-    
-    [self setBackgrounds];
+
+-(UIImageView *) setLogo{
     UIImage * logo=[UIImage imageNamed:@"equify_logo.png"];
     UIImageView * logoView=[[UIImageView alloc] initWithImage:logo];
     logoView.frame=CGRectMake(20, 20, logo.size.width, logo.size.height);
+    return logoView;
+
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    NSLog(@"first screen");  
     
-    [self.view addSubview:logoView];
+    [self setBackgrounds];
+            
+    [self.view addSubview:[self setLogo]];
     
     buttonsView=[[UIView alloc] initWithFrame:CGRectMake(([self screenWidth]-[self buttonsViewWidth])/2, 100, [self buttonsViewWidth], [self buttonsViewHeight])];
 //    buttonsView.backgroundColor=[UIColor yellowColor];
