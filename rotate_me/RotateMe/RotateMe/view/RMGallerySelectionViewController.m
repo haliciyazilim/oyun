@@ -75,7 +75,7 @@
 //    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:link]];
     
     
-    [self.view addSubview:[[MoreGamesView alloc] initWithCurrentGameAppId:@""]];
+//    [self.view addSubview:[[MoreGamesView alloc] initWithCurrentGameAppId:@""]];
     
 }
 
