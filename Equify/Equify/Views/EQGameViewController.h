@@ -13,6 +13,8 @@
 #import "EQStatistic.h"
 #import "EQScore.h"
 #import "EQViewController.h"
+#import "GameCenterManager.h"
+#import "EQGameCenterSpecificValues.h"
 
 @interface EQGameViewController : UIViewController
 
@@ -25,5 +27,6 @@
 @property (weak, nonatomic) IBOutlet UIView *QuestionView;
 
 @property StopWatch * stopWatch;
+@property (nonatomic) EQStatistic* currentStatistics;
 
 @end

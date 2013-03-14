@@ -246,13 +246,18 @@
 }
 
 -(void)onCorrectAnswer{
-    NSLog(@"Answer is correct");
+    
     [_stopWatch stopTimer];
     [EQScore addScore:[_stopWatch getElapsedMiliseconds]];
-    NSLog(@"Answer is correct %i",[_stopWatch getElapsedMiliseconds]);
     [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds]];
-    NSLog(@"Answer is correct");
     
+    NSLog(@"Answer is correct %i",[[EQStatistic getStatistics] totalSolvedQuestion]);
+    
+
+    
+    [[GameCenterManager sharedInstance] submitScore:[_stopWatch getElapsedMiliseconds] category:kLeaderboardBestTime];
+    [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatistics] totalSolvedQuestion] category:kLeaderboardTotalSolvedQuestion];
+
     [self.navigationController popViewControllerAnimated:YES];
 
     
