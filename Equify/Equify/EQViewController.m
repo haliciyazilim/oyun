@@ -177,8 +177,8 @@
 
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
 {
-    [tempVC dismissModalViewControllerAnimated:YES];
-    [tempVC.view removeFromSuperview];
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
