@@ -78,6 +78,10 @@
 		AE6DF6D616F0CB5900011459 /* main_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CE16F0CB5900011459 /* main_btn_pressed@2x.png */; };
 		AE6DF6D716F0CB5900011459 /* main_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CF16F0CB5900011459 /* main_btn.png */; };
 		AE6DF6D816F0CB5900011459 /* main_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6D016F0CB5900011459 /* main_btn@2x.png */; };
+		AE8C0AD316F1C8B50084A808 /* equify_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AE8C0AD116F1C8B40084A808 /* equify_logo.png */; };
+		AE8C0AD416F1C8B50084A808 /* equify_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE8C0AD216F1C8B40084A808 /* equify_logo@2x.png */; };
+		AE8C0ADD16F1D4C90084A808 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8C0ADC16F1D4C90084A808 /* Reachability.m */; };
+		AE8C0ADF16F1D7900084A808 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */; };
 		AECBA44C16F066C4008D36D0 /* box_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AECBA44A16F066C4008D36D0 /* box_bg.png */; };
 		AECBA44D16F066C4008D36D0 /* box_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AECBA44B16F066C4008D36D0 /* box_bg@2x.png */; };
 		AECBA45416F073D0008D36D0 /* StopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = AECBA45316F073D0008D36D0 /* StopWatch.m */; };
@@ -190,6 +194,11 @@
 		AE6DF6CE16F0CB5900011459 /* main_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn_pressed@2x.png"; sourceTree = "<group>"; };
 		AE6DF6CF16F0CB5900011459 /* main_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_btn.png; sourceTree = "<group>"; };
 		AE6DF6D016F0CB5900011459 /* main_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn@2x.png"; sourceTree = "<group>"; };
+		AE8C0AD116F1C8B40084A808 /* equify_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = equify_logo.png; sourceTree = "<group>"; };
+		AE8C0AD216F1C8B40084A808 /* equify_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "equify_logo@2x.png"; sourceTree = "<group>"; };
+		AE8C0ADB16F1D4C90084A808 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		AE8C0ADC16F1D4C90084A808 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AECBA44A16F066C4008D36D0 /* box_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box_bg.png; sourceTree = "<group>"; };
 		AECBA44B16F066C4008D36D0 /* box_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box_bg@2x.png"; sourceTree = "<group>"; };
 		AECBA45216F073D0008D36D0 /* StopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatch.h; sourceTree = "<group>"; };
@@ -205,6 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE8C0ADF16F1D7900084A808 /* SystemConfiguration.framework in Frameworks */,
 				0591869C16EE1F3A00FF9881 /* CoreData.framework in Frameworks */,
 				05192B8E16CB8427002F9529 /* StoreKit.framework in Frameworks */,
 				05192B8C16CB8415002F9529 /* QuartzCore.framework in Frameworks */,
@@ -231,6 +241,7 @@
 		05192B5716CB83F5002F9529 = {
 			isa = PBXGroup;
 			children = (
+				AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */,
 				055C906916EF2303002BD042 /* EQModel.xcdatamodeld */,
 				05192B6916CB83F5002F9529 /* Equify */,
 				05192B6216CB83F5002F9529 /* Frameworks */,
@@ -436,6 +447,8 @@
 			isa = PBXGroup;
 			children = (
 				05C05B2316F1D03000913437 /* stats_screen */,
+				AE8C0AD116F1C8B40084A808 /* equify_logo.png */,
+				AE8C0AD216F1C8B40084A808 /* equify_logo@2x.png */,
 				AE6DF6C916F0CB5900011459 /* game_center_btn_pressed.png */,
 				AE6DF6CA16F0CB5900011459 /* game_center_btn_pressed@2x.png */,
 				AE6DF6CB16F0CB5900011459 /* game_center_btn.png */,
@@ -456,6 +469,8 @@
 		AECBA45116F07382008D36D0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AE8C0ADB16F1D4C90084A808 /* Reachability.h */,
+				AE8C0ADC16F1D4C90084A808 /* Reachability.m */,
 				AECBA45216F073D0008D36D0 /* StopWatch.h */,
 				AECBA45316F073D0008D36D0 /* StopWatch.m */,
 				AECBA45516F073FA008D36D0 /* TypeDefs.h */,
@@ -559,6 +574,8 @@
 				05C05B2B16F1D05100913437 /* close_btn@2x.png in Resources */,
 				05C05B2E16F1EFB400913437 /* dashed_border.png in Resources */,
 				05C05B2F16F1EFB400913437 /* dashed_border@2x.png in Resources */,
+				AE8C0AD316F1C8B50084A808 /* equify_logo.png in Resources */,
+				AE8C0AD416F1C8B50084A808 /* equify_logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +613,7 @@
 				05060C7416F0A4A800EBBD84 /* EQMetadata.m in Sources */,
 				05060C7B16F0C63000EBBD84 /* GameCenterManager.m in Sources */,
 				05C05B1816F1C02A00913437 /* EQStatsViewController.m in Sources */,
+				AE8C0ADD16F1D4C90084A808 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

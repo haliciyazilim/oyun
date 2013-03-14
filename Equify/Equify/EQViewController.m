@@ -21,8 +21,10 @@
     // neccessary UIViews
     UIView *mainView;
     UIView * buttonsView;
+    UIViewController * tempVC;
     
     float btnSize;
+    float btnGCSize;
     float btnShadowSize;
     float buttonsViewHeight;
     float buttonsViewWidth;
@@ -35,6 +37,8 @@
     
     
     btnSize=[UIImage imageNamed:@"main_btn.png"].size.width;
+    btnGCSize=[UIImage imageNamed:@"game_center_btn.png"].size.width;
+
     btnShadowSize=110.0;
     buttonsViewHeight=204;
     buttonsViewWidth=404;
@@ -47,19 +51,26 @@
     }
     
     float screenWidth=[[UIScreen mainScreen] bounds].size.height;
+    UIImage * logo=[UIImage imageNamed:@"equify_logo.png"];
+    UIImageView * logoView=[[UIImageView alloc] initWithImage:logo];
+    logoView.frame=CGRectMake(20, 20, logo.size.width, logo.size.height);
+    
+    [self.view addSubview:logoView];
+    
     buttonsView=[[UIView alloc] initWithFrame:CGRectMake((screenWidth-buttonsViewWidth)/2, 100, buttonsViewWidth, buttonsViewHeight)];
-    buttonsView.backgroundColor=[UIColor yellowColor];
+//    buttonsView.backgroundColor=[UIColor yellowColor];
     [self.view addSubview:buttonsView];
     
-        
-    UIButton * btnStartGame=[self makeButton:CGRectMake(0, 50, btnSize, btnSize) title:@"start\ngame"];
+     UIButton * btnGameSettings=[self makeButton:CGRectMake(0, 50, btnSize, btnSize) title:@"game\nsettings"];
     
-    UIButton * btnGameSettings=[self makeButton:CGRectMake(btnSize*1.5, 0, btnSize, btnSize) title:@"game\nsettings"];
+    UIButton * btnStartGame=[self makeButton:CGRectMake((buttonsViewWidth-btnSize)/2, 0, btnSize, btnSize) title:@"start\ngame"];
+    [btnStartGame addTarget:self action:@selector(startNewGame:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * btnUserStats=[self makeButton:CGRectMake(btnSize*2, 50, btnSize, btnSize) title:@"user\nstaats"];
+    UIButton * btnUserStats=[self makeButton:CGRectMake(buttonsViewWidth-btnSize, 50, btnSize, btnSize) title:@"user\nstaats"];
     [btnUserStats addTarget:self action:@selector(openStats) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * btnGameCenter=[self makeGameCenterButton:CGRectMake(300, 150, 59, 59)];
+    UIButton * btnGameCenter=[self makeGameCenterButton:CGRectMake((buttonsViewWidth-btnGCSize)/2, buttonsViewHeight-btnGCSize, btnGCSize, btnGCSize)];
+    [btnGameCenter addTarget:self action:@selector(showGameCenter) forControlEvents:UIControlEventTouchUpInside];
     
     [buttonsView addSubview:btnStartGame];
     [buttonsView addSubview:btnGameSettings];
@@ -132,6 +143,56 @@
     button.titleLabel.textColor=[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0];
 }
 
+- (IBAction)startNewGame:(id)sender {
+    [self performSegueWithIdentifier:@"GameStartSegue" sender:self];
+}
+
+-(void)openStats{
+    [self performSegueWithIdentifier:@"StatsSegue" sender:self];
+}
+
+- (void) showGameCenter
+{
+    if(!self.reachability)
+        self.reachability = [Reachability reachabilityForInternetConnection];
+    
+    NetworkStatus netStatus = [self.reachability currentReachabilityStatus];
+    
+    if(netStatus == NotReachable){
+        UIAlertView *noConnection = [[UIAlertView alloc] initWithTitle:@""
+                                                                message:NSLocalizedString(@"CONNECTION_ERROR", nil)
+                                                                delegate:self
+                                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                                otherButtonTitles:nil,nil];
+        [noConnection show];
+    }
+    else{
+        GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+        if (gameCenterController != nil){
+            gameCenterController.gameCenterDelegate = self;
+            [self presentViewController:gameCenterController animated:YES completion:nil];
+        }
+    }
+}
+
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"GameStartSegue"]) {
+        //
+        EQGameViewController *eqGameViewController = [segue destinationViewController];
+        [eqGameViewController setCurrentQuestion:[EQQuestion getNextQuestion]];
+    }
+    else if ([segue.identifier isEqualToString:@"StatsSegue"]) {
+        EQStatsViewController *eqStatsViewController = [segue destinationViewController];
+        [eqStatsViewController setCurrentStatistics:[EQStatistic getStatistics]];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -140,23 +201,5 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-}
-- (IBAction)startNewGame:(id)sender {
-    [self performSegueWithIdentifier:@"GameStartSegue" sender:self];
-}
-
--(void)openStats{
-    [self performSegueWithIdentifier:@"StatsSegue" sender:self];
-}
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"GameStartSegue"]) {
-        //
-        EQGameViewController *eqGameViewController = [segue destinationViewController];
-        [eqGameViewController setCurrentQuestion:[EQQuestion getNextQuestion]];
-    }
-else if ([segue.identifier isEqualToString:@"StatsSegue"]) {
-    EQStatsViewController *eqStatsViewController = [segue destinationViewController];
-    [eqStatsViewController setCurrentStatistics:[EQStatistic getStatistics]];
-    }
 }
 @end
