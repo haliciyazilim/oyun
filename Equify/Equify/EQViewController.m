@@ -21,7 +21,6 @@
     // neccessary UIViews
     UIView *mainView;
     UIView * buttonsView;
-    UIViewController * tempVC;
     
     float btnSize;
     float btnGCSize;
@@ -30,6 +29,13 @@
     float buttonsViewWidth;
 }
 
+-(float) btnSize{
+    return [UIImage imageNamed:@"main_btn.png"].size.width;
+}
+
+-(float) btnGCSize{
+    return [UIImage imageNamed:@"game_center_btn.png"].size.width;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
