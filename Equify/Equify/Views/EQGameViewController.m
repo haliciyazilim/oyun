@@ -81,10 +81,10 @@
     leftAndRightViewSpace=50;
     if(questionViewLeftSide==nil){
         questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
-        questionViewLeftSide.backgroundColor=[UIColor greenColor];
+//        questionViewLeftSide.backgroundColor=[UIColor greenColor];
     
         questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
-        questionViewRightSide.backgroundColor=[UIColor yellowColor];
+//        questionViewRightSide.backgroundColor=[UIColor yellowColor];
 
         [_QuestionView addSubview:questionViewLeftSide];
         [_QuestionView addSubview:questionViewRightSide];
@@ -221,6 +221,9 @@
     [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds]];
     NSLog(@"Answer is correct");
     
+    [self.navigationController popViewControllerAnimated:YES];
+
+    
 }
 
 -(void)skipQuestion{
@@ -229,6 +232,8 @@
     [self.stopWatch resetTimer];
     [self configureViews];
 }
+
+
 
 - (void)viewDidUnload {
     [self setStopWatchLabel:nil];

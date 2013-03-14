@@ -12,6 +12,7 @@
 #import "StopWatch.h"
 #import "EQStatistic.h"
 #import "EQScore.h"
+#import "EQViewController.h"
 
 @interface EQGameViewController : UIViewController
 
