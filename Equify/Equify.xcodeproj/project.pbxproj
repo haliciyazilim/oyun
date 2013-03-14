@@ -61,6 +61,14 @@
 		059186CF16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059186CE16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard */; };
 		059186D116EE290500FF9881 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059186D016EE290500FF9881 /* MainStoryboard_iPad.storyboard */; };
 		05C05B1816F1C02A00913437 /* EQStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C05B1716F1C02A00913437 /* EQStatsViewController.m */; };
+		AE6DF6D116F0CB5900011459 /* game_center_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6C916F0CB5900011459 /* game_center_btn_pressed.png */; };
+		AE6DF6D216F0CB5900011459 /* game_center_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CA16F0CB5900011459 /* game_center_btn_pressed@2x.png */; };
+		AE6DF6D316F0CB5900011459 /* game_center_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CB16F0CB5900011459 /* game_center_btn.png */; };
+		AE6DF6D416F0CB5900011459 /* game_center_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CC16F0CB5900011459 /* game_center_btn@2x.png */; };
+		AE6DF6D516F0CB5900011459 /* main_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CD16F0CB5900011459 /* main_btn_pressed.png */; };
+		AE6DF6D616F0CB5900011459 /* main_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CE16F0CB5900011459 /* main_btn_pressed@2x.png */; };
+		AE6DF6D716F0CB5900011459 /* main_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CF16F0CB5900011459 /* main_btn.png */; };
+		AE6DF6D816F0CB5900011459 /* main_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6D016F0CB5900011459 /* main_btn@2x.png */; };
 		AECBA44C16F066C4008D36D0 /* box_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AECBA44A16F066C4008D36D0 /* box_bg.png */; };
 		AECBA44D16F066C4008D36D0 /* box_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AECBA44B16F066C4008D36D0 /* box_bg@2x.png */; };
 		AECBA45416F073D0008D36D0 /* StopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = AECBA45316F073D0008D36D0 /* StopWatch.m */; };
@@ -155,6 +163,14 @@
 		05C05B1616F1C02A00913437 /* EQStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQStatsViewController.h; sourceTree = "<group>"; };
 		05C05B1716F1C02A00913437 /* EQStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQStatsViewController.m; sourceTree = "<group>"; };
 		05F0CA4116CB98090063E0A8 /* EQAppSpecificViewSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQAppSpecificViewSizes.h; sourceTree = "<group>"; };
+		AE6DF6C916F0CB5900011459 /* game_center_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_center_btn_pressed.png; sourceTree = "<group>"; };
+		AE6DF6CA16F0CB5900011459 /* game_center_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_center_btn_pressed@2x.png"; sourceTree = "<group>"; };
+		AE6DF6CB16F0CB5900011459 /* game_center_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_center_btn.png; sourceTree = "<group>"; };
+		AE6DF6CC16F0CB5900011459 /* game_center_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_center_btn@2x.png"; sourceTree = "<group>"; };
+		AE6DF6CD16F0CB5900011459 /* main_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_btn_pressed.png; sourceTree = "<group>"; };
+		AE6DF6CE16F0CB5900011459 /* main_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn_pressed@2x.png"; sourceTree = "<group>"; };
+		AE6DF6CF16F0CB5900011459 /* main_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_btn.png; sourceTree = "<group>"; };
+		AE6DF6D016F0CB5900011459 /* main_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_btn@2x.png"; sourceTree = "<group>"; };
 		AECBA44A16F066C4008D36D0 /* box_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box_bg.png; sourceTree = "<group>"; };
 		AECBA44B16F066C4008D36D0 /* box_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box_bg@2x.png"; sourceTree = "<group>"; };
 		AECBA45216F073D0008D36D0 /* StopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopWatch.h; sourceTree = "<group>"; };
@@ -384,6 +400,14 @@
 		AECBA44916F06637008D36D0 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AE6DF6C916F0CB5900011459 /* game_center_btn_pressed.png */,
+				AE6DF6CA16F0CB5900011459 /* game_center_btn_pressed@2x.png */,
+				AE6DF6CB16F0CB5900011459 /* game_center_btn.png */,
+				AE6DF6CC16F0CB5900011459 /* game_center_btn@2x.png */,
+				AE6DF6CD16F0CB5900011459 /* main_btn_pressed.png */,
+				AE6DF6CE16F0CB5900011459 /* main_btn_pressed@2x.png */,
+				AE6DF6CF16F0CB5900011459 /* main_btn.png */,
+				AE6DF6D016F0CB5900011459 /* main_btn@2x.png */,
 				AECBA45616F07B96008D36D0 /* game_bg-568h@2x.png */,
 				AECBA45716F07B96008D36D0 /* game_bg.png */,
 				AECBA45816F07B96008D36D0 /* game_bg@2x.png */,
@@ -481,6 +505,14 @@
 				AECBA45916F07B96008D36D0 /* game_bg-568h@2x.png in Resources */,
 				AECBA45A16F07B96008D36D0 /* game_bg.png in Resources */,
 				AECBA45B16F07B96008D36D0 /* game_bg@2x.png in Resources */,
+				AE6DF6D116F0CB5900011459 /* game_center_btn_pressed.png in Resources */,
+				AE6DF6D216F0CB5900011459 /* game_center_btn_pressed@2x.png in Resources */,
+				AE6DF6D316F0CB5900011459 /* game_center_btn.png in Resources */,
+				AE6DF6D416F0CB5900011459 /* game_center_btn@2x.png in Resources */,
+				AE6DF6D516F0CB5900011459 /* main_btn_pressed.png in Resources */,
+				AE6DF6D616F0CB5900011459 /* main_btn_pressed@2x.png in Resources */,
+				AE6DF6D716F0CB5900011459 /* main_btn.png in Resources */,
+				AE6DF6D816F0CB5900011459 /* main_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
