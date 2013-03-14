@@ -167,6 +167,8 @@
     [statsMainView addSubview:allTimeAverage];
     
     [self.view addSubview:statsMainView];
+    
+    [self configureViews];
 }
 - (void) closeStats {
     [self.navigationController popViewControllerAnimated:YES];
@@ -183,6 +185,25 @@
 }
 
 - (void) configureViews {
-    [bestTime setText:[StopWatch textWithMiliseconds:self.currentStatistics.minTime]];
+    if (self.currentStatistics.minTime == INT32_MAX) {
+        [bestTime setText:@"-"];
+    } else {
+        [bestTime setText:[StopWatch textWithMiliseconds:self.currentStatistics.minTime]];
+    }
+    if (self.currentStatistics.maxTime == INT32_MIN) {
+        [worstTime setText:@"-"];
+    } else {
+        [worstTime setText:[StopWatch textWithMiliseconds:self.currentStatistics.maxTime]];
+    }
+    [totalSolved setText:[NSString stringWithFormat:@"%d",self.currentStatistics.totalSolvedQuestion]];
+    [totalSkipped setText:[NSString stringWithFormat:@"%d",self.currentStatistics.totalSkippedQuestion]];
+    if (self.currentStatistics.allTimeAverage == 0) {
+        [average setText:@"-"];
+        [allTimeAverage setText:@"-"];
+    } else {
+        [average setText:[StopWatch textWithMiliseconds:self.currentStatistics.allTimeAverage]];
+        [allTimeAverage setText:[StopWatch textWithMiliseconds:self.currentStatistics.allTimeAverage]];
+    }
+
 }
 @end
