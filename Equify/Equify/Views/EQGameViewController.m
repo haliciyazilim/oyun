@@ -13,14 +13,23 @@
 @end
 
 @implementation EQGameViewController{
-    int boxSize;
-    int boxSpace;
-    int leftAndRightViewSpace;
     
     UIView * questionViewLeftSide;
     UIView * questionViewRightSide;
+    
+    NSMutableArray *counterImages;
+    int moveCount;
+    int deleteCount;
 }
-
+-(int)boxSize{
+    return 48;
+}
+-(int)boxSpace{
+    return 10;
+}
+-(int) leftAndRightViewSpace{
+    return 50;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,15 +40,20 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+
+-(void) setBackground{
     if([[UIScreen mainScreen] bounds].size.height == 568){
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
     }
     else{
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
     }
+}
+
+- (void)viewDidLoad
+{
     
+    [self setBackground];
     
     [self.stopWatchLabel setText:@"00:00"];
     [self.stopWatchLabel setTextColor:[UIColor colorWithRed:0.403 green:0.403 blue:0.403 alpha:1.0]];
@@ -76,14 +90,12 @@
 }
 
 -(void) configureViews{
-    boxSize=48;
-    boxSpace=10;
-    leftAndRightViewSpace=50;
+    
     if(questionViewLeftSide==nil){
-        questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
+        questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, [self boxSize])];
 //        questionViewLeftSide.backgroundColor=[UIColor greenColor];
     
-        questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
+        questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, [self boxSize])];
 //        questionViewRightSide.backgroundColor=[UIColor yellowColor];
 
         [_QuestionView addSubview:questionViewLeftSide];
@@ -95,10 +107,10 @@
         questionViewLeftSide=nil;
         questionViewRightSide=nil;
         
-        questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
+        questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, [self boxSize])];
 //        questionViewLeftSide.backgroundColor=[UIColor greenColor];
         
-        questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, boxSize)];
+        questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, [self boxSize])];
 //        questionViewRightSide.backgroundColor=[UIColor yellowColor];
         
         [_QuestionView addSubview:questionViewLeftSide];
@@ -106,6 +118,19 @@
     }
     [self placingBoxes];
 //    NSLog(@"Question %i", [_currentQuestion questionId]);
+    
+    deleteCount = 0;
+    moveCount = [[self.currentQuestion wholeQuestion] length] - [[self.currentQuestion answer] length];
+    NSLog(@"MoveCount: %i", moveCount);
+    if (!counterImages) {
+        counterImages = [[NSMutableArray alloc] initWithCapacity:3];
+        for (int i = 0; i < moveCount; i++) {
+            UIImageView *count = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete_counter.png"]];
+            count.frame = CGRectMake(25.0+6.0*i, 280.0, 6.0, 18.0);
+            [counterImages addObject:count];
+            [self.view addSubview:count];
+        }
+    }
 }
 
 -(void)placingBoxes{
@@ -123,23 +148,23 @@
             isRightSide=YES;
             leftSideCount=i;
 //            NSLog(@"View: %f, subview %i",_QuestionView.frame.size.width,(boxSize+boxSpace)*i);
-            questionViewLeftSide.frame=CGRectMake(((self.view.frame.size.width-(boxSize+boxSpace)*i)+boxSpace)/2, 0, (boxSize+boxSpace)*i-boxSpace, boxSize);
+            questionViewLeftSide.frame=CGRectMake(((self.view.frame.size.width-([self boxSize]+[self boxSpace])*i)+[self boxSpace])/2, 0, ([self boxSize]+[self boxSpace])*i-[self boxSpace], [self boxSize]);
             
             continue;
         }
         if (!isRightSide) {
-            EQBox * box=[EQBox BoxWithFrame:CGRectMake((boxSize+boxSpace)*i, 0, boxSize, boxSize) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
+            EQBox * box=[EQBox BoxWithFrame:CGRectMake(([self boxSize]+[self boxSpace])*i, 0, [self boxSize], [self boxSize]) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
             box.caller=self;
             [questionViewLeftSide addSubview:box.boxButton];
         }
         else if(isRightSide){
             //NSLog(@"LeftSideCount:  %i",leftSideCount);
-            EQBox * box=[EQBox BoxWithFrame:CGRectMake((boxSize+boxSpace)*(i-leftSideCount-1), 0, boxSize, boxSize) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
+            EQBox * box=[EQBox BoxWithFrame:CGRectMake(([self boxSize]+[self boxSpace])*(i-leftSideCount-1), 0, [self boxSize], [self boxSize]) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
             box.caller=self;
             [questionViewRightSide addSubview:box.boxButton];
             
             if(_currentQuestion.questionArray.count-1==i){
-                questionViewRightSide.frame=CGRectMake(((self.view.frame.size.width-(boxSize+boxSpace)*(i-leftSideCount)+boxSpace))/2, questionViewLeftSide.frame.size.height+leftAndRightViewSpace, (boxSize+boxSpace)*(i-leftSideCount)-boxSpace, boxSize);
+                questionViewRightSide.frame=CGRectMake(((self.view.frame.size.width-([self boxSize]+[self boxSpace])*(i-leftSideCount)+[self boxSpace]))/2, questionViewLeftSide.frame.size.height+[self leftAndRightViewSpace], ([self boxSize]+[self boxSpace])*(i-leftSideCount)-[self boxSpace], [self boxSize]);
             }
         }
         
@@ -152,10 +177,17 @@
     NSLog(@"%@",box);
     
     if(!box.isDeleted){
-        [box deleteBox];    
+        if (deleteCount != moveCount) {
+            [box deleteBox];
+            [[counterImages objectAtIndex:[counterImages count]-1-deleteCount] setAlpha:0.0];
+            deleteCount++;
+        }
     }
-    else
+    else{
         [box resetBox];
+        [[counterImages objectAtIndex:[counterImages count]-deleteCount] setAlpha:1.0];
+        deleteCount--;
+    }
     
 }
 
