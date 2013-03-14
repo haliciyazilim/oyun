@@ -8,6 +8,7 @@
 
 #import "EQStatsViewController.h"
 #import "StopWatch.h"
+#import "EQScore.h"
 
 @interface EQStatsViewController ()
 
@@ -197,11 +198,18 @@
     }
     [totalSolved setText:[NSString stringWithFormat:@"%d",self.currentStatistics.totalSolvedQuestion]];
     [totalSkipped setText:[NSString stringWithFormat:@"%d",self.currentStatistics.totalSkippedQuestion]];
-    if (self.currentStatistics.allTimeAverage == 0) {
+    
+    int lastAverage = [EQScore getAverage];
+    NSLog(@"lastAverage: %d",lastAverage);
+    if (lastAverage == -1) {
         [average setText:@"-"];
+    } else {
+        [average setText:[StopWatch textWithMiliseconds:lastAverage]];
+    }
+    
+    if (self.currentStatistics.allTimeAverage == 0) {
         [allTimeAverage setText:@"-"];
     } else {
-        [average setText:[StopWatch textWithMiliseconds:self.currentStatistics.allTimeAverage]];
         [allTimeAverage setText:[StopWatch textWithMiliseconds:self.currentStatistics.allTimeAverage]];
     }
 
