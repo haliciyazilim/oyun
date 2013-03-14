@@ -60,6 +60,7 @@
 		059186CD16EE215300FF9881 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186C116EE215300FF9881 /* SBJsonWriter.m */; };
 		059186CF16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059186CE16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard */; };
 		059186D116EE290500FF9881 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059186D016EE290500FF9881 /* MainStoryboard_iPad.storyboard */; };
+		05C05B1816F1C02A00913437 /* EQStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C05B1716F1C02A00913437 /* EQStatsViewController.m */; };
 		AECBA44C16F066C4008D36D0 /* box_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AECBA44A16F066C4008D36D0 /* box_bg.png */; };
 		AECBA44D16F066C4008D36D0 /* box_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AECBA44B16F066C4008D36D0 /* box_bg@2x.png */; };
 		AECBA45416F073D0008D36D0 /* StopWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = AECBA45316F073D0008D36D0 /* StopWatch.m */; };
@@ -151,6 +152,8 @@
 		059186C116EE215300FF9881 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		059186CE16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		059186D016EE290500FF9881 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPad.storyboard; path = ../MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		05C05B1616F1C02A00913437 /* EQStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQStatsViewController.h; sourceTree = "<group>"; };
+		05C05B1716F1C02A00913437 /* EQStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQStatsViewController.m; sourceTree = "<group>"; };
 		05F0CA4116CB98090063E0A8 /* EQAppSpecificViewSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQAppSpecificViewSizes.h; sourceTree = "<group>"; };
 		AECBA44A16F066C4008D36D0 /* box_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box_bg.png; sourceTree = "<group>"; };
 		AECBA44B16F066C4008D36D0 /* box_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box_bg@2x.png"; sourceTree = "<group>"; };
@@ -372,6 +375,8 @@
 				05192B7C16CB83F5002F9529 /* EQViewController.m */,
 				055C905A16EF1E8C002BD042 /* EQGameViewController.h */,
 				055C905B16EF1E8C002BD042 /* EQGameViewController.m */,
+				05C05B1616F1C02A00913437 /* EQStatsViewController.h */,
+				05C05B1716F1C02A00913437 /* EQStatsViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -512,6 +517,7 @@
 				055C909216EF7A2D002BD042 /* EQScore.m in Sources */,
 				05060C7416F0A4A800EBBD84 /* EQMetadata.m in Sources */,
 				05060C7B16F0C63000EBBD84 /* GameCenterManager.m in Sources */,
+				05C05B1816F1C02A00913437 /* EQStatsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

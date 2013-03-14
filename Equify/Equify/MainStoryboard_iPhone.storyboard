@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LKR-CC-R5N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LKR-CC-R5N">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--Stats View Controller-->
+        <scene sceneID="Vh5-mN-I0b">
+            <objects>
+                <viewController id="LcH-bP-yaW" customClass="EQStatsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aAA-vh-IIQ">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iw9-LV-O4c"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fLf-Xg-YDP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="523"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="Sjx-G8-401">
             <objects>
@@ -42,11 +60,12 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <segue destination="Rzb-FY-nll" kind="push" identifier="GameStartSegue" id="UqR-4T-U2h"/>
+                        <segue destination="LcH-bP-yaW" kind="push" identifier="StatsSegue" id="9FJ-Om-NUr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nrX-vl-Rwm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="57" y="270"/>
+            <point key="canvasLocation" x="62" y="254"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nqp-yf-8M3">
@@ -64,7 +83,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bmF-o1-5Ye" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-289" y="-165"/>
+            <point key="canvasLocation" x="-657" y="254"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="i8l-FO-yXZ">
@@ -145,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WKU-s3-CDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="776" y="270"/>
+            <point key="canvasLocation" x="754" y="-146"/>
         </scene>
     </scenes>
     <classes>
@@ -158,6 +177,9 @@
                 <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="stopWatchLabelMS" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="EQStatsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQStatsViewController.h"/>
         </class>
         <class className="EQViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EQViewController.h"/>
