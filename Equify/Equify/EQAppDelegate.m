@@ -7,24 +7,21 @@
 //
 
 #import "EQAppDelegate.h"
-
-#import "EQViewController.h"
+#import "EQBundleInitializer.h"
+#import "EQDatabaseManager.h"
+#import "GameCenterManager.h"
 
 @implementation EQAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-//        self.viewController = [[EQViewController alloc] initWithNibName:@"EQViewController_iPhone" bundle:nil];
-        self.viewController = [[EQViewController alloc] init];
-    } else {
-//        self.viewController = [[EQViewController alloc] initWithNibName:@"EQViewController_iPad" bundle:nil];
-        self.viewController = [[EQViewController alloc] init];
+    if([[EQDatabaseManager sharedInstance] isEmpty]){
+        [EQBundleInitializer initializeBundle];
     }
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+    
+    [[GameCenterManager sharedInstance] authenticateLocalUser];
+    
+//    [self.window makeKeyAndVisible];
     return YES;
 }
 -(BOOL)shouldAutorotate

@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  Equify
+
+  Created by Alperen Kavun on 14.03.2013.
+  Copyright (c) 2013 Halıcı. All rights reserved.
+*/
+
+// stats screen
+"STATS" = "kullanıcı istatistikleri";
+"MIN_TIME" = "en iyi süre";
+"MAX_TIME"  = "en kötü süre";
+"TOTAL_SOLVED_COUNT" = "çözülen toplam soru";
+"TOTAL_SKIP_COUNT" = "geçilen toplam soru";
+"AVERAGE" = "son onbeş ortalama";
+"ALLTIME_AVERAGE" = "genel ortalama";
