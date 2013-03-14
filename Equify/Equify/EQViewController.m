@@ -10,6 +10,7 @@
 #import "EQGameViewController.h"
 #import "EQQuestion.h"
 #import "EQAppSpecificViewSizes.h"
+#import "EQStatsViewController.h"
 
 @interface EQViewController ()
 
