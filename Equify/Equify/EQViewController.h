@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
+#import "Reachability.h"
 
-@interface EQViewController : UIViewController
+@interface EQViewController : UIViewController <GKGameCenterControllerDelegate>
+
+@property (strong, nonatomic) Reachability *reachability;
 
 - (IBAction)startNewGame:(id)sender;
 
