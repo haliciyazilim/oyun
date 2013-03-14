@@ -180,8 +180,8 @@
 		05C05B1716F1C02A00913437 /* EQStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQStatsViewController.m; sourceTree = "<group>"; };
 		05C05B1916F1CB0300913437 /* HelveticaNeueLTPro-Md.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeueLTPro-Md.otf"; sourceTree = "<group>"; };
 		05C05B1A16F1CB0300913437 /* HelveticaNeueLTPro-Th.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeueLTPro-Th.otf"; sourceTree = "<group>"; };
-		05C05B2016F1CD2000913437 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		05C05B2216F1CD8A00913437 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05C05B2016F1CD2000913437 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05C05B2216F1CD8A00913437 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05C05B2416F1D05100913437 /* close_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_btn_pressed.png; sourceTree = "<group>"; };
 		05C05B2516F1D05100913437 /* close_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_btn_pressed@2x.png"; sourceTree = "<group>"; };
 		05C05B2616F1D05100913437 /* close_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_btn.png; sourceTree = "<group>"; };
@@ -250,7 +250,6 @@
 		05192B5716CB83F5002F9529 = {
 			isa = PBXGroup;
 			children = (
-				AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */,
 				055C906916EF2303002BD042 /* EQModel.xcdatamodeld */,
 				05192B6916CB83F5002F9529 /* Equify */,
 				05192B6216CB83F5002F9529 /* Frameworks */,
@@ -269,6 +268,7 @@
 		05192B6216CB83F5002F9529 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */,
 				0591869B16EE1F3A00FF9881 /* CoreData.framework */,
 				05192B8D16CB8427002F9529 /* StoreKit.framework */,
 				05192B8B16CB8415002F9529 /* QuartzCore.framework */,
