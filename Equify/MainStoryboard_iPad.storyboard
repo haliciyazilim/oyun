@@ -1,9 +1,181 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2519" systemVersion="12A206j" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="XtN-vf-XIw">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1856"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Qipad Stats View Controller-->
+        <scene sceneID="qyd-In-JAo">
+            <objects>
+                <viewController id="eb5-8Y-oUQ" customClass="EQipadStatsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Vz-uO-Yxg">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="G0X-Sa-Y5L"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wjN-Mn-T0l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1190" y="731"/>
+        </scene>
+        <!--Qipad View Controller-->
+        <scene sceneID="TAF-en-pOd">
+            <objects>
+                <viewController id="jwV-KO-3xd" customClass="EQipadViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SeW-Zo-VZU">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dpz-Yy-28n"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <segue destination="ODG-rC-Dxy" kind="push" identifier="GameStartSegue" id="VDP-x9-Cu2"/>
+                        <segue destination="eb5-8Y-oUQ" kind="push" identifier="StatsSegue" id="Ua2-x2-BRw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ak-wb-wo7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-202" y="254"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qdy-KN-OgA">
+            <objects>
+                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="XtN-vf-XIw" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tGE-Kc-QBw">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jwV-KO-3xd" kind="relationship" relationship="rootViewController" id="UXz-yr-JhU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JRe-vB-MXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1457" y="254"/>
+        </scene>
+        <!--Qipad Game View Controller-->
+        <scene sceneID="xMw-VD-Vp8">
+            <objects>
+                <viewController id="ODG-rC-Dxy" customClass="EQipadGameViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Axm-K9-N29">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="StopWatch" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gr4-85-nke">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="MGn-NE-DuM"/>
+                                    <constraint firstAttribute="width" constant="78" id="gf8-TP-8aI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ioi-Ho-5rv">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNI-ZL-zhr"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6l-5d-Mnd">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="umJ-zt-HSH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRO-JS-fTz">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gr4-85-nke" firstAttribute="leading" secondItem="Axm-K9-N29" secondAttribute="leading" constant="31" id="90a-vA-gEk"/>
+                            <constraint firstItem="z6l-5d-Mnd" firstAttribute="baseline" secondItem="gr4-85-nke" secondAttribute="baseline" type="default" id="9lh-VY-aPu"/>
+                            <constraint firstItem="PNI-ZL-zhr" firstAttribute="centerY" secondItem="Axm-K9-N29" secondAttribute="centerY" type="default" id="Bh2-OI-l6d"/>
+                            <constraint firstItem="PNI-ZL-zhr" firstAttribute="centerX" secondItem="Ioi-Ho-5rv" secondAttribute="centerX" type="default" id="G0w-hT-MHe"/>
+                            <constraint firstAttribute="bottom" secondItem="zRO-JS-fTz" secondAttribute="bottom" constant="26" id="GdO-pY-5Sr"/>
+                            <constraint firstItem="zRO-JS-fTz" firstAttribute="baseline" secondItem="Ioi-Ho-5rv" secondAttribute="baseline" type="default" id="Nky-4E-u5z"/>
+                            <constraint firstItem="z6l-5d-Mnd" firstAttribute="top" secondItem="gr4-85-nke" secondAttribute="top" type="default" id="PzG-R3-qHp"/>
+                            <constraint firstItem="PNI-ZL-zhr" firstAttribute="leading" secondItem="Axm-K9-N29" secondAttribute="leading" type="default" id="REB-W6-rEJ"/>
+                            <constraint firstItem="z6l-5d-Mnd" firstAttribute="leading" secondItem="Axm-K9-N29" secondAttribute="leading" constant="68" id="RHv-Sr-nCr"/>
+                            <constraint firstItem="PNI-ZL-zhr" firstAttribute="trailing" secondItem="Axm-K9-N29" secondAttribute="trailing" type="default" id="UxX-Ip-KRe"/>
+                            <constraint firstItem="PNI-ZL-zhr" firstAttribute="top" secondItem="Axm-K9-N29" secondAttribute="top" constant="80" id="og2-Gc-Jzm"/>
+                            <constraint firstItem="gr4-85-nke" firstAttribute="top" secondItem="Axm-K9-N29" secondAttribute="top" constant="37" id="qTl-jw-Z4A"/>
+                            <constraint firstAttribute="trailing" secondItem="zRO-JS-fTz" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="vGG-O2-hsb"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="v7b-nK-X7Y"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="QuestionView" destination="PNI-ZL-zhr" id="ej0-0C-eKD"/>
+                        <outlet property="btnControl" destination="Ioi-Ho-5rv" id="QC6-hH-Hh1"/>
+                        <outlet property="btnSkip" destination="zRO-JS-fTz" id="KJz-e8-Zs1"/>
+                        <outlet property="stopWatchLabel" destination="gr4-85-nke" id="Pxd-9X-Ifd"/>
+                        <outlet property="stopWatchLabelMS" destination="z6l-5d-Mnd" id="mQi-6h-CMV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uSD-K2-GR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1190" y="-238"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="EQGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQGameViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="QuestionView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="btnControl" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnSkip" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stopWatchLabelMS" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EQStatsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQStatsViewController.h"/>
+        </class>
+        <class className="EQViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="startNewGame:"/>
+            </relationships>
+        </class>
+        <class className="EQipadGameViewController" superclassName="EQGameViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQipadGameViewController.h"/>
+        </class>
+        <class className="EQipadStatsViewController" superclassName="EQStatsViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQipadStatsViewController.h"/>
+        </class>
+        <class className="EQipadViewController" superclassName="EQViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQipadViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
