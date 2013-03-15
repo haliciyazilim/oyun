@@ -72,27 +72,27 @@
     button = nil;
     
     button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:@"More Games" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(openMoreGames) forControlEvents:UIControlEventTouchUpInside];
+    [buttons addObject:button];
+    
+    button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"Restore Purchases" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(restorePurchases) forControlEvents:UIControlEventTouchUpInside];
     [buttons addObject:button];
     restoreButton = button;
     
-    button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setTitle:@"More Games" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(openMoreGames) forControlEvents:UIControlEventTouchUpInside];
-    [buttons addObject:button];
-    
     button = nil;
     
-    int index = 0;
+    int index = 1;
     CGSize buttonSize = [self getButtonSize];
     CGFloat margin = [self getMargin];
     for(UIButton* button in buttons){
         button.frame = CGRectMake(
-                          self.frame.size.width*0.5 - buttonSize.width*0.5,
-                          self.frame.size.height*0.5 - [buttons count]*(margin+buttonSize.height)*0.5 + margin*0.5 + index * (buttonSize.height+margin),
-                          buttonSize.width,
-                          buttonSize.height);
+                            self.frame.size.width*0.5 - buttonSize.width * (index == 1 ? 0.5 : index%2) + 30 * (index > 1?(index%2==0?+1:-1):0),
+                            self.frame.size.height*0.5 - ceil([buttons count]*0.5)*(margin+buttonSize.height)*0.5 + margin*0.5 + (index/2) * (buttonSize.height+margin),
+                            buttonSize.width,
+                            buttonSize.height);
         [self addSubview:button];
         [self stylizeButton:button];
         index++;
@@ -147,7 +147,7 @@
 
 - (CGFloat) getMargin
 {
-    return 10;
+    return 30;
 }
 
 - (void) closeSettings

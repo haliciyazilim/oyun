@@ -127,14 +127,37 @@
     [self setPositions];
     [self fillButtons];
     
-    closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [closeButton setImage:[UIImage imageNamed:@"cartman.png"] forState:UIControlStateNormal];
-    [closeButton addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
-    [closeButton setFrame:CGRectMake(self.frame.size.width - closeButtonSize.width, 0, closeButtonSize.width, closeButtonSize.height)];
-    [self addSubview:closeButton];
-    
+    [self appendCloseButton];
     [self presentButtonsWithAnimation];
     
+    
+}
+- (void) setLayoutParameters
+{
+    NSString* deviceModel = [[UIDevice currentDevice] model];
+    if([deviceModel rangeOfString:@"iPad"].length > 0){
+        gameViewSize = CGSizeMake(560, 400);
+        horizontalMargin = 160.0;
+        closeButtonSize  = CGSizeMake(40, 40);
+    }
+    else{
+        gameViewSize = CGSizeMake(280, 200);
+        horizontalMargin = 80.0;
+        closeButtonSize  = CGSizeMake(40, 30);
+    }
+    y = self.frame.size.height * 0.5 -  gameViewSize.height * 0.5;
+    x = self.frame.size.width * 0.5 -  gameViewSize.width * 0.5;
+    xConstant =  horizontalMargin +  gameViewSize.width;
+}
+
+- (void) appendCloseButton
+{
+    closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [closeButton setImage:[UIImage imageNamed:@"more_games_close_btn.png"] forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
+    [closeButton setFrame:CGRectMake(self.frame.size.width - closeButtonSize.width, 0, closeButtonSize.width, closeButtonSize.height)];
+    [closeButton setContentMode:UIViewContentModeCenter];
+    [self addSubview:closeButton];
     
 }
 
@@ -142,19 +165,19 @@
 {
     isAnimating = YES;
     
-    for(UIButton* button in @[leftLeftView,leftView,centerView,rightView,rightRightView]){
-        button.frame = CGRectMake(button.frame.origin.x, 0, button.frame.size.width, 0);
-    }
-    
+//    for(UIButton* button in @[leftLeftView,leftView,centerView,rightView,rightRightView]){
+//        button.frame = CGRectMake(button.frame.origin.x, 0, button.frame.size.width, 0);
+//    }
+    [self setAlpha:0.0];
     [UIView animateWithDuration:0.5 animations:^{
-        
-        [leftLeftView   setFrame:[self frameForIndex:-2]];
-        [leftView       setFrame:[self frameForIndex:-1]];
-        [centerView     setFrame:[self frameForIndex: 0]];
-        [rightView      setFrame:[self frameForIndex:+1]];
-        [rightRightView setFrame:[self frameForIndex:+2]];
-        leftLeftView.alpha = 1.0;
-        rightRightView.alpha = 1.0;
+        [self setAlpha:1.0];
+//        [leftLeftView   setFrame:[self frameForIndex:-2]];
+//        [leftView       setFrame:[self frameForIndex:-1]];
+//        [centerView     setFrame:[self frameForIndex: 0]];
+//        [rightView      setFrame:[self frameForIndex:+1]];
+//        [rightRightView setFrame:[self frameForIndex:+2]];
+//        leftLeftView.alpha = 1.0;
+//        rightRightView.alpha = 1.0;
     } completion:^(BOOL finished) {
         isAnimating = NO;
     }];
@@ -227,7 +250,12 @@
 
 -(void) closeView
 {
-    [self removeFromSuperview];
+    [UIView animateWithDuration:0.5 animations:^{
+        [self setAlpha:0.0];
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+        
+    }];
 }
 
 
@@ -432,23 +460,7 @@
 }
 
 
-- (void) setLayoutParameters
-{
-    NSString* deviceModel = [[UIDevice currentDevice] model];
-    if([deviceModel rangeOfString:@"iPad"].length > 0){
-        gameViewSize = CGSizeMake(560, 400);
-        horizontalMargin = 160.0;
-        closeButtonSize  = CGSizeMake(40, 30);
-    }
-    else{
-        gameViewSize = CGSizeMake(280, 200);
-        horizontalMargin = 80.0;
-        closeButtonSize  = CGSizeMake(40, 30);
-    }
-    y = self.frame.size.height * 0.5 -  gameViewSize.height * 0.5;
-    x = self.frame.size.width * 0.5 -  gameViewSize.width * 0.5;
-    xConstant =  horizontalMargin +  gameViewSize.width;
-}
+
 
 
 @end

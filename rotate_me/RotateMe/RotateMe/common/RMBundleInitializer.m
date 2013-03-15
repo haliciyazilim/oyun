@@ -53,7 +53,7 @@
     [RMBundleInitializer insertImages:imageNames forGallery:gallery];
     
     gallery = [Gallery createGalleryWithName:USER_GALLERY_NAME];
-    gallery.isPurchased = NO;
+    gallery.isPurchased = YES;
     [[RMDatabaseManager sharedInstance] saveContext];
 }
 
