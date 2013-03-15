@@ -47,107 +47,117 @@
     UIView *statsMainView = [[UIView alloc] initWithFrame:CGRectMake(25.0, 25.0, mainViewSize.height, mainViewSize.width)];
     [statsMainView setBackgroundColor:[UIColor clearColor]];
     
+    UIView *headerSingleLine = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, mainViewSize.height, 2.0)];
+    [headerSingleLine setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
+    
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, mainViewSize.height-10.0, 45.0)];
     [headerLabel setBackgroundColor:[UIColor clearColor]];
-    [headerLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-Th" size:34.0]];
+//    [headerLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-Th" size:34.0]];
+    [headerLabel setFont:[UIFont fontWithName:@"Helvetica" size:30.0]];
+    NSLog(@"%@", [UIFont fontNamesForFamilyName:@"Helvetica"]);
     [headerLabel setTextColor:[UIColor colorWithRed:0.463 green:0.365 blue:0.227 alpha:1.0]];
     [headerLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
     [headerLabel setShadowColor:[UIColor whiteColor]];
     [headerLabel setText:NSLocalizedString(@"STATS", nil)];
     
+    UIView *headerDoubleLine = [[UIView alloc] initWithFrame:CGRectMake(0.0, 45.0, mainViewSize.height, 3.0)];
+    [headerDoubleLine setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"double_line.png"]]];
+    
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeButton setBackgroundImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateNormal];
     [closeButton setBackgroundImage:[UIImage imageNamed:@"close_btn_pressed.png"] forState:UIControlStateHighlighted];
     [closeButton addTarget:self action:@selector(closeStats) forControlEvents:UIControlEventTouchUpInside];
-    closeButton.frame = CGRectMake(mainViewSize.height-40.0, 0.0, 35.0, 35.0);
+    closeButton.frame = CGRectMake(mainViewSize.height-45.0, 5.0, 35.0, 35.0);
     
-    UILabel *bestTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 40.0, 300.0, 40.0)];
+    UILabel *bestTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 45.0, 300.0, 40.0)];
     [bestTimeLabel setBackgroundColor:[UIColor clearColor]];
-    [bestTimeLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [bestTimeLabel setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [bestTimeLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [bestTimeLabel setText:NSLocalizedString(@"BEST_TIME", nil)];
     
-    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 80.0, mainViewSize.height, 2.0)];
+    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 85.0, mainViewSize.height, 2.0)];
     [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dashed_border.png"]]];
     
-    UILabel *worstTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 80.0, 300.0, 40.0)];
+    UILabel *worstTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 85.0, 300.0, 40.0)];
     [worstTimeLabel setBackgroundColor:[UIColor clearColor]];
-    [worstTimeLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [worstTimeLabel setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [worstTimeLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [worstTimeLabel setText:NSLocalizedString(@"WORST_TIME", nil)];
     
-    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 120.0, mainViewSize.height, 2.0)];
+    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 125.0, mainViewSize.height, 2.0)];
     [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dashed_border.png"]]];
-    UILabel *totalSolvedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 120.0, 300.0, 40.0)];
+    UILabel *totalSolvedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 125.0, 300.0, 40.0)];
     [totalSolvedLabel setBackgroundColor:[UIColor clearColor]];
-    [totalSolvedLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [totalSolvedLabel setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [totalSolvedLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [totalSolvedLabel setText:NSLocalizedString(@"TOTAL_SOLVED_COUNT", nil)];
     
-    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 160.0, mainViewSize.height, 2.0)];
+    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 165.0, mainViewSize.height, 2.0)];
     [seperator3 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dashed_border.png"]]];
     
-    UILabel *totalSkippedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 160.0, 300.0, 40.0)];
+    UILabel *totalSkippedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 165.0, 300.0, 40.0)];
     [totalSkippedLabel setBackgroundColor:[UIColor clearColor]];
-    [totalSkippedLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [totalSkippedLabel setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [totalSkippedLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [totalSkippedLabel setText:NSLocalizedString(@"TOTAL_SKIP_COUNT", nil)];
     
-    UIView *seperator4 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 200.0, mainViewSize.height, 2.0)];
+    UIView *seperator4 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 205.0, mainViewSize.height, 2.0)];
     [seperator4 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dashed_border.png"]]];
     
-    UILabel *averageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 200.0, 300.0, 40.0)];
+    UILabel *averageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 205.0, 300.0, 40.0)];
     [averageLabel setBackgroundColor:[UIColor clearColor]];
-    [averageLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [averageLabel setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [averageLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [averageLabel setText:NSLocalizedString(@"AVERAGE", nil)];
     
-    UIView *seperator5 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 240.0, mainViewSize.height, 2.0)];
+    UIView *seperator5 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 245.0, mainViewSize.height, 2.0)];
     [seperator5 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dashed_border.png"]]];
     
-    UILabel *allTimeAverageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 240.0, 300.0, 40.0)];
+    UILabel *allTimeAverageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 245.0, 300.0, 40.0)];
     [allTimeAverageLabel setBackgroundColor:[UIColor clearColor]];
-    [allTimeAverageLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [allTimeAverageLabel setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [allTimeAverageLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [allTimeAverageLabel setText:NSLocalizedString(@"ALLTIME_AVERAGE", nil)];
     
-    bestTime = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 40.0, 140.0, 40.0)];
+    bestTime = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 45.0, 140.0, 40.0)];
     [bestTime setBackgroundColor:[UIColor clearColor]];
-    [bestTime setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [bestTime setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [bestTime setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [bestTime setTextAlignment:NSTextAlignmentRight];
     
-    worstTime = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 80.0, 140.0, 40.0)];
+    worstTime = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 85.0, 140.0, 40.0)];
     [worstTime setBackgroundColor:[UIColor clearColor]];
-    [worstTime setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [worstTime setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [worstTime setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [worstTime setTextAlignment:NSTextAlignmentRight];
     
-    totalSolved = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 120.0, 140.0, 40.0)];
+    totalSolved = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 125.0, 140.0, 40.0)];
     [totalSolved setBackgroundColor:[UIColor clearColor]];
-    [totalSolved setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [totalSolved setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [totalSolved setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [totalSolved setTextAlignment:NSTextAlignmentRight];
     
-    totalSkipped = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 160.0, 140.0, 40.0)];
+    totalSkipped = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 165.0, 140.0, 40.0)];
     [totalSkipped setBackgroundColor:[UIColor clearColor]];
-    [totalSkipped setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [totalSkipped setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [totalSkipped setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [totalSkipped setTextAlignment:NSTextAlignmentRight];
     
-    average = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 200.0, 140.0, 40.0)];
+    average = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 205.0, 140.0, 40.0)];
     [average setBackgroundColor:[UIColor clearColor]];
-    [average setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [average setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [average setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [average setTextAlignment:NSTextAlignmentRight];
     
-    allTimeAverage = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 240.0, 140.0, 40.0)];
+    allTimeAverage = [[UILabel alloc] initWithFrame:CGRectMake(mainViewSize.height-25.0-140.0, 245.0, 140.0, 40.0)];
     [allTimeAverage setBackgroundColor:[UIColor clearColor]];
-    [allTimeAverage setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-MD" size:30.0]];
+    [allTimeAverage setFont:[UIFont fontWithName:@"Helvetica-Light" size:20.0]];
     [allTimeAverage setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
     [allTimeAverage setTextAlignment:NSTextAlignmentRight];
     
+    [statsMainView addSubview:headerSingleLine];
     [statsMainView addSubview:headerLabel];
+    [statsMainView addSubview:headerDoubleLine];
     [statsMainView addSubview:closeButton];
     [statsMainView addSubview:bestTimeLabel];
     [statsMainView addSubview:seperator1];
@@ -200,7 +210,7 @@
     [totalSkipped setText:[NSString stringWithFormat:@"%d",self.currentStatistics.totalSkippedQuestion]];
     
     int lastAverage = [EQScore getAverage];
-    NSLog(@"lastAverage: %d",lastAverage);
+
     if (lastAverage == -1) {
         [average setText:@"-"];
     } else {

@@ -12,5 +12,6 @@
 @interface EQBundleInitializer : NSObject
 
 + (void) initializeBundle;
++ (void) initializeBundle2;
 
 @end
