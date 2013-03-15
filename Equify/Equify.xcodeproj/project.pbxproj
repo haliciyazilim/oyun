@@ -70,6 +70,11 @@
 		05C05B2B16F1D05100913437 /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2716F1D05100913437 /* close_btn@2x.png */; };
 		05C05B2E16F1EFB400913437 /* dashed_border.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2C16F1EFB400913437 /* dashed_border.png */; };
 		05C05B2F16F1EFB400913437 /* dashed_border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2D16F1EFB400913437 /* dashed_border@2x.png */; };
+		AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */; };
+		AE10C58316F341DC009D61A6 /* menu_btn_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = AE10C57F16F341DC009D61A6 /* menu_btn_hover.png */; };
+		AE10C58416F341DC009D61A6 /* menu_btn_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE10C58016F341DC009D61A6 /* menu_btn_hover@2x.png */; };
+		AE10C58516F341DC009D61A6 /* menu_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AE10C58116F341DC009D61A6 /* menu_btn.png */; };
+		AE10C58616F341DC009D61A6 /* menu_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE10C58216F341DC009D61A6 /* menu_btn@2x.png */; };
 		AE6DF6D116F0CB5900011459 /* game_center_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6C916F0CB5900011459 /* game_center_btn_pressed.png */; };
 		AE6DF6D216F0CB5900011459 /* game_center_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CA16F0CB5900011459 /* game_center_btn_pressed@2x.png */; };
 		AE6DF6D316F0CB5900011459 /* game_center_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CB16F0CB5900011459 /* game_center_btn.png */; };
@@ -193,6 +198,12 @@
 		05C05B2C16F1EFB400913437 /* dashed_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashed_border.png; sourceTree = "<group>"; };
 		05C05B2D16F1EFB400913437 /* dashed_border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashed_border@2x.png"; sourceTree = "<group>"; };
 		05F0CA4116CB98090063E0A8 /* EQAppSpecificViewSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQAppSpecificViewSizes.h; sourceTree = "<group>"; };
+		AE10C57C16F34134009D61A6 /* EQSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQSettingsViewController.h; sourceTree = "<group>"; };
+		AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQSettingsViewController.m; sourceTree = "<group>"; };
+		AE10C57F16F341DC009D61A6 /* menu_btn_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_btn_hover.png; sourceTree = "<group>"; };
+		AE10C58016F341DC009D61A6 /* menu_btn_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_btn_hover@2x.png"; sourceTree = "<group>"; };
+		AE10C58116F341DC009D61A6 /* menu_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_btn.png; sourceTree = "<group>"; };
+		AE10C58216F341DC009D61A6 /* menu_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_btn@2x.png"; sourceTree = "<group>"; };
 		AE6DF6C916F0CB5900011459 /* game_center_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_center_btn_pressed.png; sourceTree = "<group>"; };
 		AE6DF6CA16F0CB5900011459 /* game_center_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_center_btn_pressed@2x.png"; sourceTree = "<group>"; };
 		AE6DF6CB16F0CB5900011459 /* game_center_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_center_btn.png; sourceTree = "<group>"; };
@@ -457,6 +468,8 @@
 				055C905B16EF1E8C002BD042 /* EQGameViewController.m */,
 				05C05B1616F1C02A00913437 /* EQStatsViewController.h */,
 				05C05B1716F1C02A00913437 /* EQStatsViewController.m */,
+				AE10C57C16F34134009D61A6 /* EQSettingsViewController.h */,
+				AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -477,6 +490,10 @@
 		AE8C0AEA16F216EC0084A808 /* game_screen */ = {
 			isa = PBXGroup;
 			children = (
+				AE10C57F16F341DC009D61A6 /* menu_btn_hover.png */,
+				AE10C58016F341DC009D61A6 /* menu_btn_hover@2x.png */,
+				AE10C58116F341DC009D61A6 /* menu_btn.png */,
+				AE10C58216F341DC009D61A6 /* menu_btn@2x.png */,
 				AE8C0AEB16F216EC0084A808 /* box_bg.png */,
 				AE8C0AEC16F216EC0084A808 /* box_bg@2x.png */,
 				AE8C0AED16F216EC0084A808 /* control_bg.png */,
@@ -623,6 +640,10 @@
 				AE8C0AF416F216EC0084A808 /* control_bg@2x.png in Resources */,
 				AE8C0AF516F216EC0084A808 /* delete_counter.png in Resources */,
 				AE8C0AF616F216EC0084A808 /* delete_counter@2x.png in Resources */,
+				AE10C58316F341DC009D61A6 /* menu_btn_hover.png in Resources */,
+				AE10C58416F341DC009D61A6 /* menu_btn_hover@2x.png in Resources */,
+				AE10C58516F341DC009D61A6 /* menu_btn.png in Resources */,
+				AE10C58616F341DC009D61A6 /* menu_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +685,7 @@
 				AE8C0AE316F1F7770084A808 /* EQipadViewController.m in Sources */,
 				AE8C0AE616F1F7D10084A808 /* EQipadGameViewController.m in Sources */,
 				AE8C0AE916F1F8110084A808 /* EQipadStatsViewController.m in Sources */,
+				AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
