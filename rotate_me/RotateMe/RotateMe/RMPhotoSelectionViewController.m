@@ -319,7 +319,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
                                                                      addFromGalleryFrame.size.width,
                                                                      addFromGalleryFrame.size.height)
                                                    inView:self.view
-                                 permittedArrowDirections:UIPopoverArrowDirectionDown
+                                 permittedArrowDirections:UIPopoverArrowDirectionLeft
                                                  animated:YES];
             } else {
                 [popoverController dismissPopoverAnimated:YES];

@@ -28,6 +28,11 @@
     int startingXLocation;
     BOOL isTouchDown;
     UIView* hittedView;
+    CGSize closeButtonSize;
+    UIButton* closeButton;
+    
+    UISwipeGestureRecognizer *swipeLeftGesture;
+    UISwipeGestureRecognizer *swipeRightGesture;
 }
 
 - (id) initWithCurrentGameAppId:(NSString*) appId
@@ -41,31 +46,31 @@
         startingXLocation = 0;
         animationDuration = 0.1;
         isTouchDown = NO;
-//        self setE
         
         [self setUserInteractionEnabled:YES];
-        [self setExclusiveTouch:YES];
+//        [self setExclusiveTouch:YES];
         [self getGames];
+        
+        [self initializeGestures];
 
-        /*<[[TEST*/
-//        UIButton* button;
-//        button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        [button setTitle:@"<" forState:UIControlStateNormal];
-//        button.frame = CGRectMake(0, 0, 40, 30);
-//        [button addTarget:self action:@selector(animateLeft) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:button];
-//        
-//        
-//        button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        [button setTitle:@">" forState:UIControlStateNormal];
-//        button.frame = CGRectMake(self.frame.size.width-40, 0, 40, 30);
-//        [button addTarget:self action:@selector(animateRight) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:button];
-//        
-        /*TEST]]>*/
     }
     return self;
 }
+
+- (void) initializeGestures
+{
+    
+    swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                  action:@selector(animateRight)];
+    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self addGestureRecognizer:swipeRightGesture];
+    
+    swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                 action:@selector(animateLeft)];
+    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self addGestureRecognizer:swipeLeftGesture];
+}
+
 - (void) setBackground
 {
     [self setBackgroundColor:[UIColor redColor]];
@@ -93,6 +98,7 @@
 }
 - (void) configureView
 {
+    [self setLayoutParameters];
     
     centerView      = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -118,14 +124,46 @@
     [self addSubview:leftView];
     [self addSubview:leftLeftView];
 
-    [self setLayoutParameters];
-    
     [self setPositions];
     [self fillButtons];
+    
+    closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [closeButton setImage:[UIImage imageNamed:@"cartman.png"] forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
+    [closeButton setFrame:CGRectMake(self.frame.size.width - closeButtonSize.width, 0, closeButtonSize.width, closeButtonSize.height)];
+    [self addSubview:closeButton];
+    
+    [self presentButtonsWithAnimation];
+    
+    
 }
+
+- (void) presentButtonsWithAnimation
+{
+    isAnimating = YES;
+    
+    for(UIButton* button in @[leftLeftView,leftView,centerView,rightView,rightRightView]){
+        button.frame = CGRectMake(button.frame.origin.x, 0, button.frame.size.width, 0);
+    }
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        [leftLeftView   setFrame:[self frameForIndex:-2]];
+        [leftView       setFrame:[self frameForIndex:-1]];
+        [centerView     setFrame:[self frameForIndex: 0]];
+        [rightView      setFrame:[self frameForIndex:+1]];
+        [rightRightView setFrame:[self frameForIndex:+2]];
+        leftLeftView.alpha = 1.0;
+        rightRightView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        isAnimating = NO;
+    }];
+}
+
 
 - (void) stylizeButton:(UIButton*)button
 {
+    [button setClipsToBounds:YES];
     [button.layer setBorderColor:[UIColor whiteColor].CGColor];
     [button.layer setBorderWidth:2.0];
 }
@@ -185,6 +223,11 @@
 - (void) redirectToGamePage
 {
     NSLog(@"redirect To Game Page");
+}
+
+-(void) closeView
+{
+    [self removeFromSuperview];
 }
 
 
@@ -261,6 +304,9 @@
         [self redirectToGamePage];
     }
     [self touchesCancelled:touches withEvent:event];
+    if([closeButton hitTest:[[touches anyObject] locationInView:closeButton] withEvent:event] == closeButton && abs(movementAmount) <= 1 ){
+        [self closeView];
+    }
     
 }
 
@@ -390,12 +436,14 @@
 {
     NSString* deviceModel = [[UIDevice currentDevice] model];
     if([deviceModel rangeOfString:@"iPad"].length > 0){
-        gameViewSize = CGSizeMake(500, 300);
-        horizontalMargin = 120.0;
+        gameViewSize = CGSizeMake(560, 400);
+        horizontalMargin = 160.0;
+        closeButtonSize  = CGSizeMake(40, 30);
     }
     else{
-        gameViewSize = CGSizeMake(500 * 0.4, 300 * 0.4);
-        horizontalMargin = 60.0;
+        gameViewSize = CGSizeMake(280, 200);
+        horizontalMargin = 80.0;
+        closeButtonSize  = CGSizeMake(40, 30);
     }
     y = self.frame.size.height * 0.5 -  gameViewSize.height * 0.5;
     x = self.frame.size.width * 0.5 -  gameViewSize.width * 0.5;

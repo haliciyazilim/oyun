@@ -11,6 +11,7 @@
 #import "Score.h"
 #import "RotateMeIAPHelper.h"
 #import "RMAboutUsView.h"
+#import "MoreGamesView.h"
 
 @implementation RMSettingsView
 {
@@ -75,6 +76,12 @@
     [button addTarget:self action:@selector(restorePurchases) forControlEvents:UIControlEventTouchUpInside];
     [buttons addObject:button];
     restoreButton = button;
+    
+    button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:@"More Games" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(openMoreGames) forControlEvents:UIControlEventTouchUpInside];
+    [buttons addObject:button];
+    
     button = nil;
     
     int index = 0;
@@ -91,6 +98,8 @@
         index++;
     }
 }
+
+
 - (void) disableRestore {
     [restoreButton setEnabled:NO];
 }
@@ -101,6 +110,11 @@
     [self disableRestore];
     [[RotateMeIAPHelper sharedInstance] addActivityToView:restoreButton withFrame:CGRectMake(0.0, 0.0, restoreButton.frame.size.width, restoreButton.frame.size.height)];
     [[RotateMeIAPHelper sharedInstance] restoreCompletedTransactions];
+}
+
+-(void) openMoreGames
+{
+    [self addSubview:[[MoreGamesView alloc] initWithCurrentGameAppId:@""]];
 }
 
 - (void) openAboutUs
@@ -133,7 +147,7 @@
 
 - (CGFloat) getMargin
 {
-    return 20;
+    return 10;
 }
 
 - (void) closeSettings
