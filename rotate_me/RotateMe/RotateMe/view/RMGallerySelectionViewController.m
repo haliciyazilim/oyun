@@ -15,6 +15,7 @@
 #import "Photo.h"
 #import "RMSettingsView.h"
 #import "RotateMeIAPHelper.h"
+#import "MoreGamesView.h"
 
 @interface RMGallerySelectionViewController ()
 
@@ -63,6 +64,18 @@
     // Do any additional setup after loading the view.
     [self.view setUserInteractionEnabled:YES];
     [self.scrollView setUserInteractionEnabled:YES];
+    
+    
+//    NSURL* url = [NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id592099228?mt=8&ign-mpt=uo%3D4"];
+//    [[UIApplication sharedApplication] openURL:url];
+    
+//    NSString *appId = @"592099228"; //like 999999999
+//    NSString *link = [@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=" stringByAppendingString:appId];
+//    
+//    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:link]];
+    
+    
+    
 }
 
 -(void) setBackground

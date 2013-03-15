@@ -45,7 +45,7 @@
 - (void) cleanViewControllerImagesWithAnimation
 {
     hiddenImageTargetFrame = [self hiddenImageTargetFrame];
-    [inGameViewController.hiddenImage setClipsToBounds:NO];
+    [inGameViewController.hiddenImage setClipsToBounds:YES];
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         inGameViewController.hiddenImage.frame = CGRectMake(
                     -inGameViewController.photoHolder.frame.origin.x,

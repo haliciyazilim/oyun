@@ -43,6 +43,8 @@
 		AE0F91AE16D3B8ED007F0ED6 /* youwin_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F91A816D3B8ED007F0ED6 /* youwin_btn_bg@2x.png */; };
 		AE0F91AF16D3B8ED007F0ED6 /* youwin_photo_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F91A916D3B8ED007F0ED6 /* youwin_photo_bg.png */; };
 		AE0F91B016D3B8ED007F0ED6 /* youwin_photo_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE0F91AA16D3B8ED007F0ED6 /* youwin_photo_bg@2x.png */; };
+		AE2278C116F06BDA00318A86 /* RMAboutUsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2278C016F06BDA00318A86 /* RMAboutUsView.m */; };
+		AE2278C616F0978700318A86 /* MoreGamesView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2278C516F0978700318A86 /* MoreGamesView.m */; };
 		AE2AA7F216E096D900D3148C /* RMIpadInGameMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2AA7F116E096D900D3148C /* RMIpadInGameMenuView.m */; };
 		AE2AA7F516E0974C00D3148C /* inapp_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE2AA7F316E0974C00D3148C /* inapp_bg_ipad.jpg */; };
 		AE2AA7F616E0974C00D3148C /* inapp_bg_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE2AA7F416E0974C00D3148C /* inapp_bg_ipad@2x.jpg */; };
@@ -87,6 +89,10 @@
 		AE72DBC616BBB5BE00C12D6C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE72DBC516BBB5BE00C12D6C /* QuartzCore.framework */; };
 		AE72DBCD16BBE4CC00C12D6C /* photo_double_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = AE72DBCB16BBE4CC00C12D6C /* photo_double_grid.png */; };
 		AE72DBCE16BBE4CC00C12D6C /* photo_double_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE72DBCC16BBE4CC00C12D6C /* photo_double_grid@2x.png */; };
+		AE740BBB16F34688000DABCC /* more_games_close_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AE740BB716F34688000DABCC /* more_games_close_btn.png */; };
+		AE740BBC16F34688000DABCC /* more_games_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE740BB816F34688000DABCC /* more_games_close_btn@2x.png */; };
+		AE740BBD16F34688000DABCC /* more_games_close_btn~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = AE740BB916F34688000DABCC /* more_games_close_btn~iphone.png */; };
+		AE740BBE16F34688000DABCC /* more_games_close_btn~iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE740BBA16F34688000DABCC /* more_games_close_btn~iphone@2x.png */; };
 		AE7CBED316BFE3DE001BAF3D /* RMBundleInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CBED216BFE3DE001BAF3D /* RMBundleInitializer.m */; };
 		AE7CBED916BFF833001BAF3D /* RMDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CBED816BFF833001BAF3D /* RMDatabaseManager.m */; };
 		AE7CBEDC16C003E7001BAF3D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE7CBEDE16C003E7001BAF3D /* Localizable.strings */; };
@@ -236,6 +242,10 @@
 		AE0F91A816D3B8ED007F0ED6 /* youwin_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youwin_btn_bg@2x.png"; sourceTree = "<group>"; };
 		AE0F91A916D3B8ED007F0ED6 /* youwin_photo_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youwin_photo_bg.png; sourceTree = "<group>"; };
 		AE0F91AA16D3B8ED007F0ED6 /* youwin_photo_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youwin_photo_bg@2x.png"; sourceTree = "<group>"; };
+		AE2278BF16F06BDA00318A86 /* RMAboutUsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMAboutUsView.h; path = view/RMAboutUsView.h; sourceTree = "<group>"; };
+		AE2278C016F06BDA00318A86 /* RMAboutUsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMAboutUsView.m; path = view/RMAboutUsView.m; sourceTree = "<group>"; };
+		AE2278C416F0978700318A86 /* MoreGamesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreGamesView.h; path = "untitled folder/more games/MoreGamesView.h"; sourceTree = "<group>"; };
+		AE2278C516F0978700318A86 /* MoreGamesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreGamesView.m; path = "untitled folder/more games/MoreGamesView.m"; sourceTree = "<group>"; };
 		AE2AA7F016E096D900D3148C /* RMIpadInGameMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMIpadInGameMenuView.h; path = view/RMIpadInGameMenuView.h; sourceTree = "<group>"; };
 		AE2AA7F116E096D900D3148C /* RMIpadInGameMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMIpadInGameMenuView.m; path = view/RMIpadInGameMenuView.m; sourceTree = "<group>"; };
 		AE2AA7F316E0974C00D3148C /* inapp_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inapp_bg_ipad.jpg; sourceTree = "<group>"; };
@@ -290,6 +300,10 @@
 		AE72DBC516BBB5BE00C12D6C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AE72DBCB16BBE4CC00C12D6C /* photo_double_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_double_grid.png; sourceTree = "<group>"; };
 		AE72DBCC16BBE4CC00C12D6C /* photo_double_grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_double_grid@2x.png"; sourceTree = "<group>"; };
+		AE740BB716F34688000DABCC /* more_games_close_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_games_close_btn.png; sourceTree = "<group>"; };
+		AE740BB816F34688000DABCC /* more_games_close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_games_close_btn@2x.png"; sourceTree = "<group>"; };
+		AE740BB916F34688000DABCC /* more_games_close_btn~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_games_close_btn~iphone.png"; sourceTree = "<group>"; };
+		AE740BBA16F34688000DABCC /* more_games_close_btn~iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_games_close_btn~iphone@2x.png"; sourceTree = "<group>"; };
 		AE7CBED116BFE3DE001BAF3D /* RMBundleInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMBundleInitializer.h; path = common/RMBundleInitializer.h; sourceTree = "<group>"; };
 		AE7CBED216BFE3DE001BAF3D /* RMBundleInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMBundleInitializer.m; path = common/RMBundleInitializer.m; sourceTree = "<group>"; };
 		AE7CBED516BFE779001BAF3D /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Config.h; path = common/Config.h; sourceTree = "<group>"; };
@@ -527,6 +541,15 @@
 			path = images/photoselection;
 			sourceTree = "<group>";
 		};
+		AE2278C316F0975000318A86 /* More Games */ = {
+			isa = PBXGroup;
+			children = (
+				AE2278C416F0978700318A86 /* MoreGamesView.h */,
+				AE2278C516F0978700318A86 /* MoreGamesView.m */,
+			);
+			name = "More Games";
+			sourceTree = "<group>";
+		};
 		AE2BE2A316C39FD900A0335D /* Database Model Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,6 +613,18 @@
 			name = SpecialViews;
 			sourceTree = "<group>";
 		};
+		AE740BA416F31093000DABCC /* more_games */ = {
+			isa = PBXGroup;
+			children = (
+				AE740BB716F34688000DABCC /* more_games_close_btn.png */,
+				AE740BB816F34688000DABCC /* more_games_close_btn@2x.png */,
+				AE740BB916F34688000DABCC /* more_games_close_btn~iphone.png */,
+				AE740BBA16F34688000DABCC /* more_games_close_btn~iphone@2x.png */,
+			);
+			name = more_games;
+			path = images/more_games;
+			sourceTree = "<group>";
+		};
 		AE7CBED616BFF80E001BAF3D /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +682,7 @@
 		AED218C616BA934000271930 /* RotateMe */ = {
 			isa = PBXGroup;
 			children = (
+				AE2278C316F0975000318A86 /* More Games */,
 				05F6E0C716CBD3BF00543444 /* in_app_purchase */,
 				AE7CBED616BFF80E001BAF3D /* Manager */,
 				AED932C316BFAD4B00DD9D30 /* Model */,
@@ -697,6 +733,8 @@
 				AE0F91A216D3A0EA007F0ED6 /* RMInGameWinScreenView.m */,
 				AE4F7CD416DB557D00035FD0 /* RMSettingsView.h */,
 				AE4F7CD516DB557D00035FD0 /* RMSettingsView.m */,
+				AE2278BF16F06BDA00318A86 /* RMAboutUsView.h */,
+				AE2278C016F06BDA00318A86 /* RMAboutUsView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -704,6 +742,7 @@
 		AED218EA16BA9DFD00271930 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AE740BA416F31093000DABCC /* more_games */,
 				AEED532216C93337003F4CCD /* rotate_me_logo.png */,
 				AEED532316C93337003F4CCD /* rotate_me_logo@2x.png */,
 				0550E39E16CD2791001EB746 /* in_app_purchases */,
@@ -1041,6 +1080,10 @@
 				AEF1766016E88A260027A8CB /* level_03_selected_ipad@2x.png in Resources */,
 				AEF1766716E8E00E0027A8CB /* photo_holder_normal_ipad.png in Resources */,
 				AEF1766816E8E00E0027A8CB /* photo_holder_normal_ipad@2x.png in Resources */,
+				AE740BBB16F34688000DABCC /* more_games_close_btn.png in Resources */,
+				AE740BBC16F34688000DABCC /* more_games_close_btn@2x.png in Resources */,
+				AE740BBD16F34688000DABCC /* more_games_close_btn~iphone.png in Resources */,
+				AE740BBE16F34688000DABCC /* more_games_close_btn~iphone@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1087,6 +1130,8 @@
 				AE4933CA16E61D5B00D9A151 /* RotateMeIpadIAPHelper.m in Sources */,
 				AE9F3FC216E773F0007794CD /* RMPhotoSelectionIpadImageView.m in Sources */,
 				AEF1766416E890DC0027A8CB /* RMDifficultySelectorView.m in Sources */,
+				AE2278C116F06BDA00318A86 /* RMAboutUsView.m in Sources */,
+				AE2278C616F0978700318A86 /* MoreGamesView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

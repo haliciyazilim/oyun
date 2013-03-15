@@ -74,6 +74,7 @@
 		05E4A63816F31A8E0072BBDB /* double_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63416F31A8E0072BBDB /* double_line@2x.png */; };
 		05E4A63916F31A8E0072BBDB /* single_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63516F31A8E0072BBDB /* single_line.png */; };
 		05E4A63A16F31A8E0072BBDB /* single_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63616F31A8E0072BBDB /* single_line@2x.png */; };
+		05E4A63C16F3506F0072BBDB /* standart.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63B16F3506F0072BBDB /* standart.questionpack */; };
 		AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */; };
 		AE10C58316F341DC009D61A6 /* menu_btn_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = AE10C57F16F341DC009D61A6 /* menu_btn_hover.png */; };
 		AE10C58416F341DC009D61A6 /* menu_btn_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE10C58016F341DC009D61A6 /* menu_btn_hover@2x.png */; };
@@ -215,6 +216,7 @@
 		05E4A63416F31A8E0072BBDB /* double_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "double_line@2x.png"; sourceTree = "<group>"; };
 		05E4A63516F31A8E0072BBDB /* single_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = single_line.png; sourceTree = "<group>"; };
 		05E4A63616F31A8E0072BBDB /* single_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "single_line@2x.png"; sourceTree = "<group>"; };
+		05E4A63B16F3506F0072BBDB /* standart.questionpack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = standart.questionpack; path = Equify/Resources/questions/standart.questionpack; sourceTree = SOURCE_ROOT; };
 		05F0CA4116CB98090063E0A8 /* EQAppSpecificViewSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQAppSpecificViewSizes.h; sourceTree = "<group>"; };
 		AE10C57C16F34134009D61A6 /* EQSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQSettingsViewController.h; sourceTree = "<group>"; };
 		AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQSettingsViewController.m; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 		055C906D16EF2B94002BD042 /* questions */ = {
 			isa = PBXGroup;
 			children = (
+				05E4A63B16F3506F0072BBDB /* standart.questionpack */,
 				055C906E16EF2B94002BD042 /* standart */,
 				055C907D16EF2B94002BD042 /* standart.packageinfo */,
 			);
@@ -690,6 +693,7 @@
 				05E4A63816F31A8E0072BBDB /* double_line@2x.png in Resources */,
 				05E4A63916F31A8E0072BBDB /* single_line.png in Resources */,
 				05E4A63A16F31A8E0072BBDB /* single_line@2x.png in Resources */,
+				05E4A63C16F3506F0072BBDB /* standart.questionpack in Resources */,
 				AE8FC60E16F34959006BF954 /* conatiner_equal.png in Resources */,
 				AE8FC60F16F34959006BF954 /* conatiner_equal@2x.png in Resources */,
 				AE8FC61016F34959006BF954 /* container_left.png in Resources */,
