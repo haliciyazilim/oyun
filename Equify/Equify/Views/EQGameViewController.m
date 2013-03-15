@@ -50,6 +50,10 @@
     }
 }
 
+-(float) buttonSize{
+    return 69.0;
+}
+
 - (void)viewDidLoad
 {
     
@@ -68,10 +72,10 @@
     CGFloat winWidth = [[UIScreen mainScreen] bounds].size.width;
     CGFloat winHeight = [[UIScreen mainScreen] bounds].size.height;
     
-    UIButton *btnControl=[self makeButton:CGRectMake(winHeight*0.5-34.0, winWidth-69.0-24.0, 69.0, 69.0) title:@"bitir"];
+    UIButton *btnControl=[self makeButton:CGRectMake((winHeight-[self buttonSize])/2, winWidth-[self buttonSize]-24.0, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
     [btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *btnSkip=[self makeButton:CGRectMake(winHeight-69-20, winWidth-69.0-24, 69.0, 69.0) title:@"geç"];
+    UIButton *btnSkip=[self makeButton:CGRectMake(winHeight-[self buttonSize]-24, winWidth-[self buttonSize]-24, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"SKIP", nil)];
     [btnSkip addTarget:self action:@selector(skipQuestion) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:btnControl];
@@ -144,6 +148,8 @@
     }
 }
 
+
+
 -(UIButton *) makeButton:(CGRect)frame title:(NSString *) title{
     
     
@@ -151,12 +157,12 @@
     
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = frame;
-    btn.layer.cornerRadius = 35.0;
+    btn.layer.cornerRadius = [self buttonSize]/2;
     btn.layer.borderWidth = 1.0;
     btn.layer.shadowRadius = 2.0;
     btn.layer.shadowOffset = CGSizeMake(0.0, 0.0);
     btn.layer.shadowOpacity = 0.3;
-    [btn.layer setShadowPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 2, 69.0, 69.0)] CGPath]];
+    [btn.layer setShadowPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 2, [self buttonSize], [self buttonSize])] CGPath]];
     btn.layer.borderColor = [[UIColor colorWithRed:0.596 green:0.596 blue:0.596 alpha:1.0] CGColor];
     [btn setBackgroundColor:[UIColor colorWithRed:0.827 green:0.827 blue:0.827 alpha:1.0]];
     
