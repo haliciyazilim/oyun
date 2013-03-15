@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "EQQuestion.h"
 #import "EQBox.h"
 #import "StopWatch.h"
@@ -21,8 +22,7 @@
 @property (nonatomic) EQQuestion * currentQuestion;
 @property (weak, nonatomic) IBOutlet UILabel *stopWatchLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stopWatchLabelMS;
-@property (weak, nonatomic) IBOutlet UIButton *btnControl;
-@property (weak, nonatomic) IBOutlet UIButton *btnSkip;
+
 
 @property (weak, nonatomic) IBOutlet UIView *QuestionView;
 

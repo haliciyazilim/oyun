@@ -78,12 +78,12 @@
 //    buttonsView.backgroundColor=[UIColor yellowColor];
     [self.view addSubview:buttonsView];
     
-     UIButton * btnGameSettings=[self makeButton:CGRectMake(0, 50, [self btnSize], [self btnSize]) title:@"game\nsettings"];
+     UIButton * btnGameSettings=[self makeButton:CGRectMake(0, 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESETTINGS", nil)];
     
-    UIButton * btnStartGame=[self makeButton:CGRectMake(([self buttonsViewWidth]-[self btnSize])/2, 0, [self btnSize], [self btnSize]) title:@"start\ngame"];
+    UIButton * btnStartGame=[self makeButton:CGRectMake(([self buttonsViewWidth]-[self btnSize])/2, 0, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESTART", nil)];
     [btnStartGame addTarget:self action:@selector(startNewGame:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * btnUserStats=[self makeButton:CGRectMake([self buttonsViewWidth]-[self btnSize], 50, [self btnSize], [self btnSize]) title:@"user\nstats"];
+    UIButton * btnUserStats=[self makeButton:CGRectMake([self buttonsViewWidth]-[self btnSize], 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"USERSTATS", nil)];
     [btnUserStats addTarget:self action:@selector(openStats) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * btnGameCenter=[self makeGameCenterButton:CGRectMake(([self buttonsViewWidth]-[self btnGCSize])/2, [self buttonsViewHeight]-[self btnGCSize], [self btnGCSize], [self btnGCSize])];
@@ -111,7 +111,7 @@
     [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpInside];
     
 //    btn.titleLabel.textColor=[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0];
-    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica Thin" size:60.0];
+    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica-Light" size:25.0];
     btn.titleLabel.numberOfLines=2;
     
     [btn setTitleColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0] forState:UIControlStateNormal];
