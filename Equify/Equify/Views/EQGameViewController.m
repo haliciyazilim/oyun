@@ -115,7 +115,7 @@
 
         [_QuestionView addSubview:questionViewLeftSide];
         [_QuestionView addSubview:questionViewRightSide];
-        _QuestionView.backgroundColor=[UIColor yellowColor];
+//        _QuestionView.backgroundColor=[UIColor yellowColor];
     }
     else{
         [questionViewLeftSide removeFromSuperview];
@@ -141,8 +141,9 @@
     if (!counterImages) {
         counterImages = [[NSMutableArray alloc] initWithCapacity:3];
         for (int i = 0; i < moveCount; i++) {
-            UIImageView *count = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete_counter.png"]];
-            count.frame = CGRectMake(25.0+6.0*i, 280.0, 6.0, 18.0);
+            UIImage * image=[UIImage imageNamed:@"delete_counter.png"];
+            UIImageView *count = [[UIImageView alloc] initWithImage:image];
+            count.frame = CGRectMake(25.0+6.0*i, 280.0, image.size.width, image.size.height);
             [counterImages addObject:count];
             [self.view addSubview:count];
         }
