@@ -40,4 +40,23 @@
         [EQMetadata initializeMetadata];
     }
 }
++ (void) initializeBundle2 {
+    if([[EQDatabaseManager sharedInstance] isEmpty]){
+        NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"standart" ofType:@"questionpack"]
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:NULL];
+        
+        SBJsonParser *parser = [[SBJsonParser alloc] init];
+        NSDictionary *questionPack = [parser objectWithString:content];
+        
+        if ( [(NSNumber*)[questionPack valueForKey:@"version"] intValue] == 1) {
+            for (NSDictionary *question in [questionPack objectForKey:@"questions"]) {
+                [EQQuestion createQuestionWithWholeQuestion:[question valueForKey:@"wholeQuestion"] andAnswer:[question valueForKey:@"answer"]  andId:[[question valueForKey:@"questionId"] intValue]];
+            }
+        }
+        
+        [EQStatistic initializeStatistics];
+        [EQMetadata initializeMetadata];
+    }
+}
 @end
