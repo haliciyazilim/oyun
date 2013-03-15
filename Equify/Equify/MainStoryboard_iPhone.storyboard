@@ -55,7 +55,7 @@
                     <connections>
                         <segue destination="Rzb-FY-nll" kind="push" identifier="GameStartSegue" id="UqR-4T-U2h"/>
                         <segue destination="LcH-bP-yaW" kind="push" identifier="StatsSegue" id="9FJ-Om-NUr"/>
-                        <segue destination="ufX-Li-UJb" kind="push" id="GwW-kT-Sne"/>
+                        <segue destination="ufX-Li-UJb" kind="push" identifier="SettingsSegue" id="GwW-kT-Sne"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nrX-vl-Rwm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -135,31 +135,6 @@
             <point key="canvasLocation" x="798" y="-284"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="EQGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQGameViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="QuestionView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="stopWatchLabelMS" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="EQSettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQSettingsViewController.h"/>
-        </class>
-        <class className="EQStatsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQStatsViewController.h"/>
-        </class>
-        <class className="EQViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="startNewGame:"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
