@@ -14,3 +14,9 @@
 "TOTAL_SKIP_COUNT" = "geçilen toplam soru";
 "AVERAGE" = "son onbeş ortalama";
 "ALLTIME_AVERAGE" = "genel ortalama";
+
+// main screen
+
+"GAMESTART"="oyuna\nbaşlat";
+"GAMESETTINGS"="oyun\nayarları";
+"USERSTATS"="kullanıcı\nverileri";
