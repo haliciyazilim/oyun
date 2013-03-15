@@ -79,35 +79,17 @@ static RMPhotoSelectionViewController* lastInstance = nil;
 {
     lastInstance = self;
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
     touchedPhoto = nil;
-    //    [self setGallery:[[Gallery allGalleries] objectAtIndex:0]];
     
     [self setBackground];
     
     self.difficultySelectorView = [[RMDifficultySelectorView alloc] init];
     self.difficultySelectorView.frame = [self difficultySelectorViewFrame];
     [self.view addSubview:self.difficultySelectorView];
-    
-//    DIFFICULTY difficulty = getCurrentDifficulty();
-//    switch (difficulty) {
-//        case EASY:
-//            [self.difficultySegmentedButtons setSelectedSegmentIndex:0];
-//            break;
-//        case NORMAL:
-//            [self.difficultySegmentedButtons setSelectedSegmentIndex:1];
-//            break;
-//        case HARD:
-//            [self.difficultySegmentedButtons setSelectedSegmentIndex:2];
-//            break;
-//            
-//        default:
-//            break;
-//    }
+
     imageThreads = [[NSMutableArray alloc] init];
     [self configureView];
-//    [self.galleryNameLabel setText:currentGallery.name];
-//    [self.galleryNameLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:20.0] ];
     
 }
 
@@ -319,7 +301,7 @@ static RMPhotoSelectionViewController* lastInstance = nil;
                                                                      addFromGalleryFrame.size.width,
                                                                      addFromGalleryFrame.size.height)
                                                    inView:self.view
-                                 permittedArrowDirections:UIPopoverArrowDirectionDown
+                                 permittedArrowDirections:UIPopoverArrowDirectionLeft
                                                  animated:YES];
             } else {
                 [popoverController dismissPopoverAnimated:YES];

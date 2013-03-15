@@ -25,7 +25,7 @@
     return 48;
 }
 -(int)boxSpace{
-    return 10;
+    return 5;
 }
 -(int) leftAndRightViewSpace{
     return 50;
@@ -115,6 +115,7 @@
 
         [_QuestionView addSubview:questionViewLeftSide];
         [_QuestionView addSubview:questionViewRightSide];
+//        _QuestionView.backgroundColor=[UIColor yellowColor];
     }
     else{
         [questionViewLeftSide removeFromSuperview];
@@ -140,8 +141,9 @@
     if (!counterImages) {
         counterImages = [[NSMutableArray alloc] initWithCapacity:3];
         for (int i = 0; i < moveCount; i++) {
-            UIImageView *count = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete_counter.png"]];
-            count.frame = CGRectMake(25.0+6.0*i, 280.0, 6.0, 18.0);
+            UIImage * image=[UIImage imageNamed:@"delete_counter.png"];
+            UIImageView *count = [[UIImageView alloc] initWithImage:image];
+            count.frame = CGRectMake(25.0+6.0*i, 280.0, image.size.width, image.size.height);
             [counterImages addObject:count];
             [self.view addSubview:count];
         }
@@ -189,38 +191,73 @@
     
 }
 
+-(UIImageView *)makeContainer:(CGRect) frame image:(UIImage *)image {
+    UIImageView * imageView=[[UIImageView alloc] initWithImage:image];
+    imageView.frame=frame;
+    
+    return imageView;
+}
+
 -(void)placingBoxes{
-    NSLog(@"*******CUrrent Question id: %i",_currentQuestion.questionId);
-
+    
     [EQBox cleanInstances];
-    int leftSideCount=0;
     BOOL isRightSide=NO;
+    NSArray * questionLeftAndRightSide=[_currentQuestion.wholeQuestion componentsSeparatedByString:@"="];
+    int leftSideLength=((NSString *)questionLeftAndRightSide[0]).length;
+    int rightSideLength=((NSString *)questionLeftAndRightSide[1]).length;
+    
+    
+    NSLog(@"*******leftSide length: %i",leftSideLength);
 
-
+    UIImage * leftEdgeImage=[UIImage imageNamed:@"container_left.png"];
+    UIImage * innerImage=[UIImage imageNamed:@"container_tile.png"];
+    UIImage * rightEdgeImage=[UIImage imageNamed:@"container_right.png"];
+    
+    UIImage * equalImage=[UIImage imageNamed:@"conatiner_equal.png"];
+    
+    questionViewLeftSide.frame=CGRectMake(((self.view.frame.size.width-([self boxSize]+[self boxSpace])*leftSideLength)+[self boxSpace])/2, 0, ([self boxSize]+[self boxSpace])*leftSideLength-[self boxSpace], [self boxSize]);
+    
     for (int i=0; i<_currentQuestion.questionArray.count; i++) {
         
         
         if([[_currentQuestion.questionArray objectAtIndex:i] isEqual:@"="]){
             isRightSide=YES;
-            leftSideCount=i;
-//            NSLog(@"View: %f, subview %i",_QuestionView.frame.size.width,(boxSize+boxSpace)*i);
-            questionViewLeftSide.frame=CGRectMake(((self.view.frame.size.width-([self boxSize]+[self boxSpace])*i)+[self boxSpace])/2, 0, ([self boxSize]+[self boxSpace])*i-[self boxSpace], [self boxSize]);
-            
             continue;
         }
         if (!isRightSide) {
+            if(i==0){
+                UIImageView * leftEdgeContainerAbove=[self makeContainer:CGRectMake(0-leftEdgeImage.size.width/2, -7, leftEdgeImage.size.width, leftEdgeImage.size.height) image:leftEdgeImage];
+                UIImageView * innerContainerAbove=[self makeContainer:CGRectMake(leftEdgeImage.size.width/2, -7, ([self boxSize]+[self boxSpace])*leftSideLength-[self boxSpace]-leftEdgeImage.size.width, innerImage.size.height) image:innerImage];
+                UIImageView * rightEdgeContainerAbove=[self makeContainer:CGRectMake(([self boxSize]+[self boxSpace])*leftSideLength-leftEdgeImage.size.width/2-[self boxSpace], -7, rightEdgeImage.size.width, rightEdgeImage.size.height) image:rightEdgeImage];
+                
+                UIImageView * containerEqual=[self makeContainer:CGRectMake((questionViewLeftSide.frame.size.width-equalImage.size.width)/2, questionViewLeftSide.frame.size.height+7, equalImage.size.width, equalImage.size.height) image:equalImage];
+                
+                
+                UIImageView * leftEdgeContainerBelow=[self makeContainer:CGRectMake(0-leftEdgeImage.size.width/2, -7, leftEdgeImage.size.width, leftEdgeImage.size.height) image:leftEdgeImage];
+                UIImageView * innerContainerBelow=[self makeContainer:CGRectMake(leftEdgeImage.size.width/2, -7, ([self boxSize]+[self boxSpace])*rightSideLength-[self boxSpace]-leftEdgeImage.size.width, innerImage.size.height) image:innerImage];
+                UIImageView * rightEdgeContainerBelow=[self makeContainer:CGRectMake(([self boxSize]+[self boxSpace])*rightSideLength-leftEdgeImage.size.width/2-[self boxSpace], -7, rightEdgeImage.size.width, rightEdgeImage.size.height) image:rightEdgeImage];
+                
+                [questionViewLeftSide addSubview:leftEdgeContainerAbove];
+                [questionViewLeftSide addSubview:innerContainerAbove];
+                [questionViewLeftSide addSubview:rightEdgeContainerAbove];
+                [questionViewLeftSide  addSubview:containerEqual];
+                [questionViewRightSide addSubview:leftEdgeContainerBelow];
+                [questionViewRightSide addSubview:innerContainerBelow];
+                [questionViewRightSide addSubview:rightEdgeContainerBelow];
+            }
+           
+            
             EQBox * box=[EQBox BoxWithFrame:CGRectMake(([self boxSize]+[self boxSpace])*i, 0, [self boxSize], [self boxSize]) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
             box.caller=self;
             [questionViewLeftSide addSubview:box.boxButton];
         }
         else if(isRightSide){
-            //NSLog(@"LeftSideCount:  %i",leftSideCount);
-            EQBox * box=[EQBox BoxWithFrame:CGRectMake(([self boxSize]+[self boxSpace])*(i-leftSideCount-1), 0, [self boxSize], [self boxSize]) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
+            EQBox * box=[EQBox BoxWithFrame:CGRectMake(([self boxSize]+[self boxSpace])*(i-leftSideLength-1), 0, [self boxSize], [self boxSize]) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
             box.caller=self;
             [questionViewRightSide addSubview:box.boxButton];
             
             if(_currentQuestion.questionArray.count-1==i){
-                questionViewRightSide.frame=CGRectMake(((self.view.frame.size.width-([self boxSize]+[self boxSpace])*(i-leftSideCount)+[self boxSpace]))/2, questionViewLeftSide.frame.size.height+[self leftAndRightViewSpace], ([self boxSize]+[self boxSpace])*(i-leftSideCount)-[self boxSpace], [self boxSize]);
+                questionViewRightSide.frame=CGRectMake(((self.view.frame.size.width-([self boxSize]+[self boxSpace])*(i-leftSideLength)+[self boxSpace]))/2, questionViewLeftSide.frame.size.height+equalImage.size.height+14, ([self boxSize]+[self boxSpace])*(i-leftSideLength)-[self boxSpace], [self boxSize]);
             }
         }
         

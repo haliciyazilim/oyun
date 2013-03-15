@@ -22,6 +22,7 @@
         [RMBundleInitializer initializeBundle];
     }
     
+    
     //GameCenter
     [[GameCenterManager sharedInstance] authenticateLocalUser];
     

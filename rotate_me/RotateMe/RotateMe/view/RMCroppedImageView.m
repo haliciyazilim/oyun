@@ -219,10 +219,6 @@
     [self touchesEnded:touches withEvent:event];
 }
 
-//-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    [self rotate:YES];
-//}
 
 -(void) rotate:(BOOL)left {
     if(isAnimating)
@@ -253,7 +249,6 @@
         } completion:^(BOOL finished){
             isAnimating = NO;
             if([self.parent canGameFinish]){
-//                NSLog(@"Game is finished");
                 [self.parent endGame];
             }
         }];
