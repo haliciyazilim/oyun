@@ -8,8 +8,8 @@
 
 // stats screen
 "STATS" = "kullanıcı istatistikleri";
-"MIN_TIME" = "en iyi süre";
-"MAX_TIME"  = "en kötü süre";
+"BEST_TIME" = "en iyi süre";
+"WORST_TIME"  = "en kötü süre";
 "TOTAL_SOLVED_COUNT" = "çözülen toplam soru";
 "TOTAL_SKIP_COUNT" = "geçilen toplam soru";
 "AVERAGE" = "son onbeş ortalama";
