@@ -70,6 +70,10 @@
 		05C05B2B16F1D05100913437 /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2716F1D05100913437 /* close_btn@2x.png */; };
 		05C05B2E16F1EFB400913437 /* dashed_border.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2C16F1EFB400913437 /* dashed_border.png */; };
 		05C05B2F16F1EFB400913437 /* dashed_border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2D16F1EFB400913437 /* dashed_border@2x.png */; };
+		05E4A63716F31A8E0072BBDB /* double_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63316F31A8E0072BBDB /* double_line.png */; };
+		05E4A63816F31A8E0072BBDB /* double_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63416F31A8E0072BBDB /* double_line@2x.png */; };
+		05E4A63916F31A8E0072BBDB /* single_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63516F31A8E0072BBDB /* single_line.png */; };
+		05E4A63A16F31A8E0072BBDB /* single_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63616F31A8E0072BBDB /* single_line@2x.png */; };
 		AE6DF6D116F0CB5900011459 /* game_center_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6C916F0CB5900011459 /* game_center_btn_pressed.png */; };
 		AE6DF6D216F0CB5900011459 /* game_center_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CA16F0CB5900011459 /* game_center_btn_pressed@2x.png */; };
 		AE6DF6D316F0CB5900011459 /* game_center_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AE6DF6CB16F0CB5900011459 /* game_center_btn.png */; };
@@ -192,6 +196,10 @@
 		05C05B2716F1D05100913437 /* close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_btn@2x.png"; sourceTree = "<group>"; };
 		05C05B2C16F1EFB400913437 /* dashed_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashed_border.png; sourceTree = "<group>"; };
 		05C05B2D16F1EFB400913437 /* dashed_border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashed_border@2x.png"; sourceTree = "<group>"; };
+		05E4A63316F31A8E0072BBDB /* double_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = double_line.png; sourceTree = "<group>"; };
+		05E4A63416F31A8E0072BBDB /* double_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "double_line@2x.png"; sourceTree = "<group>"; };
+		05E4A63516F31A8E0072BBDB /* single_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = single_line.png; sourceTree = "<group>"; };
+		05E4A63616F31A8E0072BBDB /* single_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "single_line@2x.png"; sourceTree = "<group>"; };
 		05F0CA4116CB98090063E0A8 /* EQAppSpecificViewSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQAppSpecificViewSizes.h; sourceTree = "<group>"; };
 		AE6DF6C916F0CB5900011459 /* game_center_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_center_btn_pressed.png; sourceTree = "<group>"; };
 		AE6DF6CA16F0CB5900011459 /* game_center_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_center_btn_pressed@2x.png"; sourceTree = "<group>"; };
@@ -438,6 +446,10 @@
 		05C05B2316F1D03000913437 /* stats_screen */ = {
 			isa = PBXGroup;
 			children = (
+				05E4A63316F31A8E0072BBDB /* double_line.png */,
+				05E4A63416F31A8E0072BBDB /* double_line@2x.png */,
+				05E4A63516F31A8E0072BBDB /* single_line.png */,
+				05E4A63616F31A8E0072BBDB /* single_line@2x.png */,
 				05C05B2C16F1EFB400913437 /* dashed_border.png */,
 				05C05B2D16F1EFB400913437 /* dashed_border@2x.png */,
 				05C05B2416F1D05100913437 /* close_btn_pressed.png */,
@@ -623,6 +635,10 @@
 				AE8C0AF416F216EC0084A808 /* control_bg@2x.png in Resources */,
 				AE8C0AF516F216EC0084A808 /* delete_counter.png in Resources */,
 				AE8C0AF616F216EC0084A808 /* delete_counter@2x.png in Resources */,
+				05E4A63716F31A8E0072BBDB /* double_line.png in Resources */,
+				05E4A63816F31A8E0072BBDB /* double_line@2x.png in Resources */,
+				05E4A63916F31A8E0072BBDB /* single_line.png in Resources */,
+				05E4A63A16F31A8E0072BBDB /* single_line@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
