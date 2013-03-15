@@ -16,7 +16,10 @@
 "ALLTIME_AVERAGE" = "all time average";
 
 // main screen
-
 "GAMESTART"="game\nstart";
 "GAMESETTINGS"="game\nsettings";
 "USERSTATS"="user\nstats";
+
+// game screen
+"CONTROL"="control";
+"SKIP"="skip";

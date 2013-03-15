@@ -72,10 +72,10 @@
     CGFloat winWidth = [[UIScreen mainScreen] bounds].size.width;
     CGFloat winHeight = [[UIScreen mainScreen] bounds].size.height;
     
-    UIButton *btnControl=[self makeButton:CGRectMake((winHeight-[self buttonSize])/2, winWidth-[self buttonSize]-24.0, [self buttonSize], [self buttonSize]) title:@"bitir"];
+    UIButton *btnControl=[self makeButton:CGRectMake((winHeight-[self buttonSize])/2, winWidth-[self buttonSize]-24.0, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
     [btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *btnSkip=[self makeButton:CGRectMake(winHeight-[self buttonSize]-24, winWidth-[self buttonSize]-24, [self buttonSize], [self buttonSize]) title:@"geç"];
+    UIButton *btnSkip=[self makeButton:CGRectMake(winHeight-[self buttonSize]-24, winWidth-[self buttonSize]-24, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"SKIP", nil)];
     [btnSkip addTarget:self action:@selector(skipQuestion) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:btnControl];
