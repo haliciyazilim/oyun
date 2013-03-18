@@ -1,76 +1,58 @@
 //
-//  EQQuestion.m
+//  EQQuestionWD.m
 //  Equify
 //
-//  Created by Alperen Kavun on 11.03.2013.
+//  Created by Alperen Kavun on 18.03.2013.
 //  Copyright (c) 2013 Halıcı. All rights reserved.
 //
 
-#import "EQDatabaseManager.h"
 #import "EQQuestion.h"
 #import "EQMetadata.h"
 
 @implementation EQQuestion
 
-@dynamic wholeQuestion;
-@dynamic answer;
-@dynamic questionId;
-@synthesize questionArray;
+static NSMutableArray* allQuestions = nil;
 
-+ (EQQuestion *)createQuestionWithWholeQuestion:(NSString *)question andAnswer:(NSString *)answer andId:(int)questionId {
-    EQQuestion* quest = (EQQuestion*)[[EQDatabaseManager sharedInstance] createEntity:@"Question"];
-    quest.wholeQuestion = question;
-    quest.answer = answer;
-    quest.questionId = questionId;
-    
-    [[EQDatabaseManager sharedInstance] saveContext];
-    return quest;
-}
-+ (NSArray*) getAllQuestions
-{
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    
-    NSArray* result =  [[EQDatabaseManager sharedInstance] entitiesWithRequest:request forName:@"Question"];
-    result = [result sortedArrayUsingComparator:^NSComparisonResult(EQQuestion *obj1, EQQuestion *obj2) {
-        return obj1.questionId - obj2.questionId;
-    }];
-    return result;
-}
-+ (EQQuestion*) getQuestionWithId:(int)questionId
-{
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"questionId == %d ", questionId];
-    [request setPredicate:predicate];
-    return (EQQuestion *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Question"];
-    
-}
-+ (EQQuestion *) getRandomQuestion {
-    int questionId = arc4random() % 11+1;
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"questionId == %d ", questionId];
-    [request setPredicate:predicate];
-    return (EQQuestion *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Question"];
++(NSMutableArray *)getAllQuestions {
+    return allQuestions;
 }
 
-+ (EQQuestion *) getNextQuestion {
+-(void)addQuestionToAllQuestions:(EQQuestion*)question {
+    if (!allQuestions) {
+        allQuestions = [[NSMutableArray alloc] initWithCapacity:100];
+    }
+    [allQuestions addObject:question];
+}
+
+- (EQQuestion*)getQuestionWithId:(int)questionId {
+    return [allQuestions objectAtIndex:questionId];
+}
+
++(EQQuestion*)EQQuestionWDwithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId {
+    return [[EQQuestion alloc] initWithWholeQuestion:wholeQuestion andAnswer:answer andId:questionId];
+}
+
+- (id)initWithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId {
+    if (self = [super init]) {
+        _wholeQuestion = wholeQuestion;
+        _answer = answer;
+        _questionId = questionId;
+        [self addQuestionToAllQuestions:self];
+    }
+    return self;
+}
++(EQQuestion*)getNextQuestion {
     int questionId = [EQMetadata getCurrentQuestion];
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"questionId == %d ", questionId];
-    [request setPredicate:predicate];
-    return (EQQuestion *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Question"];
+    return [allQuestions objectAtIndex:questionId];
 }
+
 - (void) createQuestionArray {
     self.questionArray = [NSMutableArray arrayWithCapacity:[self.wholeQuestion length]];
     for (int i = 0; i < [self.wholeQuestion length]; i++) {
         [self.questionArray addObject:[NSString stringWithFormat:@"%c",[self.wholeQuestion characterAtIndex:i]]];
     }
 }
-
 - (BOOL) isCorrect:(NSString *)checkedAnswer {
-    NSLog(@"isCorrect: %@==%@ ",self.answer,checkedAnswer);
     return [self.answer isEqualToString:checkedAnswer];
 }
 
