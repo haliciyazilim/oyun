@@ -113,7 +113,7 @@
     [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpInside];
 
     UILabel * lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
-    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:27.0];
+    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:27.0];
     [lbl setNumberOfLines:2];
     [lbl setText:title];
     [lbl setFont:font];

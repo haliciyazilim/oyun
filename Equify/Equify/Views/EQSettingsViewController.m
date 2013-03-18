@@ -111,7 +111,7 @@
     UIButton * btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:frame];
     UILabel * lblReset=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonHeight)];
-    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0];
+    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:25.0];
     
     [lblReset setText:title];
     [lblReset setFont:font];
