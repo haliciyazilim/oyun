@@ -103,6 +103,9 @@
 }
 
 +(UIButton *) makeButton:(CGRect)frame title:(NSString *) title{
+    
+    NSArray * tile=[title componentsSeparatedByString:@"\n"];
+    
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = frame;
     [btn setBackgroundImage:[UIImage imageNamed:@"main_btn.png"] forState:UIControlStateNormal];
@@ -112,17 +115,46 @@
     [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpOutside];
     [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpInside];
 
-    UILabel * lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
-    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:27.0];
-    [lbl setNumberOfLines:2];
-    [lbl setText:title];
-    [lbl setFont:font];
-    [lbl setBackgroundColor:[UIColor clearColor]];
-    [lbl setTextColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0]];
-    [lbl setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
-    [lbl setShadowOffset:CGSizeMake(0.0, 1.0)];
-    [lbl setTextAlignment:NSTextAlignmentCenter];
-    [btn addSubview:lbl];
+    if(tile.count>1){
+        UILabel * lblA=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-30)/2-11, btn.frame.size.width, 30)];
+        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:27.0];
+        [lblA setText:tile[0]];
+        [lblA setFont:font];
+        [lblA setBackgroundColor:[UIColor clearColor]];
+        [lblA setTextColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0]];
+        [lblA setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
+        [lblA setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [lblA setTextAlignment:NSTextAlignmentCenter];
+    
+    
+        UILabel * lblB=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-30)/2+11, btn.frame.size.width, 30)];
+        [lblB setText:tile[1]];
+        [lblB setFont:font];
+        [lblB setBackgroundColor:[UIColor clearColor]];
+        [lblB setTextColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0]];
+        [lblB setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
+        [lblB setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [lblB setTextAlignment:NSTextAlignmentCenter];
+    
+        [btn addSubview:lblA];
+        [btn addSubview:lblB];
+    }
+    else if(tile.count==1){
+        NSLog(@"tile==1: %i",tile.count);
+        UILabel * lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
+        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:27.0];
+        [lbl setText:tile[0]];
+        [lbl setFont:font];
+        [lbl setBackgroundColor:[UIColor clearColor]];
+        [lbl setTextColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0]];
+        [lbl setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
+        [lbl setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
+        [lbl setTag:1];
+        
+        [btn addSubview:lbl];
+        
+    }
 
     return btn;
 
