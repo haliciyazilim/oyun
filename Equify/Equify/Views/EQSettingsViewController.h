@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "EQViewController.h"
 
-@interface EQSettingsViewController : UIViewController
+@interface EQSettingsViewController : UIViewController <UIAlertViewDelegate>
 
 @end

@@ -6,7 +6,11 @@
 //  Copyright (c) 2013 Halıcı. All rights reserved.
 //
 
+#define RESET_STATS_APPROVE_ALERT_TAG 35
+
 #import "EQSettingsViewController.h"
+#import "EQStatistic.h"
+#import "EQScore.h"
 
 @interface EQSettingsViewController ()
 
@@ -55,6 +59,7 @@
     
     UIButton * btnReset=[self makeButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2-50, 175, 40) title:NSLocalizedString(@"RESET", nil)];
 
+    [btnReset addTarget:self action:@selector(resetStatsApprove) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2-5, 175, 3.0)];
     [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"double_line.png"]]];
@@ -81,7 +86,26 @@
     [self setBackgrounds];
     
 }
-
+-(void)resetStatsApprove {
+    UIAlertView *resetStatsApprove = [[UIAlertView alloc] initWithTitle:@""
+                                                              message:NSLocalizedString(@"RESET_STATS_APPROVE", nil)
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedString(@"CANCEL", nil)
+                                                    otherButtonTitles:NSLocalizedString(@"OK", nil),nil];
+    [resetStatsApprove setTag:RESET_STATS_APPROVE_ALERT_TAG];
+    [resetStatsApprove show];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(alertView.tag == RESET_STATS_APPROVE_ALERT_TAG){
+        if (buttonIndex != [alertView cancelButtonIndex]){
+            [self resetStats];
+        }
+    }
+}
+- (void) resetStats {
+    [EQStatistic resetStatistics];
+    [EQScore cleanAllScores];
+}
 -(void) setBackgrounds{
     if([[UIScreen mainScreen] bounds].size.height == 568){
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
