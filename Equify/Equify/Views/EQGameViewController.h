@@ -29,4 +29,7 @@
 @property StopWatch * stopWatch;
 @property (nonatomic) EQStatistic* currentStatistics;
 
+-(void)pauseGame;
+-(void)resumeGame;
+
 @end
