@@ -74,9 +74,9 @@ static NSMutableArray* boxes = nil;
         
         UILabel * title=[[UILabel alloc]initWithFrame:CGRectMake(4, 4, 40, 40)];
         [title setTextColor:[UIColor colorWithRed:0.333 green:0.333 blue:0.333 alpha:1.0]];
-        [title setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:33.0 ]];
-        [title setShadowColor:[UIColor colorWithWhite:0.0 alpha:0.7]];
-        [title setShadowOffset:CGSizeMake(0.0, -1.0)];
+        [title setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:33.0 ]];
+        [title setShadowColor:[UIColor colorWithWhite:1.0 alpha:1.0]];
+        [title setShadowOffset:CGSizeMake(0.0, 1.0)];
         [title setTextAlignment:NSTextAlignmentCenter];
         [title setText:self.title];
         [title setBackgroundColor:[UIColor clearColor]];
