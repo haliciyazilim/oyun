@@ -17,6 +17,8 @@
     UIView * questionViewLeftSide;
     UIView * questionViewRightSide;
     
+    UIButton * btnControl;
+    UIButton *btnSkip;
     NSMutableArray *counterImages;
     int moveCount;
     int deleteCount;
@@ -51,7 +53,7 @@
 }
 
 -(float) buttonSize{
-    return 69.0;
+    return [UIImage imageNamed:@"main_btn.png"].size.width;
 }
 
 - (void)viewDidLoad
@@ -72,11 +74,18 @@
     CGFloat winWidth = [[UIScreen mainScreen] bounds].size.width;
     CGFloat winHeight = [[UIScreen mainScreen] bounds].size.height;
     
-    UIButton *btnControl=[self makeButton:CGRectMake((winHeight-[self buttonSize])/2, winWidth-[self buttonSize]-24.0, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
+    btnControl=[EQViewController makeButton:CGRectMake((winHeight-[self buttonSize])/2, winWidth-[self buttonSize]*2/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
     [btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
+    [btnControl setTitleEdgeInsets: UIEdgeInsetsMake(-20, 0, 0, 0)];
     
-    UIButton *btnSkip=[self makeButton:CGRectMake(winHeight-[self buttonSize]-24, winWidth-[self buttonSize]-24, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"SKIP", nil)];
+    btnSkip=[EQViewController makeButton:CGRectMake((winHeight-[self buttonSize])/2, 0-[self buttonSize]*2/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"SKIP", nil)];
     [btnSkip addTarget:self action:@selector(skipQuestion) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImage * imgSkip=[UIImage imageNamed:@"skip_btn.png"];
+    UIImageView * imgViewSkip=[[UIImageView alloc] initWithImage:imgSkip];
+    [imgViewSkip setFrame:CGRectMake(([self buttonSize]-imgSkip.size.width)/2, [self buttonSize]*2/3, imgSkip.size.width, imgSkip.size.height)];
+    [btnSkip addSubview:imgViewSkip];
+    
     
     [self.view addSubview:btnControl];
     [self.view addSubview:btnSkip];
@@ -135,60 +144,7 @@
     [self placingBoxes];
 //    NSLog(@"Question %i", [_currentQuestion questionId]);
     
-    deleteCount = 0;
-    moveCount = [[self.currentQuestion wholeQuestion] length] - [[self.currentQuestion answer] length];
-    NSLog(@"MoveCount: %i", moveCount);
-    if (!counterImages) {
-        counterImages = [[NSMutableArray alloc] initWithCapacity:3];
-        for (int i = 0; i < moveCount; i++) {
-            UIImage * image=[UIImage imageNamed:@"delete_counter.png"];
-            UIImageView *count = [[UIImageView alloc] initWithImage:image];
-            count.frame = CGRectMake(25.0+6.0*i, 280.0, image.size.width, image.size.height);
-            [counterImages addObject:count];
-            [self.view addSubview:count];
-        }
-    }
-}
-
-
-
--(UIButton *) makeButton:(CGRect)frame title:(NSString *) title{
-    
-    
-    
-    
-    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = frame;
-    btn.layer.cornerRadius = [self buttonSize]/2;
-    btn.layer.borderWidth = 1.0;
-    btn.layer.shadowRadius = 2.0;
-    btn.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-    btn.layer.shadowOpacity = 0.3;
-    [btn.layer setShadowPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 2, [self buttonSize], [self buttonSize])] CGPath]];
-    btn.layer.borderColor = [[UIColor colorWithRed:0.596 green:0.596 blue:0.596 alpha:1.0] CGColor];
-    [btn setBackgroundColor:[UIColor colorWithRed:0.827 green:0.827 blue:0.827 alpha:1.0]];
-    
-    UIImageView *controlInnerShadow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"control_bg.png"]];
-    
-    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:20.0];
-    btn.titleLabel.numberOfLines=2;
-    
-    [btn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1.0] forState:UIControlStateNormal];
-    [btn setTitle:title forState:UIControlStateNormal];
-    btn.titleLabel.shadowColor=[UIColor colorWithWhite:1.0 alpha:0.3];
-    btn.titleLabel.shadowOffset=CGSizeMake(0.0, 1.0);
-    btn.titleLabel.backgroundColor=[UIColor clearColor];
-    btn.titleLabel.textAlignment=NSTextAlignmentCenter;
-
-    //    [controlButton addTarget:self action:@selector(makeHighlighted:) forControlEvents:UIControlEventTouchDown];
-    //    [controlButton addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpOutside];
-    
-    [btn addSubview:controlInnerShadow];
-   
-    
-    return btn;
-    
-    
+    [self placingCounters];
 }
 
 -(UIImageView *)makeContainer:(CGRect) frame image:(UIImage *)image {
@@ -262,6 +218,29 @@
         }
         
     }
+}
+
+-(void)placingCounters{
+    
+    deleteCount = 0;
+    moveCount = [[self.currentQuestion wholeQuestion] length] - [[self.currentQuestion answer] length];
+    NSLog(@"MoveCount: %i", moveCount);
+    UIImage * image=[UIImage imageNamed:@"delete_counter.png"];
+    UIView * counterView=[[UIView alloc] initWithFrame:CGRectMake((btnControl.frame.size.width-6.0*moveCount)/2, 20, 6.0*moveCount, image.size.height)];
+    
+    if (!counterImages) {
+        counterImages = [[NSMutableArray alloc] initWithCapacity:3];
+        for (int i = 0; i < moveCount; i++) {
+            
+            UIImageView *count = [[UIImageView alloc] initWithImage:image];
+            count.frame = CGRectMake(6.0*i, 0, image.size.width, image.size.height);
+            [counterImages addObject:count];
+            [counterView addSubview:count];
+        }
+    }
+    
+    [btnControl addSubview:counterView];
+    
 }
 
 -(void)animateBox:(UIButton *)button {
