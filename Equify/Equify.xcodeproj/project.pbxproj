@@ -43,7 +43,6 @@
 		055C909216EF7A2D002BD042 /* EQScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C909116EF7A2D002BD042 /* EQScore.m */; };
 		0591869716EE1CF600FF9881 /* EQBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 0591869616EE1CF600FF9881 /* EQBox.m */; };
 		0591869C16EE1F3A00FF9881 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0591869B16EE1F3A00FF9881 /* CoreData.framework */; };
-		0591869F16EE1F5800FF9881 /* EQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0591869E16EE1F5800FF9881 /* EQQuestion.m */; };
 		059186A316EE200D00FF9881 /* EQDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186A216EE200D00FF9881 /* EQDatabaseManager.m */; };
 		059186A616EE210800FF9881 /* EQBundleInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186A516EE210800FF9881 /* EQBundleInitializer.m */; };
 		059186C216EE215300FF9881 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186AA16EE215300FF9881 /* NSObject+SBJson.m */; };
@@ -70,6 +69,7 @@
 		05C05B2B16F1D05100913437 /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2716F1D05100913437 /* close_btn@2x.png */; };
 		05C05B2E16F1EFB400913437 /* dashed_border.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2C16F1EFB400913437 /* dashed_border.png */; };
 		05C05B2F16F1EFB400913437 /* dashed_border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2D16F1EFB400913437 /* dashed_border@2x.png */; };
+		05D0DA9316F70617000159DF /* EQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D0DA9216F70617000159DF /* EQQuestion.m */; };
 		05E4A63716F31A8E0072BBDB /* double_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63316F31A8E0072BBDB /* double_line.png */; };
 		05E4A63816F31A8E0072BBDB /* double_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63416F31A8E0072BBDB /* double_line@2x.png */; };
 		05E4A63916F31A8E0072BBDB /* single_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63516F31A8E0072BBDB /* single_line.png */; };
@@ -169,8 +169,6 @@
 		0591869516EE1CF600FF9881 /* EQBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQBox.h; sourceTree = "<group>"; };
 		0591869616EE1CF600FF9881 /* EQBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQBox.m; sourceTree = "<group>"; };
 		0591869B16EE1F3A00FF9881 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		0591869D16EE1F5800FF9881 /* EQQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQQuestion.h; sourceTree = "<group>"; };
-		0591869E16EE1F5800FF9881 /* EQQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQQuestion.m; sourceTree = "<group>"; };
 		059186A116EE200D00FF9881 /* EQDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQDatabaseManager.h; sourceTree = "<group>"; };
 		059186A216EE200D00FF9881 /* EQDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQDatabaseManager.m; sourceTree = "<group>"; };
 		059186A416EE210800FF9881 /* EQBundleInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQBundleInitializer.h; sourceTree = "<group>"; };
@@ -214,6 +212,8 @@
 		05C05B2716F1D05100913437 /* close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_btn@2x.png"; sourceTree = "<group>"; };
 		05C05B2C16F1EFB400913437 /* dashed_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashed_border.png; sourceTree = "<group>"; };
 		05C05B2D16F1EFB400913437 /* dashed_border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashed_border@2x.png"; sourceTree = "<group>"; };
+		05D0DA9116F70617000159DF /* EQQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQQuestion.h; sourceTree = "<group>"; };
+		05D0DA9216F70617000159DF /* EQQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQQuestion.m; sourceTree = "<group>"; };
 		05E4A63316F31A8E0072BBDB /* double_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = double_line.png; sourceTree = "<group>"; };
 		05E4A63416F31A8E0072BBDB /* double_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "double_line@2x.png"; sourceTree = "<group>"; };
 		05E4A63516F31A8E0072BBDB /* single_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = single_line.png; sourceTree = "<group>"; };
@@ -419,14 +419,14 @@
 			children = (
 				0591869516EE1CF600FF9881 /* EQBox.h */,
 				0591869616EE1CF600FF9881 /* EQBox.m */,
-				0591869D16EE1F5800FF9881 /* EQQuestion.h */,
-				0591869E16EE1F5800FF9881 /* EQQuestion.m */,
 				055C908D16EF79B6002BD042 /* EQStatistic.h */,
 				055C908E16EF79B7002BD042 /* EQStatistic.m */,
 				055C909016EF7A2D002BD042 /* EQScore.h */,
 				055C909116EF7A2D002BD042 /* EQScore.m */,
 				05060C7216F0A4A800EBBD84 /* EQMetadata.h */,
 				05060C7316F0A4A800EBBD84 /* EQMetadata.m */,
+				05D0DA9116F70617000159DF /* EQQuestion.h */,
+				05D0DA9216F70617000159DF /* EQQuestion.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -726,7 +726,6 @@
 				05192B7416CB83F5002F9529 /* EQAppDelegate.m in Sources */,
 				05192B7D16CB83F5002F9529 /* EQViewController.m in Sources */,
 				0591869716EE1CF600FF9881 /* EQBox.m in Sources */,
-				0591869F16EE1F5800FF9881 /* EQQuestion.m in Sources */,
 				059186A316EE200D00FF9881 /* EQDatabaseManager.m in Sources */,
 				059186A616EE210800FF9881 /* EQBundleInitializer.m in Sources */,
 				059186C216EE215300FF9881 /* NSObject+SBJson.m in Sources */,
@@ -754,6 +753,7 @@
 				AE8C0AE616F1F7D10084A808 /* EQipadGameViewController.m in Sources */,
 				AE8C0AE916F1F8110084A808 /* EQipadStatsViewController.m in Sources */,
 				AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */,
+				05D0DA9316F70617000159DF /* EQQuestion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
