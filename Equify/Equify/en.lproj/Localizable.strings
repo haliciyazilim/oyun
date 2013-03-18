@@ -28,4 +28,7 @@
 "RESET"="reset stats";
 "ABOUT"="about us";
 "MOREGAMES"="more games";
+"RESET_STATS_APPROVE" = "Are you sure want to reset game stats?";
+"OK" = "OK";
+"CANCEL" = "Cancel";
 
