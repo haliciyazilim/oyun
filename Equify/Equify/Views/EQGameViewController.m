@@ -26,6 +26,9 @@
     
     CGFloat winWidth;
     CGFloat winHeight;
+    
+    UIImageView* answerFrame;
+    BOOL isSolutionCorrect;
 }
 -(int)boxSize{
     return 48;
@@ -62,7 +65,7 @@
 
 - (void)viewDidLoad
 {
-    
+    isSolutionCorrect = NO;
     [self setBackground];
     
     [self.stopWatchLabel setText:@"00:00"];
@@ -276,7 +279,12 @@
 }
 
 -(void)control{
-    NSLog(@"entered control");
+    
+    if (answerFrame) {
+        [answerFrame removeFromSuperview];
+        answerFrame = nil;
+    }
+    
     NSMutableString * answer=[[NSMutableString alloc] initWithString:@""];
     NSMutableString * answerLeftSide=[[NSMutableString alloc] initWithString:@""];
     NSMutableString * answerRightSide=[[NSMutableString alloc] initWithString:@""];
@@ -303,32 +311,78 @@
     [answer appendString:answerRightSide];
     
     if([self.currentQuestion isCorrect:answer]){
-        [self onCorrectAnswer];
-        
+        UIImage *frameImage;
+        if([[UIScreen mainScreen] bounds].size.height == 568){
+            frameImage = [UIImage imageNamed:@"frame_correct-568h.png"];
+        }
+        else{
+            frameImage = [UIImage imageNamed:@"frame_correct.png"];
+        }
+
+        answerFrame = [[UIImageView alloc] initWithImage:frameImage];
+        [self.view addSubview:answerFrame];
+        isSolutionCorrect = YES;
+        [self fadeOutAnswerFrames];
     }
     else{
-        NSLog(@"Answer is false");
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
-            self.view.transform = CGAffineTransformTranslate(self.view.transform, -25, 0);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
-                self.view.transform = CGAffineTransformTranslate(self.view.transform, 50, 0);   
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
-                    self.view.transform = CGAffineTransformTranslate(self.view.transform, -50, 0);
-                } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
-                        self.view.transform = CGAffineTransformTranslate(self.view.transform, 25, 0);
-                    } completion:^(BOOL finished) {
-                        ;
-                    }];
-                }];
-            }];
-        }];
+        
+        UIImage *frameImage;
+        if([[UIScreen mainScreen] bounds].size.height == 568){
+            frameImage = [UIImage imageNamed:@"frame_false-568h.png"];
+        }
+        else{
+            frameImage = [UIImage imageNamed:@"frame_false.png"];
+        }
+        
+        answerFrame = [[UIImageView alloc] initWithImage:frameImage];
+        [self.view addSubview:answerFrame];
+        isSolutionCorrect = NO;
+        [self fadeOutAnswerFrames];
+        
+//        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+//            self.view.transform = CGAffineTransformTranslate(self.view.transform, -25, 0);
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+//                self.view.transform = CGAffineTransformTranslate(self.view.transform, 50, 0);   
+//            } completion:^(BOOL finished) {
+//                [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+//                    self.view.transform = CGAffineTransformTranslate(self.view.transform, -50, 0);
+//                } completion:^(BOOL finished) {
+//                    [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+//                        self.view.transform = CGAffineTransformTranslate(self.view.transform, 25, 0);
+//                    } completion:^(BOOL finished) {
+//                        ;
+//                    }];
+//                }];
+//            }];
+//        }];
         
     }
 }
-
+-(void)fadeOutAnswerFrames {
+    [self pauseGame];
+    if (answerFrame) {
+        [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            answerFrame.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [answerFrame removeFromSuperview];
+            answerFrame = nil;
+            if (isSolutionCorrect) {
+                [self onCorrectAnswer];
+            } else {
+                [self resumeGame];
+            }
+        }];
+    }
+}
+-(void)pauseGame{
+    [self.stopWatch pauseTimer];
+    [self.view setUserInteractionEnabled:NO];
+}
+-(void)resumeGame{
+    [self.stopWatch resumeTimer];
+    [self.view setUserInteractionEnabled:YES];
+}
 -(void)onCorrectAnswer{
     
     [_stopWatch stopTimer];
