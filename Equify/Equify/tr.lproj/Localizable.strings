@@ -24,6 +24,10 @@
 "CONTROL"="kontrol";
 "SKIP"="geç";
 
+// ingame menu
+"RESUME"="devam et";
+"MAINMENU"="ana menu";
+
 // settings screen
 "RESET"="verileri sil";
 "ABOUT"="hakkımızda";
