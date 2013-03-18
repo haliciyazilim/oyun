@@ -23,6 +23,9 @@
     NSMutableArray *counterImages;
     int moveCount;
     int deleteCount;
+    
+    CGFloat winWidth;
+    CGFloat winHeight;
 }
 -(int)boxSize{
     return 48;
@@ -72,14 +75,14 @@
     
     
     
-    CGFloat winWidth = [[UIScreen mainScreen] bounds].size.width;
-    CGFloat winHeight = [[UIScreen mainScreen] bounds].size.height;
+    winWidth = [[UIScreen mainScreen] bounds].size.height;
+    winHeight = [[UIScreen mainScreen] bounds].size.width;
     
-    btnControl=[EQViewController makeButton:CGRectMake((winHeight-[self buttonSize])/2, winWidth-[self buttonSize]*2/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
+    btnControl=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, winHeight-[self buttonSize]*2/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
     [btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
     [btnControl setTitleEdgeInsets: UIEdgeInsetsMake(-20, 0, 0, 0)];
     
-    btnSkip=[EQViewController makeButton:CGRectMake((winHeight-[self buttonSize])/2, 0-[self buttonSize]*2/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"SKIP", nil)];
+    btnSkip=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, 0-[self buttonSize]*2/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"SKIP", nil)];
     [btnSkip addTarget:self action:@selector(skipQuestion) forControlEvents:UIControlEventTouchUpInside];
     
     UIImage * imgSkip=[UIImage imageNamed:@"skip_btn.png"];
@@ -88,7 +91,7 @@
     [btnSkip addSubview:imgViewSkip];
     
     UIImage * imgMenu=[UIImage imageNamed:@"menu_btn.png"];
-    btnMenu=[[UIButton alloc] initWithFrame:CGRectMake(winHeight-imgMenu.size.width-25, 25, imgMenu.size.width, imgMenu.size.height)];
+    btnMenu=[[UIButton alloc] initWithFrame:CGRectMake(winWidth-imgMenu.size.width-25, 25, imgMenu.size.width, imgMenu.size.height)];
     [btnMenu setBackgroundImage:imgMenu forState:UIControlStateNormal];
     
     NSLog(@"self.view width: %f", self.view.frame.size.width);
