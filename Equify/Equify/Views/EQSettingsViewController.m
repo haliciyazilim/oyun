@@ -41,14 +41,6 @@
     buttonHeight=40;
     UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2-55, 175, 3.0)];
     [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"double_line.png"]]];
-
-    /*
-    UIButton * btnReset=[self makeButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2-50, 175, 40) title:@"reset stats"];
-    [btnReset setTitleColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1.0] forState:UIControlStateNormal];
-//    [btnReset setTitle:title forState:UIControlStateNormal];
-    [btnReset setTitleShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7] forState:UIControlStateNormal];
-    */
-    
     
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeButton setBackgroundImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateNormal];
