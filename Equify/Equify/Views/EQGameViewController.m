@@ -19,6 +19,7 @@
     
     UIButton * btnControl;
     UIButton *btnSkip;
+    UIButton *btnMenu;
     NSMutableArray *counterImages;
     int moveCount;
     int deleteCount;
@@ -86,6 +87,14 @@
     [imgViewSkip setFrame:CGRectMake(([self buttonSize]-imgSkip.size.width)/2, [self buttonSize]*2/3, imgSkip.size.width, imgSkip.size.height)];
     [btnSkip addSubview:imgViewSkip];
     
+    UIImage * imgMenu=[UIImage imageNamed:@"menu_btn.png"];
+    btnMenu=[[UIButton alloc] initWithFrame:CGRectMake(winHeight-imgMenu.size.width-25, 25, imgMenu.size.width, imgMenu.size.height)];
+    [btnMenu setBackgroundImage:imgMenu forState:UIControlStateNormal];
+    
+    NSLog(@"self.view width: %f", self.view.frame.size.width);
+    
+    
+    [self.view addSubview:btnMenu];
     
     [self.view addSubview:btnControl];
     [self.view addSubview:btnSkip];
