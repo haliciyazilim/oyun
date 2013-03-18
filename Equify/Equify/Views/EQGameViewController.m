@@ -392,7 +392,7 @@
     [EQScore addScore:[_stopWatch getElapsedMiliseconds]];
     [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds]];
     
-    [[GameCenterManager sharedInstance] submitScore:[_stopWatch getElapsedMiliseconds] category:kLeaderboardBestTime];
+    [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatistics] minTime]*0.1 category:kLeaderboardBestTime];
     [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatistics] totalSolvedQuestion] category:kLeaderboardTotalSolvedQuestion];
 
     [self.navigationController popViewControllerAnimated:YES];
@@ -410,7 +410,7 @@
 
 -(void)inGameMenu{
     
-    [self.stopWatch stopTimer];
+    [self.stopWatch pauseTimer];
     menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winWidth, winHeight)];
     
     if([[UIScreen mainScreen] bounds].size.height == 568){
@@ -426,7 +426,7 @@
 
     UIButton * btnResume=[self makeMenuButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2-25, 175, 40) title:NSLocalizedString(@"RESUME", nil)];
     
-    [btnResume addTarget:self action:@selector(resumeGame) forControlEvents:UIControlEventTouchUpInside];
+    [btnResume addTarget:self action:@selector(btnResumeGame) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+20, 175, 2.0)];
     [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
@@ -472,7 +472,7 @@
     [self skipQuestion];
 }
 
-- (void) resumeGame {
+- (void) btnResumeGame {
     [menu removeFromSuperview];
     [self.stopWatch resumeTimer];
 }
