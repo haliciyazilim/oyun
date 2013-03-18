@@ -42,7 +42,7 @@
 }
 + (void) initializeBundle2 {
     if([[EQDatabaseManager sharedInstance] isEmpty]){
-        NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"standart" ofType:@"questionpack"]
+        NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"standard-4000" ofType:@"questionpack"]
                                                       encoding:NSUTF8StringEncoding
                                                          error:NULL];
         

@@ -1,0 +1,507 @@
+{
+	"questions":
+		[
+			{
+				"wholeQuestion": "3+2+14=9+7+6x3",
+				"answer": "3+2+14=9+7+3",
+				"questionId": "1"
+			},
+			{
+				"wholeQuestion": "68/62+19=8+5+7",
+				"answer": "6/6+19=8+5+7",
+				"questionId": "2"
+			},
+			{
+				"wholeQuestion": "14+6+2=1+56/76",
+				"answer": "1+6+2=1+56/7",
+				"questionId": "3"
+			},
+			{
+				"wholeQuestion": "6/12+21=7+8+90",
+				"answer": "6/2+21=7+8+9",
+				"questionId": "4"
+			},
+			{
+				"wholeQuestion": "3+2+7=9x1+1+10",
+				"answer": "3+2+7=1+1+10",
+				"questionId": "5"
+			},
+			{
+				"wholeQuestion": "78/8+10=28/2+7",
+				"answer": "8/8+10=8/2+7",
+				"questionId": "6"
+			},
+			{
+				"wholeQuestion": "37+9+71=72/8+4",
+				"answer": "3+9+1=72/8+4",
+				"questionId": "7"
+			},
+			{
+				"wholeQuestion": "76+7+8=5/5+2x1",
+				"answer": "7+7+8=5/5+21",
+				"questionId": "8"
+			},
+			{
+				"wholeQuestion": "24+5+1x4=9+5+7",
+				"answer": "2+5+14=9+5+7",
+				"questionId": "9"
+			},
+			{
+				"wholeQuestion": "4+18+8=4+36+10",
+				"answer": "4+8+8=4+6+10",
+				"questionId": "10"
+			},
+			{
+				"wholeQuestion": "6+31+1-2=3+8+8",
+				"answer": "6+1+12=3+8+8",
+				"questionId": "11"
+			},
+			{
+				"wholeQuestion": "38+9+32=1+2+17",
+				"answer": "8+9+3=1+2+17",
+				"questionId": "12"
+			},
+			{
+				"wholeQuestion": "36/4+8=6+9+3x2",
+				"answer": "36/4+8=6+9+2",
+				"questionId": "13"
+			},
+			{
+				"wholeQuestion": "8+4+72=4+27+13",
+				"answer": "8+4+7=4+2+13",
+				"questionId": "14"
+			},
+			{
+				"wholeQuestion": "3+4+3=4+2/4/41",
+				"answer": "3+4+3=4+24/4",
+				"questionId": "15"
+			},
+			{
+				"wholeQuestion": "20/5+36=8/84+5",
+				"answer": "20/5+3=8/4+5",
+				"questionId": "16"
+			},
+			{
+				"wholeQuestion": "62+27=9+2-9+78",
+				"answer": "62+27=9+2+78",
+				"questionId": "17"
+			},
+			{
+				"wholeQuestion": "6+6/2=81/18/49",
+				"answer": "6+6/2=81/1/9",
+				"questionId": "18"
+			},
+			{
+				"wholeQuestion": "26/26+1=52+3+6",
+				"answer": "26/2+1=5+3+6",
+				"questionId": "19"
+			},
+			{
+				"wholeQuestion": "49+9+4=5/59+21",
+				"answer": "9+9+4=5/5+21",
+				"questionId": "20"
+			},
+			{
+				"wholeQuestion": "1+5+11=7/9+5+3",
+				"answer": "1+5+11=9+5+3",
+				"questionId": "21"
+			},
+			{
+				"wholeQuestion": "3+2+1x6=90+8+4",
+				"answer": "3+2+16=9+8+4",
+				"questionId": "22"
+			},
+			{
+				"wholeQuestion": "1+7+73=77+46+7",
+				"answer": "17+73=77+6+7",
+				"questionId": "23"
+			},
+			{
+				"wholeQuestion": "48/64+39=2+7+6",
+				"answer": "48/4+3=2+7+6",
+				"questionId": "24"
+			},
+			{
+				"wholeQuestion": "51+61+2=10+9/3",
+				"answer": "5+6+2=10+9/3",
+				"questionId": "25"
+			},
+			{
+				"wholeQuestion": "8/1+2x98=45+61",
+				"answer": "8/1+98=45+61",
+				"questionId": "26"
+			},
+			{
+				"wholeQuestion": "46+9x6/6=9+7+4",
+				"answer": "4+96/6=9+7+4",
+				"questionId": "27"
+			},
+			{
+				"wholeQuestion": "2+5-4+5=55/1/5",
+				"answer": "2+4+5=55/1/5",
+				"questionId": "28"
+			},
+			{
+				"wholeQuestion": "4+9+94=77/7+56",
+				"answer": "4+9+4=77/7+6",
+				"questionId": "29"
+			},
+			{
+				"wholeQuestion": "9/3+12=69+48+1",
+				"answer": "9/3+12=6+8+1",
+				"questionId": "30"
+			},
+			{
+				"wholeQuestion": "2+8+64=2+1+1x3",
+				"answer": "2+8+6=2+1+13",
+				"questionId": "31"
+			},
+			{
+				"wholeQuestion": "86/3+16=79+4+7",
+				"answer": "6/3+16=7+4+7",
+				"questionId": "32"
+			},
+			{
+				"wholeQuestion": "6+49+7=3/34+16",
+				"answer": "6+4+7=3/3+16",
+				"questionId": "33"
+			},
+			{
+				"wholeQuestion": "9/3+1/54=9+8+1",
+				"answer": "9/3+15=9+8+1",
+				"questionId": "34"
+			},
+			{
+				"wholeQuestion": "53+4/17=3+24/4",
+				"answer": "5+4/1=3+24/4",
+				"questionId": "35"
+			},
+			{
+				"wholeQuestion": "16+67/2=36/1/9",
+				"answer": "1+6/2=36/1/9",
+				"questionId": "36"
+			},
+			{
+				"wholeQuestion": "9+93+7=86+6+13",
+				"answer": "9+9+7=6+6+13",
+				"questionId": "37"
+			},
+			{
+				"wholeQuestion": "1+95+3/8=19+29",
+				"answer": "1+9+38=19+29",
+				"questionId": "38"
+			},
+			{
+				"wholeQuestion": "47+27=6x1/3+72",
+				"answer": "47+27=6/3+72",
+				"questionId": "39"
+			},
+			{
+				"wholeQuestion": "25+5/7=1+68+75",
+				"answer": "25+57=1+6+75",
+				"questionId": "40"
+			},
+			{
+				"wholeQuestion": "2+9+8=9-8/1+11",
+				"answer": "2+9+8=8/1+11",
+				"questionId": "41"
+			},
+			{
+				"wholeQuestion": "1+5+37=61/2+10",
+				"answer": "1+5+7=6/2+10",
+				"questionId": "42"
+			},
+			{
+				"wholeQuestion": "52+5+5=4+35/29",
+				"answer": "5+5+5=435/29",
+				"questionId": "43"
+			},
+			{
+				"wholeQuestion": "8/41+84=3+2+11",
+				"answer": "8/1+8=3+2+11",
+				"questionId": "44"
+			},
+			{
+				"wholeQuestion": "9+1+8=2+6x7+10",
+				"answer": "9+1+8=2+6+10",
+				"questionId": "45"
+			},
+			{
+				"wholeQuestion": "5x21/3/1=4+1+2",
+				"answer": "21/3/1=4+1+2",
+				"questionId": "46"
+			},
+			{
+				"wholeQuestion": "71+7+5=52+2+15",
+				"answer": "7+7+5=2+2+15",
+				"questionId": "47"
+			},
+			{
+				"wholeQuestion": "6/3+8=58+35/70",
+				"answer": "6/3+8=5+35/7",
+				"questionId": "48"
+			},
+			{
+				"wholeQuestion": "4+1/29+2=5+9+4",
+				"answer": "4+12+2=5+9+4",
+				"questionId": "49"
+			},
+			{
+				"wholeQuestion": "48/3+25=91+4+8",
+				"answer": "48/3+5=9+4+8",
+				"questionId": "50"
+			},
+			{
+				"wholeQuestion": "90+7+45=3/9+62",
+				"answer": "90+7+4=39+62",
+				"questionId": "51"
+			},
+			{
+				"wholeQuestion": "5+7+1-2=8+9+70",
+				"answer": "5+7+12=8+9+7",
+				"questionId": "52"
+			},
+			{
+				"wholeQuestion": "4+6+12=48+93+5",
+				"answer": "4+6+12=8+9+5",
+				"questionId": "53"
+			},
+			{
+				"wholeQuestion": "6-3+32=2/2+9x4",
+				"answer": "63+32=2/2+94",
+				"questionId": "54"
+			},
+			{
+				"wholeQuestion": "72/9+7=28+6+27",
+				"answer": "72/9+7=2+6+7",
+				"questionId": "55"
+			},
+			{
+				"wholeQuestion": "73+2+11=9+5+27",
+				"answer": "3+2+11=9+5+2",
+				"questionId": "56"
+			},
+			{
+				"wholeQuestion": "34+10+11=9+3+4",
+				"answer": "4+1+11=9+3+4",
+				"questionId": "57"
+			},
+			{
+				"wholeQuestion": "7+6+7x85=19+69",
+				"answer": "7+6+75=19+69",
+				"questionId": "58"
+			},
+			{
+				"wholeQuestion": "25+5+11=6+86+6",
+				"answer": "2+5+11=6+6+6",
+				"questionId": "59"
+			},
+			{
+				"wholeQuestion": "9+7+28=1/1+2/3",
+				"answer": "9+7+8=1/1+23",
+				"questionId": "60"
+			},
+			{
+				"wholeQuestion": "6+7+2=16/2-1+7",
+				"answer": "6+7+2=16/2+7",
+				"questionId": "61"
+			},
+			{
+				"wholeQuestion": "4+85/1=3+72/84",
+				"answer": "4+8/1=3+72/8",
+				"questionId": "62"
+			},
+			{
+				"wholeQuestion": "4/1+42/7=23+23",
+				"answer": "4/1+42=23+23",
+				"questionId": "63"
+			},
+			{
+				"wholeQuestion": "12+2+16=4+8+67",
+				"answer": "1+2+16=4+8+7",
+				"questionId": "64"
+			},
+			{
+				"wholeQuestion": "27+5+4-9=31+30",
+				"answer": "7+5+49=31+30",
+				"questionId": "65"
+			},
+			{
+				"wholeQuestion": "75+10+9=2+5+10",
+				"answer": "7+1+9=2+5+10",
+				"questionId": "66"
+			},
+			{
+				"wholeQuestion": "5+68+3=15/21+1",
+				"answer": "5+8+3=15/1+1",
+				"questionId": "67"
+			},
+			{
+				"wholeQuestion": "6+8+8=96+26+14",
+				"answer": "6+8+8=6+2+14",
+				"questionId": "68"
+			},
+			{
+				"wholeQuestion": "6+3/6/34=4+6+5",
+				"answer": "6+36/4=4+6+5",
+				"questionId": "69"
+			},
+			{
+				"wholeQuestion": "6+8+1+40=9+7+8",
+				"answer": "6+8+10=9+7+8",
+				"questionId": "70"
+			},
+			{
+				"wholeQuestion": "73/3+92=4/6+47",
+				"answer": "3/3+92=46+47",
+				"questionId": "71"
+			},
+			{
+				"wholeQuestion": "45/1/73=7/16+8",
+				"answer": "45/1/3=7/1+8",
+				"questionId": "72"
+			},
+			{
+				"wholeQuestion": "2+5+9=86+20/12",
+				"answer": "2+5+9=6+20/2",
+				"questionId": "73"
+			},
+			{
+				"wholeQuestion": "7/61+8=63/9+83",
+				"answer": "7/1+8=63/9+8",
+				"questionId": "74"
+			},
+			{
+				"wholeQuestion": "65+4+4=24/63+5",
+				"answer": "5+4+4=24/3+5",
+				"questionId": "75"
+			},
+			{
+				"wholeQuestion": "32+49+86=64+29",
+				"answer": "3+4+86=64+29",
+				"questionId": "76"
+			},
+			{
+				"wholeQuestion": "9+8x65+2=51+45",
+				"answer": "9+85+2=51+45",
+				"questionId": "77"
+			},
+			{
+				"wholeQuestion": "1+9+5-18=12+49",
+				"answer": "1+9+51=12+49",
+				"questionId": "78"
+			},
+			{
+				"wholeQuestion": "16/6+14=41+5+9",
+				"answer": "6/6+14=1+5+9",
+				"questionId": "79"
+			},
+			{
+				"wholeQuestion": "40/82+4=29+2+5",
+				"answer": "40/8+4=2+2+5",
+				"questionId": "80"
+			},
+			{
+				"wholeQuestion": "3+9+64=3+90+37",
+				"answer": "3+9+64=39+37",
+				"questionId": "81"
+			},
+			{
+				"wholeQuestion": "9+8+3=65/21+15",
+				"answer": "9+8+3=5/1+15",
+				"questionId": "82"
+			},
+			{
+				"wholeQuestion": "7+21+6x8=15+61",
+				"answer": "7+1+68=15+61",
+				"questionId": "83"
+			},
+			{
+				"wholeQuestion": "2+94/3+1=7+1+1",
+				"answer": "24/3+1=7+1+1",
+				"questionId": "84"
+			},
+			{
+				"wholeQuestion": "20+16=26+2+3/2",
+				"answer": "20+16=2+2+32",
+				"questionId": "85"
+			},
+			{
+				"wholeQuestion": "78+15+2=9+27+9",
+				"answer": "8+15+2=9+7+9",
+				"questionId": "86"
+			},
+			{
+				"wholeQuestion": "2+54/9=6+1+4+3",
+				"answer": "2+54/9=1+4+3",
+				"questionId": "87"
+			},
+			{
+				"wholeQuestion": "2+35+60=36/9+7",
+				"answer": "2+3+6=36/9+7",
+				"questionId": "88"
+			},
+			{
+				"wholeQuestion": "36/74+2=1+75+3",
+				"answer": "36/4+2=1+7+3",
+				"questionId": "89"
+			},
+			{
+				"wholeQuestion": "73/1+13=5+5+26",
+				"answer": "3/1+13=5+5+6",
+				"questionId": "90"
+			},
+			{
+				"wholeQuestion": "6+30+9=34+2+12",
+				"answer": "6+3+9=4+2+12",
+				"questionId": "91"
+			},
+			{
+				"wholeQuestion": "3+9+1=62/1+1+1",
+				"answer": "3+9+1=2/1+11",
+				"questionId": "92"
+			},
+			{
+				"wholeQuestion": "2+6+85=8/47+11",
+				"answer": "2+6+5=8/4+11",
+				"questionId": "93"
+			},
+			{
+				"wholeQuestion": "2+8/2-1=63/9+3",
+				"answer": "2+8/1=63/9+3",
+				"questionId": "94"
+			},
+			{
+				"wholeQuestion": "3x8/4+12=2+5+7",
+				"answer": "8/4+12=2+5+7",
+				"questionId": "95"
+			},
+			{
+				"wholeQuestion": "12+7+4=82/1+11",
+				"answer": "2+7+4=2/1+11",
+				"questionId": "96"
+			},
+			{
+				"wholeQuestion": "3+4+11=81+95+8",
+				"answer": "3+4+11=1+9+8",
+				"questionId": "97"
+			},
+			{
+				"wholeQuestion": "6/6+1-3=74+8+2",
+				"answer": "6/6+13=4+8+2",
+				"questionId": "98"
+			},
+			{
+				"wholeQuestion": "5+9+8+9=19+7/1",
+				"answer": "9+8+9=19+7/1",
+				"questionId": "99"
+			},
+			{
+				"wholeQuestion": "8+4+31=28+1x56",
+				"answer": "8+4+31=28+15",
+				"questionId": "100"
+			}
+		],
+	"name": "standart",
+	"version": 1
+}
