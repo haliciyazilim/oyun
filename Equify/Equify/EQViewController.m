@@ -8,6 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "EQViewController.h"
 #import "EQGameViewController.h"
+#import "EQSettingsViewController.h"
 #import "EQQuestion.h"
 #import "EQAppSpecificViewSizes.h"
 #import "EQStatsViewController.h"
@@ -78,7 +79,8 @@
 //    buttonsView.backgroundColor=[UIColor yellowColor];
     [self.view addSubview:buttonsView];
     
-     UIButton * btnGameSettings=[EQViewController makeButton:CGRectMake(0, 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESETTINGS", nil)];
+    UIButton * btnGameSettings=[EQViewController makeButton:CGRectMake(0, 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESETTINGS", nil)];
+    [btnGameSettings addTarget:self action:@selector(openSettings) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * btnStartGame=[EQViewController makeButton:CGRectMake(([self buttonsViewWidth]-[self btnSize])/2, 0, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESTART", nil) ];
     [btnStartGame addTarget:self action:@selector(startNewGame:) forControlEvents:UIControlEventTouchUpInside];
@@ -171,6 +173,10 @@
     [self performSegueWithIdentifier:@"StatsSegue" sender:self];
 }
 
+-(void)openSettings{
+    [self performSegueWithIdentifier:@"SettingsSegue" sender:self];
+}
+
 - (void) showGameCenter
 {
     if(!self.reachability)
@@ -211,6 +217,7 @@
         EQStatsViewController *eqStatsViewController = [segue destinationViewController];
         [eqStatsViewController setCurrentStatistics:[EQStatistic getStatistics]];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning
