@@ -23,3 +23,9 @@
 // game screen
 "CONTROL"="control";
 "SKIP"="skip";
+
+// settings screen
+"RESET"="reset stats";
+"ABOUT"="about us";
+"MOREGAMES"="more games";
+

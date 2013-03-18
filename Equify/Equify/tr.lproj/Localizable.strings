@@ -23,3 +23,8 @@
 // game screen
 "CONTROL"="kontrol";
 "SKIP"="geç";
+
+// settings screen
+"RESET"="verileri sil";
+"ABOUT"="hakkımızda";
+"MOREGAMES"="diğer oyunlar";
