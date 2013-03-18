@@ -134,17 +134,6 @@
     [btn setBackgroundImage:[UIImage imageNamed:@"game_center_btn.png"] forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"game_center_btn_pressed.png"] forState:UIControlStateHighlighted];
     
-    [btn addTarget:self action:@selector(makeHighlighted:) forControlEvents:UIControlEventTouchDown];
-    [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpOutside];
-    [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    btn.titleLabel.textColor=[UIColor colorWithRed:0.46 green:0.36 blue:0.22 alpha:1.0];
-//    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica Thin" size:24.0];
-    //    btnGameStart.titleLabel.shadowColor=[UIColor colorWithWhite:1.0 alpha:0.7];
-    //    btnGameStart.titleLabel.shadowOffset=CGSizeMake(0.0, 2.0);
-    btn.titleLabel.backgroundColor=[UIColor clearColor];
-    btn.titleLabel.textAlignment=NSTextAlignmentCenter;
-    
     return btn;
     
 }
