@@ -16,6 +16,7 @@
     
     UIView * questionViewLeftSide;
     UIView * questionViewRightSide;
+    UIView * menu;
     
     UIButton * btnControl;
     UIButton *btnSkip;
@@ -96,7 +97,7 @@
     UIImage * imgMenu=[UIImage imageNamed:@"menu_btn.png"];
     btnMenu=[[UIButton alloc] initWithFrame:CGRectMake(winWidth-imgMenu.size.width-25, 25, imgMenu.size.width, imgMenu.size.height)];
     [btnMenu setBackgroundImage:imgMenu forState:UIControlStateNormal];
-    
+    [btnMenu addTarget:self action:@selector(inGameMenu) forControlEvents:UIControlEventTouchUpInside];
     NSLog(@"self.view width: %f", self.view.frame.size.width);
     
     
@@ -170,6 +171,8 @@
 }
 
 -(void)placingBoxes{
+    
+    
     
     [EQBox cleanInstances];
     BOOL isRightSide=NO;
@@ -405,6 +408,74 @@
 }
 
 
+-(void)inGameMenu{
+    
+    [self.stopWatch stopTimer];
+    menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winWidth, winHeight)];
+    
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
+    }
+    else{
+        menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+    }
+
+    
+    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2-30, 175, 2.0)];
+    [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
+
+    UIButton * btnResume=[self makeMenuButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2-25, 175, 40) title:NSLocalizedString(@"RESUME", nil)];
+    
+    [btnResume addTarget:self action:@selector(resumeGame) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+20, 175, 2.0)];
+    [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
+    
+    UIButton * btnMainMenu=[self makeMenuButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2+25, 175, 40) title:NSLocalizedString(@"MAINMENU", nil)];
+    [btnMainMenu addTarget:self action:@selector(openMainMenu) forControlEvents:UIControlEventTouchUpInside];
+
+    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+75, 175, 2.0)];
+    [seperator3 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
+    
+    [menu addSubview:seperator1];
+    [menu addSubview:btnResume];
+    [menu addSubview:seperator2];
+    [menu addSubview:btnMainMenu];
+    [menu addSubview:seperator3];
+    
+    [self.view addSubview:menu];
+   
+
+}
+
+-(UIButton *) makeMenuButton:(CGRect)frame title:(NSString *) title{
+    UIButton * btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setFrame:frame];
+    UILabel * lblReset=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
+    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0];
+    
+    [lblReset setText:title];
+    [lblReset setFont:font];
+    [lblReset setBackgroundColor:[UIColor clearColor]];
+    [lblReset setTextColor:[UIColor blackColor]];
+    [lblReset setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
+    [lblReset setShadowOffset:CGSizeMake(0.0, 1.0)];
+    [lblReset setTextAlignment:NSTextAlignmentCenter];
+    [btn addSubview:lblReset];
+    
+    return btn;
+    
+}
+
+- (void) openMainMenu {
+    [self.navigationController popViewControllerAnimated:YES];
+    [self skipQuestion];
+}
+
+- (void) resumeGame {
+    [menu removeFromSuperview];
+    [self.stopWatch resumeTimer];
+}
 
 - (void)viewDidUnload {
     [self setStopWatchLabel:nil];

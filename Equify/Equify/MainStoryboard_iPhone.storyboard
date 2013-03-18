@@ -88,34 +88,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="StopWatch" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="md3-8q-egU">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="md3-8q-egU">
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="XEF-sw-TIq"/>
                                     <constraint firstAttribute="width" constant="78" id="ioS-nt-zje"/>
-                                    <constraint firstAttribute="height" constant="21" id="wK9-NN-CXj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxR-cX-TL5"/>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJy-hb-a5q">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text=".00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJy-hb-a5q">
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="ETc-bc-uMl"/>
                                     <constraint firstAttribute="width" constant="42" id="kRi-0m-3lc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="22"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" type="default" id="1yR-bK-gYj"/>
+                            <constraint firstItem="tJy-hb-a5q" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="31" id="JSN-Vt-BST"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="80" id="NBH-4w-C0E"/>
                             <constraint firstItem="md3-8q-egU" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="31" id="Old-5k-QP1"/>
-                            <constraint firstItem="md3-8q-egU" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="37" id="W6r-HV-StQ"/>
-                            <constraint firstItem="tJy-hb-a5q" firstAttribute="baseline" secondItem="md3-8q-egU" secondAttribute="baseline" type="default" id="fls-3j-ovX"/>
-                            <constraint firstItem="tJy-hb-a5q" firstAttribute="top" secondItem="md3-8q-egU" secondAttribute="top" type="default" id="mX8-nc-Yxf"/>
-                            <constraint firstItem="tJy-hb-a5q" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="68" id="sKP-a5-BLa"/>
+                            <constraint firstItem="md3-8q-egU" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="27" id="dXm-ZJ-6RX"/>
+                            <constraint firstItem="tJy-hb-a5q" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="106" id="eqq-1b-A62"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="trailing" secondItem="Huw-rq-Gxc" secondAttribute="trailing" type="default" id="tXK-8k-mzC"/>
                             <constraint firstItem="FxR-cX-TL5" firstAttribute="centerY" secondItem="Huw-rq-Gxc" secondAttribute="centerY" type="default" id="wl9-8M-Ln5"/>
                         </constraints>
@@ -135,6 +139,31 @@
             <point key="canvasLocation" x="798" y="-284"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="EQGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQGameViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="QuestionView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stopWatchLabelMS" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EQSettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQSettingsViewController.h"/>
+        </class>
+        <class className="EQStatsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQStatsViewController.h"/>
+        </class>
+        <class className="EQViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="startNewGame:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

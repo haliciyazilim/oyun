@@ -111,21 +111,19 @@
     [btn addTarget:self action:@selector(makeHighlighted:) forControlEvents:UIControlEventTouchDown];
     [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpOutside];
     [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    btn.titleLabel.textColor=[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0];
-    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica-Light" size:25.0];
-    btn.titleLabel.numberOfLines=2;
-    
-    [btn setTitleColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0] forState:UIControlStateNormal];
-    [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7] forState:UIControlStateNormal];
 
-    
-    //    btn.titleLabel.shadowColor=[UIColor colorWithWhite:1.0 alpha:0.3];
-//    btn.titleLabel.shadowOffset=CGSizeMake(0.0, 1.0);
-    btn.titleLabel.backgroundColor=[UIColor clearColor];
-    btn.titleLabel.textAlignment=NSTextAlignmentCenter;
-    
+    UILabel * lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
+    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:27.0];
+    [lbl setNumberOfLines:2];
+    [lbl setText:title];
+    [lbl setFont:font];
+    [lbl setBackgroundColor:[UIColor clearColor]];
+    [lbl setTextColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0]];
+    [lbl setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
+    [lbl setShadowOffset:CGSizeMake(0.0, 1.0)];
+    [lbl setTextAlignment:NSTextAlignmentCenter];
+    [btn addSubview:lbl];
+
     return btn;
 
 }

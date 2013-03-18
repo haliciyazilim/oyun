@@ -39,13 +39,13 @@
     CGFloat winHeight = [[UIScreen mainScreen] bounds].size.width;
     buttonWidth=175;
     buttonHeight=40;
-    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2-55, 175, 3.0)];
-    [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"double_line.png"]]];
+    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2-55, 175, 2.0)];
+    [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
     
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeButton setBackgroundImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateNormal];
     [closeButton setBackgroundImage:[UIImage imageNamed:@"close_btn_pressed.png"] forState:UIControlStateHighlighted];
-    [closeButton addTarget:self action:@selector(closeStats) forControlEvents:UIControlEventTouchUpInside];
+    [closeButton addTarget:self action:@selector(closeSettings) forControlEvents:UIControlEventTouchUpInside];
     closeButton.frame = CGRectMake(winWidth-45.0, 5.0, 35.0, 35.0);
     
     
@@ -53,18 +53,18 @@
 
     [btnReset addTarget:self action:@selector(resetStatsApprove) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2-5, 175, 3.0)];
-    [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"double_line.png"]]];
+    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2-5, 175, 2.0)];
+    [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
 
     UIButton * btnAbout=[self makeButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2, 175, 40) title:NSLocalizedString(@"ABOUT", nil)];
 
-    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+45, 175, 3.0)];
-    [seperator3 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"double_line.png"]]];
+    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+45, 175, 2.0)];
+    [seperator3 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
 
     UIButton * btnMoreGames=[self makeButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2+50, 175, 40) title:NSLocalizedString(@"MOREGAMES", nil)];
     
-    UIView *seperator4 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+95, 175, 3.0)];
-    [seperator4 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"double_line.png"]]];
+    UIView *seperator4 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+95, 175, 2.0)];
+    [seperator4 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
 
     [self.view addSubview:closeButton];
     [self.view addSubview:seperator1];
@@ -111,7 +111,7 @@
     UIButton * btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:frame];
     UILabel * lblReset=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonHeight)];
-    UIFont * font=[UIFont fontWithName:@"Helvetica-Light" size:25.0];
+    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0];
     
     [lblReset setText:title];
     [lblReset setFont:font];
@@ -126,7 +126,7 @@
     
 }
 
-- (void) closeStats {
+- (void) closeSettings {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

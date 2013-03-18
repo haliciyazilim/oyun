@@ -24,6 +24,10 @@
 "CONTROL"="control";
 "SKIP"="skip";
 
+// ingame menu
+"RESUME"="resume";
+"MAINMENU"="main menu";
+
 // settings screen
 "RESET"="reset stats";
 "ABOUT"="about us";

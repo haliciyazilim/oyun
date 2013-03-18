@@ -53,8 +53,8 @@
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, mainViewSize.height-10.0, 45.0)];
     [headerLabel setBackgroundColor:[UIColor clearColor]];
 //    [headerLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTPro-Th" size:34.0]];
-    [headerLabel setFont:[UIFont fontWithName:@"Helvetica" size:30.0]];
-    NSLog(@"%@", [UIFont fontNamesForFamilyName:@"Helvetica"]);
+    [headerLabel setFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:30.0]];
+    NSLog(@"%@", [UIFont fontNamesForFamilyName:@"Helvetica Neue"]);
     [headerLabel setTextColor:[UIColor colorWithRed:0.463 green:0.365 blue:0.227 alpha:1.0]];
     [headerLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
     [headerLabel setShadowColor:[UIColor whiteColor]];
