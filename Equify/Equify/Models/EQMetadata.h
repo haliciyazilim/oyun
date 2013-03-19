@@ -12,9 +12,10 @@
 
 @property int currentQuestionId;
 @property NSString* versionNumber;
+@property int difficulty;
 
 +(void)initializeMetadata;
-+(void)incrementQuestionId;
-+(int)getCurrentQuestion;
++(void)incrementQuestionIdWithDifficulty:(int)difficulty;
++(int)getCurrentQuestionWithDifficulty:(int)difficulty;
 
 @end
