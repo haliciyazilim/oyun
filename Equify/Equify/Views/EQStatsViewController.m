@@ -21,6 +21,12 @@
     UILabel *totalSkipped;
     UILabel *average;
     UILabel *allTimeAverage;
+    
+    UIButton * btnLevel1;
+    UIButton * btnLevel2;
+    UIButton * btnLevel3;
+    int difficulty;
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,6 +49,9 @@
     else{
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
     }
+    
+    
+    
     CGSize mainViewSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width-50.0, [[UIScreen mainScreen] bounds].size.height-50.0);
     UIView *statsMainView = [[UIView alloc] initWithFrame:CGRectMake(25.0, 25.0, mainViewSize.height, mainViewSize.width)];
     [statsMainView setBackgroundColor:[UIColor clearColor]];
@@ -62,6 +71,9 @@
     
     UIView *headerDoubleLine = [[UIView alloc] initWithFrame:CGRectMake(0.0, 45.0, mainViewSize.height, 3.0)];
     [headerDoubleLine setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"double_line.png"]]];
+    
+    UIView *difficultyButtonsView=[self makeDifficultyButtons];
+    [difficultyButtonsView setFrame:CGRectMake(mainViewSize.height-45.0-difficultyButtonsView.frame.size.width, 5, difficultyButtonsView.frame.size.width, difficultyButtonsView.frame.size.height)];
     
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeButton setBackgroundImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateNormal];
@@ -158,6 +170,7 @@
     [statsMainView addSubview:headerSingleLine];
     [statsMainView addSubview:headerLabel];
     [statsMainView addSubview:headerDoubleLine];
+    [statsMainView addSubview:difficultyButtonsView];
     [statsMainView addSubview:closeButton];
     [statsMainView addSubview:bestTimeLabel];
     [statsMainView addSubview:seperator1];
@@ -193,6 +206,83 @@
 - (void) setCurrentStatistics:(EQStatistic *)currentStatistics {
     _currentStatistics = currentStatistics;
     [self configureViews];
+}
+
+-(float) screenWidth{
+    return [[UIScreen mainScreen] bounds].size.height;
+}
+
+-(UIView *) makeDifficultyButtons{
+    
+    float btnWidth=[UIImage imageNamed:@"level_01.png"].size.width;
+    float btnHeight=[UIImage imageNamed:@"level_01.png"].size.height;
+    
+    btnLevel1=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnLevel1 setBackgroundImage:[UIImage imageNamed:@"level_01.png"] forState:UIControlStateNormal];
+    [btnLevel1 setBackgroundImage:[UIImage imageNamed:@"level_01_selected.png"] forState:UIControlStateHighlighted];
+    [btnLevel1 setBackgroundImage:[UIImage imageNamed:@"level_01_selected.png"] forState:UIControlStateSelected];
+    [btnLevel1 setBackgroundImage:[UIImage imageNamed:@"level_01_selected.png"] forState:UIControlStateSelected|UIControlStateHighlighted];
+    [btnLevel1 addTarget:self action:@selector(selectDifficulty:) forControlEvents:UIControlEventTouchUpInside];
+    [btnLevel1 setFrame:CGRectMake(0, 0, btnWidth, btnHeight)];
+    [btnLevel1 setTag:1];
+    
+    btnLevel2=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnLevel2 setBackgroundImage:[UIImage imageNamed:@"level_02.png"] forState:UIControlStateNormal];
+    [btnLevel2 setBackgroundImage:[UIImage imageNamed:@"level_02_selected.png"] forState:UIControlStateHighlighted];
+    [btnLevel2 setBackgroundImage:[UIImage imageNamed:@"level_02_selected.png"] forState:UIControlStateSelected];
+    [btnLevel2 setBackgroundImage:[UIImage imageNamed:@"level_02_selected.png"] forState:UIControlStateSelected|UIControlStateHighlighted];
+    [btnLevel2 addTarget:self action:@selector(selectDifficulty:) forControlEvents:UIControlEventTouchUpInside];
+    [btnLevel2 setFrame:CGRectMake(btnWidth, 0, btnWidth, btnHeight)];
+    [btnLevel2 setTag:2];
+    
+    btnLevel3=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnLevel3 setBackgroundImage:[UIImage imageNamed:@"level_03.png"] forState:UIControlStateNormal];
+    [btnLevel3 setBackgroundImage:[UIImage imageNamed:@"level_03_selected.png"] forState:UIControlStateHighlighted];
+    [btnLevel3 setBackgroundImage:[UIImage imageNamed:@"level_03_selected.png"] forState:UIControlStateSelected];
+    [btnLevel3 setBackgroundImage:[UIImage imageNamed:@"level_03_selected.png"] forState:UIControlStateSelected|UIControlStateHighlighted];
+    [btnLevel3 addTarget:self action:@selector(selectDifficulty:) forControlEvents:UIControlEventTouchUpInside];
+    [btnLevel3 setFrame:CGRectMake(btnWidth*2, 0, btnWidth, btnHeight)];
+    [btnLevel3 setTag:3];
+    
+    [self selectDifficulty:btnLevel1];
+    
+    UIView * view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, btnWidth*3, btnHeight)];
+    [view addSubview:btnLevel1];
+    [view addSubview:btnLevel2];
+    [view addSubview:btnLevel3];
+    
+    return view;
+    
+}
+
+-(void) selectDifficulty:(UIButton *)button{
+    switch (button.tag) {
+        case 1:
+            btnLevel1.selected=YES;
+            btnLevel2.selected=NO;
+            btnLevel3.selected=NO;
+            difficulty=1;
+            
+            break;
+        case 2:
+            btnLevel1.selected=NO;
+            btnLevel2.selected=YES;
+            btnLevel3.selected=NO;
+            difficulty=2;
+            break;
+        case 3:
+            btnLevel1.selected=NO;
+            btnLevel2.selected=NO;
+            btnLevel3.selected=YES;
+            difficulty=3;
+            break;
+            
+            
+        default:
+            break;
+    }
+    
+   [self setCurrentStatistics:[EQStatistic getStatisticsWithDifficulty:difficulty]];
 }
 
 - (void) configureViews {
