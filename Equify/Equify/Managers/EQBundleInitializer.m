@@ -19,16 +19,22 @@
         [EQStatistic initializeStatistics];
         [EQMetadata initializeMetadata];
     }
-    NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"standard-4000" ofType:@"questionpack"]
+    [EQBundleInitializer loadQuestionsWithDifficulty:1];
+    [EQBundleInitializer loadQuestionsWithDifficulty:2];
+    [EQBundleInitializer loadQuestionsWithDifficulty:3];
+}
++ (void) loadQuestionsWithDifficulty:(int)difficulty {
+    NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"standard-3000-%d",difficulty] ofType:@"questionpack"]
                                                   encoding:NSUTF8StringEncoding
                                                      error:NULL];
+
     
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSDictionary *questionPack = [parser objectWithString:content];
     
     if ( [(NSNumber*)[questionPack valueForKey:@"version"] intValue] == 1) {
         for (NSDictionary *question in [questionPack objectForKey:@"questions"]) {
-            [EQQuestion EQQuestionWDwithWholeQuestion:[question valueForKey:@"wholeQuestion"] andAnswer:[question valueForKey:@"answer"] andId:[[question valueForKey:@"questionId"] intValue]];
+            [EQQuestion EQQuestionWithWholeQuestion:[question valueForKey:@"wholeQuestion"] andAnswer:[question valueForKey:@"answer"] andId:[[question valueForKey:@"questionId"] intValue] andDifficulty:difficulty];
         }
     }
 }
