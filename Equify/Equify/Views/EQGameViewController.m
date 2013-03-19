@@ -84,7 +84,8 @@
     
     btnControl=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, winHeight-[self buttonSize]*2/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
     [btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
-    [btnControl setTitleEdgeInsets: UIEdgeInsetsMake(-20, 0, 0, 0)];
+    UILabel *lblControl = (UILabel *)[btnControl viewWithTag:1];
+    [lblControl setFrame:CGRectMake(0,-10, [self buttonSize], [self buttonSize])];
     
     btnSkip=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, 0-[self buttonSize]*2/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"SKIP", nil)];
     [btnSkip addTarget:self action:@selector(skipQuestion) forControlEvents:UIControlEventTouchUpInside];
