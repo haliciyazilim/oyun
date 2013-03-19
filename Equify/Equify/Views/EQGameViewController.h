@@ -28,6 +28,7 @@
 
 @property StopWatch * stopWatch;
 @property (nonatomic) EQStatistic* currentStatistics;
+@property int difficulty;
 
 -(void)pauseGame;
 -(void)resumeGame;
