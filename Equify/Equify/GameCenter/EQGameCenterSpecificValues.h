@@ -10,5 +10,11 @@
 #define kLeaderboardBestTime @"com.halici.Equify.leaderboards.bestTime"
 #define kLeaderboardTotalSolvedQuestion @"com.halici.Equify.leaderboards.totalSolvedQuestion"
 
+#define kLeaderboardBestTime2 @"com.halici.Equify.leaderboards.bestTime2"
+#define kLeaderboardTotalSolvedQuestion2 @"com.halici.Equify.leaderboards.totalSolvedQuestion2"
+
+#define kLeaderboardBestTime3 @"com.halici.Equify.leaderboards.bestTime3"
+#define kLeaderboardTotalSolvedQuestion3 @"com.halici.Equify.leaderboards.totalSolvedQuestion3"
+
 // GameCenter Notifications
 #define kAuthenticationChangedNotification @"AuthenticedChanged"
