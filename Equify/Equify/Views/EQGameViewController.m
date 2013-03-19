@@ -173,7 +173,7 @@
 
 -(void)placingBoxes{
     
-    
+    NSLog(@"%d",self.currentQuestion.questionId);
     
     [EQBox cleanInstances];
     BOOL isRightSide=NO;
@@ -391,10 +391,10 @@
     
     [_stopWatch stopTimer];
     [EQScore addScore:[_stopWatch getElapsedMiliseconds]];
-    [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds]];
+    [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds] andDifficulty:_difficulty];
     
-    [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatistics] minTime]*0.1 category:kLeaderboardBestTime];
-    [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatistics] totalSolvedQuestion] category:kLeaderboardTotalSolvedQuestion];
+    [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatisticsWithDifficulty:_difficulty] minTime]*0.1 category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
+    [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatisticsWithDifficulty:_difficulty] totalSolvedQuestion] category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
 
     [self.navigationController popViewControllerAnimated:YES];
 
@@ -402,8 +402,8 @@
 }
 
 -(void)skipQuestion{
-    [EQStatistic updateStatisticsWithSkippedGame];
-    [self setCurrentQuestion:[EQQuestion getNextQuestion]];
+    [EQStatistic updateStatisticsWithSkippedGameAndDifficulty:_difficulty];
+    [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
     [self.stopWatch resetTimer];
     [self configureViews];
 }
