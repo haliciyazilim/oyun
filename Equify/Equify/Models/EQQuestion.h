@@ -14,15 +14,15 @@
 @property NSString *answer;
 @property int questionId;
 @property NSMutableArray *questionArray;
+@property int difficulty;
 
-+(NSMutableArray *)getAllQuestions;
++(NSMutableArray *)getAllQuestionsWithDifficulty:(int)difficulty;
 
-+(EQQuestion*)EQQuestionWDwithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId;
++(EQQuestion*)EQQuestionWithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId andDifficulty:(int)difficulty;
 
-- (id)initWithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId;
+- (id)initWithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId andDifficulty:(int)difficulty;
 
-- (EQQuestion*)getQuestionWithId:(int)questionId;
-+ (EQQuestion *) getNextQuestion;
++ (EQQuestion *) getNextQuestionWithDifficulty:(int)difficulty;
 
 - (void) createQuestionArray;
 - (BOOL) isCorrect:(NSString *)checkedAnswer;

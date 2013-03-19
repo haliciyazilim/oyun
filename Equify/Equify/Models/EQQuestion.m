@@ -11,39 +11,40 @@
 
 @implementation EQQuestion
 
-static NSMutableArray* allQuestions = nil;
+static NSMutableDictionary* allQuestions = nil;
 
-+(NSMutableArray *)getAllQuestions {
-    return allQuestions;
++(NSMutableArray *)getAllQuestionsWithDifficulty:(int)difficulty {
+    return [allQuestions objectForKey:[NSString stringWithFormat:@"%d",difficulty]];
 }
 
 -(void)addQuestionToAllQuestions:(EQQuestion*)question {
     if (!allQuestions) {
-        allQuestions = [[NSMutableArray alloc] initWithCapacity:100];
+        allQuestions = [[NSMutableDictionary alloc] initWithCapacity:3];
+        [allQuestions setObject:[NSMutableArray arrayWithCapacity:100] forKey:@"1"];
+        [allQuestions setObject:[NSMutableArray arrayWithCapacity:100] forKey:@"2"];
+        [allQuestions setObject:[NSMutableArray arrayWithCapacity:100] forKey:@"3"];
     }
-    [allQuestions addObject:question];
+    [[allQuestions objectForKey:[NSString stringWithFormat:@"%d",question.difficulty]] addObject:question];
 }
 
-- (EQQuestion*)getQuestionWithId:(int)questionId {
-    return [allQuestions objectAtIndex:questionId];
+
++(EQQuestion*)EQQuestionWithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId andDifficulty:(int)difficulty {
+    return [[EQQuestion alloc] initWithWholeQuestion:wholeQuestion andAnswer:answer andId:questionId andDifficulty:difficulty];
 }
 
-+(EQQuestion*)EQQuestionWDwithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId {
-    return [[EQQuestion alloc] initWithWholeQuestion:wholeQuestion andAnswer:answer andId:questionId];
-}
-
-- (id)initWithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId {
+- (id)initWithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId andDifficulty:(int)difficulty {
     if (self = [super init]) {
         _wholeQuestion = wholeQuestion;
         _answer = answer;
         _questionId = questionId;
+        _difficulty = difficulty;
         [self addQuestionToAllQuestions:self];
     }
     return self;
 }
-+(EQQuestion*)getNextQuestion {
-    int questionId = [EQMetadata getCurrentQuestion];
-    return [allQuestions objectAtIndex:questionId];
++(EQQuestion*)getNextQuestionWithDifficulty:(int)difficulty {
+    int questionId = [EQMetadata getCurrentQuestionWithDifficulty:difficulty];
+    return [[allQuestions objectForKey:[NSString stringWithFormat:@"%d",difficulty]] objectAtIndex:questionId];
 }
 
 - (void) createQuestionArray {
