@@ -13,20 +13,28 @@
 
 @dynamic elapsedSeconds;
 @dynamic scoreDate;
+@dynamic difficulty;
 
-+(void)addScore:(int)score {
++(void)addScore:(int)score withDifficulty:(int)difficulty {
     EQScore* createdScore = (EQScore *)[[EQDatabaseManager sharedInstance] createEntity:@"Score"];
     createdScore.elapsedSeconds = score;
     createdScore.scoreDate = [NSDate date];
+    createdScore.difficulty = difficulty;
     [[EQDatabaseManager sharedInstance] saveContext];
     
-    NSMutableArray *allScores = [EQScore getAllScores];
+    NSMutableArray *allScores = [EQScore getAllScoresWithDifficulty:difficulty];
     if ([allScores count] > 15) {
         [[EQDatabaseManager sharedInstance] deleteObject:[allScores objectAtIndex:0]];
     }
 }
-+(NSMutableArray *)getAllScores {
++(NSMutableArray *)getAllScoresWithDifficulty:(int)difficulty {
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"difficulty == %d", difficulty];
+    [request setPredicate:predicate];
+
+    
     NSMutableArray* scores = [[EQDatabaseManager sharedInstance] entitiesWithRequest:request forName:@"Score"];
     return scores;
 }
@@ -39,8 +47,8 @@
     }
 }
 
-+(int)getAverage {
-    NSMutableArray *allScores = [EQScore getAllScores];
++(int)getAverageWithDifficulty:(int)difficulty {
+    NSMutableArray *allScores = [EQScore getAllScoresWithDifficulty:difficulty];
     if ([allScores count] < 15) {
         return -1;
     }

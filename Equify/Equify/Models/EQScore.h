@@ -12,10 +12,11 @@
 
 @property int elapsedSeconds;
 @property NSDate* scoreDate;
+@property int difficulty;
 
-+(void)addScore:(int)score;
++(void)addScore:(int)score withDifficulty:(int)difficulty;
 +(void)cleanAllScores;
-+(NSMutableArray *)getAllScores;
-+(int)getAverage;
++(NSMutableArray *)getAllScoresWithDifficulty:(int)difficulty;
++(int)getAverageWithDifficulty:(int)difficulty;
 
 @end
