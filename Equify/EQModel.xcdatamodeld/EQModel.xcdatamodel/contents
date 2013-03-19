@@ -2,6 +2,7 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Metadata" representedClassName="EQMetadata" syncable="YES">
         <attribute name="currentQuestionId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="difficulty" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="versionNumber" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Question" representedClassName="" syncable="YES">
@@ -15,15 +16,16 @@
     </entity>
     <entity name="Statistic" representedClassName="EQStatistic" syncable="YES">
         <attribute name="allTimeAverage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="difficulty" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="maxTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="minTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="totalSkippedQuestion" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="totalSolvedQuestion" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Metadata" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Metadata" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Question" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Score" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Statistic" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Statistic" positionX="160" positionY="192" width="128" height="135"/>
     </elements>
 </model>
