@@ -390,7 +390,7 @@
 -(void)onCorrectAnswer{
     
     [_stopWatch stopTimer];
-    [EQScore addScore:[_stopWatch getElapsedMiliseconds]];
+    [EQScore addScore:[_stopWatch getElapsedMiliseconds] withDifficulty:_difficulty];
     [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds] andDifficulty:_difficulty];
     
     [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatisticsWithDifficulty:_difficulty] minTime]*0.1 category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
