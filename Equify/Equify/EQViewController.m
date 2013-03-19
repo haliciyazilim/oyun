@@ -231,6 +231,8 @@
     [btnLevel3 setFrame:CGRectMake(btnWidth*2, 0, btnWidth, btnHeight)];
     [btnLevel3 setTag:3];
     
+    [self selectDifficulty:btnLevel1];
+    
     UIView * view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, btnWidth*3, btnHeight)];
     [view addSubview:btnLevel1];
     [view addSubview:btnLevel2];
@@ -315,11 +317,12 @@
     if ([segue.identifier isEqualToString:@"GameStartSegue"]) {
         //
         EQGameViewController *eqGameViewController = [segue destinationViewController];
-        [eqGameViewController setCurrentQuestion:[EQQuestion getNextQuestion]];
+        [eqGameViewController setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:difficulty]];
+        [eqGameViewController setDifficulty:difficulty];
     }
     else if ([segue.identifier isEqualToString:@"StatsSegue"]) {
         EQStatsViewController *eqStatsViewController = [segue destinationViewController];
-        [eqStatsViewController setCurrentStatistics:[EQStatistic getStatistics]];
+        [eqStatsViewController setCurrentStatistics:[EQStatistic getStatisticsWithDifficulty:difficulty]];
     }
     
 }
