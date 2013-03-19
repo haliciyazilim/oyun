@@ -11,6 +11,7 @@
         <attribute name="wholeQuestion" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Score" representedClassName="EQScore" syncable="YES">
+        <attribute name="difficulty" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="elapsedSeconds" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="scoreDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
     </entity>
@@ -25,7 +26,7 @@
     <elements>
         <element name="Metadata" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Question" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Score" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Score" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Statistic" positionX="160" positionY="192" width="128" height="135"/>
     </elements>
 </model>
