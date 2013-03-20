@@ -25,7 +25,6 @@
     UIButton * btnLevel1;
     UIButton * btnLevel2;
     UIButton * btnLevel3;
-    int difficulty;
 
 }
 
@@ -244,8 +243,6 @@
     [btnLevel3 setFrame:CGRectMake(btnWidth*2, 0, btnWidth, btnHeight)];
     [btnLevel3 setTag:3];
     
-    [self selectDifficulty:btnLevel1];
-    
     UIView * view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, btnWidth*3, btnHeight)];
     [view addSubview:btnLevel1];
     [view addSubview:btnLevel2];
@@ -254,6 +251,10 @@
     return view;
     
 }
+-(void)setDifficulty:(int)difficulty {
+    _difficulty = difficulty;
+    [self selectDifficulty:(UIButton *)[self.view viewWithTag:_difficulty]];
+}
 
 -(void) selectDifficulty:(UIButton *)button{
     switch (button.tag) {
@@ -261,20 +262,20 @@
             btnLevel1.selected=YES;
             btnLevel2.selected=NO;
             btnLevel3.selected=NO;
-            difficulty=1;
+            _difficulty=1;
             
             break;
         case 2:
             btnLevel1.selected=NO;
             btnLevel2.selected=YES;
             btnLevel3.selected=NO;
-            difficulty=2;
+            _difficulty=2;
             break;
         case 3:
             btnLevel1.selected=NO;
             btnLevel2.selected=NO;
             btnLevel3.selected=YES;
-            difficulty=3;
+            _difficulty=3;
             break;
             
             
@@ -282,7 +283,7 @@
             break;
     }
     
-   [self setCurrentStatistics:[EQStatistic getStatisticsWithDifficulty:difficulty]];
+   [self setCurrentStatistics:[EQStatistic getStatisticsWithDifficulty:_difficulty]];
 }
 
 - (void) configureViews {
@@ -299,7 +300,7 @@
     [totalSolved setText:[NSString stringWithFormat:@"%d",self.currentStatistics.totalSolvedQuestion]];
     [totalSkipped setText:[NSString stringWithFormat:@"%d",self.currentStatistics.totalSkippedQuestion]];
     
-    int lastAverage = [EQScore getAverageWithDifficulty:difficulty];
+    int lastAverage = [EQScore getAverageWithDifficulty:_difficulty];
 
     if (lastAverage == -1) {
         [average setText:@"-"];

@@ -12,5 +12,6 @@
 @interface EQStatsViewController : UIViewController
 
 @property (nonatomic) EQStatistic* currentStatistics;
+@property (nonatomic) int difficulty;
 
 @end
