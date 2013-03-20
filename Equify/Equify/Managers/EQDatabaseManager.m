@@ -62,7 +62,7 @@ static EQDatabaseManager *sharedInstance = nil;
 
 - (BOOL)isEmpty {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Question" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Metadata" inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entity];
     
     NSError *error = nil;

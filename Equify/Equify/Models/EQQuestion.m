@@ -1,76 +1,59 @@
 //
-//  EQQuestion.m
+//  EQQuestionWD.m
 //  Equify
 //
-//  Created by Alperen Kavun on 11.03.2013.
+//  Created by Alperen Kavun on 18.03.2013.
 //  Copyright (c) 2013 Halıcı. All rights reserved.
 //
 
-#import "EQDatabaseManager.h"
 #import "EQQuestion.h"
 #import "EQMetadata.h"
 
 @implementation EQQuestion
 
-@dynamic wholeQuestion;
-@dynamic answer;
-@dynamic questionId;
-@synthesize questionArray;
+static NSMutableDictionary* allQuestions = nil;
 
-+ (EQQuestion *)createQuestionWithWholeQuestion:(NSString *)question andAnswer:(NSString *)answer andId:(int)questionId {
-    EQQuestion* quest = (EQQuestion*)[[EQDatabaseManager sharedInstance] createEntity:@"Question"];
-    quest.wholeQuestion = question;
-    quest.answer = answer;
-    quest.questionId = questionId;
-    
-    [[EQDatabaseManager sharedInstance] saveContext];
-    return quest;
-}
-+ (NSArray*) getAllQuestions
-{
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    
-    NSArray* result =  [[EQDatabaseManager sharedInstance] entitiesWithRequest:request forName:@"Question"];
-    result = [result sortedArrayUsingComparator:^NSComparisonResult(EQQuestion *obj1, EQQuestion *obj2) {
-        return obj1.questionId - obj2.questionId;
-    }];
-    return result;
-}
-+ (EQQuestion*) getQuestionWithId:(int)questionId
-{
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"questionId == %d ", questionId];
-    [request setPredicate:predicate];
-    return (EQQuestion *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Question"];
-    
-}
-+ (EQQuestion *) getRandomQuestion {
-    int questionId = arc4random() % 11+1;
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"questionId == %d ", questionId];
-    [request setPredicate:predicate];
-    return (EQQuestion *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Question"];
++(NSMutableArray *)getAllQuestionsWithDifficulty:(int)difficulty {
+    return [allQuestions objectForKey:[NSString stringWithFormat:@"%d",difficulty]];
 }
 
-+ (EQQuestion *) getNextQuestion {
-    int questionId = [EQMetadata getCurrentQuestion];
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"questionId == %d ", questionId];
-    [request setPredicate:predicate];
-    return (EQQuestion *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Question"];
+-(void)addQuestionToAllQuestions:(EQQuestion*)question {
+    if (!allQuestions) {
+        allQuestions = [[NSMutableDictionary alloc] initWithCapacity:3];
+        [allQuestions setObject:[NSMutableArray arrayWithCapacity:100] forKey:@"1"];
+        [allQuestions setObject:[NSMutableArray arrayWithCapacity:100] forKey:@"2"];
+        [allQuestions setObject:[NSMutableArray arrayWithCapacity:100] forKey:@"3"];
+    }
+    [[allQuestions objectForKey:[NSString stringWithFormat:@"%d",question.difficulty]] addObject:question];
 }
+
+
++(EQQuestion*)EQQuestionWithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId andDifficulty:(int)difficulty {
+    return [[EQQuestion alloc] initWithWholeQuestion:wholeQuestion andAnswer:answer andId:questionId andDifficulty:difficulty];
+}
+
+- (id)initWithWholeQuestion:(NSString*)wholeQuestion andAnswer:(NSString*)answer andId:(int)questionId andDifficulty:(int)difficulty {
+    if (self = [super init]) {
+        _wholeQuestion = wholeQuestion;
+        _answer = answer;
+        _questionId = questionId;
+        _difficulty = difficulty;
+        [self addQuestionToAllQuestions:self];
+    }
+    return self;
+}
++(EQQuestion*)getNextQuestionWithDifficulty:(int)difficulty {
+    int questionId = [EQMetadata getCurrentQuestionWithDifficulty:difficulty];
+    return [[allQuestions objectForKey:[NSString stringWithFormat:@"%d",difficulty]] objectAtIndex:questionId];
+}
+
 - (void) createQuestionArray {
     self.questionArray = [NSMutableArray arrayWithCapacity:[self.wholeQuestion length]];
     for (int i = 0; i < [self.wholeQuestion length]; i++) {
         [self.questionArray addObject:[NSString stringWithFormat:@"%c",[self.wholeQuestion characterAtIndex:i]]];
     }
 }
-
 - (BOOL) isCorrect:(NSString *)checkedAnswer {
-    NSLog(@"isCorrect: %@==%@ ",self.answer,checkedAnswer);
     return [self.answer isEqualToString:checkedAnswer];
 }
 

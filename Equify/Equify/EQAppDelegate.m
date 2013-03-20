@@ -15,9 +15,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    if([[EQDatabaseManager sharedInstance] isEmpty]){
-        [EQBundleInitializer initializeBundle2];
-    }
+    
+    [EQBundleInitializer initializeBundle];
     
     [[GameCenterManager sharedInstance] authenticateLocalUser];
     

@@ -12,6 +12,6 @@
 @interface EQBundleInitializer : NSObject
 
 + (void) initializeBundle;
-+ (void) initializeBundle2;
++ (void) loadQuestionsWithDifficulty:(int)difficulty;
 
 @end

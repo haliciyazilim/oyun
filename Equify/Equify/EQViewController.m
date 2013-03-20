@@ -8,6 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "EQViewController.h"
 #import "EQGameViewController.h"
+#import "EQSettingsViewController.h"
 #import "EQQuestion.h"
 #import "EQAppSpecificViewSizes.h"
 #import "EQStatsViewController.h"
@@ -21,6 +22,12 @@
     // neccessary UIViews
     UIView *mainView;
     UIView * buttonsView;
+    
+    
+    UIButton * btnLevel1;
+    UIButton * btnLevel2;
+    UIButton * btnLevel3;
+    int difficulty;
 
 }
 
@@ -74,16 +81,25 @@
             
     [self.view addSubview:[self setLogo]];
     
+    
+    
+    UIView *difficultyButtonsView=[self makeDifficultyButtons];
+    [difficultyButtonsView setFrame:CGRectMake([self screenWidth]-difficultyButtonsView.frame.size.width-25, 25, difficultyButtonsView.frame.size.width, difficultyButtonsView.frame.size.height)];
+    [self.view addSubview:difficultyButtonsView];
+    
+    
     buttonsView=[[UIView alloc] initWithFrame:CGRectMake(([self screenWidth]-[self buttonsViewWidth])/2, 100, [self buttonsViewWidth], [self buttonsViewHeight])];
 //    buttonsView.backgroundColor=[UIColor yellowColor];
+    
     [self.view addSubview:buttonsView];
     
-     UIButton * btnGameSettings=[self makeButton:CGRectMake(0, 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESETTINGS", nil)];
+    UIButton * btnGameSettings=[EQViewController makeButton:CGRectMake(0, 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESETTINGS", nil)];
+    [btnGameSettings addTarget:self action:@selector(openSettings) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * btnStartGame=[self makeButton:CGRectMake(([self buttonsViewWidth]-[self btnSize])/2, 0, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESTART", nil)];
+    UIButton * btnStartGame=[EQViewController makeButton:CGRectMake(([self buttonsViewWidth]-[self btnSize])/2, 0, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESTART", nil) ];
     [btnStartGame addTarget:self action:@selector(startNewGame:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * btnUserStats=[self makeButton:CGRectMake([self buttonsViewWidth]-[self btnSize], 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"USERSTATS", nil)];
+    UIButton * btnUserStats=[EQViewController makeButton:CGRectMake([self buttonsViewWidth]-[self btnSize], 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"USERSTATS", nil)];
     [btnUserStats addTarget:self action:@selector(openStats) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * btnGameCenter=[self makeGameCenterButton:CGRectMake(([self buttonsViewWidth]-[self btnGCSize])/2, [self buttonsViewHeight]-[self btnGCSize], [self btnGCSize], [self btnGCSize])];
@@ -100,7 +116,10 @@
     
 }
 
--(UIButton *) makeButton:(CGRect)frame title:(NSString *) title{
++(UIButton *) makeButton:(CGRect)frame title:(NSString *) title{
+    
+    NSArray * tile=[title componentsSeparatedByString:@"\n"];
+    
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = frame;
     [btn setBackgroundImage:[UIImage imageNamed:@"main_btn.png"] forState:UIControlStateNormal];
@@ -109,18 +128,48 @@
     [btn addTarget:self action:@selector(makeHighlighted:) forControlEvents:UIControlEventTouchDown];
     [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpOutside];
     [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpInside];
+
+    if(tile.count>1){
+        UILabel * lblA=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-30)/2-11, btn.frame.size.width, 30)];
+        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:27.0];
+        [lblA setText:tile[0]];
+        [lblA setFont:font];
+        [lblA setBackgroundColor:[UIColor clearColor]];
+        [lblA setTextColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0]];
+        [lblA setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
+        [lblA setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [lblA setTextAlignment:NSTextAlignmentCenter];
     
-//    btn.titleLabel.textColor=[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0];
-    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica-Light" size:25.0];
-    btn.titleLabel.numberOfLines=2;
     
-    [btn setTitleColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0] forState:UIControlStateNormal];
-    [btn setTitle:title forState:UIControlStateNormal];
-    btn.titleLabel.shadowColor=[UIColor colorWithWhite:1.0 alpha:0.7];
-    btn.titleLabel.shadowOffset=CGSizeMake(0.0, 1.0);
-    btn.titleLabel.backgroundColor=[UIColor clearColor];
-    btn.titleLabel.textAlignment=NSTextAlignmentCenter;
+        UILabel * lblB=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-30)/2+11, btn.frame.size.width, 30)];
+        [lblB setText:tile[1]];
+        [lblB setFont:font];
+        [lblB setBackgroundColor:[UIColor clearColor]];
+        [lblB setTextColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0]];
+        [lblB setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
+        [lblB setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [lblB setTextAlignment:NSTextAlignmentCenter];
     
+        [btn addSubview:lblA];
+        [btn addSubview:lblB];
+    }
+    else if(tile.count==1){
+        NSLog(@"tile==1: %i",tile.count);
+        UILabel * lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
+        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:27.0];
+        [lbl setText:tile[0]];
+        [lbl setFont:font];
+        [lbl setBackgroundColor:[UIColor clearColor]];
+        [lbl setTextColor:[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0]];
+        [lbl setShadowColor:[UIColor colorWithWhite:1.0 alpha:0.7]];
+        [lbl setShadowOffset:CGSizeMake(0.0, 1.0)];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
+        [lbl setTag:1];
+        
+        [btn addSubview:lbl];
+        
+    }
+
     return btn;
 
 }
@@ -131,41 +180,107 @@
     [btn setBackgroundImage:[UIImage imageNamed:@"game_center_btn.png"] forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"game_center_btn_pressed.png"] forState:UIControlStateHighlighted];
     
-    [btn addTarget:self action:@selector(makeHighlighted:) forControlEvents:UIControlEventTouchDown];
-    [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpOutside];
-    [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    btn.titleLabel.textColor=[UIColor colorWithRed:0.46 green:0.36 blue:0.22 alpha:1.0];
-//    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica Thin" size:24.0];
-    //    btnGameStart.titleLabel.shadowColor=[UIColor colorWithWhite:1.0 alpha:0.7];
-    //    btnGameStart.titleLabel.shadowOffset=CGSizeMake(0.0, 2.0);
-    btn.titleLabel.backgroundColor=[UIColor clearColor];
-    btn.titleLabel.textAlignment=NSTextAlignmentCenter;
-    
     return btn;
     
 }
 
-- (void) makeUnhighlighted:(UIButton *)button {
-    [self unhighlight:button];
++ (void) makeUnhighlighted:(UIButton *)button {
+    [EQViewController unhighlight:button];
 }
-- (void) makeHighlighted:(UIButton *)button {
-    [self highlight:button];
++ (void) makeHighlighted:(UIButton *)button {
+    [EQViewController highlight:button];
 }
--(void)highlight:(UIButton *)button {
++(void)highlight:(UIButton *)button {
     button.titleLabel.textColor=[UIColor colorWithRed:0.29 green:0.29 blue:0.29 alpha:1.0];
     
 }
--(void)unhighlight:(UIButton *)button {
++(void)unhighlight:(UIButton *)button {
     button.titleLabel.textColor=[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0];
 }
 
+
+-(UIView *) makeDifficultyButtons{
+    
+    float btnWidth=[UIImage imageNamed:@"level_01.png"].size.width;
+    float btnHeight=[UIImage imageNamed:@"level_01.png"].size.height;
+    
+    btnLevel1=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnLevel1 setBackgroundImage:[UIImage imageNamed:@"level_01.png"] forState:UIControlStateNormal];
+    [btnLevel1 setBackgroundImage:[UIImage imageNamed:@"level_01_selected.png"] forState:UIControlStateHighlighted];
+    [btnLevel1 setBackgroundImage:[UIImage imageNamed:@"level_01_selected.png"] forState:UIControlStateSelected];
+    [btnLevel1 setBackgroundImage:[UIImage imageNamed:@"level_01_selected.png"] forState:UIControlStateSelected|UIControlStateHighlighted];
+    [btnLevel1 addTarget:self action:@selector(selectDifficulty:) forControlEvents:UIControlEventTouchUpInside];
+    [btnLevel1 setFrame:CGRectMake(0, 0, btnWidth, btnHeight)];
+    [btnLevel1 setTag:1];
+    
+    btnLevel2=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnLevel2 setBackgroundImage:[UIImage imageNamed:@"level_02.png"] forState:UIControlStateNormal];
+    [btnLevel2 setBackgroundImage:[UIImage imageNamed:@"level_02_selected.png"] forState:UIControlStateHighlighted];
+    [btnLevel2 setBackgroundImage:[UIImage imageNamed:@"level_02_selected.png"] forState:UIControlStateSelected];
+    [btnLevel2 setBackgroundImage:[UIImage imageNamed:@"level_02_selected.png"] forState:UIControlStateSelected|UIControlStateHighlighted];
+    [btnLevel2 addTarget:self action:@selector(selectDifficulty:) forControlEvents:UIControlEventTouchUpInside];
+    [btnLevel2 setFrame:CGRectMake(btnWidth, 0, btnWidth, btnHeight)];
+    [btnLevel2 setTag:2];
+    
+    btnLevel3=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnLevel3 setBackgroundImage:[UIImage imageNamed:@"level_03.png"] forState:UIControlStateNormal];
+    [btnLevel3 setBackgroundImage:[UIImage imageNamed:@"level_03_selected.png"] forState:UIControlStateHighlighted];
+    [btnLevel3 setBackgroundImage:[UIImage imageNamed:@"level_03_selected.png"] forState:UIControlStateSelected];
+    [btnLevel3 setBackgroundImage:[UIImage imageNamed:@"level_03_selected.png"] forState:UIControlStateSelected|UIControlStateHighlighted];
+    [btnLevel3 addTarget:self action:@selector(selectDifficulty:) forControlEvents:UIControlEventTouchUpInside];
+    [btnLevel3 setFrame:CGRectMake(btnWidth*2, 0, btnWidth, btnHeight)];
+    [btnLevel3 setTag:3];
+    
+    [self selectDifficulty:btnLevel1];
+    
+    UIView * view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, btnWidth*3, btnHeight)];
+    [view addSubview:btnLevel1];
+    [view addSubview:btnLevel2];
+    [view addSubview:btnLevel3];
+    
+    return view;
+    
+}
+
+-(void) selectDifficulty:(UIButton *)button{
+    switch (button.tag) {
+        case 1:
+            btnLevel1.selected=YES;
+            btnLevel2.selected=NO;
+            btnLevel3.selected=NO;
+            difficulty=1;
+
+            break;
+        case 2:
+            btnLevel1.selected=NO;
+            btnLevel2.selected=YES;
+            btnLevel3.selected=NO;
+            difficulty=2;
+            break;
+        case 3:
+            btnLevel1.selected=NO;
+            btnLevel2.selected=NO;
+            btnLevel3.selected=YES;
+            difficulty=3;
+            break;
+            
+            
+        default:
+            break;
+    }
+    
+    NSLog(@"DİFF: %d",difficulty);
+}
 - (IBAction)startNewGame:(id)sender {
     [self performSegueWithIdentifier:@"GameStartSegue" sender:self];
 }
 
 -(void)openStats{
     [self performSegueWithIdentifier:@"StatsSegue" sender:self];
+}
+
+-(void)openSettings{
+    [self performSegueWithIdentifier:@"SettingsSegue" sender:self];
 }
 
 - (void) showGameCenter
@@ -202,12 +317,14 @@
     if ([segue.identifier isEqualToString:@"GameStartSegue"]) {
         //
         EQGameViewController *eqGameViewController = [segue destinationViewController];
-        [eqGameViewController setCurrentQuestion:[EQQuestion getNextQuestion]];
+        [eqGameViewController setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:difficulty]];
+        [eqGameViewController setDifficulty:difficulty];
     }
     else if ([segue.identifier isEqualToString:@"StatsSegue"]) {
         EQStatsViewController *eqStatsViewController = [segue destinationViewController];
-        [eqStatsViewController setCurrentStatistics:[EQStatistic getStatistics]];
+        [eqStatsViewController setDifficulty:difficulty];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning

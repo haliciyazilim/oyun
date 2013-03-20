@@ -16,5 +16,9 @@
 
 - (IBAction)startNewGame:(id)sender;
 
-
++(UIButton *) makeButton:(CGRect)frame title:(NSString *) title;
++ (void) makeUnhighlighted:(UIButton *)button;
++ (void) makeHighlighted:(UIButton *)button;
++(void)highlight:(UIButton *)button;
++(void)unhighlight:(UIButton *)button;
 @end

@@ -50,6 +50,7 @@
     if (!isPaused) {
         
         double interval = (double)[[NSDate date] timeIntervalSinceDate:startTime];
+        interval -= totalPausedTimeInterval;
         miliseconds = (int)((interval - (int)interval) * 1000);
         seconds = (int)floor(interval) % 60;
         minutes = (int)floor(interval) / 60;

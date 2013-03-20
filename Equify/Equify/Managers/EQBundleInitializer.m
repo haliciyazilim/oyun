@@ -14,49 +14,28 @@
 
 @implementation EQBundleInitializer
 
-+ (void)initializeBundle
-{
++ (void) initializeBundle {
     if([[EQDatabaseManager sharedInstance] isEmpty]){
-        NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"standart" ofType:@"packageinfo"]
-                                                      encoding:NSUTF8StringEncoding
-                                                         error:NULL];
-        
-        SBJsonParser *parser = [[SBJsonParser alloc] init];
-        NSDictionary* package = [parser objectWithString:content];
-        
-        if( [(NSNumber*)[package valueForKey:@"version"] intValue] == 1){
-            for(NSString* questionName in [package objectForKey:@"questions"]){
-                NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:questionName ofType:@"question"]
-                                                              encoding:NSUTF8StringEncoding
-                                                                 error:NULL];
-                SBJsonParser *parser = [[SBJsonParser alloc] init];
-                NSDictionary* jsonQuestion = [parser objectWithString:content];
-                [EQQuestion createQuestionWithWholeQuestion:[jsonQuestion valueForKey:@"wholeQuestion"] andAnswer:[jsonQuestion valueForKey:@"answer"]  andId:[[jsonQuestion valueForKey:@"questionId"] intValue]];
-                
-            }
-        }
-        
         [EQStatistic initializeStatistics];
         [EQMetadata initializeMetadata];
     }
+    [EQBundleInitializer loadQuestionsWithDifficulty:1];
+    [EQBundleInitializer loadQuestionsWithDifficulty:2];
+    [EQBundleInitializer loadQuestionsWithDifficulty:3];
 }
-+ (void) initializeBundle2 {
-    if([[EQDatabaseManager sharedInstance] isEmpty]){
-        NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"standart" ofType:@"questionpack"]
-                                                      encoding:NSUTF8StringEncoding
-                                                         error:NULL];
-        
-        SBJsonParser *parser = [[SBJsonParser alloc] init];
-        NSDictionary *questionPack = [parser objectWithString:content];
-        
-        if ( [(NSNumber*)[questionPack valueForKey:@"version"] intValue] == 1) {
-            for (NSDictionary *question in [questionPack objectForKey:@"questions"]) {
-                [EQQuestion createQuestionWithWholeQuestion:[question valueForKey:@"wholeQuestion"] andAnswer:[question valueForKey:@"answer"]  andId:[[question valueForKey:@"questionId"] intValue]];
-            }
++ (void) loadQuestionsWithDifficulty:(int)difficulty {
+    NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"standard-3000-%d",difficulty] ofType:@"questionpack"]
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+
+    
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    NSDictionary *questionPack = [parser objectWithString:content];
+    
+    if ( [(NSNumber*)[questionPack valueForKey:@"version"] intValue] == 1) {
+        for (NSDictionary *question in [questionPack objectForKey:@"questions"]) {
+            [EQQuestion EQQuestionWithWholeQuestion:[question valueForKey:@"wholeQuestion"] andAnswer:[question valueForKey:@"answer"] andId:[[question valueForKey:@"questionId"] intValue] andDifficulty:difficulty];
         }
-        
-        [EQStatistic initializeStatistics];
-        [EQMetadata initializeMetadata];
     }
 }
 @end

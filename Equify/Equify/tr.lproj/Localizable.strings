@@ -23,3 +23,15 @@
 // game screen
 "CONTROL"="kontrol";
 "SKIP"="geç";
+
+// ingame menu
+"RESUME"="devam et";
+"MAINMENU"="ana menu";
+
+// settings screen
+"RESET"="verileri sil";
+"ABOUT"="hakkımızda";
+"MOREGAMES"="diğer oyunlar";
+"RESET_STATS_APPROVE" = "Oyun verilerini silmek istediğinize emin misiniz?";
+"OK" = "Tamam";
+"CANCEL" = "İptal";

@@ -17,16 +17,20 @@
 @dynamic totalSolvedQuestion;
 @dynamic totalSkippedQuestion;
 @dynamic allTimeAverage;
+@dynamic difficulty;
 
 + (void)initializeStatistics {
-    EQStatistic* statistic = (EQStatistic*)[[EQDatabaseManager sharedInstance] createEntity:@"Statistic"];
-    statistic.minTime = INT32_MAX;
-    statistic.maxTime = INT32_MIN;
-    statistic.totalSkippedQuestion = 0;
-    statistic.totalSolvedQuestion = 0;
-    statistic.allTimeAverage = 0;
-    
-    [[EQDatabaseManager sharedInstance] saveContext];
+    for (int i = 1; i < 4; i++) {
+        EQStatistic* statistic = (EQStatistic*)[[EQDatabaseManager sharedInstance] createEntity:@"Statistic"];
+        statistic.minTime = INT32_MAX;
+        statistic.maxTime = INT32_MIN;
+        statistic.difficulty = i;
+        statistic.totalSkippedQuestion = 0;
+        statistic.totalSolvedQuestion = 0;
+        statistic.allTimeAverage = 0;
+        
+        [[EQDatabaseManager sharedInstance] saveContext];
+    }
 }
 + (void)resetStatistics {
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
@@ -36,8 +40,8 @@
     }
     [EQStatistic initializeStatistics];
 }
-+ (void)updateStatisticsWithTime:(int)elapsedTime {
-    EQStatistic* currentStats = [EQStatistic getStatistics];
++ (void)updateStatisticsWithTime:(int)elapsedTime andDifficulty:(int)difficulty {
+    EQStatistic* currentStats = [EQStatistic getStatisticsWithDifficulty:difficulty];
     currentStats.minTime = MIN(currentStats.minTime, elapsedTime);
     currentStats.maxTime = MAX(currentStats.maxTime, elapsedTime);
     
@@ -48,21 +52,24 @@
     currentStats.allTimeAverage = currentTotalTime/currentStats.totalSolvedQuestion;
     [[EQDatabaseManager sharedInstance] saveContext];
     
-    [EQMetadata incrementQuestionId];
+    [EQMetadata incrementQuestionIdWithDifficulty:difficulty];
 }
-+ (void)updateStatisticsWithSkippedGame {
-    EQStatistic* currentStats = [EQStatistic getStatistics];
++ (void)updateStatisticsWithSkippedGameAndDifficulty:(int)difficulty {
+    EQStatistic* currentStats = [EQStatistic getStatisticsWithDifficulty:difficulty];
     currentStats.totalSkippedQuestion += 1;
     [[EQDatabaseManager sharedInstance] saveContext];
     
-    [EQMetadata incrementQuestionId];
+    [EQMetadata incrementQuestionIdWithDifficulty:difficulty];
 }
-+ (EQStatistic *)getStatistics {
++ (EQStatistic *)getStatisticsWithDifficulty:(int)difficulty {
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     
-    NSArray* result =  [[EQDatabaseManager sharedInstance] entitiesWithRequest:request forName:@"Statistic"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"difficulty == %d", difficulty];
     
-    return (EQStatistic *)[result objectAtIndex:0];
+    [request setPredicate:predicate];
+    
+    return (EQStatistic *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Statistic"];
 }
 
 @end

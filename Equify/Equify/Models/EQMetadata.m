@@ -14,34 +14,42 @@
 
 @dynamic currentQuestionId;
 @dynamic versionNumber;
+@dynamic difficulty;
 
 +(void)initializeMetadata{
-    EQMetadata* metadata = (EQMetadata*)[[EQDatabaseManager sharedInstance] createEntity:@"Metadata"];
-    metadata.versionNumber = @"1.0";
-    metadata.currentQuestionId = arc4random() % TOTAL_QUESTION_COUNT + 1;
-    
-    [[EQDatabaseManager sharedInstance] saveContext];
+    for (int i = 1; i < 4; i++) {
+        EQMetadata* metadata = (EQMetadata*)[[EQDatabaseManager sharedInstance] createEntity:@"Metadata"];
+        metadata.versionNumber = @"1.0";
+        metadata.difficulty = i;
+        metadata.currentQuestionId = arc4random() % TOTAL_QUESTION_COUNT + 1;
+        
+        [[EQDatabaseManager sharedInstance] saveContext];
+    }
 }
-+(void)incrementQuestionId{
++(void)incrementQuestionIdWithDifficulty:(int)difficulty{
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     
-    NSArray* result =  [[EQDatabaseManager sharedInstance] entitiesWithRequest:request forName:@"Metadata"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"difficulty == %d", difficulty];
+    [request setPredicate:predicate];
     
-    EQMetadata* meta = [result objectAtIndex:0];
+    EQMetadata *currentMeta = (EQMetadata *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Metadata"];
     
-    meta.currentQuestionId = (meta.currentQuestionId%TOTAL_QUESTION_COUNT)+1;
+    currentMeta.currentQuestionId = (currentMeta.currentQuestionId%TOTAL_QUESTION_COUNT)+1;
     
     [[EQDatabaseManager sharedInstance] saveContext];
     
 }
-+(int)getCurrentQuestion{
++(int)getCurrentQuestionWithDifficulty:(int)difficulty{
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     
-    NSArray* result =  [[EQDatabaseManager sharedInstance] entitiesWithRequest:request forName:@"Metadata"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"difficulty == %d", difficulty];
+    [request setPredicate:predicate];
     
-    EQMetadata* meta = [result objectAtIndex:0];
+    EQMetadata *currentMeta = (EQMetadata *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Metadata"];
     
-    return meta.currentQuestionId;
+    return currentMeta.currentQuestionId;
 }
 
 @end
