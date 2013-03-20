@@ -299,7 +299,7 @@
     [totalSolved setText:[NSString stringWithFormat:@"%d",self.currentStatistics.totalSolvedQuestion]];
     [totalSkipped setText:[NSString stringWithFormat:@"%d",self.currentStatistics.totalSkippedQuestion]];
     
-    int lastAverage = [EQScore getAverage];
+    int lastAverage = [EQScore getAverageWithDifficulty:difficulty];
 
     if (lastAverage == -1) {
         [average setText:@"-"];
@@ -312,6 +312,5 @@
     } else {
         [allTimeAverage setText:[StopWatch textWithMiliseconds:self.currentStatistics.allTimeAverage]];
     }
-
 }
 @end
