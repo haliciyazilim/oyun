@@ -173,7 +173,7 @@
 
 -(void)placingBoxes{
     
-    NSLog(@"%d",self.currentQuestion.questionId);
+    NSLog(@"Current Question ID:%d and current difficulty:%d",self.currentQuestion.questionId,self.difficulty);
     
     [EQBox cleanInstances];
     BOOL isRightSide=NO;
@@ -395,8 +395,13 @@
     
     [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatisticsWithDifficulty:_difficulty] minTime]*0.1 category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
     [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatisticsWithDifficulty:_difficulty] totalSolvedQuestion] category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
-
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
+    [self configureViews];
+    [self.stopWatch resetTimer];
+    [self.view setUserInteractionEnabled:YES];
+    
+//    [self.navigationController popViewControllerAnimated:YES];
 
     
 }
