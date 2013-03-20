@@ -394,7 +394,7 @@
     [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds] andDifficulty:_difficulty];
     
     [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatisticsWithDifficulty:_difficulty] minTime]*0.1 category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
-    [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatisticsWithDifficulty:_difficulty] totalSolvedQuestion] category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
+    [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatisticsWithDifficulty:_difficulty] totalSolvedQuestion] category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.totalSolvedQuestion%d", _difficulty]];
     
     [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
     [self configureViews];
