@@ -322,7 +322,7 @@
     }
     else if ([segue.identifier isEqualToString:@"StatsSegue"]) {
         EQStatsViewController *eqStatsViewController = [segue destinationViewController];
-        [eqStatsViewController setCurrentStatistics:[EQStatistic getStatisticsWithDifficulty:difficulty]];
+        [eqStatsViewController setDifficulty:difficulty];
     }
     
 }
