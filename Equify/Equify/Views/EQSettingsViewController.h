@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "EQViewController.h"
 
-@interface EQSettingsViewController : UIViewController <UIAlertViewDelegate>
+@interface EQSettingsViewController : UIViewController <UIAlertViewDelegate, UIScrollViewDelegate>
 
 @end

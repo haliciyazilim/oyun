@@ -62,6 +62,7 @@
 		05A6F9D516F8A5AC0026C977 /* standard-3000-3.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05A6F9D416F8A5AC0026C977 /* standard-3000-3.questionpack */; };
 		05A6F9D816F8A5C10026C977 /* standard-3000-1.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05A6F9D616F8A5C10026C977 /* standard-3000-1.questionpack */; };
 		05A6F9D916F8A5C10026C977 /* standard-3000-2.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05A6F9D716F8A5C10026C977 /* standard-3000-2.questionpack */; };
+		05B3E8E216FAFCCD0046307E /* standard-10000-3.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05B3E8E116FAFCCD0046307E /* standard-10000-3.questionpack */; };
 		05C05B1816F1C02A00913437 /* EQStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C05B1716F1C02A00913437 /* EQStatsViewController.m */; };
 		05C05B1B16F1CB0300913437 /* HelveticaNeueLTPro-Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B1916F1CB0300913437 /* HelveticaNeueLTPro-Md.otf */; };
 		05C05B1C16F1CB0300913437 /* HelveticaNeueLTPro-Th.otf in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B1A16F1CB0300913437 /* HelveticaNeueLTPro-Th.otf */; };
@@ -224,6 +225,7 @@
 		05A6F9D416F8A5AC0026C977 /* standard-3000-3.questionpack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "standard-3000-3.questionpack"; sourceTree = "<group>"; };
 		05A6F9D616F8A5C10026C977 /* standard-3000-1.questionpack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "standard-3000-1.questionpack"; sourceTree = "<group>"; };
 		05A6F9D716F8A5C10026C977 /* standard-3000-2.questionpack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "standard-3000-2.questionpack"; sourceTree = "<group>"; };
+		05B3E8E116FAFCCD0046307E /* standard-10000-3.questionpack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "standard-10000-3.questionpack"; sourceTree = "<group>"; };
 		05C05B1616F1C02A00913437 /* EQStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQStatsViewController.h; sourceTree = "<group>"; };
 		05C05B1716F1C02A00913437 /* EQStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQStatsViewController.m; sourceTree = "<group>"; };
 		05C05B1916F1CB0300913437 /* HelveticaNeueLTPro-Md.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeueLTPro-Md.otf"; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 		055C906D16EF2B94002BD042 /* questions */ = {
 			isa = PBXGroup;
 			children = (
+				05B3E8E116FAFCCD0046307E /* standard-10000-3.questionpack */,
 				05A6F9D616F8A5C10026C977 /* standard-3000-1.questionpack */,
 				05A6F9D716F8A5C10026C977 /* standard-3000-2.questionpack */,
 				05A6F9D416F8A5AC0026C977 /* standard-3000-3.questionpack */,
@@ -804,6 +807,7 @@
 				05A6F9D516F8A5AC0026C977 /* standard-3000-3.questionpack in Resources */,
 				05A6F9D816F8A5C10026C977 /* standard-3000-1.questionpack in Resources */,
 				05A6F9D916F8A5C10026C977 /* standard-3000-2.questionpack in Resources */,
+				05B3E8E216FAFCCD0046307E /* standard-10000-3.questionpack in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

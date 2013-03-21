@@ -20,8 +20,60 @@
     
     [[GameCenterManager sharedInstance] authenticateLocalUser];
     
+//    [self generateJson];
+    
+    
 //    [self.window makeKeyAndVisible];
     return YES;
+}
+-(void)generateJson {
+    NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"standard-10000-3" ofType:@"questionpack"]
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    
+    
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    NSDictionary *questionPack = [parser objectWithString:content];
+    
+    NSMutableArray *questionsArray = [NSMutableArray arrayWithCapacity:100];
+    
+    for (NSDictionary *question in [questionPack objectForKey:@"questions"]) {
+        NSArray *questionParts = [[question valueForKey:@"wholeQuestion"] componentsSeparatedByString:@"="];
+        
+        if ([[questionParts objectAtIndex:0] length] > 8 || [[questionParts objectAtIndex:1] length] > 8) {
+            ;
+        } else {
+            [questionsArray addObject:question];
+        }
+    }
+    
+    NSLog(@"there are %d questions",[questionsArray count]);
+    
+    NSArray *objectsArray = [NSArray arrayWithObjects:questionsArray,@"standard",[NSNumber numberWithInt:1], nil];
+    
+    NSArray *keysArray = [NSArray arrayWithObjects:@"questions",@"name",@"version", nil];
+
+    NSDictionary* wholeJson = [NSDictionary dictionaryWithObjects:objectsArray forKeys:keysArray];
+    
+    NSString *finalJson = [wholeJson JSONRepresentation];
+    
+    NSLog(@"%@",finalJson);
+    
+//    NSString *sourcePath = [[NSBundle mainBundle] resourcePath];
+//    //        sourcePath = [sourcePath stringByAppendingPathComponent:@"gallery"];
+//    //        sourcePath = [sourcePath stringByAppendingPathComponent:galleryName];
+//    sourcePath = [sourcePath stringByAppendingPathComponent:@"standard-reduced.questionpack"];
+//    
+//    // Open output file in append mode:
+//    NSOutputStream *stream = [[NSOutputStream alloc] initToFileAtPath:sourcePath append:YES];
+//    [stream open];
+//    // Make NSData object from string:
+//    NSData *data = [finalJson dataUsingEncoding:NSUTF8StringEncoding];
+//    // Write data to output file:
+//    [stream write:data.bytes maxLength:data.length];
+//    [stream close];
+
+
 }
 -(BOOL)shouldAutorotate
 {

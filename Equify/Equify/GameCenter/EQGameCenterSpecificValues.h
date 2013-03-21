@@ -7,8 +7,8 @@
 //
 
 // GameCenter leaderboards
-#define kLeaderboardBestTime @"com.halici.Equify.leaderboards.bestTime"
-#define kLeaderboardTotalSolvedQuestion @"com.halici.Equify.leaderboards.totalSolvedQuestion"
+#define kLeaderboardBestTime @"com.halici.Equify.leaderboards.bestTime1"
+#define kLeaderboardTotalSolvedQuestion @"com.halici.Equify.leaderboards.totalSolvedQuestion1"
 
 #define kLeaderboardBestTime2 @"com.halici.Equify.leaderboards.bestTime2"
 #define kLeaderboardTotalSolvedQuestion2 @"com.halici.Equify.leaderboards.totalSolvedQuestion2"
