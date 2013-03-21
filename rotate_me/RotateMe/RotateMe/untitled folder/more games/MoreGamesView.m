@@ -16,6 +16,7 @@
     NSMutableArray* gameViews;
     int currentIndex;
     UIButton *leftLeftView, *leftView, *centerView, *rightView, *rightRightView;
+    UIImageView* backgroundView;
     NSArray* games;
     BOOL isAnimating;
     CGSize gameViewSize;
@@ -44,36 +45,40 @@
         currentIndex = 0;
         movementAmount = 0;
         startingXLocation = 0;
-        animationDuration = 0.1;
+        animationDuration = 0.2;
         isTouchDown = NO;
         
         [self setUserInteractionEnabled:YES];
 //        [self setExclusiveTouch:YES];
         [self getGames];
         
-        [self initializeGestures];
+//        [self initializeGestures];
 
     }
     return self;
 }
 
-- (void) initializeGestures
-{
-    
-    swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                  action:@selector(animateRight)];
-    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
-    [self addGestureRecognizer:swipeRightGesture];
-    
-    swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                 action:@selector(animateLeft)];
-    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self addGestureRecognizer:swipeLeftGesture];
-}
+//- (void) initializeGestures
+//{
+//    
+//    swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+//                                                                  action:@selector(animateRight)];
+//    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+//    [self addGestureRecognizer:swipeRightGesture];
+//    
+//    swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+//                                                                 action:@selector(animateLeft)];
+//    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+//    [self addGestureRecognizer:swipeLeftGesture];
+//}
 
 - (void) setBackground
 {
-    [self setBackgroundColor:[UIColor redColor]];
+//    [self setBackgroundColor:[UIColor redColor]];
+    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moregames_bg.jpg"]];
+    backgroundView.frame = self.frame;
+    [backgroundView setContentMode:UIViewContentModeScaleToFill];
+    [self addSubview:backgroundView];
 }
 
 - (void) setFrame
@@ -111,6 +116,7 @@
         leftView        = [UIButton buttonWithType:UIButtonTypeCustom];
         rightRightView  = [UIButton buttonWithType:UIButtonTypeCustom];
     }
+    
     
     [self stylizeButton:leftLeftView];
     [self stylizeButton:leftView];
@@ -186,9 +192,14 @@
 
 - (void) stylizeButton:(UIButton*)button
 {
-    [button setClipsToBounds:YES];
+//    [button setClipsToBounds:YES];
     [button.layer setBorderColor:[UIColor whiteColor].CGColor];
     [button.layer setBorderWidth:2.0];
+    [button.layer setShadowRadius:5.0];
+    [button.layer setShadowOffset:CGSizeMake(1, 2)];
+    [button.layer setShadowColor:[UIColor blackColor].CGColor];
+    [button.layer setShadowOpacity:0.4];
+//    [button.layer set]
 }
 
 - (void) fillButtons
@@ -364,6 +375,7 @@
     [centerView     setFrame:[self frameForIndex: 0]];
     [rightView      setFrame:[self frameForIndex:+1]];
     [rightRightView setFrame:[self frameForIndex:+2]];
+    
     leftLeftView.alpha = 1.0;
     rightRightView.alpha = 1.0;
 }
