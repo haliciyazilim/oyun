@@ -98,6 +98,7 @@
 		AE7CBEDC16C003E7001BAF3D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE7CBEDE16C003E7001BAF3D /* Localizable.strings */; };
 		AE7CBEE216C00742001BAF3D /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CBEE116C00742001BAF3D /* Score.m */; };
 		AE7CBEE416C00AF3001BAF3D /* TypeDefs.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CBEE316C00AF3001BAF3D /* TypeDefs.m */; };
+		AE80D52D16F9CEF6005E3FEE /* moregames_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE80D52C16F9CEF6005E3FEE /* moregames_bg.jpg */; };
 		AE841D5616D4FD1600C6F946 /* ingame_btn_bg_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = AE841D5216D4FD1600C6F946 /* ingame_btn_bg_hover.png */; };
 		AE841D5716D4FD1600C6F946 /* ingame_btn_bg_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE841D5316D4FD1600C6F946 /* ingame_btn_bg_hover@2x.png */; };
 		AE841D5816D4FD1600C6F946 /* ingame_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AE841D5416D4FD1600C6F946 /* ingame_btn_bg.png */; };
@@ -314,6 +315,7 @@
 		AE7CBEE016C00742001BAF3D /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Score.h; path = model/Score.h; sourceTree = "<group>"; };
 		AE7CBEE116C00742001BAF3D /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Score.m; path = model/Score.m; sourceTree = "<group>"; };
 		AE7CBEE316C00AF3001BAF3D /* TypeDefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeDefs.m; path = common/TypeDefs.m; sourceTree = "<group>"; };
+		AE80D52C16F9CEF6005E3FEE /* moregames_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = moregames_bg.jpg; sourceTree = "<group>"; };
 		AE841D5216D4FD1600C6F946 /* ingame_btn_bg_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_btn_bg_hover.png; sourceTree = "<group>"; };
 		AE841D5316D4FD1600C6F946 /* ingame_btn_bg_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingame_btn_bg_hover@2x.png"; sourceTree = "<group>"; };
 		AE841D5416D4FD1600C6F946 /* ingame_btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_btn_bg.png; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 		AE740BA416F31093000DABCC /* more_games */ = {
 			isa = PBXGroup;
 			children = (
+				AE80D52C16F9CEF6005E3FEE /* moregames_bg.jpg */,
 				AE740BB716F34688000DABCC /* more_games_close_btn.png */,
 				AE740BB816F34688000DABCC /* more_games_close_btn@2x.png */,
 				AE740BB916F34688000DABCC /* more_games_close_btn~iphone.png */,
@@ -1084,6 +1087,7 @@
 				AE740BBC16F34688000DABCC /* more_games_close_btn@2x.png in Resources */,
 				AE740BBD16F34688000DABCC /* more_games_close_btn~iphone.png in Resources */,
 				AE740BBE16F34688000DABCC /* more_games_close_btn~iphone@2x.png in Resources */,
+				AE80D52D16F9CEF6005E3FEE /* moregames_bg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
